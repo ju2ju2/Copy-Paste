@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@Project : 
+@File name : security-context.xml
+@Date : 2018.10.06
+@Author : 우나연
+@Desc : security 설정 (시큐리티 db 직접 연결로 로그인, 비밀번호 암호화 )
+-->		
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:security="http://www.springframework.org/schema/security"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                http://www.springframework.org/schema/beans/spring-beans.xsd
+                http://www.springframework.org/schema/security 
+                http://www.springframework.org/schema/security/spring-security.xsd">
+		<security:http auto-config="true" use-expressions="true">
+		<security:csrf disabled="true" />
+		<security:form-login
+			login-page="/joinus/login.htm"
+			authentication-failure-url="/joinus/login.htm?error"
+			username-parameter="username" password-parameter="password" />
+
+		<security:logout logout-success-url="/index.htm" />
+		<security:intercept-url
+			pattern="/customer/*Reg.htm" access="hasRole('ROLE_USER')" />
+		<security:intercept-url pattern="/admin/**"
+			access="hasRole('ROLE_ADMIN')" /> <!-- **:하위폴더까지,, -->
+		
+		
+		
+		
+		<security:session-management
+			invalid-session-url="/joinus/login.htm">
+			<security:concurrency-control
+				max-sessions="1" error-if-maximum-exceeded="true" />
+		</security:session-management>
+		<security:logout logout-success-url="/index.htm" />
+		
+
+	</security:http>
+
+
+	<security:authentication-manager>
+		<security:authentication-provider>
+		<!-- db연결객체 참조 -->
+			<security:jdbc-user-service
+				data-source-ref="dataSource" 
+				users-by-username-query="SELECT USERID, pwd AS PASSWORD, 1 enabled FROM member where userid=?"
+				authorities-by-username-query="select m.USERID , r.ROLE_NAME  
+           									  from member m join roll r 
+          									 on m.userid = r.userid 
+          									 where m.userid=?" />
+			<security:password-encoder
+				ref="bCryptPasswordEncoder" />
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+	<!-- 비밀번호 암호화(Security) -->
+	<bean id="bCryptPasswordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+		<!-- <constructor-arg name="strength" value="20"></constructor-arg> -->
+	</bean>
+	<bean name="jsonview" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+	
+
+</beans>
