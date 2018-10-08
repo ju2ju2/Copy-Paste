@@ -7,7 +7,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="resources/css/main.css" />
-		<!-- title 영역 -->
+        <!-- title 영역 -->
 		<title><tiles:insertAttribute name="title" /></title>
 	</head>
 	<body>

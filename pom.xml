@@ -16,7 +16,7 @@
 	<artifactId>copyNpaste</artifactId>
 	<name>copyNpaste</name>
 	<packaging>war</packaging>
-	<version>1.0.0-BUILD-SNAPSHOT</version>
+	<version>0.1.0-BUILD-SNAPSHOT</version>
 	
 	<!-- 관리상 편의 속성파일  -->
 	<properties>
