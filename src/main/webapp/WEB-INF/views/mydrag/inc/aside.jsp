@@ -1,49 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!-- Sidebar -->
-<div id="sidebar">
-	<div class="inner">
+<div id="navi">
+	<h2>회원가입</h2>
+	<h3 class="hidden">회원메뉴</h3>
+	<ul id="navi-menu">
+		<li><a href="">로그인</a></li>
+		<li><a href="" class="current">회원가입</a></li>
+		<li><a href="">아이디찾기</a></li>
+		<li><a href="">비밀번호 재발급</a></li>
+	</ul>
 
-		<!-- Search -->
-		<section id="search" class="alt">
-			<form method="post" action="#">
-				<input type="text" name="query" id="query" placeholder="Search" />
-			</form>
-		</section>
-
-
-		<!-- Section -->
-		<section>
-			<header class="major">
-				<h2>Ante interdum</h2>
-			</header>
-			<div class="mini-posts">
-				<article>
-					<a href="#" class="image"><img src="images/pic07.jpg" alt="" /></a>
-					<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-						dolore aliquam.</p>
-				</article>
-				<article>
-					<a href="#" class="image"><img src="images/pic08.jpg" alt="" /></a>
-					<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-						dolore aliquam.</p>
-				</article>
-				<article>
-					<a href="#" class="image"><img src="images/pic09.jpg" alt="" /></a>
-					<p>Aenean ornare velit lacus, ac varius enim lorem ullamcorper
-						dolore aliquam.</p>
-				</article>
-			</div>
-			<ul class="actions">
-				<li><a href="#" class="button">More</a></li>
-			</ul>
-		</section>
-
-
-
-
-
-	</div>
-</div>
-
+	<h3 id="fav-title">추천사이트</h3>
+	<ul class="margin-small">
+		<li><a href=""><img src="" alt="" /></a></li>
+		<li><a href=""><img src="" alt="" /></a></li>
+		<li><a href="h"><img src="" alt="" /></a></li>
+	</ul>
 </div>
