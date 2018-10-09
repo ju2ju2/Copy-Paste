@@ -19,16 +19,6 @@
 			
 
 				<!-- 스프링이 제공하는 spel jsp에서 사용할 수 있는 스크립트 언어 -->	
-				<!-- 비회원일때 -->
-				<se:authorize access="!hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
-				<ul id="anyUserNav" class="nav navbar-nav navbar-right">
-					<br>
-					<li><a href="${pageContext.request.contextPath}/about.htm">ABOUT</a></li>
-					<li><a href="${pageContext.request.contextPath}/login.htm">LOGIN</a></li>
-					<li><a href="${pageContext.request.contextPath}/signup.htm">SIGN
-							UP</a></li>
-				</ul>
-				
 				<!-- 회원 -->	
 				<se:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
 					<br>
@@ -40,6 +30,7 @@
 						data-toggle="dropdown"> SEARCH<span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu">
+
 							<li><a href="#">사이트 검색</a></li>
 							<li><a href="#">네이버 검색</a></li>
 							<li><a href="#"> 구 &ensp;글 검색</a></li>
@@ -59,7 +50,15 @@
 					<li><a href="#">ADMIN</a></li></li>
 				</ul>	
 				</se:authorize>
-			
+				<!-- 비회원일때 -->
+				<se:authorize access="!hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
+				<ul id="anyUserNav" class="nav navbar-nav navbar-right">
+					<br>
+					<li><a href="${pageContext.request.contextPath}/about.htm">ABOUT</a></li>
+					<li><a href="${pageContext.request.contextPath}/login.htm">LOGIN</a></li>
+					<li><a href="${pageContext.request.contextPath}/signup.htm">SIGN
+							UP</a></li>
+				</ul>
 				
 			</se:authorize>
 
