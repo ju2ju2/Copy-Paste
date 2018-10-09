@@ -17,8 +17,8 @@
 		<tiles:insertAttribute name="header" />
 		<!-- Main 영역 -->
 		<div id="main">
-			<!-- Content 영역 -->
-			<tiles:insertAttribute name="content" />
+		<!-- Content 영역 -->
+		<tiles:insertAttribute name="content" />
 		</div>
 		<!-- Footer 영역  -->
 		<tiles:insertAttribute name="footer" />

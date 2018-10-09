@@ -10,7 +10,7 @@
 			<a class="navbar-brand"
 				href="${pageContext.request.contextPath}/index.htm"
 				style="display: inline-block;"> <img
-				src="resources/image/logo.png" class="logo" alt="logo"
+				src="${pageContext.request.contextPath}/resources/image/logo.png" class="logo" alt="logo"
 				style="display: inline-block;"> COPY&PASTE
 			</a>
 		</div>
@@ -24,7 +24,7 @@
 					<br>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#">NOTE</a></li>
-					<li><a href="#">MY DRAG</a></li>
+					<li><a href="${pageContext.request.contextPath}/drag/drag.htm">MY DRAG</a></li>
 					<li><a href="#">MY NOTE</a></li>
 					<li class="dropdown"><a href="#" class="dropdown=toggle"
 						data-toggle="dropdown"> SEARCH<span class="caret"></span>
