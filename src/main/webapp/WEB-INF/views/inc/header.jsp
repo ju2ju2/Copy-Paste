@@ -16,21 +16,23 @@
 		</div>
 		<!-- nav menu -->
 		<div class="collapse navbar-collapse" id="myNavbar">
-			<ul class="nav navbar-nav navbar-right">
-				<br>
-				<li><a href="${pageContext.request.contextPath}/about.htm">ABOUT</a></li>
-				
-				<li><a href="<c:url value="/login.htm" />">LOGIN</a></li>
-				<li><a href="${pageContext.request.contextPath}/signup.htm">SIGN UP</a></li>
 			
 
-				<!-- 스프링이 제공하는 spel jsp에서 사용할 수 있는 스크립트 언어 -->
-				<!-- 유저권한일때 -->
-				<se:authorize access="hasRole('ROLE_USER')">
-					<li><a href="${pageContext.request.contextPath}/login.htm">LOGIN</a>
-				</se:authorize>
-				<se:authentication property="name" var="loginuser" />
+				<!-- 스프링이 제공하는 spel jsp에서 사용할 수 있는 스크립트 언어 -->	
+				<!-- 비회원일때 -->
+				<se:authorize access="!hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
+				<ul id="anyUserNav" class="nav navbar-nav navbar-right">
+					<br>
+					<li><a href="${pageContext.request.contextPath}/about.htm">ABOUT</a></li>
+					<li><a href="${pageContext.request.contextPath}/login.htm">LOGIN</a></li>
+					<li><a href="${pageContext.request.contextPath}/signup.htm">SIGN
+							UP</a></li>
+				</ul>
+				
+				<!-- 회원 -->	
 				<se:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
+					<br>
+				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#">NOTE</a></li>
 					<li><a href="#">MY DRAG</a></li>
 					<li><a href="#">MY NOTE</a></li>
@@ -38,38 +40,32 @@
 						data-toggle="dropdown"> SEARCH<span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu">
-
-							<li><a href="/codelabs/darrrt/">사이트 검색</a></li>
-							<li><a href="https://dartpad.dartlang.org">네이버 검색</a></li>
-							<li><a href="/downloads/">구 글 검색</a></li>
+							<li><a href="#">사이트 검색</a></li>
+							<li><a href="#">네이버 검색</a></li>
+							<li><a href="#"> 구 &ensp;글 검색</a></li>
 						</ul></li>
 					<li><a href="#">ME</a></li>
-					<li><a href="${pageContext.request.contextPath}/login.htm"
-						data-toggle="modal" data-target="#login-modal">LOGIN</a></li>
-
-
-					<div class="modal fade" id="login-modal" tabindex="-1"
-						role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-						style="display: none;">
-						<div class="modal-dialog">
-							<div class="loginmodal-container">
-								<jsp:include page="${pageContext.request.contextPath}/login.htm" />
-							</div>
-						</div>
-					</div>
-
+					
+					<se:authentication property="name" var="loginuser" />
 					<li><a href="${pageContext.request.contextPath}/logout">
 							(${loginuser})로그아웃</a></li>
+				</ul>
 				</se:authorize>
-				<!-- ROLR_USER라면 -->
-				<se:authorize access="!hasRole('ROLE_USER')"></se:authorize>
-				<!-- ROLR_USER아니라면 -->
+						
+				<!-- 관리자권한일때 -->
+				<se:authorize access="hasRole('ROLE_ADMIN')">
+				<ul id="anyUserNav" class="nav navbar-nav navbar-right">
+					
+					<li><a href="#">ADMIN</a></li></li>
+				</ul>	
+				</se:authorize>
+			
+				
+			</se:authorize>
 
 
-
-			</ul>
+			
 		</div>
 	</div>
 	<hr style="margin: 30px; border-top-width: 2px; border-color: #f56a6a;" />
 </nav>
-
