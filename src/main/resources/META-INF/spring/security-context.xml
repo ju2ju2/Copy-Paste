@@ -14,29 +14,26 @@
                 http://www.springframework.org/schema/beans/spring-beans.xsd
                 http://www.springframework.org/schema/security 
                 http://www.springframework.org/schema/security/spring-security.xsd">
-		<security:http auto-config="true" use-expressions="true">
+		<security:http auto-config="true" use-expressions="true" > 
 		<security:csrf disabled="true" />
-		<security:form-login
-			login-page="/joinus/login.htm"
-			authentication-failure-url="/joinus/login.htm?error"
-			username-parameter="username" password-parameter="password" />
-
-		<security:logout logout-success-url="/index.htm" />
-		<security:intercept-url
-			pattern="/customer/*Reg.htm" access="hasRole('ROLE_USER')" />
-		<security:intercept-url pattern="/admin/**"
-			access="hasRole('ROLE_ADMIN')" /> <!-- **:하위폴더까지,, -->
+		<security:intercept-url pattern="/login.htm" access="permitAll" />
+		<security:intercept-url	pattern="/signup.htm" access="permitAll" />
+		<security:intercept-url pattern="/admin/**"	access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/**" access="hasAnyRole('ROLE_USER, ROLE_ADMIN')" />
 		
-		
+      <security:form-login login-page="/login.htm" 
+      						default-target-url="/index.htm"
+      						authentication-failure-url="/login.htm?error"
+      						username-parameter="id" password-parameter="password" 
+      						/> 	
 		
 		
 		<security:session-management
-			invalid-session-url="/joinus/login.htm">
+			invalid-session-url="/login.htm">
 			<security:concurrency-control
 				max-sessions="1" error-if-maximum-exceeded="true" />
 		</security:session-management>
 		<security:logout logout-success-url="/index.htm" />
-		
 
 	</security:http>
 
@@ -44,7 +41,7 @@
 	<security:authentication-manager>
 		<security:authentication-provider>
 		<!-- db연결객체 참조 -->
-			<security:jdbc-user-service
+		<!-- 	<security:jdbc-user-service
 				data-source-ref="dataSource" 
 				users-by-username-query="SELECT USERID, pwd AS PASSWORD, 1 enabled FROM member where userid=?"
 				authorities-by-username-query="select m.USERID , r.ROLE_NAME  
@@ -53,6 +50,17 @@
           									 where m.userid=?" />
 			<security:password-encoder
 				ref="bCryptPasswordEncoder" />
+		 -->
+ 
+		<!-- 테스트용 아이디 -->
+         <security:user-service>
+            <security:user name="peaceb" password="1" authorities="ROLE_USER" />
+            <security:user name="admin" password="1"  authorities="ROLE_USER,ROLE_ADMIN" />
+         </security:user-service>
+         
+         
+			<!-- 패스워드 인코더  -->
+			<security:password-encoder ref="bCryptPasswordEncoder"/>	
 		</security:authentication-provider>
 	</security:authentication-manager>
 
