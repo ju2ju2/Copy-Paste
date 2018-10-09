@@ -2,21 +2,24 @@
 * @Class : EtcController
 * @ Date : 2018.10.05
 * @ Author : 이주원
-* @ Desc : 기타 관련 컨트롤러. (service 사용, 뷰 매핑)
+* @ Desc : 기타 관련 컨트롤러. + 관리자 (service 사용, 뷰 매핑)
 */
 
 package tk.copyNpaste.etc;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import tk.copyNpaste.vo.ReportVO;
-
-@Controller //동기 컨트롤러. retrun>> ModelAndView or String.
 @RequestMapping("/etc/")
+@Controller //동기 컨트롤러. retrun>> ModelAndView or String.
 public class EtcController {
 	EtcService etcService = new EtcService(); 
+	
+	@RequestMapping("admin.htm")
+	//관리자 페이지 (회원관리)
+	public String adminPage() throws Exception {
+		return "admin.manageMember";
+	};
 	
 	//신고 하기
 	public void insertReport(int noteNum) throws Exception {

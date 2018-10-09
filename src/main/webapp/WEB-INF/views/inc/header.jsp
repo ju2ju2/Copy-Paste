@@ -47,7 +47,7 @@
 				<se:authorize access="hasRole('ROLE_ADMIN')">
 				<ul id="anyUserNav" class="nav navbar-nav navbar-right">
 					
-					<li><a href="#">ADMIN</a></li></li>
+					<li><a href="${pageContext.request.contextPath}/etc/admin.htm">ADMIN</a></li></li>
 				</ul>	
 				</se:authorize>
 				<!-- 비회원일때 -->
