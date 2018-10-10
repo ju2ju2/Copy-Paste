@@ -58,8 +58,6 @@ pom.xml.next
 
 release.properties
 
-pom.properties
-
 dependency-reduced-pom.xml
 
 buildNumber.properties

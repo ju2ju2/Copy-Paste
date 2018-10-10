@@ -3,7 +3,6 @@
 * @ Date : 2018.10.05
 * @ Author : 이주원
 * @ Desc : 회원 관련 컨트롤러. (service 사용, 뷰 매핑)
-* 		   내 정보 보기 페이지 들어가기 메서드 추가. (10월 10일)
 */
 
 package tk.copyNpaste.member;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import tk.copyNpaste.vo.MemberVO;
 
 @Controller
-@RequestMapping(value = "/member/")
+@RequestMapping(value = "/member")
 public class MemberController {
 	MemberService  memberService = new MemberService();
 	LoginService loginService = new LoginService();
@@ -71,10 +70,9 @@ public class MemberController {
 		
 	};
 		
-	//내 정보 보기 페이지 들어가기 * 작업자 : 이주원
-	@RequestMapping("myinfo.htm")
-	public String updateMember(String userEmail) throws Exception{
-		return "member.myinfo";
+	//회원 정보 수정
+	public void updateMember(String userEmail) throws Exception{
+		
 	};
 	
 	//임시비밀번호

@@ -35,7 +35,7 @@
 							<li><a href="#">네이버 검색</a></li>
 							<li><a href="#"> 구 &ensp;글 검색</a></li>
 						</ul></li>
-					<li><a href="${pageContext.request.contextPath}/member/myinfo.htm">ME</a></li>
+					<li><a href="#">ME</a></li>
 					
 					<se:authentication property="name" var="loginuser" />
 					<li><a href="${pageContext.request.contextPath}/logout">
@@ -56,7 +56,8 @@
 					<br>
 					<li><a href="${pageContext.request.contextPath}/about.htm">ABOUT</a></li>
 					<li><a href="${pageContext.request.contextPath}/login.htm">LOGIN</a></li>
-					<li><a href="${pageContext.request.contextPath}/signup.htm">SIGN UP</a></li>
+					<li><a href="${pageContext.request.contextPath}/signup.htm">SIGN
+							UP</a></li>
 				</ul>
 				
 			</se:authorize>

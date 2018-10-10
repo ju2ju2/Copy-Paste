@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- Sidebar -->
-
 <div id="sidebar">
 
 	<div class="inner">
@@ -45,6 +44,8 @@
 			</ul>
 		</section>
 
+
+		<a href="#sidebar" class="toggle">Toggle</a>
 	</div>
 </div>
 
