@@ -15,6 +15,7 @@ public class IndexController {
 		@RequestMapping("/about.htm")
 		public String about() {
 			//return "about.jsp";
+			
 			return "index.about";
 		}
 
@@ -25,13 +26,13 @@ public class IndexController {
 		}
 		
 		
-		
 		@RequestMapping("/signup.htm")
 		public String signup() {
 			//return "login.jsp";
 			return "index.signup";
 		}
-	
+		
+
 		
 		
 		
