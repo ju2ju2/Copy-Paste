@@ -25,7 +25,7 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${pageContext.request.contextPath}/note/note.htm">NOTE</a></li>
 					<li><a href="${pageContext.request.contextPath}/drag/drag.htm">MY DRAG</a></li>
-					<li><a href="#">MY NOTE</a></li>
+					<li><a href="${pageContext.request.contextPath}/note/note.htm">MY NOTE</a></li>
 					<li class="dropdown"><a href="#" class="dropdown=toggle"
 						data-toggle="dropdown"> SEARCH<span class="caret"></span>
 					</a>
