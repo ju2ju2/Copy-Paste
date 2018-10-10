@@ -23,7 +23,7 @@
 				<se:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
 					<br>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="${pageContext.request.contextPath}/note/note.htm">NOTE</a></li>
+					<li><a href="#">NOTE</a></li>
 					<li><a href="${pageContext.request.contextPath}/drag/drag.htm">MY DRAG</a></li>
 					<li><a href="#">MY NOTE</a></li>
 					<li class="dropdown"><a href="#" class="dropdown=toggle"

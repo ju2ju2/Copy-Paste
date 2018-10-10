@@ -17,19 +17,11 @@ import tk.copyNpaste.vo.NoteCommVO;
 import tk.copyNpaste.vo.NoteVO;
 
 @Controller
-@RequestMapping(value = "/note/")
+@RequestMapping(value = "/note")
 public class NoteController {
 	
 	NoteMailnFileService  noteMailnFileService = new NoteMailnFileService();
 	NoteService noteService = new NoteService();
-	
-	// 노트 페이지로 이동(2018.10.10. 고은아 추가)
-	@RequestMapping("note.htm")
-	public String insertNotePage() throws Exception {
-		
-		return "write.insertNote";
-	}
-	
 	
 	//노트의 폴더 이동
 	public int moveNoteFolder(NoteVO note) throws Exception {
@@ -44,7 +36,6 @@ public class NoteController {
 	public NoteVO selectDetailNote(int noteNum) throws Exception{
 		return noteService.selectDetailNote(noteNum);
 	}
-	
 	//노트 수정
 	public int updateNote(NoteVO note) throws Exception{
 		return noteService.updateNote(note);
