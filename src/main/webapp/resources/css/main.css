@@ -2,7 +2,7 @@
 /* main.css 
 @css : qna.css
 @Date : 2018.10.10
-@Author : 임지현, 문지은
+@Author : 임지현, 문지은, 우나연
 @Desc :	main,about,login,signup. css
 */
 /* 드래그 색상변경 */
@@ -14,6 +14,122 @@
    background: #f56a6a;
    color: #fff;
 }
+
+/* Typography
+----------------------------------------------------------------------------- */
+
+body {
+	font-family: 'Nanum Gothic', sans-serif; 
+}
+.site-name {
+	font-family: "Montserrat", sans-serif;
+}
+nav{	
+	font-family: "Montserrat", sans-serif; 
+}
+#myNavbar{	
+	font-size:14px;
+}
+html,
+body {
+	height: 100%;
+}
+body {
+	font-size: 15px;
+	line-height: 1.50;
+	color: #333333;
+	background-color: #ffffff;
+	position: relative;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: #333333;
+}
+h1 {
+	font-size: 38px;
+	font-weight: 700;
+	margin-bottom: 20px;
+}
+h2 {
+	font-size: 28px;
+	margin-bottom: 15px;
+}
+h3 {
+	font-size: 22px;
+}
+h4 {
+	font-size: 18px;
+	font-weight: 700;
+}
+h5 {
+	font-size: 16px;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+h6 {
+	font-weight: 700;
+}
+h1 span,
+h2 span,
+h3 span,
+h4 span {
+	color: #f56a6a;
+}
+.text-colored {
+	color: #f56a6a;
+}
+a {
+	color: #f56a6a;
+}
+a:hover {
+	color: #f56a6a;
+}
+a:focus,
+a:active {
+	outline: none;
+}
+.large {
+	font-size: 18px;
+}
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+.list-unstyled li {
+	padding: 5px 0;
+}
+.list-horizontal {
+	padding: 15px 0;
+}
+.list-horizontal-item img {
+	display: block;
+	margin: 0 auto;
+}
+.list-icons {
+	padding: 0;
+	margin: 20px 0;
+	list-style: none;
+	font-size: 18px;
+}
+.list-icons li {
+	padding: 0 0 15px 0;
+}
+blockquote {
+	border-left: none;
+	padding-left: 0;
+	padding-right: 0;
+}
+.title {
+	margin-top: 0;
+}
+
+
+
 /* header navbar */
 .navbar {
 	line-height: 1.8;

@@ -24,8 +24,8 @@
 					<br>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="${pageContext.request.contextPath}/note/write.htm">NOTE</a></li>
-					<li><a href="${pageContext.request.contextPath}/drag/drag.htm">MY DRAG</a></li>
-					<li><a href="${pageContext.request.contextPath}/note/note.htm">MY NOTE</a></li>
+					<li><a href="${pageContext.request.contextPath}/drag/drag.htm">MYDRAG</a></li>
+					<li><a href="${pageContext.request.contextPath}/note/note.htm">MYNOTE</a></li>
 					<li class="dropdown"><a href="#" class="dropdown=toggle"
 						data-toggle="dropdown"> SEARCH<span class="caret"></span>
 					</a>
@@ -39,7 +39,7 @@
 					
 					<se:authentication property="name" var="loginuser" />
 					<li><a href="${pageContext.request.contextPath}/logout">
-							(${loginuser})로그아웃</a></li>
+							(${loginuser})LOGOUT</a></li>
 				</ul>
 				</se:authorize>
 						
