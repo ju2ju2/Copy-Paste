@@ -34,13 +34,12 @@ public class EtcController {
 	public String adminReportPage() throws Exception {
 		return "admin.manageReport";
 	};
-	
 	@RequestMapping("adminStatistic.htm")
 	//관리자 페이지 (통계)
 	public String adminStatisticPage() throws Exception {
 		return "admin.manageStatistic";
 	};
-
+	
 	//노트 신고 목록 보기
 	@RequestMapping("noteReport.json")
 	public @ResponseBody String selectNoteReport() throws Exception {		
@@ -97,10 +96,9 @@ public class EtcController {
 		etcService.stateTopRank();
 	};
 
-	/* 
-	*  @Date : 2018.10.10    * @Author : 이주원
-	*  @Desc : qna 게시판에 관한 내용 (사용자 접근)
-	*/
+	/*qna 게시판에 관련된 내용. 
+	 * [작성자 : 이주원] [작성날짜 : 2018-10-10]*/
+	
 	@RequestMapping("/selectQnaboard.htm")
 	public String selectAllQnaboard() {
 		return "qna.selectQnaboard";

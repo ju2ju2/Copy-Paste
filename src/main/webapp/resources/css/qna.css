@@ -1,0 +1,59 @@
+/* qna.css
+@css : qna.css
+@Date : 2018.10.10
+@Author : 이주원
+@Desc :	qna.css
+*/
+
+@import url(main.css);
+
+#commentbtn{
+	margin-left: 10px;
+}
+
+.main-btn{
+	margin-top: 15px !important;
+	margin-bottom:15px !important;
+	margin-left:auto;
+	margin-right:10px !important;
+	background:#f56a6a; 
+	border-color:#f56a6a; 
+	color:#fff;
+}
+
+.comment-box {
+    margin-top: 30px !important; 
+}
+
+.comment-box .media-left {
+    padding-right: 10px;
+    width: 500px;
+}
+
+.comment-box .media-body {
+    padding : 4px;
+    padding-top : 12px;
+}
+
+.comment-box img{
+  margin-top: 10px !important;
+  margin-bottom: 20px !important;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  background-size: contain;
+} 
+
+#userComment{
+	margin-top: 20px !important;
+	margin-bottom: 20px !important;
+}
+
+.form-group strong{
+	size:15em;
+	text-align:right;
+}
+
+.form-control{
+	margin-right:10px;
+}
