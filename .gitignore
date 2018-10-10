@@ -36,7 +36,9 @@
 
 *.rar
 
-
+# 최상위디렉토리의 .classpath 파일만 무시
+# 하위디렉토리는 무시하지 않는다.
+.classpath
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 
