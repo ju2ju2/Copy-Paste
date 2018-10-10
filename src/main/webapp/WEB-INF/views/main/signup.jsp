@@ -3,7 +3,7 @@
 
 <div class="container">
 	<div class="row">
-		<div class="center-block account-wall">
+		<div class="center-block ">
 			<h2 class="text-center signup-title">회원가입</h2>
 			<hr>
 			<form class="form-horizontal" method="post" name="signup" id="signup" enctype="multipart/form-data">
