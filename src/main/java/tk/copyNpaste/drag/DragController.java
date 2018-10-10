@@ -8,23 +8,26 @@ package tk.copyNpaste.drag;
 
 import java.util.Date;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;/*
-
-import kr.co.mlec.drag.service.DragService;
-import kr.co.mlec.repository.vo.DragVO;
-import kr.co.mlec.repository.vo.NoteVO;*/
 
 import tk.copyNpaste.vo.DragVO;
 
-//@Controller //동기 컨트롤러. retrun>> ModelAndView or String.
-@RestController //비동기 컨트롤러. retrun>> json.
+ //동기 컨트롤러. retrun>> ModelAndView or String.
+//@RestController //비동기 컨트롤러. retrun>> json.
+@Controller
 @RequestMapping("/drag/")
 public class DragController {
 	
 	DragService dragservice = new DragService();
 
+	//드래그 페이지
+	@RequestMapping("drag.htm")
+	public String dragPage() throws Exception {
+	
+		return "drag.list";
+	}
+	
 	
 	//드래그 하기(등록)
 	public void insertDrag(DragVO drag) throws Exception {
