@@ -208,7 +208,7 @@
 		box-shadow: 0 0 5em 0 rgba(0, 0, 0, 0.175);
 		height: 100%;
 		left: 0;
-		position: fixed;
+/* 		position: fixed; */
 		top: 0;
 		z-index: 10000;
 	}
@@ -244,6 +244,10 @@
 }
 
 @media screen and (max-width: 736px) {
+	#sidebar {
+		display: none;
+	}
+	
 	#sidebar .toggle {
 		text-indent: 7.25em;
 		width: 7.25em;
