@@ -90,6 +90,23 @@ public class EtcController {
 	public void stateTopRank() throws Exception {
 		etcService.stateTopRank();
 	};
+
+	/*qna 게시판에 관련된 내용. 
+	 * [작성자 : 이주원] [작성날짜 : 2018-10-10]*/
 	
+	@RequestMapping("/selectQnaboard.htm")
+	public String selectAllQnaboard() {
+		return "qna.selectQnaboard";
+	}
+
+	@RequestMapping("/insertQnaboard.htm")
+	public String insertQnaboard() {
+		return "qna.insertQnaboard";
+	}
+	
+	@RequestMapping("/selectDetailQna.htm")
+	public String selectDetailQnaboard() {
+		return "qna.selectDetailQna";
+	}
 	
 }
