@@ -9,7 +9,9 @@
 		<!-- title 영역 -->
 		<tiles:insertAttribute name="title" />
 		<!-- css  영역 -->
-		<link href='<tiles:getAsString name="css" />' type="text/css" rel="stylesheet" />
+		<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" />
 	</head>
 	<body>
 		<!-- Header  영역 (공통 inc) -->
@@ -25,5 +27,11 @@
 		
 		<!-- Footer 영역 -->
 		<tiles:insertAttribute name="footer" />
+		
+				
+		<!-- Scripts -->
+		<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</body>
 </html>
