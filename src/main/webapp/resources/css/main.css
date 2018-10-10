@@ -5,7 +5,16 @@
 @Author : 임지현, 문지은
 @Desc :	main,about,login,signup. css
 */
-
+/* 드래그 색상변경 */
+::-moz-selection {
+   background: #f56a6a;
+   color: #fff;
+}
+::selection {
+   background: #f56a6a;
+   color: #fff;
+}
+/* header navbar */
 .navbar {
 	line-height: 1.8;
 	color: #f5f6f7;

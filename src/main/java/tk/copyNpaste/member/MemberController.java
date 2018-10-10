@@ -74,7 +74,7 @@ public class MemberController {
 	//내 정보 보기 페이지 들어가기 * 작업자 : 이주원
 	@RequestMapping("myinfo.htm")
 	public String updateMember(String userEmail) throws Exception{
-		return "member.myinfo";
+		return "index.myinfo";
 	};
 	
 	//임시비밀번호
