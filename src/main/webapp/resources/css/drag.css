@@ -4,6 +4,7 @@
 @Author : 우나연
 @Desc :	drag.css
 */
+@import url(main.css);
 
 /* sidebar 설정 */
 #search form {

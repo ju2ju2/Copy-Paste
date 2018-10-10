@@ -5,6 +5,7 @@
 @Desc :	qna.css
 */
 
+@import url(main.css);
 
 #commentbtn{
 	margin-left: 10px;

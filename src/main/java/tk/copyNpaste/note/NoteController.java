@@ -17,7 +17,7 @@ import tk.copyNpaste.vo.NoteCommVO;
 import tk.copyNpaste.vo.NoteVO;
 
 @Controller
-@RequestMapping(value = "/note")
+@RequestMapping(value = "/note/")
 public class NoteController {
 	
 	NoteMailnFileService  noteMailnFileService = new NoteMailnFileService();
@@ -29,8 +29,11 @@ public class NoteController {
 	}
 	
 	//노트 목록 보기
-	public List<NoteVO> selectAllNote() throws Exception{
-		return noteService.selectAllNote();
+	@RequestMapping(value = "note.htm")
+	public String selectAllNote() throws Exception{
+	/*	List<NoteVO> note;
+		note=noteService.selectAllNote();*/
+		return "note.list";
 	}
 	//노트 상세 보기(+노트 작성)
 	public NoteVO selectDetailNote(int noteNum) throws Exception{

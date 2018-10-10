@@ -5,7 +5,11 @@
 @Desc :	admin.css
 */
 
+@import url(main.css);
+
 /* sidebar 설정 */
+
+
 #search form {
 	text-decoration: none;
 	position: relative;
@@ -45,6 +49,7 @@
 }
 
 #sidebar {
+	text-align: right;
 	-moz-flex-grow: 0;
 	-webkit-flex-grow: 0;
 	-ms-flex-grow: 0;

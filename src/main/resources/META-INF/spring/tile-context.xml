@@ -19,13 +19,8 @@
 		    <put-attribute name="content" value="/WEB-INF/views/main/{1}.jsp" />
 	</definition> 
 	<definition name="*.*" template="/WEB-INF/views/{1}/inc/layout.jsp">
-<<<<<<< HEAD
-		    <put-attribute name="title"   value="welcome cnp" />
-		    <put-attribute name="css"   value="{1}.css" />
-=======
-		    <put-attribute name="title"   value="{1} PAGE" />
-		    <put-attribute name="css"   value="{2}.css" />
->>>>>>> d3c84074039c3ea885bfc3a27b3c11d5a3565cda
+		    <put-attribute name="title"   value="welcome {1}" />
+		    <put-attribute name="css"     value="{1}.css" />
 		    <put-attribute name="header"  value="/WEB-INF/views/inc/header.jsp" />
 		    <put-attribute name="footer"  value="/WEB-INF/views/inc/footer.jsp" />
 		    <put-attribute name="aside"   value="/WEB-INF/views/{1}/inc/aside.jsp" />
