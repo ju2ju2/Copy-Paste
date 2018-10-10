@@ -5,6 +5,8 @@
 @Desc :	admin.css
 */
 
+@import url(main.css);
+
 /* sidebar 설정 */
 #search form {
 	text-decoration: none;
