@@ -24,7 +24,7 @@ public class NoteController {
 	NoteService noteService = new NoteService();
 	
 	// 노트 페이지로 이동(2018.10.10. 고은아 추가)
-	@RequestMapping("note.htm")
+	@RequestMapping("write.htm")
 	public String insertNotePage() throws Exception {
 		
 		return "write.insertNote";
