@@ -7,30 +7,40 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>로그인 페이지</title>
 </head>
-
-<body onload="document.f.emailid.focus();">
-
-<h3>아이디와 비밀번호를 입력해주세요.</h3>
-
-<c:url value="login" var="loginUrl" />
-<form:form name="f" action="${loginUrl}" method="POST">
-    <c:if test="${param.error != null}">
+<body>
+	<div class="container">
+    	<div class="row">
+        	<div class="col-sm-6 col-md-4 col-md-offset-4">
+            	<h2 class="text-center login-title">LOGIN</h2>
+            		<div class="account-wall">
+                		<img class="profile-img" src="resources/image/logo.png" class="logo" alt="logo">
+		<c:url value="login" var="loginUrl" />
+  <form:form class="form-signin" name="f" action="${loginUrl}" method="POST">
+     <c:if test="${param.error != null}">
         <p>아이디와 비밀번호가 잘못되었습니다.</p>
-    </c:if>
+     </c:if>
     <c:if test="${param.logout != null}">
         <p>로그아웃 하였습니다.</p>
     </c:if>
-    <p>
-        <label for="username">아이디</label>
-        <input type="text" id="emailid" name="emailid" />
-    </p>
-    <p>
-        <label for="password">비밀번호</label>
-        <input type="password" id="password" name="password"/>
-    </p>
-
-    <button type="submit" class="btn">로그인</button>
-</form:form>
-
+      <input type="text" id="emailid" name="emailid" class="form-control" placeholder="Email" required autofocus />
+  <input type="password" id="password" name="password" class="form-control" placeholder="Password" required/>
+    	<button class="btn btn-lg btn-danger btn-block" type="submit" >로그인</button>
+    		<br><br>
+    		<div class="text-center">
+			<a href="#" class="btn btn-warning btn-block btn-lg"><i class="fa fa-kakao"></i> Sign in with <b>Kakao</b></a>
+			<a href="#" class="btn btn-success btn-block btn-lg"><i class="fa fa-naver"></i> Sign in with <b>Naver</b></a>
+			<a href="#" class="btn btn-primary btn-block btn-lg"><i class="fa fa-google"></i> Sign in with <b>Google</b></a>
+		    </div>
+    		<label class="checkbox pull-left">
+    			<input type="checkbox" value="remember-me">Remember me</label>
+   					 <a href="#" class="pull-right need-help">Forgot password? </a><span class="clearfix"></span>
+  						</form:form>
+ 					  </div>
+ 					     <br>
+ 					      <a href="signup.htm" class="text-center new-account">SING UP</a>
+ 					      <br><br><br>
+           			 </div>
+    			</div>
+			</div>
 </body>
 </html>

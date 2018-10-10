@@ -25,7 +25,6 @@ public class IndexController {
 		}
 		
 		
-		
 		@RequestMapping("/signup.htm")
 		public String signup() {
 			//return "login.jsp";
