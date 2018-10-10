@@ -56,8 +56,7 @@
 					<br>
 					<li><a href="${pageContext.request.contextPath}/about.htm">ABOUT</a></li>
 					<li><a href="${pageContext.request.contextPath}/login.htm">LOGIN</a></li>
-					<li><a href="${pageContext.request.contextPath}/signup.htm">SIGN
-							UP</a></li>
+					<li><a href="${pageContext.request.contextPath}/signup.htm">SIGN UP</a></li>
 				</ul>
 				
 			</se:authorize>
