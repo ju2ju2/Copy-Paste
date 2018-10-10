@@ -10,15 +10,13 @@
 				<h2>Menu</h2>
 			</header>
 			<ul class="nav">
-				<li class="active"><a href="#">회원관리</a></li>
-				<li><a href="#">노트관리</a></li>
-				<li><a href="#">신고관리</a></li>
+				<li class="active"><a href="${pageContext.request.contextPath}/etc/admin.htm">회원관리</a></li>
+				<li><a href="${pageContext.request.contextPath}/etc/adminNote.htm">노트관리</a></li>
+				<li><a href="${pageContext.request.contextPath}/etc/adminReport.htm">신고관리</a></li>
 				<li><a href="#">Q&A</a></li>
 				<li><a href="#">통계</a></li>
 			</ul>
 		</nav>
-
-
 	</div>
 </div>
 

@@ -30,7 +30,7 @@
 		</div> 
 		
 		<!-- Footer 영역 -->     
-        <footer id="footer">
+        <footer id="footer" class="clear">
             <tiles:insertAttribute name="footer" />
         </footer>
         
