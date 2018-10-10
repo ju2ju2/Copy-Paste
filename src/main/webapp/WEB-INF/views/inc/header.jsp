@@ -10,7 +10,7 @@
 			<a class="navbar-brand"
 				href="${pageContext.request.contextPath}/index.htm"
 				style="display: inline-block;"> <img
-				src="resources/image/logo.png" class="logo" alt="logo"
+				src="${pageContext.request.contextPath}/resources/image/logo.png" class="logo" alt="logo"
 				style="display: inline-block;"> COPY&PASTE
 			</a>
 		</div>

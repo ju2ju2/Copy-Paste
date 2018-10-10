@@ -1,9 +1,11 @@
 /*
 * @Class : EtcController
 * @ Date : 2018.10.05
-* @ Author : 이주원
-* @ Desc : 기타 관련 컨트롤러. (service 사용, 뷰 매핑)
+* @ Author : �씠二쇱썝
+* @ Desc : 湲고� 愿��젴 而⑦듃濡ㅻ윭. (service �궗�슜, 酉� 留ㅽ븨)
 */
+
+
 
 package tk.copyNpaste.etc;
 
@@ -13,59 +15,80 @@ import org.springframework.web.bind.annotation.RestController;
 
 import tk.copyNpaste.vo.ReportVO;
 
-@Controller //동기 컨트롤러. retrun>> ModelAndView or String.
+@Controller //�룞湲� 而⑦듃濡ㅻ윭. retrun>> ModelAndView or String.
 @RequestMapping("/etc/")
 public class EtcController {
 	EtcService etcService = new EtcService(); 
 	
-	//신고 하기
+	//�떊怨� �븯湲�
 	public void insertReport(int noteNum) throws Exception {
 		etcService.insertReport(noteNum);
 	};
 	
-	//신고 목록 보기
+	//�떊怨� 紐⑸줉 蹂닿린
 	public  void selectAllReport() throws Exception {
 		etcService.selectAllReport();
 	};
 	
-	//신고 처리 하기
+	//�떊怨� 泥섎━ �븯湲�
 	public void updateReport(int reportNum) throws Exception {
 		etcService.updateReport(reportNum);
 	};
 	
 
 	
-	//댓글알림
+	//�뙎湲��븣由�
 	public void commAlarm() throws Exception {
 		etcService.commAlarm();
 	};
 	
-	//노트신고알림
+	//�끂�듃�떊怨좎븣由�
 	public void noteReportAlarm() throws Exception {
 		etcService.noteReportAlarm();
 	};
 	
-	//댓글신고알림
+	//�뙎湲��떊怨좎븣由�
 	public void commReportAlarm() throws Exception {
 		etcService.commReportAlarm();
 	} ;
 	
-	//상위랭크알림
+	//�긽�쐞�옲�겕�븣由�
 	public void topRankAlarm() throws Exception {
 		etcService.topRankAlarm();
 	};
 	
 
 	
-	//통계 회원 가입
+	//�넻怨� �쉶�썝 媛��엯
 	public void stateMember() throws Exception {
 		etcService.stateMember();
 	};
 	
-	//통계 상위노트 참조수
+	//�넻怨� �긽�쐞�끂�듃 李몄“�닔
 	public void stateTopRank() throws Exception {
 		etcService.stateTopRank();
 	};
 	
 	
+	
+	/*qna 게시판에 관련된 내용. 
+	 * [작성자 : 이주원] [작성날짜 : 2018-10-10]*/
+	
+	@RequestMapping("/selectQnaboard.htm")
+	public String selectAllQnaboard() {
+		return "qna.selectQnaboard";
+	}
+
+	@RequestMapping("/insertQnaboard.htm")
+	public String insertQnaboard() {
+		return "qna.insertQnaboard";
+	}
+	
+	@RequestMapping("/selectDetailQna.htm")
+	public String selectDetailQnaboard() {
+		return "qna.selectDetailQna";
+	}
+	
+	
+
 }
