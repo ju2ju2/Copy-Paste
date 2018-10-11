@@ -12,9 +12,9 @@
 					<div class="col-lg-4 col-sm-4">				
 						<div>
 							<div class="col-xs-3">	
-                 <img class="img-responsive user-photo img-rounded"" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"  size="">
+                 <img class="img-responsive user-photo img-rounded" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" >
            </div>
-           <input type="file"  name="file_nm" id="file_nm" 
+           <input type="file"  name="userPhoto" id="userPhoto" 
 								aria-describedby="file_upload" accept="image/*">
 								<div class="form-group">
 								<small>* .jpg, .gif, .png 파일만 업로드 가능하며, 500kb를 초과할 수 없습니다.</small>
@@ -23,13 +23,12 @@
 					</div>
 				</div>
 				
-				
 				<div class="form-group">
 					<label class="control-label col-sm-5">Email ID <span class="text-danger">*</span></label>
 					<div class="col-lg-3 col-sm-4">
 						<span><!-- class="input-group" -->
-							<input type="email" class="form-control" name="emailid"
-								id="emailid" placeholder="example@example.com" required
+							<input type="email" class="form-control" name="userEmail"
+								id="userEmail" placeholder="example@example.com" required
 								autofocus value="">
 						   </span>
 					</div>
@@ -52,8 +51,8 @@
 						class="text-danger">*</span></label>
 						<div class="col-lg-3 col-sm-4">
 						<div >
-							<input type="text" class="form-control" name="nickname"
-								id="nickname" placeholder="사용할 닉네임을 입력해주세요." value="">
+							<input type="text" class="form-control" name="userNick"
+								id="userNick" placeholder="사용할 닉네임을 입력해주세요." value="">
 						</div>
 					</div>
 					 <button type="button" class="btn btn-secondary">&ensp;중복확인&ensp;</button>
@@ -65,8 +64,8 @@
 						class="text-danger">*</span></label>
 					<div class="col-lg-3 col-sm-4">
 						<div >
-							<input type="password" class="form-control" name="password"
-								id="password" placeholder="6자리 이상 입력해주세요."
+							<input type="password" class="form-control" name="userPwd"
+								id="userPwd" placeholder="6자리 이상 입력해주세요."
 								value="">
 						</div>
 					</div>
@@ -76,8 +75,8 @@
 						class="text-danger">*</span></label>
 					<div class="col-lg-3 col-sm-4">
 						<div >
-							<input type="password" class="form-control" name="cpassword"
-								id="cpassword" placeholder="비밀번호를 확인 해주세요." value="">
+							<input type="password" class="form-control" name="cuserPwd"
+								id="cuserPwd" placeholder="비밀번호를 확인 해주세요." value="">
 						</div>
 					</div>
 				</div>
