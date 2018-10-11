@@ -1,4 +1,9 @@
 
+/*// 파일 다운로드 후 창닫기.
+  $("#formID").submit(function() {
+    $("#dialog_div_ID").dialog("close");
+});*/
+
 	//메인 텍스트 슬라이드
     var TxtType = function(el, toRotate, period) {
         this.toRotate = toRotate;
