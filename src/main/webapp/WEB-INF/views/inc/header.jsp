@@ -31,9 +31,9 @@
 					</a>
 						<ul class="dropdown-menu">
 
-							<li><a href="#">사이트 검색</a></li>
-							<li><a href="#">네이버 검색</a></li>
-							<li><a href="#"> 구 &ensp;글 검색</a></li>
+							<li><a href="${pageContext.request.contextPath}/etc/selectSearchSite.htm">사이트 검색</a></li>
+							<li><a href="${pageContext.request.contextPath}/etc/selectSearchNaver.htm">네이버 검색</a></li>
+							<li><a href="${pageContext.request.contextPath}/etc/selectSearchGoogle.htm"> 구 &ensp;글 검색</a></li>
 						</ul></li>
 					<li><a href="#">ME</a></li>
 					

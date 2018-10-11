@@ -109,4 +109,22 @@ public class EtcController {
 		return "qna.selectDetailQna";
 	}
 	
+	/*검색 게시판에 관련된 내용. 
+	 * [작성자 : 임효진] [작성날짜 : 2018-10-10]*/
+	
+	@RequestMapping("/selectSearchSite.htm")
+	public String selectSearchSite() {
+		return "search.selectSearchSite";
+	}
+
+	@RequestMapping("/selectSearchNaver.htm")
+	public String selectSearchNaver() {
+		return "search.selectSearchNaver";
+	}
+	
+	@RequestMapping("/selectSearchGoogle.htm")
+	public String selectSearchGoogle() {
+		return "search.selectSearchGoogle";
+	}
+	
 }
