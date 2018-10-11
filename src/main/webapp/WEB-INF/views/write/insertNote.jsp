@@ -16,37 +16,35 @@
 </script>
 <!-- 등록 전 띄워지는 모달창 -->
 <form action="">
-	<div id="publishModal" class="modal fade">
-		<div class="modal-dialog">
+	<div id="publishModal" class="modal fade form-horizontal">
+		<div class="modal-dialog noteModalSize">
 			<div class="modal-content">
 				<div class="modal-body">
 					<div class="form-group">
-              			<label>폴더 </label>
-	                  		<select id="folderName" name="folderName">
-	                  			<!-- 나중에 each문 돌려서 박아야 함 -->
-	                  			<option value="" selected="selected"> 기본 폴더
-	                  			<option value=""> 폴더1
-	                  			<option value=""> 폴더2
-	                  		</select>
+					<br/>
+						<label class="control-label col-sm-2 noteLabels">폴더 </label>
+						<select id="folderName" name="folderName" class="form-control notePublish" >
+							<!-- 나중에 each문 돌려서 박아야 함 -->
+							<option value="" selected="selected">기본 폴더
+							<option value="">폴더1
+							<option value="">폴더2
+						</select>
 					</div>
 					<div class="form-group">
-              			<label>주제 </label>
-	                  		<select id="subjectCode" name="subjectCode">
-	                  			<!-- 기타일 때는 텍스트 박스가 옆에 떠야 하는데 이걸 어떻게 if문을 돌려야 하는지 약간 의문 -->
-	                  			<option value="SJ00" selected="selected"> 기타
-	                  			<option value="SJ01"> 회사
-	                  			<option value="SJ02"> 생활
-	                  			<option value="SJ03"> 교육
-	                  		</select>
-	                  		<input type="text">
+						<label class="control-label col-sm-2 noteLabels">주제 </label> <select
+							id="subjectCode" name="subjectCode" class="form-control notePublish">
+							<!-- 기타일 때는 텍스트 박스가 옆에 떠야 하는데 이걸 어떻게 if문을 돌려야 하는지 약간 의문 -->
+							<option value="SJ00" selected="selected">기타
+							<option value="SJ01">회사
+							<option value="SJ02">생활
+							<option value="SJ03">교육
+						</select>
 					</div>
-					<div>
-						<label>공개</label>
-						<input type="radio" name="notePublic" value="1" checked="checked">전체 공개
-					</div>
-					<div>
-						<label>설정</label>
-						<input type="radio" name="notePublic" value="0">비공개
+					<div class="form-group">
+						<label class="control-label col-sm-2 noteLabels" id="noteLabel">공개<br/>설정</label>
+						<input type="radio" name="notePublic" value="1"
+							checked="checked" id="noteRadio1"> 전체 공개 <br/>
+						<input type="radio" name="notePublic" value="0" > 비공개
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -70,7 +68,8 @@
 		<br>
 		<div class="col-sm-16 text-center">
 			<input id="submitBtn" name="submitBtn" class="btn btn-danger"
-				type="button" value="등록" data-toggle="modal" data-target="#publishModal">
+				type="button" value="등록" data-toggle="modal"
+				data-target="#publishModal">
 		</div>
 	</div>
 </form>
