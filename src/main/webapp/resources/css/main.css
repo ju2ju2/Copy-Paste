@@ -15,6 +15,14 @@
    color: #fff;
 }
 
+
+/* 인라인 블록 */
+.inline{ display: inline-block;}
+.inline:hover, 
+.inline:active
+.inline:focus {
+	 text-decoration:none;
+}
 /* Typography
 ----------------------------------------------------------------------------- */
 

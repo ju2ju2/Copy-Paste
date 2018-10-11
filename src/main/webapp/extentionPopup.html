@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link
+	href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Lobster">
+<link rel="stylesheet"
+	href="http://fonts.googleapis.com/earlyaccess/notosanskr.css">
+<link 
+	href="https://fonts.googleapis.com/css?family=Montserrat|Nanum+Gothic"
+	rel="stylesheet">
+
+<style>
+body {
+	width: 300px;
+	padding: 1rem;
+	text-align: center;
+	font-family: "Montserrat", "Nanum Gothic";
+}
+
+textarea {
+	width: 100%;
+	font-size: 2rem;
+}
+
+#result {
+	font-size: 2.5rem;
+}
+
+h1 {
+	color: #333;
+	font-family: "Montserrat", cursive;
+}
+
+h1 span {
+	color: #f56a6a;
+}
+
+#loginForm {
+	padding: 1rem;
+}
+
+.homeOpenBtn:hover {
+	cursor: pointer;
+}
+
+/* 드래그 색상변경 */
+::-moz-selection {
+	background: #f56a6a;
+	color: #fff;
+}
+
+::selection {
+	background: #f56a6a;
+	color: #fff;
+}
+
+.btn-kkt {background-image:url('/resources/image/kakao.png');background-repeat:no-repeat}
+</style>
+</head>
+<body>
+	<h1 class="homeOpenBtn">
+		COPY & <span>PASTE</span>
+	</h1>
+	<div id='loginForm'>
+		<h3>LOGIN :D</h3>
+		<br> <input type="text" id="email"
+			class="form-control input-sm chat-input" placeholder="email" /> <input
+			type="password" id="password"
+			class="form-control input-sm chat-input" placeholder="password" /> <br>
+		<div class='btn btn-default' id="loginBtn">로그인</div>
+		<hr>
+		<label>소셜로그인</label><br>
+		<img src="./resources/image/naver.png">	&ensp;
+		<img src="./resources/image/kakao.png"> &ensp;
+		<img src="./resources/image/google.png">	
+	</div>
+	<div id="afterLogin" style="display: none;">
+		<br>
+		<h4 id="welcome" style="font-weight: bold;">환영합니다.</h4>
+		<br>
+		<h4>원하는 텍스트를 드래그하세요 :)</h4>
+		<br>
+		<div class='btn btn-default' id="logoutBtn">로그아웃</div>
+		<div class='btn btn-default' class="homeOpenBtn">홈으로 이동</div>
+	</div>
+	<script src="extentionScript.js"></script>
+</body>
+</html>
