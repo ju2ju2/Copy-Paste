@@ -253,6 +253,7 @@ blockquote {
 footer a,footer a:hover,footer a:active,footer a:link{
 	text-decoration: none;
 	color: #f56a6a;
+}
 
 /* 상세보기 댓글 */
 #commentbtn{
@@ -297,14 +298,14 @@ footer a,footer a:hover,footer a:active,footer a:link{
 	margin-bottom: 20px !important;
 }
 
-.form-group strong{
+ .form-group strong{
 	size:15em;
 	text-align:right;
 }
 
 .form-control{
 	margin-right:10px;
-}
+} 
 
 /* margin */
 
@@ -338,9 +339,4 @@ footer a,footer a:hover,footer a:active,footer a:link{
 
 .mt-10{
 	margin-top:10px;
-}
-
-/* About */
-#subtitle{
-	margin-top:100px;
 }
