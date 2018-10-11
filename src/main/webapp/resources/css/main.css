@@ -21,9 +21,6 @@
 body {
 	font-family: 'Nanum Gothic', sans-serif; 
 }
-.site-name {
-	font-family: "Montserrat", sans-serif;
-}
 nav{	
 	font-family: "Montserrat", sans-serif; 
 }
@@ -82,14 +79,14 @@ h4 span {
 .text-colored {
 	color: #f56a6a;
 }
-a {
+.banner a {
 	color: #f56a6a;
 }
-a:hover {
+.banner a:hover {
 	color: #f56a6a;
 }
-a:focus,
-a:active {
+.banner a:focus,
+.banner a:active {
 	outline: none;
 }
 .large {

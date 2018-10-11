@@ -16,8 +16,6 @@
 		</div>
 		<!-- nav menu -->
 		<div class="collapse navbar-collapse" id="myNavbar">
-			
-
 				<!-- 스프링이 제공하는 spel jsp에서 사용할 수 있는 스크립트 언어 -->	
 				<!-- 회원 -->	
 				<se:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">

@@ -44,8 +44,10 @@ public class NoteController {
 		return "note.list";
 	}
 	//노트 상세 보기(+노트 작성)
-	public NoteVO selectDetailNote(int noteNum) throws Exception{
-		return noteService.selectDetailNote(noteNum);
+	@RequestMapping(value = "noteDetail.htm")
+	public String selectDetailNote(/*int noteNum*/) throws Exception{
+	/*	NoteVO note= noteService.selectDetailNote(noteNum);*/
+		return "notedetail";
 	}
 	
 	//노트 수정

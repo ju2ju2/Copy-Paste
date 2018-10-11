@@ -16,7 +16,7 @@
 	</head>
 	<body>
 		<!-- Header  영역 (공통 inc) -->
-		<header id="header"><tiles:insertAttribute name="header" /></header>
+		<header id="header"><tiles:insertAttribute name="header"/></header>
  		<div id="main" class="top-wrapper clear">
 			<div class="clear col-sm-3">
 				<!-- aside 영역 -->
