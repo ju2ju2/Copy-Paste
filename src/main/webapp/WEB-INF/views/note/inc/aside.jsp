@@ -1,11 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<!-- note>>inc
+@JSP : aside.jsp
+@Date : 2018.10.09
+@Author : 우나연
+@Desc : note aside부분 jsp
+ -->
+ 
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- Sidebar -->
 
 <div id="sidebar">
-
 	<div class="inner">
-
 
 		<!--정렬 -->
 		<div class="form-group">
@@ -17,7 +22,8 @@
 				<option value="ordersubject">주제별</option>
 				<option value="orderpopular">참조순</option>
 			</select>
-
+			
+			<!-- Search -->
 			<div class="form-group">
 				<div class="col-lg-10 col-sm-10">
 					<span> <input type="text" class="form-control"
@@ -39,4 +45,6 @@
 				</section>
 
 			</div>
+		</div>
+		</div>
 		</div>

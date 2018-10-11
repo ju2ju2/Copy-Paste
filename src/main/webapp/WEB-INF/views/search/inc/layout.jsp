@@ -1,3 +1,10 @@
+<!-- search>>inc
+@JSP : layout.jsp
+@Date : 2018.10.10
+@Author : 임효진
+@Desc : search layout 부분 jsp
+ -->
+ 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE>
@@ -10,9 +17,10 @@
 		<!-- css  영역 -->
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Nanum+Gothic">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/search.css" />
 	</head>
 	<body>
 		<!-- Header  영역 (공통 inc) -->
@@ -21,11 +29,10 @@
 			<div class="clear col-sm-3">
 				<!-- aside 영역 -->
 				<tiles:insertAttribute name="aside" />
-				</div>
+			</div>
 			<div class="clear col-sm-9">
 				<!-- Content 영역 -->
 				<tiles:insertAttribute name="content" />
-			
 			</div>
 		</div> 
 		

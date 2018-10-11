@@ -1,3 +1,9 @@
+<%-- inc>>
+@JSP : header.jsp
+@Date : 2018.10.09
+@Author : 우나연
+@Desc : 전체 페이지 레이아웃 파일
+--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>    
@@ -10,7 +16,6 @@
 		<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/animations.css" rel="stylesheet">
 		<!-- title 영역 -->
 		<title><tiles:insertAttribute name="title" /></title>
 	</head>

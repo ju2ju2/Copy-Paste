@@ -1,4 +1,4 @@
-<%--
+<%-- qna>>
 @JSP : selectQnaboard.jsp
 @Date : 2018.10.09
 @Author : 이주원
@@ -7,8 +7,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
@@ -68,8 +67,9 @@
 	        <div class="media-body">
                 <strong class="pull-left primary-font">blueblue</strong><br>
                 <small class="pull-right text-muted">
-	            <span class="glyphicon glyphicon-trash"></span>&ensp;
-	           <span class="glyphicon glyphicon-comment"></span>&ensp;신고</small>
+	          <i class="fas fa-trash"></i></span> &ensp;
+	          <i class="fas fa-comment"></i> &ensp; 
+	          <i class="fas fa-bullhorn"></i></small>
                 <p>운영자 일 안하십니까? 답변 안하시냐구요. 지금 질문한지 7분 13초나 지났는데 아직도 답변 안주시네요. 사이트 폭망하시길 기원합니다.</p>      
             	
             </div>
@@ -87,8 +87,9 @@
 	        <div class="media-body">
                 <strong class="pull-left primary-font">green</strong><br>
                 <small class="pull-right text-muted">
-	           <span class="glyphicon glyphicon-trash"></span>&ensp;
-	           <span class="glyphicon glyphicon-comment"></span>&ensp;신고</small>
+	           <i class="fas fa-trash"></i> &ensp;
+	           <i class="fas fa-comment"></i> &ensp;
+	           <i class="fas fa-bullhorn"></i></small>
                 <p>위엣분 성격 더럽게 급하시네요.</p>      
             </div>
         
@@ -96,7 +97,7 @@
 	        <input type="text" id="userComment" class="form-control input-sm chat-input" placeholder="댓글을 입력하세요" />
 		    <span class="input-group-btn" onclick="addComment()">     
 	            <div>
-	            <a href="#" class="btn main-btn center-block" id="commentbtn"><span class="glyphicon glyphicon-comment"></span> Add Comment</a>
+	            <a href="#" class="btn main-btn center-block" id="commentbtn"><i class="fas fa-check"></i> Add Comment</a>
 	            	
 	            </div>
 	        </span>
