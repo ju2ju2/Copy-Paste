@@ -13,6 +13,10 @@
 	position: relative;
 }
 
+#subject-search form>input {
+	padding:0 1em;
+}
+
 #sort-search form:before,
 #subject-search form:before {
 	-moz-osx-font-smoothing: grayscale;
@@ -83,10 +87,10 @@
 }
 
 #sidebar>.inner>#sort-category {
- 	width: 150px;
-    height: 36.500px;
+ 	width: 315px;
+    height: 47.66px;
  	margin: 0 0 0 16;
-	padding: 0 0 0 0;
+	padding: 0 1em;
 }
 
 #sidebar>.inner>*>:last-child {
@@ -408,6 +412,11 @@
 	select {
 		height: 2.75em;
 	}  
+	
+	#search-text {
+	padding: 0 1em;
+	
+	}
 	
 /* 	라디오버튼 */
 	input[type="checkbox"],

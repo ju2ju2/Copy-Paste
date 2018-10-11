@@ -25,12 +25,12 @@
 		<!-- Search -->
 		<div>
 		  <div class="form-group">
-				<div class="col-lg-10 col-sm-10">
-					<span><input type="text" class="form-control"
-						placeholder="Search" />
+				<div class="col-lg-10" >
+					<span><input type="text" id="search-text"
+						placeholder="검색" />
 					</span>
 				</div>
-				<div class="col-xs-1"><a href="#"><i id="search" class="fas fa-search"  style="padding-top:9px"></i></a></div>
+				<div class="col-xs-2"><a href="#"><i id="search" class="fas fa-search"  style="padding-top:15px"></i></a></div>
 				<div>				
 			</div>
 		</div>
