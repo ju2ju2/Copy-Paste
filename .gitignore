@@ -47,5 +47,8 @@ hs_err_pid*
 
 ### Maven ###
 
-target/*
+.classpath
+.project
+.settings/
+target/
 

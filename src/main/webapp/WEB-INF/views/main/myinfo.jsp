@@ -19,7 +19,7 @@
 					<div class="col-lg-4 col-sm-4">				
 						<div>
 							<div class="col-xs-3">	
-                 <img class="img-responsive user-photo img-rounded"" src="https://s-i.huffpost.com/gen/3948866/thumbs/o-PEPE-THE-FROG-570.jpg?3"  size="">
+                 <img class="img-responsive user-photo img-rounded" src="https://s-i.huffpost.com/gen/3948866/thumbs/o-PEPE-THE-FROG-570.jpg?3"  >
            </div>
            <input type="file"  name="file_nm" id="file_nm" 
 								aria-describedby="file_upload" accept="image/*">
