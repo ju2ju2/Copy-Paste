@@ -30,8 +30,6 @@
 		</div>
 	</div>
 </div>
-<!-- test a링크 -->
-<a href="#">테스트용 a 태그이오</a>
 <!-- banner end -->
 <div class="jumbotron">
 	<div class="container text-center">
