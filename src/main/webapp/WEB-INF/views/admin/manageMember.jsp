@@ -1,5 +1,5 @@
 <%--
-@JSP : qnaboardList.jsp
+@JSP : manageMember.jsp
 @Date : 2018.10.09
 @Author : 우나연
 @Desc : 회원관리

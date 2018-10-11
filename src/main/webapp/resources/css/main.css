@@ -2,10 +2,135 @@
 /* main.css 
 @css : qna.css
 @Date : 2018.10.10
-@Author : 임지현, 문지은
+@Author : 임지현, 문지은, 우나연
 @Desc :	main,about,login,signup. css
 */
+/* 드래그 색상변경 */
+::-moz-selection {
+   background: #f56a6a;
+   color: #fff;
+}
+::selection {
+   background: #f56a6a;
+   color: #fff;
+}
 
+/* Typography
+----------------------------------------------------------------------------- */
+
+body {
+	font-family: 'Nanum Gothic', sans-serif; 
+}
+nav{	
+	font-family: "Montserrat", sans-serif; 
+}
+#myNavbar{	
+	font-size:14px;
+}
+html,
+body {
+	height: 100%;
+}
+body {
+	font-size: 15px;
+	line-height: 1.50;
+	color: #333333;
+	background-color: #ffffff;
+	position: relative;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: #333333;
+}
+h1 {
+	font-size: 38px;
+	font-weight: 700;
+	margin-bottom: 20px;
+}
+h2 {
+	font-size: 28px;
+	margin-bottom: 15px;
+}
+h3 {
+	font-size: 22px;
+}
+h4 {
+	font-size: 18px;
+	font-weight: 700;
+}
+h5 {
+	font-size: 16px;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+h6 {
+	font-weight: 700;
+}
+h1 span,
+h2 span,
+h3 span,
+h4 span {
+	color: #f56a6a;
+}
+.text-colored {
+	color: #f56a6a;
+}
+.banner a {
+	color:#f56a6a;
+	text-decoration: none;
+}
+.banner a:hover {
+	color: #f56a6a;
+	text-decoration: none;
+}
+.banner a:focus,
+.banner a:active {
+	outline: none;
+	text-decoration: none;
+}
+.large {
+	font-size: 18px;
+}
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+.list-unstyled li {
+	padding: 5px 0;
+}
+.list-horizontal {
+	padding: 15px 0;
+}
+.list-horizontal-item img {
+	display: block;
+	margin: 0 auto;
+}
+.list-icons {
+	padding: 0;
+	margin: 20px 0;
+	list-style: none;
+	font-size: 18px;
+}
+.list-icons li {
+	padding: 0 0 15px 0;
+}
+blockquote {
+	border-left: none;
+	padding-left: 0;
+	padding-right: 0;
+}
+.title {
+	margin-top: 0;
+}
+
+
+
+/* header navbar */
 .navbar {
 	line-height: 1.8;
 	color: #f5f6f7;
@@ -19,6 +144,10 @@
 }
 
 .navbar-nav  li a:hover {
+	color: #f56a6a !important;
+}
+
+.navbar-header button:hover{
 	color: #f56a6a !important;
 }
 
@@ -87,13 +216,7 @@
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
-.account-wall
-{
-    background-color: #f7f7f7;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-}
+
 .login-title .signup-title
 {
     color: #555;
@@ -125,4 +248,89 @@
 	  margin-left: 0px;
 	  padding : 5px 80px;
 	  font-size : 16px;
+}
+
+footer a,footer a:hover,footer a:active,footer a:link{
+	text-decoration: none;
+	color: #f56a6a;
+
+/* 상세보기 댓글 */
+#commentbtn{
+	margin-left: 10px;
+}
+
+.main-btn{
+	margin-top: 15px !important;
+	margin-bottom:15px !important;
+	margin-left:10px;
+	margin-right:10px !important;
+	background:#f56a6a; 
+	border-color:#f56a6a; 
+	color:#fff;
+}
+
+.comment-box {
+    margin-top: 30px !important; 
+}
+
+.comment-box .media-left {
+    padding-right: 10px;
+    width: 500px;
+}
+
+.comment-box .media-body {
+    padding : 4px;
+    padding-top : 12px;
+}
+
+.comment-box img{
+  margin-top: 10px !important;
+  margin-bottom: 20px !important;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  background-size: contain;
+} 
+
+#userComment{
+	margin-top: 20px !important;
+	margin-bottom: 20px !important;
+}
+
+.form-group strong{
+	size:15em;
+	text-align:right;
+}
+/* margin */
+
+.mb-5{
+	margin-bottom:5px;
+}
+
+.ml-5{
+	margin-left:5px;
+}
+
+.mr-5{
+	margin-right:5px;
+}
+
+.mt-5{
+	margin-top:5px;
+}
+
+.mb-10{
+	margin-bottom:10px;
+}
+
+.ml-10{
+	margin-left:10px;
+}
+
+.mr-10{
+	margin-right:10px;
+}
+
+.mt-10{
+	margin-top:10px;
 }

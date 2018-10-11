@@ -34,6 +34,11 @@ public class EtcController {
 	public String adminReportPage() throws Exception {
 		return "admin.manageReport";
 	};
+	@RequestMapping("adminStatistic.htm")
+	//관리자 페이지 (통계)
+	public String adminStatisticPage() throws Exception {
+		return "admin.manageStatistic";
+	};
 	
 	//노트 신고 목록 보기
 	@RequestMapping("noteReport.json")

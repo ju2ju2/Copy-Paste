@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-		<!-- Footer -->
-
+<!-- Footer -->
 <footer class="container-fluid bg-4 text-center">  
   <a href="${pageContext.request.contextPath}/about.htm">사이트 소개</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="${pageContext.request.contextPath}/etc/selectQnaboard.htm">Q&A게시판</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">admin@admin.com</a>

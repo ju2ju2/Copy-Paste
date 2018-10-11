@@ -13,8 +13,8 @@
 				<li class="active"><a href="${pageContext.request.contextPath}/etc/admin.htm">회원관리</a></li>
 				<li><a href="${pageContext.request.contextPath}/etc/adminNote.htm">노트관리</a></li>
 				<li><a href="${pageContext.request.contextPath}/etc/adminReport.htm">신고관리</a></li>
-				<li><a href="#">Q&A</a></li>
-				<li><a href="#">통계</a></li>
+				<li><a href="${pageContext.request.contextPath}/etc/adminStatistic.htm">통계</a></li>
+				<li><a href="${pageContext.request.contextPath}/etc/selectQnaboard.htm">Q&A</a></li>
 			</ul>
 		</nav>
 	</div>

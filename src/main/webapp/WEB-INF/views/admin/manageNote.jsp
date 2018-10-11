@@ -1,8 +1,8 @@
 <%--
-@JSP : manageNote.jsp
-@Date : 2018.10.10
+@JSP : qnaboardList.jsp
+@Date : 2018.10.09
 @Author : 우나연
-@Desc : 관리자 노트관리
+@Desc : 회원관리
 --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -18,49 +18,34 @@ $(document).ready(function() {
 <section>
 	<div class="container">
 	<div>
-		<h3>회원노트관리 </h3>
+		<h3>회원관리 </h3>
 	</div>
 	
 	
 	<table id="table_id" >
     <thead>
         <tr>
-            <td>번호</td>
-            <td>노트제목</td>
-            <td>노트상태</td>
-            <td>작성일자</td>
-			<td>작성자 이메일</td>
-			<td>작성자 계정상태</td>
-			<td>노트 삭제</td>
+            <td>회원이메일</td>
+            <td>회원닉네임</td>
+            <td>강 제 탈 퇴</td>
+
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>5</td>
-            <td>성적정정요청</td>
-            <td>정상</td>
-            <td>2018.08.31</td>
-			<td>1@1.com</td>
-			<td>자진 탈퇴</td>
-            <td><button class="btn btn-danger btn-xs">삭제</button></td>
+            <td>1@1.com</td>
+            <td>김정보</a></td>
+            <td><button class="btn btn-danger btn-xs">강제탈퇴</button></td>
         </tr>
         <tr>
-        	<td>4</td>
-        	<td>시말서 양식</td>
-            <td>블라인드</td>
-            <td>2018.06.31</td>
-			<td>2@2.com</td>
-			<td>강제 탈퇴</td>
-            <td><button class="btn btn-danger btn-xs">삭제</button></td>
+        	<td>2@2.com</td>
+            <td>나루터</a></td>
+            <td><button class="btn btn-danger btn-xs">강제탈퇴</button></td>
         </tr>
         <tr>
-        	<td>1</td>
-			<td>가을에 보내는 편지</td>
-            <td>정상</td>
-            <td>2018.09.05</td>
-			<td>1@1.com</td>
-			<td>정상</td>
-            <td><button class="btn btn-danger btn-xs">삭제</button></td>
+        	<td>3@3.com</td>
+            <td>노란색</a></td>
+            <td><button class="btn btn-danger btn-xs">강제탈퇴</button></td>
         </tr>
     </tbody>
 </table>

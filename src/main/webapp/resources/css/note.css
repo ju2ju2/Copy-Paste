@@ -1,0 +1,29 @@
+/* drag.css 
+@css : drag.css
+@Date : 2018.10.10
+@Author : 우나연
+@Desc :	drag.css
+*/
+
+@import url(main.css);
+
+.notePublish {
+	width: 200px;
+}
+
+#noteLabel {
+	margin-top: 0px;
+}
+
+#noteRadio1 {
+	margin-top: 10px !important;
+}
+
+.noteModalSize {
+	width: 380px;
+}
+
+.noteLabels {
+	margin-left: 30px;
+	margin-right: 10px;
+}
