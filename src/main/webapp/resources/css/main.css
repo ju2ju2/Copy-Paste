@@ -80,14 +80,17 @@ h4 span {
 	color: #f56a6a;
 }
 .banner a {
-	color: #f56a6a;
+	color:#f56a6a;
+	text-decoration: none;
 }
 .banner a:hover {
 	color: #f56a6a;
+	text-decoration: none;
 }
 .banner a:focus,
 .banner a:active {
 	outline: none;
+	text-decoration: none;
 }
 .large {
 	font-size: 18px;
@@ -141,6 +144,10 @@ blockquote {
 }
 
 .navbar-nav  li a:hover {
+	color: #f56a6a !important;
+}
+
+.navbar-header button:hover{
 	color: #f56a6a !important;
 }
 
@@ -241,4 +248,94 @@ blockquote {
 	  margin-left: 0px;
 	  padding : 5px 80px;
 	  font-size : 16px;
+}
+
+/* About */
+iframe{
+	border: 0;
+}
+/* footer */
+footer a,footer a:hover,footer a:active,footer a:link{
+	text-decoration: none;
+	color: #f56a6a;
+
+/* 상세보기 댓글 */
+#commentbtn{
+	margin-left: 10px;
+}
+
+.main-btn{
+	margin-top: 15px !important;
+	margin-bottom:15px !important;
+	margin-left:10px;
+	margin-right:10px !important;
+	background:#f56a6a; 
+	border-color:#f56a6a; 
+	color:#fff;
+}
+
+.comment-box {
+    margin-top: 30px !important; 
+}
+
+.comment-box .media-left {
+    padding-right: 10px;
+    width: 500px;
+}
+
+.comment-box .media-body {
+    padding : 4px;
+    padding-top : 12px;
+}
+
+.comment-box img{
+  margin-top: 10px !important;
+  margin-bottom: 20px !important;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  background-size: contain;
+} 
+
+#userComment{
+	margin-top: 20px !important;
+	margin-bottom: 20px !important;
+}
+
+.form-group strong{
+	size:15em;
+	text-align:right;
+}
+/* margin */
+
+.mb-5{
+	margin-bottom:5px;
+}
+
+.ml-5{
+	margin-left:5px;
+}
+
+.mr-5{
+	margin-right:5px;
+}
+
+.mt-5{
+	margin-top:5px;
+}
+
+.mb-10{
+	margin-bottom:10px;
+}
+
+.ml-10{
+	margin-left:10px;
+}
+
+.mr-10{
+	margin-right:10px;
+}
+
+.mt-10{
+	margin-top:10px;
 }

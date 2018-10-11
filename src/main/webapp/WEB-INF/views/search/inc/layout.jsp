@@ -10,22 +10,22 @@
 		<!-- css  영역 -->
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Nanum+Gothic">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/search.css" />
 	</head>
 	<body>
 		<!-- Header  영역 (공통 inc) -->
 		<header id="header"><tiles:insertAttribute name="header" /></header>
  		<div id="main" class="top-wrapper clear">
-			<div class="clear col-sm-3">
+			<div class="clear col-sm-4">
 				<!-- aside 영역 -->
 				<tiles:insertAttribute name="aside" />
-				</div>
-			<div class="clear col-sm-9">
+			</div>
+			<div class="clear col-sm-8">
 				<!-- Content 영역 -->
 				<tiles:insertAttribute name="content" />
-			
 			</div>
 		</div> 
 		

@@ -2,23 +2,54 @@
 	pageEncoding="UTF-8"%>
 <!-- Sidebar -->
 <div id="sidebar">
-
 	<div class="inner">
-		<!-- Menu -->
-		<nav>
+		<!-- Sort -->
+			<select name="sort-category" id="sort-category">
+				<option value="">- 정렬 분류 -</option>
+				<option value="1">최신순</option>
+				<option value="1">오래된 순</option>
+				<option value="1">중요표시 있는 순</option>
+				<option value="1">중요표시 없는 순</option>
+			</select>
+
+
+		<!-- Search -->
+		<section id="sort-search" class="alt">
+			<form method="post" action="#">
+				<input type="text" name="query" id="query" placeholder="Search" />
+			</form>
+		</section>
+<button type="button" class="btn btn-secondary">이메일인증</button>
+
+		<!-- Section -->
+		<section>
 			<header class="major">
-				<h2>Menu</h2>
+				<h2>드래그 목록</h2>
 			</header>
-			<ul class="nav">
-				<li class="active"><a href="#">회원관리</a></li>
-				<li><a href="#">노트관리</a></li>
-				<li><a href="#">신고관리</a></li>
-				<li><a href="#">Q&A</a></li>
-				<li><a href="#">통계</a></li>
+			<div class="mini-posts">
+				<article>
+					<a href="#" class="image img-rounded"><img
+						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
+						alt="" /></a>
+
+				</article>
+				<article>
+					<a href="#" class="image img-rounded"><img
+						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
+						alt="" /></a>
+
+				</article>
+				<article>
+					<a href="#" class="image img-rounded"><img
+						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
+						alt="" /></a>
+				</article>
+			</div>
+			<ul class="actions">
+				<li><a href="#" class="button">More</a></li>
 			</ul>
-		</nav>
-
-
+		</section>
+		
 	</div>
 </div>
 
