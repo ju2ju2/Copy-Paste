@@ -4,36 +4,37 @@
 @Author : 우나연
 @Desc : note aside부분 jsp
  -->
- 
+
  <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
+	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 <!-- Sidebar -->
-
 <div id="sidebar">
 	<div class="inner">
-
-		<!--정렬 -->
-		<div class="form-group">
-			<label for="sel1">Select list:</label> <select class="form-control"
-				id="sel1">
-				<option value="">정렬</option>
-				<option value="ordernew">최신순</option>
-				<option value="orderold">오래된순</option>
-				<option value="ordersubject">주제별</option>
-				<option value="orderpopular">참조순</option>
-			</select>
+		<!-- Sort -->
 			
-			<!-- Search -->
-			<div class="form-group">
-				<div class="col-lg-10 col-sm-10">
-					<span> <input type="text" class="form-control"
-						placeholder="Search" />
+			<select name="sort-category" id="sort-category"   >  <!-- style=" padding-bottom: 0px;    margin-bottom: 5px;    border-bottom-width: 1px;"  -->
+				<option value="">- 정렬 분류 -</option>
+				<option value="1">최신순</option>
+				<option value="1">오래된 순</option>
+				<option value="1">주제별</option>
+				<option value="1">참조순</option>
+			</select>
+	
+		<!-- Search -->
+		<div>
+		  <div class="form-group">
+				<div class="col-lg-10" >
+					<span><input type="text" id="search-text"
+						placeholder="검색" />
 					</span>
 				</div>
-				<button type="button" class="btn btn-success btn-sm">검색</button>
+				<div class="col-xs-2"><a href="#"><i id="search" class="fas fa-search"  style="padding-top:15px"></i></a></div>
 				<div>				
 			</div>
-
+		</div>
+<br><br>
 				<!-- Section -->
 				<section>
 					<header class="major">
@@ -43,8 +44,7 @@
 						<article></article>
 					</div>
 				</section>
-
 			</div>
 		</div>
 		</div>
-		</div>
+	
