@@ -298,15 +298,10 @@ footer a,footer a:hover,footer a:active,footer a:link{
 	margin-bottom: 20px !important;
 }
 
- .form-group strong{
+.form-group strong{
 	size:15em;
 	text-align:right;
 }
-
-.form-control{
-	margin-right:10px;
-} 
-
 /* margin */
 
 .mb-5{
@@ -339,4 +334,22 @@ footer a,footer a:hover,footer a:active,footer a:link{
 
 .mt-10{
 	margin-top:10px;
+}
+
+/* About */
+.aboutSubTitle{
+	margin-top:5px;
+	margin-bottom: 111px;
+}
+.aboutSubTitle>.aboutConTilte{
+	margin-top:15px;
+	margin-bottom: 38px;
+}
+.aboutSubTitle>.aboutConTilte,
+.aboutSubTitle>.aboutCon>strong{
+	font-size: 18px;
+}
+.aboutSubTitle>.aboutCon{
+	margin-top:8px;
+	font-size: 16px;
 }
