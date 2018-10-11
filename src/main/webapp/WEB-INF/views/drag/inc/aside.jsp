@@ -3,7 +3,6 @@
 <!-- Sidebar -->
 
 <div id="sidebar">
-
 	<div class="inner">
 
 		<!-- Search -->
