@@ -1,3 +1,10 @@
+<%-- drag>>
+@JSP : list.jsp
+@Date : 2018.10.09
+@Author : 우나연
+@Desc : 드래그목록
+--%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 

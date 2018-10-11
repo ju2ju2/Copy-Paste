@@ -1,3 +1,10 @@
+<%-- inc>>
+@JSP : header.jsp
+@Date : 2018.10.09
+@Author : 임지현, 우나연
+@Desc : header 파일
+--%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -62,6 +69,14 @@
 				<ul id="anyUserNav" class="nav navbar-nav navbar-right">
 					<br>
 					<li><a href="${pageContext.request.contextPath}/about.htm">ABOUT</a></li>
+					<li class="dropdown"><a href="#" class="dropdown=toggle" data-toggle="dropdown"> 
+					SEARCH<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="${pageContext.request.contextPath}/etc/selectSearchSite.htm">사이트 검색</a></li>
+							<li><a href="${pageContext.request.contextPath}/etc/selectSearchNaver.htm">네이버 검색</a></li>
+							<li><a href="${pageContext.request.contextPath}/etc/selectSearchGoogle.htm"> 구 &ensp;글 검색</a></li>
+						</ul>
+					</li>
 					<li><a href="${pageContext.request.contextPath}/login.htm">LOGIN</a></li>
 					<li><a href="${pageContext.request.contextPath}/signup.htm">SIGN
 							UP</a></li>

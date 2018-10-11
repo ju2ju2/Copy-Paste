@@ -1,6 +1,6 @@
-<%--
+<%-- admin>>
 @JSP : manageNote.jsp
-@Date : 2018.10.10
+@Date : 2018.10.09
 @Author : 우나연
 @Desc : 관리자 노트관리
 --%>

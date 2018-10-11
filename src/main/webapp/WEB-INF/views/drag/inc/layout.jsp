@@ -1,4 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<!-- drag>>inc
+@JSP : layout.jsp
+@Date : 2018.10.09
+@Author : 우나연
+@Desc : drag layout jsp
+ -->
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>        

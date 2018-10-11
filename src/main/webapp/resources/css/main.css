@@ -249,15 +249,11 @@ blockquote {
 	  padding : 5px 80px;
 	  font-size : 16px;
 }
-
-/* About */
-iframe{
-	border: 0;
-}
 /* footer */
 footer a,footer a:hover,footer a:active,footer a:link{
 	text-decoration: none;
 	color: #f56a6a;
+}
 
 /* 상세보기 댓글 */
 #commentbtn{
@@ -338,4 +334,22 @@ footer a,footer a:hover,footer a:active,footer a:link{
 
 .mt-10{
 	margin-top:10px;
+}
+
+/* About */
+.aboutSubTitle{
+	margin-top:5px;
+	margin-bottom: 111px;
+}
+.aboutSubTitle>.aboutConTilte{
+	margin-top:15px;
+	margin-bottom: 38px;
+}
+.aboutSubTitle>.aboutConTilte,
+.aboutSubTitle>.aboutCon>strong{
+	font-size: 18px;
+}
+.aboutSubTitle>.aboutCon{
+	margin-top:8px;
+	font-size: 16px;
 }

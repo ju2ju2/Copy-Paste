@@ -1,4 +1,4 @@
-<%--
+<%-- qna>>inc
 @JSP : layout.jsp
 @Date : 2018.10.10
 @Author : 이주원
