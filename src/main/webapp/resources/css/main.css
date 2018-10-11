@@ -306,6 +306,11 @@ footer a,footer a:hover,footer a:active,footer a:link{
 	size:15em;
 	text-align:right;
 }
+
+.form-control{
+	margin-right:10px;
+}
+
 /* margin */
 
 .mb-5{
