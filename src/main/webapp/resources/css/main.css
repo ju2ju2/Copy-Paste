@@ -80,14 +80,17 @@ h4 span {
 	color: #f56a6a;
 }
 .banner a {
-	color: #f56a6a;
+	color:#f56a6a;
+	text-decoration: none;
 }
 .banner a:hover {
 	color: #f56a6a;
+	text-decoration: none;
 }
 .banner a:focus,
 .banner a:active {
 	outline: none;
+	text-decoration: none;
 }
 .large {
 	font-size: 18px;
@@ -141,6 +144,10 @@ blockquote {
 }
 
 .navbar-nav  li a:hover {
+	color: #f56a6a !important;
+}
+
+.navbar-header button:hover{
 	color: #f56a6a !important;
 }
 
@@ -241,4 +248,8 @@ blockquote {
 	  margin-left: 0px;
 	  padding : 5px 80px;
 	  font-size : 16px;
+}
+footer a,footer a:hover,footer a:active,footer a:link{
+	text-decoration: none;
+	color: #f56a6a;
 }
