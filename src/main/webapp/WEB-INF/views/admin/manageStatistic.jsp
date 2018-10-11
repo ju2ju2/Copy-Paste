@@ -1,8 +1,8 @@
-<%--
+<%-- admin>>
 @JSP : manageMember.jsp
 @Date : 2018.10.09
 @Author : 우나연
-@Desc : 회원관리
+@Desc : 통계 페이지
 --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"

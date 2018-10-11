@@ -1,3 +1,10 @@
+<%-- main>>
+@JSP : about.jsp
+@Date : 2018.10.10
+@Author : 임지현, 우나연
+@Desc : 사이트 소개 페이지 입니다.
+--%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 

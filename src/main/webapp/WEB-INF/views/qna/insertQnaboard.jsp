@@ -1,4 +1,4 @@
-<%--
+<%-- qna>>
 @JSP : insertQnaboard.jsp
 @Date : 2018.10.09
 @Author : 이주원

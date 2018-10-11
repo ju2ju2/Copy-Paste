@@ -1,8 +1,8 @@
-<%--
+<%-- main>>
 @JSP : myinfo.jsp
 @Date : 2018.10.10
 @Author : 이주원
-@Desc : 내 정보 보기 화면입니다.
+@Desc : 내 정보 보기 페이지.
 --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"

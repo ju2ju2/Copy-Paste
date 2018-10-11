@@ -1,4 +1,4 @@
-<%--
+<%-- search>>
 @JSP : selectSearchSite.jsp
 @Date : 2018.10.10
 @Author : 임효진

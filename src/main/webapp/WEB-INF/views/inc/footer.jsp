@@ -1,3 +1,10 @@
+<%-- inc>>
+@JSP : footer.jsp
+@Date : 2018.10.09
+@Author : 임지현
+@Desc : footer 파일
+--%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- Footer -->
