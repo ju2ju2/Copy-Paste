@@ -27,11 +27,12 @@
     	 <button class="btn btn-lg btn-danger btn-block" type="submit" >로그인</button>
               <hr>
     		<h3 class="mg-top-6 text-center login-title">SNS LOGIN</h3>
-    		<div class="text-center">
-			<a href="#" class="btn btn-warning btn-block btn-lg"><i class="fa fa-kakao"></i> Sign in with <b>Kakao</b></a>
-			<a href="#" class="btn btn-success btn-block btn-lg"><i class="fa fa-naver"></i> Sign in with <b>Naver</b></a>
-			<a href="#" class="btn btn-primary btn-block btn-lg"><i class="fa fa-google"></i> Sign in with <b>Google</b></a>
+    		<div class="text-center"><hr>
+			&nbsp;<a href="#"><img src="./resources/image/naver.png" class="inline"> &ensp;</a>
+			<a href="#"><img src="./resources/image/kakao.png" class="inline"> &ensp;</a>
+			<a href="#"><img src="./resources/image/google.png" class="inline"></a>
 		     </div>
+		    
    					 <a href="#" class="pull-right need-help">Forgot password? </a><span class="clearfix"></span>
    					 <a href="signup.htm" class="pull-right new-account">SING UP</a><span class="clearfix"></span>
   						</form:form>
