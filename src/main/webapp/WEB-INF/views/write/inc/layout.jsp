@@ -25,6 +25,7 @@
 	<header id="header">
 		<tiles:insertAttribute name="header" />
 	</header>
+	
 	<div id="main" class="top-wrapper clear">
 		<div class="clear col-sm-3 " id="writeNoteNavDiv">
 			<!-- aside 영역 -->
