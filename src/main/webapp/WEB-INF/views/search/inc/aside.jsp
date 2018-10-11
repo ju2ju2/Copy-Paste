@@ -1,4 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<!-- search>>inc
+@JSP : aside.jsp
+@Date : 2018.10.10
+@Author : 임효진
+@Desc : search aside부분 jsp
+ -->
+ 
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
 	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">

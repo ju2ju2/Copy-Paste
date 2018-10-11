@@ -1,4 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<!-- write>>inc
+@JSP : layout.jsp
+@Date : 2018.10.10
+@Author : 고은아
+@Desc : 노트작성 layout 부분 jsp
+ -->
+ 
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>        

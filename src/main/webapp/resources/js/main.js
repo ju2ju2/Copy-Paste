@@ -1,3 +1,10 @@
+/*
+@JSP : main.js
+@Date : 2018.10.11
+@Author : 우나연
+@Desc : 메인 텍스트 슬라이드, 스크립트 관련 파일
+*/
+
 
 /*// 파일 다운로드 후 창닫기.
   $("#formID").submit(function() {

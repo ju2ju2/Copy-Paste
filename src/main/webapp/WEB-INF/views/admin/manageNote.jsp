@@ -1,8 +1,8 @@
-<%--
+<%-- admin>>
 @JSP : qnaboardList.jsp
 @Date : 2018.10.09
 @Author : 우나연
-@Desc : 회원관리
+@Desc : 노트 일괄 삭제를 위한 페이지
 --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"

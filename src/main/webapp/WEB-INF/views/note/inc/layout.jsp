@@ -1,8 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<!-- note>>inc
+@JSP : layout.jsp
+@Date : 2018.10.09
+@Author : 우나연
+@Desc : note layout 부분 jsp
+ -->
+ 
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>        
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<!-- title 영역 -->

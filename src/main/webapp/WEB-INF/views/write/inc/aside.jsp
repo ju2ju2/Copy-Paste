@@ -1,4 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+<!-- write>>inc
+@JSP : aside.jsp
+@Date : 2018.10.10
+@Author : 고은아
+@Desc : 노트작성 aside부분 jsp
+ -->
+ 
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- Sidebar -->
 
