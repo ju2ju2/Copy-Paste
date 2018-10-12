@@ -196,10 +196,11 @@ blockquote {
 	padding-top: 28px;
 	padding-bottom: 28px;
 	position: relative;
-	width:120%
+	width:100%
 }
 
 .navbar-nav .icon-menu .badge {
+	
 	position: absolute;
 	size : 0.5em;
 	top: 6px;
@@ -208,6 +209,7 @@ blockquote {
 	box-sizing: border-box;
 	background-color: #F9354C;
 	padding: 3px 0px 4px 5px;
+	width: 17px;
 }
 
 .navbar-nav .icon-menu {
@@ -236,10 +238,22 @@ blockquote {
 	}
 }
 
+/* nav 사이즈 */
 @media ( min-width : 768px) {
+.longnav{margin-top:50px;}	
 }
 
+@media ( min-width : 991px) {
+.longnav{margin-top:0px;}	
+}
+
+
 /*navbar 추가설정 */
+.navbar-nav ul > li:active >a,
+.navbar-nav ul > li.active >a {
+  color: #f56a6a !important;
+ }
+
 .navbar-nav  li a:hover {
 	color: #f56a6a !important;
 }
