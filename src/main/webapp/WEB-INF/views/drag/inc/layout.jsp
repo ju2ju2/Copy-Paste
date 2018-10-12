@@ -33,13 +33,6 @@
 			
 			</div>
 		</div> 
-<%-- 		
-		<section id="main">
-      	  	<tiles:insertAttribute name="aside" />
-      	  	<tiles:insertAttribute name="content" />
-        </section> --%>
-             
- 
 		
 		<!-- Footer 영역 -->     
         <footer id="footer">
