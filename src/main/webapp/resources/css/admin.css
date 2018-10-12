@@ -1,51 +1,51 @@
 /* admin.css 
 @css : admin.css
 @Date : 2018.10.10
-@Author : 우나연
+@Author : 우나연,문지은,임지현
 @Desc :	admin.css
 */
 
 @import url(main.css);
-
-/* sidebar 설정 */
-#search form {
-	text-decoration: none;
+/* layout 설정 */
+.aside{
 	position: relative;
 }
+/* sidebar 설정 */
+#sidbar{
+	margin:0;
+	padding:0;
 
-#search form:before {
-	-moz-osx-font-smoothing: grayscale;
-	-webkit-font-smoothing: antialiased;
-	/* 	font-family: FontAwesome; */
-	font-style: normal;
-	font-weight: normal;
-	text-transform: none !important;
+border-bottom:0;
 }
 
-#search form:before {
-	-moz-transform: scaleX(-1);
-	-webkit-transform: scaleX(-1);
-	-ms-transform: scaleX(-1);
-	transform: scaleX(-1);
-	color: #7f888f;
-	content: '\f002';
-	cursor: default;
-	display: block;
-	font-size: 1.5em;
-	height: 2em;
-	line-height: 2em;
-	opacity: 0.325;
-	position: absolute;
-	right: 0;
+#sidbar li{
+	list-style:none;
+}
+
+#sidbar a{
+display:block;
+/* margin-top:-1px; */
+border:0;
+background-color:transparent;
+line-height:2.4em;
+color:#333;
+text-align:center;
+text-transform:uppercase;
+text-decoration:none;
+*zoom:1;
+}
+
+#sidbar a:hover, .nav a:focus{
+color:#f56a6a;
+}
+#menuH2 {
+	padding:0 1em;
+	font-size: 1.3888888889em;
+}
+.sidebar{
 	text-align: center;
-	top: 0;
-	width: 2em;
 }
-
-#search form input[type="text"] {
-	padding-right: 2.75em;
-}
-
+/* 
 #sidebar {
 	-moz-flex-grow: 0;
 	-webkit-flex-grow: 0;
@@ -59,13 +59,13 @@
 	-webkit-transition: margin-left 0.5s ease, box-shadow 0.5s ease;
 	-ms-transition: margin-left 0.5s ease, box-shadow 0.5s ease;
 	transition: margin-left 0.5s ease, box-shadow 0.5s ease;
-	background-color: #f5f6f7;
 	font-size: 1em;
 	position: relative;
 	width: 30em;
 }
 
 #sidebar h2 {
+	padding:0 1em;
 	font-size: 1.3888888889em;
 }
 
@@ -73,12 +73,13 @@
 	padding: 2.2222222222em 2.2222222222em 2.4444444444em 2.2222222222em;
 	position: relative;
 	width: 26em;
+	
 }
 
 #sidebar>.inner>* {
-	border-bottom: solid 2px rgba(210, 215, 217, 0.75);
+	
 	margin: 0 0 3.5em 0;
-	padding: 0 0 3.5em 0;
+	padding: 0 0 3.5em 5em;
 }
 
 #sidebar>.inner>*>:last-child {
@@ -92,7 +93,7 @@
 }
 
 #sidebar>.inner>.alt {
-	background-color: #eff1f2;
+	background-color: rgba(255, 255, 255, 0);
 	border-bottom: 0;
 	margin: -2.2222222222em 0 4.4444444444em -2.2222222222em;
 	padding: 2.2222222222em;
@@ -124,7 +125,7 @@
 #sidebar .toggle:before {
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
-	/* font-family: FontAwesome; */
+	font-family: FontAwesome;
 	font-style: normal;
 	font-weight: normal;
 	text-transform: none !important;
@@ -179,13 +180,14 @@
 		box-shadow: 0 0 5em 0 rgba(0, 0, 0, 0.175);
 		height: 100%;
 		left: 0;
-		/* 		position: fixed; */
+				position: fixed;
 		top: 0;
 		z-index: 10000;
 	}
 	#sidebar.inactive {
 		box-shadow: none;
 	}
+
 	#sidebar>.inner {
 		-webkit-overflow-scrolling: touch;
 		height: 100%;
@@ -241,14 +243,15 @@
 	}
 }
 
-/* 메인 설정 */
+메인 설정
 #content {
 	float: right;
-	width: 720px; /*755-35*/
+	width: 720px; 755-35
 	padding-left: 35px;
 	padding-top: 45px;
 	padding-bottom: 50px;
 	position: relative;
+
 }
 
 #breadscrumb {
@@ -274,16 +277,16 @@
 	text-align: center;
 }
 
-/* content */
+content
 #content {
 	float: right;
-	width: 720px; /*755-35*/
+	width: 720px; 755-35
 	padding-left: 35px;
 	padding-top: 45px;
 	padding-bottom: 50px;
 	position: relative;
 }
-
+ */
 /*footer*/
 #footer {
 	clear: both;

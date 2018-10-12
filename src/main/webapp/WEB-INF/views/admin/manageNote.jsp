@@ -18,34 +18,58 @@ $(document).ready(function() {
 <section>
 	<div class="container">
 	<div>
-		<h3>회원관리 </h3>
+		<h3>노트관리 </h3>
 	</div>
 	
 	
 	<table id="table_id" >
     <thead>
         <tr>
-            <td>회원이메일</td>
-            <td>회원닉네임</td>
-            <td>강 제 탈 퇴</td>
-
+            <td>번호</td>
+            <td>노트번호</td>
+            <td>노트상태</td>
+            <td>작성일자</td>
+            <td>작성자 이메일</td>
+            <td>작성자 상태</td>
+            <td>노트삭제</td>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td>1@1.com</td>
-            <td>김정보</a></td>
-            <td><button class="btn btn-danger btn-xs">강제탈퇴</button></td>
+            <td>1</td>
+            <td>a123</a></td>
+            <td>블라인드</a></td>
+              <td>2018/10/12</a></td>
+               <td>a@a.com</a></td>
+                <td>정상</a></td>
+            <td><button class="btn btn-danger btn-xs">삭제</button></td>
         </tr>
         <tr>
-        	<td>2@2.com</td>
-            <td>나루터</a></td>
-            <td><button class="btn btn-danger btn-xs">강제탈퇴</button></td>
+            <td>1</td>
+            <td>a123</a></td>
+            <td>블라인드</a></td>
+              <td>2018/10/12</a></td>
+               <td>a@a.com</a></td>
+                <td>정상</a></td>
+            <td><button class="btn btn-danger btn-xs">삭제</button></td>
         </tr>
         <tr>
-        	<td>3@3.com</td>
-            <td>노란색</a></td>
-            <td><button class="btn btn-danger btn-xs">강제탈퇴</button></td>
+            <td>1</td>
+            <td>a123</a></td>
+            <td>블라인드</a></td>
+              <td>2018/10/12</a></td>
+               <td>a@a.com</a></td>
+                <td>정상</a></td>
+            <td><button class="btn btn-danger btn-xs">삭제</button></td>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>a123</a></td>
+            <td>블라인드</a></td>
+              <td>2018/10/12</a></td>
+               <td>a@a.com</a></td>
+                <td>정상</a></td>
+            <td><button class="btn btn-danger btn-xs">삭제</button></td>
         </tr>
     </tbody>
 </table>

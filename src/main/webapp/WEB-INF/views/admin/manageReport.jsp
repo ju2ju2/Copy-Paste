@@ -40,8 +40,8 @@
 	<div class="container">
 		<div>
 			<h3>신고 관리</h3>
-			<button id="noteReport" class="btn btn-success btn-sm">노트</button>
-			<button id="commReport" class="btn btn-success btn-sm">댓글</button>
+			<button id="noteReport" class="btn btn-danger btn-sm">노트</button>
+			<button id="commReport" class="btn btn-danger btn-sm">댓글</button>
 		</div>
 
 		<br>

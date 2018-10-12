@@ -495,6 +495,29 @@ footer a, footer a:hover, footer a:active, footer a:link {
 	size: 15em;
 	text-align: right;
 }
+<<<<<<< Updated upstream
+=======
+
+.signupbtn{
+	padding:0;
+}
+
+
+/* margin */
+.pl-0{
+	padding-left:0px;
+}
+.pr-0{
+	padding-right:0px;
+}
+.pt-0{
+	padding-top:0px;
+}
+.pb-0{
+	padding-bottom:0px;
+}
+
+>>>>>>> Stashed changes
 
 /* HELPERS */
 .bg-success {

@@ -37,8 +37,8 @@
 	<div class="container">
 		<div>
 			<h3>신고 관리</h3>
-			<button id="memberStatistic" class="btn btn-success btn-sm">회원통계</button>
-			<button id="noteStatistic" class="btn btn-success btn-sm">노트통계</button>
+			<button id="memberStatistic" class="btn btn-danger btn-sm">회원통계</button>
+			<button id="noteStatistic" class="btn btn-danger btn-sm">노트통계</button>
 		</div>
 </div>
 </section>
