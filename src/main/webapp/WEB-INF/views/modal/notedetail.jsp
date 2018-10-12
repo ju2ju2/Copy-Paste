@@ -3,10 +3,66 @@
 @Date : 2018.10.11
 @Author : 우나연
 @Desc : 노트 상세보기
+		댓글 신고 클릭시 모달창 추가, OK버튼 누를 때 스위트알럳 뜸. 버튼색은 추후 수정 필요.(이주원, 10월 12일)
 --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!-- Sweet Alert cdn -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- 신고 모달창에서 ok버튼 눌렀을 때 스윗알럳 띄우기 -->
+<script>
+$('#reportOK').click(function(){
+	swal("신고되었습니다", "", "success")
+		});	
+</script>
+
+
+
+  <!-- 댓글 신고 Modal -->
+  <div class="modal fade" id="reportModal" role="dialog">
+    <div class="modal-dialog">
+     <!-- 댓글 신고 Modal content-->
+      <div class="modal-content" align="left">
+        <div class="modal-header" align="center">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">댓글 신고</h4>
+        </div>
+        <div class="modal-body">
+        <p><strong>작성자</strong>&ensp;&ensp;&ensp;똥싸개</p>
+        <p style="width:300px;padding-top: 10px;"><strong>작성내용</strong>
+        <div>운영자 이 xxxx xx야 너를 xxxx해서 운영자의 하느님이 주신 용돈을 내가 취하고 싶다. 
+        이 xxxx야. 사이트 운영을 개떡대가리같이 하는구나. 어떻게 7분 31초가 지나도록 댓글을 안 달 수가 있냐. 그래놓고도 니가 운영자냐.</div>
+        </p>
+        <p style="padding-top: 10px;"><strong>신고 사유</strong>&ensp;
+        	<select name="cause-category" id="cause-category">
+			<option value="">신고 사유를 선택하세요</option>
+			<option value="1">저작권 위반</option>
+			<option value="1">음란성</option>
+			<option value="1">명예훼손</option>
+			<option value="1">개인정보 유출</option>
+			<option value="1">부적절한 홍보</option>
+			<option value="1">기타</option>
+			</select>
+		</p>
+		<p style="padding-top: 10px;"><strong>신고 사유 상세</strong></p><textarea rows="8" class="form-control textarea" placeholder="신고 사유를 입력하세요"></textarea>
+		<br>
+		<p align="center"><strong>위와 같은 내용으로 해당 댓글을 신고하시겠습니까?</strong></p>
+        </div>
+        
+        <div class="modal-footer">
+        <center>
+        	<a data-toggle="modal" href="#" data-target="#reportModal" 
+        	role="button" class="btn main-btn" data-backdrop="static" id="reportOK">OK</a>
+	        <a data-toggle="modal" href="#" data-target="#reportModal" 
+        	role="button" class="btn btn-default" data-backdrop="static">Calcel</a>
+        </center>
+       	</div>
+      </div>
+      
+    </div>
+  </div>
+	
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal">&times;</button>
 	<br>
@@ -79,7 +135,8 @@
 									<div class="media-body">
 										<strong class="pull-left primary-font">blueblue</strong><br>
 										<small class="pull-right text-muted"> <span class="">삭제</span>&ensp;
-											<span class="">댓글</span>&ensp; <span class="">신고</span>&ensp;
+											<span class="">댓글</span>&ensp; 
+											<a href="#" data-toggle="modal" data-target="#reportModal" id="report">신고</a>&ensp;
 										</small>
 										<p>운영자 일 안하십니까? 답변 안하시냐구요. 지금 질문한지 7분 13초나 지났는데 아직도 답변
 											안주시네요. 사이트 폭망하시길 기원합니다.</p>
@@ -94,7 +151,8 @@
 								<div class="media-body">
 									<strong class="pull-left primary-font">green</strong><br>
 									<small class="pull-right text-muted"> <span class="">삭제</span>&ensp;
-										<span class="">댓글</span>&ensp; <span class="">신고</span>&ensp;
+									<span class="">댓글</span>&ensp; 
+									<a href="#" data-toggle="modal" data-target="#reportModal" id="report">신고</a>&ensp;
 									</small>
 									<p>위엣분 성격 더럽게 급하시네요.</p>
 								</div>
