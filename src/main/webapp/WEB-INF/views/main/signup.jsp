@@ -14,18 +14,17 @@
 			<h2 class="text-center signup-title">회원가입</h2>
 			<hr>
 			<form class="form-horizontal" method="post" name="signup" id="signup" enctype="multipart/form-data">
-				<div class="form-group ">
+				<div class="form-group">
 					<label class="control-label col-sm-4">프로필 이미지</label>
 					<div class="col-sm-4">				
 						<div>
-							<div class="col-xs-4">	
-                 <img class="img-responsive user-photo img-rounded" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" >
-           </div>
+							<div class="col-sm-3 pr-0 pl-0" >	
+              					<img class="img-responsive user-photo img-rounded" 
+              						src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" >
+           					</div>
            				<input type="file"  name="userPhoto" id="userPhoto" 
 								aria-describedby="file_upload" accept="image/*">
-								<div class="form-group">
-								<small>* .jpg, .gif, .png 파일만 업로드 가능하며, 500kb를 초과할 수 없습니다.</small>
-						 </div>
+								<small> * .jpg, .gif, .png 파일만 업로드 가능하며, 500kb를 초과할 수 없습니다.</small>
 						</div>
 					</div>
 				</div>
@@ -97,10 +96,10 @@
 					</div>
 				</div>
 			
-				<div class="col-sm-12 text-center">
-				<a href="#" class="btn btn-warning btn-md social-btn"> Sign up with <b>&nbsp;Kakao&nbsp;</b></a><br>
-				<a href="#" class="btn btn-success btn-md social-btn" > Sign up with <b>&nbsp;Naver &nbsp;</b></a><br>
-				<a href="#" class="btn btn-primary btn-md social-btn "> Sign up with <b>Google</b></a>
+				<div class="col-sm-12 text-center social-btn">
+				<a href="#" class="btn btn-md social-btn"> Sign up with <b>&nbsp;Kakao&nbsp;</b><img src="./resources/image/kakao.png" class="inline"></a><br>
+				<a href="#" class="btn  btn-md social-btn" > Sign up with <b>&nbsp;Naver &nbsp;</b><img src="./resources/image/naver.png" class="inline"></a><br>
+				<a href="#" class="btn  btn-md social-btn "> Sign up with <b>Google&nbsp;</b><img src="./resources/image/google.png" class="inline"></a>
 		  		</div>
 			<br>
 			</form>

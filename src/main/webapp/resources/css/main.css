@@ -295,6 +295,16 @@ blockquote {
 	height: 85px;
 }
 
+/* xs 사이즈 nav */
+@media ( max-width : 767px) {
+	#signup button{
+		margin : 8px 120px 0px;
+	}
+}
+
+
+
+
 .img-circle {
 	display: inline-block;
 	border-radius: 50%;
@@ -378,8 +388,11 @@ blockquote {
 .social-btn {
 	margin-top: 5px;
 	margin-left: 0px;
-	padding: 5px 80px;
+	padding: 5px 40px;
 	font-size: 16px;
+}
+.social-btn:hover{
+	color:#f56a6a;
 }
 /* footer */
 footer a, footer a:hover, footer a:active, footer a:link {
