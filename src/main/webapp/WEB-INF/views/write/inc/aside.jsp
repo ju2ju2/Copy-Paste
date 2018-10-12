@@ -28,14 +28,17 @@
 		<div class="tab-content">
 			<div id="drag" class="tab-pane fade in active">
 			<br/>
-			<section id="search" class="alt">
-			<form method="post" action="#">
-				<input type="text" name="query" id="query" placeholder="Search" />
-			</form>
-		</section>
-			<header>
-				<h2>드래그 목록</h2>
-			</header>
+			<!-- 검색 -->
+			<div id="search row" class="alt">
+				<div class="col-xs-10">
+						<form method="post" action="#">
+							<input type="text" id="search-text" placeholder="검색" />
+						</form>
+				</div>
+				<div class="col-xs-2">
+					<a href="#"><i id="search" class="fas fa-search"></i></a>
+				</div>
+			</div>
 			<div class="mini-posts">
 				<article>
 					<a href="#" class="image img-rounded"><img

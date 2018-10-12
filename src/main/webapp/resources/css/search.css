@@ -7,7 +7,12 @@
 */
 @import url(main.css);
 
+
 /* sidebar 설정 */
+#search {
+	 padding-top:15px;
+}
+
 #sidebar {
 	-moz-flex-grow: 0;
 	-webkit-flex-grow: 0;
@@ -40,9 +45,9 @@
 }
 
 #sidebar>.inner>* {
-	border-bottom: solid 2px rgba(210, 215, 217, 0.75);
-	margin: 0 0 2.5em 0;
-	padding: 0 0 3.5em 0;
+/* 	border-bottom: solid 2px rgba(210, 215, 217, 0.75); */
+/* 	margin: 0 0 2.5em 0;
+	padding: 0 0 3.5em 0; */
 }
 
 #sidebar>.inner>#sort-category {
@@ -57,7 +62,7 @@
 		color: inherit;
 		display: inline-block;
 		outline: 0;
-		padding: 0 1em;
+		padding: 1em 1em;
 		margin: 0 0 0 16;
 		text-decoration: none;
 }
@@ -75,7 +80,7 @@
 #sidebar>.inner>.alt {
 	background-color: rgba(255, 255, 255, 0);
 	border-bottom: 0;
-	margin: -2.2222222222em 0 4.4444444444em -2.2222222222em;
+	margin: -2.2222222222em 0 1.5em -2.2222222222em;
 	padding: 2.2222222222em;
 	width: calc(100% + 4.4444444444em);
 }
@@ -311,7 +316,7 @@
 	-ms-transform: scaleX(-1);
 	transform: scaleX(-1);
 	color: #7f888f;
-	content: '\f002';
+	/* content: '\f002'; */
 	cursor: default;
 	display: block;
 	font-size: 1.5em;
@@ -361,7 +366,8 @@ textarea {
 	width: 100%;
 	}	
 
-#subject-category {
+#subject-category,
+#sort-category, {
 	-moz-appearance: none;
 	-webkit-appearance: none;
 	-ms-appearance: none;
@@ -373,7 +379,7 @@ textarea {
 	color: inherit;
 	display: inline-block;
 	outline: 0;
-	padding: 0 1em;
+	padding: 1em, 1em;
 	margin: 0 0 0 16;
 	text-decoration: none;
 	}

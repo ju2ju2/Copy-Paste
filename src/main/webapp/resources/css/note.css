@@ -47,7 +47,18 @@
 	right: 20px;
 }
 
+/* 검색 시 확장되는 디브 */
 #portalSearch, #inSiteSearch {
 	position: relative;
 	height: 900px;
+}
+
+/* mynote 단에서 footer 크기 잡기 위해 임의 지정 */
+#footer {
+	width: 100%;
+	padding: 0px !important;
+}
+
+.searchCal{
+	padding: 1em !important;
 }
