@@ -13,7 +13,7 @@
 
 <!-- 날씨 API script -->
 <script>
-var apiURI = "http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=786c99bd6467a4ab58300feffccd96d2";
+var apiURI = "http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=";
 $.ajax({
     url: apiURI,
     dataType: "json",
