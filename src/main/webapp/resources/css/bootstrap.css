@@ -49,6 +49,7 @@ a {
 	text-decoration: none;
 	background-color: transparent;
 }
+.active
 a:active,
 a:hover {
 	color:#f56a6a;

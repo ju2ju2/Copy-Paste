@@ -20,12 +20,14 @@
 		<title><tiles:insertAttribute name="title" /></title>
 	</head>
 	<body>
+		<div class="container">
 		<!-- Header  영역 -->
 		<tiles:insertAttribute name="header" />
 		<!-- Main 영역 -->
 		<div id="main">
 		<!-- Content 영역 -->
 		<tiles:insertAttribute name="content" />
+		</div>
 		</div>
 		<!-- Footer 영역  -->
 		<tiles:insertAttribute name="footer" />
