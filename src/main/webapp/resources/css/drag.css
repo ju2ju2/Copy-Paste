@@ -2,7 +2,11 @@
 @css : drag.css
 @Date : 2018.10.10
 @Author : 우나연
-@Desc :	drag.css
+
+@Date : 2018.10.12
+@Author : 고은아
+@Desc :	drag.css 추가 // datepicker
+
 */
 
 @import url(main.css);
@@ -527,4 +531,18 @@ header.main > :last-child {
 	border-top: 0;
 	margin-top: 0;
 	padding-top: 0;
+}
+
+#fromDate, #toDate, #dragText {
+	text-align: center;
+	margin: 0px;
+	padding: 0px;
+}
+
+#fromToPTag {
+	text-align: center;
+}
+
+p {
+	display: inline-block;
 }
