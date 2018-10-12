@@ -196,16 +196,15 @@ blockquote {
 	padding-top: 28px;
 	padding-bottom: 28px;
 	position: relative;
-	width:100%
+	width: 100%
 }
 
 .navbar-nav .icon-menu .badge {
-	
 	position: absolute;
-	size : 0.5em;
+	size: 0.5em;
 	top: 6px;
 	right: 20px;
-	left:20px;
+	left: 20px;
 	box-sizing: border-box;
 	background-color: #F9354C;
 	padding: 3px 0px 4px 5px;
@@ -218,19 +217,20 @@ blockquote {
 }
 
 .notification-item .dot {
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-  display: inline-block;
-  vertical-align: middle;
-  *vertical-align: auto;
-  *zoom: 1;
-  *display: inline;
-  width: 10px;
-  height: 10px;
-  content: '';
-  margin-right: 8px; }
-  
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	display: inline-block;
+	vertical-align: middle;
+	*vertical-align: auto;
+	*zoom: 1;
+	*display: inline;
+	width: 10px;
+	height: 10px;
+	content: '';
+	margin-right: 8px;
+}
+
 /* xs 사이즈 nav */
 @media ( max-width : 767px) {
 	.nav-hr {
@@ -240,19 +240,21 @@ blockquote {
 
 /* nav 사이즈 */
 @media ( min-width : 768px) {
-.longnav{margin-top:50px;}	
+	.longnav {
+		margin-top: 50px;
+	}
 }
 
 @media ( min-width : 991px) {
-.longnav{margin-top:0px;}	
+	.longnav {
+		margin-top: 0px;
+	}
 }
 
-
 /*navbar 추가설정 */
-.navbar-nav ul > li:active >a,
-.navbar-nav ul > li.active >a {
-  color: #f56a6a !important;
- }
+.navbar-nav ul>li:active>a, .navbar-nav ul>li.active>a {
+	color: #f56a6a !important;
+}
 
 .navbar-nav  li a:hover {
 	color: #f56a6a !important;
@@ -287,17 +289,18 @@ blockquote {
 }
 
 .img-circle {
-	display:inline-block;
-  border-radius: 50%;
-}
-.navbar-nav > li > a img {
-    width: 22px;
-    margin-right: 2px;
-}
-.nav>li>a>img {
-    max-width: none;
+	display: inline-block;
+	border-radius: 50%;
 }
 
+.navbar-nav>li>a img {
+	width: 22px;
+	margin-right: 2px;
+}
+
+.nav>li>a>img {
+	max-width: none;
+}
 
 /* 로그인 css */
 .form-signin {
@@ -314,88 +317,16 @@ blockquote {
 	font-weight: normal;
 }
 
-.form-signin .form-control.
-{
-position
-
-
-:
-
- 
-
-relative
-
-
-;
-font-size
-
-
-:
-
- 
-
-16
-px
-
-
-;
-height
-
-
-:
-
- 
-
-auto
-
-
-;
-padding
-
-
-:
-
- 
-
-10
-px
-
-
-;
--webkit-box-sizing
-
-
-:
-
- 
-
-border-box
-
-
-;
--moz-box-sizing
-
-
-:
-
- 
-
-border-box
-
-
-;
-box-sizing
-
-
-:
-
- 
-
-border-box
-
-
-;
+.form-signin .form-control . {
+	position: relative;
+	font-size: 16 px;
+	height: auto;
+	padding: 10 px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
+
 .form-signin .form-control:focus {
 	z-index: 2;
 }
@@ -495,43 +426,44 @@ footer a, footer a:hover, footer a:active, footer a:link {
 	size: 15em;
 	text-align: right;
 }
-<<<<<<< Updated upstream
-=======
 
-.signupbtn{
-	padding:0;
+.signupbtn {
+	padding: 0;
 }
-
 
 /* margin */
-.pl-0{
-	padding-left:0px;
-}
-.pr-0{
-	padding-right:0px;
-}
-.pt-0{
-	padding-top:0px;
-}
-.pb-0{
-	padding-bottom:0px;
+.pl-0 {
+	padding-left: 0px;
 }
 
->>>>>>> Stashed changes
+.pr-0 {
+	padding-right: 0px;
+}
 
-/* HELPERS */
+.pt-0 {
+	padding-top: 0px;
+}
+
+.pb-0 {
+	padding-bottom: 0px;
+}
+
+ /* HELPERS */ 
 .bg-success {
-  background-color: #41B314; }
+	background-color: #41B314;
+}
 
 .bg-warning {
-  background-color: #e4cb10; }
+	background-color: #e4cb10;
+}
 
 .bg-danger {
-  background-color: #F9354C; }
+	background-color: #F9354C;
+}
 
 .no-padding {
-  padding: 0 !important; }
-
+	padding: 0 !important;
+}
 
 .mb-5 {
 	margin-bottom: 5px !important;
@@ -565,8 +497,13 @@ footer a, footer a:hover, footer a:active, footer a:link {
 	margin-top: 10px !important;
 }
 
-.inline{ display: inline-block;}
-.block{ display: block;}
+.inline {
+	display: inline-block;
+}
+
+.block {
+	display: block;
+}
 
 /* About */
 .aboutSubTitle {
@@ -587,13 +524,15 @@ footer a, footer a:hover, footer a:active, footer a:link {
 	margin-top: 8px;
 	font-size: 16px;
 }
-.aboutCon>p{
+
+.aboutCon>p {
 	margin-left: 8px;
 }
-.localeText{
+
+.localeText {
 	text-align: right;
 	margin-top: 0;
-	margin-bottom: 10px; 
+	margin-bottom: 10px;
 }
 
 /* main API(날씨) */
@@ -613,33 +552,31 @@ footer a, footer a:hover, footer a:active, footer a:link {
 	border-radius: 50%;
 }
 
-.temper{
-	color:#fff;
+.temper {
+	color: #fff;
 }
 
 /* 댓글 신고 팝업 */
 #cause-category {
-		-moz-appearance: none;
-		-webkit-appearance: none;
-		-ms-appearance: none;
-		appearance: none;
-		background: #ffffff;
-		border-radius: 0.375em;
-		border: none;
-		border: solid 1px rgba(210, 215, 217, 0.75);
-		color: inherit;
-		display: inline-block;
-		outline: 0;
-		padding: 0em 1em;
-		margin: 0 0 16 0;
-		text-decoration: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	background: #ffffff;
+	border-radius: 0.375em;
+	border: none;
+	border: solid 1px rgba(210, 215, 217, 0.75);
+	color: inherit;
+	display: inline-block;
+	outline: 0;
+	padding: 0em 1em;
+	margin: 0 0 16 0;
+	text-decoration: none;
 }
 
-.modal-body{
-	padding-top:30px;
-	padding-left:50px;
-	padding-right:50px;
-	padding-bottom:20px;
+.modal-body {
+	padding-top: 30px;
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-bottom: 20px;
 }
-
-
