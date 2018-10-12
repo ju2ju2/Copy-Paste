@@ -16,6 +16,8 @@
 		<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/weather-icons.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/weather-icons-wind.css" />
 		<!-- title 영역 -->
 		<title><tiles:insertAttribute name="title" /></title>
 	</head>

@@ -364,3 +364,22 @@ footer a,footer a:hover,footer a:active,footer a:link{
 	margin-top:8px;
 	font-size: 16px;
 }
+
+/* main API(날씨) */
+.weatherApi{
+	padding-top:20px;
+	padding-bottom:20px;
+	width:200px;
+	background-color: #f56a6a;
+	border-radius: 10px;
+}
+.circle {
+	margin: auto;
+	width: 115px;
+	height: 115px;
+	border: 5px solid #fff;
+	border-radius: 50%;
+}
+.temper{
+	color:#fff;
+}
