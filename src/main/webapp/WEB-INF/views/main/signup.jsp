@@ -14,7 +14,7 @@
 			<h2 class="text-center signup-title">회원가입</h2>
 			<hr>
 			<form class="form-horizontal" method="post" name="signup" id="signup" enctype="multipart/form-data">
-				<div class="form-group">
+				<div class="form-group ">
 					<label class="control-label col-sm-4">프로필 이미지</label>
 					<div class="col-sm-4">				
 						<div>
@@ -32,35 +32,35 @@
 				
 				<div class="form-group">
 					<label class="control-label col-sm-4">Email ID </label>
-					<div class="col-sm-4">
+					<div class="col-sm-4 pr-0">
 						
 							<input type="email" class="form-control" name="userEmail"
 								id="userEmail" placeholder="example@example.com" required
 								autofocus value="">						
 					</div>
-					<div class="col-sm-4 pl-0"><button type="button" class="btn btn-secondary">이메일인증</button>
+					<div class="col-sm-4 "><button type="button" class="btn btn-secondary">이메일인증</button>
 					</div>
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-4">Email  인증번호 </label>
-					<div class="col-sm-4">
+					<div class="col-sm-4 pr-0">
 							<input type="text" class="form-control" name="authnum"
 								id="authnum" placeholder="인증번호를 입력해주세요."
 								value="">
 						</div>
-					<div class="col-sm-4 pl-0">
+					<div class="col-sm-4 ">
 					     <button type="button" class="btn btn-secondary" >&ensp;인증확인&ensp;</button>
 					     </div>
 				</div>
 					<div class="form-group">
 					<label class="control-label col-sm-4">닉네임 </label>
-						<div class="col-sm-4">
+						<div class="col-sm-4 pr-0">
 						<div >
 							<input type="text" class="form-control" name="userNick"
 								id="userNick" placeholder="사용할 닉네임을 입력해주세요." value="">
 						</div>
 					</div>
-					<div class="col-sm-4 pl-0">
+					<div class="col-sm-4 ">
 					 <button type="button" class="btn btn-secondary">&ensp;중복확인&ensp;</button>
 				</div>
 				</div>
@@ -68,7 +68,7 @@
 				
 				<div class="form-group">
 					<label class="control-label col-sm-4">비밀번호</label>
-					<div class="col-sm-4">
+					<div class="col-sm-4 pr-0">
 						<div >
 							<input type="password" class="form-control" name="userPwd"
 								id="userPwd" placeholder="6자리 이상 입력해주세요."
@@ -78,7 +78,7 @@
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-4">비밀번호 확인</label>
-					<div class="col-sm-4">
+					<div class="col-sm-4 pr-0">
 						<div >
 							<input type="password" class="form-control" name="cuserPwd"
 								id="cuserPwd" placeholder="비밀번호를 확인 해주세요." value="">
@@ -98,8 +98,8 @@
 				</div>
 			
 				<div class="col-sm-12 text-center">
-				<a href="#" class="btn btn-warning btn-md social-btn"> Sign up with <b>Kakao&nbsp;</b></a><br>
-				<a href="#" class="btn btn-success btn-md social-btn" > Sign up with <b>Naver&nbsp;&nbsp;</b></a><br>
+				<a href="#" class="btn btn-warning btn-md social-btn"> Sign up with <b>&nbsp;Kakao&nbsp;</b></a><br>
+				<a href="#" class="btn btn-success btn-md social-btn" > Sign up with <b>&nbsp;Naver &nbsp;</b></a><br>
 				<a href="#" class="btn btn-primary btn-md social-btn "> Sign up with <b>Google</b></a>
 		  		</div>
 			<br>
