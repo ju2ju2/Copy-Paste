@@ -36,10 +36,10 @@
 				<label>&ensp;&ensp;일자별 검색</label>
 				<div class="row searchCal">
 					<div class="col-xs-6">
-						<input type="text" id="fromDate" placeholder="시작일">
+						<input type="text" id="fromDate" placeholder="  시작일">
 					</div>
 					<div class="col-xs-6">
-						<input type="text" id="toDate" placeholder="종료일">
+						<input type="text" id="toDate" placeholder="  종료일">
 					</div>
 				</div>
 			</div>
