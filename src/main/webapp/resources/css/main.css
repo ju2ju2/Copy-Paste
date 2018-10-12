@@ -364,6 +364,14 @@ footer a,footer a:hover,footer a:active,footer a:link{
 	margin-top:8px;
 	font-size: 16px;
 }
+.aboutCon>p{
+	margin-left: 8px;
+}
+.localeText{
+	text-align: right;
+	margin-top: 0;
+	margin-bottom: 10px; 
+}
 
 /* main API(날씨) */
 .weatherApi{
