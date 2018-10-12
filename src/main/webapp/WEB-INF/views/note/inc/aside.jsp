@@ -13,7 +13,6 @@
 		<!-- Sort -->
 		<div class="form-group">
 			<select name="sort-category" id="sort-category">
-				<!-- style=" padding-bottom: 0px;    margin-bottom: 5px;    border-bottom-width: 1px;"  -->
 				<option value="">&ensp;&ensp;정 렬</option>
 				<option value="1">최신순</option>
 				<option value="1">오래된 순</option>

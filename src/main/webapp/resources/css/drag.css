@@ -47,7 +47,7 @@
 	padding: 0 0 3.5em 0;
 } */
 
-#sidebar>.inner>#sort-category {
+#sort-category {
 		-moz-appearance: none;
 		-webkit-appearance: none;
 		-ms-appearance: none;
@@ -59,8 +59,8 @@
 		color: inherit;
 		display: inline-block;
 		outline: 0;
-		padding: 1em 1em;
-		margin: 0 0 0 16;
+		padding: 0 1em;
+		margin: 0 0 0 0;
 		text-decoration: none;
 }
 
