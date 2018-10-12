@@ -47,8 +47,10 @@
 			<!-- Section -->
 			<section>
 				<header class="major">
-					<h2>폴더 목록</h2>
+					<h2 class="h-inline">폴더 목록</h2>
+					<i class="fas fa-folder-plus"></i>
 				</header>
+				
 				<div>
 					<article></article>
 				</div>
