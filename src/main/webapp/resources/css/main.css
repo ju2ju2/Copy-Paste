@@ -252,7 +252,7 @@ blockquote {
 	}
 }
 
-@media ( min-width : 991px) {
+@media ( min-width : 1200px) {
 	.longnav {
 		margin-top: 0px;
 	}
