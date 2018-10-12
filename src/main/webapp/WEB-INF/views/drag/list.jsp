@@ -8,11 +8,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<div class="container">
-	<div>
+<div class="container"><br/>
+	<header class="major">
 		<h3>드래그 목록 </h3>
-	</div>
-	<br>
+	</header>
 	<div class="row">
 		<div class="col-sm-3 blog">
 			<div class="card text-center">

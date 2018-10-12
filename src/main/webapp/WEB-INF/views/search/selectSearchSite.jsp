@@ -8,6 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div class="container">
+<br/>
 	<!-- 정렬 -->
 	<div class="row">
 	<div class="form-group">
@@ -50,9 +51,9 @@
 	
 	<!-- Section -->	
 	<section>					
-	<div class="col-sm-12">
-		<h2>드래그 목록 </h2>
-	</div>
+	<header class="col-sm-12 major">
+		<h2 class="major"> 검색 목록</h2>
+	</header>
 	<br>
 	<div class="row">
 	<div class="col-sm-3 blog">
