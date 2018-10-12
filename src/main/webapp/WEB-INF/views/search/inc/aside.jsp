@@ -39,6 +39,9 @@
 		</div>
 		<!-- Section -->
 		<section>
+		<header class="major">
+		<br/><h3>드래그 목록 </h3>
+		</header>
 			<div class="mini-posts">
 				<article>
 					<a href="#" class="image img-rounded"><img
