@@ -11,7 +11,17 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<script type="text/javascript">
+$(function() {
+	$('.starSpan').click(function() {
+		if($(this).find('i').hasClass("far")){
+			$(this).find('i').removeClass("far").addClass("fas");
+		} else {
+			$(this).find('i').removeClass("fas").addClass("far");
+		}
+	});
+})
+</script>
 
 
 <div class="container"><br/>
@@ -22,7 +32,7 @@
 	</header>
 	<div class="row">
 		<div class="col-sm-3 blog">
-			<div class="starDiv"><span class="starSpan"><i class="far fa-star"></i></span></div>
+			<div class="starDiv"><span class="starSpan" id="starSpan1"><i class="far fa-star"></i></span></div>
 			<div class="card text-center">
 				<img class="card-img-top img-rounded"
 					src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
@@ -34,7 +44,7 @@
 			</div>
 		</div>
 		<div class="col-sm-3 blog">
-		<div class="starDiv"><span class="starSpan"><i class="far fa-star"></i></span></div>
+		<div class="starDiv"><span class="starSpan" id="starSpan2"><i class="far fa-star"></i></span></div>
 			<div class="card text-center">
 				<img class="card-img-top img-rounded"
 					src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
@@ -46,7 +56,7 @@
 			</div>
 		</div>
 		<div class="col-sm-3 blog">
-		<div class="starDiv"><span class="starSpan"><i class="far fa-star"></i></span></div>
+		<div class="starDiv"><span class="starSpan" id="starSpan3"><i class="far fa-star"></i></span></div>
 			<div class="card text-center">
 				<img class="card-img-top img-rounded"
 					src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
@@ -58,7 +68,7 @@
 			</div>
 		</div>
 		<div class="col-sm-3 blog">
-		<div class="starDiv"><span class="starSpan"><i class="far fa-star"></i></span></div>
+		<div class="starDiv"><span class="starSpan" id="starSpan4"><i class="far fa-star"></i></span></div>
 			<div class="card text-center">
 				<img class="card-img-top img-rounded"
 					src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
@@ -72,7 +82,7 @@
 	<br>
 	<div class="row">
 		<div class="col-sm-3 blog">
-		<div class="starDiv"><span class="starSpan"><i class="far fa-star"></i></span></div>
+		<div class="starDiv"><span class="starSpan" id="starSpan5"><i class="far fa-star"></i></span></div>
 			<div class="card text-center">
 				<img class="card-img-top img-rounded"
 					src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
@@ -84,7 +94,7 @@
 			</div>
 		</div>
 		<div class="col-sm-3 blog">
-		<div class="starDiv"><span class="starSpan"><i class="far fa-star"></i></span></div>
+		<div class="starDiv"><span class="starSpan" id="starSpan6"><i class="far fa-star"></i></span></div>
 			<div class="card text-center">
 				<img class="card-img-top img-rounded"
 					src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
