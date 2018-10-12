@@ -66,8 +66,6 @@
 }
 
 
-
-
 /* sidebar 설정 */
 #sidebar {
 	-moz-flex-grow: 0;
@@ -100,11 +98,11 @@
 	height: 100%;
 }
 
-/*  #sidebar>.inner>* {
+/* #sidebar>.inner>* {
 	border-bottom: solid 2px rgba(210, 215, 217, 0.75);
 	margin: 0 0 2.5em 0;
 	padding: 0 0 3.5em 0;
-}  */
+} */
 
 #sort-category {
 		-moz-appearance: none;
