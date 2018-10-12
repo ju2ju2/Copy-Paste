@@ -170,11 +170,7 @@ blockquote {
 	letter-spacing: 5px;
 }
 
-.nav-hr {
-	margin: 30px;
-	border-top-width: 2px;
-	border-color: #f56a6a;
-}
+
 /* 알람 */
 .navbar-nav .icon-menu {
 	display: inline-block;
@@ -231,11 +227,23 @@ blockquote {
 	margin-right: 8px;
 }
 
-/* xs 사이즈 nav */
+/* xs 사이즈 nav-hr */
 @media ( max-width : 767px) {
 	.nav-hr {
 		margin: 50px 20px 0px 20px;
 	}
+}
+@media ( min-width : 768px) {
+	.nav-hr {
+		width:120%
+		margin: 0px -20px;
+	}
+}
+
+.nav-hr {
+	margin: 30px;
+	border-top-width: 2px;
+	border-color: #f56a6a;
 }
 
 /* nav 사이즈 */
@@ -337,7 +345,8 @@ blockquote {
 	border-bottom-right-radius: 0;
 }
 
-.form-signin input[type="password"] {
+.form-signin input[type="password"],
+.form-signin input[name="userNick"] {
 	margin-bottom: 10px;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;

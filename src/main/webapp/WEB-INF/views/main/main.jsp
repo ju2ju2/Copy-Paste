@@ -106,6 +106,7 @@ $.ajax({
 	</div>
 </div>
 <!-- banner end -->
+
 <div class="jumbotron">
 	<div class="container text-center">
 		<center>

@@ -344,13 +344,7 @@
 }
 
 
- body, input, select, textarea {
-	color: #7f888f;
-	font-family: "Open Sans", sans-serif;
-	font-size: 13pt;
-	font-weight: 400;
-	line-height: 1.65;
-	} 
+
 	
 input, select, textarea {
 	-moz-appearance: none;
@@ -514,9 +508,9 @@ header.main > :last-child {
 }
 
 /*footer*/
-#footer {
+/* #footer {
 	clear: both;
-}
+} */
 
 /* 드래그 목록 사이즈 설정 */
 .mini-posts article {
@@ -551,6 +545,6 @@ header.main > :last-child {
 	text-align: center;
 }
 
-p {
+#wave {
 	display: inline-block;
 }

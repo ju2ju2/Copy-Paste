@@ -18,7 +18,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/blitzer/jquery-ui.css">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/drag.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/note.css" />
 		<!-- Scripts -->
 		<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
