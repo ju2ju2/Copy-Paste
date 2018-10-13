@@ -257,7 +257,7 @@
 	}
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 767px) { /* 736을 767로 바꿔야 함 */
 	#sidebar {
 		display: none;
 	}
@@ -527,21 +527,24 @@ header.main > :last-child {
 	}
 
 
-/* 폴더 아코디언 메뉴 설정 */
+/* 1. 노트 작성 페이지 폴더 아코디언 메뉴, 
+   2. 내 노트보기의 폴더 설정 */
 .accordion {
     cursor: pointer;
     padding: 0.5em;
-    width: 80%;
+    width: 100%;
     border: none;
     text-align: left;
     outline: none;
     transition: 0.4s;
     height: 3em;
+    display: inline;
 }
 
 .a-active, .accordion:hover {
     color: #f56a6a;
     font-weight: bold;
+    margin-bottom: 1em;
 }
 
 .accordion:after {
@@ -558,30 +561,78 @@ header.main > :last-child {
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 	border: 0;
+	margin-top: 1em;
 }
 
-button, table {
+.n-folder {
+    cursor: pointer;
+    padding: 0.5em;
+    width: 80%;
+    border: none;
+    text-align: left;
+    outline: none;
+    transition: 0.4s;
+    height: 3em;
+    display: inline;
+    vertical-align: center;
+}
+
+.n-folder:hover {
+	color: #ffffff;
+    font-weight: bold;
+    background-color: #f56a6a;
+    width: 80%;
+    border-radius: 10px;
+}
+
+.f-count {
+	color: #ffffff;
+	background-color: #f56a6a;
+	border-radius: 10px;
+	width: 2em;
+	padding: 0.1em 1em;
+}
+
+.icon {
+	width: 20%
+}
+
+.f-modify {
+	display: none;
+	background-color: #ffffff;
+	padding: 0.25em;
+	border-radius: 10px;
+}
+
+table {
 	background-color: #ffffff;
 	text-decoration: none;
 	width: 100%;
+	margin: 1em 1em 3em 1em;
 }
 
+
+/* 서치 input 및 아이콘 설정*/
 td .t-content {
-	width: 90%;
+	width: 70%;
 }
 
 td .t-icon {
-	width: 10%;
+	width: 30%;
+	padidng-right: 1em;
 }
 
-.major, .h-table{
+#h-inline{
 	display: inline;
+	margin-bottom: 0;
+	vertical-align: center;
 }
 
-table, tr, td {
-	border: solid 1px #000000;
-}
+/* 아이콘*/
 
+i:hover {
+	color:#f56a6a;
+}
 
 
 /* 검색결과 미리보기(노트 미리보기) */
