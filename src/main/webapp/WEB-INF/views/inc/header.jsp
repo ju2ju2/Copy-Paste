@@ -62,15 +62,16 @@
 							class="img-circle " alt="user"> <span>${loginuser}</span><span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a
-								href="${pageContext.request.contextPath}/member/myinfo.htm"><i class="far fa-user"></i> <span>PROFILE</span></a></li>
-							<!-- 관리자권한일때 -->
+								href="${pageContext.request.contextPath}/member/myinfo.htm"><i class="far fa-user"></i><span>PROFILE</span></a></li>
+					
+					<!-- 관리자권한일때 -->
 							<se:authorize access="hasRole('ROLE_ADMIN')">
 								<li><a
 									href="${pageContext.request.contextPath}/etc/admin.htm"><i class="fas fa-unlock-alt"></i> <span>ADMIN</span></a></li>
 							</se:authorize>		
 									
 									
-							<li><a href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt"></i> <span>LOGOUT</span></a></li>
+							<li><a href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt"></i><span>LOGOUT</span></a></li>
 							
 							
 		
