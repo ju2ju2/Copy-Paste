@@ -11,30 +11,23 @@
 <br/>
 	<!-- 정렬 -->
 	<div class="row">
-	<div class="form-group">
-
-	<div class="col-sm-3">
-	<select name="subject-category" id="subject-category">
-		<option value="">- 주제 선택 -</option>
-		<option value="1">뭔가</option>
-		<option value="1">있을</option>
-		<option value="1">것</option>
-		<option value="1">이다</option>
-	</select>
+	<div class="col-xs-2">
+		<select name="subject-category" id="subject-category">
+			<option value="">- 주제 선택 -</option>
+			<option value="1">뭔가</option>
+			<option value="1">있을</option>
+			<option value="1">것</option>
+			<option value="1">이다</option>
+		</select>
 	</div>
 
-	<!-- Search -->
-	<section id="subject-search" class="alt">
-	<div class="col-sm-8">
-		<form method="post" action="#">
-			<input type="text" name="query" id="query" placeholder="검색어를 입력해 주세요." />
-		</form>
-	</div>
-	<div class="col-sm-1">
-		<a href="#"><i id="search" class="fas fa-search"  style="padding-top:15px"></i></a>
-	</div>		
-	</section>
 	
+	<!-- Search -->
+	<div id="subject-search" class="col-xs-10 alt">
+		<form method="post" action="#">
+			<input type="text" id="search-text" placeholder="검색어를 입력해 주세요." />
+		</form>
+		<a href="#"><i id="search" class="fas fa-search mt-10 icon-right"></i></a>	
 	</div>
 	</div>
 		
@@ -52,7 +45,7 @@
 	<!-- Section -->	
 	<section>					
 	<header class="col-sm-12 major">
-		<h2 class="major"> 검색 목록</h2>
+		<h3 class="major"> 검색 목록</h3>
 	</header>
 	<br>
 	<div class="row">
@@ -115,4 +108,4 @@
 	</section>
 
 <br>
-
+</div>

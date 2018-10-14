@@ -50,7 +50,7 @@
 					<div class="col-xs-12">
 						<input type="text" id="fromDate" placeholder="검색 시작일">
 					</div>
-					<div id="fromToPTag"><p>~</p></div>
+					<div id="fromToPTag"><p id="wave">~</p></div>
 					<div class="col-xs-12">
 						<input type="text" id="toDate" placeholder="검색 종료일">
 					</div>

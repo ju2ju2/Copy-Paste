@@ -14,8 +14,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/weather-icons.css" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/weather-icons-wind.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/api/weather/weather-icons.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/api/weather/weather-icons-wind.css" />
 		<!-- title 영역 -->
 		<title><tiles:insertAttribute name="title" /></title>
 	</head>

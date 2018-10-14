@@ -71,18 +71,18 @@
 			<tr>
 			<td class="t-content">
 				<header class="major">
-					<h3 class="h-table">노트 폴더 목록 </h3>
+					<h3 id="h-inline">노트 폴더 목록 </h3>
 				</header>
 			</td>
-			<td class="t-icon">
-				<i class="far fa-trash-alt"></i>
+			<td class="t-icon mr-5">
+				<i class="fas fa-trash"></i>
 			</td>
 			</tr>
 			</table>
 			
 			<div class="row">
 				<div class="col-xs-10">
-				<button class="accordion">미분류</button>
+				<h5 class="accordion">미분류</h5>
 					<div class="panel">
   						<div class="card text-center">
 							<img class="card-img-top"
@@ -95,14 +95,14 @@
 						</div>
 					</div>	
 				</div>
-				<div class="col-xs-2 icon">
+				<div class="col-xs-2">
 					<i class="fas fa-bookmark"></i>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-xs-10">
-				<button class="accordion">폴더 1</button>
+				<h5 class="accordion">폴더1</h5>
 					<div class="panel">
   						<div class="card text-center">
 							<img class="card-img-top"
@@ -115,16 +115,36 @@
 						</div>
 					</div>	
 				</div>
-				<div class="col-xs-2 icon">
+				<div class="col-xs-2">
 					<i class="far fa-bookmark"></i>
 				</div>
-			</div>	
+			</div>
+				
+			<div class="row">
+				<div class="col-xs-10">
+				<h5 class="accordion">폴더2</h5>
+					<div class="panel">
+  						<div class="card text-center">
+							<img class="card-img-top"
+								src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
+								alt="" width="100%">
+							<div class="card-block">
+							<h4>가을에 쓴 편지</h4>
+							<span>음담패썰</span> <span>2018.08.30</span>
+							</div>
+						</div>
+					</div>	
+				</div>
+				<div class="col-xs-2">
+					<i class="far fa-bookmark"></i>
+				</div>
+			</div>				
 				
 			</div>
 			
 			<div class="row">
 				<div class="col-xs-10">
-				<button class="accordion">스크랩</button>
+				<h5 class="accordion">스크랩</h5>
 					<div class="panel">
   						<div class="card text-center">
 							<img class="card-img-top"
@@ -137,7 +157,7 @@
 						</div>
 					</div>	
 				</div>
-				<div class="col-xs-2 icon">
+				<div class="col-xs-2">
 				</div>
 			</div>	
 				
@@ -166,6 +186,7 @@
 </body>
 
 <script>
+/* 폴더 아코디언 */
 var acc = document.getElementsByClassName("accordion");
 var i;
 
@@ -180,5 +201,13 @@ for (i = 0; i < acc.length; i++) {
     } 
   });
 }
+
+/* 스크랩 아이콘 토글  */
+$('.fa-bookmark').click(function() {
+	if($(this).hasClass("far")){
+		$('.fa-bookmark').removeClass("fas").addClass("far");
+		$(this).removeClass("far").addClass("fas");			
+		}
+	})
 </script>
 

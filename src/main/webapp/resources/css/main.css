@@ -237,6 +237,13 @@ blockquote {
 		margin: 50px 20px 0px 20px;
 	}
 }
+@media ( min-width : 768px) {
+	.nav-hr {
+		width:120%
+		margin: 0px -20px;
+	}
+}
+
 
 /* nav 사이즈 */
 @media ( min-width : 768px) {
@@ -245,7 +252,7 @@ blockquote {
 	}
 }
 
-@media ( min-width : 991px) {
+@media ( min-width : 1200px) {
 	.longnav {
 		margin-top: 0px;
 	}
@@ -287,6 +294,16 @@ blockquote {
 	width: 85px;
 	height: 85px;
 }
+
+/* xs 사이즈 nav */
+@media ( max-width : 767px) {
+	#signup button{
+		margin : 8px 120px 0px;
+	}
+}
+
+
+
 
 .img-circle {
 	display: inline-block;
@@ -337,7 +354,8 @@ blockquote {
 	border-bottom-right-radius: 0;
 }
 
-.form-signin input[type="password"] {
+.form-signin [type="password"],
+.form-signin input[name="userNick"] {
 	margin-bottom: 10px;
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
@@ -367,12 +385,50 @@ blockquote {
 }
 
 /* 회원가입 */
-.social-btn {
-	margin-top: 5px;
-	margin-left: 0px;
-	padding: 5px 80px;
+   .form-signup {
+	max-width: 700px;
+	padding: 15px;
+	margin: 0 auto;
+	}
+    .in-line{
+      width:350px;
+      height:40px;
+    }
+   
+   #signup input[type="text"]{
+    margin-bottom: 8px;
+	border-bottom-left-radius: 1;
+	border-bottom-right-radius: 1;
+      width:100%;
+      font-size:1em;
+      padding-left:1em;
+      display:inline-block;
+      outline:none;
+      box-sizing: border-box;
+      color:black;
+    }
+ 
+  #signbtn{
+      width: 100%;
+      height:100%;
+      background-color:transparent;
+      border:none;
+      font-size:1em;
+      outline:none;
+      display:inline-block;
+     margin:0;
+    } 
+
+	.social-btn {
+	background-color: transparent;
+	padding: 0px 0px;
 	font-size: 16px;
-}
+	margin-top:8px;
+	}
+	.social-btn:hover{
+	color:#f56a6a;
+	}
+	
 /* footer */
 footer a, footer a:hover, footer a:active, footer a:link {
 	text-decoration: none;
@@ -517,12 +573,15 @@ footer a, footer a:hover, footer a:active, footer a:link {
 }
 
 .aboutSubTitle>.aboutConTilte, .aboutSubTitle>.aboutCon>strong {
-	font-size: 18px;
+	font-size: 20px;
 }
 
 .aboutSubTitle>.aboutCon {
-	margin-top: 8px;
+	margin-top: 10px;
 	font-size: 16px;
+}
+.aboutSubTitle>.aboutCon>h3 {
+	color:#f56a6a;
 }
 
 .aboutCon>p {
