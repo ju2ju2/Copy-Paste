@@ -573,12 +573,15 @@ footer a, footer a:hover, footer a:active, footer a:link {
 }
 
 .aboutSubTitle>.aboutConTilte, .aboutSubTitle>.aboutCon>strong {
-	font-size: 18px;
+	font-size: 20px;
 }
 
 .aboutSubTitle>.aboutCon {
-	margin-top: 8px;
+	margin-top: 10px;
 	font-size: 16px;
+}
+.aboutSubTitle>.aboutCon>h3 {
+	color:#f56a6a;
 }
 
 .aboutCon>p {
