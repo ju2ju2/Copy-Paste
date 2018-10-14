@@ -57,7 +57,7 @@ $(document).ready(function(){
         	<a data-toggle="modal" href="#" data-target="#reportModal" 
         	role="button" class="btn main-btn" data-backdrop="static" id="reportOK">OK</a>
 	        <a data-toggle="modal" href="#" data-target="#reportModal" 
-        	role="button" class="btn btn-default" data-backdrop="static">Calcel</a>
+        	role="button" class="btn btn-default" data-backdrop="static">Cancel</a>
         </center>
        	</div>
       </div>
