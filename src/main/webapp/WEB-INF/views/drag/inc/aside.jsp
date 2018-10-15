@@ -59,38 +59,8 @@
 		</div>
 	</div>
 </div>
-
-
-<script type="text/javascript">
-	$(function() {
-		fromDate = $("#fromDate").datepicker({
-			dateFormat : "yy-mm-dd",
-			defaultDate : "+1w",
-			changeMonth : true,
-			numberOfMonths : 1
-		}).on("change", function() {
-			toDate.datepicker("option", "minDate", getDate(this));
-		}), toDate = $("#toDate").datepicker({
-			dateFormat : "yy-mm-dd",
-			defaultDate : "+1w",
-			changeMonth : true,
-			numberOfMonths : 1
-		}).on("change", function() {
-			fromDate.datepicker("option", "maxDate", getDate(this));
-		});
-
-		function getDate(element) {
-			var date;
-			try {
-				date = $.datepicker.parseDate("yy-mm-dd", element.value);
-			} catch (error) {
-				date = null;
-			}
-
-			return date;
-		}
-	});
-</script>
+<!-- 데이트피커 js -->
+<script src="${pageContext.request.contextPath}/resources/js/datepicker.js"></script>
 
 
 

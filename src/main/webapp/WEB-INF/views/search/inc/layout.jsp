@@ -21,16 +21,21 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/search.css" />
+		<!-- Scripts -->
+		<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 	</head>
 	<body>
 		<!-- Header  영역 (공통 inc) -->
 		<header id="header"><tiles:insertAttribute name="header" /></header>
  		<div id="main" class="top-wrapper clear">
-			<div class="clear col-sm-3">
+			<div class="clear aside">
 				<!-- aside 영역 -->
 				<tiles:insertAttribute name="aside" />
 			</div>
-			<div class="clear col-sm-9">
+			<div class="clear content">
 				<!-- Content 영역 -->
 				<tiles:insertAttribute name="content" />
 			</div>
@@ -41,9 +46,6 @@
             <tiles:insertAttribute name="footer" />
         </footer>
         
-		<!-- Scripts -->
-		<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
-		<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
 	</body>
 </html>

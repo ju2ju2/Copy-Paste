@@ -9,10 +9,9 @@
 	
 <div class="container"><br/>
 	<section>					
-	<header class="col-sm-12 major">
-		<h3 class="major">미분류</h2>
-		<i class="fas fa-trash"></i>
-	</header>
+	<div class="row">
+		<h3>노트 목록 <span id="dragTrash"><i class="fas fa-trash"></i></span></h3>
+	</div>
 	<br>
 	<div class="row">
 	<div class="col-sm-3 col-xs-6 blog">
