@@ -516,7 +516,7 @@ i:hover {
 }
 
 i {
-	margin-left: 2rem;
+	margin-left: 1rem;
 	font-size: 2rem;
 }
 
@@ -614,19 +614,20 @@ header.main > :last-child {
 }
 
 .n-folder:hover {
-	color: #ffffff;
+	/* color: #ffffff; */
     font-weight: bold;
-    background-color: #f56a6a;
+    background-color: #fff;
     width: 80%;
-    border-radius: 10px;
 }
 
 .f-count {
 	color: #ffffff;
-	background-color: #f56a6a;
+	background-color: #f56a6a; 
 	border-radius: 10px;
-	width: 2em;
-	padding: 0.1em 1em;
+	max-width: 18px;
+	padding: 0.2em 0.5em;
+	font-size:14px;
+	margin-right:0.4em;
 }
 
 .icon {
@@ -638,14 +639,16 @@ header.main > :last-child {
 	background-color: #ffffff;
 	padding: 0.25em;
 	border-radius: 10px;
+	font-size: 1rem;
 }
+.fa-bookmark {margin-top:20px;}
 
-table {
+/* table {
 	background-color: #ffffff;
 	text-decoration: none;
 	width: 100%;
 	margin: 1em 1em 3em 1em;
-}
+} */
 
 
 /* 서치 input 및 아이콘 설정*/
