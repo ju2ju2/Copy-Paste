@@ -4,7 +4,6 @@
 @Author : 임효진
 @Desc : 사이트 검색 화면입니다. 사이트 내 노트 검색이 가능하며, 검색한 내용을 스크랩 혹은 드래그 가능.
 --%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div class="s-container">
@@ -27,8 +26,7 @@
 		<form method="post" action="#">
 			<input type="text" name="query" id="search-text" placeholder="검색어를 입력해 주세요." />
 			<a href="#"><i id="search" class="fas fa-search"  style="padding-top:15px"></i></a>
-		</form>
-	</div>		
+		</form>		
 	</section>
 	</div>
 		
