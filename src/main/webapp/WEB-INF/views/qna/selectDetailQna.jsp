@@ -8,12 +8,12 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
 
 <!-- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
- --><!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script> -->
+ -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/api/alert/sweetalert.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
 <!-- 신고 모달창에서 ok버튼 눌렀을 때 스윗알럳 띄우기 -->
 <script>
 $(document).ready(function(){
@@ -28,7 +28,6 @@ $(document).ready(function(){
 			});	
 })
 </script>
-
   <!-- 댓글 신고 Modal -->
   <div class="modal fade" id="reportModal" role="dialog">
     <div class="modal-dialog">

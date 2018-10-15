@@ -4,18 +4,14 @@
 @Author : 우나연
 @Desc : 노트 상세보기
 		댓글 신고 클릭시 모달창 추가, OK버튼 누를 때 스위트알럳 뜸. 버튼색은 추후 수정 필요.(이주원, 10월 12일)
+		스위트 알럳 cdn방식이 아닌 js와 css를 임포트 하는 방식으로 변경. (이주원, 10월 15일)
 --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script> 
 <!-- Sweet Alert cdn -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/api/alert/sweetalert.css" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
-
-<!-- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
- --><!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script> -->
 <!-- 신고 모달창에서 ok버튼 눌렀을 때 스윗알럳 띄우기 -->
 <script>
 $(document).ready(function(){
@@ -172,16 +168,13 @@ $(document).ready(function(){
 								</div>
 
 								<div class="input-group">
-									<input type="text" id="userComment"
-										class="form-control input-sm chat-input"
-										placeholder="댓글을 입력하세요" /> <span class="ml-5 input-group-btn"
-										onclick="addComment()"> <a href="#"
-										class="btn main-btn center-block" id="commentbtn">  댓글달기</a>
-
-
-									</span>
-
-								</div>
+	     						   <input type="text" id="userComment" class="form-control input-sm chat-input" placeholder="댓글을 입력하세요" />
+								    <span class="input-group-btn" onclick="addComment()">     
+	        				    <div>
+	           						 <a href="#" class="btn main-btn center-block" id="commentbtn"><i class="fas fa-check"></i> Add Comment</a>      	
+	           					</div>
+	        						</span>  
+							    </div>
 
 
 							</div>

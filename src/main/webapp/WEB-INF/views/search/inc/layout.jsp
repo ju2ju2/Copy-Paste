@@ -31,11 +31,11 @@
 		<!-- Header  영역 (공통 inc) -->
 		<header id="header"><tiles:insertAttribute name="header" /></header>
  		<div id="main" class="top-wrapper clear">
-			<div class="clear aside">
+			<div class="clear col-sm-3">
 				<!-- aside 영역 -->
 				<tiles:insertAttribute name="aside" />
 			</div>
-			<div class="clear content">
+			<div class="clear col-sm-9">
 				<!-- Content 영역 -->
 				<tiles:insertAttribute name="content" />
 			</div>

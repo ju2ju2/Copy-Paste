@@ -7,6 +7,10 @@
 
 
 /* datepicker 셀렉트 박스 */
+
+#ui-datepicker-div{
+	width: 15em;
+}
 .ui-datepicker-month{
 	height: 2em;
 	-moz-appearance: none;
@@ -20,7 +24,7 @@
 		color: #f56a6a;
 		display: inline-block;
 		outline: 0;
-		padding: 0 1.8em;
+		padding: 0 1em;
 		margin: 0 0 0 0;
 		text-decoration: none;
 }
