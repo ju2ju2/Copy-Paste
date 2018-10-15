@@ -27,8 +27,7 @@
 		<form method="post" action="#">
 			<input type="text" name="query" id="search-text" placeholder="검색어를 입력해 주세요." />
 			<a href="#"><i id="search" class="fas fa-search"  style="padding-top:15px"></i></a>
-		</form>
-	</div>		
+		</form>		
 	</section>
 	</div>
 		

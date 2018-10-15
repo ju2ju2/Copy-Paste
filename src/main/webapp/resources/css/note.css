@@ -30,9 +30,9 @@
 }
 
 /* 최종 발행 창 내 라벨 */
-.noteLabels {
-	margin-left: 30px;
-	margin-right: 10px;
+ .noteLabels {
+	padding: 0px !important;
+	margin-right: 15px;
 }
 
 /* 노트 작성 당시 좌측 네브 */

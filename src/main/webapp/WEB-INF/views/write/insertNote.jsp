@@ -8,7 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 
-<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=yaps0ah95j72p1podkonpizywofdvarpwuuzjrfbjm1ysadp"></script>
 <script>
 var demoBaseConfig = {
 		  selector: "textarea",
