@@ -7,7 +7,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script> 
+
 <section id="content">
 	<div class="container">
 
@@ -19,11 +19,6 @@
 				<div align="left"><h3>Q&A 게시판</h3></div></td>
 			</tr>
  		</c:if>
-		
-		<%-- <tr> 
-			<td style="Display:none"><strong>작성자</strong></td>
-			<td style="Display:none">${sessionScope.email}</td>
-		</tr> --%>
 	
 			<div class="col-md-12">
 	        	<div class="form-group">

@@ -12,10 +12,15 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!-- css -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/api/weather/weather-icons.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/api/weather/weather-icons-wind.css" />
+		<!-- scripts -->
+		<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<!-- title 영역 -->
 		<title><tiles:insertAttribute name="title" /></title>
 	</head>
@@ -32,9 +37,6 @@
 		<!-- Footer 영역  -->
 		<tiles:insertAttribute name="footer" />
 		
-		<!-- Scripts -->
-		<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
-		<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-	 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 	</body>
 </html>
