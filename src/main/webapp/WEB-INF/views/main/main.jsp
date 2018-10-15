@@ -76,7 +76,34 @@
 			<!-- Modal HTML -->
 			<div id="modal-testNew" class="modal fade text-center" tabindex="-1"
 				role="dialog">
-				<div class="modal-dialog" style="width: 1200px; height: 700px">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<!-- Content will be loaded here from "note/noteDetail.htm" file -->
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="col-sm-3 blog">
+			<div class="card text-center">
+				<!-- a HTML (to Trigger Modal) -->
+				<a data-toggle="modal"
+					href="${pageContext.request.contextPath}/note/noteDetail.htm"
+					data-target="#modal-testNew" role="button" data-backdrop="static" data-keyboard="false"> <!--  모달 외에 클릭시 닫기안함-->
+					<img class="card-img-top img-rounded"
+					src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
+					alt="" width="100%">
+				<div class="card-block">
+					<h4>가을에 쓴 편지</h4>
+					<span>음담패썰</span> <span>2018.08.30</span>
+				</div>
+				</a>
+			</div>
+			<!-- Modal HTML -->
+			<div id="modal-testNew" class="modal fade text-center modal-backdrop" tabindex="-1"
+				role="dialog">
+				<div class="modal-dialog">
 					<div class="modal-content">
 						<!-- Content will be loaded here from "note/noteDetail.htm" file -->
 					</div>
@@ -101,7 +128,7 @@
 			<!-- Modal HTML -->
 			<div id="modal-testNew" class="modal fade text-center" tabindex="-1"
 				role="dialog">
-				<div class="modal-dialog" style="width: 1200px; height: 700px">
+				<div class="modal-dialog">
 					<div class="modal-content">
 						<!-- Content will be loaded here from "note/noteDetail.htm" file -->
 					</div>
@@ -126,32 +153,7 @@
 			<!-- Modal HTML -->
 			<div id="modal-testNew" class="modal fade text-center" tabindex="-1"
 				role="dialog">
-				<div class="modal-dialog" style="width: 1200px; height: 700px">
-					<div class="modal-content">
-						<!-- Content will be loaded here from "note/noteDetail.htm" file -->
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="col-sm-3 blog">
-			<div class="card text-center">
-				<!-- a HTML (to Trigger Modal) -->
-				<a data-toggle="modal"
-					href="${pageContext.request.contextPath}/note/noteDetail.htm"
-					data-target="#modal-testNew" role="button" data-backdrop="static">
-					<img class="card-img-top img-rounded"
-					src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-					alt="" width="100%">
-				<div class="card-block">
-					<h4>가을에 쓴 편지</h4>
-					<span>음담패썰</span> <span>2018.08.30</span>
-				</div>
-				</a>
-			</div>
-			<!-- Modal HTML -->
-			<div id="modal-testNew" class="modal fade text-center" tabindex="-1"
-				role="dialog">
-				<div class="modal-dialog" style="width: 1200px; height: 700px">
+				<div class="modal-dialog">
 					<div class="modal-content">
 						<!-- Content will be loaded here from "note/noteDetail.htm" file -->
 					</div>

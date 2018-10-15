@@ -119,7 +119,7 @@ h1 span, h2 span, h3 span, h4 span {
 
 img {
 	display: block;
-	max-width: 100%;
+/* 	max-width: 100%; */
 	height: auto;
 }
 
@@ -454,10 +454,10 @@ footer a, footer a:hover, footer a:active, footer a:link {
 	margin-top: 30px !important;
 }
 
-.comment-box .media-left {
-	padding-right: 10px;
-	width: 500px;
-}
+/* .comment-box .media-left {
+	 padding-right: 10px; 
+	 width: 500px;
+} */
 
 .comment-box .media-body {
 	padding: 4px;
@@ -472,6 +472,14 @@ footer a, footer a:hover, footer a:active, footer a:link {
 	border-radius: 50%;
 	background-size: contain;
 }
+
+img .user-photo{
+	display: block;
+	width:45px !important;
+	height:45px !important;
+	
+}
+
 
 #userComment {
 	margin-top: 20px !important;
@@ -639,3 +647,12 @@ footer a, footer a:hover, footer a:active, footer a:link {
 	padding-right: 50px;
 	padding-bottom: 20px;
 }
+
+/* 휴대폰 사이즈  */
+@media (max-width: 767px) {
+  .notewrite {
+  display:none;
+  }
+  
+}
+

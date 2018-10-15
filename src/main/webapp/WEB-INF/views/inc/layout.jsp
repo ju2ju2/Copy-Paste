@@ -21,7 +21,7 @@
 		<title><tiles:insertAttribute name="title" /></title>
 	</head>
 	<body>
-		<div class="container">
+		<!-- <div class="container"> -->
 		<!-- Header  영역 -->
 		<tiles:insertAttribute name="header" />
 		<!-- Main 영역 -->
@@ -29,7 +29,7 @@
 		<!-- Content 영역 -->
 		<tiles:insertAttribute name="content" />
 		</div>
-		</div>
+		<!-- </div> -->
 		<!-- Footer 영역  -->
 		<tiles:insertAttribute name="footer" />
 		<!-- scripts -->
