@@ -40,9 +40,6 @@ nav {
 	font-family: "Montserrat", sans-serif;
 }
 
-#myNavbar {
-	font-size: 14px;
-}
 
 html, body {
 	height: 100%;
@@ -140,7 +137,7 @@ img {
 	padding: 0;
 	margin: 20px 0;
 	list-style: none;
-	font-size: 18px;
+	font-size: 15px;
 }
 
 .list-icons li {
@@ -334,11 +331,11 @@ blockquote {
 	font-weight: normal;
 }
 
-.form-signin .form-control . {
+.form-signin .form-control{
 	position: relative;
-	font-size: 16 px;
+	font-size: 15px;
 	height: auto;
-	padding: 10 px;
+	padding: 10px;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -399,7 +396,7 @@ blockquote {
 	border-bottom-left-radius: 1;
 	border-bottom-right-radius: 1;
       width:100%;
-      font-size:1em;
+      font-size:15px;
       padding-left:1em;
       display:inline-block;
       outline:none;
@@ -412,7 +409,7 @@ blockquote {
       height:100%;
       background-color:transparent;
       border:none;
-      font-size:1em;
+      font-size:15px;
       outline:none;
       display:inline-block;
      margin:0;
@@ -421,7 +418,7 @@ blockquote {
 	.social-btn {
 	background-color: transparent;
 	padding: 0px 0px;
-	font-size: 16px;
+	font-size: 15px;
 	margin-top:8px;
 	}
 	.social-btn:hover{
