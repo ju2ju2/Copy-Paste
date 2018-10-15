@@ -18,6 +18,7 @@
 		<!-- css 영역 -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
+		<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script> 
 	</head>
 	<body>
 		<!-- Header  영역 (공통 inc) -->
@@ -31,13 +32,11 @@
 		
 		<!-- Footer 영역 -->
 		<tiles:insertAttribute name="footer" />
-		
-				
 		<!-- Scripts -->
-		<!-- <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script> 
-			 qna 게시판에서만 먹는 jquery cdn이 있어서 일단 layout에 있는 것은 주석처리 하겠습니다.-->	
+		
 		<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	 	
+				
+		
 	</body>
 </html>

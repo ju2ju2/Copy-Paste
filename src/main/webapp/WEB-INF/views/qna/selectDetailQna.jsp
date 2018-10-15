@@ -8,19 +8,26 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script> 
+
 <!-- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
 <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
- --><script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/api/alert/sweetalert.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
 <!-- 신고 모달창에서 ok버튼 눌렀을 때 스윗알럳 띄우기 -->
 <script>
 $(document).ready(function(){
-	$('#reportOK').click(function(){
-		swal("신고되었습니다", "", "success")
+	$('#reportOK').click(function(){	
+		swal({ 
+			title : "신고되었습니다.",
+			text : "",
+			type: "success",
+			confirmButtonText:"OK",
+			confirmButtonClass: "btn-danger"
+		});
 			});	
 })
 </script>
-
   <!-- 댓글 신고 Modal -->
   <div class="modal fade" id="reportModal" role="dialog">
     <div class="modal-dialog">
@@ -57,7 +64,7 @@ $(document).ready(function(){
         	<a data-toggle="modal" href="#" data-target="#reportModal" 
         	role="button" class="btn main-btn" data-backdrop="static" id="reportOK">OK</a>
 	        <a data-toggle="modal" href="#" data-target="#reportModal" 
-        	role="button" class="btn btn-default" data-backdrop="static">Calcel</a>
+        	role="button" class="btn btn-default" data-backdrop="static">Cancel</a>
         </center>
        	</div>
       </div>

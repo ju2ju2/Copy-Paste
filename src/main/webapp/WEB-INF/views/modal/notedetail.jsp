@@ -4,17 +4,27 @@
 @Author : 우나연
 @Desc : 노트 상세보기
 		댓글 신고 클릭시 모달창 추가, OK버튼 누를 때 스위트알럳 뜸. 버튼색은 추후 수정 필요.(이주원, 10월 12일)
+		스위트 알럳 cdn방식이 아닌 js와 css를 임포트 하는 방식으로 변경. (이주원, 10월 15일)
 --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- Sweet Alert cdn -->
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/api/alert/sweetalert.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
 <!-- 신고 모달창에서 ok버튼 눌렀을 때 스윗알럳 띄우기 -->
 <script>
-$('#reportOK').click(function(){
-	swal("신고되었습니다", "", "success")
-		});	
+$(document).ready(function(){
+	$('#reportOK').click(function(){	
+		swal({ 
+			title : "신고되었습니다.",
+			text : "",
+			type: "success",
+			confirmButtonText:"OK",
+			confirmButtonClass: "btn-danger"
+		});
+			});	
+})
 </script>
 
 
@@ -55,7 +65,7 @@ $('#reportOK').click(function(){
         	<a data-toggle="modal" href="#" data-target="#reportModal" 
         	role="button" class="btn main-btn" data-backdrop="static" id="reportOK">OK</a>
 	        <a data-toggle="modal" href="#" data-target="#reportModal" 
-        	role="button" class="btn btn-default" data-backdrop="static">Calcel</a>
+        	role="button" class="btn btn-default" data-backdrop="static">Cancel</a>
         </center>
        	</div>
       </div>
@@ -158,16 +168,13 @@ $('#reportOK').click(function(){
 								</div>
 
 								<div class="input-group">
-									<input type="text" id="userComment"
-										class="form-control input-sm chat-input"
-										placeholder="댓글을 입력하세요" /> <span class="ml-5 input-group-btn"
-										onclick="addComment()"> <a href="#"
-										class="btn main-btn center-block" id="commentbtn">  댓글달기</a>
-
-
-									</span>
-
-								</div>
+	     						   <input type="text" id="userComment" class="form-control input-sm chat-input" placeholder="댓글을 입력하세요" />
+								    <span class="input-group-btn" onclick="addComment()">     
+	        				    <div>
+	           						 <a href="#" class="btn main-btn center-block" id="commentbtn"><i class="fas fa-check"></i> Add Comment</a>      	
+	           					</div>
+	        						</span>  
+							    </div>
 
 
 							</div>
