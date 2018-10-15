@@ -1,0 +1,667 @@
+/* main.css 
+@css : qna.css
+@Date : 2018.10.10
+@Author : 임지현, 문지은, 우나연
+@Desc :	main,about,login,signup. css
+*/
+@import
+	url("https://fonts.googleapis.com/css?family=Montserrat|Nanum+Gothic");
+
+@import url("https://use.fontawesome.com/releases/v5.3.1/css/all.css");
+
+/* 드래그 색상변경 */
+::-moz-selection {
+	background: #f56a6a;
+	color: #fff;
+}
+
+::selection {
+	background: #f56a6a;
+	color: #fff;
+}
+
+/* 인라인 블록 */
+.inline {
+	display: inline-block;
+}
+
+.inline:hover, .inline:active
+.inline:focus {
+	text-decoration: none;
+}
+
+/* Typography
+----------------------------------------------------------------------------- */
+body {
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
+nav {
+	font-family: "Montserrat", sans-serif;
+}
+
+
+html, body {
+	height: 100%;
+}
+
+body {
+	font-size: 15px;
+	line-height: 1.50;
+	color: #333333;
+	background-color: #ffffff;
+	position: relative;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #333333;
+}
+
+h1 {
+	font-size: 38px;
+	font-weight: 700;
+	margin-bottom: 20px;
+}
+
+h2 {
+	font-size: 28px;
+	margin-bottom: 15px;
+}
+
+h3 {
+	font-size: 22px;
+}
+
+h4 {
+	font-size: 18px;
+	font-weight: 700;
+}
+
+h5 {
+	font-size: 16px;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+h6 {
+	font-weight: 700;
+}
+
+h1 span, h2 span, h3 span, h4 span {
+	color: #f56a6a;
+}
+
+.text-colored {
+	color: #f56a6a;
+}
+
+.banner a {
+	color: #f56a6a;
+	text-decoration: none;
+}
+
+.banner a:hover {
+	color: #f56a6a;
+	text-decoration: none;
+}
+
+.banner a:focus, .banner a:active {
+	outline: none;
+	text-decoration: none;
+}
+
+.large {
+	font-size: 18px;
+}
+
+img {
+	display: block;
+/* 	max-width: 100%; */
+	height: auto;
+}
+
+.list-unstyled li {
+	padding: 5px 0;
+}
+
+.list-horizontal {
+	padding: 15px 0;
+}
+
+.list-horizontal-item img {
+	display: block;
+	margin: 0 auto;
+}
+
+.list-icons {
+	padding: 0;
+	margin: 20px 0;
+	list-style: none;
+	font-size: 15px;
+}
+
+.list-icons li {
+	padding: 0 0 15px 0;
+}
+
+blockquote {
+	border-left: none;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.title {
+	margin-top: 0;
+}
+
+/* header navbar */
+.navbar {
+	line-height: 1.8;
+	color: #f5f6f7;
+	padding-top: 15px;
+	padding-bottom: 0;
+	border: 0;
+	border-radius: 0;
+	margin-bottom: 0;
+	font-size: 15px;
+	letter-spacing: 5px;
+}
+
+.nav-hr {
+	margin: 30px;
+	border-top-width: 2px;
+	border-color: #f56a6a;
+}
+/* 알람 */
+.navbar-nav .icon-menu {
+	display: inline-block;
+	vertical-align: middle;
+	*vertical-align: auto;
+	*zoom: 1;
+	*display: inline;
+	padding-top: 28px;
+	padding-bottom: 28px;
+	position: relative;
+}
+
+.navbar-nav .icon-menu {
+	display: inline-block;
+	vertical-align: middle;
+	*vertical-align: auto;
+	*zoom: 1;
+	*display: inline;
+	padding-top: 28px;
+	padding-bottom: 28px;
+	position: relative;
+	width: 100%
+}
+
+.navbar-nav .icon-menu .badge {
+	position: absolute;
+	size: 0.5em;
+	top: 6px;
+	right: 20px;
+	left: 20px;
+	box-sizing: border-box;
+	background-color: #F9354C;
+	padding: 3px 0px 4px 5px;
+	width: 17px;
+}
+
+.navbar-nav .icon-menu {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.notification-item .dot {
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	display: inline-block;
+	vertical-align: middle;
+	*vertical-align: auto;
+	*zoom: 1;
+	*display: inline;
+	width: 10px;
+	height: 10px;
+	content: '';
+	margin-right: 8px;
+}
+
+/* xs 사이즈 nav */
+@media ( max-width : 767px) {
+	.nav-hr {
+		margin: 50px 20px 0px 20px;
+	}
+}
+@media ( min-width : 768px) {
+	.nav-hr {
+		width:120%
+		margin: 0px -20px;
+	}
+}
+
+
+/* nav 사이즈 */
+@media ( min-width : 768px) {
+	.longnav {
+		margin-top: 50px;
+	}
+}
+
+@media ( min-width : 1200px) {
+	.longnav {
+		margin-top: 0px;
+	}
+}
+
+/*navbar 추가설정 */
+.navbar-nav ul>li:active>a, .navbar-nav ul>li.active>a {
+	color: #f56a6a !important;
+}
+
+.navbar-nav  li a:hover {
+	color: #f56a6a !important;
+}
+
+.navbar-header button:hover {
+	color: #f56a6a !important;
+}
+
+.bg-4 {
+	background-color: #2f2f2f; /* Black Gray */
+	color: #fff;
+}
+
+.container-fluid {
+	padding-top: 70px;
+	padding-bottom: 70px;
+}
+
+.logo, #loginlogo {
+	margin-top: -15px;
+	padding: 0px;
+	width: 85px;
+	height: 85px;
+}
+
+#loginlogo {
+	margin-top: -15px;
+	padding: 0px;
+	width: 85px;
+	height: 85px;
+}
+
+/* xs 사이즈 nav */
+@media ( max-width : 767px) {
+	#signup button{
+		margin : 8px 120px 0px;
+	}
+}
+
+
+
+
+.img-circle {
+	display: inline-block;
+	border-radius: 50%;
+}
+
+.navbar-nav>li>a img {
+	width: 22px;
+	margin-right: 2px;
+}
+
+.nav>li>a>img {
+	max-width: none;
+}
+
+/* 로그인 css */
+.form-signin {
+	max-width: 330px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+.form-signin .form-signin-heading, .form-signin .checkbox {
+	margin-bottom: 10px;
+}
+
+.form-signin .checkbox {
+	font-weight: normal;
+}
+
+.form-signin .form-control{
+	position: relative;
+	font-size: 15px;
+	height: auto;
+	padding: 10px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.form-signin .form-control:focus {
+	z-index: 2;
+}
+
+.form-signin input[type="text"] {
+	margin-bottom: -1px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.form-signin [type="password"],
+.form-signin input[name="userNick"] {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.login-title .signup-title {
+	color: #555;
+	font-size: 25px;
+	font-weight: 400;
+	display: block;
+}
+
+.profile-img {
+	width: 96px;
+	height: 96px;
+	margin: 0 auto 10px;
+	display: block;
+}
+
+.need-help {
+	margin-top: 10px;
+}
+
+.new-account {
+	display: block;
+	margin-top: 10px;
+}
+
+/* 회원가입 */
+   .form-signup {
+	max-width: 700px;
+	padding: 15px;
+	margin: 0 auto;
+	}
+    .in-line{
+      width:350px;
+      height:40px;
+    }
+   
+   #signup input[type="text"]{
+	border-bottom-left-radius: 1;
+	border-bottom-right-radius: 1;
+      width:100%;
+      font-size:15px;
+      padding-left:1em;
+      display:inline-block;
+      outline:none;
+      box-sizing: border-box;
+      color:black;
+    }
+ 
+  #signbtn{
+      width: 100%;
+      height:100%;
+      background-color:transparent;
+      border:none;
+      font-size:15px;
+      outline:none;
+      display:inline-block;
+     margin:0;
+    } 
+
+	.social-btn {
+	background-color: transparent;
+	padding: 0px 0px;
+	font-size: 15px;
+	margin-top:8px;
+	}
+	.social-btn:hover{
+	color:#f56a6a;
+	}
+	
+/* footer */
+footer a, footer a:hover, footer a:active, footer a:link {
+	text-decoration: none;
+	color: #f56a6a;
+}
+
+/* 상세보기 댓글 */
+#commentbtn {
+	margin-left: 10px;
+}
+
+.main-btn {
+	margin-top: 15px !important;
+	margin-bottom: 15px !important;
+	margin-left: 10px;
+	margin-right: 10px !important;
+	background: #f56a6a;
+	border-color: #f56a6a;
+	color: #fff;
+}
+
+.comment-box {
+	margin-top: 30px !important;
+}
+
+/* .comment-box .media-left {
+	 padding-right: 10px; 
+	 width: 500px;
+} */
+
+.comment-box .media-body {
+	padding: 4px;
+	padding-top: 12px;
+}
+
+.comment-box img {
+	margin-top: 10px !important;
+	margin-bottom: 20px !important;
+	height: 45px;
+	width: 45px;
+	border-radius: 50%;
+	background-size: contain;
+}
+
+img .user-photo{
+	display: block;
+	width:45px !important;
+	height:45px !important;
+	
+}
+
+
+#userComment {
+	margin-top: 20px !important;
+	margin-bottom: 20px !important;
+}
+
+.form-group strong {
+	size: 15em;
+	text-align: right;
+}
+
+.signupbtn {
+	padding: 0;
+}
+
+/* margin */
+.pl-0 {
+	padding-left: 0px;
+}
+
+.pr-0 {
+	padding-right: 0px;
+}
+
+.pt-0 {
+	padding-top: 0px;
+}
+
+.pb-0 {
+	padding-bottom: 0px;
+}
+
+ /* HELPERS */ 
+.bg-success {
+	background-color: #41B314;
+}
+
+.bg-warning {
+	background-color: #e4cb10;
+}
+
+.bg-danger {
+	background-color: #F9354C;
+}
+
+.no-padding {
+	padding: 0 !important;
+}
+
+.mb-5 {
+	margin-bottom: 5px !important;
+}
+
+.ml-5 {
+	margin-left: 5px !important;
+}
+
+.mr-5 {
+	margin-right: 5px !important;
+}
+
+.mt-5 {
+	margin-top: 5px !important;
+}
+
+.mb-10 {
+	margin-bottom: 10px !important;
+}
+
+.ml-10 {
+	margin-left: 10px !important;
+}
+
+.mr-10 {
+	margin-right: 10px !important;
+}
+
+.mt-10 {
+	margin-top: 10px !important;
+}
+
+.inline {
+	display: inline-block;
+}
+
+.block {
+	display: block;
+}
+
+/* About */
+.aboutSubTitle {
+	margin-top: 5px;
+	margin-bottom: 111px;
+}
+
+.aboutSubTitle>.aboutConTilte {
+	margin-top: 15px;
+	margin-bottom: 38px;
+}
+
+.aboutSubTitle>.aboutConTilte, .aboutSubTitle>.aboutCon>strong {
+	font-size: 20px;
+}
+
+.aboutSubTitle>.aboutCon {
+	margin-top: 10px;
+	font-size: 16px;
+}
+.aboutSubTitle>.aboutCon>h3 {
+	color:#f56a6a;
+}
+
+.aboutCon>p {
+	margin-left: 8px;
+}
+
+.localeText {
+	text-align: right;
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+
+/* main API(날씨) */
+.weatherApi {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	width: 200px;
+	background-color: #f56a6a;
+	border-radius: 10px;
+}
+
+.circle {
+	margin: auto;
+	width: 115px;
+	height: 115px;
+	border: 5px solid #fff;
+	border-radius: 50%;
+}
+
+.temper {
+	color: #fff;
+}
+
+/* 댓글 신고 팝업 */
+#cause-category {
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	background: #ffffff;
+	border-radius: 0.375em;
+	border: none;
+	border: solid 1px rgba(210, 215, 217, 0.75);
+	color: inherit;
+	display: inline-block;
+	outline: 0;
+	padding: 0em 1em;
+	margin: 0 0 16 0;
+	text-decoration: none;
+}
+
+.modal-body {
+	padding-top: 30px;
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-bottom: 20px;
+}
+
+/* 휴대폰 사이즈  */
+@media (max-width: 767px) {
+  .notewrite {
+  display:none;
+  }
+  
+}
+/* 오버레이 */
+.overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
