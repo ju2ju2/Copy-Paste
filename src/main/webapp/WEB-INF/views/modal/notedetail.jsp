@@ -156,7 +156,7 @@ $(document).ready(function(){
 								</ul>
 
 								<div class="media-left">
-									<img class="img-responsive user-photo"
+									<img class="user-photo"
 										src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
 								</div>
 								<div class="media-body">
