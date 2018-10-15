@@ -12,7 +12,7 @@
 
 <div class="container">
 	<div class="row">
-		<div>
+		<div class="center-block ">
 			<h2 class="text-center login-title">LOGIN</h2>
 			<hr>
 			<div>

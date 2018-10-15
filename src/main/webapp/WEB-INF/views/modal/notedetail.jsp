@@ -73,6 +73,7 @@ $(document).ready(function(){
     </div>
   </div>
 	
+
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal">&times;</button>
 	<br>
@@ -92,9 +93,9 @@ $(document).ready(function(){
 	<div class="panel panel-default">
 		<div class="panel-body">
 			<div class="row">
-				<div class="text-right col-xs-2" />
+				<div class="text-right col-sm-2" />
 				<!-- 본문 -->
-				<div class="text-left col-xs-8">
+				<div class="text-left col-sm-8">
 				이름<br><br>
 				 
 				나머지 주소, 시/도, 우편 번호<br>
@@ -120,10 +121,10 @@ $(document).ready(function(){
 				</div>
 				<div class="row">
 					<br><br><br><br>
-					<div class="col-xs-10" />
-					<div class="col-xs-2">
+					<div class="col-sm-9"></div>
+					<div class="col-sm-3">
 					<strong>
-					<i class="far fa-edit 3x"></i> &nbsp;
+					<i class="far fa-edit 3x notewrite"></i> &nbsp;
 					<i class="fas fa-arrow-down"></i> &nbsp;
 					<i class="fas fa-trash"></i> &nbsp;
 					<i class="fas fa-archive"></i> </strong></div>
@@ -139,7 +140,7 @@ $(document).ready(function(){
 								<ul data-brackets-id="12674" id="sortable"
 									class="list-unstyled ui-sortable">
 									<div class="media-left">
-										<img class="img-responsive user-photo"
+										<img class="user-photo"
 											src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
 									</div>
 									<div class="media-body">
@@ -155,7 +156,7 @@ $(document).ready(function(){
 								</ul>
 
 								<div class="media-left">
-									<img class="img-responsive user-photo"
+									<img class="user-photo"
 										src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
 								</div>
 								<div class="media-body">
