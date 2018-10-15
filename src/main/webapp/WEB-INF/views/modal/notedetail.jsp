@@ -121,8 +121,8 @@ $(document).ready(function(){
 				</div>
 				<div class="row">
 					<br><br><br><br>
-					<div class="col-sm-10"></div>
-					<div class="col-sm-2">
+					<div class="col-sm-9"></div>
+					<div class="col-sm-3">
 					<strong>
 					<i class="far fa-edit 3x notewrite"></i> &nbsp;
 					<i class="fas fa-arrow-down"></i> &nbsp;
