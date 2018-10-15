@@ -82,7 +82,10 @@
 	transition: margin-left 0.5s ease, box-shadow 0.5s ease;
 	background-color: rgba(255, 255, 255, 0);
 	font-size: 1em;
-	position: relative;
+/* 	position: fixed; */
+	width: 400px;
+	height: 100vh;
+	margin: 0 2rem 0;
 	/* height: 100% !important;
 	margin: 0 5em 0 0;
 	border: 1 solid black; */

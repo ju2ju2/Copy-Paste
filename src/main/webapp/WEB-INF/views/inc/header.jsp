@@ -11,9 +11,9 @@
 <%@ taglib prefix="se"
 	uri="http://www.springframework.org/security/tags"%>
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
-<nav class="navbar navbar-default">
+<nav class="navbar  navbar-default navbar-fixed-top " >
 	<div class="container">
-		<div class="navbar-header">
+		<div class="navbar-header" >
 			<button type="button" class="navbar-toggle mt-5"
 				data-toggle="collapse" data-target="#myNavbar">
 				<span class="icon-bar"></span> <span class="icon-bar"></span> <span

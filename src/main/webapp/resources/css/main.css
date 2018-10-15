@@ -33,6 +33,7 @@
 /* Typography
 ----------------------------------------------------------------------------- */
 body {
+	margin-top:160px;
 	font-family: 'Nanum Gothic', sans-serif;
 }
 
@@ -161,6 +162,7 @@ blockquote {
 .navbar {
 	line-height: 1.8;
 	color: #f5f6f7;
+	background-color:#fff;
 	padding-top: 15px;
 	padding-bottom: 0;
 	border: 0;
@@ -281,6 +283,9 @@ blockquote {
 	padding-bottom: 70px;
 }
 
+.content{
+	margin-top:100px; 
+}
 .logo, #loginlogo {
 	margin-top: -15px;
 	padding: 0px;
@@ -653,6 +658,5 @@ img .user-photo{
   .notewrite {
   display:none;
   }
-  
 }
 

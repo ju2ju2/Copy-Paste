@@ -9,7 +9,7 @@
 	pageEncoding="UTF-8"%>
 
 
-<div id="sidebar">
+<div id="sidebar ">
 	<div class="inner">
 		<!-- Sort -->
 		<div class="form-group">
