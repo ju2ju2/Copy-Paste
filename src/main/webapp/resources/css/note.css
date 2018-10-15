@@ -61,9 +61,12 @@
 	padding: 0px !important;
 }
 
-.searchCal{
-	padding: 0 -1em !important;
-}
+/* 일자별 검색 */
+#fromDate, #toDate {
+	padding: 0 1.5rem;
+	width: 80%;
+	display: inline;
+	}
 
 /* 전체 페이지 설정 */
 .page-body-wrapper {
@@ -76,7 +79,7 @@
   padding-right: 0;
 }
 
-.col-xs-2, .col-xs-12 {
+.col-xs-2, .col-xs-6, .col-xs-12 {
 	padding: 0 !important;
 }
 
@@ -86,6 +89,12 @@
 
 .mb {
 	margin-bottom: 2rem !important;
+}
+
+
+/* 탭 설정 */
+#drag, #myNote, #inSiteSearch, #portalSearch{
+	padding: 1rem
 }
 
 /* sidebar 설정 */
@@ -512,11 +521,13 @@ select {
 /* 아이콘 설정 */
 i:hover {
 	color:#f56a6a;
-	text-align: center;
 }
 
 i {
-	margin-left: 1rem;
+/* 	padding: 0 !important;
+	text-align: center;
+	vertical-align: middle; */
+	margin-left: 2rem;
 	font-size: 2rem;
 }
 
@@ -685,8 +696,3 @@ td .t-icon {
 	display: inline-block;
 	width: 300px;
 }	
-
-.card:hover{
-	box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	/* 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
-}

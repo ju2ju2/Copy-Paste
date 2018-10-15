@@ -13,20 +13,20 @@
 
 		<!-- 탭 -->
 		<ul class="nav nav-tabs nav-justified" id="writeNoteNavUl">
-			<li class="active"><a data-toggle="tab" href="#drag"
-				class="writeNoteNavBtn"><i class="fas fa-mouse-pointer"></i></a></li>
-			<li><a data-toggle="tab" href="#myNote" class="writeNoteNavBtn"><i
-					class="fas fa-sticky-note"></i></a></li>
-			<li><a data-toggle="tab" href="#inSiteSearch"
-				class="writeNoteNavBtn"><i class="fas fa-search"></i></a></li>
-			<li><a data-toggle="tab" href="#portalSearch"
-				class="writeNoteNavBtn"><i class="fab fa-google"></i></a></li>
+			<li class="active">
+				<a data-toggle="tab" href="#drag" class="writeNoteNavBtn">
+				<i class="fas fa-mouse-pointer"></i></a></li>
+			<li><a data-toggle="tab" href="#myNote" class="writeNoteNavBtn">
+				<i class="fas fa-sticky-note"></i></a></li>
+			<li><a data-toggle="tab" href="#inSiteSearch" class="writeNoteNavBtn">
+				<i class="fas fa-search"></i></a></li>
+			<li><a data-toggle="tab" href="#portalSearch" class="writeNoteNavBtn">
+				<i class="fab fa-google"></i></a></li>
 		</ul>
 
 		<!-- 탭 내용 -->
 
 		<!-- 드래그 목록 -->
-		    <div class="tab-content">
 		    <div id="drag" class="tab-pane fade in active">
 			<div class="mb"></div>
 			<div class="row">
@@ -69,7 +69,6 @@
 				<li><a href="#" class="button">More</a></li>
 			</ul>
 		</section>
-</div>
 </div>
 </div>
 </div>
