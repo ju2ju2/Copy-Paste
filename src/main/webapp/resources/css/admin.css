@@ -14,7 +14,8 @@
 #sidbar{
 	margin:0;
 	padding:0;
-    border-bottom:0;
+
+border-bottom:0;
 }
 
 #sidbar li{
@@ -35,9 +36,7 @@ text-decoration:none;
 }
 
 #sidbar a:hover, .nav a:focus{
-color:#fff;
-background-color: #f56a6a;
-border-radius: 10px
+color:#f56a6a;
 }
 #menuH2 {
 	padding:0 1em;
@@ -47,16 +46,6 @@ border-radius: 10px
 	text-align: center;
 }
 
-.drop-btn{
-	background-color:#b7a8ac;
-	color:#fff;
-}
-
-.drop-btn:hover{
-color:#fff;
-background-color: #f56a6a;
-
-}
 /*footer*/
 #footer {
 	clear: both;
@@ -84,4 +73,3 @@ background-color: #f56a6a;
 	margin-top: 0;
 	padding-top: 0;
 }
-
