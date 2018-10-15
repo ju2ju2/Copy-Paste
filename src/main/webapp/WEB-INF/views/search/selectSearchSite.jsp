@@ -7,28 +7,30 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div class="container">
-<br/>
+<div class="s-container">
 	<!-- 정렬 -->
+	<div class="s-inner">
 	<div class="row">
-	<div class="col-xs-2">
-		<select name="subject-category" id="subject-category">
-			<option value="">- 주제 선택 -</option>
-			<option value="1">뭔가</option>
-			<option value="1">있을</option>
-			<option value="1">것</option>
-			<option value="1">이다</option>
-		</select>
+	<div class="col-sm-2">
+	<select name="subject-category" id="subject-category">
+		<option value="">- 주제 선택 -</option>
+		<option value="1">뭔가</option>
+		<option value="1">있을</option>
+		<option value="1">것</option>
+		<option value="1">이다</option>
+	</select>
 	</div>
 
-	
 	<!-- Search -->
-	<div id="subject-search" class="col-xs-10 alt">
+	<div class="col-sm-10">
+	<section id="subject-search" class="alt">
 		<form method="post" action="#">
-			<input type="text" id="search-text" placeholder="검색어를 입력해 주세요." />
+			<input type="text" name="query" id="search-text" placeholder="검색어를 입력해 주세요." />
+			<a href="#"><i id="search" class="fas fa-search"  style="padding-top:15px"></i></a>
 		</form>
-		<a href="#"><i id="search" class="fas fa-search mt-10 icon-right"></i></a>	
-	</div>
+	</div>		
+	</section>
+
 	</div>
 		
 	<!-- Radio -->
@@ -44,12 +46,12 @@
 	
 	<!-- Section -->	
 	<section>					
-	<header class="col-sm-12 major">
-		<h3 class="major"> 검색 목록</h3>
-	</header>
+	<div class="col-sm-12">
+		<h2>드래그 목록 </h2>
+	</div>
 	<br>
 	<div class="row">
-	<div class="col-sm-3 col-xs-6 blog">
+	<div class="col-sm-3 blog">
 		<div class="card text-center">
 			<img class="card-img-top"
 				src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
@@ -60,7 +62,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-3 col-xs-6 blog">
+	<div class="col-sm-3 blog">
 		<div class="card text-center">
 			<img class="card-img-top"
 				src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
@@ -71,7 +73,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-3 col-xs-6 blog">
+	<div class="col-sm-3 blog">
 		<div class="card text-center">
 			<img class="card-img-top"
 				src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
@@ -82,7 +84,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-3 col-xs-6 blog">
+	<div class="col-sm-3 blog">
 		<div class="card text-center">
 			<img class="card-img-top"
 				src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
@@ -93,7 +95,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-3 col-xs-6 blog">
+	<div class="col-sm-3 blog">
 		<div class="card text-center">
 			<img class="card-img-top"
 				src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
@@ -108,4 +110,5 @@
 	</section>
 
 <br>
+</div>
 </div>
