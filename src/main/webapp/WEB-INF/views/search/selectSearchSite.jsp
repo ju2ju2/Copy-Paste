@@ -8,10 +8,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div class="s-container">
+<div class="s-inner">
 	<!-- 정렬 -->
-	<div class="s-inner">
-	<div class="row">
-	<div class="col-sm-2">
+	<div class="row no-margin">
+	<div class="col-xs-2">
 	<select name="subject-category" id="subject-category">
 		<option value="">- 주제 선택 -</option>
 		<option value="1">뭔가</option>
@@ -22,7 +22,7 @@
 	</div>
 
 	<!-- Search -->
-	<div class="col-sm-10">
+	<div class="col-sm-10  no-margin">
 	<section id="subject-search" class="alt">
 		<form method="post" action="#">
 			<input type="text" name="query" id="search-text" placeholder="검색어를 입력해 주세요." />
@@ -30,10 +30,10 @@
 		</form>
 	</div>		
 	</section>
-
 	</div>
 		
 	<!-- Radio -->
+	<div class="radio">
 		<form method="post" action="#">
 				<input type="radio" id="radio-sub" name="demo-priority" checked>
 				<label for="radio-sub">제목</label>
@@ -41,17 +41,17 @@
 				<label for="radio-content">내용</label>
 				<input type="radio" id="radio-sub-content" name="demo-priority">
 				<label for="radio-sub-content">제목+내용</label>
-		</form>			
+		</form>	
+	</div>		
 	<br>
 	
 	<!-- Section -->	
-	<section>					
-	<div class="col-sm-12">
-		<h2>드래그 목록 </h2>
-	</div>
-	<br>
+	<section>	
+		<header class="major">				
+		<h3>검색 결과</h3>
+		</header>
 	<div class="row">
-	<div class="col-sm-3 blog">
+	<div class="blog">
 		<div class="card text-center">
 			<img class="card-img-top"
 				src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
@@ -62,7 +62,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-3 blog">
+	<div class="blog">
 		<div class="card text-center">
 			<img class="card-img-top"
 				src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
@@ -73,7 +73,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-3 blog">
+	<div class="blog">
 		<div class="card text-center">
 			<img class="card-img-top"
 				src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
@@ -84,7 +84,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-3 blog">
+	<div class="blog">
 		<div class="card text-center">
 			<img class="card-img-top"
 				src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
@@ -95,7 +95,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-3 blog">
+	<div class="blog">
 		<div class="card text-center">
 			<img class="card-img-top"
 				src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
@@ -110,5 +110,5 @@
 	</section>
 
 <br>
-</div>
+	</div>
 </div>

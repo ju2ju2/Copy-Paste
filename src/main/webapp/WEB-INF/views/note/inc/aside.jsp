@@ -158,9 +158,9 @@
 
 /* 스크랩 아이콘 토글  */
 $('.fa-bookmark').click(function() {
-	if($(this).hasClass("far")){
-		$('.fa-bookmark').removeClass("fas").addClass("far");
-		$(this).removeClass("far").addClass("fas");			
+	if($(this).hasClass('far')){
+		$('.fa-bookmark').removeClass('fas').addClass('far');
+		$(this).removeClass('far').addClass('fas');			
 		}
 	});
 

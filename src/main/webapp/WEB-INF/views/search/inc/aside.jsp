@@ -15,8 +15,8 @@
 	<div class="row">
 	<div class="form-group">
 		<!-- Sort -->
-			<div class="col-sm-12">
-			<select name="sort-category" id="sort-category">  <!-- style=" padding-bottom: 0px;    margin-bottom: 5px;    border-bottom-width: 1px;"  -->
+			<div class="col-xs-12">
+			<select name="sort-category" id="sort-category">  
 				<option value="">- 정렬 분류 -</option>
 				<option value="1">최신순</option>
 				<option value="1">오래된 순</option>
@@ -39,23 +39,23 @@
 		<section>
 		<br>
 			<header class="major">
-				<h2>드래그 목록</h2>
+				<h2>드래그 목록<i class="fas fa-trash"></i></span></h2>
 			</header>
 			<div class="mini-posts">
 				<article>
 					<a href="#" class="image img-rounded"><img
 						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-						alt="" /></a>
+						alt="" /></a><i class="far fa-star icon-top"></i>
 				</article>
 				<article>
 					<a href="#" class="image img-rounded"><img
 						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-						alt="" /></a>
+						alt="" /></a><i class="far fa-star icon-top"></i>
 				</article>
 				<article>
 					<a href="#" class="image img-rounded"><img
 						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-						alt="" /></a>
+						alt="" /></a><i class="far fa-star icon-top"></i>
 				</article>
 			</div>
 			<ul class="actions">
@@ -65,3 +65,14 @@
 </div>
 </div>
 
+
+<script>
+<!-- 별 아이콘 토글 -->
+$('.fa-star').click(function(){
+	if($(this).hasClass('far')){
+		$(this).removeClass('far').addClass('fas');
+	} else {
+		$(this).removeClass('fas').addClass('far');
+	}
+})
+</script>
