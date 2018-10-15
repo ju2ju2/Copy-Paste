@@ -30,19 +30,17 @@
 	<body>
 		<!-- Header  영역 (공통 inc) -->
 		<header id="header"><tiles:insertAttribute name="header" /></header>
- 		<div id="main" class="top-wrapper clear">
-			<div class="clear col-sm-3">
+ 		<div id="main">
+			<div class="page-body-wrapper">
 				<!-- aside 영역 -->
 				<tiles:insertAttribute name="aside" />
-			</div>
-			<div class="clear col-sm-9">
 				<!-- Content 영역 -->
 				<tiles:insertAttribute name="content" />
 			</div>
 		</div> 
 		
 		<!-- Footer 영역 -->     
-        <footer id="footer">
+        <footer id="footer" class="clear">
             <tiles:insertAttribute name="footer" />
         </footer>
         
