@@ -89,6 +89,10 @@
 
 			return date;
 		}
+		
+			if($('a').hasClass('ui-corner-all')){
+				$('a').removeClass('ui-corner-all');
+			}
 	});
 </script>
 

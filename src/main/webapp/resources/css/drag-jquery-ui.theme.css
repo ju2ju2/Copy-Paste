@@ -6,17 +6,34 @@
 */
 
 
-/* datepicker 셀렉트 박스 */
+.ui-state-default{
+	border: 0 !important;
+}
 
+/* datepicker div */
 #ui-datepicker-div{
 	width: 15em;
 }
+
+/* datepicker 캘린더 */
+.ui-datepicker-calendar{
+	width: 15em;
+	text-align: center;
+}
+
+.ui-datepicker-title{
+	width: 100%;
+	text-align: center;
+}
+
+/* datepicker 셀렉트 박스 */
+
 .ui-datepicker-month{
 	height: 2em;
+	width: 4em;
 	-moz-appearance: none;
 		-webkit-appearance: none;
 		-ms-appearance: none;
-		appearance: none;
 		background: #ffffff;
 		border-radius: 0.375em;
 		border: none;
@@ -60,13 +77,17 @@
 	color: #ffffff;
 	font-weight: bold;
 }
-.ui-widget-header a {
-	color: #ffffff;
+
+
+/* .ui-widget-header a {
+	color: transparent;
 }
+.ui-icon-circle-triangle-e, .ui-icon-circle-triangle-w {
+	color: transparent;
+} */
 
 /* Interaction states
 ----------------------------------*/
-.ui-state-default,
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default,
 .ui-button,
