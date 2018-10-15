@@ -106,7 +106,6 @@ $.ajax({
 	</div>
 </div>
 <!-- banner end -->
-
 <div class="jumbotron">
 	<div class="container text-center">
 		<center>
@@ -143,7 +142,7 @@ $.ajax({
 			<!-- Modal HTML -->
 			<div id="modal-testNew" class="modal fade text-center" tabindex="-1"
 				role="dialog">
-				<div class="modal-dialog" style="width: 1200px; height: 700px">
+				<div class="modal-dialog">
 					<div class="modal-content">
 						<!-- Content will be loaded here from "note/noteDetail.htm" file -->
 					</div>
@@ -168,7 +167,7 @@ $.ajax({
 			<!-- Modal HTML -->
 			<div id="modal-testNew" class="modal fade text-center" tabindex="-1"
 				role="dialog">
-				<div class="modal-dialog" style="width: 1200px; height: 700px">
+				<div class="modal-dialog">
 					<div class="modal-content">
 						<!-- Content will be loaded here from "note/noteDetail.htm" file -->
 					</div>

@@ -295,14 +295,6 @@ blockquote {
 	height: 85px;
 }
 
-/* xs 사이즈 nav */
-@media ( max-width : 767px) {
-	#signup button{
-		margin : 8px 120px 0px;
-	}
-}
-
-
 
 
 .img-circle {

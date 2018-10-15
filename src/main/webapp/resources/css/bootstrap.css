@@ -50,6 +50,7 @@ a {
 	background-color: transparent;
 }
 .active
+a.active
 a:active,
 a:hover {
 	color:#f56a6a;
@@ -5713,6 +5714,7 @@ button.close {
   overflow: hidden;
 }
 .modal {
+  text-align: center;
   position: fixed;
   top: 0;
   right: 0;
@@ -5745,7 +5747,7 @@ button.close {
 }
 .modal-dialog {
   position: relative;
-  width: auto;
+  width: 100%;
   margin: 10px;
 }
 .modal-content {
@@ -5815,8 +5817,8 @@ button.close {
 }
 @media (min-width: 768px) {
   .modal-dialog {
-    width: 600px;
-    margin: 30px auto;
+   /*  width: 600px;
+    margin: 30px auto; */
   }
   .modal-content {
     -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);

@@ -39,7 +39,7 @@
 						href="${pageContext.request.contextPath}/note/write.htm">NOTE</a></li>
 					<li><a href="${pageContext.request.contextPath}/drag/drag.htm">MYDRAG</a></li>
 					<li><a href="${pageContext.request.contextPath}/note/note.htm">MYNOTE</a></li>
-					<li class="dropdown"><a href="#" class="dropdown=toggle"
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"> SEARCH<span class="caret"></span>
 					</a>
 						<ul class="dropdown-menu">
@@ -72,9 +72,7 @@
 									
 									
 							<li><a href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt"></i><span>LOGOUT</span></a></li>
-							
-							
-		
+
 						</ul>
 					</li>
 					
@@ -96,9 +94,9 @@
 									class="dot bg-success"></span> '가을에 쓴 편지'에 댓글이 달렸습니다.</a></li>
 							<li><a href="#" class="more">See all notifications</a></li>
 						</ul></li>	
+			</ul>
 			</se:authorize>
 
-							
 			<!-- 비회원일때 -->
 			<se:authorize access="!hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
 				<ul id="anyUserNav" class="nav navbar-nav navbar-right">
@@ -123,8 +121,6 @@
 				</ul>
 
 			</se:authorize>
-
-
 
 		</div>
 	</div>
