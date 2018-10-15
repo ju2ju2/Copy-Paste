@@ -160,7 +160,8 @@
 
 				</div>
 				<!-- myNote 끝 -->
-
+			</div>
+			
 				<div id="inSiteSearch" class="tab-pane fade searchDiv">
 
 					<button type="button" class="btn btn-secondary searchBtn">
@@ -177,7 +178,7 @@
 
 				</div>
 
-			</div>
+
 		</div>
 	</div>
 </div>
