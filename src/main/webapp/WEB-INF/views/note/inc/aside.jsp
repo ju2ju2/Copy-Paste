@@ -1,127 +1,41 @@
 <!-- note>>inc
 @JSP : aside.jsp
 @Date : 2018.10.09
-@Author : 우나연, 임효진(노트 폴더목록만)
+@Author : 우나연, 임효진(aside)
 @Desc : note aside부분 jsp
  -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-
+<!-- Sidebar -->
 <div id="sidebar">
-	<div class="inner">
+<div class="inner">
+	<div class="row">
+	<div class="form-group">
 		<!-- Sort -->
-		<div class="form-group">
-			<select name="sort-category" id="sort-category">
-				<option value="">&ensp;&ensp;정 렬</option>
+			<div class="col-xs-12">
+			<select name="sort-category" id="sort-category">  
+				<option value="">- 정렬 분류 -</option>
 				<option value="1">최신순</option>
 				<option value="1">오래된 순</option>
-				<option value="1">주제별</option>
-				<option value="1">참조순</option>
+				<option value="1">중요표시 있는 순</option>
+				<option value="1">중요표시 없는 순</option>
 			</select>
-		</div>
-		<!-- Search -->
-		<div>
-			<div class="form-group">
-				<label> &ensp;&ensp;키워드 검색</label>
-				<div class="row">
-					<div class="col-xs-10">
-						<input type="text" id="search-text" placeholder="검색" />
-					</div>
-					<div class="col-xs-2">
-						<a href="#"><i id="search" class="fas fa-search"
-							style="padding-top: 15px"></i></a>
-					</div>
-				</div>
-				<label>&ensp;&ensp;일자별 검색</label>
-				<div class="row searchCal">
-					<div class="col-xs-6">
-						<input type="text" id="fromDate" placeholder="  시작일">
-					</div>
-					<div class="col-xs-6">
-						<input type="text" id="toDate" placeholder="  종료일">
-					</div>
-				</div>
 			</div>
-		</div>
+		<!-- Search -->
+		<section id="subject-search" class="alt">
+			<div class="col-xs-12">
+					<form method="post" action="#">
+						<input type="text" id="search-text" placeholder="검색" />
+						<a href="#"><i id="search" class="fas fa-search"  style="padding-top:15px"></i></a>
+					</form>
+			</div>
+		</section>
+	</div>
+	</div>	
 		
 		<!-- Section -->
-			<table>
-			<tr>
-			<td class="t-content">
-				<header class="major">
-					<h3 id="h-inline">노트 폴더 목록 </h3>
-				</header>
-			</td>
-			<td class="t-icon">
-					<i class="fas fa-folder-plus"></i>
-			</td>
-			</tr>
-			</table>
-			
-			<div class="row">
-				<div class="col-xs-10 n-folder">
-				<h5 class="ml-10 f-name">미분류
-					&nbsp;
-					<span class="f-count">20</span>
-					<span class="f-modify">
-						<i class="fas fa-edit"></i>
-						<i class="fas fa-trash"></i>
-					</span>				
-				</h5>
-				</div>
-				<div class="col-xs-2 icon">
-					<i class="fas fa-bookmark"></i>					
-				</div>
-			</div>	
-				
-			<div class="row">
-				<div class="col-xs-10 n-folder">
-				<h5 class="ml-10 f-name">폴더 1
-					&nbsp;
-					<span class="f-count">4</span>
-					<span class="f-modify">
-						<i class="fas fa-edit"></i>
-						<i class="fas fa-trash"></i>
-					</span>				
-				</h5>
-				</div>
-				<div class="col-xs-2 icon">
-					<i class="far fa-bookmark"></i>					
-				</div>
-			</div>	
-			
-			<div class="row">
-				<div class="col-xs-10 n-folder">
-				<h5 class="ml-10 f-name">폴더 2ddd
-					&nbsp;
-					<span class="f-count">8</span>
-					<span class="f-modify">
-						<i class="fas fa-edit"></i>
-						<i class="fas fa-trash"></i>
-					</span>				
-				</h5>
-				</div>
-				<div class="col-xs-2 icon">
-					<i class="far fa-bookmark"></i>					
-				</div>
-			</div>	
-			
-			<div class="row">
-				<div class="col-xs-10 n-folder">
-				<h5 class="ml-10 f-name">스크랩
-					&nbsp;
-					<span class="f-count">0</span>
-					<span class="f-modify">
-						<i class="fas fa-edit"></i>
-						<i class="fas fa-trash"></i>
-					</span>				
-				</h5>
-				</div>
-				<div class="col-xs-2 icon">
-				</div>
-			</div>	
+		
 		
 	</div>
 </div>

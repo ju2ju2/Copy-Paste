@@ -9,7 +9,6 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>        
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<!-- title 영역 -->
@@ -25,7 +24,6 @@
 		<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 	</head>
 	<body>
 		<!-- Header  영역 (공통 inc) -->
@@ -43,7 +41,5 @@
         <footer id="footer" class="clear">
             <tiles:insertAttribute name="footer" />
         </footer>
-        
-		
 	</body>
 </html>
