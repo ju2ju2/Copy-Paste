@@ -55,7 +55,7 @@
 								id="nickname" placeholder="사용할 닉네임을 입력해주세요." value="">
 						</div>
 					</div>
-					 <button type="button" class="btn btn-secondary">&ensp;중복확인&ensp;</button>
+					 <button type="button" class="btn">&ensp;중복확인&ensp;</button>
 				</div>
 				
 				
@@ -82,7 +82,11 @@
 				</div>
 			
 				<div class="social-btn text-center">
+<<<<<<< HEAD
 				&nbsp;<a href="#" class="btn btn-primary  ">정보수정 </a>&nbsp;<a href="#" class="btn btn-danger ">회원탈퇴 </a>
+=======
+				&nbsp;<a href="#" class="btn btn-primary ">정보수정 </a>&nbsp;<a href="#" class="btn btn-danger ">회원탈퇴 </a>
+>>>>>>> a1dcc91186f1b2ed7a17f137500722c915758261
 		  		</div>
 			<br>
 			</form>

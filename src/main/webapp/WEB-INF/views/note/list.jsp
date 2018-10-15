@@ -1,20 +1,26 @@
 <!-- note>>
 @JSP : list.jsp
 @Date : 2018.10.09
-@Author : 우나연
+@Author : 우나연, 임효진
 @Desc : note 목록 페이지.
  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<<<<<<< HEAD
 	
 <div class="container" ><br/>
 	<section>					
+=======
+<div class="n-container">
+<div class="n-inner">
+	<!-- Section -->	
+	<section>	
+		<header class="major">				
+		<h3>미분류<i class="fas fa-trash"></i></h3>
+		</header>
+>>>>>>> a1dcc91186f1b2ed7a17f137500722c915758261
 	<div class="row">
-		<h3>노트 목록 <span id="dragTrash"><i class="fas fa-trash"></i></span></h3>
-	</div>
-	<br>
-	<div class="row">
-	<div class="col-sm-3 col-xs-6 blog">
+	<div class="blog">
 		<div class="card text-center">
 			<img class="card-img-top"
 				src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
@@ -25,7 +31,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-3 col-xs-6 blog">
+	<div class="blog">
 		<div class="card text-center">
 			<img class="card-img-top"
 				src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
@@ -36,7 +42,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-3 col-xs-6 blog">
+	<div class="blog">
 		<div class="card text-center">
 			<img class="card-img-top"
 				src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
@@ -47,7 +53,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-3 col-xs-6 blog">
+	<div class="blog">
 		<div class="card text-center">
 			<img class="card-img-top"
 				src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
@@ -58,7 +64,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-3 col-xs-6 blog">
+	<div class="blog">
 		<div class="card text-center">
 			<img class="card-img-top"
 				src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
@@ -71,6 +77,7 @@
 	</div>	
 	</div>
 	</section>
+</div>
 </div>
 
 

@@ -41,9 +41,6 @@ nav {
 	font-family: "Montserrat", sans-serif;
 }
 
-#myNavbar {
-	font-size: 14px;
-}
 
 html, body {
 	height: 100%;
@@ -141,7 +138,7 @@ img {
 	padding: 0;
 	margin: 20px 0;
 	list-style: none;
-	font-size: 18px;
+	font-size: 15px;
 }
 
 .list-icons li {
@@ -339,11 +336,11 @@ blockquote {
 	font-weight: normal;
 }
 
-.form-signin .form-control . {
+.form-signin .form-control{
 	position: relative;
-	font-size: 16 px;
+	font-size: 15px;
 	height: auto;
-	padding: 10 px;
+	padding: 10px;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
@@ -401,11 +398,10 @@ blockquote {
     }
    
    #signup input[type="text"]{
-    margin-bottom: 8px;
 	border-bottom-left-radius: 1;
 	border-bottom-right-radius: 1;
       width:100%;
-      font-size:1em;
+      font-size:15px;
       padding-left:1em;
       display:inline-block;
       outline:none;
@@ -418,7 +414,7 @@ blockquote {
       height:100%;
       background-color:transparent;
       border:none;
-      font-size:1em;
+      font-size:15px;
       outline:none;
       display:inline-block;
      margin:0;
@@ -427,7 +423,7 @@ blockquote {
 	.social-btn {
 	background-color: transparent;
 	padding: 0px 0px;
-	font-size: 16px;
+	font-size: 15px;
 	margin-top:8px;
 	}
 	.social-btn:hover{
@@ -659,4 +655,17 @@ img .user-photo{
   display:none;
   }
 }
-
+/* 오버레이 */
+.overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}

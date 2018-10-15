@@ -7,10 +7,8 @@
  
  <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
-	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 <!-- Sidebar -->
-<div id="sidebar" class="clearfix">
+<div id="sidebar">
 <div class="inner">
 	<div class="row">
 	<div class="form-group">
@@ -37,7 +35,7 @@
 	</div>		
 		<!-- Section -->
 		<section>
-		<br>
+		<br>	
 			<header class="major">
 				<h2>드래그 목록<i class="fas fa-trash"></i></span></h2>
 			</header>

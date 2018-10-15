@@ -30,9 +30,9 @@
 }
 
 /* 최종 발행 창 내 라벨 */
-.noteLabels {
-	margin-left: 30px;
-	margin-right: 10px;
+ .noteLabels {
+	padding: 0px !important;
+	margin-right: 15px;
 }
 
 /* 노트 작성 당시 좌측 네브 */
@@ -61,10 +61,41 @@
 	padding: 0px !important;
 }
 
-.searchCal{
-	padding: 0 -1em !important;
+/* 일자별 검색 */
+#fromDate, #toDate {
+	padding: 0 1.5rem;
+	width: 80%;
+	display: inline;
+	}
+
+/* 전체 페이지 설정 */
+.page-body-wrapper {
+  min-height: calc(100vh - 70px);
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  flex-direction: row;
+  padding-left: 0;
+  padding-right: 0;
 }
 
+.col-xs-2, .col-xs-6, .col-xs-12 {
+	padding: 0 !important;
+}
+
+.no-margin {
+	margin-bottom: 0;
+}
+
+.mb {
+	margin-bottom: 2rem !important;
+}
+
+
+/* 탭 설정 */
+#drag, #myNote, #inSiteSearch, #portalSearch{
+	padding: 1rem
+}
 
 /* sidebar 설정 */
 #sidebar {
@@ -82,6 +113,7 @@
 	transition: margin-left 0.5s ease, box-shadow 0.5s ease;
 	background-color: rgba(255, 255, 255, 0);
 	font-size: 1em;
+<<<<<<< HEAD
 /* 	position: fixed; */
 	width: 400px;
 	height: 100vh;
@@ -89,6 +121,11 @@
 	/* height: 100% !important;
 	margin: 0 5em 0 0;
 	border: 1 solid black; */
+=======
+	width: 400px;
+	height: 100vh;
+	margin: 0 2rem 0;
+>>>>>>> a1dcc91186f1b2ed7a17f137500722c915758261
 }
 
 #sidebar h2 {
@@ -96,18 +133,18 @@
 }
 
 #sidebar>.inner {
-	padding: 2.2222222222em 2.2222222222em 3.2222222222em 2.2222222222em;
 	position: relative;
 	height: 100%;
+	width: inherit;
 }
 
-/* #sidebar>.inner>* {
-	border-bottom: solid 2px rgba(210, 215, 217, 0.75);
-	margin: 0 0 2.5em 0;
-	padding: 0 0 3.5em 0;
-} */
+#sidebar>.inner>* {
+	/* border-bottom: solid 2px rgba(210, 215, 217, 0.75); */
+	margin: 0;
+	padding: 0;
+}
 
-#sort-category {
+#sidebar>.inner>#sort-category {
 		-moz-appearance: none;
 		-webkit-appearance: none;
 		-ms-appearance: none;
@@ -119,8 +156,8 @@
 		color: inherit;
 		display: inline-block;
 		outline: 0;
-		padding: 0 1em;
-		margin: 0 0 0 0;
+		padding: 0 1rem;
+		margin: 0 0 0 16;
 		text-decoration: none;
 }
 
@@ -196,10 +233,18 @@
 	#sidebar>.inner {
         -webkit-overflow-scrolling: touch;
         overflow-x: hidden;
-		overflow-y: auto;
+		overflow-y: scroll;
         height: 100%;
-		padding: 1.6666666667em 1.6666666667em 1.3333333333em 1.6666666667em;
+		padding: 1.6666666667rem 3rem 1.3333333333rem 1.6666666667rem;
 	}
+	
+	.n-inner {
+		-webkit-overflow-scrolling: touch;
+        height: 100%;
+        overflow: hidden;
+		padding: 1.6666666667rem 3rem 1.3333333333rem 1.6666666667rem;
+	}	
+	
 	#sidebar>.inner>.alt {
 		margin: -1.6666666667em 0 3.3333333333em -1.6666666667em;
 		padding: 1.6666666667em;
@@ -225,28 +270,35 @@
 		box-shadow: 0 0 5em 0 rgba(0, 0, 0, 0);
 		height: 100%;
 		left: 0;
-		/* 		position: fixed; */
 		top: 0;
 		z-index: 10000;
 	}
 	#sidebar.inactive {
 		box-shadow: none;
 	}
+	
 	#sidebar>.inner {
-		-webkit-overflow-scrolling: touch;
-		height: 100%;
-		left: 0;
-		overflow-x: hidden;
-		overflow-y: auto;
-		position: absolute;
-		top: 0;
+   		 -webkit-overflow-scrolling: touch;
+   		 overflow-x: hidden;
+   		 overflow-y: scroll;
+   		 height: 100%;
+   		 padding: 1.6666666667rem 3rem 1.3333333333rem 1.6666666667rem;
 	}
+	
 	#sidebar>.inner:after {
 		content: '';
 		display: block;
 		height: 4em;
 		width: 100%;
 	}
+	
+	.n-inner {
+		-webkit-overflow-scrolling: touch;
+        height: 100%;
+		padding: 1.6666666667rem 3rem 1.3333333333rem 1.6666666667rem;
+		overflow: hidden;
+	}	
+
 	#sidebar .toggle {
 		text-indent: 6em;
 		width: 6em;
@@ -285,15 +337,23 @@
 		top: 1em;
 		width: 5em;
 	}
+	
+	.content {
+	margin-left: 0 !important;
+	}
 }
 
 /* 메인 설정 */
-#content {
-	float: left;
-	padding-left: 35px;
-	padding-top: 45px;
-	padding-bottom: 50px;
-	position: relative;
+.radio {
+	margin-top: 0;
+	margin-bottom: 3.6rem;
+}
+
+.n-container {
+	padding: 0 4rem 3rem 4rem; 
+	width: 100%;
+	margin: auto;
+	margin-top: 0;
 }
 
 #breadscrumb {
@@ -315,10 +375,6 @@
 	text-align: right;
 }
 
-#pager-wrapper {
-	text-align: center;
-}
-
 
 /*footer*/
 #footer {
@@ -328,18 +384,17 @@
 /* 드래그 목록 사이즈 설정 */
 .mini-posts article {
 	border-top: solid 1px rgba(210, 215, 217, 0.75);
-	margin-top: 2em;
-	padding-top: 2em;
+	margin-top: 2rem;
+	padding-top: 2rem;
 }
 
 .mini-posts article .image {
-	display: block;
-	margin: 0 0 1.5em 0;
+	margin: 0 0 1.5rem 0;
 }
 
 .mini-posts article .image img {
-	display: block;
-	width: 100%;
+	width: 80%;
+	display: inline;
 }
 
 .mini-posts article:first-child {
@@ -350,25 +405,19 @@
 
 
 /* 검색 */
-
-#search {
-	 padding-top:15px;
-}
-#sort-search form, #subject-search form {
+#subject-search form {
 	text-decoration: none;
 	position: relative;
 }
 
-#subject-search form>input,
-#sort-search form>input {
+#subject-search form>input {
 	padding:0 1em;
 }
 
-#sort-search form:before,
 #subject-search form:before {
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
-/* 	font-family: FontAwesome; */
+	/* 	font-family: FontAwesome; */
 	font-style: normal;
 	font-weight: normal;
 	text-transform: none !important;
@@ -377,7 +426,6 @@
 	-ms-transform: scaleX(-1);
 	transform: scaleX(-1);
 	color: #7f888f;
-/* 	content: '\f002'; */
 	cursor: default;
 	display: block;
 	font-size: 1.5em;
@@ -391,11 +439,10 @@
 	width: 2em;
 }
 
-
  body, input, select, textarea {
 	color: #7f888f;
 	font-family: "Open Sans", sans-serif;
-	font-size: 13pt;
+	font-size: 15px;
 	font-weight: 400;
 	line-height: 1.65;
 	} 
@@ -421,27 +468,15 @@ textarea {
 	color: inherit;
 	display: block;
 	outline: 0;
-	padding: 0 2.75em 0 0;
+	padding: 0 2rem 0 ;
 	margin: 0 0 1em 0;
 	text-decoration: none;
 	width: 100%;
 	}	
 
 #subject-category {
-	-moz-appearance: none;
-	-webkit-appearance: none;
-	-ms-appearance: none;
-	appearance: none;
-	background: #ffffff;
-	border-radius: 0.375em;
-	border: none;
-	border: solid 1px rgba(210, 215, 217, 0.75);
-	color: inherit;
 	display: inline-block;
-	outline: 0;
-	padding: 0 1em;
-	margin: 0 0 0 16;
-	text-decoration: none;
+	padding-right: 2.75em;
 	}
 
 input[type="text"]:invalid,
@@ -464,8 +499,8 @@ select {
 	background-size: 1.25em;
 	background-repeat: no-repeat;
 	background-position: calc(100% - 1em) center;
-	height: 2.75em;
-	padding-right: 2.75em;
+	height: 5rem;
+	padding-right: 5rem;
 	text-overflow: ellipsis;
 	}
 
@@ -484,13 +519,32 @@ select::-ms-expand {
 
 input[type="text"],
 select {
-	height: 2.75em;
+	height: 5rem;
 	}  
 	
 #search-text {
-	padding: 0 1em;
-	
+	padding: 0 1rem;
+	width: 80%;
+	display: inline;
 	}
+	
+/* 아이콘 설정 */
+i:hover {
+	color:#f56a6a;
+}
+
+i {
+/* 	padding: 0 !important;
+	text-align: center;
+	vertical-align: middle; */
+	margin-left: 2rem;
+	font-size: 2rem;
+}
+
+.icon-top {
+	vertical-align: top;
+}
+	
 
 /* 섹션 */
 section{
@@ -581,19 +635,20 @@ header.main > :last-child {
 }
 
 .n-folder:hover {
-	color: #ffffff;
+	/* color: #ffffff; */
     font-weight: bold;
-    background-color: #f56a6a;
+    background-color: #fff;
     width: 80%;
-    border-radius: 10px;
 }
 
 .f-count {
 	color: #ffffff;
-	background-color: #f56a6a;
+	background-color: #f56a6a; 
 	border-radius: 10px;
-	width: 2em;
-	padding: 0.1em 1em;
+	max-width: 18px;
+	padding: 0.2em 0.5em;
+	font-size:14px;
+	margin-right:0.4em;
 }
 
 .icon {
@@ -605,14 +660,16 @@ header.main > :last-child {
 	background-color: #ffffff;
 	padding: 0.25em;
 	border-radius: 10px;
+	font-size: 1rem;
 }
+.fa-bookmark {margin-top:20px;}
 
-table {
+/* table {
 	background-color: #ffffff;
 	text-decoration: none;
 	width: 100%;
 	margin: 1em 1em 3em 1em;
-}
+} */
 
 
 /* 서치 input 및 아이콘 설정*/
@@ -631,22 +688,21 @@ td .t-icon {
 	vertical-align: center;
 }
 
-/* 아이콘*/
 
-i:hover {
-	color:#f56a6a;
-}
-
-
-/* 검색결과 미리보기(노트 미리보기) */
+/* 카드 미리보기(검색결과, 노트 미리보기) */
 .card {
-	margin-bottom: 2.5em;
+    margin-bottom: 2.5em;
 	padding: 0;
 	border: solid 1px rgba(210, 215, 217, 0.75);
-	bordr-radius: 10px;
+}
+	
+.card:hover{
+	border-width: 2px;
+   /*  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    /* 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
 }
 
-.card:hover{
-	box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	/* 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
-}
+.blog {
+	display: inline-block;
+	width: 300px;
+}	
