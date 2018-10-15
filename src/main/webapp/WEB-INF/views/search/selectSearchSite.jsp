@@ -29,7 +29,7 @@
 		</form>		
 	</section>
 	</div>
-		
+	</div>	
 	<!-- Radio -->
 	<div class="radio">
 		<form method="post" action="#">
@@ -107,6 +107,5 @@
 	</div> -->
 	</section>
 
-<br>
-	</div>
+</div>
 </div>
