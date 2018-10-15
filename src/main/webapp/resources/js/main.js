@@ -74,8 +74,7 @@ window.onload = function() {
 /* 날씨 api */
 
 var apiURI = "http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=";
-$
-		.ajax({
+$.ajax({
 			url : apiURI,
 			dataType : "json",
 			type : "GET",

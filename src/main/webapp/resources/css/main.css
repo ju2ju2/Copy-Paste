@@ -639,3 +639,12 @@ footer a, footer a:hover, footer a:active, footer a:link {
 	padding-right: 50px;
 	padding-bottom: 20px;
 }
+
+/* 휴대폰 사이즈  */
+@media (min-width: 768px) {
+  .notewirte {
+  display:none;
+  }
+  
+}
+

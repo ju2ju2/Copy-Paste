@@ -1,9 +1,0 @@
-diff a/src/main/webapp/WEB-INF/views/modal/notedetail.jsp b/src/main/webapp/WEB-INF/views/modal/notedetail.jsp	(rejected hunks)
-@@ -55,6 +55,7 @@
-         	<a data-toggle="modal" href="#" data-target="#reportModal" 
-         	role="button" class="btn main-btn" data-backdrop="static" id="reportOK">OK</a>
- 	        <a data-toggle="modal" href="#" data-target="#reportModal" 
-+        	role="button" class="btn btn-default" data-backdrop="static">Cancel</a>
-         </center>
-        	</div>
-       </div>
