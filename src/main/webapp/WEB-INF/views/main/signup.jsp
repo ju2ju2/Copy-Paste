@@ -18,11 +18,11 @@
 					<label class="control-label col-sm-4">프로필 이미지</label>
 					<div class="col-sm-4">				
 						<div>
-							<div class="col-sm-3 pr-0 pl-0" >	
-              					<img class="img-responsive user-photo img-rounded" 
-              						src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" >
+							<div class="col-sm-3 pr-0 pl-0" >
+								<div class="imgfile"><img class="img-responsive user-photo img-rounded" 
+              						src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" ></div>				
            					</div>
-           				<input type="file"  name="userPhoto" id="userPhoto" 
+           				<input type="file" class="userPhoto" name="userPhoto" id="userPhoto" 
 								aria-describedby="file_upload" accept="image/*">
 								<small> * .jpg, .gif, .png 파일만 업로드 가능하며, 500kb를 초과할 수 없습니다.</small>
 						</div>

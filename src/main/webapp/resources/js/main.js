@@ -143,4 +143,25 @@ window.onload = function() {
 
 				}
 			});
+	
+	/*file업로드시 영역에 이미지 읽어오기*/
+	 var file = document.querySelector('.userPhoto');
+
+	    file.onchange = function () { 
+	        var fileList = file.files ;
+	        
+	        // 읽기
+	        var reader = new FileReader();
+	        reader.readAsDataURL(fileList [0]);
+
+	        //로드 한 후
+	        reader.onload = function  () {
+	            //로컬 이미지를 보여주기
+	            /*var imglink="<img class='img-responsive user-photo img-rounded' src='' >";
+	            $('.imgfile').html(imglink);*/
+	            document.querySelector('.img-responsive').src = reader.result;
+	        }; 
+	    };    
+
+
 };
