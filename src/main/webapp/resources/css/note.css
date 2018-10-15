@@ -68,6 +68,7 @@
 
 /* sidebar 설정 */
 #sidebar {
+	
 	-moz-flex-grow: 0;
 	-webkit-flex-grow: 0;
 	-ms-flex-grow: 0;

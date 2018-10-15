@@ -82,7 +82,7 @@
 				</div>
 			
 				<div class="social-btn text-center">
-				&nbsp;<a href="#" class="btn btn-primary btn-sm ">정보수정 </a>&nbsp;<a href="#" class="btn btn-danger btn-sm">회원탈퇴 </a>
+				&nbsp;<a href="#" class="btn btn-primary  ">정보수정 </a>&nbsp;<a href="#" class="btn btn-danger ">회원탈퇴 </a>
 		  		</div>
 			<br>
 			</form>

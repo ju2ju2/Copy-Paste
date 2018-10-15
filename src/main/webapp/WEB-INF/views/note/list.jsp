@@ -7,7 +7,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 	
-<div class="container"><br/>
+<div class="container content" ><br/>
 	<section>					
 	<div class="row">
 		<h3>노트 목록 <span id="dragTrash"><i class="fas fa-trash"></i></span></h3>

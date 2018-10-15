@@ -84,7 +84,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="blog">
+<!-- 	<div class="blog">
 		<div class="card text-center">
 			<img class="card-img-top"
 				src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
@@ -106,7 +106,7 @@
 			</div>
 		</div>
 	</div>	
-	</div>
+	</div> -->
 	</section>
 
 <br>

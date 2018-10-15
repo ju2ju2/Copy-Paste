@@ -57,6 +57,27 @@
 						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
 						alt="" /></a><i class="far fa-star icon-top"></i>
 				</article>
+				<article>
+					<a href="#" class="image img-rounded"><img
+						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
+						alt="" /></a><i class="far fa-star icon-top"></i>
+				</article>
+				<article>
+					<a href="#" class="image img-rounded"><img
+						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
+						alt="" /></a><i class="far fa-star icon-top"></i>
+				</article>
+				
+				<article>
+					<a href="#" class="image img-rounded"><img
+						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
+						alt="" /></a><i class="far fa-star icon-top"></i>
+				</article>
+				<article>
+					<a href="#" class="image img-rounded"><img
+						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
+						alt="" /></a><i class="far fa-star icon-top"></i>
+				</article>
 			</div>
 			<ul class="actions">
 				<li><a href="#" class="button">More</a></li>
