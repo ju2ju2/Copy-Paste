@@ -19,7 +19,6 @@
  *  - Inspired by and works great as a companion with Font Awesome
  *    "Font Awesome by Dave Gandy - http://fontawesome.io"
  */
-@import url(main.css);
 @font-face {
   font-family: 'weathericons';
   src: url('../font/weathericons-regular-webfont.eot');
