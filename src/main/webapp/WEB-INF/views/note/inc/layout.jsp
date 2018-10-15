@@ -1,7 +1,7 @@
 <!-- note>>inc
 @JSP : layout.jsp
 @Date : 2018.10.09
-@Author : 우나연
+@Author : 우나연, 임효진
 @Desc : note layout 부분 jsp
  -->
  
@@ -16,6 +16,8 @@
 		<!-- css  영역 -->
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Nanum+Gothic">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/note.css" />
 		<!-- Scripts -->
@@ -26,15 +28,12 @@
 	<body>
 		<!-- Header  영역 (공통 inc) -->
 		<header id="header"><tiles:insertAttribute name="header"/></header>
- 		<div id="main" class="top-wrapper clear">
-			<div class="clear col-sm-3">
+ 		<div id="main">
+			<div class="page-body-wrapper">
 				<!-- aside 영역 -->
 				<tiles:insertAttribute name="aside" />
-				</div>
-			<div class="clear col-sm-9">
 				<!-- Content 영역 -->
 				<tiles:insertAttribute name="content" />
-			
 			</div>
 		</div> 
 		

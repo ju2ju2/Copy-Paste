@@ -45,134 +45,119 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<!-- Section -->
-			<table>
-			<tr>
-			<td class="t-content">
-				<header class="major">
-					<h3 id="h-inline">노트 폴더 목록 </h3>
-				</header>
-			</td>
-			<td class="t-icon">
-					<i class="fas fa-folder-plus"></i>
-			</td>
-			</tr>
-			</table>
-			
-			<div class="row">
-				<div class="col-xs-10 n-folder">
-				<h5 class="ml-10 f-name">미분류
-					&nbsp;
-					<span class="f-count">20</span>
-					<span class="f-modify">
-						<i class="fas fa-edit"></i>
-						<i class="fas fa-trash"></i>
-					</span>				
+		<header>
+			<h3 id="h-inline">
+				&ensp;&ensp; 노트 폴더 목록 <span><i class="fas fa-folder-plus"></i></span>
+			</h3>
+		</header>
+
+
+		<div class="row">
+			<div class="col-xs-10 n-folder">
+				<h5 class="ml-10 f-name">
+					&nbsp; <span class="f-count">4</span> 폴더 1 <span class="f-modify">
+						<i class="fas fa-edit"></i> <i class="fas fa-trash"></i>
+					</span>
 				</h5>
-				</div>
-				<div class="col-xs-2 icon">
-					<i class="fas fa-bookmark"></i>					
-				</div>
-			</div>	
-				
-			<div class="row">
-				<div class="col-xs-10 n-folder">
-				<h5 class="ml-10 f-name">폴더 1
-					&nbsp;
-					<span class="f-count">4</span>
-					<span class="f-modify">
-						<i class="fas fa-edit"></i>
-						<i class="fas fa-trash"></i>
-					</span>				
+			</div>
+			<div class="col-xs-2 icon">
+				<i class="far fa-bookmark"></i>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-10 n-folder">
+				<h5 class="ml-10 f-name">
+					&nbsp; <span class="f-count">4</span> 폴더 1 <span class="f-modify">
+						<i class="fas fa-edit"></i> <i class="fas fa-trash"></i>
+					</span>
 				</h5>
-				</div>
-				<div class="col-xs-2 icon">
-					<i class="far fa-bookmark"></i>					
-				</div>
-			</div>	
-			
-			<div class="row">
-				<div class="col-xs-10 n-folder">
-				<h5 class="ml-10 f-name">폴더 2ddd
-					&nbsp;
-					<span class="f-count">8</span>
-					<span class="f-modify">
-						<i class="fas fa-edit"></i>
-						<i class="fas fa-trash"></i>
-					</span>				
+			</div>
+			<div class="col-xs-2 icon">
+				<i class="far fa-bookmark"></i>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-10 n-folder">
+				<h5 class="ml-10 f-name">
+					&nbsp; <span class="f-count">4</span> 폴더 1 <span class="f-modify">
+						<i class="fas fa-edit"></i> <i class="fas fa-trash"></i>
+					</span>
 				</h5>
-				</div>
-				<div class="col-xs-2 icon">
-					<i class="far fa-bookmark"></i>					
-				</div>
-			</div>	
-			
-			<div class="row">
-				<div class="col-xs-10 n-folder">
-				<h5 class="ml-10 f-name">스크랩
-					&nbsp;
-					<span class="f-count">0</span>
-					<span class="f-modify">
-						<i class="fas fa-edit"></i>
-						<i class="fas fa-trash"></i>
-					</span>				
+			</div>
+			<div class="col-xs-2 icon">
+				<i class="far fa-bookmark"></i>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-10 n-folder">
+				<h5 class="ml-10 f-name">
+					&nbsp; <span class="f-count">4</span> 폴더 1 <span class="f-modify">
+						<i class="fas fa-edit"></i> <i class="fas fa-trash"></i>
+					</span>
 				</h5>
-				</div>
-				<div class="col-xs-2 icon">
-				</div>
-			</div>	
-		
+			</div>
+			<div class="col-xs-2 icon">
+				<i class="far fa-bookmark"></i>
+			</div>
+		</div>
 	</div>
 </div>
 
 
 <script type="text/javascript">
+	/* var dateFormat = "yyyy-mm-dd", //이거 지금 안 먹음
+	fromDate = $("#fromDate").datepicker({
+	defaultDate : "+1w",
+	changeMonth : true,
+	numberOfMonths : 1
+	}).on("change", function() {
+	toDate.datepicker("option", "minDate", getDate(this));
+	}), toDate = $("#toDate").datepicker({
+	defaultDate : "+1w",
+	changeMonth : true,
+	numberOfMonths : 1
+	}).on("change", function() {
+	from.datepicker("option", "maxDate", getDate(this));
+	});
 
+	function getDate(element) {
+	var date;
+	try {
+		date = $.datepicker.parseDate(dateFormat, element.value);
+	} catch (error) {
+		date = null;
+	}
 
- 		/* var dateFormat = "yyyy-mm-dd", //이거 지금 안 먹음
-		fromDate = $("#fromDate").datepicker({
-			defaultDate : "+1w",
-			changeMonth : true,
-			numberOfMonths : 1
-		}).on("change", function() {
-			toDate.datepicker("option", "minDate", getDate(this));
-		}), toDate = $("#toDate").datepicker({
-			defaultDate : "+1w",
-			changeMonth : true,
-			numberOfMonths : 1
-		}).on("change", function() {
-			from.datepicker("option", "maxDate", getDate(this));
-		});
+	return date;
+	}  */
 
-		function getDate(element) {
-			var date;
-			try {
-				date = $.datepicker.parseDate(dateFormat, element.value);
-			} catch (error) {
-				date = null;
-			}
-
-			return date;
-		}  */
-
-/* 스크랩 아이콘 토글  */
-$('.fa-bookmark').click(function() {
-	if($(this).hasClass('far')){
-		$('.fa-bookmark').removeClass('fas').addClass('far');
-		$(this).removeClass('far').addClass('fas');			
+	/* 스크랩 아이콘 토글  */
+	$('.fa-bookmark').click(function() {
+		if ($(this).hasClass('far')) {
+			$('.fa-bookmark').removeClass('fas').addClass('far');
+			$(this).removeClass('far').addClass('fas');
 		}
 	});
 
-/* 폴더 수정 및 삭제 아이콘 토글 */
-$('.n-folder').mouseleave(function(){
-	$(this).find('.f-modify').hide();
-	$(this).find('.f-count').show();	   
+
+	/* 폴더 수정 및 삭제 아이콘 토글 */
+	$(document).ready(function() {
+		$(this).find('.f-modify').hide();
 	});
-$('.n-folder').mouseenter(function(){
-	$(this).find('.f-modify').show();
-	$(this).find('.f-count').hide();	 
+	$('.n-folder').mouseenter(function() {
+		$(this).find('.f-modify').show();
 	});
-	
-	
+	$('.n-folder').mouseleave(function() {
+		$(this).find('.f-modify').hide();
+	});
+/* 	$('.n-folder').mouseleave(function() {
+		$(this).find('.f-modify').hide();
+		$(this).find('.f-count').show();
+	});
+	$('.n-folder').mouseenter(function() {
+		$(this).find('.f-modify').show();
+		$(this).find('.f-count').hide();
+	}); */
 </script>
