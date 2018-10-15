@@ -74,7 +74,7 @@
 				</a>
 			</div>
 			<!-- Modal HTML -->
-			<div id="modal-testNew" class="modal fade text-center" tabindex="-1"
+			<div id="modal-testNew" class="modal fade text-center overlay" tabindex="-1"
 				role="dialog">
 				<div class="modal-dialog">
 					<div class="modal-content">

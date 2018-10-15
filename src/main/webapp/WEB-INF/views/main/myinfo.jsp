@@ -55,7 +55,7 @@
 								id="nickname" placeholder="사용할 닉네임을 입력해주세요." value="">
 						</div>
 					</div>
-					 <button type="button" class="btn ">&ensp;중복확인&ensp;</button>
+					 <button type="button" class="btn">&ensp;중복확인&ensp;</button>
 				</div>
 				
 				
