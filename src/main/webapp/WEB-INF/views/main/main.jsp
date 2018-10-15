@@ -9,7 +9,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
-<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 <!-- 날씨 API script -->
 <script>
@@ -106,6 +105,7 @@ $.ajax({
 	</div>
 </div>
 <!-- banner end -->
+
 <div class="jumbotron">
 	<div class="container text-center">
 		<center>
@@ -142,7 +142,7 @@ $.ajax({
 			<!-- Modal HTML -->
 			<div id="modal-testNew" class="modal fade text-center" tabindex="-1"
 				role="dialog">
-				<div class="modal-dialog">
+				<div class="modal-dialog" style="width: 1200px; height: 700px">
 					<div class="modal-content">
 						<!-- Content will be loaded here from "note/noteDetail.htm" file -->
 					</div>
@@ -167,7 +167,7 @@ $.ajax({
 			<!-- Modal HTML -->
 			<div id="modal-testNew" class="modal fade text-center" tabindex="-1"
 				role="dialog">
-				<div class="modal-dialog">
+				<div class="modal-dialog" style="width: 1200px; height: 700px">
 					<div class="modal-content">
 						<!-- Content will be loaded here from "note/noteDetail.htm" file -->
 					</div>

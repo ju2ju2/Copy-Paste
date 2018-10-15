@@ -8,27 +8,13 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script> 
 <!-- Sweet Alert cdn -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
-
-<!-- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
- --><!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script> -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <!-- 신고 모달창에서 ok버튼 눌렀을 때 스윗알럳 띄우기 -->
 <script>
-$(document).ready(function(){
-	$('#reportOK').click(function(){	
-		swal({ 
-			title : "신고되었습니다.",
-			text : "",
-			type: "success",
-			confirmButtonText:"OK",
-			confirmButtonClass: "btn-danger"
-		});
-			});	
-})
+$('#reportOK').click(function(){
+	swal("신고되었습니다", "", "success")
+		});	
 </script>
 
 

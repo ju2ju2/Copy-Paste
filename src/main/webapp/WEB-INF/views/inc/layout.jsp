@@ -17,12 +17,11 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/api/weather/weather-icons.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/api/weather/weather-icons-wind.css" />
-	
 		<!-- title 영역 -->
 		<title><tiles:insertAttribute name="title" /></title>
 	</head>
 	<body>
-		<!-- <div class="container"> -->
+		<div class="container">
 		<!-- Header  영역 -->
 		<tiles:insertAttribute name="header" />
 		<!-- Main 영역 -->
@@ -30,10 +29,9 @@
 		<!-- Content 영역 -->
 		<tiles:insertAttribute name="content" />
 		</div>
-		<!-- </div> -->
+		</div>
 		<!-- Footer 영역  -->
 		<tiles:insertAttribute name="footer" />
-		
 		<!-- scripts -->
 		<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

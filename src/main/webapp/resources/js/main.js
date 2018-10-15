@@ -10,11 +10,7 @@
  $("#dialog_div_ID").dialog("close");
  });*/
 //활성화 된 링크 active 클래스주기
-$(".nav li").click(function(e) {
-	$(".nav li").removeClass("active");
-	$(this).addClass("active");
-	e.preventDefault();
-});
+
 // 메인 텍스트 슬라이드
 var TxtType = function(el, toRotate, period) {
 	this.toRotate = toRotate;
