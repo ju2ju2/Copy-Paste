@@ -35,7 +35,7 @@
 			<se:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
 				<br>
 				<ul class="nav navbar-nav navbar-right longnav">
-					<li class="notewirte"><a
+					<li class="notewrite"><a
 						href="${pageContext.request.contextPath}/note/write.htm">NOTE</a></li>
 					<li><a href="${pageContext.request.contextPath}/drag/drag.htm">MYDRAG</a></li>
 					<li><a href="${pageContext.request.contextPath}/note/note.htm">MYNOTE</a></li>

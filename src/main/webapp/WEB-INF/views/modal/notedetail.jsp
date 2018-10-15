@@ -124,7 +124,7 @@ $(document).ready(function(){
 					<div class="col-sm-10"></div>
 					<div class="col-sm-2">
 					<strong>
-					<i class="far fa-edit 3x notewirte"></i> &nbsp;
+					<i class="far fa-edit 3x notewrite"></i> &nbsp;
 					<i class="fas fa-arrow-down"></i> &nbsp;
 					<i class="fas fa-trash"></i> &nbsp;
 					<i class="fas fa-archive"></i> </strong></div>
@@ -140,7 +140,7 @@ $(document).ready(function(){
 								<ul data-brackets-id="12674" id="sortable"
 									class="list-unstyled ui-sortable">
 									<div class="media-left">
-										<img class="img-responsive user-photo"
+										<img class="user-photo"
 											src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
 									</div>
 									<div class="media-body">
