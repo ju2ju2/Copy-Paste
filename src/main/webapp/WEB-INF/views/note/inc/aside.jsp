@@ -64,7 +64,7 @@
 				</h5>
 			</div>
 			<div class="col-xs-2 icon">
-				<i class="far fa-bookmark icon-size"></i>
+				<i class="fas fa-bookmark icon-size"></i>
 			</div>
 		</div>
 		<div class="row">

@@ -6,6 +6,7 @@
 */
 package tk.copyNpaste.note;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -51,6 +52,8 @@ public class NoteService {
 	}
 	//노트 키워드 검색
 	public List<NoteVO> selectByKeyNote(String keyword) throws Exception{
+		List<NoteVO> list= new ArrayList<NoteVO>();
+		
 		return notedao.selectByKeyNote(keyword);
 	}
 	//회원별 노트 검색

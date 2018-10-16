@@ -15,13 +15,13 @@
 		<ul class="nav nav-tabs nav-justified" id="writeNoteNavUl">
 			<li class="active">
 				<a data-toggle="tab" href="#drag" class="writeNoteNavBtn">
-				<i class="fas fa-mouse-pointer icon-size"></i></a></li>
+				<i class="fas fa-mouse-pointer icon-li"></i></a></li>
 			<li><a data-toggle="tab" href="#myNote" class="writeNoteNavBtn">
-				<i class="fas fa-sticky-note icon-size"></i></a></li>
+				<i class="fas fa-sticky-note icon-li"></i></a></li>
 			<li><a data-toggle="tab" href="#inSiteSearch" class="writeNoteNavBtn">
-				<i class="fas fa-search icon-size"></i></a></li>
+				<i class="fas fa-search icon-li"></i></a></li>
 			<li><a data-toggle="tab" href="#portalSearch" class="writeNoteNavBtn">
-				<i class="fab fa-google icon-size"></i></a></li>
+				<i class="fab fa-google icon-li"></i></a></li>
 		</ul>
 		<div class="mb"></div>
 		<!-- 탭 내용 -->
@@ -63,10 +63,20 @@
 						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
 						alt="" /></a><i class="far fa-star icon-top icon-size"></i>
 				</article>
-			</div>
+				<article>
+					<a href="#" class="image img-rounded"><img
+						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
+						alt="" /></a><i class="far fa-star icon-top icon-size"></i>
+				</article>
+				<article>
+					<a href="#" class="image img-rounded"><img
+						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
+						alt="" /></a><i class="far fa-star icon-top icon-size"></i>
+				</article>				
+			</div>			
 			</section>
-			</div>
-
+		</div>
+		
 		<!-- 2. 마이노트 -->
 		<div id="myNote" class="tab-pane fade">
 			<div class="row">
@@ -99,7 +109,7 @@
 				<h2>노트 폴더 목록<i class="fas fa-trash icon-size"></i></h2>
 			</header>
 			<div class="row">
-				<div class="col-xs-10">
+				<div class="col-xs-10 pt">
 				<h5 class="accordion">미분류</h5>
 					<div class="panel">
   						<div class="card text-center">
@@ -117,6 +127,45 @@
 					<i class="fas fa-bookmark icon-size"></i>
 				</div>
 			</div>
+			
+			<div class="row">
+				<div class="col-xs-10 pt">
+				<h5 class="accordion">미분류</h5>
+					<div class="panel">
+  						<div class="card text-center">
+							<img class="card-img-top"
+								src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
+								alt="" width="100%">
+							<div class="card-block">
+							<h4>가을에 쓴 편지</h4>
+							<span>음담패썰</span> <span>2018.08.30</span>
+							</div>
+						</div>
+					</div>	
+				</div>
+				<div class="col-xs-2 panel-margin">
+					<i class="far fa-bookmark icon-size"></i>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-xs-10 pt">
+				<h5 class="accordion">스크랩</h5>
+					<div class="panel">
+  						<div class="card text-center">
+							<img class="card-img-top"
+								src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
+								alt="" width="100%">
+							<div class="card-block">
+							<h4>가을에 쓴 편지</h4>
+							<span>음담패썰</span> <span>2018.08.30</span>
+							</div>
+						</div>
+					</div>	
+				</div>
+				<div class="col-xs-2 panel-margin">
+				</div>
+			</div>			
 
 			
 			</section>
