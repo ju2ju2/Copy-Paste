@@ -11,10 +11,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import tk.copyNpaste.mapper.NoteMapper;
 import tk.copyNpaste.vo.NoteCommVO;
 import tk.copyNpaste.vo.NoteVO;
 
@@ -24,7 +27,9 @@ public class NoteController {
 	
 	NoteMailnFileService  noteMailnFileService = new NoteMailnFileService();
 	NoteService noteService = new NoteService();
-	
+	 @Autowired
+	 private SqlSession sqlsession;
+	 
 	// 노트 페이지로 이동(2018.10.10. 고은아 추가)
 	@RequestMapping("write.htm")
 	public String insertNotePage() throws Exception {
@@ -40,10 +45,16 @@ public class NoteController {
 	
 	//노트 목록 보기
 	@RequestMapping(value = "note.htm")
-	public String selectAllNote(Model model) throws Exception{
-		List<NoteVO> list=noteService.selectAllNote();
+	public String selectAllNote(Model model){
+		NoteMapper notedao= sqlsession.getMapper(NoteMapper.class);
+		List<NoteVO> list = null;
+		try {
+			list = notedao.selectAllNote();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		model.addAttribute("list",list);
-		System.out.println("notecontroller");
+		System.out.println("notecontroller2");
 		return "note.list";
 	}
 	//노트 상세 보기(+노트 작성)

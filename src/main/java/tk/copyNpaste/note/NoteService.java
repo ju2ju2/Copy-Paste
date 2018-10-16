@@ -20,22 +20,15 @@ import tk.copyNpaste.vo.NoteVO;
 
 @Service
 public class NoteService {
-/*	NoteMapper notedao;*/
-	
+
 	 @Autowired
 	 private SqlSession sqlsession;
 	 
-	//노트의 폴더 이동
-	public int moveNoteFolder(NoteVO note) throws Exception {
-		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
-			
-		 return notedao.moveNoteFolder(note);
-	}
-	
 	//노트 목록 보기
 	public List<NoteVO> selectAllNote() throws Exception{
-		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
-		System.out.println("notecontroller");
+		System.out.println("NoteService");
+		NoteMapper notedao= sqlsession.getMapper(NoteMapper.class);
+		System.out.println("selectAllNote");
 		return notedao.selectAllNote();
 	}
 	//노트 상세 보기(+노트 작성)
@@ -102,7 +95,12 @@ public class NoteService {
 		return notedao.deleteNoteComm(noteCommNum);
 	}
 	
-
+	//노트의 폴더 이동
+	public int moveNoteFolder(NoteVO note) throws Exception {
+		NoteMapper notedao=sqlsession.getMapper(NoteMapper.class);
+			
+		 return notedao.moveNoteFolder(note);
+	}
 
 
 	

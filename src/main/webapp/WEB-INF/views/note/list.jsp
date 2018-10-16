@@ -6,6 +6,7 @@
  -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="n-container">
 <div class="n-inner">
 	<!-- Section -->	
@@ -73,10 +74,10 @@
 	</section>
 </div>
 </div>
-
-
-
-
-
+			<c:forEach items="${list}" var="n">
+				<tr>
+					<td class="seq">${n.noteNum}</td>
+				</tr>
+			</c:forEach>
 
 
