@@ -9,63 +9,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="tk.copyNpaste.mapper.NoteMapper">
-
-
-
-	<!-- 노트의 폴더 이동 -->
-	<update id="moveNoteFolder"></update>
-
-	<!-- 노트 목록 보기 -->
-	<select id="selectAllNote" resultMap="noteVO">
-	select * from note
-	</select>
-	
-	<!-- 노트 상세 보기(+노트 작성) -->
-	<select id="selectDetailNote" resultMap="tk.copyNpaste.vo"></select>
-	
-	<!-- 노트 수정 -->
-	<update id="updateNote"></update>
-
-	<!-- 노트 삭제 -->
-	<delete id="deleteNote"></delete>
-	<!-- 노트 등록 -->
-	<insert id="insertNote" parameterType="dragVO"></insert>
-	
-	<!-- useGeneratedKeys="true" keyProperty="dragNo" (as id붙여서) 셀렉트키 사용시 필요-->
-	
-	
-	<!-- 노트 달력 검색 -->
-	<select id="selectAllNote" resultMap="noteVO"></select>
-	
-	<!-- 노트 키워드 검색 -->
-	<select id="selectByKeyNote" resultMap="noteVO"></select>
-	
-	<!-- 회원별 노트 검색 -->
-	<select id="selectByMemNote" resultMap="noteVO"></select>
-	
-	<!-- 회원별 노트 일괄 삭제 -->
-	<delete id="deleteMemNote"></delete>
-	
-	<!-- 스크랩노트 등록 -->
-	<insert id="scrapNote" parameterType="dragVO"></insert>
-	
-	<!-- 스크랩노트 삭제 -->
-	<delete id="removeScrapNote"></delete>
-	
-	
-	<!-- 노트 댓글 작성 -->
-	<insert id="insertNoteComm" parameterType="dragVO"></insert>
-	
-	<!-- 노트 댓글 삭제 -->
-	<delete id="deleteNoteComm"></delete>
-	
-	
-	
-	<!-- 인기글 상세보기 -->
-	<!-- 노트 정렬 -->
-	<!-- 노트 블라인드 처리 -->
-
+<mapper namespace="tk.baotemplate.repo.mapper.NoteMapper">
 
 </mapper>
 

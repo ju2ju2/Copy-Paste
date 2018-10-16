@@ -6,8 +6,11 @@
 */
 package tk.copyNpaste.qna;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tk.copyNpaste.mapper.QnaMapper;
@@ -16,50 +19,66 @@ import tk.copyNpaste.vo.QnaVO;
 
 @Service
 public class QnaService {
-	
-	QnaMapper qnadao;
+	@Autowired
+	private SqlSession sqlsession;
 	
 	//QNA 게시물 조회
-	public List<QnaVO> selectAllQna() throws Exception{
-		return qnadao.selectAllQna();
+	public List<QnaVO> selectAllQna() {
+		List<QnaVO> qnaDatalist = new ArrayList<QnaVO>(); 
+		try{
+			QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
+			System.out.println("Service Select All QnA");
+			qnaDatalist = qnadao.selectAllQna();
+			System.out.println("Service qnaDatalist>>"+qnaDatalist);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+
+		return qnaDatalist;
 	};
 	
 	//QNA 게시물 검색
 	public List<QnaVO> selectSearchQna(String keyword) throws Exception{
+		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
 		return qnadao.selectSearchQna(keyword);
 	};
 	
 	//QNA 게시물 작성
 	public int insertQna(QnaVO qna) throws Exception{
+		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
 		return qnadao.insertQna(qna);
 	};
 
 	//QNA 게시물 상세보기
 	public QnaVO selectDetailQna(int qnaNum) throws Exception{
+		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
 		
 		return qnadao.selectDetailQna(qnaNum);
 	};
 	
 	//QNA 게시글 수정
 	public int updateQna(int qnaNum) throws Exception{
+		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
 		return qnadao.updateQna(qnaNum);
 	};
 	
 	//QNA 게시글 삭제
 	public int deleteQna(int qnaNum) throws Exception{
+		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
 		return qnadao.deleteQna(qnaNum);
 	};
 	
 	//QNA 댓글 작성
 	public int insertQnaComm(QnaCommVO qnaComm) throws Exception{
+		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
 		return qnadao.insertQnaComm(qnaComm);
 	};
 	
 	//QNA 댓글 삭제
 	public int deleteQnaComm(int qnaCommNum) throws Exception{
+		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
 		return qnadao.deleteQnaComm(qnaCommNum);
 	};
 
-
-	
 }

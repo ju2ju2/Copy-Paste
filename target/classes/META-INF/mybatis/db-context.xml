@@ -53,7 +53,7 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="typeAliasesPackage" value="tk.copyNpaste.vo" />			
-		<property name="mapperLocations" value="classpath:META-INF/sqlmap/*.xml" />
+		<property name="mapperLocations" value="classpath*:META-INF/sqlmap/*.xml" />
 	</bean>
 	
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">

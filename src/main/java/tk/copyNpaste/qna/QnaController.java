@@ -3,27 +3,54 @@
 * @ Date : 2018.10.05
 * @ Author : 이주원
 * @ Desc : QNA 게시판 관련 컨트롤러. (service 사용, 뷰 매핑)
+* @Class : QnaController
+* @ Date : 2018.10.16
+* @ Author : 임지현
+* @ Desc : Back단 코딩
 */
 
 package tk.copyNpaste.qna;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import tk.copyNpaste.mapper.QnaMapper;
 import tk.copyNpaste.vo.QnaCommVO;
 import tk.copyNpaste.vo.QnaVO;
 
 @Controller
 @RequestMapping(value = "/qna")
 public class QnaController {
+	@Autowired
+	private SqlSession sqlsession;
+	
 	QnaService qnaService = new QnaService();
 
 	//QNA 게시물 조회
 	@RequestMapping(value="/selectQnaboard.htm",method = RequestMethod.GET)
-	public String selectAllQnaboard() {
+	public String selectAllQnaboard(Model model) {
+		/*List<QnaVO> qnaData= new ArrayList<QnaVO>(); 
+		System.out.println("Conttroller Select All QnA");
+		qnaData = qnaService.selectAllQna();
+		model.addAttribute("qnaData",qnaData);*/
+		List<QnaVO> qnaDatalist = new ArrayList<QnaVO>(); 
+		try{
+			QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
+			System.out.println("Service Select All QnA");
+			qnaDatalist = qnadao.selectAllQna();
+			System.out.println("Service qnaDatalist>>"+qnaDatalist);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("qnaData",qnaDatalist);
+
 		return "qna.selectQnaboard";
 	}
 	public List<QnaVO> selectAllQna() throws Exception{

@@ -7,7 +7,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 <script>
@@ -17,10 +17,8 @@ $(document).ready(function() {
 </script>
 <section id="content">
 	<div class="container">
-
-	
-	
-	<table id="table_id" class="display">
+	${qnaData}
+	<%-- <table id="table_id" class="display">
     <thead>
         <tr>
             <td>No.</td>
@@ -30,20 +28,18 @@ $(document).ready(function() {
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>7</td>
-            <td><a href="${pageContext.request.contextPath}/qna/selectDetailQna.htm">뒤늦게 이제와서 뭔...</a></td>
-            <td>메리크리</td>
-            <td>18/09/19</td>
-        </tr>
-        <tr>
-            <td>8</td>
-            <td>음란성 아닌데요 ㅡㅡ</td>
-            <td>원샷투샷</td>
-            <td>18/09/23</td>
-        </tr>
+    	<c:forEach var="data" items="${qnaData}">
+    		<c:if test="${data.qnaDept eq 0}">
+    			<tr>
+					<td>${data.qnaNum}</td>
+					<td><a href="${pageContext.request.contextPath}/qna/selectDetailQna.htm?no=${data.qnaNum}">${data.qnaTitle}</a></td>
+					<td>${data.userEmail}</td>
+					<td>${data.qnaDate}</td>
+				</tr>
+    		</c:if>
+    	</c:forEach>
     </tbody>
-</table>
+</table> --%>
 	<a href="" class="btn main-btn" id="qnaboard_btn_list" role="button">목록</a>
 	<a href="${pageContext.request.contextPath}/qna/insertQnaboard.htm" class="btn main-btn" id="qnaboard_btn_write" role="button">글쓰기</a>
 </div></section>
