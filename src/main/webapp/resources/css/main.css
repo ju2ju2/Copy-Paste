@@ -46,6 +46,7 @@ html, body {
 }
 
 body {
+	top:140px;
 	font-size: 15px;
 	line-height: 1.50;
 	color: #333333;
