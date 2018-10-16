@@ -7,10 +7,12 @@
 
 package tk.copyNpaste.note;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import tk.copyNpaste.vo.NoteCommVO;
@@ -38,9 +40,10 @@ public class NoteController {
 	
 	//노트 목록 보기
 	@RequestMapping(value = "note.htm")
-	public String selectAllNote() throws Exception{
-	/*	List<NoteVO> note;
-		note=noteService.selectAllNote();*/
+	public String selectAllNote(Model model) throws Exception{
+		List<NoteVO> list=noteService.selectAllNote();
+		model.addAttribute("list",list);
+		System.out.println("notecontroller");
 		return "note.list";
 	}
 	//노트 상세 보기(+노트 작성)
