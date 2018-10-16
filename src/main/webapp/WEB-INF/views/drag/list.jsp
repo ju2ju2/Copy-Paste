@@ -17,29 +17,29 @@
 	<!-- Section -->	
 	<section>	
 		<header class="major">				
-		<h3>드래그 목록<i class="fas fa-trash"></i></h3>
+		<h3>드래그 목록<i class="fas fa-trash icon-size"></i></h3>
 		</header>
 				<div class="mini-posts">
 				<article>
-				<div class="icon-right"><i class="far fa-star"></i></div>
+				<div class="icon-right"><i class="far fa-star icon-size"></i></div>
 					<a href="#" class="image img-rounded"><img
 						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
 						alt="" /></a>
 				</article>
 				<article>
-				<div class="icon-right"><i class="far fa-star"></i></div>
+				<div class="icon-right"><i class="far fa-star icon-size"></i></div>
 					<a href="#" class="image img-rounded"><img
 						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
 						alt="" /></a>
 				</article>
 				<article>
-				<div class="icon-right"><i class="far fa-star"></i></div>
+				<div class="icon-right"><i class="far fa-star icon-size"></i></div>
 					<a href="#" class="image img-rounded"><img
 						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
 						alt="" /></a>
 				</article>
 				<article>
-				<div class="icon-right"><i class="far fa-star"></i></div>
+				<div class="icon-right"><i class="far fa-star icon-size"></i></div>
 					<a href="#" class="image img-rounded"><img
 						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
 						alt="" /></a>

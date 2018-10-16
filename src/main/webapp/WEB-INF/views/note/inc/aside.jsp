@@ -30,7 +30,7 @@
 				<label> &ensp;&ensp;키워드 검색</label>
 					<form method="post" action="#">
 						<input type="text" id="search-text" placeholder="검색" />
-						<a href="#"><i id="search" class="fas fa-search"  style="padding-top:15px"></i></a>
+						<a href="#"><i id="search" class="fas fa-search icon-size" style="padding-top:15px"></i></a>
 					</form>
 				</div>
 
@@ -52,43 +52,43 @@
 		<!-- Section -->
 		<header class="major mb">
 			<h3 id="h-inline">
-				노트 폴더 목록<i class="fas fa-folder-plus"></i>
+				노트 폴더 목록<i class="fas fa-folder-plus icon-size"></i>
 			</h3>
 		</header>
 		<div class="row">
 			<div class="col-xs-10 n-folder">
 				<h5 class="ml-10 f-name">
 					<span class="f-count">4</span> 폴더 1 <span class="f-modify">
-						<i class="fas fa-edit"></i> <i class="fas fa-trash"></i>
+						<i class="fas fa-edit icon-size"></i> <i class="fas fa-trash icon-size"></i>
 					</span>
 				</h5>
 			</div>
 			<div class="col-xs-2 icon">
-				<i class="far fa-bookmark"></i>
+				<i class="far fa-bookmark icon-size"></i>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-xs-10 n-folder">
 				<h5 class="ml-10 f-name">
 					<span class="f-count">4</span> 폴더 1 <span class="f-modify">
-						<i class="fas fa-edit"></i> <i class="fas fa-trash"></i>
+						<i class="fas fa-edit icon-size"></i> <i class="fas fa-trash icon-size"></i>
 					</span>
 				</h5>
 			</div>
 			<div class="col-xs-2 icon">
-				<i class="far fa-bookmark"></i>
+				<i class="far fa-bookmark icon-size"></i>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-xs-10 n-folder">
 				<h5 class="ml-10 f-name">
 					<span class="f-count">4</span> 폴더 1 <span class="f-modify">
-						<i class="fas fa-edit"></i> <i class="fas fa-trash"></i>
+						<i class="fas fa-edit icon-size"></i> <i class="fas fa-trash icon-size"></i>
 					</span>
 				</h5>
 			</div>
 			<div class="col-xs-2 icon">
-				<i class="far fa-bookmark"></i>
+				<i class="far fa-bookmark icon-size"></i>
 			</div>
 		</div>
 		<div class="row">

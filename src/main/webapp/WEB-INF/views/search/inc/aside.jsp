@@ -27,7 +27,7 @@
 			<div class="col-xs-12">
 					<form method="post" action="#">
 						<input type="text" id="search-text" placeholder="검색" />
-						<a href="#"><i id="search" class="fas fa-search"  style="padding-top:15px"></i></a>
+						<a href="#"><i id="search" class="fas fa-search icon-size"  style="padding-top:15px"></i></a>
 					</form>
 			</div>
 		</section>
@@ -37,28 +37,25 @@
 		<section>
 		<br>	
 			<header class="major">
-				<h2>드래그 목록<i class="fas fa-trash"></i></span></h2>
+				<h2>드래그 목록<i class="fas fa-trash icon-size"></i></h2>
 			</header>
 			<div class="mini-posts">
 				<article>
 					<a href="#" class="image img-rounded"><img
 						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-						alt="" /></a><i class="far fa-star icon-top"></i>
+						alt="" /></a><i class="far fa-star icon-top icon-size"></i>
 				</article>
 				<article>
 					<a href="#" class="image img-rounded"><img
 						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-						alt="" /></a><i class="far fa-star icon-top"></i>
+						alt="" /></a><i class="far fa-star icon-top icon-size"></i>
 				</article>
 				<article>
 					<a href="#" class="image img-rounded"><img
 						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-						alt="" /></a><i class="far fa-star icon-top"></i>
+						alt="" /></a><i class="far fa-star icon-top icon-size"></i>
 				</article>
 			</div>
-			<ul class="actions">
-				<li><a href="#" class="button">More</a></li>
-			</ul>
 		</section>
 </div>
 </div>

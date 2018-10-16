@@ -11,7 +11,7 @@
 	<!-- Section -->	
 	<section>	
 		<header class="major">				
-		<h3>미분류<i class="fas fa-trash"></i></h3>
+		<h3>미분류<i class="fas fa-trash icon-size"></i></h3>
 		</header>
 	<div class="row">
 	<div class="blog">
