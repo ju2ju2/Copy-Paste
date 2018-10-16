@@ -9,26 +9,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="tk.baotemplate.repo.mapper.NoteMapper">
-	<!-- 드래그 등록 -->
-	<insert id="insertDrag" parameterType="dragVO"
-		useGeneratedKeys="true" keyProperty="dragNo">
-
-	</insert>
-	<!-- 드래그 리스트 -->
-	<select id="selectAllDrag" parameterType="dragVO"
-		resultMap="dragVO">
-
-	</select>
-	<!-- 드래그 삭제 -->
-	<delete id="deleteDrag">
-
-	</delete>
-
-	<!-- 드래그 하나 선택 -->
-	<select id="selectDrag" resultMap="dragVO">
-
-	</select>
+<mapper namespace="tk.copyNpaste.mapper.NoteMapper">
 
 
 
@@ -36,10 +17,12 @@
 	<update id="moveNoteFolder"></update>
 
 	<!-- 노트 목록 보기 -->
-	<select id="selectAllNote" resultMap="noteVO"></select>
+	<select id="selectAllNote" resultMap="noteVO">
+	select * from note
+	</select>
 	
 	<!-- 노트 상세 보기(+노트 작성) -->
-	<select id="selectDetailNote" resultMap="noteVO"></select>
+	<select id="selectDetailNote" resultMap="tk.copyNpaste.vo"></select>
 	
 	<!-- 노트 수정 -->
 	<update id="updateNote"></update>
