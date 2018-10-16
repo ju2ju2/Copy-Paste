@@ -1,4 +1,4 @@
-<!-- note>>inc
+﻿<!-- note>>inc
 @JSP : aside.jsp
 @Date : 2018.10.09
 @Author : 우나연, 임효진(노트 폴더목록만)
@@ -7,10 +7,11 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-
-<div id="sidebar ">
-	<div class="inner">
+<nav>
+<div id="sidebar">
+<div class="inner">
+	<div class="row mb">
+	<div class="form-group">
 		<!-- Sort -->
 		<div class="form-group">
 			<select name="sort-category" id="sort-category">
@@ -123,7 +124,7 @@
 		
 	</div>
 </div>
-
+</nav>
 
 <script type="text/javascript">
 

@@ -1,4 +1,4 @@
-<!-- search>>inc
+﻿<!-- search>>inc
 @JSP : aside.jsp
 @Date : 2018.10.10
 @Author : 임효진
@@ -10,7 +10,8 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
 	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 <!-- Sidebar -->
-<div id="sidebar" class="clearfix">
+<nav>
+<div id="sidebar">
 <div class="inner">
 	<div class="row">
 	<div class="form-group">
@@ -82,6 +83,7 @@
 		</section>
 </div>
 </div>
+</nav>
 
 
 <script>
