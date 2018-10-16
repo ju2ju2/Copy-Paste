@@ -4,6 +4,7 @@
 @Author : 고은아, 임효진
 @Desc : write layout 부분 jsp
  -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE>

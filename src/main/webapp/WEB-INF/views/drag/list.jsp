@@ -43,12 +43,6 @@
 						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
 						alt="" /></a>
 				</article>
-				<article>
-				<div class="icon-right"><i class="far fa-star"></i></div>
-					<a href="#" class="image img-rounded"><img
-						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-						alt="" /></a>
-				</article>
 			</div>
 		</section>
 </div>
