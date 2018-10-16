@@ -44,9 +44,9 @@
 
 /* 검색 시 디브 확장 버튼 */
 .searchBtn {
-	position: absolute;
-	top: 460px;
-	right: 20px;
+/*  	position: absolute;
+ 	top: 300px;
+	right: 380px; */
 }
 
 /* 검색 시 확장되는 디브 */
@@ -91,10 +91,9 @@
 	margin-bottom: 2rem !important;
 }
 
-
 /* 탭 설정 */
 #drag, #myNote, #inSiteSearch, #portalSearch{
-	padding: 1rem
+	padding: 0 1.4rem 0 !important;
 }
 
 /* sidebar 설정 */
@@ -523,10 +522,7 @@ i:hover {
 	color:#f56a6a;
 }
 
-i {
-/* 	padding: 0 !important;
-	text-align: center;
-	vertical-align: middle; */
+.icon-size {
 	margin-left: 2rem;
 	font-size: 2rem;
 }
@@ -654,12 +650,9 @@ header.main > :last-child {
 }
 .fa-bookmark {margin-top:20px;}
 
-/* table {
-	background-color: #ffffff;
-	text-decoration: none;
-	width: 100%;
-	margin: 1em 1em 3em 1em;
-} */
+.panel-margin {
+    margin-bottom: 35px;
+}
 
 
 /* 서치 input 및 아이콘 설정*/

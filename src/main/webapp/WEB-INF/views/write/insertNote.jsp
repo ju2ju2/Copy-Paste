@@ -51,22 +51,25 @@
 		</div>
 	</div>
 
+
 	<!-- 텍스트 에디터 -->
-	<div class="container">
+	<div class="n-container">
+	<div class="n-inner">
 		<div class="form-group">
 			<input id="noteTitle" name="noteTitle" type="text" size="158" placeholder="제목">
 		</div>
 		<textarea id="noteContent" name="noteContent" rows="30"></textarea>
 		<br>
-		<div class="col-sm-16 text-right">
+		<div class="col-sm-12 text-right">
 			<input type="button" class="btn btn-secondary" value="문자 인식">
 			<input type="button" class="btn btn-secondary" value="맞춤법 검사">
 		</div>
 		<br>
-		<div class="col-sm-16 text-center">
+		<div class="col-sm-12 text-center">
 			<input id="submitBtn" name="submitBtn" class="btn btn-danger"
 				type="button" value="등록" data-toggle="modal"
 				data-target="#publishModal">
 		</div>
+	</div>
 	</div>
 </form>
