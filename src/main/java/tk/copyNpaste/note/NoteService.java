@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 import tk.copyNpaste.mapper.NoteMapper;
 import tk.copyNpaste.vo.NoteCommVO;
 import tk.copyNpaste.vo.NoteVO;
-import tk.copyNpaste.vo.QnaVO;
 
 @Service
 public class NoteService {
@@ -29,10 +28,6 @@ public class NoteService {
 	public List<NoteVO> selectAllNote() throws Exception{		
 		NoteMapper notedao= sqlsession.getMapper(NoteMapper.class);
 		List<NoteVO> notelist = notedao.selectAllNote();
-		System.out.println(notelist);
-/*		for (NoteVO note: notelist ) {
-			System.out.println(note.getSubjectCode());
-		}*/
 		return notelist;
 	}
 	//노트 상세 보기(+노트 작성)
@@ -107,5 +102,7 @@ public class NoteService {
 	}
 
 
-	
+	/*		for (NoteVO note: notelist ) {
+	System.out.println(note.getSubjectCode());
+	}*/
 }
