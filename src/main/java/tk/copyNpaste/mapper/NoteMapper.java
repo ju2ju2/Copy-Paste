@@ -44,10 +44,10 @@ public interface NoteMapper {
 	//회원별 노트 일괄 삭제
 	public int deleteMemNote(String userEmail) throws Exception;
 
-	//노트 스크랩
+	//스크랩노트 등록
 	public int scrapNote(String userEmail) throws Exception;
 	
-	//노트 스크랩해제
+	//스크랩노트 삭제
 	public int removeScrapNote(String userEmail) throws Exception;
 	
 	//노트 댓글 작성
@@ -56,8 +56,14 @@ public interface NoteMapper {
 	//노트 댓글 삭제
 	public int deleteNoteComm(int noteCommNum) throws Exception;
 	
+	//인기노트 상세보기 
+	public List<NoteVO> selectPopNote() throws Exception;
 	
-
-
+	//노트 정렬 
+	public List<NoteVO> selectOrderby() throws Exception;
+	
+	//노트 블라인드 처리
+	public List<NoteVO> dd() throws Exception;
+	
 
 }

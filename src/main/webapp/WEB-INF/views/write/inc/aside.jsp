@@ -37,7 +37,7 @@
 				<option value="1">최신순</option>
 				<option value="1">오래된 순</option>
 				<option value="1">중요표시 있는 순</option>
-				<option value="1">중요표시 없는 순</option>
+				<option value="1">전체보기</option>
 			</select>
 			</div>
 			<!-- Search -->
@@ -78,7 +78,7 @@
 					<option value="1">최신순</option>
 					<option value="1">오래된 순</option>
 					<option value="1">중요표시 있는 순</option>
-					<option value="1">중요표시 없는 순</option>
+					<option value="1">전체보기</option>
 				</select>
 				</div>
 				<!-- Search -->

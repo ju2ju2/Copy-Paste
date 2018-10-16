@@ -11,5 +11,5 @@
 <footer class="container-fluid bg-4 text-center">  
   <a href="${pageContext.request.contextPath}/about.htm">사이트 소개</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <a href="${pageContext.request.contextPath}/etc/selectQnaboard.htm">Q&A게시판</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">admin@admin.com</a>
-  <p class="copyright">&copy; Untitled. All rights reserved.</p> 
+  <p class="copyright">&copy; Copy&Paste. All rights reserved.</p> 
 </footer>
