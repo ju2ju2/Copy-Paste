@@ -32,7 +32,7 @@ $(document).ready(function() {
     <tbody>
         <tr>
             <td>7</td>
-            <td><a href="${pageContext.request.contextPath}/etc/selectDetailQna.htm">뒤늦게 이제와서 뭔...</a></td>
+            <td><a href="${pageContext.request.contextPath}/qna/selectDetailQna.htm">뒤늦게 이제와서 뭔...</a></td>
             <td>메리크리</td>
             <td>18/09/19</td>
         </tr>
@@ -45,5 +45,5 @@ $(document).ready(function() {
     </tbody>
 </table>
 	<a href="" class="btn main-btn" id="qnaboard_btn_list" role="button">목록</a>
-	<a href="${pageContext.request.contextPath}/etc/insertQnaboard.htm" class="btn main-btn" id="qnaboard_btn_write" role="button">글쓰기</a>
+	<a href="${pageContext.request.contextPath}/qna/insertQnaboard.htm" class="btn main-btn" id="qnaboard_btn_write" role="button">글쓰기</a>
 </div></section>

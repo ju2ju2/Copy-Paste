@@ -13,7 +13,7 @@
 
 <form action="./BoardAddAction.bo" method="post" id="insertQnaform" class="contact-form">
 	<input type="hidden" name="Member_email" value="${sessionScope.email}">
-		<c:if test="${sessionScope.email=='admin@admin.org'}">
+		<c:if test="${sessionScope.email=='admin@admin.com'}">
  			<tr>
  				<td style="font-family:돋음; font-size:12" width="10%" height="16">
 				<div align="left"><h3>Q&A 게시판</h3></div></td>

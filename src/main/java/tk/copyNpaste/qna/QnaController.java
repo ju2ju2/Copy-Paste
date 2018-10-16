@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import tk.copyNpaste.vo.QnaCommVO;
 import tk.copyNpaste.vo.QnaVO;
@@ -19,9 +20,12 @@ import tk.copyNpaste.vo.QnaVO;
 @RequestMapping(value = "/qna")
 public class QnaController {
 	QnaService qnaService = new QnaService();
-	
-	
+
 	//QNA 게시물 조회
+	@RequestMapping(value="/selectQnaboard.htm",method = RequestMethod.GET)
+	public String selectAllQnaboard() {
+		return "qna.selectQnaboard";
+	}
 	public List<QnaVO> selectAllQna() throws Exception{
 		return qnaService.selectAllQna();
 	};
@@ -32,11 +36,19 @@ public class QnaController {
 	};
 	
 	//QNA 게시물 작성
+	@RequestMapping(value="/insertQnaboard.htm",method = RequestMethod.GET)
+	public String insertQnaboard() {
+		return "qna.insertQnaboard";
+	}
 	public int insertQna(QnaVO qna) throws Exception{
 		return qnaService.insertQna(qna);
 	};
 
 	//QNA 게시물 상세보기
+	@RequestMapping(value="/selectDetailQna.htm",method = RequestMethod.GET)
+	public String selectDetailQnaboard() {
+		return "qna.selectDetailQna";
+	}
 	public QnaVO selectDetailQna(int qnaNum) throws Exception{
 		
 		return qnaService.selectDetailQna(qnaNum);
