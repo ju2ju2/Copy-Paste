@@ -23,19 +23,10 @@ public class QnaService {
 	private SqlSession sqlsession;
 	
 	//QNA 게시물 조회
-	public List<QnaVO> selectAllQna() {
-		List<QnaVO> qnaDatalist = new ArrayList<QnaVO>(); 
-		try{
-			QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
-			System.out.println("Service Select All QnA");
-			qnaDatalist = qnadao.selectAllQna();
-			System.out.println("Service qnaDatalist>>"+qnaDatalist);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-
-		return qnaDatalist;
+	public List<QnaVO> selectAllQna() throws Exception {
+		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
+		List<QnaVO> qnalist = qnadao.selectAllQna();
+		return qnalist;
 	};
 	
 	//QNA 게시물 검색

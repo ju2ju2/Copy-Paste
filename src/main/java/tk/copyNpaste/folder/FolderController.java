@@ -7,6 +7,8 @@
 
 package tk.copyNpaste.folder;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,8 +20,9 @@ import tk.copyNpaste.vo.FolderVO;
 @Controller
 @RequestMapping(value = "/folder")
 public class FolderController {
-	FolderService folderService = new FolderService(); 
-	
+	 @Autowired
+	FolderService folderService; 
+
 	//폴더 목록 
 	public void selectAllFolder() throws Exception {
 		folderService.selectAllFolder();

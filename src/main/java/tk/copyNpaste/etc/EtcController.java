@@ -7,6 +7,8 @@
 
 package tk.copyNpaste.etc;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,8 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/etc/")
 @Controller //동기 컨트롤러. retrun>> ModelAndView or String.
 public class EtcController {
-	EtcService etcService = new EtcService(); 
-	
+	@Autowired 
+	EtcService etcService; 
+	 
 	@RequestMapping("admin.htm")
 	//관리자 페이지 (회원관리)
 	public String adminMemberPage() throws Exception {

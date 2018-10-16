@@ -10,6 +10,8 @@ package tk.copyNpaste.member;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,8 +20,10 @@ import tk.copyNpaste.vo.MemberVO;
 @Controller
 @RequestMapping(value = "/member/")
 public class MemberController {
-	MemberService  memberService = new MemberService();
-	LoginService loginService = new LoginService();
+	 @Autowired
+	MemberService  memberService;
+	 @Autowired
+	LoginService loginService;
 	
 	//회원가입 인증메일
 	public void sendSingupEmail(String userEmail) throws Exception {

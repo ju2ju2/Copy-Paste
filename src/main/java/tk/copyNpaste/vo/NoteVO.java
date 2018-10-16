@@ -27,7 +27,7 @@ public class NoteVO {
 	private int notescrap;
 	private int notePNum;
 	private int noteCheck;
-	//List<String> FileName; summernote에서 이미지를 같이 포함해서 컨텐츠로 넘김.
+	//List<String> FileName; tinymce에서 이미지를 같이 포함해서 컨텐츠로 넘김.
 	
 	
 	

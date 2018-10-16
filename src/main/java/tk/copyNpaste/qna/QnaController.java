@@ -31,16 +31,16 @@ public class QnaController {
 	@Autowired
 	private SqlSession sqlsession;
 	
-	QnaService qnaService = new QnaService();
+	@Autowired
+	QnaService qnaService;
 
 	//QNA 게시물 조회
 	@RequestMapping(value="/selectQnaboard.htm",method = RequestMethod.GET)
-	public String selectAllQnaboard(Model model) {
-		/*List<QnaVO> qnaData= new ArrayList<QnaVO>(); 
-		System.out.println("Conttroller Select All QnA");
+	public String selectAllQnaboard(Model model) throws Exception {
+		List<QnaVO> qnaData= new ArrayList<QnaVO>(); 
 		qnaData = qnaService.selectAllQna();
-		model.addAttribute("qnaData",qnaData);*/
-		List<QnaVO> qnaDatalist = new ArrayList<QnaVO>(); 
+		model.addAttribute("qnaData",qnaData);
+	/*	List<QnaVO> qnaData = new ArrayList<QnaVO>(); 
 		try{
 			QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
 			System.out.println("Service Select All QnA");
@@ -49,8 +49,8 @@ public class QnaController {
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		model.addAttribute("qnaData",qnaDatalist);
-
+		model.addAttribute("qnaData",qnaData);
+	 */
 		return "qna.selectQnaboard";
 	}
 	public List<QnaVO> selectAllQna() throws Exception{

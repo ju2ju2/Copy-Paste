@@ -8,6 +8,7 @@ package tk.copyNpaste.drag;
 
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -18,8 +19,8 @@ import tk.copyNpaste.vo.DragVO;
 @Controller
 @RequestMapping("/drag/")
 public class DragController {
-	
-	DragService dragservice = new DragService();
+	@Autowired
+	DragService dragservice;
 
 	//드래그 페이지
 	@RequestMapping("drag.htm")
