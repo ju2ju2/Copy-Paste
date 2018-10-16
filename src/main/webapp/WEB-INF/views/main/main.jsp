@@ -24,10 +24,10 @@
 						data-toggle="modal" data-target="#myModal">
 						COPY & <span>PASTE</span>
 					</h1>
-					<p class="lead text-center ">
-						<a href=""
+					<p class="lead text-center "><!-- data-toggle="modal" data-target="#myModal"  -->
+						<a href="${pageContext.request.contextPath}/login.htm"
 							onclick="document.getElementById('subscribe').style.display='block'"
-							data-toggle="modal" data-target="#myModal" class="typewrite"
+							class="typewrite"
 							data-period="2000"
 							data-type='[ "드래그가 글이 되는 공간, COPY&PASTE. ", "로그인을 해주세요 :)   ", "Click Click !   " ]'>
 							<span class="wrap"></span>
