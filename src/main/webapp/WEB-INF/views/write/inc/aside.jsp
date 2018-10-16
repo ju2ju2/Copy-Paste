@@ -8,6 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!-- Sidebar -->
+<nav class="sidebarfixed">
 <div id="sidebar">
 <div class="inner">
 
@@ -213,7 +214,7 @@
 	</div>
 </div>
 </div>
-
+</nav>
 
 <script>
 	/* 폴더 아코디언 */

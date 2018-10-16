@@ -1,4 +1,4 @@
-<!-- search>>inc
+﻿<!-- search>>inc
 @JSP : aside.jsp
 @Date : 2018.10.10
 @Author : 임효진
@@ -7,7 +7,10 @@
  
  <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
+	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 <!-- Sidebar -->
+<nav>
 <div id="sidebar">
 <div class="inner">
 	<div class="row">
@@ -35,7 +38,7 @@
 	</div>		
 		<!-- Section -->
 		<section>
-		<br>	
+		<br>
 			<header class="major">
 				<h2>드래그 목록<i class="fas fa-trash icon-size"></i></h2>
 			</header>
@@ -55,10 +58,32 @@
 						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
 						alt="" /></a><i class="far fa-star icon-top icon-size"></i>
 				</article>
+				<article>
+					<a href="#" class="image img-rounded"><img
+						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
+						alt="" /></a><i class="far fa-star icon-top icon-size"></i>
+				</article>
+				<article>
+					<a href="#" class="image img-rounded"><img
+						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
+						alt="" /></a><i class="far fa-star icon-top icon-size"></i>
+				</article>
+				
+				<article>
+					<a href="#" class="image img-rounded"><img
+						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
+						alt="" /></a><i class="far fa-star icon-top icon-size"></i>
+				</article>
+				<article>
+					<a href="#" class="image img-rounded"><img
+						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
+						alt="" /></a><i class="far fa-star icon-top icon-size"></i>
+				</article>
 			</div>
 		</section>
 </div>
 </div>
+</nav>
 
 
 <script>

@@ -11,6 +11,10 @@
 @Author : 임효진
 @Desc :	aside 추가
 
+@Date : 2018.10.16
+@Author : 이주원, 문지은
+@Desc :	aside 고정
+
 */
 
 @import url(main.css);
@@ -75,7 +79,7 @@
 }
 
 #sidebar>.inner {
-	position: relative;
+	/* position: relative; */
 	height: 100%;
 	width: inherit;
 }

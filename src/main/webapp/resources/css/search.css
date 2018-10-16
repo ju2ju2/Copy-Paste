@@ -3,6 +3,10 @@
 @Date : 2018.10.10
 @Author : 임효진
 @Desc :	selectSearchSite, selectSearchNaver, selectSearchGoogle. css
+		
+@Date : 2018.10.16
+@Author : 이주원, 문지은
+@Desc :	aside 고정
 */
 @import url(main.css);
 
@@ -182,11 +186,14 @@
 
 @media screen and (min-width: 1680px) {
 	#sidebar {
-		box-shadow: 0 0 5em 0 rgba(0, 0, 0, 0);
+		/* box-shadow: 0 0 5em 0 rgba(0, 0, 0, 0);
 		height: 100%;
 		left: 0;
 		top: 0;
-		z-index: 10000;
+		z-index: 10000; 
+		
+		2018-10-16 이주원 주석처리. 이 부분을 주석처리해야 aside가 이쁘게 돌아가요ㅠㅠ*/
+		height: 100% !important;
 	}
 	
 	#sidebar.inactive {

@@ -71,7 +71,7 @@ window.onload = function() {
 
 	/* 날씨 api */
 
-	var apiURI = "http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=";
+	var apiURI = "http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=786c99bd6467a4ab58300feffccd96d2";
 
 	$.ajax({
 				url : apiURI,

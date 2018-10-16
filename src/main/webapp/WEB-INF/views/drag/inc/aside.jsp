@@ -17,6 +17,7 @@
 	pageEncoding="UTF-8"%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/drag-jquery-ui.theme.css" />
+<nav>
 <div id="sidebar">
 <div class="inner">
 	<div class="row mb">
@@ -58,3 +59,4 @@
 		</div>
 </div>
 </div>
+</nav>

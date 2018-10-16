@@ -17,22 +17,17 @@
 				<div class="form-group">
                <label class="control-label col-sm-5">프로필 이미지<span
                   class="text-danger"></span></label>
-               <div class="col-lg-4 col-sm-4">
-                  <div>
-                     <div class="col-sm-2 pr-0 pl-0">
-                        <div class="imgfile">
-                           <img class="img-responsive user-photo img-rounded"
-                              src="https://s-i.huffpost.com/gen/3948866/thumbs/o-PEPE-THE-FROG-570.jpg?3">
-                        </div>
-                     </div>
-                  </div>
-                  <input type="file" class="userPhoto" name="file_nm" id="file_nm"
-                     aria-describedby="file_upload" accept="image/*">
-                  <div class="form-group">
-                     <small>* .jpg, .gif, .png 파일만 업로드 가능하며, 500kb를 초과할 수
-                        없습니다.</small>
-                  </div>
-               </div>
+              <div class="col-sm-4">				
+						<div>
+							<div class="col-sm-3 pr-0 pl-0" >
+								<div class="imgfile" style="width:92.5px;height:92.5px;"><img style="height: 100%;width: 100%" class="img-responsive user-photo img-rounded" 
+              						src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" ></div>				
+           					</div>
+           				<input type="file" class="userPhoto" name="userPhoto" id="userPhoto" 
+								aria-describedby="file_upload" accept="image/*">
+								<small> * .jpg, .gif, .png 파일만 업로드 가능하며, 500kb를 초과할 수 없습니다.</small>
+						</div>
+					</div>
             </div>
 				
 				
