@@ -11,6 +11,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<script src="${pageContext.request.contextPath}/resources/js/drag.js"></script>
 <div class="d-container">
 <div class="d-inner">
 	<!-- Section -->	
@@ -48,28 +49,3 @@
 </div>
 </div>
 
-
-
-
-<script type="text/javascript">
-
-	$('#dragTrash').droppable( {
-		// 펑션으로 ajax 이용해서 데이터 삭제되고 시각적으로 새로운 데이터 불러오는 식의 처리해야함		
-	      } 
-	);
-
-	// 드래그 div들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
-	$('.blog').draggable({
-		revert: true
-	});
-	
-	<!-- 별 아이콘 토글 -->
-	$('.fa-star').click(function(){
-		if($(this).hasClass('far')){
-			$(this).removeClass('far').addClass('fas');
-		} else {
-			$(this).removeClass('fas').addClass('far');
-		}
-	})
-
-</script>

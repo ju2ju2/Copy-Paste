@@ -23,6 +23,7 @@
 		<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/datepicker.js"></script>
 	</head>
 	<body>
 		<!-- Header  영역 (공통 inc) -->
