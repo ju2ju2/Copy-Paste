@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@Project : 
+@File name : dispatcher-context.xml
+@Date : 2018.10.06
+@Author : 우나연
+@Desc : 디스패처 설정 (클래스 생성 및 매핑, 타일 객체-파일 설정, 리소스 설정 )
+-->		
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<context:component-scan base-package="tk.copyNpaste" />
+	<context:annotation-config /> 
+	<annotation-driven />
+		<!-- component-scan:빈객체 생성 
+			 @Component,@Repository,@Service,@Controller,@Autowired
+			 annotation-config:설정 사용
+			 @Required, @Autowired, @Resource, @PostConstruct, @PreDestory, @Configuration
+			 annotation-driven :디폴트 설정을 적용, HandlerMapping 및 HandlerAdapter 등록.
+			 @NumberFormat, @DateTimeFormat, @Valid, Xml 및 JSON 읽고 쓰기 -->
+
+
+	<!-- 리소스 설정 -->
+	<resources mapping="/resources/**" location="/resources/" />
+	
+
+	<!--  Tiles리졸버 설정하기 -->
+	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		 <beans:property name="definitions">  
+			  <beans:list>
+			   	<beans:value>classpath:META-INF/spring/tile-context.xml</beans:value>
+			  </beans:list>
+		 </beans:property>
+	</beans:bean>
+	<!-- urlBased 리턴 되는 주소형태의 값으로 타일즈 구성 -->
+	<beans:bean id="urlBasedViewResolver" 
+	      class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+	    <beans:property name="order" value="1" />
+	 	<beans:property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView" />
+	</beans:bean> 
+
+	<!-- 뷰리졸버 -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	   <beans:property name="order" value="2" />
+		<beans:property name="prefix" value="/WEB-INF/views/modal/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+
+
+</beans:beans>

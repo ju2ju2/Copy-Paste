@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@Project : 
+@File name : drag.xml
+@Date : 2018.10.06
+@Author : 우나연
+@Desc : drag dao 매퍼 쿼리문 작성.
+-->		
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="tk.baotemplate.repo.mapper.DragMapper">
+
+
+	<!-- 드래그 등록 -->	
+	<insert id="insertDrag" parameterType="dragVO" useGeneratedKeys="true" keyProperty="dragNo">
+		
+	</insert>
+	<!-- 드래그 리스트 -->
+	<select id="selectAllDrag" parameterType="dragVO" resultMap="dragVO">
+
+	</select>
+	<!-- 드래그 삭제 -->
+	<delete id="deleteDrag">
+	
+	</delete>
+	
+	<!-- 드래그 하나 선택 -->
+	<select id="selectDrag" resultMap="dragVO">
+		
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
