@@ -91,6 +91,10 @@
 	margin-bottom: 2rem !important;
 }
 
+.pt {
+	padding-top: 2rem;	
+}
+
 /* 탭 설정 */
 #drag, #myNote, #inSiteSearch, #portalSearch{
 	padding: 0 1.4rem 0 !important;
@@ -529,6 +533,14 @@ i:hover {
 
 .icon-top {
 	vertical-align: top;
+}
+
+.icon-li {
+	font-size: 2rem;
+}
+
+.fa-google {
+	margin-bottom: 1px;
 }
 	
 
