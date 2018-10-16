@@ -8,7 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<nav>>
+<nav>
 <div id="sidebar">
 <div class="inner">
 	<div class="row mb">
