@@ -172,6 +172,7 @@ blockquote {
 	margin: 30px;
 	border-top-width: 2px;
 	border-color: #f56a6a;
+	margin-bottom:10px;
 }
 /* 알람 */
 .navbar-nav .icon-menu {

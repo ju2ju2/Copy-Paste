@@ -19,7 +19,7 @@
 					<div class="col-sm-4">				
 						<div>
 							<div class="col-sm-3 pr-0 pl-0" >
-								<div class="imgfile"><img class="img-responsive user-photo img-rounded" 
+								<div class="imgfile" style="width:92.5px;height:92.5px;"><img style="height: 100%;width: 100%;" class="img-responsive user-photo img-rounded" 
               						src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" ></div>				
            					</div>
            				<input type="file" class="userPhoto" name="userPhoto" id="userPhoto" 
