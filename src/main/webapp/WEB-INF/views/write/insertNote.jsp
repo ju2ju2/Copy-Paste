@@ -8,7 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 
-<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=vdznjk62x4eihlqgz74wgtaga6pgcoyjsd3z8ehcb227lpmb"></script>
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=yaps0ah95j72p1podkonpizywofdvarpwuuzjrfbjm1ysadp"></script>
 <script src="${pageContext.request.contextPath}/resources/js/textEditer.js"></script>
 
 <!-- 등록 전 띄워지는 모달창 -->
@@ -59,6 +59,7 @@
 			<input id="noteTitle" name="noteTitle" type="text" size="158" placeholder="제목">
 		</div>
 		<textarea id="noteContent" name="noteContent" rows="20"></textarea>
+		<input name="image" type="file" id="upload" multiple class="hidden" onchange="">
 		<br>
 		<div class="col-sm-12 text-right">
 			<input type="button" class="btn btn-secondary" value="문자 인식">

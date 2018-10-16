@@ -440,13 +440,13 @@
 	line-height: 1.65;
 	} 
 	
-input, select, textarea {
+/* input, select, textarea {
 	-moz-appearance: none;
 	-webkit-appearance: radio;
 	-ms-appearance: none;
 	appearance: none;
 	} 
-
+ */
 input[type="text"],
 select,
 textarea {
@@ -701,3 +701,7 @@ td .t-icon {
 	display: inline-block;
 	width: 300px;
 }	
+
+.mce-ico{
+	padding-top:2px!important; 
+	height:18px !important; }
