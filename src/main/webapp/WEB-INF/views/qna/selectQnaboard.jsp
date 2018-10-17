@@ -17,8 +17,8 @@ $(document).ready(function() {
 </script>
 <section id="content">
 	<div class="container">
-	${qnaData}
-	<%-- <table id="table_id" class="display">
+	<%-- ${qnaList} --%>
+	<table id="table_id" class="display">
     <thead>
         <tr>
             <td>No.</td>
@@ -28,18 +28,18 @@ $(document).ready(function() {
         </tr>
     </thead>
     <tbody>
-    	<c:forEach var="data" items="${qnaData}">
-    		<c:if test="${data.qnaDept eq 0}">
+    	<c:forEach var="qnaList" items="${qnaList}">
+    		<c:if test="${qnaList.qnaDept eq 0}">
     			<tr>
-					<td>${data.qnaNum}</td>
-					<td><a href="${pageContext.request.contextPath}/qna/selectDetailQna.htm?no=${data.qnaNum}">${data.qnaTitle}</a></td>
-					<td>${data.userEmail}</td>
-					<td>${data.qnaDate}</td>
+					<td>${qnaList.qnaNum}</td>
+					<td><a href="${pageContext.request.contextPath}/qna/selectDetailQna.htm?qnaNum=${qnaList.qnaNum}">${qnaList.qnaTitle}</a></td>
+					<td>${qnaList.userEmail}</td>
+					<td>${qnaList.qnaDate}</td>
 				</tr>
     		</c:if>
     	</c:forEach>
     </tbody>
-</table> --%>
+</table>
 	<a href="" class="btn main-btn" id="qnaboard_btn_list" role="button">목록</a>
 	<a href="${pageContext.request.contextPath}/qna/insertQnaboard.htm" class="btn main-btn" id="qnaboard_btn_write" role="button">글쓰기</a>
 </div></section>

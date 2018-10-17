@@ -4,14 +4,16 @@
 @Author : 이주원
 @Desc : Q&A 게시판 상세보기 화면 입니다. 
 		댓글 신고 기능 추가. 2018. 10. 12 이주원
+		
+@Date : 2018.10.09
+@Author : 임지현
+@Desc : Q&A 게시판 상세보기
 --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 
-<!-- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css"/>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.2/js/bootstrapValidator.min.js"></script>
- -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/api/alert/sweetalert.css" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
 <!-- 신고 모달창에서 ok버튼 눌렀을 때 스윗알럳 띄우기 -->
