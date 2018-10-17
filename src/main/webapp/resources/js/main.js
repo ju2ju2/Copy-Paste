@@ -10,6 +10,11 @@
  $("#dialog_div_ID").dialog("close");
  });*/
 //활성화 된 링크 active 클래스주기
+//모달 내용 초기화
+$('body').on('hidden.bs.modal', '.modal', function () {
+    $(this).removeData('bs.modal');
+});
+
 // 메인 텍스트 슬라이드
 var TxtType = function(el, toRotate, period) {
 	this.toRotate = toRotate;
@@ -79,7 +84,7 @@ window.onload = function() {
 				type : "GET",
 				async : "false",
 				success : function(resp) {
-					console.log(resp);
+					/*console.log(resp);
 					console.log("현재온도 : " + (resp.main.temp - 273.15));
 					console.log("현재습도 : " + resp.main.humidity);
 					console.log("날씨 : " + resp.weather[0].main);
@@ -88,9 +93,9 @@ window.onload = function() {
 					console.log("바람   : " + resp.wind.speed);
 					console.log("나라   : " + resp.sys.country);
 					console.log("도시이름  : " + resp.name);
-					console.log("구름  : " + (resp.clouds.all) + "%");
+					console.log("구름  : " + (resp.clouds.all) + "%");*/
 					var temp = resp.main.temp - 273.15; /* 온도 */
-					console.log("temp  : " + Math.round(temp));
+				/*	console.log("temp  : " + Math.round(temp));*/
 					var img = resp.weather[0].icon; /* 날씨 아이콘 */
 					var wtext; /* 날씨 내용 */
 					var wImg; /* 날씨 아이콘 변경 */
@@ -144,9 +149,9 @@ window.onload = function() {
 				}
 			});
 	
-	/*file업로드시 영역에 이미지 읽어오기*/
+	/* file업로드시 영역에 이미지 읽어오기 */
 	 var file = document.querySelector('.userPhoto');
-
+	 if(file!=null){
 	    file.onchange = function () { 
 	        var fileList = file.files ;
 	        
@@ -154,14 +159,16 @@ window.onload = function() {
 	        var reader = new FileReader();
 	        reader.readAsDataURL(fileList [0]);
 
-	        //로드 한 후
+	        // 로드 한 후
 	        reader.onload = function  () {
-	            //로컬 이미지를 보여주기
-	            /*var imglink="<img class='img-responsive user-photo img-rounded' src='' >";
-	            $('.imgfile').html(imglink);*/
+	            // 로컬 이미지를 보여주기
+	            /*
+				 * var imglink="<img class='img-responsive user-photo
+				 * img-rounded' src='' >"; $('.imgfile').html(imglink);
+				 */
 	            document.querySelector('.img-responsive').src = reader.result;
 	        }; 
 	    };    
-
+	 };
 
 };

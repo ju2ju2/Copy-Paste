@@ -7,17 +7,16 @@
 
 package tk.copyNpaste.note;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import tk.copyNpaste.mapper.NoteMapper;
+import tk.copyNpaste.folder.FolderService;
+import tk.copyNpaste.vo.FolderVO;
 import tk.copyNpaste.vo.NoteCommVO;
 import tk.copyNpaste.vo.NoteVO;
 
@@ -29,31 +28,34 @@ public class NoteController {
 
 	@Autowired
 	NoteService noteService;
+	
+	@Autowired
+	FolderService folderService;
 
-	// 노트 페이지로 이동(2018.10.10. 고은아 추가)
+	// 노트 작성페이지로 이동
 	@RequestMapping("write.htm")
-	public String insertNotePage() throws Exception {
-
+	public String writeNotePage() throws Exception {
 		return "write.insertNote";
 	}
 
-	// 노트의 폴더 이동
-	public int moveNoteFolder(NoteVO note) throws Exception {
-		return noteService.moveNoteFolder(note);
-	}
 
-	// 노트 목록 보기
+	// 노트 목록 보기+폴더 목록 조회
 	@RequestMapping(value = "note.htm")
 	public String selectAllNote(Model model) throws Exception {
-		List<NoteVO> list = noteService.selectAllNote();
-		model.addAttribute("list", list);
+		List<NoteVO> noteList = noteService.selectAllNote();
+		List<FolderVO> folderList = folderService.selectAllFolder();
+		model.addAttribute("noteList", noteList);
+		model.addAttribute("folderList", folderList);
 		return "note.list";
 	}
 
 	// 노트 상세 보기(+노트 작성)
 	@RequestMapping(value = "noteDetail.htm")
-	public String selectDetailNote(/* int noteNum */) throws Exception {
-		/* NoteVO note= noteService.selectDetailNote(noteNum); */
+	public String selectDetailNote(int noteNum, Model model) throws Exception {
+		NoteVO note = noteService.selectDetailNote(noteNum);
+		List<NoteCommVO> noteCommList = noteService.selectAllNoteComm(noteNum);
+		model.addAttribute("note", note);
+		model.addAttribute("noteCommList", noteCommList);
 		return "notedetail";
 	}
 
@@ -133,4 +135,8 @@ public class NoteController {
 		return null;
 	}
 
+	// 노트의 폴더 이동
+	public int moveNoteFolder(NoteVO note) throws Exception {
+		return noteService.moveNoteFolder(note);
+	}
 }

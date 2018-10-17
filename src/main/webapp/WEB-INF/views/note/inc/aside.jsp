@@ -7,6 +7,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <nav>
 <div id="sidebar">
@@ -52,21 +53,29 @@
 		<!-- Section -->
 		<header class="major mb">
 			<h3 id="h-inline">
-				노트 폴더 목록<i class="fas fa-folder-plus icon-size"></i>
+				노트 폴더 목록<i class="fas fa-folder-plus icon-size" id="Addfolder"></i>
 			</h3>
 		</header>
-		<div class="row">
+	<c:forEach items="${folderList}" var="folderList">
+		<c:forEach items="${folderList.folderName}" var="folderName">
+		<div class="row" id="scrap">
 			<div class="col-xs-10 n-folder">
 				<h5 class="ml-10 f-name">
-					<span class="f-count">4</span> 폴더 1 <span class="f-modify">
+					<span class="f-count">4</span>${folderName}<span class="f-modify">
 						<i class="fas fa-edit icon-size"></i> <i class="fas fa-trash icon-size"></i>
 					</span>
 				</h5>
 			</div>
 			<div class="col-xs-2 icon">
-				<i class="fas fa-bookmark icon-size"></i>
+				<i class="far fa-bookmark icon-size"></i>
 			</div>
 		</div>
+		</c:forEach>
+	</c:forEach>
+		
+	<%-- </c:forEach> --%>
+			<!-- 
+		
 		<div class="row">
 			<div class="col-xs-10 n-folder">
 				<h5 class="ml-10 f-name">
@@ -79,30 +88,65 @@
 				<i class="far fa-bookmark icon-size"></i>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-xs-10 n-folder">
-				<h5 class="ml-10 f-name">
-					<span class="f-count">4</span> 폴더 1 <span class="f-modify">
-						<i class="fas fa-edit icon-size"></i> <i class="fas fa-trash icon-size"></i>
-					</span>
-				</h5>
-			</div>
-			<div class="col-xs-2 icon">
-				<i class="far fa-bookmark icon-size"></i>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-10 n-folder">
-				<h5 class="ml-10 f-name">
-					<span class="f-count">4</span> 스크랩 
-				</h5>
-			</div>
-		</div>
+		-->
 	</div>
 </div>
 </nav>
 
 <script type="text/javascript">
+/* 폴더 추가 버튼을 눌렀을 때 텍스트 박스가 열리면서 폴더 명을 입력할 수 있는 칸이 열린다. */
+$('#Addfolder').click(function(){
+	var a = "";
+	a += "<div class='row'>";
+	a += "<div class='col-xs-10 n-folder'>";
+	a += "<h5 class='ml-10 f-name'>";
+	a += "&ensp;&ensp;<span class='f-count'style='margin-left:-1px;'>0</span>";
+	a += "&ensp;&ensp;&ensp;<input type='text' id='folname' name='folname' required minlength='1' maxlength='12' style='width:200px;height:40px;margin-left:44px;margin-top:-25px;'placeholder='폴더명을 입력하세요' autofocus/>";
+	a += "</h5></div>";
+	a += "<div class='col-xs-2 icon'>";
+	a += "<i class='far fa-bookmark icon-size' style='margin-left:11px;'></i>";
+	a += "</div></div>";
+	$('#scrap').append(a);
+	
+	
+	
+	$("#folname").keypress(function(key){
+		if(key.keyCode == 13){
+			$.ajax(
+					{
+			    url : "<%=request.getContextPath()%>/folder/insertfolder.json",
+			    DataType :"text",
+			    type : "post",
+			    data : {"folderName": $(this).val()},
+			    success : function(data){
+			    	console.log("잘 되어가고 있습니다.");
+			        	$('#scrap').empty();
+						var a = "";
+							a += "<div class='row'>";
+							a += "<div class='col-xs-10 n-folder'>";
+							a += "<h5 class='ml-10 f-name'>";
+							a += "&ensp;&ensp;<span class='f-count'style='margin-left:-1px;'>0</span>";
+							a += $(this).val();
+							a += "</h5></div>";
+							a += "<div class='col-xs-2 icon'>";
+							a += "<i class='far fa-bookmark icon-size' style='margin-left:11px;'></i>";
+							a += "</div></div>"; 
+						$('#scrap').append(a);
+						 location.reload(); 
+			       
+			    },
+			    error : function(){
+			        console.log("비동기 폴더 추가 실패");
+			    }
+			});	
+		}	
+	 });
+});
+
+/* 엔터키를 치면 폴더가 생성된다. insert folder에 들어간다. */
+	 
+
+
 	/* var dateFormat = "yyyy-mm-dd", //이거 지금 안 먹음
 	fromDate = $("#fromDate").datepicker({
 	defaultDate : "+1w",
@@ -128,7 +172,7 @@
 
 	return date;
 	}  */
-
+		
 	/* 스크랩 아이콘 토글  */
 	$('.fa-bookmark').click(function() {
 		if ($(this).hasClass('far')) {

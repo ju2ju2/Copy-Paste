@@ -36,7 +36,7 @@
 		  p:driverClassName="${jdbc.mariadb.driver}"
           p:url="${jdbc.mariadb.url}"
           p:username="${jdbc.mariadb.username}" 
-          p:password="${jdbc.mariadb.password}" /> 
+          p:password="${jdbc.mariadb.password}"/> 
  
 	<!-- 트랜잭션 처리	-->
 	<bean id="transactionManager"

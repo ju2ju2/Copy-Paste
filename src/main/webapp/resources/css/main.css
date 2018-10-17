@@ -706,3 +706,14 @@ img .user-photo{
 	border-radius: 50%;
 
 }
+
+
+
+.modal{
+	top:100px;
+}	
+
+#reportModal{
+	top:0px;
+	/* width:100%; */
+}
