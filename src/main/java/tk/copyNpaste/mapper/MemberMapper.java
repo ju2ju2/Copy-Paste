@@ -22,7 +22,7 @@ public interface MemberMapper {
 	
 	//로그인
 	public MemberVO login(MemberVO member) throws Exception;
-	
+
 	//구글로그인
 	public MemberVO googleLogin(String userEmail) throws Exception;
 	
