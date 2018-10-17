@@ -33,7 +33,6 @@ public class NoteController {
 	// 노트 페이지로 이동(2018.10.10. 고은아 추가)
 	@RequestMapping("write.htm")
 	public String insertNotePage() throws Exception {
-
 		return "write.insertNote";
 	}
 
@@ -45,15 +44,15 @@ public class NoteController {
 	// 노트 목록 보기
 	@RequestMapping(value = "note.htm")
 	public String selectAllNote(Model model) throws Exception {
-		List<NoteVO> list = noteService.selectAllNote();
-		model.addAttribute("list", list);
+		List<NoteVO> noteList = noteService.selectAllNote();
+		model.addAttribute("noteList", noteList);
 		return "note.list";
 	}
 
 	// 노트 상세 보기(+노트 작성)
 	@RequestMapping(value = "noteDetail.htm")
-	public String selectDetailNote(/* int noteNum */) throws Exception {
-		/* NoteVO note= noteService.selectDetailNote(noteNum); */
+	public String selectDetailNote(/*int noteNum*/) throws Exception {
+		/*NoteVO note= noteService.selectDetailNote(noteNum); */
 		return "notedetail";
 	}
 

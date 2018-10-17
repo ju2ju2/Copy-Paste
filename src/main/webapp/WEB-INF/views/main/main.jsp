@@ -24,11 +24,11 @@
 						data-toggle="modal" data-target="#myModal">
 						COPY & <span>PASTE</span>
 					</h1>
-					<p class="lead text-center "><!-- data-toggle="modal" data-target="#myModal"  -->
+					<p class="lead text-center ">
+						<!-- data-toggle="modal" data-target="#myModal"  -->
 						<a href="${pageContext.request.contextPath}/login.htm"
 							onclick="document.getElementById('subscribe').style.display='block'"
-							class="typewrite"
-							data-period="2000"
+							class="typewrite" data-period="2000"
 							data-type='[ "드래그가 글이 되는 공간, COPY&PASTE. ", "로그인을 해주세요 :)   ", "Click Click !   " ]'>
 							<span class="wrap"></span>
 						</a>
@@ -65,7 +65,7 @@
 					href="${pageContext.request.contextPath}/note/noteDetail.htm"
 					data-target="#modal-testNew" role="button" data-backdrop="static">
 					<div class="item">
-						<img class="card-img-top img-rounded"
+						<img class="img-rounded"
 							src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
 							alt="" width="100%">
 						<div class="caption">
@@ -77,16 +77,6 @@
 						<span>음담패썰</span> <span>2018.08.30</span>
 					</div>
 				</a>
-			</div>
-
-			<!-- Modal HTML -->
-			<div id="modal-testNew" class="modal fade text-center overlay"
-				tabindex="-1" role="dialog">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<!-- Content will be loaded here from "note/noteDetail.htm" file -->
-					</div>
-				</div>
 			</div>
 		</div>
 
@@ -98,7 +88,7 @@
 					href="${pageContext.request.contextPath}/note/noteDetail.htm"
 					data-target="#modal-testNew" role="button" data-backdrop="static">
 					<div class="item">
-						<img class="card-img-top img-rounded"
+						<img class="img-rounded"
 							src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
 							alt="" width="100%">
 						<div class="caption">
@@ -112,15 +102,6 @@
 				</a>
 			</div>
 
-			<!-- Modal HTML -->
-			<div id="modal-testNew" class="modal fade text-center overlay"
-				tabindex="-1" role="dialog">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<!-- Content will be loaded here from "note/noteDetail.htm" file -->
-					</div>
-				</div>
-			</div>
 		</div>
 		<div class="col-xs-6 col-sm-3 col-md-3">
 			<div class="text-center">
@@ -129,7 +110,7 @@
 					href="${pageContext.request.contextPath}/note/noteDetail.htm"
 					data-target="#modal-testNew" role="button" data-backdrop="static">
 					<div class="item">
-						<img class="card-img-top img-rounded"
+						<img class=" img-rounded"
 							src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
 							alt="" width="100%">
 						<div class="caption">
@@ -143,15 +124,7 @@
 				</a>
 			</div>
 
-			<!-- Modal HTML -->
-			<div id="modal-testNew" class="modal fade text-center overlay"
-				tabindex="-1" role="dialog">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<!-- Content will be loaded here from "note/noteDetail.htm" file -->
-					</div>
-				</div>
-			</div>
+			
 		</div>
 		<div class="col-xs-6 col-sm-3 col-md-3">
 			<div class="text-center">
@@ -160,7 +133,7 @@
 					href="${pageContext.request.contextPath}/note/noteDetail.htm"
 					data-target="#modal-testNew" role="button" data-backdrop="static">
 					<div class="item">
-						<img class="card-img-top img-rounded"
+						<img class="img-rounded"
 							src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
 							alt="" width="100%">
 						<div class="caption">
@@ -172,16 +145,6 @@
 						<span>음담패썰</span> <span>2018.08.30</span>
 					</div>
 				</a>
-			</div>
-
-			<!-- Modal HTML -->
-			<div id="modal-testNew" class="modal fade text-center overlay"
-				tabindex="-1" role="dialog">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<!-- Content will be loaded here from "note/noteDetail.htm" file -->
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>
@@ -191,4 +154,11 @@
 
 
 
-
+<!-- Modal HTML -->
+<div id="modal-testNew" class="modal fade text-center overlay"
+	tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">Content will be loaded here from
+			"note/noteDetail.htm" file</div>
+	</div>
+</div>

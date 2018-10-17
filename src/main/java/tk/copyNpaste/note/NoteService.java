@@ -101,8 +101,7 @@ public class NoteService {
 		 return notedao.moveNoteFolder(note);
 	}
 
-
-	/*		for (NoteVO note: notelist ) {
-	System.out.println(note.getSubjectCode());
-	}*/
+	/*for (NoteVO note: notelist ) {
+		System.out.println(note.getUserNick());
+		}*/
 }
