@@ -69,64 +69,79 @@
 			<!-- modal-footer-->
 			<div class="modal-footer">
 				<div class="panel-footer">
-					<div class="row">
-						<div class="col-lg-12 col-sm-12 text-left">
-							<div class="comment-box">
-								<ul data-brackets-id="12674" id="sortable"
-									class="list-unstyled ui-sortable">
-									<div class="media-left">
-										<img class="user-photo"
-											src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+					<div class="comment-box">
+					
+						<ul data-brackets-id="12674" id="sortable"
+							class="list-unstyled ui-sortable">
+							<c:choose>
+
+								<c:when test="${empty noteCommList}">
+									<div class="col-lg-12 col-sm-12 text-left">
+									등록된 댓글이 없습니다.
 									</div>
-									<div class="media-body">
-										<strong class="pull-left primary-font">blueblue</strong><br>
-										<small class="pull-right text-muted"> <span class="">삭제</span>&ensp;
-											<span class="">댓글</span>&ensp; <a href="#"
-											data-toggle="modal" data-target="#reportModal" id="report">신고</a>&ensp;
-										</small>
-										<p>운영자 일 안하십니까? 답변 안하시냐구요. 지금 질문한지 7분 13초나 지났는데 아직도 답변
-											안주시네요. 사이트 폭망하시길 기원합니다.</p>
+								</c:when>
 
-									</div>
-								</ul>
 
-								<div class="media-left">
-									<img class="user-photo"
-										src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
-								</div>
-								<div class="media-body">
-									<strong class="pull-left primary-font">green</strong><br>
-									<small class="pull-right text-muted"> <span class="">삭제</span>&ensp;
-										<span class="">댓글</span>&ensp; <a href="#" data-toggle="modal"
-										data-target="#reportModal" id="report">신고</a>&ensp;
-									</small>
-									<p>위엣분 성격 더럽게 급하시네요.</p>
-								</div>
-
-								<div class="input-group">
-									<input type="text" id="userComment"
-										class="form-control input-sm chat-input"
-										placeholder="댓글을 입력하세요" /> <span class="input-group-btn"
-										onclick="addComment()">
-										<div>
-											<a href="#" class="btn main-btn center-block" id="commentbtn"><i
-												class="fas fa-check"></i> Add Comment</a>
+								<c:otherwise>
+									<c:forEach var="noteCommList" items="${noteCommList}">
+										<div class="row">
+											<div class="col-lg-12 col-sm-12 text-left">
+												<div class="media-left">
+													<img class="user-photo"
+														src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+												</div>
+												<%-- <div class="pull-right">
+													
+												</div> --%>
+												<div class="media-body">
+													<strong class="pull-left primary-font">${noteCommList.userNick}</strong> <small> &ensp;${noteCommList.commDate}</small><br>
+													<small class="pull-right text-muted"> 
+														<span class="">삭제</span>&ensp; 
+														<span class="">댓글</span>&ensp; 
+														<a href="#" data-toggle="modal" data-target="#reportModal"
+														id="report">신고</a>&ensp;
+													</small>
+													<p>${noteCommList.commContent}</p>
+												</div>
+											</div>
 										</div>
-									</span>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
+						</ul>
+
+
+
+						<div class="input-group">
+							<input type="text" id="userComment"
+								class="form-control input-sm chat-input" placeholder="댓글을 입력하세요" />
+							<span class="input-group-btn" onclick="addComment()">
+								<div>
+									<a href="#" class="btn main-btn center-block" id="commentbtn"><i
+										class="fas fa-check"></i> Add Comment</a>
 								</div>
-
-
-							</div>
+							</span>
 						</div>
+
+
+
+
+
+
+
+
+
+
 					</div>
 				</div>
-
-				<input type="button" class="btn btn-default" data-dismiss="modal"
-					value="Close" id="empbutton" />
-				<div class="col-xs-10" id="lblstatus"></div>
 			</div>
 		</div>
+		<input type="button" class="btn btn-default"
+			data-dismiss="modal" value="Close" id="empbutton" />
+		<div class="col-xs-10" id="lblstatus"></div>
 	</div>
+</div>
+</div>
 
 </div>
 
@@ -184,5 +199,7 @@
 
 	</div>
 </div>
+
+
 
 

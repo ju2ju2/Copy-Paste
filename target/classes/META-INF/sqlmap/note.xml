@@ -10,24 +10,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="tk.copyNpaste.mapper.NoteMapper">
-<!-- 	//NoteVO
-	
-	//노트
-	//노트번호,폴더명,회원이메일,노트제목,노트내용,작성일,주제코드,참조카운트,
-	//글공개여부,스크랩,부모노트번호,신고카운트
-	private int noteNum;
-	private String folderName;
-	private String userEmail;
-	private String noteTitle;
-	private String noteContent;	
-	private Date noteDate;
-	private String subjectCode;
-	private int noteCount;
-	private int notePublic;
-	private int noteScrap;
-	private int notePNum;
-	private int noteCheck;
-	//List<String> FileName; tinymce에서 이미지를 같이 포함해서 컨텐츠로 넘김. -->
+
 
 
 		
@@ -47,16 +30,30 @@
 	
 	<!-- 노트 상세 보기(+노트 작성) -->
 	<select id="selectDetailNote" resultType="NoteVO">
-	select * from note where noteNum = #{noteNum}
+	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, u.userNick
+	from note n join users u on u.userEmail=n.userEmail where noteNum = #{noteNum};
 	</select>
+
+	<!-- 노트 댓글 보기 -->
+	<select id="selectAllNoteComm" resultType="NoteCommVO">
+	select nc.noteCommNum, nc.userEmail, nc.noteNum, nc.commDept, nc.commContent, nc.commDate, nc.noteCommPNum, u.userNick
+	from notecomm nc join users u on u.userEmail=nc.userEmail where noteNum = #{nc.noteNum};
+	</select>
+	
+	<!-- 노트 댓글 작성 -->
+
+	<!-- 노트 댓글 삭제 -->
+	
+	
+	<!-- useGeneratedKeys="true" keyProperty="dragNo" (as id붙여서) 셀렉트키 사용시 필요-->
+	<!-- 노트 등록 -->
 	
 	<!-- 노트 수정 -->
 	
 	<!-- 노트 삭제 -->
 	
-	<!-- 노트 등록 -->
 	
-	<!-- useGeneratedKeys="true" keyProperty="dragNo" (as id붙여서) 셀렉트키 사용시 필요-->
 	
 	<!-- 노트 달력 검색 -->
 	
@@ -70,15 +67,48 @@
 	
 	<!-- 스크랩노트 삭제 -->
 	
-	<!-- 노트 댓글 작성 -->
 
-	<!-- 노트 댓글 삭제 -->
 	
-	<!-- 인기글 상세보기 -->
-	<!-- 노트 정렬 -->
-	<!-- 노트 블라인드 처리 -->
-	<!-- 노트의 폴더 이동 -->
 
+
+	<!-- 노트 정렬 -->
+	
+	<!-- 노트 블라인드 처리 -->
+	
+	<!-- 노트의 폴더 이동 -->
+	
+	
+	
+	<!-- 	
+	//NoteVO
+	//노트
+	//노트번호,폴더명,회원이메일,노트제목,노트내용,작성일,주제코드,참조카운트,
+	//글공개여부,스크랩,부모노트번호,신고카운트
+	private int noteNum;
+	private String folderName;
+	private String userEmail;
+	private String noteTitle;
+	private String noteContent;	
+	private Date noteDate;
+	private String subjectCode;
+	private int noteCount;
+	private int notePublic;
+	private int noteScrap;
+	private int notePNum;
+	private int noteCheck;
+	
+	//NoteCommVO
+	//노트 댓글
+	//회원이메일,댓글번호,부모댓글번호,댓글작성일,댓글내용,댓글깊이,노트번호,
+	private int noteCommNum;
+	private String userEmail;
+	private int noteNum;
+	private int commDept;
+	private int commContent;
+	private Date commDate;
+	private int noteCommPNum;
+	-->
+	
 </mapper>
 
 

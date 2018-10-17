@@ -22,6 +22,9 @@ public interface NoteMapper {
 
 	//노트 상세 보기(+노트 작성)
 	public NoteVO selectDetailNote(int noteNum) throws Exception;
+	
+	//노트 댓글 보기
+	public List<NoteCommVO> selectAllNoteComm(int noteNum) throws Exception;
 
 	//노트 수정
 	public int updateNote(NoteVO note) throws Exception;

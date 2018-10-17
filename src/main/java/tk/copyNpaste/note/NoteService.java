@@ -42,6 +42,17 @@ public class NoteService {
 		NoteVO note =notedao.selectDetailNote(noteNum);
 		return note;
 	}
+	//노트 상세 보기(+노트 작성)
+	public List<NoteCommVO> selectAllNoteComm(int noteNum) throws Exception{
+		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
+		List<NoteCommVO> noteCommList = notedao.selectAllNoteComm(noteNum);
+		for (NoteCommVO noteComm: noteCommList ) {
+		System.out.println(noteComm.toString());
+		}
+		return noteCommList;
+		
+	}
+	
 	//노트 수정
 	public int updateNote(NoteVO note) throws Exception{
 		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
@@ -107,8 +118,15 @@ public class NoteService {
 			
 		 return notedao.moveNoteFolder(note);
 	}
+	
 
-	/*for (NoteVO note: notelist ) {
+	/*	for (NoteVO note: notelist ) {
 		System.out.println(note.getUserNick());
-		}*/
+		}
+		
+		for (NoteCommVO noteComm: noteCommList ) {
+		System.out.println(noteComm.toString());
+		}
+	
+	*/
 }

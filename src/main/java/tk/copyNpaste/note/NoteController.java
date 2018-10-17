@@ -48,8 +48,10 @@ public class NoteController {
 	// 노트 상세 보기(+노트 작성)
 	@RequestMapping(value = "noteDetail.htm")
 	public String selectDetailNote(int noteNum, Model model) throws Exception {
-		NoteVO note= noteService.selectDetailNote(noteNum);
+		NoteVO note = noteService.selectDetailNote(noteNum);
+		List<NoteCommVO> noteCommList = noteService.selectAllNoteComm(noteNum);
 		model.addAttribute("note", note);
+		model.addAttribute("noteCommList", noteCommList);
 		return "notedetail";
 	}
 
