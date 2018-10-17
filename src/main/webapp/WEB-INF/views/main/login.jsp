@@ -16,18 +16,18 @@
 			<h2 class="text-center login-title">LOGIN</h2>
 			<hr>
 			<div>
-				<c:url value="login" var="loginUrl" />
+				<c:url value="/login" var="loginUrl" />
 				<form:form class="form-signin" name="f" action="${loginUrl}"
-					method="POST">
+							method="POST">
 					<c:if test="${param.error != null}">
 						<p>아이디와 비밀번호가 잘못되었습니다.</p>
 					</c:if>
 					<c:if test="${param.logout != null}">
 						<p>로그아웃 하였습니다.</p>
 					</c:if>
-					<input type="text" id="userEmail" name="emailid"
+					<input type="text" id="userEmail" name="userEmail"
 						class="form-control" placeholder="Email" required autofocus />
-					<input type="password" id="userPwd" name="password"
+					<input type="password" id="userPwd" name="userPwd"
 						class="form-control" placeholder="Password" required />
 					<button class="btn btn-lg btn-danger btn-block" type="submit">로그인</button>
 					<hr>
@@ -57,7 +57,7 @@
 
 
 <!-- Modal HTML -->
-<div id="modal-tempPassword" class="modal fade text-center"
+<%-- <div id="modal-tempPassword" class="modal fade text-center"
 	tabindex="-1" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -92,6 +92,4 @@
 		</div>
 	</div>
 </div>
-
-
-
+ --%>
