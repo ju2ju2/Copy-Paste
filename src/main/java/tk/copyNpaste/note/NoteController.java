@@ -7,17 +7,16 @@
 
 package tk.copyNpaste.note;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import tk.copyNpaste.mapper.NoteMapper;
+import tk.copyNpaste.folder.FolderService;
+import tk.copyNpaste.vo.FolderVO;
 import tk.copyNpaste.vo.NoteCommVO;
 import tk.copyNpaste.vo.NoteVO;
 
@@ -29,6 +28,9 @@ public class NoteController {
 
 	@Autowired
 	NoteService noteService;
+	
+	@Autowired
+	FolderService folderService;
 
 	// 노트 작성페이지로 이동
 	@RequestMapping("write.htm")
@@ -37,11 +39,13 @@ public class NoteController {
 	}
 
 
-	// 노트 목록 보기
+	// 노트 목록 보기+폴더 목록 조회
 	@RequestMapping(value = "note.htm")
 	public String selectAllNote(Model model) throws Exception {
 		List<NoteVO> noteList = noteService.selectAllNote();
+		List<FolderVO> folderList = folderService.selectAllFolder();
 		model.addAttribute("noteList", noteList);
+		model.addAttribute("folderList", folderList);
 		return "note.list";
 	}
 

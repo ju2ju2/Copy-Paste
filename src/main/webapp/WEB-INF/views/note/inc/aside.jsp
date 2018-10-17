@@ -132,6 +132,7 @@ $('#Addfolder').click(function(){
 							a += "<i class='far fa-bookmark icon-size' style='margin-left:11px;'></i>";
 							a += "</div></div>"; 
 						$('#scrap').append(a);
+						 location.reload(); 
 			       
 			    },
 			    error : function(){

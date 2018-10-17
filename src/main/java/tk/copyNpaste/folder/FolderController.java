@@ -33,28 +33,19 @@ public class FolderController {
 	FolderService folderService; 
 
 	//폴더 목록 조회
-	@RequestMapping(value="/note/note.htm",method = RequestMethod.GET)
+	/*@RequestMapping(value="/note/note.htm",method = RequestMethod.GET)
 	public String selectAllFolder(Model model) throws Exception {
 		List<FolderVO> folderList= new ArrayList<FolderVO>(); 
 		folderList = folderService.selectAllFolder();
 		model.addAttribute("folderList", folderList);
 		return "note.list";
-	};
+	};*/
 	
 	//폴더 추가
 	@RequestMapping(value="/folder/insertfolder.json",method = RequestMethod.POST)
 	public String insertFolder(FolderVO folder) throws Exception {
-		System.out.println("folder : " + folder);
-		int result;
-		String viewpage="";
-		result = folderService.insertFolder(folder);
-		System.out.println("");
-		if(result>0) {
-			System.out.println("폴더 추가 성공");
-			
-		}else {
-			System.out.println("폴더 추가 실패");
-		}
+
+		int result = folderService.insertFolder(folder);
 		return "note.list";
 	};
 		
