@@ -1,5 +1,5 @@
 /*
-* @Class : LoginService
+ * @Class : LoginService
 * @ Date : 2018.10.05
 * @ Author : 이주원
 * @ Desc : Login 위한것, 스프링 사용으로 직접 로그인 하지않고 아마도 성공시 처리할 서비스
@@ -12,20 +12,24 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import tk.copyNpaste.mapper.FolderMapper;
 import tk.copyNpaste.mapper.MemberMapper;
 import tk.copyNpaste.vo.MemberVO;
 
 @Controller
-@RequestMapping(value = "/member")
+/*@RequestMapping(value = "/member")*/
 public class LoginService {
 	 @Autowired
 	 private SqlSession sqlsession;
 	 
 	//로그인
+	 @RequestMapping(value = "/login", method = RequestMethod.POST)
 	public MemberVO login(MemberVO member) throws Exception{
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
+		System.out.println("서비스 들어오니");
+		System.out.println(member);
 		return memberdao.login(member);
 	}
 	
