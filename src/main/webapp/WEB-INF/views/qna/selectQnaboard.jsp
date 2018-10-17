@@ -12,7 +12,9 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 <script>
 $(document).ready(function() {
-    $('#table_id').DataTable();
+    $('#table_id').DataTable({
+    	"order": false
+    });
 } );
 </script>
 <section id="content">
@@ -28,16 +30,15 @@ $(document).ready(function() {
         </tr>
     </thead>
     <tbody>
-    	<c:forEach var="qnaList" items="${qnaList}">
-    		<c:if test="${qnaList.qnaDept eq 0}">
-    			<tr>
-					<td>${qnaList.qnaNum}</td>
-					<td><a href="${pageContext.request.contextPath}/qna/selectDetailQna.htm?qnaNum=${qnaList.qnaNum}">${qnaList.qnaTitle}</a></td>
-					<td>${qnaList.userEmail}</td>
-					<td>${qnaList.qnaDate}</td>
-				</tr>
-    		</c:if>
-    	</c:forEach>
+    	<c:forEach var="qna" items="${qnaList}" >
+    		<tr>
+				<td>${qna.qnaNum}</td>
+				<td><a href="${pageContext.request.contextPath}/qna/selectDetailQna.htm?qnaNum=${qna.qnaNum}">${qna.qnaTitle}</a></td>
+				<td>${qna.userNick}</td>
+				<td>${qna.qnaDate}</td>
+			</tr>
+    	 </c:forEach> 
+    	
     </tbody>
 </table>
 	<a href="" class="btn main-btn" id="qnaboard_btn_list" role="button">목록</a>

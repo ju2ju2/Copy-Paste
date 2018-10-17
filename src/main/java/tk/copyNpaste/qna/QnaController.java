@@ -38,7 +38,7 @@ public class QnaController {
 		List<QnaVO> qnaList= new ArrayList<QnaVO>(); 
 		qnaList = qnaService.selectAllQna();
 		model.addAttribute("qnaList",qnaList);
-	 
+
 		return "qna.selectQnaboard";
 	}
 	

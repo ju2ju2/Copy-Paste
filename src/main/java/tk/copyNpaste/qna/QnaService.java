@@ -44,7 +44,7 @@ public class QnaService {
 	//QNA 게시물 상세보기
 	public QnaVO selectDetailQna(int qnaNum) throws Exception{
 		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
-		
+
 		return qnadao.selectDetailQna(qnaNum);
 	};
 	

@@ -6,11 +6,10 @@
 */
 package tk.copyNpaste.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class QnaVO {
 	//QnaVO
-	
 	//QNA 게시판
 	//QnA번호,회원이메일,QnA제목,QnA내용,QnA작성일,답글깊이,부모qna번호,공지글여부,비밀글여부
 	private int qnaNum;
@@ -22,9 +21,23 @@ public class QnaVO {
 	private int qnaPNum;
 	private int qnaNotice;
 	private int qnaSecret;
+	private int qnaPos;
+	//join시 필요에의해 생성
+	private String userNick;
 
 	
-	
+	public int getQnaPos() {
+		return qnaPos;
+	}
+	public void setQnaPos(int qnaPos) {
+		this.qnaPos = qnaPos;
+	}	
+	public String getUserNick() {
+		return userNick;
+	}
+	public void setUserNick(String userNick) {
+		this.userNick = userNick;
+	}
 	public int getQnaNum() {
 		return qnaNum;
 	}
