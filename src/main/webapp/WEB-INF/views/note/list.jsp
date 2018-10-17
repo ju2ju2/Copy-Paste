@@ -23,7 +23,7 @@
 				<div class="text-center">
 					<!-- a HTML (to Trigger Modal) -->
 					<a data-toggle="modal"
-						href="${pageContext.request.contextPath}/note/noteDetail.htm?l_number=${noteList.noteNum}"
+						href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum=${noteList.noteNum}"
 						data-target="#modal-testNew" role="button" data-backdrop="static">
 						<div class="item">
 							<img class="img-rounded"

@@ -30,12 +30,17 @@
 	//List<String> FileName; tinymce에서 이미지를 같이 포함해서 컨텐츠로 넘김. -->
 
 
-	<!-- 노트의 폴더 이동 -->
-
+		
+	<!--주제별 상위노트 목록 보기 -->
+	<select id="selectTopNote" resultType="NoteVO">
+	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, u.userNick
+	from note n join users u on u.userEmail=n.userEmail limit 4;
+	</select>
 
 	<!-- 노트 목록 보기 -->
 	<select id="selectAllNote" resultType="NoteVO">
-	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, DATE_FORMAT(n.noteDate, '%Y%m%d') noteDate,
+	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
 	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, u.userNick
 	from note n join users u on u.userEmail=n.userEmail;
 	</select>
@@ -72,7 +77,7 @@
 	<!-- 인기글 상세보기 -->
 	<!-- 노트 정렬 -->
 	<!-- 노트 블라인드 처리 -->
-
+	<!-- 노트의 폴더 이동 -->
 
 </mapper>
 

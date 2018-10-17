@@ -8,6 +8,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 
 <!-- banner start -->
@@ -42,112 +43,49 @@
 
 <div class="jumbotron">
 	<div class="container text-center">
-		<center>
+		<div>
 			<div class="weatherApi">
 				<div class="circle"></div>
 				<!-- 날씨 API 영역 -->
 				<div class="temper"></div>
 			</div>
-		</center>
+		</div>
 	</div>
 </div>
 
-<div class="container bg-3">
+<div class="container">
 	<div>
 		<h3>주제1</h3>
 	</div>
 	<br>
 	<div class="row">
-		<div class="col-xs-6 col-sm-3 col-md-3">
-			<div class="text-center">
-				<!-- a HTML (to Trigger Modal) -->
-				<a data-toggle="modal"
-					href="${pageContext.request.contextPath}/note/noteDetail.htm"
-					data-target="#modal-testNew" role="button" data-backdrop="static">
-					<div class="item">
-						<img class="img-rounded"
-							src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-							alt="" width="100%">
-						<div class="caption">
-							<i class="fa fa-plus" aria-hidden="true"></i>
+		<c:forEach var="noteList" items="${noteList}">
+			<div class="col-xs-6 col-md-3">
+				<div class="text-center">
+					<!-- a HTML (to Trigger Modal) -->
+					<a data-toggle="modal"
+						href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum=${noteList.noteNum}"
+						data-target="#modal-testNew" role="button" data-backdrop="static">
+						<div class="item">
+							<img class="img-rounded"
+								src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
+								alt="${noteList.noteTitle}" width="100%">
+							<div class="caption">
+								<i class="fa fa-plus" aria-hidden="true"></i>
+							</div>
 						</div>
-					</div>
-					<div>
-						<h4>가을에 쓴 편지</h4>
-						<span>음담패썰</span> <span>2018.08.30</span>
-					</div>
-				</a>
-			</div>
-		</div>
-
-
-		<div class="col-xs-6 col-sm-3 col-md-3">
-			<div class="text-center">
-				<!-- a HTML (to Trigger Modal) -->
-				<a data-toggle="modal"
-					href="${pageContext.request.contextPath}/note/noteDetail.htm"
-					data-target="#modal-testNew" role="button" data-backdrop="static">
-					<div class="item">
-						<img class="img-rounded"
-							src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-							alt="" width="100%">
-						<div class="caption">
-							<i class="fa fa-plus" aria-hidden="true"></i>
+						<div>
+							<h4>${noteList.noteTitle}</h4>
+							<strong>${noteList.userNick}</strong> <span>${noteList.noteDate}</span>
 						</div>
-					</div>
-					<div>
-						<h4>가을에 쓴 편지</h4>
-						<span>음담패썰</span> <span>2018.08.30</span>
-					</div>
-				</a>
+					</a>
+				</div>
 			</div>
-
-		</div>
-		<div class="col-xs-6 col-sm-3 col-md-3">
-			<div class="text-center">
-				<!-- a HTML (to Trigger Modal) -->
-				<a data-toggle="modal"
-					href="${pageContext.request.contextPath}/note/noteDetail.htm"
-					data-target="#modal-testNew" role="button" data-backdrop="static">
-					<div class="item">
-						<img class=" img-rounded"
-							src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-							alt="" width="100%">
-						<div class="caption">
-							<i class="fa fa-plus" aria-hidden="true"></i>
-						</div>
-					</div>
-					<div>
-						<h4>가을에 쓴 편지</h4>
-						<span>음담패썰</span> <span>2018.08.30</span>
-					</div>
-				</a>
-			</div>
-
-			
-		</div>
-		<div class="col-xs-6 col-sm-3 col-md-3">
-			<div class="text-center">
-				<!-- a HTML (to Trigger Modal) -->
-				<a data-toggle="modal"
-					href="${pageContext.request.contextPath}/note/noteDetail.htm"
-					data-target="#modal-testNew" role="button" data-backdrop="static">
-					<div class="item">
-						<img class="img-rounded"
-							src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-							alt="" width="100%">
-						<div class="caption">
-							<i class="fa fa-plus" aria-hidden="true"></i>
-						</div>
-					</div>
-					<div>
-						<h4>가을에 쓴 편지</h4>
-						<span>음담패썰</span> <span>2018.08.30</span>
-					</div>
-				</a>
-			</div>
-		</div>
+		</c:forEach>
 	</div>
+
+</div>
+</div>
 </div>
 <br>
 

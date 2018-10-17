@@ -6,7 +6,7 @@
 */
 package tk.copyNpaste.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class NoteVO {
 	//NoteVO
@@ -20,7 +20,7 @@ public class NoteVO {
 	private String userNick;
 	private String noteTitle;
 	private String noteContent;	
-	private String noteDate;
+	private Date noteDate;
 	private String subjectCode;
 	private int noteCount;
 	private int notePublic;
@@ -66,10 +66,10 @@ public class NoteVO {
 	public void setNoteContent(String noteContent) {
 		this.noteContent = noteContent;
 	}
-	public String getNoteDate() {
+	public Date getNoteDate() {
 		return noteDate;
 	}
-	public void setNoteDate(String noteDate) {
+	public void setNoteDate(Date noteDate) {
 		this.noteDate = noteDate;
 	}
 	public String getSubjectCode() {

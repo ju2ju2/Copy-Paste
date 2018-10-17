@@ -30,16 +30,12 @@ public class NoteController {
 	@Autowired
 	NoteService noteService;
 
-	// 노트 페이지로 이동(2018.10.10. 고은아 추가)
+	// 노트 작성페이지로 이동
 	@RequestMapping("write.htm")
-	public String insertNotePage() throws Exception {
+	public String writeNotePage() throws Exception {
 		return "write.insertNote";
 	}
 
-	// 노트의 폴더 이동
-	public int moveNoteFolder(NoteVO note) throws Exception {
-		return noteService.moveNoteFolder(note);
-	}
 
 	// 노트 목록 보기
 	@RequestMapping(value = "note.htm")
@@ -51,8 +47,9 @@ public class NoteController {
 
 	// 노트 상세 보기(+노트 작성)
 	@RequestMapping(value = "noteDetail.htm")
-	public String selectDetailNote(/*int noteNum*/) throws Exception {
-		/*NoteVO note= noteService.selectDetailNote(noteNum); */
+	public String selectDetailNote(int noteNum, Model model) throws Exception {
+		NoteVO note= noteService.selectDetailNote(noteNum);
+		model.addAttribute("note", note);
 		return "notedetail";
 	}
 
@@ -132,4 +129,8 @@ public class NoteController {
 		return null;
 	}
 
+	// 노트의 폴더 이동
+	public int moveNoteFolder(NoteVO note) throws Exception {
+		return noteService.moveNoteFolder(note);
+	}
 }
