@@ -709,4 +709,11 @@ img .user-photo{
 
 
 
-.modal{top:100px;}	
+.modal{
+	top:100px;
+}	
+
+#reportModal{
+	top:0px;
+	/* width:100%; */
+}

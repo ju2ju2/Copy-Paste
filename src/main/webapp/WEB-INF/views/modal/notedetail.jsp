@@ -29,7 +29,106 @@
 		});
 	})
 </script>
+<!-- modal-header -->
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal">&times;</button>
+	<br>
+	<h2 class="modal-title">${note.noteTitle}</h2>
+	<div class="row">
+		<div class="col-xs-6" />
+		<div class="col-xs-6">
+			<strong>${note.userNick}</strong>&nbsp;&nbsp;${note.noteDate}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-6" />
+		<div class="col-xs-6"></div>
+	</div>
+</div>
+<!-- modal-body-->
+<div class="modal-body">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div class="row">
+				<div class="text-right col-sm-1" />
+				<!-- 본문 -->
+				<div class="text-left col-sm-10">${note.noteContent}</div>
+				<div class="row">
+					<br> <br> <br> <br>
+					<div class="col-sm-9"></div>
+					<div class="col-sm-3">
+						<strong> <a href=""><i
+								class="far fa-edit 3x notewrite"></i> &nbsp;</a> <a href=""><i
+								class="fas fa-arrow-down"></i> &nbsp;</a> <a href=""><i
+								class="fas fa-trash"></i> &nbsp;</a> <a href=""><i
+								class="fas fa-archive"></i></strong></a>
+					</div>
+				</div>
 
+			</div>
+			<!-- modal-footer-->
+			<div class="modal-footer">
+				<div class="panel-footer">
+					<div class="row">
+						<div class="col-lg-12 col-sm-12 text-left">
+							<div class="comment-box">
+								<ul data-brackets-id="12674" id="sortable"
+									class="list-unstyled ui-sortable">
+									<div class="media-left">
+										<img class="user-photo"
+											src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+									</div>
+									<div class="media-body">
+										<strong class="pull-left primary-font">blueblue</strong><br>
+										<small class="pull-right text-muted"> <span class="">삭제</span>&ensp;
+											<span class="">댓글</span>&ensp; <a href="#"
+											data-toggle="modal" data-target="#reportModal" id="report">신고</a>&ensp;
+										</small>
+										<p>운영자 일 안하십니까? 답변 안하시냐구요. 지금 질문한지 7분 13초나 지났는데 아직도 답변
+											안주시네요. 사이트 폭망하시길 기원합니다.</p>
+
+									</div>
+								</ul>
+
+								<div class="media-left">
+									<img class="user-photo"
+										src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+								</div>
+								<div class="media-body">
+									<strong class="pull-left primary-font">green</strong><br>
+									<small class="pull-right text-muted"> <span class="">삭제</span>&ensp;
+										<span class="">댓글</span>&ensp; <a href="#" data-toggle="modal"
+										data-target="#reportModal" id="report">신고</a>&ensp;
+									</small>
+									<p>위엣분 성격 더럽게 급하시네요.</p>
+								</div>
+
+								<div class="input-group">
+									<input type="text" id="userComment"
+										class="form-control input-sm chat-input"
+										placeholder="댓글을 입력하세요" /> <span class="input-group-btn"
+										onclick="addComment()">
+										<div>
+											<a href="#" class="btn main-btn center-block" id="commentbtn"><i
+												class="fas fa-check"></i> Add Comment</a>
+										</div>
+									</span>
+								</div>
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<input type="button" class="btn btn-default" data-dismiss="modal"
+					value="Close" id="empbutton" />
+				<div class="col-xs-10" id="lblstatus"></div>
+			</div>
+		</div>
+	</div>
+
+</div>
 
 
 <!-- 댓글 신고 Modal -->
@@ -47,9 +146,7 @@
 				</p>
 				<p style="width: 300px; padding-top: 10px;">
 					<strong>작성내용</strong>
-				<div>운영자 이 xxxx xx야 너를 xxxx해서 운영자의 하느님이 주신 용돈을 내가 취하고 싶다. 이
-					xxxx야. 사이트 운영을 개떡대가리같이 하는구나. 어떻게 7분 31초가 지나도록 댓글을 안 달 수가 있냐. 그래놓고도
-					니가 운영자냐.</div>
+				<div>운영자 이 xxxx xx야 너를 xxxx해서 운영자의 하느님이 주신 용돈을 내가 취하고 싶다.</div>
 				</p>
 				<p style="padding-top: 10px;">
 					<strong>신고 사유</strong>&ensp; <select name="cause-category"
@@ -66,7 +163,7 @@
 				<p style="padding-top: 10px;">
 					<strong>신고 사유 상세</strong>
 				</p>
-				<textarea rows="8" class="form-control textarea"
+				<textarea rows="5" class="form-control textarea"
 					placeholder="신고 사유를 입력하세요"></textarea>
 				<br>
 				<p align="center">
@@ -89,105 +186,3 @@
 </div>
 
 
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal">&times;</button>
-		<br>
-		<h2 class="modal-title">${note.noteTitle}</h2>
-		<div class="row">
-			<div class="col-xs-6" />
-			<div class="col-xs-6">
-				<strong>${note.userNick}</strong>&nbsp;&nbsp;${note.noteDate}
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-6" />
-			<div class="col-xs-6"></div>
-		</div>
-	</div>
-	<div class="modal-body">
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<div class="row">
-					<div class="text-right col-sm-1" />
-					<!-- 본문 -->
-					<div class="text-left col-sm-10">${note.noteContent}</div>
-					<div class="row">
-						<br>
-						<br>
-						<br>
-						<br>
-						<div class="col-sm-9"></div>
-						<div class="col-sm-3">
-							<strong> <a href=""><i
-									class="far fa-edit 3x notewrite"></i> &nbsp;</a> <a href=""><i
-									class="fas fa-arrow-down"></i> &nbsp;</a> <a href=""><i
-									class="fas fa-trash"></i> &nbsp;</a> <a href=""><i
-									class="fas fa-archive"></i></strong></a>
-						</div>
-					</div>
-
-				</div>
-
-				<div class="modal-footer">
-					<div class="panel-footer">
-						<div class="row">
-							<div class="col-lg-12 col-sm-12 text-left">
-								<div class="comment-box">
-									<ul data-brackets-id="12674" id="sortable"
-										class="list-unstyled ui-sortable">
-										<div class="media-left">
-											<img class="user-photo"
-												src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
-										</div>
-										<div class="media-body">
-											<strong class="pull-left primary-font">blueblue</strong><br>
-											<small class="pull-right text-muted"> <span class="">삭제</span>&ensp;
-												<span class="">댓글</span>&ensp; <a href="#"
-												data-toggle="modal" data-target="#reportModal" id="report">신고</a>&ensp;
-											</small>
-											<p>운영자 일 안하십니까? 답변 안하시냐구요. 지금 질문한지 7분 13초나 지났는데 아직도 답변
-												안주시네요. 사이트 폭망하시길 기원합니다.</p>
-
-										</div>
-									</ul>
-
-									<div class="media-left">
-										<img class="user-photo"
-											src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
-									</div>
-									<div class="media-body">
-										<strong class="pull-left primary-font">green</strong><br>
-										<small class="pull-right text-muted"> <span class="">삭제</span>&ensp;
-											<span class="">댓글</span>&ensp; <a href="#"
-											data-toggle="modal" data-target="#reportModal" id="report">신고</a>&ensp;
-										</small>
-										<p>위엣분 성격 더럽게 급하시네요.</p>
-									</div>
-
-									<div class="input-group">
-										<input type="text" id="userComment"
-											class="form-control input-sm chat-input"
-											placeholder="댓글을 입력하세요" /> <span class="input-group-btn"
-											onclick="addComment()">
-											<div>
-												<a href="#" class="btn main-btn center-block"
-													id="commentbtn"><i class="fas fa-check"></i> Add
-													Comment</a>
-											</div>
-										</span>
-									</div>
-
-
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<input type="button" class="btn btn-default" data-dismiss="modal"
-						value="Close" id="empbutton" />
-					<div class="col-xs-10" id="lblstatus"></div>
-				</div>
-			</div>
-		</div>
-
-	</div>

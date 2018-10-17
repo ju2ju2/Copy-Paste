@@ -10,7 +10,12 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+<script>
 
+
+
+
+</script>
 <!-- banner start -->
 <!-- ================ -->
 <div id="banner" class="banner">
