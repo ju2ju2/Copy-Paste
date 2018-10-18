@@ -3,6 +3,11 @@
 * @ Date : 2018.10.05
 * @ Author : 이주원
 * @ Desc : FolderMapper 사용, 서비스처리.
+* 
+* @Class : FolderService
+* @ Date : 2018.10.18
+* @ Author : 임효진
+* @ Desc : 회원가입 시 미분류/스크랩 폴더 생성 
 */
 package tk.copyNpaste.folder;
 
@@ -58,8 +63,18 @@ public class FolderService {
 		FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
 		return folderdao.removeDefaultFolder(folderName, userEmail);
 	}
-
-
-
+	
+	//회원 가입 시 기본폴더 추가
+	public int insertFolderUserDefault(String userEmail) throws Exception {
+		FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
+		return folderdao.insertFolderUserDefault(userEmail);
+	}
+	
+	
+	//회원 가입 시 스크랩 폴더 추가
+	public int insertFolderUserScrap(String userEmail) throws Exception {
+		FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
+		return folderdao.insertFolderUserScrap(userEmail);
+	}
 	
 }

@@ -28,8 +28,6 @@ public class LoginService {
 	 @RequestMapping(value = "/login", method = RequestMethod.POST)
 	public MemberVO login(MemberVO member) throws Exception{
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
-		System.out.println("서비스 들어오니");
-		System.out.println(member);
 		return memberdao.login(member);
 	}
 	
