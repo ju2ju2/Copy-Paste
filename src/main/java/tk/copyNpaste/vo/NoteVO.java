@@ -6,8 +6,7 @@
 */
 package tk.copyNpaste.vo;
 
-import java.util.Date;
-import java.util.List;
+import java.sql.Date;
 
 public class NoteVO {
 	//NoteVO
@@ -18,17 +17,26 @@ public class NoteVO {
 	private int noteNum;
 	private String folderName;
 	private String userEmail;
+	private String userNick;
 	private String noteTitle;
 	private String noteContent;	
 	private Date noteDate;
 	private String subjectCode;
+	private String subjectName;
 	private int noteCount;
 	private int notePublic;
-	private int notescrap;
+	private int noteScrap;
 	private int notePNum;
-	private int noteCheck;
+
+	
 	//List<String> FileName; tinymce에서 이미지를 같이 포함해서 컨텐츠로 넘김.
 	
+	public String getUserNick() {
+		return userNick;
+	}
+	public void setUserNick(String userNick) {
+		this.userNick = userNick;
+	}
 	public int getNoteNum() {
 		return noteNum;
 	}
@@ -71,6 +79,12 @@ public class NoteVO {
 	public void setSubjectCode(String subjectCode) {
 		this.subjectCode = subjectCode;
 	}
+	public String getSubjectName() {
+		return subjectName;
+	}
+	public void setSubjectName(String subjectName) {
+		this.subjectName = subjectName;
+	}
 	public int getNoteCount() {
 		return noteCount;
 	}
@@ -83,11 +97,11 @@ public class NoteVO {
 	public void setNotePublic(int notePublic) {
 		this.notePublic = notePublic;
 	}
-	public int getNotescrap() {
-		return notescrap;
+	public int getNoteScrap() {
+		return noteScrap;
 	}
-	public void setNotescrap(int notescrap) {
-		this.notescrap = notescrap;
+	public void setNoteScrap(int notescrap) {
+		this.noteScrap = notescrap;
 	}
 	public int getNotePNum() {
 		return notePNum;
@@ -95,12 +109,7 @@ public class NoteVO {
 	public void setNotePNum(int notePNum) {
 		this.notePNum = notePNum;
 	}
-	public int getNoteCheck() {
-		return noteCheck;
-	}
-	public void setNoteCheck(int noteCheck) {
-		this.noteCheck = noteCheck;
-	}
+
 
 	
 	

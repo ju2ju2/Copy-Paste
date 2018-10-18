@@ -14,14 +14,17 @@ import tk.copyNpaste.vo.NoteVO;
 
 public interface NoteMapper {
 	
-	//노트의 폴더 이동
-	public int moveNoteFolder(NoteVO note) throws Exception;
+	//주제별 상위노트보기
+	public List<NoteVO> selectTopNote() throws Exception;
 	
 	//노트 목록 보기
-	public List<NoteVO> selectAllNote() throws Exception;
+	public List<NoteVO> selectAllNote(String userEmail) throws Exception;
 
 	//노트 상세 보기(+노트 작성)
 	public NoteVO selectDetailNote(int noteNum) throws Exception;
+	
+	//노트 댓글 보기
+	public List<NoteCommVO> selectAllNoteComm(int noteNum) throws Exception;
 
 	//노트 수정
 	public int updateNote(NoteVO note) throws Exception;
@@ -29,8 +32,11 @@ public interface NoteMapper {
 	//노트 삭제
 	public int deleteNote(int noteNum) throws Exception;
 
-	//노트 등록
+	//노트 작성
 	public int insertNote(NoteVO note) throws Exception;
+	
+	//노트 주제 조회
+	public List<NoteVO> selectSubjectCode() throws Exception;
 	
 	//노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws Exception;
 	public List<NoteVO> selectByCalNote(Date period) throws Exception;
@@ -65,5 +71,9 @@ public interface NoteMapper {
 	//노트 블라인드 처리
 	public List<NoteVO> dd() throws Exception;
 	
+	//노트의 폴더 이동
+	public int moveNoteFolder(NoteVO note) throws Exception;
 
+
+		
 }

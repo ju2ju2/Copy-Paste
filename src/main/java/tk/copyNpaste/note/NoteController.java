@@ -7,17 +7,22 @@
 
 package tk.copyNpaste.note;
 
-import java.util.ArrayList;
+import java.io.PrintWriter;
+import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import tk.copyNpaste.mapper.NoteMapper;
+import tk.copyNpaste.folder.FolderService;
+import tk.copyNpaste.vo.FolderVO;
 import tk.copyNpaste.vo.NoteCommVO;
 import tk.copyNpaste.vo.NoteVO;
 
@@ -29,47 +34,76 @@ public class NoteController {
 
 	@Autowired
 	NoteService noteService;
+	
+	@Autowired
+	FolderService folderService;
 
-	// 노트 페이지로 이동(2018.10.10. 고은아 추가)
-	@RequestMapping("write.htm")
-	public String insertNotePage() throws Exception {
 
-		return "write.insertNote";
-	}
 
-	// 노트의 폴더 이동
-	public int moveNoteFolder(NoteVO note) throws Exception {
-		return noteService.moveNoteFolder(note);
-	}
-
-	// 노트 목록 보기
+	// 회원의 노트 목록 보기+폴더 목록 조회
 	@RequestMapping(value = "note.htm")
-	public String selectAllNote(Model model) throws Exception {
-		List<NoteVO> list = noteService.selectAllNote();
-		model.addAttribute("list", list);
+	public String selectAllNote(Model model, Principal principal) throws Exception {
+		List<NoteVO> noteList = noteService.selectAllNote(principal.getName());
+		List<FolderVO> folderList = folderService.selectAllFolder(principal.getName());
+		model.addAttribute("noteList", noteList);
+		model.addAttribute("folderList", folderList);
+		
+		
 		return "note.list";
 	}
 
 	// 노트 상세 보기(+노트 작성)
 	@RequestMapping(value = "noteDetail.htm")
-	public String selectDetailNote(/* int noteNum */) throws Exception {
-		/* NoteVO note= noteService.selectDetailNote(noteNum); */
-		return "notedetail";
+	public String selectDetailNote(int noteNum, Model model) throws Exception {
+		NoteVO note = noteService.selectDetailNote(noteNum);
+		List<NoteCommVO> noteCommList = noteService.selectAllNoteComm(noteNum);
+		model.addAttribute("note", note);
+		model.addAttribute("noteCommList", noteCommList);
+		return "notedetail";//(modal/notedetail.jsp)
 	}
 
+	
+	// 노트 작성페이지로 이동
+	@RequestMapping(value="write.htm",method = RequestMethod.GET)
+	public String writeNotePage() throws Exception {
+		return "write.insertNote";
+	}
+	
+	// 노트 작성 
+	@RequestMapping(value="write.htm",method = RequestMethod.POST)
+	public void insertNote(Model model, NoteVO note,Principal principal, HttpServletResponse response) throws Exception {
+		note.setUserEmail(principal.getName());
+		note.setSubjectCode(note.getSubjectCode());
+		note.setFolderName(note.getFolderName());
+		int result =noteService.insertNote(note);
+		model.addAttribute("result", result);//1일때 등록성공, 0일때 등록실패
+		if(result > 0) {
+	      response.setContentType("text/html");
+	      response.setCharacterEncoding("UTF-8");
+	      PrintWriter writer = response.getWriter();
+	       writer.write("<script>alert('등록 성공'); location.href='../note/note.htm';</script>");
+	       writer.flush();						 //노트 작성 후 노트 리스트로 이동.
+	       writer.close();
+	    }
+	}
+	
+	// 노트 주제 검색 
+	@RequestMapping(value="selectSubjectCode.json")
+	public @ResponseBody List<NoteVO> selectSubjectCode() throws Exception {
+		List<NoteVO> note = noteService.selectSubjectCode();
+		return note;
+	}
+	
+	
 	// 노트 수정
 	public int updateNote(NoteVO note) throws Exception {
 		return noteService.updateNote(note);
 	}
 
 	// 노트 삭제
-	public int deleteNote(int noteNum) throws Exception {
+	@RequestMapping(value="deleteNote.json")
+	public @ResponseBody int deleteNote(int noteNum) throws Exception {
 		return noteService.deleteNote(noteNum);
-	}
-
-	// 노트 등록
-	public int insertNote(NoteVO note) throws Exception {
-		return noteService.insertNote(note);
 	}
 
 	// 노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws
@@ -103,10 +137,11 @@ public class NoteController {
 		return noteService.removeScrapNote(userEmail);
 	}
 
-	// 노트 댓글 작성
-	public int insertNoteComm(NoteCommVO note) throws Exception {
-		return noteService.insertNoteComm(note);
-	}
+	// 노트 댓글 작성-비동기
+		public void insertNoteComm(NoteCommVO note, Principal principal) throws Exception {
+			note.setUserEmail(principal.getName());//로그인한 사용자 ID
+			noteService.insertNoteComm(note);
+		}
 
 	// 노트 댓글 삭제
 	public int deleteNoteComm(int noteCommNum) throws Exception {
@@ -133,4 +168,8 @@ public class NoteController {
 		return null;
 	}
 
+	// 노트의 폴더 이동
+	public int moveNoteFolder(NoteVO note) throws Exception {
+		return noteService.moveNoteFolder(note);
+	}
 }

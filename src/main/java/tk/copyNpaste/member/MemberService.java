@@ -37,14 +37,12 @@ public class MemberService {
 		return memberdao.checkUserNick(userNick);
 	};
 	
-	//회원가입 + 회원가입시 미분류,스크랩 폴더 부여
+	//회원가입
 	public int insertMember(MemberVO member) throws Exception{
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
 		return memberdao.insertMember(member);
 	}
 	
-
-		
 	//회원 정보 보기
 	public List<MemberVO> selectAllMember() throws Exception{
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);

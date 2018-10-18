@@ -11,8 +11,25 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="tk.copyNpaste.mapper.FolderMapper">
+	<select id="selectAllFolder" resultType="FolderVO" >
+		select folderName from folder where userEmail = #{userEmail} order by defaultFolder desc;
+	</select>
 
+	<insert id="insertFolder" parameterType="FolderVO">
+		insert into folder(userEmail, folderName, defaultFolder, candelete)
+  		values (#{userEmail}, #{folderName}, 0, 1) ;
+	</insert>
 
+	<insert id="insertFolderUserDefault" parameterType="FolderVO">
+		insert into folder(userEmail, folderName, defaultFolder, candelete)
+ 		values (#{userEmail}, '미분류', 1, 1);
+	</insert>
+
+	<insert id="insertFolderUserScrap" parameterType="FolderVO">
+		insert into folder(userEmail, folderName, defaultFolder, candelete)
+  		values (#{userEmail}, '스크랩', 0, 1);
+	</insert>
+	
 </mapper>
 
 

@@ -7,10 +7,17 @@
 
 package tk.copyNpaste.folder;
 
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import tk.copyNpaste.vo.FolderVO;
 
@@ -20,16 +27,25 @@ import tk.copyNpaste.vo.FolderVO;
 @Controller
 @RequestMapping(value = "/folder")
 public class FolderController {
-	 @Autowired
+	@Autowired
+	private SqlSession sqlsession; 
+	
+	@Autowired
 	FolderService folderService; 
 
-	//폴더 목록 
-	public void selectAllFolder() throws Exception {
-		folderService.selectAllFolder();
+	//비동기 폴더 목록 조회
+	@RequestMapping(value="/selectAllFolder.json")
+	public @ResponseBody List<FolderVO> selectAllFolder(Model model,Principal principal) throws Exception {
+		List<FolderVO> folderList= new ArrayList<FolderVO>(); 
+		folderList = folderService.selectAllFolder(principal.getName());
+		model.addAttribute("folderList", folderList);
+		return folderList;
 	};
 	
 	//폴더 추가
-	public void insertFolder(FolderVO folder) throws Exception {
+	@RequestMapping(value="/insertfolder.json")
+	public @ResponseBody void insertFolder(FolderVO folder, Principal principal) throws Exception {
+		folder.setUserEmail(principal.getName());
 		folderService.insertFolder(folder);
 	};
 		

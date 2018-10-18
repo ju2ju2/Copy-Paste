@@ -8,17 +8,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 <script>
 $(document).ready(function() {
-    $('#table_id').DataTable();
+    $('#table_id').DataTable({
+    	"order": false
+    });
 } );
 </script>
 <section id="content">
 	<div class="container">
-	${qnaData}
-	<%-- <table id="table_id" class="display">
+	<%-- ${qnaList} --%>
+	<table id="table_id" class="hover">
     <thead>
         <tr>
             <td>No.</td>
@@ -28,18 +30,21 @@ $(document).ready(function() {
         </tr>
     </thead>
     <tbody>
-    	<c:forEach var="data" items="${qnaData}">
-    		<c:if test="${data.qnaDept eq 0}">
-    			<tr>
-					<td>${data.qnaNum}</td>
-					<td><a href="${pageContext.request.contextPath}/qna/selectDetailQna.htm?no=${data.qnaNum}">${data.qnaTitle}</a></td>
-					<td>${data.userEmail}</td>
-					<td>${data.qnaDate}</td>
-				</tr>
-    		</c:if>
-    	</c:forEach>
+    	<c:forEach var="qna" items="${qnaList}" >
+    		<tr>
+				<td><c:if test="${qna.qnaNotice >0}">-</c:if><c:if test="${qna.qnaNotice ==0}">${qna.qnaNum}</c:if> </td>
+				<td>
+					<a href="${pageContext.request.contextPath}/qna/selectDetailQna.htm?qnaNum=${qna.qnaNum}">
+						<c:if test="${qna.qnaDept == 1}">답변: </c:if> ${qna.qnaTitle}
+					</a>
+				</td>
+				<td>${qna.userNick}</td>
+				<td>${qna.qnaDate}</td>
+			</tr>
+    	 </c:forEach> 
+    	
     </tbody>
-</table> --%>
+</table>
 	<a href="" class="btn main-btn" id="qnaboard_btn_list" role="button">목록</a>
 	<a href="${pageContext.request.contextPath}/qna/insertQnaboard.htm" class="btn main-btn" id="qnaboard_btn_write" role="button">글쓰기</a>
 </div></section>
