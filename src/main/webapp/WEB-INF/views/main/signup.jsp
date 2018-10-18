@@ -13,16 +13,17 @@
 		<div class="center-block ">
 			<h2 class="text-center signup-title">회원가입</h2>
 			<hr>
-			<form class="form-horizontal" method="post" name="signup" id="signup" enctype="multipart/form-data">
+				<form class="form-horizontal" method="post" name="signup" id="signup" enctype="multipart/form-data"
+                	action="member/signup.do">
 				<div class="form-group">
 					<label class="control-label col-sm-4">프로필 이미지</label>
 					<div class="col-sm-4">				
 						<div>
 							<div class="col-sm-3 pr-0 pl-0" >
 								<div class="imgfile" style="width:92.5px;height:92.5px;"><img style="height: 100%;width: 100%;" class="img-responsive user-photo img-rounded" 
-              						src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" ></div>				
+              						src="${pageContext.request.contextPath}/resources/image/userPhoto/userProfile.png" ></div>				
            					</div>
-           				<input type="file" class="userPhoto" name="userPhoto" id="userPhoto" 
+           				<input type="file" class="userPhoto" name="userPhotoFile" id="userPhoto" 
 								aria-describedby="file_upload" accept="image/*">
 								<small> * .jpg, .gif, .png 파일만 업로드 가능하며, 500kb를 초과할 수 없습니다.</small>
 						</div>
@@ -35,7 +36,7 @@
 						
 							<input type="email" class="form-control" name="userEmail"
 								id="userEmail" placeholder="example@example.com" required
-								autofocus value="">						
+								autofocus>						
 					</div>
 					<div class="col-sm-4 "><button type="button" class="btn btn-secondary">이메일인증</button>
 					</div>
@@ -44,8 +45,7 @@
 					<label class="control-label col-sm-4">Email  인증번호 </label>
 					<div class="col-sm-4 pr-0">
 							<input type="text" class="form-control" name="authnum"
-								id="authnum" placeholder="인증번호를 입력해주세요."
-								value="">
+								id="authnum" placeholder="인증번호를 입력해주세요.">
 						</div>
 					<div class="col-sm-4 ">
 					     <button type="button" class="btn btn-secondary" >&ensp;인증확인&ensp;</button>
@@ -56,7 +56,7 @@
 						<div class="col-sm-4 pr-0">
 						<div >
 							<input type="text" class="form-control" name="userNick"
-								id="userNick" placeholder="사용할 닉네임을 입력해주세요." value="">
+								id="userNick" placeholder="사용할 닉네임을 입력해주세요.">
 						</div>
 					</div>
 					<div class="col-sm-4 ">
@@ -70,8 +70,7 @@
 					<div class="col-sm-4 pr-0">
 						<div >
 							<input type="password" class="form-control" name="userPwd"
-								id="userPwd" placeholder="6자리 이상 입력해주세요."
-								value="">
+								id="userPwd" placeholder="6자리 이상 입력해주세요.">
 						</div>
 					</div>
 				</div>
@@ -80,7 +79,7 @@
 					<div class="col-sm-4 pr-0">
 						<div >
 							<input type="password" class="form-control" name="cuserPwd"
-								id="cuserPwd" placeholder="비밀번호를 확인 해주세요." value="">
+								id="cuserPwd" placeholder="비밀번호를 확인 해주세요.">
 						</div>
 					</div>
 				</div>
@@ -92,17 +91,17 @@
 			
 				<div class="form-group">
 					<div class="col-sm-12 text-center">
-						<input name="join" type="button" value="&nbsp;&nbsp;회원가입&nbsp;&nbsp;" class="btn btn-danger btn-md">
+						<input name="join" type="submit" value="&nbsp;&nbsp;회원가입&nbsp;&nbsp;" class="btn btn-danger btn-md">
 					</div>
 				</div>
-			
+				</form>
+				
 				<div class="col-sm-12 text-center social-btn">
 				<a href="#" class="btn btn-md social-btn"> Sign up with <b>&nbsp;Kakao&nbsp;</b><img src="./resources/image/kakao.png" class="inline"></a><br>
 				<a href="#" class="btn  btn-md social-btn" > Sign up with <b>&nbsp;Naver &nbsp;</b><img src="./resources/image/naver.png" class="inline"></a><br>
 				<a href="#" class="btn  btn-md social-btn "> Sign up with <b>Google&nbsp;</b><img src="./resources/image/google.png" class="inline"></a>
 		  		</div>
 			<br>
-			</form>
 		</div>
 	</div>
 	<br>	<br>	<br>

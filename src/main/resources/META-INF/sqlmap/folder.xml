@@ -19,6 +19,17 @@
 		insert into folder(userEmail, folderName, defaultFolder, candelete)
   		values (#{userEmail}, #{folderName}, 0, 1) ;
 	</insert>
+
+	<insert id="insertFolderUserDefault" parameterType="FolderVO">
+		insert into folder(userEmail, folderName, defaultFolder, candelete)
+ 		values (#{userEmail}, '미분류', 1, 1);
+	</insert>
+
+	<insert id="insertFolderUserScrap" parameterType="FolderVO">
+		insert into folder(userEmail, folderName, defaultFolder, candelete)
+  		values (#{userEmail}, '스크랩', 0, 1);
+	</insert>
+	
 </mapper>
 
 

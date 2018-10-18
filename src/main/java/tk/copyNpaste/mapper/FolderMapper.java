@@ -29,5 +29,11 @@ public interface FolderMapper {
 	
 	//기본폴더 해제
 	public int removeDefaultFolder(String folderName,String userEmail) throws Exception;
+	
+	//회원 가입 시 기본폴더 추가
+	public int insertFolderUserDefault(String userEmail) throws Exception;
+	
+	//회원 가입 시 스크랩 폴더 추가
+	public int insertFolderUserScrap(String userEmail) throws Exception;
 
 }

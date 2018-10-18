@@ -1,10 +1,12 @@
 /*
 * @ Class : MemberVO
-* @ Date : 2018.10.06
-* @ Author : boatemplate
-* @ Desc : MemberVO
+* @ Date : 2018.10.18
+* @ Author : 임효진
+* @ Desc : multipart 변수 추가
 */
 package tk.copyNpaste.vo;
+
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class MemberVO {
 	//회원VO
@@ -15,6 +17,7 @@ public class MemberVO {
 	private String userPhoto;
 	private String userDate;
 	private String userEnabled;
+	private CommonsMultipartFile userPhotoFile; 
 	
 	public String getUserEmail() {
 		return userEmail;
@@ -52,6 +55,10 @@ public class MemberVO {
 	public void setUserEnabled(String userEnabled) {
 		this.userEnabled = userEnabled;
 	}
-	
-
+	public CommonsMultipartFile getUserPhotoFile() {
+		return userPhotoFile;
+	}
+	public void setUserPhotoFile(CommonsMultipartFile userPhotoFile) {
+		this.userPhotoFile = userPhotoFile;
+	}
 }
