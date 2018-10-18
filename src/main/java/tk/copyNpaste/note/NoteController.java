@@ -7,9 +7,12 @@
 
 package tk.copyNpaste.note;
 
+import java.io.PrintWriter;
 import java.security.Principal;
 import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,6 +47,8 @@ public class NoteController {
 		List<FolderVO> folderList = folderService.selectAllFolder(principal.getName());
 		model.addAttribute("noteList", noteList);
 		model.addAttribute("folderList", folderList);
+		
+		
 		return "note.list";
 	}
 
@@ -66,13 +71,20 @@ public class NoteController {
 	
 	// 노트 작성 
 	@RequestMapping(value="write.htm",method = RequestMethod.POST)
-	public String insertNote(Model model, NoteVO note,Principal principal) throws Exception {
+	public void insertNote(Model model, NoteVO note,Principal principal, HttpServletResponse response) throws Exception {
 		note.setUserEmail(principal.getName());
 		note.setSubjectCode(note.getSubjectCode());
 		note.setFolderName(note.getFolderName());
 		int result =noteService.insertNote(note);
 		model.addAttribute("result", result);//1일때 등록성공, 0일때 등록실패
-		return "note.list"; //노트 작성 후 노트 리스트로 이동.
+		if(result > 0) {
+	      response.setContentType("text/html");
+	      response.setCharacterEncoding("UTF-8");
+	      PrintWriter writer = response.getWriter();
+	       writer.write("<script>alert('등록 성공'); location.href='../note/note.htm';</script>");
+	       writer.flush();						 //노트 작성 후 노트 리스트로 이동.
+	       writer.close();
+	    }
 	}
 	
 	// 노트 주제 검색 
