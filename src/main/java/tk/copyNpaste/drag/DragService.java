@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import tk.copyNpaste.mapper.DragMapper;
 import tk.copyNpaste.vo.DragVO;
+import tk.copyNpaste.vo.NoteVO;
 
 @Service
 public class DragService {
@@ -28,15 +29,17 @@ public class DragService {
 	}
 
 	//드래그 목록 보기
-	public List<DragVO> selectAllDrag(DragVO drag) throws Exception {
+	public List<DragVO> selectAllDrag() throws Exception {
 		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
-		return dragdao.selectAllDrag();
+		List<DragVO> dragList = dragdao.selectAllDrag();
+		return dragList;
 	}
 	
 	//드래그 상세 보기(+노트 작성)
-	public DragVO selectDetail(int dragNo) throws Exception {
+	public DragVO selectDetail(int dragNum) throws Exception {
 		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
-		return dragdao.selectDetail(dragNo);
+		DragVO dregdetail = dragdao.selectDetail(dragNum);
+		return dregdetail;
 	}
 	
 	//드래그 삭제

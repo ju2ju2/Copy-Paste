@@ -15,13 +15,6 @@ import tk.copyNpaste.vo.QnaVO;
 public interface QnaMapper {
 	//QNA 게시물 조회
 	public List<QnaVO> selectAllQna() throws Exception;
-	//QNA 게시물 조회
-	public List<QnaVO> selectNoticeQna() throws Exception;
-	//QNA 게시물 조회
-	public List<QnaVO> selectListQna() throws Exception;		
-	//QNA 게시물 조회
-	public List<QnaVO> selectDeptQna() throws Exception;
-	
 	
 	//QNA 게시물 검색
 	public List<QnaVO> selectSearchQna(String keyword) throws Exception;

@@ -8,7 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 <script>
 $(document).ready(function() {
@@ -20,7 +20,7 @@ $(document).ready(function() {
 <section id="content">
 	<div class="container">
 	<%-- ${qnaList} --%>
-	<table id="table_id" class="display">
+	<table id="table_id" class="hover">
     <thead>
         <tr>
             <td>No.</td>
@@ -32,8 +32,12 @@ $(document).ready(function() {
     <tbody>
     	<c:forEach var="qna" items="${qnaList}" >
     		<tr>
-				<td>${qna.qnaNum}</td>
-				<td><a href="${pageContext.request.contextPath}/qna/selectDetailQna.htm?qnaNum=${qna.qnaNum}">${qna.qnaTitle}</a></td>
+				<td><c:if test="${qna.qnaNotice >0}">-</c:if><c:if test="${qna.qnaNotice ==0}">${qna.qnaNum}</c:if> </td>
+				<td>
+					<a href="${pageContext.request.contextPath}/qna/selectDetailQna.htm?qnaNum=${qna.qnaNum}">
+						<c:if test="${qna.qnaDept == 1}">답변: </c:if> ${qna.qnaTitle}
+					</a>
+				</td>
 				<td>${qna.userNick}</td>
 				<td>${qna.qnaDate}</td>
 			</tr>
