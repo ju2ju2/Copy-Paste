@@ -42,12 +42,21 @@ public class NoteService {
 		NoteVO note =notedao.selectDetailNote(noteNum);
 		return note;
 	}
-	//노트 상세 보기(+노트 작성)
+	//노트 댓글 보기
 	public List<NoteCommVO> selectAllNoteComm(int noteNum) throws Exception{
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
 		List<NoteCommVO> noteCommList = notedao.selectAllNoteComm(noteNum);
 		return noteCommList;
-		
+	}
+	//노트 댓글 작성
+	public int insertNoteComm(NoteCommVO note) throws Exception{
+		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
+		return notedao.insertNoteComm(note);
+	}
+	//노트 댓글 삭제
+	public int deleteNoteComm(int noteCommNum) throws Exception{
+		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
+		return notedao.deleteNoteComm(noteCommNum);
 	}
 	
 	//노트 수정
@@ -98,16 +107,7 @@ public class NoteService {
 		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
 		return notedao.removeScrapNote(userEmail);
 	}
-	//노트 댓글 작성
-	public int insertNoteComm(NoteCommVO note) throws Exception{
-		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
-		return notedao.insertNoteComm(note);
-	}
-	//노트 댓글 삭제
-	public int deleteNoteComm(int noteCommNum) throws Exception{
-		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
-		return notedao.deleteNoteComm(noteCommNum);
-	}
+
 	
 	//노트의 폴더 이동
 	public int moveNoteFolder(NoteVO note) throws Exception {
