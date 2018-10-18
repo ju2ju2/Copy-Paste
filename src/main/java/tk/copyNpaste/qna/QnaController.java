@@ -28,8 +28,6 @@ import tk.copyNpaste.vo.QnaVO;
 @Controller
 @RequestMapping(value = "/qna")
 public class QnaController {
-	@Autowired
-	private SqlSession sqlsession;
 	
 	@Autowired
 	QnaService qnaService;
@@ -37,25 +35,21 @@ public class QnaController {
 	//QNA 게시물 조회
 	@RequestMapping(value="/selectQnaboard.htm",method = RequestMethod.GET)
 	public String selectAllQnaboard(Model model) throws Exception {
-		List<QnaVO> qnaData= new ArrayList<QnaVO>(); 
-		qnaData = qnaService.selectAllQna();
-		model.addAttribute("qnaData",qnaData);
-	/*	List<QnaVO> qnaData = new ArrayList<QnaVO>(); 
-		try{
-			QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
-			System.out.println("Service Select All QnA");
-			qnaDatalist = qnadao.selectAllQna();
-			System.out.println("Service qnaDatalist>>"+qnaDatalist);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		model.addAttribute("qnaData",qnaData);
-	 */
+		List<QnaVO> qnaList= new ArrayList<QnaVO>(); 
+		qnaList = qnaService.selectAllQna();
+		model.addAttribute("qnaList",qnaList);
+
 		return "qna.selectQnaboard";
 	}
-	public List<QnaVO> selectAllQna() throws Exception{
-		return qnaService.selectAllQna();
-	};
+	
+	//QNA 게시물 상세보기
+		@RequestMapping(value="/selectDetailQna.htm",method = RequestMethod.GET)
+		public String selectDetailQna(int qnaNum, Model model) throws Exception{
+			QnaVO qna = qnaService.selectDetailQna(qnaNum);
+			model.addAttribute("qna",qna);
+
+			return "qna.selectDetailQna";
+		};
 	
 	//QNA 게시물 검색
 	public List<QnaVO> selectSearchQna(String keyword) throws Exception{
@@ -71,15 +65,7 @@ public class QnaController {
 		return qnaService.insertQna(qna);
 	};
 
-	//QNA 게시물 상세보기
-	@RequestMapping(value="/selectDetailQna.htm",method = RequestMethod.GET)
-	public String selectDetailQnaboard() {
-		return "qna.selectDetailQna";
-	}
-	public QnaVO selectDetailQna(int qnaNum) throws Exception{
-		
-		return qnaService.selectDetailQna(qnaNum);
-	};
+	
 	
 	//QNA 게시글 수정
 	public int updateQna(int qnaNum) throws Exception{

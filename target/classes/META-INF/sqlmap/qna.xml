@@ -13,8 +13,15 @@
 <mapper namespace="tk.copyNpaste.mapper.QnaMapper">
 	<!-- QNA 게시물 조회-->
 	<select id="selectAllQna" resultType="QnaVO" >
-		select qnaNum, userEmail, qnaTitle,qnaContent,qnaDate,qnaDept,qnaPNum, qnaNotice, qnaSecret
-		from qna
+		select qna.qnaNum, qna.userEmail, users.userNick, qna.qnaTitle, qna.qnaContent, qna.qnaDate, qna.qnaDept, qna.qnaPNum, qna.qnaNotice, qna.qnaSecret, qna.qnaPos
+		from qna join users on qna.userEmail = users.userEmail order by qna.qnaNotice desc, qna.qnaPos
+	</select>
+	
+	<!-- 	//QNA 게시물 상세보기
+	public QnaVO selectDetailQna(int qnaNum) throws Exception;-->
+	<select id="selectDetailQna" parameterType="Integer" resultType="QnaVO">
+		select qnaNum, userEmail, qnaTitle, qnaContent, qnaDate, qnaDept, qnaPNum, qnaNotice, qnaSecret 
+		from qna where qnaNum=#{qnaNum}
 	</select>
 	
 <!-- 	//QNA 게시물 검색
@@ -23,9 +30,7 @@
 <!-- 	//QNA 게시물 작성
 	public int insertQna(QnaVO qna) throws Exception;
  -->
-<!-- 	//QNA 게시물 상세보기
-	public QnaVO selectDetailQna(int qnaNum) throws Exception;
- -->	
+
 <!-- 	//QNA 게시글 수정
 	public int updateQna(int qnaNum) throws Exception;
  -->	

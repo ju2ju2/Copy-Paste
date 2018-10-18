@@ -6,7 +6,7 @@
 */
 package tk.copyNpaste.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class NoteCommVO {
 	//NoteCommVO
@@ -14,11 +14,13 @@ public class NoteCommVO {
 	//회원이메일,댓글번호,부모댓글번호,댓글작성일,댓글내용,댓글깊이,노트번호,
 	private int noteCommNum;
 	private String userEmail;
+	private String userNick;
 	private int noteNum;
 	private int commDept;
-	private int commContent;
+	private String commContent;
 	private Date commDate;
 	private int noteCommPNum;
+	
 	public int getNoteCommNum() {
 		return noteCommNum;
 	}
@@ -43,10 +45,10 @@ public class NoteCommVO {
 	public void setCommDept(int commDept) {
 		this.commDept = commDept;
 	}
-	public int getCommContent() {
+	public String getCommContent() {
 		return commContent;
 	}
-	public void setCommContent(int commContent) {
+	public void setCommContent(String commContent) {
 		this.commContent = commContent;
 	}
 	public Date getCommDate() {
@@ -60,6 +62,21 @@ public class NoteCommVO {
 	}
 	public void setNoteCommPNum(int noteCommPNum) {
 		this.noteCommPNum = noteCommPNum;
+	}
+	public String getUserNick() {
+		return userNick;
+	}
+	public void setUserNick(String userNick) {
+		this.userNick = userNick;
+	}
+
+	
+	
+	@Override
+	public String toString() {
+		return "NoteCommVO [noteCommNum=" + noteCommNum + ", userEmail=" + userEmail + ", noteNum=" + noteNum
+				+ ", commDept=" + commDept + ", commContent=" + commContent + ", commDate=" + commDate
+				+ ", noteCommPNum=" + noteCommPNum + "]";
 	}
 
 
