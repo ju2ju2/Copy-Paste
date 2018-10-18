@@ -16,32 +16,48 @@
 
 
 	$(document).ready(function() {
+		
+		
+
 		//노트삭제
-		$('#deleteNoteBtn').click(function() {
-			$.ajax({
-			      url: "${pageContext.request.contextPath}/note/deleteNote.json", // url_pettern 
-			      data : {'noteNum': ${note.noteNum} },
-			      dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
-			      success:function(data){
-			    	  swal({
-			              title: '성공적으로 삭제되었습니다.',
-			              confirmButtonClass : "btn-danger",
-			          }, function() {
-			              window.location = "${pageContext.request.contextPath}/index.htm";
-			          });
-			    	  /* swal({
-			    		title :'성공적으로 삭제되었습니다.',
-			    		confirmButtonText : "OK",
-						confirmButtonClass : "btn-danger"
-			    	}).then(function(){ 
-			    		   location.reload();
-			    	   }
-			    	); */
-			    	
-			      	
-			       }
-			 }); 
+		$('#deleteNoteBtn').click(function(e) {
+			swal({
+				  title: "정말 삭제하시겠습니까?",
+				  text: "삭제 후에는 다시 복구 할 수 없습니다.",
+				  type: 'warning',
+				  showCancelButton: false,
+				  showCancelButton: true,
+				  confirmButtonClass : "btn-danger btn-sm",
+				  cancelButtonClass: "btn btn-sm",
+				  confirmButtonText: '확인',
+				  closeOnConfirm: false
+				},
+				function(){
+					$.ajax ({
+						url: "${pageContext.request.contextPath}/note/deleteNote.json",
+						type: "POST",
+						dataType: "json",
+						data: {'noteNum': ${note.noteNum} }
+					}).done(function(result) {
+						swal({type: "success",
+							  title: '성공적으로 삭제되었습니다.',
+				              confirmButtonClass : "btn-danger",
+							  closeOnConfirm: false
+						},
+						function(){
+							location.href="${pageContext.request.contextPath}/index.htm";
+						})
+						
+					
+					})
+					.fail(function(jqXhr, testStatus, errorText){
+						alert("에러발생 :" + errorText);
+					});
+				});
+			return false;
 		});
+			
+		
 		
 		//신고 모달 클릭시 db 댓글 조회
 		$('#report').click(function() {
