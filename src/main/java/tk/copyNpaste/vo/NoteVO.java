@@ -22,6 +22,7 @@ public class NoteVO {
 	private String noteContent;	
 	private Date noteDate;
 	private String subjectCode;
+	private String subjectName;
 	private int noteCount;
 	private int notePublic;
 	private int noteScrap;
@@ -77,6 +78,12 @@ public class NoteVO {
 	}
 	public void setSubjectCode(String subjectCode) {
 		this.subjectCode = subjectCode;
+	}
+	public String getSubjectName() {
+		return subjectName;
+	}
+	public void setSubjectName(String subjectName) {
+		this.subjectName = subjectName;
 	}
 	public int getNoteCount() {
 		return noteCount;

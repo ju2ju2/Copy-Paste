@@ -48,8 +48,6 @@
 	</div>
 	<br>
 
-	
-</div>
 
 
 <!-- Modal HTML -->

@@ -13,7 +13,7 @@ import tk.copyNpaste.vo.FolderVO;
 public interface FolderMapper {
 
 	//폴더 목록 
-	public List<FolderVO> selectAllFolder() throws Exception;
+	public List<FolderVO> selectAllFolder(String userEmail) throws Exception;
 	
 	//폴더 추가
 	public int insertFolder(FolderVO folder) throws Exception;

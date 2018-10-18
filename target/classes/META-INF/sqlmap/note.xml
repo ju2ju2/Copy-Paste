@@ -13,19 +13,19 @@
 
 
 
-		
+
 	<!--주제별 상위노트 목록 보기 -->
 	<select id="selectTopNote" resultType="NoteVO">
 	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
 	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, u.userNick
-	from note n join users u on u.userEmail=n.userEmail limit 4;
+	from note n join users u on u.userEmail=n.userEmail order by noteNum desc limit 4;
 	</select>
 
-	<!-- 노트 목록 보기 -->
+	<!--회원의 MY노트 목록 보기 -->
 	<select id="selectAllNote" resultType="NoteVO">
 	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
 	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, u.userNick
-	from note n join users u on u.userEmail=n.userEmail;
+	from note n join users u on u.userEmail=n.userEmail where u.userEmail = #{userEmail} order by noteNum desc;
 	</select>
 	
 	<!-- 노트 상세 보기(+노트 작성) -->
@@ -42,13 +42,30 @@
 	</select>
 	
 	<!-- 노트 댓글 작성 -->
-
+ 	<insert id="insertNoteComm">
+        <selectKey order="BEFORE" keyProperty="noteCommNum" resultType="int">
+        select max(noteCommNum)+1 from notecomm
+        </selectKey>
+        insert into notecomm(noteCommNum, userEmail, noteNum, commContent)
+        values(#{noteCommNum}, #{userEmail}, #{noteNum}, #{commContent})
+    </insert>
+    
 	<!-- 노트 댓글 삭제 -->
-	
-	
 	<!-- useGeneratedKeys="true" keyProperty="dragNo" (as id붙여서) 셀렉트키 사용시 필요-->
 	<!-- 노트 등록 -->
-	
+	 <insert id="insertNote">
+        <selectKey order="BEFORE" keyProperty="noteNum" resultType="int">
+            select max(noteNum)+1 from note
+        </selectKey>
+        insert into note(noteNum, folderName, userEmail, noteTitle, noteContent, subjectCode, notePublic)
+        values(#{noteNum}, #{folderName}, #{userEmail}, #{noteTitle}, #{noteContent}, #{subjectCode}, #{notePublic})
+    </insert>
+    
+    <!-- 노트 주제 조회 -->
+    <select id="selectSubjectCode" resultType="NoteVO">
+	select subjectCode, subjectName from subject
+	</select>
+    
 	<!-- 노트 수정 -->
 	
 	<!-- 노트 삭제 -->
