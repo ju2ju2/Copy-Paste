@@ -43,11 +43,10 @@ public class FolderController {
 	};
 	
 	//폴더 추가
-	@RequestMapping(value="/insertfolder.json",method = RequestMethod.POST)
-	public String insertFolder(FolderVO folder) throws Exception {
-
-		int result = folderService.insertFolder(folder);
-		return "note.list";
+	@RequestMapping(value="/insertfolder.json")
+	public @ResponseBody void insertFolder(FolderVO folder, Principal principal) throws Exception {
+		folder.setUserEmail(principal.getName());
+		folderService.insertFolder(folder);
 	};
 		
 	//폴더 수정

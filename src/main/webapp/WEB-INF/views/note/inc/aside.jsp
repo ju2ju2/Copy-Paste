@@ -106,39 +106,48 @@ $('#Addfolder').click(function(){
 	a += "<div class='col-xs-2 icon'>";
 	a += "<i class='far fa-bookmark icon-size' style='margin-left:11px;'></i>";
 	a += "</div></div>";
-	$('#scrap').append(a);
-	
-	
+	$('#scrap:last-child').append(a);
 	
 	$("#folname").keypress(function(key){
 		if(key.keyCode == 13){
-			$.ajax(
-					{
-			    url : "<%=request.getContextPath()%>/folder/insertfolder.json",
-			    DataType :"text",
-			    type : "post",
-			    data : {"folderName": $(this).val()},
-			    success : function(data){
-			    	console.log("잘 되어가고 있습니다.");
-			        	$('#scrap').empty();
-						var a = "";
-							a += "<div class='row'>";
-							a += "<div class='col-xs-10 n-folder'>";
-							a += "<h5 class='ml-10 f-name'>";
-							a += "&ensp;&ensp;<span class='f-count'style='margin-left:-1px;'>0</span>";
-							a += $(this).val();
-							a += "</h5></div>";
-							a += "<div class='col-xs-2 icon'>";
-							a += "<i class='far fa-bookmark icon-size' style='margin-left:11px;'></i>";
-							a += "</div></div>"; 
-						$('#scrap').append(a);
-						 location.reload(); 
-			       
-			    },
-			    error : function(){
-			        console.log("비동기 폴더 추가 실패");
-			    }
-			});	
+			$(this).remove();
+            var a = "";
+                a += "<div class='row'>";
+                a += "<div class='col-xs-10 n-folder'>";
+                a += "<h5 class='ml-10 f-name' id='folname'>";
+                a += "&ensp;&ensp;<span class='f-count' id='juwon' style='margin-left:-1px;'>0</span>";
+                a += $(this).val();
+                a += "</h5></div>";
+                a += "<div class='col-xs-2 icon'>";
+                a += "<i class='far fa-bookmark icon-size' style='margin-left:11px;'></i>";
+                a += "</div></div>"; 
+                $('#scrap:last-child').append(a);
+				location.reload();
+			
+					$.ajax(
+							{
+					    url : "<%=request.getContextPath()%>/folder/insertfolder.json",
+					    DataType :{},
+					    type : "get",
+					    data : {"folderName": $(this).val()},
+					    success : function(data){
+					    	/* $(this).empty();
+					            var a = "";
+					                a += "<div class='row'>";
+					                a += "<div class='col-xs-10 n-folder'>";
+					                a += "<h5 class='ml-10 f-name' id='folname'>";
+					                a += "&ensp;&ensp;<span class='f-count' id='juwon' style='margin-left:-1px;'>0</span>";
+					                a += $(this).val();
+					                a += "</h5></div>";
+					                a += "<div class='col-xs-2 icon'>";
+					                a += "<i class='far fa-bookmark icon-size' style='margin-left:11px;'></i>";
+					                a += "</div></div>"; 
+					                $('#scrap').append(a); */
+					    },
+					    error : function(){
+					        	console.log("폴더 추가 실패");
+					    }
+							});	 
 		}	
 	 });
 });

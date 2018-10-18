@@ -12,12 +12,12 @@
 	
 <mapper namespace="tk.copyNpaste.mapper.FolderMapper">
 	<select id="selectAllFolder" resultType="FolderVO" >
-		select folderName from folder where userEmail = #{userEmail}
+		select folderName from folder where userEmail = #{userEmail} order by defaultFolder desc;
 	</select>
 
 	<insert id="insertFolder" parameterType="FolderVO">
 		insert into folder(userEmail, folderName, defaultFolder, candelete)
-  		values ('aaa@aaa.com', #{folderName}, 0, 1) ;
+  		values (#{userEmail}, #{folderName}, 0, 1) ;
 	</insert>
 </mapper>
 
