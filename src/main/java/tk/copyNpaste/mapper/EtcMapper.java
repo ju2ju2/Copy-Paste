@@ -46,7 +46,7 @@ public interface EtcMapper {
 
 	
 	//통계 회원 가입
-	public void stateMember() throws Exception;
+	public List<EtcVO> stateMember() throws Exception;
 	
 	//노트 주제 선택 수
 	public List<EtcVO> stateNoteSubject() throws Exception;

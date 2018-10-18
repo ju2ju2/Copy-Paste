@@ -7,16 +7,12 @@
 
 package tk.copyNpaste.etc;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import tk.copyNpaste.mapper.DragMapper;
 import tk.copyNpaste.mapper.EtcMapper;
 import tk.copyNpaste.vo.EtcVO;
 import tk.copyNpaste.vo.ReportVO;
@@ -63,9 +59,9 @@ public class EtcService {
 	
 	
 	//통계 회원 가입월
-	public void stateMember() throws Exception {
+	public List<EtcVO> stateMember() throws Exception {
 		EtcMapper etcdao= sqlsession.getMapper(EtcMapper.class);
-		etcdao.stateMember();
+		return etcdao.stateMember();
 	}
 	
 	//통계 상위노트 참조수

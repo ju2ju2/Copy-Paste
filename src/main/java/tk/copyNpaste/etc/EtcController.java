@@ -7,12 +7,8 @@
 
 package tk.copyNpaste.etc;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -97,8 +93,9 @@ public class EtcController {
 
 	
 	//통계 회원 가입
-	public void stateMember() throws Exception {
-		etcService.stateMember();
+	@RequestMapping("/stateMember.json")
+	public @ResponseBody List<EtcVO> stateMember() throws Exception {
+		return etcService.stateMember();
 	};
 	
 	//통계 노트 주제

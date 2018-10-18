@@ -1,4 +1,7 @@
 package tk.copyNpaste.vo;
+
+import java.sql.Date;
+
 /*
 * @ Class : etcVO
 * @ Date : 2018.10.18
@@ -6,22 +9,35 @@ package tk.copyNpaste.vo;
 * @ Desc : 통계 처리를 위한 vo
 */
 public class EtcVO {
-	private String xAxis;
-	private int yAxis;
+	private String subjectxAxis;
+	private int subjectyAxis;
+	private String memberxAxis;
+	private int memberyAxis;
+	public String getSubjectxAxis() {
+		return subjectxAxis;
+	}
+	public void setSubjectxAxis(String subjectxAxis) {
+		this.subjectxAxis = subjectxAxis;
+	}
+	public int getSubjectyAxis() {
+		return subjectyAxis;
+	}
+	public void setSubjectyAxis(int subjectyAxis) {
+		this.subjectyAxis = subjectyAxis;
+	}
+	public String getMemberxAxis() {
+		return memberxAxis;
+	}
+	public void setMemberxAxis(String memberxAxis) {
+		this.memberxAxis = memberxAxis;
+	}
+	public int getMemberyAxis() {
+		return memberyAxis;
+	}
+	public void setMemberyAxis(int memberyAxis) {
+		this.memberyAxis = memberyAxis;
+	}
 	
-	public String getxAxis() {
-		return xAxis;
-	}
-	public void setxAxis(String xAxis) {
-		this.xAxis = xAxis;
-	}
-	public int getyAxis() {
-		return yAxis;
-	}
-	public void setyAxis(int yAxis) {
-		this.yAxis = yAxis;
-	}
 	
 	
-
 }
