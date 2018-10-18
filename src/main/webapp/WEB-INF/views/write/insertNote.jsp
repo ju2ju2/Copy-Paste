@@ -10,7 +10,43 @@
 
 <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=yaps0ah95j72p1podkonpizywofdvarpwuuzjrfbjm1ysadp"></script>
 <script src="${pageContext.request.contextPath}/resources/js/textEditer.js"></script>
+<script>
+$(document).ready(function() {
+	
+	//회원의 폴더목록  조회 및 옵션추가 
+	$.ajax({
+      url: "${pageContext.request.contextPath}/folder/selectAllFolder.json", // url_pettern 
+      dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
+      success:function(data){
+      	 //console.log(uniqueLoc);
+      	$.each(data, function(key,value){
+      			$("#folderList").append($("<option />")
+      				.val(value.folderName)
+      				.text(value.folderName) );
+      	});
+       }
+    }); 
+	
+	//노트 주제 조회 및 옵션추가 
+	$.ajax({
+      url: "${pageContext.request.contextPath}/note/selectSubjectCode.json", // url_pettern 
+      dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
+      success:function(data){
+      	 //console.log(uniqueLoc);
+      	$.each(data, function(key,value){
+      			$("#folderList").append($("<option />")
+      				.val(value.folderName)
+      				.text(value.folderName) );
+      	});
+       }
+    }); 
+	
+	
+})
 
+
+
+</script>
 <!-- 등록 전 띄워지는 모달창 -->
 <form action="">
 	<div id="publishModal" class="modal fade form-horizontal">
@@ -20,17 +56,14 @@
 					<div class="form-group">
 					<br/>
 						<label class="control-label col-sm-2 noteLabels">폴더 </label>
-						<select id="folderName" name="folderName" class="form-control notePublish" >
-							<!-- 나중에 each문 돌려서 박아야 함 -->
-							<option value="" selected="selected">기본 폴더
-							<option value="">폴더1
-							<option value="">폴더2
+						<select id="folderList" name="folderList" class="form-control notePublish" >
+							
+							
 						</select>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-2 noteLabels">주제 </label> <select
 							id="subjectCode" name="subjectCode" class="form-control notePublish">
-							<!-- 기타일 때는 텍스트 박스가 옆에 떠야 하는데 이걸 어떻게 if문을 돌려야 하는지 약간 의문 -->
 							<option value="SJ00" selected="selected">기타
 							<option value="SJ01">회사
 							<option value="SJ02">생활

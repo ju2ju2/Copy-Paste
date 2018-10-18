@@ -32,8 +32,11 @@ public interface NoteMapper {
 	//노트 삭제
 	public int deleteNote(int noteNum) throws Exception;
 
-	//노트 등록
+	//노트 작성
 	public int insertNote(NoteVO note) throws Exception;
+	
+	//노트 주제 조회
+	public int selectSubjectCode() throws Exception;
 	
 	//노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws Exception;
 	public List<NoteVO> selectByCalNote(Date period) throws Exception;
@@ -70,5 +73,7 @@ public interface NoteMapper {
 	
 	//노트의 폴더 이동
 	public int moveNoteFolder(NoteVO note) throws Exception;
+
+
 		
 }

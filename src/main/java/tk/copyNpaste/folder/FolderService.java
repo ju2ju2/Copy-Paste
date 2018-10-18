@@ -22,9 +22,9 @@ public class FolderService {
 	 private SqlSession sqlsession;
 	
 	//폴더 목록 
-	public List<FolderVO> selectAllFolder() throws Exception {
+	public List<FolderVO> selectAllFolder(String userEmail) throws Exception {
 		FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
-		return folderdao.selectAllFolder();
+		return folderdao.selectAllFolder(userEmail);
 	}
 	
 	//폴더 추가

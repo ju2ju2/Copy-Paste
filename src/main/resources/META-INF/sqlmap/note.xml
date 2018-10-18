@@ -42,13 +42,31 @@
 	</select>
 	
 	<!-- 노트 댓글 작성 -->
-
+ 	<insert id="insertNoteComm">
+        <selectKey order="BEFORE" keyProperty="noteCommNum" resultType="int">
+        select max(noteCommNum)+1 from notecomm
+        </selectKey>
+        insert into notecomm(noteCommNum, userEmail, noteNum, commContent)
+        values(#{noteCommNum}, #{userEmail}, #{noteNum}, #{commContent})
+    </insert>
+    
 	<!-- 노트 댓글 삭제 -->
-	
-	
 	<!-- useGeneratedKeys="true" keyProperty="dragNo" (as id붙여서) 셀렉트키 사용시 필요-->
 	<!-- 노트 등록 -->
-	
+	 <insert id="insertNote">
+        <selectKey order="BEFORE" keyProperty="noteNum" resultType="int">
+            select max(noteNum)+1 from note
+        </selectKey>
+        insert into note(noteNum, folderName, userEmail, noteTitle, noteContent, subjectCode, notePublic)
+        values(#{noteNum}, #{folderName}, #{userEmail}, #{noteTitle}, #{noteContent}, #{subjectCode}, #{notePublic})
+    </insert>
+    
+    <!-- 노트 주제 조회 -->
+    <select id="selectSubjectCode" resultType="NoteCommVO">
+	select nc.noteCommNum, nc.userEmail, nc.noteNum, nc.commDept, nc.commContent, nc.commDate, nc.noteCommPNum, u.userNick
+	from notecomm nc join users u on u.userEmail=nc.userEmail where noteNum = #{nc.noteNum};
+	</select>
+    
 	<!-- 노트 수정 -->
 	
 	<!-- 노트 삭제 -->

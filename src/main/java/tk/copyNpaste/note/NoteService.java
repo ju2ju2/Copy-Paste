@@ -74,6 +74,12 @@ public class NoteService {
 		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
 		return notedao.insertNote(note);
 	}
+	//노트 주제 조회
+	public int selectSubjectCode() throws Exception{
+		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
+		return notedao.selectSubjectCode();
+	}
+	
 	//노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws Exception;
 	public List<NoteVO> selectByCalNote(Date period) throws Exception{
 		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);

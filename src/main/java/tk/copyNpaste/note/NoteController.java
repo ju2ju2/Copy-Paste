@@ -7,6 +7,7 @@
 
 package tk.copyNpaste.note;
 
+import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 
@@ -41,9 +42,9 @@ public class NoteController {
 
 	// 노트 목록 보기+폴더 목록 조회
 	@RequestMapping(value = "note.htm")
-	public String selectAllNote(Model model) throws Exception {
+	public String selectAllNote(Model model, Principal principal) throws Exception {
 		List<NoteVO> noteList = noteService.selectAllNote();
-		List<FolderVO> folderList = folderService.selectAllFolder();
+		List<FolderVO> folderList = folderService.selectAllFolder(principal.getName());
 		model.addAttribute("noteList", noteList);
 		model.addAttribute("folderList", folderList);
 		return "note.list";
@@ -69,10 +70,16 @@ public class NoteController {
 		return noteService.deleteNote(noteNum);
 	}
 
-	// 노트 등록
+	// 노트 작성 
 	public int insertNote(NoteVO note) throws Exception {
 		return noteService.insertNote(note);
 	}
+/*	// 노트 주제 검색 
+	@RequestMapping(value = "selectSubjectCode.json")
+	public int selectSubjectCode() throws Exception {
+		return noteService.insertNote();
+	}*/
+	
 
 	// 노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws
 	// Exception;
@@ -105,10 +112,11 @@ public class NoteController {
 		return noteService.removeScrapNote(userEmail);
 	}
 
-	// 노트 댓글 작성
-	public int insertNoteComm(NoteCommVO note) throws Exception {
-		return noteService.insertNoteComm(note);
-	}
+	// 노트 댓글 작성-비동기
+		public void insertNoteComm(NoteCommVO note, Principal principal) throws Exception {
+			note.setUserEmail(principal.getName());//로그인한 사용자 ID
+			noteService.insertNoteComm(note);
+		}
 
 	// 노트 댓글 삭제
 	public int deleteNoteComm(int noteCommNum) throws Exception {
