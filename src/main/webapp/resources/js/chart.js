@@ -1,4 +1,17 @@
 $(function() {
+	var subjectxAxis = [];
+	var subjectyAxis = [];
+	
+			$.ajax({
+				url:"../etc/stateNoteSubject.json",
+				dataType:"json",
+				success:function(responsedata){
+					$.each(responsedata, function(index, obj) {
+						subjectxAxis[index] = obj.xAxis;
+						subjectyAxis[index] = obj.yAxis;
+					})
+				}
+			});
 		
 		function makeChart() {
 			Highcharts.chart('chartDiv', {
@@ -51,14 +64,14 @@ $(function() {
 			Highcharts.chart('chartDiv', {
 				chart: { type: 'column' },
 				title: { text: '주제 별 노트 개수' },
-				xAxis: { categories: ['회사', '생활', '교육', '기타'] },
+				xAxis: { categories: subjectxAxis },
 				yAxis : { title : false },
 				colors: ['#f56a6a'],
 				tooltip: {},
 				legend: false,
 				series : [ {
 					name : '등록된 게시글 수',
-					data : [ 10, 20, 10, 1]
+					data : subjectyAxis
 				} ]	
 			});
 			
