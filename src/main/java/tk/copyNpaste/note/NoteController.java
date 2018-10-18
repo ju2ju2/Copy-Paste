@@ -101,7 +101,8 @@ public class NoteController {
 	}
 
 	// 노트 삭제
-	public int deleteNote(int noteNum) throws Exception {
+	@RequestMapping(value="deleteNote.json")
+	public @ResponseBody int deleteNote(int noteNum) throws Exception {
 		return noteService.deleteNote(noteNum);
 	}
 

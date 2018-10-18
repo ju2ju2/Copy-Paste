@@ -10,22 +10,46 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- Sweet Alert cdn -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
+
 <!-- 신고 모달창에서 ok버튼 눌렀을 때 스윗알럳 띄우기 -->
 <script>
 
 
 	$(document).ready(function() {
+		//노트삭제
+		$('#deleteNoteBtn').click(function() {
+			$.ajax({
+			      url: "${pageContext.request.contextPath}/note/deleteNote.json", // url_pettern 
+			      data : {'noteNum': ${note.noteNum} },
+			      dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
+			      success:function(data){
+			    	  swal({
+			              title: '성공적으로 삭제되었습니다.',
+			              confirmButtonClass : "btn-danger",
+			          }, function() {
+			              window.location = "${pageContext.request.contextPath}/index.htm";
+			          });
+			    	  /* swal({
+			    		title :'성공적으로 삭제되었습니다.',
+			    		confirmButtonText : "OK",
+						confirmButtonClass : "btn-danger"
+			    	}).then(function(){ 
+			    		   location.reload();
+			    	   }
+			    	); */
+			    	
+			      	
+			       }
+			 }); 
+		});
+		
+		//신고 모달 클릭시 db 댓글 조회
 		$('#report').click(function() {
 			$('#commWriterOut').text($('#commWriter').text());
 			$('#commContentOut').text($('#commContent').text());
 		});
 
-
+		//신고 모달 모달에서 확인시 경고창.
 		$('#reportOK').click(function() {
 			swal({
 				title : "신고되었습니다.",
@@ -35,6 +59,10 @@
 				confirmButtonClass : "btn-danger"
 			});
 		});
+		
+	
+		
+		
 	})
 </script>
 <!-- modal-header -->
@@ -67,11 +95,11 @@
 					<br> <br> <br> <br>
 					<div class="col-sm-9"></div>
 					<div class="col-sm-3">
-						<strong> <a href=""><i
-								class="far fa-edit 3x notewrite"></i> &nbsp;</a> <a href=""><i
-								class="fas fa-arrow-down"></i> &nbsp;</a> <a href=""><i
-								class="fas fa-trash"></i> &nbsp;</a> <a href=""><i
-								class="fas fa-archive"></i></strong></a>
+						<strong> <a href=""><i class="far fa-edit 3x notewrite"></i> &nbsp;</a> 
+								 <a href=""><i class="fas fa-arrow-down"></i> &nbsp;</a> 
+								 <a id="deleteNoteBtn"><i class="fas fa-trash"></i> &nbsp;</a> 
+								 <a href=""><i class="fas fa-archive"></i></a>
+						</strong>
 					</div>
 				</div>
 
@@ -98,8 +126,8 @@
 												</div>
 												<div class="media-body">
 													<strong class="pull-left primary-font" id="commWriter">${noteCommList.userNick}</strong>
-													<small> &ensp;${noteCommList.commDate}</small><br> <small
-														class="pull-right text-muted"> <span class="">삭제</span>&ensp;
+													<small> &ensp;${noteCommList.commDate}</small><br> 
+													<small	class="pull-right text-muted"> <span class="">삭제</span>&ensp;
 														<span class="">댓글</span>&ensp; <a href="#"
 														data-toggle="modal" data-target="#reportModal" id="report">신고</a>&ensp;
 													</small>

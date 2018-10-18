@@ -69,7 +69,9 @@
 	<!-- 노트 수정 -->
 	
 	<!-- 노트 삭제 -->
-	
+	<delete id="deleteNote">
+		DELETE FROM note WHERE noteNum = #{noteNum}
+	</delete>
 	<!-- 노트 달력 검색 -->
 	
 	<!-- 노트 키워드 검색 -->
