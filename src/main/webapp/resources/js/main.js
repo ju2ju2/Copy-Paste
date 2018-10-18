@@ -146,8 +146,8 @@ window.onload = function() {
 	
 	/*file업로드시 영역에 이미지 읽어오기*/
 	 var file = document.querySelector('.userPhoto');
-
-	    file.onchange = function () { 
+if(file!=null){
+	    file.onchange = function(){ 
 	        var fileList = file.files ;
 	        
 	        // 읽기
@@ -162,6 +162,6 @@ window.onload = function() {
 	            document.querySelector('.img-responsive').src = reader.result;
 	        }; 
 	    };    
-
+}
 
 };

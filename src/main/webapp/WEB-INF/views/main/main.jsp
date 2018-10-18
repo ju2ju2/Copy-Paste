@@ -60,6 +60,7 @@
 	<div class="row">
 		<div class="col-xs-6 col-sm-3 col-md-3">
 			<div class="text-center">
+				
 				<!-- a HTML (to Trigger Modal) -->
 				<a data-toggle="modal"
 					href="${pageContext.request.contextPath}/note/noteDetail.htm"
