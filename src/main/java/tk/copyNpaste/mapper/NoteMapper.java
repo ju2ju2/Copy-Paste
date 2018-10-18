@@ -18,7 +18,7 @@ public interface NoteMapper {
 	public List<NoteVO> selectTopNote() throws Exception;
 	
 	//노트 목록 보기
-	public List<NoteVO> selectAllNote() throws Exception;
+	public List<NoteVO> selectAllNote(String userEmail) throws Exception;
 
 	//노트 상세 보기(+노트 작성)
 	public NoteVO selectDetailNote(int noteNum) throws Exception;
@@ -36,7 +36,7 @@ public interface NoteMapper {
 	public int insertNote(NoteVO note) throws Exception;
 	
 	//노트 주제 조회
-	public int selectSubjectCode() throws Exception;
+	public List<NoteVO> selectSubjectCode() throws Exception;
 	
 	//노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws Exception;
 	public List<NoteVO> selectByCalNote(Date period) throws Exception;

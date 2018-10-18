@@ -18,6 +18,9 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/api/weather/weather-icons.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/api/weather/weather-icons-wind.css" />
+		<!-- Sweet Alert cdn -->
+		<link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
+		<script type="text/javascript"	src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
 		<!-- title 영역 -->
 		<title><tiles:insertAttribute name="title" /></title>
 	</head>

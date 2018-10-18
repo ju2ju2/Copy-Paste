@@ -31,9 +31,9 @@ public class NoteService {
 		return notelist;
 	} 
 	//노트 목록 보기
-	public List<NoteVO> selectAllNote() throws Exception{		
+	public List<NoteVO> selectAllNote(String userEmail) throws Exception{		
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
-		List<NoteVO> notelist = notedao.selectAllNote();
+		List<NoteVO> notelist = notedao.selectAllNote(userEmail);
 		return notelist;
 	}
 	//노트 상세 보기(+노트 작성)
@@ -75,9 +75,10 @@ public class NoteService {
 		return notedao.insertNote(note);
 	}
 	//노트 주제 조회
-	public int selectSubjectCode() throws Exception{
-		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
-		return notedao.selectSubjectCode();
+	public List<NoteVO> selectSubjectCode() throws Exception{
+		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
+		List<NoteVO> notelist = notedao.selectSubjectCode();
+		return notelist;
 	}
 	
 	//노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws Exception;
