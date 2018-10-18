@@ -4,6 +4,34 @@ $(function() {
 	var memberxAxis = [];
 	var memberyAxis = [];
 	
+	function subject() {
+		$.ajax({
+			url:"../etc/stateNoteSubject.json",
+			dataType:"json",
+			success:function(responsedata){
+				$.each(responsedata, function(index, obj) {
+					console.log(obj);
+					subjectxAxis[index] = obj.subjectxAxis;
+					subjectyAxis[index] = obj.subjectyAxis;
+				})
+			}
+		});
+		
+		
+		Highcharts.chart('chartDiv', {
+			chart: { type: 'column' },
+			title: { text: '주제 별 노트 개수' },
+			xAxis: { categories: subjectxAxis },
+			yAxis : { title : false, allowDecimals: false },
+			colors: ['#f56a6a'],
+			legend: false,
+			series : [ {
+				name : '등록된 게시글 수',
+				data : subjectyAxis
+			} ]	
+		});
+	}
+	
 		function makeChart() {
 			$.ajax({
 				url:"../etc/stateMember.json",
@@ -16,6 +44,7 @@ $(function() {
 					})
 				}
 			});
+			
 			Highcharts.chart('chartDiv', {
 				title : {
 					text : '달별 가입한 회원 수',
@@ -60,20 +89,7 @@ $(function() {
 		});
 		
 		$('#noteStatistic').click(function() {
-			
-			Highcharts.chart('chartDiv', {
-				chart: { type: 'column' },
-				title: { text: '주제 별 노트 개수' },
-				xAxis: { categories: subjectxAxis },
-				yAxis : { title : false, allowDecimals: false },
-				colors: ['#f56a6a'],
-				legend: false,
-				series : [ {
-					name : '등록된 게시글 수',
-					data : subjectyAxis
-				} ]	
-			});
-			
+			subject();
 		});
 		
 		makeChart();
