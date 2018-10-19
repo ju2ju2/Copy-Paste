@@ -6,14 +6,8 @@
 */
 package tk.copyNpaste.mapper;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import tk.copyNpaste.vo.DragVO;
 import tk.copyNpaste.vo.EtcVO;
 import tk.copyNpaste.vo.ReportVO;
 

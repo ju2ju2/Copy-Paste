@@ -93,13 +93,13 @@ public class EtcController {
 
 	
 	//통계 회원 가입
-	@RequestMapping("/stateMember.json")
+	@RequestMapping("stateMember.json")
 	public @ResponseBody List<EtcVO> stateMember() throws Exception {
 		return etcService.stateMember();
 	};
 	
 	//통계 노트 주제
-	@RequestMapping("/stateNoteSubject.json")
+	@RequestMapping("stateNoteSubject.json")
 	public @ResponseBody List<EtcVO> stateNoteSubject() throws Exception {
 		return etcService.stateNoteSubject();
 	};
