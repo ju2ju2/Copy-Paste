@@ -20,12 +20,12 @@
   		values (#{userEmail}, #{folderName}, 0, 1) ;
 	</insert>
 
-	<insert id="insertFolderUserDefault" >
+	<insert id="insertFolderUserDefault" parameterType="String">
 		insert into folder(userEmail, folderName, defaultFolder, candelete)
  		values (#{userEmail}, '미분류', 1, 1);
 	</insert>
 
-	<insert id="insertFolderUserScrap" >
+	<insert id="insertFolderUserScrap" parameterType="String">
 		insert into folder(userEmail, folderName, defaultFolder, candelete)
   		values (#{userEmail}, '스크랩', 0, 1);
 	</insert>
