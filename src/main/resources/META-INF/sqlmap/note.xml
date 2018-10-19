@@ -17,8 +17,8 @@
 	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, u.userNick
 	from note n join users u on u.userEmail=n.userEmail 
 				join subject s on s.subjectCode=n.subjectCode 
-	<!-- where s.subjectName = #{subjectName} -->
-	order by noteNum desc limit 4;
+	where s.subjectName = #{subjectName}		
+	order by n.noteCount desc , n.noteDate desc limit 4;
 	</select>
 
 	<!--회원의 MY노트 목록 보기 -->
@@ -136,7 +136,8 @@
 <!--     update note n
   	join subject s on s.subjectCode = n.subjectCode
   	set m.ever_seq_no = s.ever_seq_no; -->
-    
+ <!-- 	 <foreach collection="subjectNames" item="subject"  open="(" close=")" separator=",">
+               </foreach>  -->   
 </mapper>
 
 

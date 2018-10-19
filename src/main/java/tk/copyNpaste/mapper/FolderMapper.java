@@ -36,4 +36,6 @@ public interface FolderMapper {
 	//회원 가입 시 스크랩 폴더 추가
 	public int insertFolderUserScrap(String userEmail) throws Exception;
 
+
+
 }

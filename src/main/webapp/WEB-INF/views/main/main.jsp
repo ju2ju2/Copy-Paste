@@ -64,7 +64,7 @@
 	</div>
 	<br>
 	<div class="row">
-		<c:forEach var="noteList" items="${noteList}">
+		<c:forEach var="noteList" items="${bizNoteList}">
 			<div class="col-xs-6 col-md-3">
 				<div class="text-center">
 					<!-- a HTML (to Trigger Modal) -->
@@ -95,7 +95,7 @@
 	</div>
 	<br>
 	<div class="row">
-		<c:forEach var="noteList" items="${noteList}">
+		<c:forEach var="noteList" items="${lifeNoteList}">
 			<div class="col-xs-6 col-md-3">
 				<div class="text-center">
 					<!-- a HTML (to Trigger Modal) -->
@@ -127,7 +127,7 @@
 	</div>
 	<br>
 	<div class="row">
-		<c:forEach var="noteList" items="${noteList}">
+		<c:forEach var="noteList" items="${eduNoteList}">
 			<div class="col-xs-6 col-md-3">
 				<div class="text-center">
 					<!-- a HTML (to Trigger Modal) -->
@@ -158,7 +158,7 @@
 	</div>
 	<br>
 	<div class="row">
-		<c:forEach var="noteList" items="${noteList}">
+		<c:forEach var="noteList" items="${etcNoteList}">
 			<div class="col-xs-6 col-md-3">
 				<div class="text-center">
 					<!-- a HTML (to Trigger Modal) -->

@@ -1,5 +1,6 @@
 package tk.copyNpaste.etc;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +19,22 @@ public class IndexController {
 		//인덱스-주제별 노트 상위목록
 		@RequestMapping("/index.htm")
 		public String index(Model model) throws Exception {
-			List<NoteVO> noteList = noteService.selectTopNote();
-			model.addAttribute("noteList", noteList);
+			List<NoteVO> notelist = noteService.selectSubjectCode();
+			String[] subjectNames = new String[notelist.size()];
+			int i = 0;
+			for (NoteVO note: notelist ) {
+				subjectNames[i] = note.getSubjectName();
+				i++;
+			}
+			List<NoteVO> etcNoteList = noteService.selectTopNote(subjectNames[0]);
+			model.addAttribute("etcNoteList", etcNoteList);
+			List<NoteVO> bizNoteList = noteService.selectTopNote(subjectNames[1]);
+			model.addAttribute("bizNoteList", bizNoteList);
+			List<NoteVO> lifeNoteList = noteService.selectTopNote(subjectNames[2]);
+			model.addAttribute("lifeNoteList", lifeNoteList);
+			List<NoteVO> eduNoteList = noteService.selectTopNote(subjectNames[3]);
+			model.addAttribute("eduNoteList", eduNoteList);
+
 			return "index.main";//return "index.jsp";
 		}
 		
