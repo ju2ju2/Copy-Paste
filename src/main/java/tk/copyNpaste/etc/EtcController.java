@@ -7,11 +7,14 @@
 
 package tk.copyNpaste.etc;
 
-import org.apache.ibatis.session.SqlSession;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import tk.copyNpaste.vo.EtcVO;
 
 @RequestMapping("/etc/")
 @Controller //동기 컨트롤러. retrun>> ModelAndView or String.
@@ -90,13 +93,15 @@ public class EtcController {
 
 	
 	//통계 회원 가입
-	public void stateMember() throws Exception {
-		etcService.stateMember();
+	@RequestMapping("/stateMember.json")
+	public @ResponseBody List<EtcVO> stateMember() throws Exception {
+		return etcService.stateMember();
 	};
 	
-	//통계 상위노트 참조수
-	public void stateTopRank() throws Exception {
-		etcService.stateTopRank();
+	//통계 노트 주제
+	@RequestMapping("/stateNoteSubject.json")
+	public @ResponseBody List<EtcVO> stateNoteSubject() throws Exception {
+		return etcService.stateNoteSubject();
 	};
 
 	/*qna 게시판에 관련된 내용. 

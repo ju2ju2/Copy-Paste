@@ -3,9 +3,18 @@
 @Date : 2018.10.10
 @Author : 우나연,문지은,임지현
 @Desc :	admin.css
+
+@Date : 2018.10.17
+@Desc :	세부 정렬 사항 수정
+
 */
 
 @import url(main.css);
+
+#adminBtnDiv {
+	text-align: right;
+}
+
 /* layout 설정 */
 .aside{
 	position: relative;
