@@ -9,6 +9,7 @@
 <!-- 신고 모달창에서 ok버튼 눌렀을 때 스윗알럳 띄우기 -->
 
 <!-- modal-header -->
+
 <div class="modal-header">
    <button type="button" class="close" data-dismiss="modal">&times;</button>
    <br>
@@ -36,11 +37,10 @@
                <br> <br> <br> <br>
                <div class="col-sm-9"></div>
                <div class="col-sm-3">
-                  <strong> <a href=""><i
-                        class="far fa-edit 3x notewrite"></i> &nbsp;</a> <a href=""><i
-                        class="fas fa-arrow-down"></i> &nbsp;</a> <a href=""><i
-                        class="fas fa-trash"></i> &nbsp;</a> <a href=""><i
-                        class="fas fa-archive"></i></strong></a>
+                  <strong> <a href=""><i class="far fa-edit 3x notewrite"></i> &nbsp;</a> 
+                  <a href=""><i class="fas fa-arrow-down"></i> &nbsp;</a>
+                   <a href=""><i class="fas fa-trash"></i> &nbsp;</a> 
+                   <a href=""><i class="fas fa-archive"></i></a></strong>
                </div>
             </div>
 
@@ -64,7 +64,6 @@
       <div class="col-xs-10" id="lblstatus"></div>
    </div>
 </div>
-
 
 
 

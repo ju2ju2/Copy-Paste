@@ -6,10 +6,9 @@
 */
 package tk.copyNpaste.drag;
 
+import java.security.Principal;
 import java.util.Date;
 import java.util.List;
-
-import javax.swing.text.View;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import tk.copyNpaste.vo.DragVO;
+import tk.copyNpaste.vo.NoteCommVO;
 import tk.copyNpaste.vo.NoteVO;
 
  //동기 컨트롤러. retrun>> ModelAndView or String.
@@ -30,8 +30,9 @@ public class DragController {
 
 	//드래그 페이지
 	@RequestMapping("drag.htm")
-	public String selectAllDrag(Model model) throws Exception {
-		List<DragVO> dragList = dragservice.selectAllDrag();
+	public String selectAllDrag(Model model ,Principal principal) throws Exception {
+        String userEmail= principal.getName();
+		List<DragVO> dragList = dragservice.selectAllDrag(userEmail);
 		model.addAttribute("dragList", dragList);
 		return "drag.list";
      }
@@ -41,20 +42,21 @@ public class DragController {
 		dragservice.insertDrag(drag);
 	}
 
-	//드래그 전체목록 보기
+/*	//드래그 전체목록 보기
 	public void selectAllDrag(DragVO drag) throws Exception {
 		
 		dragservice.selectAllDrag();
 	}
-	
+	*/
 	//드래그 상세 보기(+노트 작성)
+	@RequestMapping(value="dragDetail.htm")
 	public String selectDetail(int dragNum , Model model) throws Exception {
-	    DragVO dregdetail = dragservice.selectDetail(dragNum);
-		model.addAttribute("dregdetail", dregdetail);
-		return "drag.list";
-       
+		DragVO dragList = dragservice.selectDetail(dragNum);
+		model.addAttribute("dragList", dragList);
+		return "dragdetail";//(modal/dragdetail.jsp)
 	}
-	
+		
+
 	//드래그 삭제
 	public void deleteDrag(int dragNo) throws Exception {
 		dragservice.deleteDrag(dragNo);

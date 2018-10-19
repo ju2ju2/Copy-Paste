@@ -18,10 +18,10 @@ public interface DragMapper {
 	public int insertDrag(DragVO drag) throws Exception;
 	
 	//드래그 목록 보기
-	public List<DragVO> selectAllDrag() throws Exception;
+	public List<DragVO> selectAllDrag(String userEmail) throws Exception;
 	
 	//드래그 상세 보기(+노트 작성)
-	public DragVO selectDetail(int dragNo) throws Exception;
+	public DragVO selectDetail(int dragNum) throws Exception;
 	
 	//드래그 삭제
 	public int deleteDrag(int dragNo) throws Exception;
