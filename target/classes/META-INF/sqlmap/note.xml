@@ -68,9 +68,7 @@
 
 	<!-- 노트 수정 -->
 	<update id="updateNote">
-	 	<!-- <selectKey order="BEFORE" keyProperty="subjectName" resultType="String">
-        select subjectCode from subject where subjectName = #{subjectName}
-        </selectKey> -->
+	
 		 update note 
 			SET noteTitle=#{noteTitle},
 				noteContent=#{noteContent}, 
@@ -133,10 +131,14 @@
 	private int noteCommPNum;
 	-->
 	
-<!--     update note n
+  
+ 	<!-- <selectKey order="BEFORE" keyProperty="subjectName" resultType="String">
+        select subjectCode from subject where subjectName = #{subjectName}
+        </selectKey> 
+   update note n
   	join subject s on s.subjectCode = n.subjectCode
-  	set m.ever_seq_no = s.ever_seq_no; -->
- <!-- 	 <foreach collection="subjectNames" item="subject"  open="(" close=")" separator=",">
+  	set m.ever_seq_no = s.ever_seq_no; 
+ <foreach collection="subjectNames" item="subject"  open="(" close=")" separator=",">
                </foreach>  -->   
 </mapper>
 

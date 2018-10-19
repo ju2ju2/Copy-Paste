@@ -718,3 +718,7 @@ img .user-photo{
 	overflow: auto;
 	/* width:100%; */
 }
+
+.noresize {
+  resize: none; /* 사용자 임의 변경 불가 */
+}

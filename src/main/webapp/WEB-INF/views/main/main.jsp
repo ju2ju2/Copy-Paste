@@ -14,7 +14,6 @@
 
 
 
-
 </script>
 <!-- banner start -->
 <!-- ================ -->
@@ -187,9 +186,11 @@
 
 <!-- Modal HTML -->
 <div id="modal-testNew" class="modal fade text-center overlay"
-	tabindex="-1" role="dialog">
+	 role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">Content will be loaded here from
 			"note/noteDetail.htm" file</div>
 	</div>
 </div>
+
+

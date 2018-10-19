@@ -16,9 +16,6 @@
 
 
 	$(document).ready(function() {
-		
-		
-
 		//노트삭제
 		$('#deleteNoteBtn').click(function(e) {
 			swal({
@@ -66,15 +63,58 @@
 		});
 
 		//신고 모달 모달에서 확인시 경고창.
-		$('#reportOK').click(function() {
+		$('#noteReportForm').click(function() {
 			swal({
-				title : "신고되었습니다.",
-				text : "",
-				type : "success",
-				confirmButtonText : "OK",
-				confirmButtonClass : "btn-danger"
+				  title:'<span class="title">노트신고</span>',
+				  text: '<form><p><strong>작성자</strong> <span id="commWriterOut">${note.userNick}</span></p>'+
+						'<input type="hidden" value=${note.userEmail}/>'+
+						'</p><p style="padding-top: 10px;">'+
+						'<strong>신고 사유</strong>&ensp; <select name="cause-category"'+
+						'	id="cause-category">'+
+						'	<option>신고 사유를 선택하세요</option>'+
+						'	<option>저작권 위반</option>'+
+						'	<option>음란성</option>'+
+						'	<option>명예훼손</option>'+
+						'	<option>개인정보 유출</option>'+
+						'	<option>부적절한 홍보</option>'+
+						'	<option>기타</option>'+
+						'</select></p> <p style="padding-top: 10px;"><strong>신고 사유 상세</strong>'+
+						'</p><textarea rows="5" class="form-control textarea noresize"'+
+						'placeholder="신고 사유를 입력하세요"></textarea><br>'+
+						'<p align="center"><strong>위와 같은 내용으로 <br/>해당 댓글을 신고하시겠습니까?</strong>'+
+						'</p></div></form>'
+				  ,
+				  html: true,
+				  inputAttributes: { autocapitalize: 'off' },
+				  showCancelButton: true,
+				  confirmButtonText : "OK",
+				  confirmButtonClass : "btn-danger btn-sm",
+				  cancelButtonClass : "btn btn-sm"
+			},
+			function(){
+				$.ajax ({
+					/* url: "${pageContext.request.contextPath}/note/deleteNote.json",
+					type: "POST",
+					dataType: "json",
+					data: {	'noteNum': ${note.noteNum} } *///
+				}).done(function(result) {
+					swal({type: "success",
+						  title: '성공적으로 신고되었습니다.',
+			              confirmButtonClass : "btn-danger",
+						  closeOnConfirm: false
+					},
+					function(){
+						location.href="${pageContext.request.contextPath}/index.htm";
+					})
+					
+				
+				})
+				.fail(function(jqXhr, testStatus, errorText){
+					alert("에러발생 :" + errorText);
+				});
 			});
-		});
+		return false;
+	});
 		
 	
 		
@@ -111,10 +151,12 @@
 					<br> <br> <br> <br>
 					<div class="col-sm-9"></div>
 					<div class="col-sm-3">
-						<strong> <a href="${pageContext.request.contextPath}/note/updateNote.htm?noteNum=${note.noteNum}"><i class="far fa-edit 3x notewrite"></i> &nbsp;</a> 
+						<strong> 
+								 <a href="${pageContext.request.contextPath}/note/updateNote.htm?noteNum=${note.noteNum}"><i class="far fa-edit 3x notewrite"></i> &nbsp;</a> 
 								 <a href=""><i class="fas fa-arrow-down"></i> &nbsp;</a> 
 								 <a id="deleteNoteBtn"><i class="fas fa-trash"></i> &nbsp;</a> 
-								 <a href=""><i class="fas fa-archive"></i></a>
+								 <a href=""><i class="fas fa-archive"></i>&nbsp;</a>
+								 <a id="noteReportForm"> <i class="fas fa-flag"></i></a>
 						</strong>
 					</div>
 				</div>
@@ -144,8 +186,7 @@
 													<strong class="pull-left primary-font" id="commWriter">${noteCommList.userNick}</strong>
 													<small> &ensp;${noteCommList.commDate}</small><br> 
 													<small	class="pull-right text-muted"> <span class="">삭제</span>&ensp;
-														<span class="">댓글</span>&ensp; <a href="#"
-														data-toggle="modal" data-target="#reportModal" id="report">신고</a>&ensp;
+														<span class="">댓글</span>&ensp; <a href="#" id="commReportForm">신고</a>&ensp;
 													</small>
 													<p id="commContent">${noteCommList.commContent}</p>
 												</div>
@@ -179,60 +220,4 @@
 
 	</div>
 </div>
-
-
-<!-- 댓글 신고 Modal -->
-<div class="modal fade" id="reportModal" role="dialog">
-	<div class="modal-dialog">
-		<!-- 댓글 신고 Modal content-->
-		<div class="modal-content" align="left">
-			<div class="modal-header" align="center">
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">댓글 신고</h4>
-			</div>
-			<div class="modal-body">
-				<p>
-					<strong>작성자</strong> <span id="commWriterOut"></span>
-				</p>
-				<p style="width: 300px; padding-top: 10px;">
-					<strong>작성내용</strong> <span id="commContentOut"></span>
-				</p>
-				<p style="padding-top: 10px;">
-					<strong>신고 사유</strong>&ensp; <select name="cause-category"
-						id="cause-category">
-						<option value="">신고 사유를 선택하세요</option>
-						<option value="1">저작권 위반</option>
-						<option value="1">음란성</option>
-						<option value="1">명예훼손</option>
-						<option value="1">개인정보 유출</option>
-						<option value="1">부적절한 홍보</option>
-						<option value="1">기타</option>
-					</select>
-				</p>
-				<p style="padding-top: 10px;">
-					<strong>신고 사유 상세</strong>
-				</p>
-				<textarea rows="5" class="form-control textarea"
-					placeholder="신고 사유를 입력하세요"></textarea>
-				<br>
-				<p align="center">
-					<strong>위와 같은 내용으로 <br/>해당 댓글을 신고하시겠습니까?</strong>
-				</p>
-			</div>
-
-			<div class="modal-footer">
-				<div>
-					<a data-toggle="modal" href="#" data-target="#reportModal"
-						role="button" class="btn main-btn" data-backdrop="static"
-						id="reportOK">OK</a> <a data-toggle="modal" href="#"
-						data-target="#reportModal" role="button" class="btn btn-default"
-						data-backdrop="static">Cancel</a>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-
-
 
