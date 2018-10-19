@@ -30,6 +30,10 @@
   		values (#{userEmail}, '스크랩', 0, 1);
 	</insert>
 	
+	<delete id="deleteFolder" parameterType="FolderVO">
+		delete from folder where userEmail = #{userEmail} and folderName=#{folderName};
+	</delete>
+	
 </mapper>
 
 

@@ -9,6 +9,9 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<!-- Sweet Alert cdn -->
+		<link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
+		<script type="text/javascript"	src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
 <nav>
 <div id="sidebar">
 <div class="inner">
@@ -61,8 +64,13 @@
 		<div class="row" id="scrap">
 			<div class="col-xs-10 n-folder">
 				<h5 class="ml-10 f-name">
-					<span class="f-count">4</span>${folderName}<span class="f-modify">
-						<i class="fas fa-edit icon-size"></i> <i class="fas fa-trash icon-size"></i>
+					<span class="f-count">4</span>
+					<span class="f-name">${folderName}</span>
+					<span class="f-modify">
+						<i class="fas fa-edit icon-size"></i> 
+						<i class="fas fa-trash icon-size">
+							<span class="f-name" id="fname" style="visibility:hidden;">${folderName}</span>
+						</i>
 					</span>
 				</h5>
 			</div>
@@ -72,23 +80,6 @@
 		</div>
 		</c:forEach>
 	</c:forEach>
-		
-	<%-- </c:forEach> --%>
-			<!-- 
-		
-		<div class="row">
-			<div class="col-xs-10 n-folder">
-				<h5 class="ml-10 f-name">
-					<span class="f-count">4</span> 폴더 1 <span class="f-modify">
-						<i class="fas fa-edit icon-size"></i> <i class="fas fa-trash icon-size"></i>
-					</span>
-				</h5>
-			</div>
-			<div class="col-xs-2 icon">
-				<i class="far fa-bookmark icon-size"></i>
-			</div>
-		</div>
-		-->
 	</div>
 </div>
 </nav>
@@ -101,13 +92,14 @@ $('#Addfolder').click(function(){
 	a += "<div class='col-xs-10 n-folder'>";
 	a += "<h5 class='ml-10 f-name'>";
 	a += "&ensp;&ensp;<span class='f-count'style='margin-left:-1px;'>0</span>";
-	a += "&ensp;&ensp;&ensp;<input type='text' id='folname' name='folname' required minlength='1' maxlength='12' style='width:200px;height:40px;margin-left:44px;margin-top:-25px;'placeholder='폴더명을 입력하세요' autofocus/>";
+	a += "<input type='text' id='folname' required minlength='1' maxlength='12' style='width:200px;height:40px;margin-left:44px;margin-top:-25px;'placeholder='폴더명을 입력하세요' autofocus/>";
 	a += "</h5></div>";
 	a += "<div class='col-xs-2 icon'>";
 	a += "<i class='far fa-bookmark icon-size' style='margin-left:11px;'></i>";
 	a += "</div></div>";
 	$('#scrap:last-child').append(a);
 	
+	/* 엔터키를 치면 폴더가 생성된다. insert folder에 들어간다. */
 	$("#folname").keypress(function(key){
 		if(key.keyCode == 13){
 			$(this).remove();
@@ -116,19 +108,23 @@ $('#Addfolder').click(function(){
                 a += "<div class='col-xs-10 n-folder'>";
                 a += "<h5 class='ml-10 f-name' id='folname'>";
                 a += "&ensp;&ensp;<span class='f-count' id='juwon' style='margin-left:-1px;'>0</span>";
+                a += "<span class='f-name' id='fname'>";
                 a += $(this).val();
+                a += "</span>"
+                a += "<span class='f-modify'>";
+                a += "<i class='fas fa-edit icon-size'></i>" 
+                a += "<i class='fas fa-trash icon-size'></i></span>"
                 a += "</h5></div>";
                 a += "<div class='col-xs-2 icon'>";
                 a += "<i class='far fa-bookmark icon-size' style='margin-left:11px;'></i>";
                 a += "</div></div>"; 
                 $('#scrap:last-child').append(a);
-				location.reload();
-			
+				location.reload(); 
 					$.ajax(
 							{
 					    url : "<%=request.getContextPath()%>/folder/insertfolder.json",
 					    DataType :{},
-					    type : "get",
+					    type : "post",
 					    data : {"folderName": $(this).val()},
 					    success : function(data){
 					    	/* $(this).empty();
@@ -145,15 +141,64 @@ $('#Addfolder').click(function(){
 					                $('#scrap').append(a); */
 					    },
 					    error : function(){
-					        	console.log("폴더 추가 실패");
+					    	swal({
+					  		  title: "동일한 폴더명이 존재합니다",
+					  		  text: "",
+					  		  type: "warning",
+					  		  confirmButtonClass: "btn-danger"
+					  		});
 					    }
 							});	 
 		}	
 	 });
 });
 
-/* 엔터키를 치면 폴더가 생성된다. insert folder에 들어간다. */
-	 
+/* 폴더 삭제 */
+$('.fa-trash').click(function(){
+	var foldername = $(this).children('span').text();
+	swal({
+		  title: "폴더를 삭제하시겠습니까?",
+		  text: "",
+		  type: "warning",
+		  confirmButtonClass: "btn-danger",
+		  confirmButtonText: "OK",
+		  showCancelButton: true
+		},
+		function(isConfirm) {
+		  if (isConfirm) {
+			  $.ajax(
+						{
+				    url : "<%=request.getContextPath()%>/folder/deletefolder.json",
+				    DataType :{},
+				    type : "get",
+				    data : {"folderName": foldername},
+				    success : function(data){
+				    	location.reload();
+				    },
+				    error : function(){
+				    	console.log("폴더 삭제 실패");
+				    }
+						})
+		  } 
+		}); 
+	<%-- $('#OK').click(function(){
+		$.ajax(
+				{
+		    url : "<%=request.getContextPath()%>/folder/deletefolder.json",
+		    DataType :{},
+		    type : "get",
+		    data : {"folderName": foldername},
+		    success : function(data){
+		    	location.reload();
+		    },
+		    error : function(){
+		    	
+		    }
+				});	
+	}); --%>
+	
+	
+});	 
 
 
 	/* var dateFormat = "yyyy-mm-dd", //이거 지금 안 먹음
