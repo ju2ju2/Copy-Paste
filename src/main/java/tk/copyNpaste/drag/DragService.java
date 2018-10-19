@@ -29,17 +29,17 @@ public class DragService {
 	}
 
 	//드래그 목록 보기
-	public List<DragVO> selectAllDrag() throws Exception {
+	public List<DragVO> selectAllDrag(String userEmail) throws Exception {
 		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
-		List<DragVO> dragList = dragdao.selectAllDrag();
+		List<DragVO> dragList = dragdao.selectAllDrag(userEmail);
 		return dragList;
 	}
 	
 	//드래그 상세 보기(+노트 작성)
 	public DragVO selectDetail(int dragNum) throws Exception {
 		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
-		DragVO dregdetail = dragdao.selectDetail(dragNum);
-		return dregdetail;
+		DragVO dragList = dragdao.selectDetail(dragNum);
+		return dragList;
 	}
 	
 	//드래그 삭제
