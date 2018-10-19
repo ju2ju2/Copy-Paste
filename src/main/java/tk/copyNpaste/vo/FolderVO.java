@@ -13,6 +13,7 @@ public class FolderVO {
 	private String userEmail;
 	private String defaultFolder;
 	private String canDelete;
+	private String beforefolderName;
 
 	public String getFolderName() {
 		return folderName;
@@ -37,6 +38,12 @@ public class FolderVO {
 	}
 	public void setCanDelete(String canDelete) {
 		this.canDelete = canDelete;
+	}
+	public String getBeforefolderName() {
+		return beforefolderName;
+	}
+	public void setBeforefolderName(String beforefolderName) {
+		this.beforefolderName = beforefolderName;
 	}
 
 

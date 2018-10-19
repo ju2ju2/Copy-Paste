@@ -11,17 +11,17 @@
 
 package tk.copyNpaste.qna;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import tk.copyNpaste.mapper.QnaMapper;
 import tk.copyNpaste.vo.QnaCommVO;
 import tk.copyNpaste.vo.QnaVO;
 
@@ -45,7 +45,6 @@ public class QnaController {
 	//QNA 게시물 상세보기
 		@RequestMapping(value="/selectDetailQna.htm",method = RequestMethod.GET)
 		public String selectDetailQna(int qnaNum, Model model) throws Exception{
-			System.out.println("컨트롤러 qnaNum>>"+qnaNum);
 			QnaVO qna = qnaService.selectDetailQna(qnaNum);
 			model.addAttribute("qna",qna);
 			List<QnaCommVO> qnaCommList = qnaService.selectQnaComm(qnaNum);
@@ -80,14 +79,21 @@ public class QnaController {
 		return qnaService.deleteQna(qnaNum);
 	};
 	
-	//QNA 댓글 작성
-	public int insertQnaComm(QnaCommVO qnaComm) throws Exception{
-		return qnaService.insertQnaComm(qnaComm);
-	};
-	
 	//QNA 댓글 삭제
 	public int deleteQnaComm(int qnaCommNum) throws Exception{
 		return qnaService.deleteQnaComm(qnaCommNum);
+	};
+	
+	/*비동기관련 컨트롤러*/
+	//QNA댓글 작성
+	@RequestMapping(value="/newQnaComm.json")
+	public @ResponseBody List<QnaCommVO> insertQnaComm(QnaCommVO qnaComm,Principal principal) throws Exception{
+		List<QnaCommVO> qnaCommList = new ArrayList<>();
+		qnaComm.setUserEmail(principal.getName());
+		qnaService.insertQnaComm(qnaComm);
+		qnaCommList = qnaService.selectQnaComm(qnaComm.getQnaNum());
+
+		return qnaCommList;
 	};
 
 }

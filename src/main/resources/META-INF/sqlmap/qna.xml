@@ -46,6 +46,13 @@
 <!-- 	//QNA 댓글 작성
 	public int insertQnaComm(QnaCommVO qnaComm) throws Exception;
  -->
+ <insert id="insertQnaComm">
+     <selectKey order="BEFORE" keyProperty="qnaCommPos" resultType="int">
+      	select max(qnacommPos)+1 from qnaComm
+     </selectKey>
+     	insert into qnaComm(qnaNum,userEmail,qnaCommContent,qnaCommPos)
+		values (#{qnaNum},#{userEmail},#{qnaCommContent},#{qnaCommPos})
+    </insert>
  <!-- 	//QNA 댓글 삭제
 	public int deleteQnaComm(int qnaCommNum) throws Exception; -->
 

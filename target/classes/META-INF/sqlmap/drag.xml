@@ -14,8 +14,15 @@
      <!--전체보기  -->
     <select id="selectAllDrag" resultType="DragVO">
             select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate
-            from drag
+            from drag where userEmail= #{userEmail}
         </select>
+
+      <!--상세보기  -->
+    <select id="selectDetail" resultType="DragVO">
+            select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate
+            from drag where dragNum= #{dragNum}
+        </select>
+      
 
 
 </mapper>

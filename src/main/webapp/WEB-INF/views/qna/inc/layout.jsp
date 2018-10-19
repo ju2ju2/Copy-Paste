@@ -17,7 +17,7 @@
 		<title><tiles:insertAttribute name="title" ></tiles:insertAttribute></title>
 		<!-- css 영역 -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/qna.css" />
 		<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script> 
 	</head>
 	<body>

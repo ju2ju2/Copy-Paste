@@ -16,9 +16,15 @@ public class QnaCommVO {
 		private String qnaCommDate;
 		private int qnaCommDept;
 		private int qnaCommPNum;
+		private int qnaCommPos;
 		private String userNick;
 		
-		
+		public int getQnaCommPos() {
+			return qnaCommPos;
+		}
+		public void setQnaCommPos(int qnaCommPos) {
+			this.qnaCommPos = qnaCommPos;
+		}
 		public String getUserNick() {
 			return userNick;
 		}

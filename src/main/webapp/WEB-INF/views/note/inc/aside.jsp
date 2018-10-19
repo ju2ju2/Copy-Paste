@@ -4,6 +4,15 @@
 @Author : 우나연, 임효진(노트 폴더목록만)
 @Desc : note aside부분 jsp
  -->
+ 
+ 
+ <!-- note>>inc
+@JSP : aside.jsp
+@Date : 2018.10.19
+@Author : 이주원 (폴더 목록, 추가, 수정, 삭제 가능)
+@Desc : 정말 기능 큰 부분만 구현했습니다. 
+		미분류, 스크랩 휴지통, 수정안되게 막아놓지 않았습니다. 이 부분은 주요기능 구현 끝나는 대로 틈틈이 고치겠습니다.
+ -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -67,9 +76,11 @@
 					<span class="f-count">4</span>
 					<span class="f-name">${folderName}</span>
 					<span class="f-modify">
-						<i class="fas fa-edit icon-size"></i> 
+						<i class="fas fa-edit icon-size">
+							<span class="f-name" id="fname" style="display: none;">${folderName}</span>
+						</i> 
 						<i class="fas fa-trash icon-size">
-							<span class="f-name" id="fname" style="visibility:hidden;">${folderName}</span>
+							<span class="f-name" id="fname" style="display: none;">${folderName}</span>
 						</i>
 					</span>
 				</h5>
@@ -127,26 +138,10 @@ $('#Addfolder').click(function(){
 					    type : "post",
 					    data : {"folderName": $(this).val()},
 					    success : function(data){
-					    	/* $(this).empty();
-					            var a = "";
-					                a += "<div class='row'>";
-					                a += "<div class='col-xs-10 n-folder'>";
-					                a += "<h5 class='ml-10 f-name' id='folname'>";
-					                a += "&ensp;&ensp;<span class='f-count' id='juwon' style='margin-left:-1px;'>0</span>";
-					                a += $(this).val();
-					                a += "</h5></div>";
-					                a += "<div class='col-xs-2 icon'>";
-					                a += "<i class='far fa-bookmark icon-size' style='margin-left:11px;'></i>";
-					                a += "</div></div>"; 
-					                $('#scrap').append(a); */
+					    	location.reload(); 
 					    },
 					    error : function(){
-					    	swal({
-					  		  title: "동일한 폴더명이 존재합니다",
-					  		  text: "",
-					  		  type: "warning",
-					  		  confirmButtonClass: "btn-danger"
-					  		});
+					    	location.reload(); 
 					    }
 							});	 
 		}	
@@ -181,25 +176,43 @@ $('.fa-trash').click(function(){
 						})
 		  } 
 		}); 
-	<%-- $('#OK').click(function(){
-		$.ajax(
-				{
-		    url : "<%=request.getContextPath()%>/folder/deletefolder.json",
-		    DataType :{},
-		    type : "get",
-		    data : {"folderName": foldername},
-		    success : function(data){
-		    	location.reload();
-		    },
-		    error : function(){
-		    	
-		    }
-				});	
-	}); --%>
-	
-	
 });	 
 
+/* 폴더 수정 */
+$('.fa-edit').click(function(){
+	var foldername = $(this).children('span').text();
+	var a = "";
+	a += "<h5 class='ml-10 f-name'>";
+	a += "<span class='f-count'>4</span>";
+	a += "<input type='text' id='folname' required minlength='1' maxlength='12' style='width:200px;height:40px;margin-left:25px;margin-top:-25px;' placeholder=";
+	a += foldername;
+	a += " autofocus/ >";
+	a += "</h5>";
+	$(this).closest('h5').replaceWith(a);
+	
+	/* 엔터키를 치면 업데이트가 된다. */
+	$("#folname").keypress(function(key){
+		if(key.keyCode == 13){
+					$.ajax(
+							{
+					    url : "<%=request.getContextPath()%>/folder/updatefolder.json",
+					    DataType :{},
+					    type : "post",
+					    data : {"beforefolderName": foldername,
+					    		"folderName" : $(this).val()},
+					    success : function(data){
+					    	location.reload();
+					    	console.log("폴더 수정 성공");
+					    },
+					    error : function(){
+					    	console.log("폴더 수정 삭제");
+					    	location.reload();
+					    	
+					    }
+							});	 
+		}	
+	 });
+});	 
 
 	/* var dateFormat = "yyyy-mm-dd", //이거 지금 안 먹음
 	fromDate = $("#fromDate").datepicker({

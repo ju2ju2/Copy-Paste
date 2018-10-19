@@ -35,7 +35,7 @@ $(document).ready(function() {
 				<td><c:if test="${qna.qnaNotice >0}">-</c:if><c:if test="${qna.qnaNotice ==0}">${qna.qnaNum}</c:if> </td>
 				<td>
 					<a href="${pageContext.request.contextPath}/qna/selectDetailQna.htm?qnaNum=${qna.qnaNum}">
-						<c:if test="${qna.qnaDept == 1}">답변: </c:if> ${qna.qnaTitle}
+						<c:if test="${qna.qnaDept == 1}">ㄴ답변: </c:if> ${qna.qnaTitle}
 					</a>
 				</td>
 				<td>${qna.userNick}</td>
