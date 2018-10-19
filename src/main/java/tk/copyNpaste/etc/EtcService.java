@@ -69,8 +69,6 @@ public class EtcService {
 		EtcMapper etcdao= sqlsession.getMapper(EtcMapper.class);
 		return etcdao.stateNoteSubject();
 	}
-	
 
-	
 
 }

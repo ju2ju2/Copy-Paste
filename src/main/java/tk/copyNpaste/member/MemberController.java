@@ -9,12 +9,15 @@
 package tk.copyNpaste.member;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
@@ -50,47 +53,20 @@ public class MemberController {
 	
 	//회원가입 + 회원가입시 미분류,스크랩 폴더 부여
     @RequestMapping(value="signup.do", method = RequestMethod.POST)
-    public void insertMember(MemberVO member, MultipartHttpServletRequest request, HttpServletResponse response) throws Exception{
-
-    	String userPhoto = "userProfile.png"; //DB에 입력될 기본 파일명
-    	String userEmail = member.getUserEmail();
-    	System.out.println(userEmail);
+    public void insertMember(MemberVO member, MultipartHttpServletRequest request, HttpServletResponse response) 
+    		throws Exception{
+    	memberService.insertMember(member, request);
     	
-       MultipartFile userPhotoFile = request.getFile("userPhotoFile");
-   
-       String originFileName = userPhotoFile.getOriginalFilename(); // 원본 파일 명
-       long fileSize = userPhotoFile.getSize(); // 파일 사이즈
-       String path= request.getServletContext().getRealPath("resources/image/userPhoto/");
-       
-       String safeFile = path + System.currentTimeMillis() + originFileName;
-       userPhotoFile.transferTo(new File(safeFile));  //폴더에 파일 쓰기
-   
-       if( fileSize > 0) {
-    	   String userPhotoName = userEmail+originFileName;
-    	   member.setUserPhoto(userPhotoName); // DB에 들어갈 파일명 지정
-    	   System.out.println("filesize >0 : " + userPhotoName);
-    	   try {
-               memberService.insertMember(member);
-           } catch (Exception e) {
-                   e.printStackTrace()	;
-           }
-       } else {
-    	   String userPhotoName = userEmail+userPhoto;
-    	   member.setUserPhoto(userPhotoName); // DB에 들어갈 파일명 지정
-    	   System.out.println("filesize <0 : " + userPhotoName);
-    	   try {
-               memberService.insertMember(member);
-           } catch (Exception e) {
-                   e.printStackTrace();
-           }
-       }
-      
-      folderService.insertFolderUserDefault(userEmail);
-      folderService.insertFolderUserScrap(userEmail);
-      
-      PrintWriter writer = response.getWriter();
-      writer.println("<script>alert('Delete Success'); location.href='/login.htm';</script>");
-      
+    	response.setContentType("text/html");
+        //응답하는 Text의 Encoding을 설정한다
+        response.setCharacterEncoding("UTF-8");
+        //Response Body에 응답을 싣기 위해서 Writer객체를 하나 가져온다
+        PrintWriter writer = response.getWriter();
+        //가져온 Write 객체에 응답할 Text를 작성한다.
+        writer.write("<script>alert('성공')</script>");
+        //응답을 보낸다.
+        writer.flush();
+        writer.close();
     };
 	
 	//로그인

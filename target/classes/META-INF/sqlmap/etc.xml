@@ -2,8 +2,8 @@
 <!--
 @Project : 
 @File name : etc.xml
-@Date : 2018.10.06
-@Author : 우나연
+@Date : 2018.10.17
+@Author : 고은아
 @Desc : etc dao 매퍼 쿼리문 작성.
 -->		
 
@@ -11,7 +11,20 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="tk.copyNpaste.mapper.EtcMapper">
+<!-- 주제에 맞게 노트 개수 가지고 온다 -->
+<select id="stateNoteSubject" resultType="tk.copyNpaste.vo.EtcVO">
+select c.subjectName subjectxAxis, count(n.subjectCode) subjectyAxis
+from subject c left outer join note n
+on c.subjectCode=n.subjectCode
+group by c.subjectName
+</select>
 
+<!-- 회원 가입 수를 가지고 온다 -->
+<select id="stateMember" resultType="tk.copyNpaste.vo.EtcVO">
+select date_format(userDate, '%Y-%m') as memberxAxis, count(*) memberyAxis from users
+where userDate between DATE_ADD(NOW(),INTERVAL -6 MONTH ) and now()
+group by date_format(userDate, '%Y-%m')
+</select>
 
 </mapper>
 

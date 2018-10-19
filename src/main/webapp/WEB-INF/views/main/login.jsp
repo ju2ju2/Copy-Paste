@@ -30,6 +30,7 @@
 					<input type="password" id="userPwd" name="userPwd"
 						class="form-control" placeholder="Password" required />
 					<button class="btn btn-lg btn-danger btn-block" type="submit">로그인</button>
+				</form:form>
 					<hr>
 					<h3 class="mg-top-6 text-center login-title">SNS LOGIN</h3>
 					<div class="text-center">
@@ -41,7 +42,8 @@
 							class="inline"></a>
 					</div>
 
-
+				<form:form class="form-signin" name="f" method="POST"
+					action="${pageContext.request.contextPath}/pwd" >
 					<a data-toggle="modal" href="#" class="pull-right need-help"
 						data-target="#modal-tempPassword" role="button"
 						data-backdrop="static"> Forgot password? </a>
@@ -57,7 +59,7 @@
 
 
 <!-- Modal HTML -->
-<%-- <div id="modal-tempPassword" class="modal fade text-center"
+ <div id="modal-tempPassword" class="modal fade text-center"
 	tabindex="-1" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -92,4 +94,3 @@
 		</div>
 	</div>
 </div>
- --%>
