@@ -14,7 +14,6 @@
 
 
 
-
 </script>
 <!-- banner start -->
 <!-- ================ -->
@@ -64,7 +63,7 @@
 	</div>
 	<br>
 	<div class="row">
-		<c:forEach var="noteList" items="${noteList}">
+		<c:forEach var="noteList" items="${bizNoteList}">
 			<div class="col-xs-6 col-md-3">
 				<div class="text-center">
 					<!-- a HTML (to Trigger Modal) -->
@@ -95,7 +94,7 @@
 	</div>
 	<br>
 	<div class="row">
-		<c:forEach var="noteList" items="${noteList}">
+		<c:forEach var="noteList" items="${lifeNoteList}">
 			<div class="col-xs-6 col-md-3">
 				<div class="text-center">
 					<!-- a HTML (to Trigger Modal) -->
@@ -127,7 +126,7 @@
 	</div>
 	<br>
 	<div class="row">
-		<c:forEach var="noteList" items="${noteList}">
+		<c:forEach var="noteList" items="${eduNoteList}">
 			<div class="col-xs-6 col-md-3">
 				<div class="text-center">
 					<!-- a HTML (to Trigger Modal) -->
@@ -158,7 +157,7 @@
 	</div>
 	<br>
 	<div class="row">
-		<c:forEach var="noteList" items="${noteList}">
+		<c:forEach var="noteList" items="${etcNoteList}">
 			<div class="col-xs-6 col-md-3">
 				<div class="text-center">
 					<!-- a HTML (to Trigger Modal) -->
@@ -187,9 +186,11 @@
 
 <!-- Modal HTML -->
 <div id="modal-testNew" class="modal fade text-center overlay"
-	tabindex="-1" role="dialog">
+	 role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">Content will be loaded here from
 			"note/noteDetail.htm" file</div>
 	</div>
 </div>
+
+

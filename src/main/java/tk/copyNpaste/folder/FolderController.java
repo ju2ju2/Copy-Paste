@@ -55,8 +55,10 @@ public class FolderController {
 	};
 	
 	//폴더 삭제
-	public void deleteFolder(String folderName, String userEmail) throws Exception {
-		folderService.deleteFolder(folderName, userEmail);
+	@RequestMapping(value="/deletefolder.json")
+	public @ResponseBody void deleteFolder(FolderVO folder, Principal principal) throws Exception {
+		folder.setUserEmail(principal.getName());
+		folderService.deleteFolder(folder);
 	};
 	
 	//기본폴더 지정

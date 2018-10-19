@@ -6,6 +6,7 @@
 */
 package tk.copyNpaste.mapper;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import tk.copyNpaste.vo.FolderVO;
@@ -22,7 +23,7 @@ public interface FolderMapper {
 	public int updateFolder(FolderVO folder) throws Exception;
 	
 	//폴더 삭제
-	public int deleteFolder(String folderName,String userEmail) throws Exception;
+	public int deleteFolder(FolderVO folder) throws Exception;
 	
 	//기본폴더 지정
 	public int setDefaultFolder(String folderName,String userEmail) throws Exception;
@@ -31,9 +32,13 @@ public interface FolderMapper {
 	public int removeDefaultFolder(String folderName,String userEmail) throws Exception;
 	
 	//회원 가입 시 기본폴더 추가
-	public int insertFolderUserDefault(String userEmail) throws Exception;
+	public int insertFolderUserDefault(String userEmail)
+			throws ClassNotFoundException, SQLException;
 	
 	//회원 가입 시 스크랩 폴더 추가
-	public int insertFolderUserScrap(String userEmail) throws Exception;
+	public int insertFolderUserScrap(String userEmail)
+			throws ClassNotFoundException, SQLException;
+
+
 
 }

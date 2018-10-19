@@ -7,6 +7,7 @@
 package tk.copyNpaste.mapper;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import tk.copyNpaste.vo.NoteCommVO;
@@ -15,7 +16,7 @@ import tk.copyNpaste.vo.NoteVO;
 public interface NoteMapper {
 	
 	//주제별 상위노트보기
-	public List<NoteVO> selectTopNote() throws Exception;
+	public List<NoteVO> selectTopNote(String subjectName) throws Exception;
 	
 	//노트 목록 보기
 	public List<NoteVO> selectAllNote(String userEmail) throws Exception;

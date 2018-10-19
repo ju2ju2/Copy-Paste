@@ -69,10 +69,9 @@ $(function() {
     );
 
     // 드래그 div들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
-    $('.blog').draggable({
+    $('.dragitem').draggable({
     	 revert: true, 
     	 revertDuration: 200,
-    	 helper: "clone",
     	 snapMode: "inner",
     	 scroll: true,
     	 scrollSensitivity: 100 ,

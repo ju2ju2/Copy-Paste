@@ -11,6 +11,8 @@
 */
 package tk.copyNpaste.folder;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Service;
 import tk.copyNpaste.mapper.EtcMapper;
 import tk.copyNpaste.mapper.FolderMapper;
 import tk.copyNpaste.vo.FolderVO;
+
 
 @Service
 public class FolderService {
@@ -45,9 +48,9 @@ public class FolderService {
 	}
 	
 	//폴더 삭제
-	public int deleteFolder(String folderName,String userEmail) throws Exception {
+	public int deleteFolder(FolderVO folder) throws Exception {
 		FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
-		return folderdao.deleteFolder(folderName, userEmail);
+		return folderdao.deleteFolder(folder);
 		
 	}
 	
@@ -65,16 +68,18 @@ public class FolderService {
 	}
 	
 	//회원 가입 시 기본폴더 추가
-	public int insertFolderUserDefault(String userEmail) throws Exception {
+	public int insertFolderUserDefault(String userEmail) 
+			throws IOException, ClassNotFoundException, SQLException {
 		FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
 		return folderdao.insertFolderUserDefault(userEmail);
 	}
 	
 	
 	//회원 가입 시 스크랩 폴더 추가
-	public int insertFolderUserScrap(String userEmail) throws Exception {
+	public int insertFolderUserScrap(String userEmail) 
+			throws IOException, ClassNotFoundException, SQLException {
 		FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
-		return folderdao.insertFolderUserScrap(userEmail);
+		return folderdao.insertFolderUserDefault(userEmail);
 	}
 	
 }

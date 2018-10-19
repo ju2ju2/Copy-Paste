@@ -28,8 +28,8 @@ public class DragVO {
 	public int getDragNum() {
 		return dragNum;
 	}
-	public void setDragNum(int dragNumber) {
-		this.dragNum = dragNumber;
+	public void setDragNum(int dragNum) {
+		this.dragNum = dragNum;
 	}
 	public String getDragText() {
 		return dragText;

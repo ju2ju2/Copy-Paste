@@ -140,4 +140,7 @@ public class EtcController {
 		return "search.selectSearchGoogle";
 	}
 	
+	/*임시 비밀번호 발송 이메일
+	 * [작성자 : 임효진] [작성날짜 : 2018-10-19]*/
+	
 }
