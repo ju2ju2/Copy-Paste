@@ -17,12 +17,18 @@
 		from qna join users on qna.userEmail = users.userEmail order by qna.qnaNotice desc, qna.qnaPos
 	</select>
 	
-	<!-- 	//QNA 게시물 상세보기
-	public QnaVO selectDetailQna(int qnaNum) throws Exception;-->
+	<!-- 	//QNA 게시물 상세보기 -->
 	<select id="selectDetailQna" parameterType="Integer" resultType="QnaVO">
-		select qnaNum, userEmail, qnaTitle, qnaContent, qnaDate, qnaDept, qnaPNum, qnaNotice, qnaSecret 
-		from qna where qnaNum=#{qnaNum}
+		select qna.qnaNum, qna.userEmail, users.userNick, qna.qnaTitle, qna.qnaContent, qna.qnaDate, qna.qnaDept, qna.qnaPNum, qna.qnaNotice, qna.qnaSecret, qna.qnaPos
+		from qna join users on qna.userEmail = users.userEmail where qna.qnaNum=#{qnaNum}
 	</select>
+	
+	<!--//QNA 게시물 댓글 조회
+	 public List<QnaCommVO> selectQnaComm(int qnaNum) throws Exception; -->
+	 <select id="selectQnaComm" parameterType="Integer" resultType="QnaCommVO">
+	 	select users.userNick,comm.qnaCommNum,comm.qnaNum,comm.userEmail,comm.qnaCommContent,comm.qnaCommDate,comm.qnaCommDept,comm.qnaCommPNum,comm.qnaCommPos
+   		from qnacomm comm join users on comm.userEmail = users.userEmail where comm.qnaNum=#{qnaNum} order by comm.qnaCommPos
+	 </select>
 	
 <!-- 	//QNA 게시물 검색
 	public List<QnaVO> selectSearchQna(String keyword) throws Exception;-->	

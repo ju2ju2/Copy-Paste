@@ -29,6 +29,22 @@ public class QnaService {
 		return qnalist;
 	};
 	
+	//QNA 게시물 상세보기
+		public QnaVO selectDetailQna(int qnaNum) throws Exception{
+			System.out.println("게시물 상세보기 qnaNum>>"+qnaNum);
+			QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
+
+			return qnadao.selectDetailQna(qnaNum);
+		};
+		
+	//QNA 댓글 조회
+		public List<QnaCommVO> selectQnaComm(int qnaNum) throws Exception{
+			System.out.println("댓글조회 서비스 qnaNum>>"+qnaNum);
+			QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
+			
+			return qnadao.selectQnaComm(qnaNum);
+		}
+	
 	//QNA 게시물 검색
 	public List<QnaVO> selectSearchQna(String keyword) throws Exception{
 		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
@@ -41,12 +57,7 @@ public class QnaService {
 		return qnadao.insertQna(qna);
 	};
 
-	//QNA 게시물 상세보기
-	public QnaVO selectDetailQna(int qnaNum) throws Exception{
-		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
-
-		return qnadao.selectDetailQna(qnaNum);
-	};
+	
 	
 	//QNA 게시글 수정
 	public int updateQna(int qnaNum) throws Exception{
