@@ -715,5 +715,6 @@ img .user-photo{
 
 #reportModal{
 	top:0px;
+	overflow: auto;
 	/* width:100%; */
 }

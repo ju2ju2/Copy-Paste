@@ -7,13 +7,23 @@
 
 package tk.copyNpaste.note;
 
+import java.io.PrintWriter;
+import java.security.Principal;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import tk.copyNpaste.folder.FolderService;
 import tk.copyNpaste.vo.FolderVO;
@@ -32,18 +42,13 @@ public class NoteController {
 	@Autowired
 	FolderService folderService;
 
-	// 노트 작성페이지로 이동
-	@RequestMapping("write.htm")
-	public String writeNotePage() throws Exception {
-		return "write.insertNote";
-	}
 
 
-	// 노트 목록 보기+폴더 목록 조회
+	// 회원의 노트 목록 보기+폴더 목록 조회
 	@RequestMapping(value = "note.htm")
-	public String selectAllNote(Model model) throws Exception {
-		List<NoteVO> noteList = noteService.selectAllNote();
-		List<FolderVO> folderList = folderService.selectAllFolder();
+	public String selectAllNote(Model model, Principal principal) throws Exception {
+		List<NoteVO> noteList = noteService.selectAllNote(principal.getName());
+		List<FolderVO> folderList = folderService.selectAllFolder(principal.getName());
 		model.addAttribute("noteList", noteList);
 		model.addAttribute("folderList", folderList);
 		return "note.list";
@@ -56,22 +61,46 @@ public class NoteController {
 		List<NoteCommVO> noteCommList = noteService.selectAllNoteComm(noteNum);
 		model.addAttribute("note", note);
 		model.addAttribute("noteCommList", noteCommList);
-		return "notedetail";
+		return "notedetail";//(modal/notedetail.jsp)
 	}
 
-	// 노트 수정
-	public int updateNote(NoteVO note) throws Exception {
+	// 노트 주제 검색 
+	@RequestMapping(value="selectSubjectCode.json")
+	public @ResponseBody List<NoteVO> selectSubjectCode() throws Exception {
+		List<NoteVO> note = noteService.selectSubjectCode();
+		return note;
+	}
+	
+	// 노트 작성페이지로 이동
+	@RequestMapping(value="write.htm", method = RequestMethod.GET)
+	public String writeNotePage() throws Exception {
+		return "write.insertNote";
+	}
+	
+	// 노트 작성 
+	@RequestMapping(value="write.json")
+	public @ResponseBody int insertNote(NoteVO note,Principal principal) throws Exception {
+		note.setUserEmail(principal.getName());
+		return noteService.insertNote(note);
+	}
+	
+	// 노트 수정 페이지로 이동
+	@RequestMapping(value="updateNote.htm", method = RequestMethod.GET)
+	public String updateNotePage(int noteNum, Model model) throws Exception {
+		NoteVO note = noteService.selectDetailNote(noteNum);
+		model.addAttribute("note", note);
+		return "write.updateNote";//(write/updateNote.jsp)
+	}
+	// 노트 수정 -비동기
+	@RequestMapping(value="updateNote.json")
+	public @ResponseBody int updateNote(NoteVO note, Principal principal) throws Exception {
 		return noteService.updateNote(note);
 	}
-
+		
 	// 노트 삭제
-	public int deleteNote(int noteNum) throws Exception {
+	@RequestMapping(value="deleteNote.json")
+	public @ResponseBody int deleteNote(int noteNum) throws Exception {
 		return noteService.deleteNote(noteNum);
-	}
-
-	// 노트 등록
-	public int insertNote(NoteVO note) throws Exception {
-		return noteService.insertNote(note);
 	}
 
 	// 노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws
@@ -105,10 +134,11 @@ public class NoteController {
 		return noteService.removeScrapNote(userEmail);
 	}
 
-	// 노트 댓글 작성
-	public int insertNoteComm(NoteCommVO note) throws Exception {
-		return noteService.insertNoteComm(note);
-	}
+	// 노트 댓글 작성-비동기
+		public void insertNoteComm(NoteCommVO note, Principal principal) throws Exception {
+			note.setUserEmail(principal.getName());//로그인한 사용자 ID
+			noteService.insertNoteComm(note);
+		}
 
 	// 노트 댓글 삭제
 	public int deleteNoteComm(int noteCommNum) throws Exception {

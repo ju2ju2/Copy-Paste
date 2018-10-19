@@ -8,9 +8,7 @@ package tk.copyNpaste.mapper;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import tk.copyNpaste.vo.DragVO;
+import tk.copyNpaste.vo.EtcVO;
 import tk.copyNpaste.vo.ReportVO;
 
 public interface EtcMapper {
@@ -42,10 +40,10 @@ public interface EtcMapper {
 
 	
 	//통계 회원 가입
-	public void stateMember() throws Exception;
+	public List<EtcVO> stateMember() throws Exception;
 	
-	//통계 상위노트 참조수
-	public void stateTopRank() throws Exception;
+	//노트 주제 선택 수
+	public List<EtcVO> stateNoteSubject() throws Exception;
 
 	
 }

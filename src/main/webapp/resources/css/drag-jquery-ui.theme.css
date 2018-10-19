@@ -12,6 +12,7 @@
 
 /* datepicker div */
 #ui-datepicker-div{
+	top:300px !important;
 	width: 15em;
 }
 

@@ -22,14 +22,12 @@ public class NoteVO {
 	private String noteContent;	
 	private Date noteDate;
 	private String subjectCode;
+	private String subjectName;
 	private int noteCount;
 	private int notePublic;
 	private int noteScrap;
 	private int notePNum;
 
-	
-	//List<String> FileName; tinymce에서 이미지를 같이 포함해서 컨텐츠로 넘김.
-	
 	public String getUserNick() {
 		return userNick;
 	}
@@ -78,6 +76,12 @@ public class NoteVO {
 	public void setSubjectCode(String subjectCode) {
 		this.subjectCode = subjectCode;
 	}
+	public String getSubjectName() {
+		return subjectName;
+	}
+	public void setSubjectName(String subjectName) {
+		this.subjectName = subjectName;
+	}
 	public int getNoteCount() {
 		return noteCount;
 	}
@@ -102,8 +106,14 @@ public class NoteVO {
 	public void setNotePNum(int notePNum) {
 		this.notePNum = notePNum;
 	}
+	
+	@Override
+	public String toString() {
+		return "NoteVO [noteNum=" + noteNum + ", folderName=" + folderName + ", userEmail=" + userEmail + ", userNick="
+				+ userNick + ", noteTitle=" + noteTitle + ", noteContent=" + noteContent + ", noteDate=" + noteDate
+				+ ", subjectCode=" + subjectCode + ", subjectName=" + subjectName + ", noteCount=" + noteCount
+				+ ", notePublic=" + notePublic + ", noteScrap=" + noteScrap + ", notePNum=" + notePNum + "]";
+	}
 
 
-	
-	
 }

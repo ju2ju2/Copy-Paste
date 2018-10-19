@@ -31,9 +31,9 @@ public class NoteService {
 		return notelist;
 	} 
 	//노트 목록 보기
-	public List<NoteVO> selectAllNote() throws Exception{		
+	public List<NoteVO> selectAllNote(String userEmail) throws Exception{		
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
-		List<NoteVO> notelist = notedao.selectAllNote();
+		List<NoteVO> notelist = notedao.selectAllNote(userEmail);
 		return notelist;
 	}
 	//노트 상세 보기(+노트 작성)
@@ -42,37 +42,52 @@ public class NoteService {
 		NoteVO note =notedao.selectDetailNote(noteNum);
 		return note;
 	}
-	//노트 상세 보기(+노트 작성)
+	//노트 댓글 보기
 	public List<NoteCommVO> selectAllNoteComm(int noteNum) throws Exception{
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
 		List<NoteCommVO> noteCommList = notedao.selectAllNoteComm(noteNum);
 		return noteCommList;
-		
+	}
+	//노트 댓글 작성
+	public int insertNoteComm(NoteCommVO note) throws Exception{
+		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
+		return notedao.insertNoteComm(note);
+	}
+	//노트 댓글 삭제
+	public int deleteNoteComm(int noteCommNum) throws Exception{
+		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
+		return notedao.deleteNoteComm(noteCommNum);
 	}
 	
 	//노트 수정
 	public int updateNote(NoteVO note) throws Exception{
-		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
+		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
 		return notedao.updateNote(note);
 	}
 	//노트 삭제
 	public int deleteNote(int noteNum) throws Exception{
-		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
+		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
 		return notedao.deleteNote(noteNum);
 	}
 	//노트 등록
 	public int insertNote(NoteVO note) throws Exception{
-		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
+		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
 		return notedao.insertNote(note);
 	}
+	//노트 주제 조회
+	public List<NoteVO> selectSubjectCode() throws Exception{
+		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
+		List<NoteVO> notelist = notedao.selectSubjectCode();
+		return notelist;
+	}
+	
 	//노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws Exception;
 	public List<NoteVO> selectByCalNote(Date period) throws Exception{
-		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
+		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
 		return notedao.selectByCalNote(period);
 	}
 	//노트 키워드 검색
 	public List<NoteVO> selectByKeyNote(String keyword) throws Exception{
-		
 		List<NoteVO> list= new ArrayList<NoteVO>();
 		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
 		return notedao.selectByKeyNote(keyword);
@@ -98,16 +113,7 @@ public class NoteService {
 		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
 		return notedao.removeScrapNote(userEmail);
 	}
-	//노트 댓글 작성
-	public int insertNoteComm(NoteCommVO note) throws Exception{
-		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
-		return notedao.insertNoteComm(note);
-	}
-	//노트 댓글 삭제
-	public int deleteNoteComm(int noteCommNum) throws Exception{
-		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
-		return notedao.deleteNoteComm(noteCommNum);
-	}
+
 	
 	//노트의 폴더 이동
 	public int moveNoteFolder(NoteVO note) throws Exception {
