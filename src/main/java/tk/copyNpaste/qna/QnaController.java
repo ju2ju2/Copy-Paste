@@ -45,7 +45,6 @@ public class QnaController {
 	//QNA 게시물 상세보기
 		@RequestMapping(value="/selectDetailQna.htm",method = RequestMethod.GET)
 		public String selectDetailQna(int qnaNum, Model model) throws Exception{
-			System.out.println("컨트롤러 qnaNum>>"+qnaNum);
 			QnaVO qna = qnaService.selectDetailQna(qnaNum);
 			model.addAttribute("qna",qna);
 			List<QnaCommVO> qnaCommList = qnaService.selectQnaComm(qnaNum);

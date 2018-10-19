@@ -39,45 +39,53 @@
 				</div>
 			</div>
 			<div class="col-md-12">
-				<div class="qnacontent">${qna.qnaContent}</div><br/>
+				<div class="qnacontent">${qna.qnaContent}</div>
+				<br />
 			</div>
 		</form>
 		<!-- QnA 댓글 -->
-	<div class="col-lg-12 col-sm-12 text-left">
-			
+		<div class="col-lg-12 col-sm-12 text-left">
+
 			<c:forEach var="qnaComm" items="${qnaCommList}">
-				
+
 				<div class="">
-					<ul data-brackets-id="12674" id="sortable" class="list-unstyled ui-sortable">
+					<ul data-brackets-id="12674" id="sortable"
+						class="list-unstyled ui-sortable">
 						<div class="media-body">
-							<strong class="pull-left primary-font">
-							<c:if test="${qnaComm.qnaCommDept==1}">ㄴ</c:if>
-							${qnaComm.userNick}</strong>${qnaComm.qnaCommDate}<br>
+							<strong class="pull-left primary-font"> 
+							<c:if test="${qnaComm.qnaCommDept==1}">
+							ㄴ
+							</c:if> 
+							${qnaComm.userNick} 
+							</strong>
+							${qnaComm.qnaCommDate}<br> 
 							<small class="pull-right text-muted">
+								<!-- 본인이거나 admin일때 삭제버튼 -->
+									<c:if test="${role=='[ROLE_ADMIN]' or qnaComm.userEmail==loginuser}">
+										<i class="fas fa-trash"></i>
+									</c:if>
+						
+								<!-- 댓글일때 본인이거나 admin일때 대댓글버튼 -->
 								<c:choose>
-									<c:when test="${qnaComm.userEmail==loginuser}">
-										<i class="fas fa-trash"></i>
+									<c:when test="${qnaComm.qnaCommDept == 0 and qnaComm.userEmail==loginuser}">
+										<i class="fas fa-comment"></i>
 									</c:when>
-									<c:when test="${role=='ROLE_ADMIN'}">
-										<i class="fas fa-trash"></i>
+									<c:when test="${qnaComm.qnaCommDept == 0 and role=='[ROLE_ADMIN]'}">
+										<i class="fas fa-comment"></i>
 									</c:when>
-								</c:choose>
-								<c:if test="${qnaComm.userEmail==loginuser}">
-									
-								</c:if>
-								 &ensp; 
-								 <c:if test="${qna.userEmail==loginuser}">
-									<i class="fas fa-comment"></i>
-								</c:if>
+								</c:choose> 				
 							</small>
 							<div class="qnaCommContent">
-							<c:if test="${qnaComm.qnaCommDept==1}">&ensp;&ensp;</c:if>
-							${qnaComm.qnaCommContent}</div>
+								<c:if test="${qnaComm.qnaCommDept==1}">
+									&ensp;&ensp;
+								</c:if>
+								${qnaComm.qnaCommContent}
+							</div>
 						</div>
 					</ul>
 				</div>
 			</c:forEach>
-			
+
 			<div class="input-group">
 				<input type="text" id="userComment"
 					class="form-control input-sm chat-input" placeholder="댓글을 입력하세요" />
