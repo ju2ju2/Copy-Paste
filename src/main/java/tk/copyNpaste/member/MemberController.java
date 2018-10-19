@@ -53,20 +53,11 @@ public class MemberController {
 	
 	//회원가입 + 회원가입시 미분류,스크랩 폴더 부여
     @RequestMapping(value="signup.do", method = RequestMethod.POST)
-    public void insertMember(MemberVO member, MultipartHttpServletRequest request, HttpServletResponse response) 
+    public String insertMember(MemberVO member, MultipartHttpServletRequest request, HttpServletResponse response) 
     		throws Exception{
     	memberService.insertMember(member, request);
-    	
-    	response.setContentType("text/html");
-        //응답하는 Text의 Encoding을 설정한다
-        response.setCharacterEncoding("UTF-8");
-        //Response Body에 응답을 싣기 위해서 Writer객체를 하나 가져온다
-        PrintWriter writer = response.getWriter();
-        //가져온 Write 객체에 응답할 Text를 작성한다.
-        writer.write("<script>alert('성공')</script>");
-        //응답을 보낸다.
-        writer.flush();
-        writer.close();
+
+    	return "redirect:/login.htm";
     };
 	
 	//로그인

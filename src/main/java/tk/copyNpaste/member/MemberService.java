@@ -48,7 +48,7 @@ public class MemberService {
 	
 	//회원가입
 	@Transactional
-	public int insertMember(MemberVO member, MultipartHttpServletRequest request) 
+	public void insertMember(MemberVO member, MultipartHttpServletRequest request) 
 			throws IOException, ClassNotFoundException, SQLException {
 	
 		String userPhoto = "userProfile.png"; //프로필 사진 미업로드 시 기본 파일명
@@ -61,16 +61,20 @@ public class MemberService {
     	long fileSize = userPhotoFile.getSize(); // 파일 사이즈
     	String path= request.getServletContext().getRealPath("resources/image/userPhoto/");
        
+    	System.out.println(path);
+    	
     	String safeFile = path + System.currentTimeMillis() + originFileName;
     	userPhotoFile.transferTo(new File(safeFile));  //폴더에 파일 쓰기
     	
     	if( fileSize > 0) {
     		userPhotoName = userEmail+originFileName; 
     	} else {
-    		userPhotoName = userEmail+userPhoto;
+    		userPhotoName = userPhoto;
     	}
+    	
+    	System.out.println(userPhotoName);
        
-    	member.setUserPhoto(userPhotoName); // DB에 들어갈 파일명 지정
+    	/*member.setUserPhoto(userPhotoName); // DB에 들어갈 파일명 지정
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
 		FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
 		
@@ -82,9 +86,7 @@ public class MemberService {
 		} catch (Exception e) {
 			System.out.println("에러" + e.getMessage());		
 			throw e; // 예외 발생 시기면 : 자동 rollback
-		}
-	
-		return memberdao.insertMember(member);
+		}	*/
 	}
 	
 	//회원 가입 시 권한 부여
