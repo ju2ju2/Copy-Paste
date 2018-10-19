@@ -52,12 +52,18 @@ public class NoteController {
 
 	// 노트 상세 보기(+노트 작성)
 	@RequestMapping(value = "noteDetail.htm")
-	public String selectDetailNote(int noteNum, Model model) throws Exception {
+	public String selectDetailNote(int noteNum,String cmd, Model model) throws Exception {
 		NoteVO note = noteService.selectDetailNote(noteNum);
 		List<NoteCommVO> noteCommList = noteService.selectAllNoteComm(noteNum);
 		model.addAttribute("note", note);
 		model.addAttribute("noteCommList", noteCommList);
-		return "notedetail";//(modal/notedetail.jsp)
+		String viewpage;
+		if(cmd!=null) {
+			viewpage="mynotedetail";
+			System.out.println("mynotedetail");
+		}else {viewpage="notedetail";}
+		
+		return viewpage;//(modal/notedetail.jsp)
 	}
 
 	// 노트 주제 검색 
