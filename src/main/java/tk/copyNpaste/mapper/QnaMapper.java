@@ -16,14 +16,17 @@ public interface QnaMapper {
 	//QNA 게시물 조회
 	public List<QnaVO> selectAllQna() throws Exception;
 	
+	//QNA 게시물 상세보기
+	public QnaVO selectDetailQna(int qnaNum) throws Exception;
+	
+	//QNA 게시물 댓글 조회
+	public List<QnaCommVO> selectQnaComm(int qnaNum) throws Exception;
+	
 	//QNA 게시물 검색
 	public List<QnaVO> selectSearchQna(String keyword) throws Exception;
 	
 	//QNA 게시물 작성
 	public int insertQna(QnaVO qna) throws Exception;
-
-	//QNA 게시물 상세보기
-	public QnaVO selectDetailQna(int qnaNum) throws Exception;
 	
 	//QNA 게시글 수정
 	public int updateQna(int qnaNum) throws Exception;
