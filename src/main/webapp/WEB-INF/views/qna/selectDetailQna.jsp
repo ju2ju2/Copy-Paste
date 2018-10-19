@@ -45,57 +45,88 @@
 		</form>
 		<!-- QnA 댓글 -->
 		<div class="col-lg-12 col-sm-12 text-left">
-
-			<c:forEach var="qnaComm" items="${qnaCommList}">
-
-				<div class="">
-					<ul data-brackets-id="12674" id="sortable"
-						class="list-unstyled ui-sortable">
-						<div class="media-body">
-							<strong class="pull-left primary-font"> 
-							<c:if test="${qnaComm.qnaCommDept==1}">
-							ㄴ
-							</c:if> 
-							${qnaComm.userNick} 
-							</strong>
-							${qnaComm.qnaCommDate}<br> 
-							<small class="pull-right text-muted">
-								<!-- 본인이거나 admin일때 삭제버튼 -->
-									<c:if test="${role=='[ROLE_ADMIN]' or qnaComm.userEmail==loginuser}">
-										<i class="fas fa-trash"></i>
-									</c:if>
-						
-								<!-- 댓글일때 본인이거나 admin일때 대댓글버튼 -->
-								<c:choose>
-									<c:when test="${qnaComm.qnaCommDept == 0 and qnaComm.userEmail==loginuser}">
-										<i class="fas fa-comment"></i>
-									</c:when>
-									<c:when test="${qnaComm.qnaCommDept == 0 and role=='[ROLE_ADMIN]'}">
-										<i class="fas fa-comment"></i>
-									</c:when>
-								</c:choose> 				
-							</small>
-							<div class="qnaCommContent">
-								<c:if test="${qnaComm.qnaCommDept==1}">
-									&ensp;&ensp;
-								</c:if>
-								${qnaComm.qnaCommContent}
-							</div>
-						</div>
-					</ul>
-				</div>
+			<div class="commentBox">
+			<c:forEach var="qnaComm" items="${qnaCommList}">	
+				<div class="comment">
+					<strong class="pull-left primary-font"> 
+						<c:if test="${qnaComm.qnaCommDept==1}">
+						ㄴ
+						</c:if> 
+						${qnaComm.userNick} 
+					</strong>
+					${qnaComm.qnaCommDate}<br> 
+					<small class="pull-right text-muted">
+						<!-- 본인이거나 admin일때 삭제버튼 -->
+						<c:if test="${role=='[ROLE_ADMIN]' or qnaComm.userEmail==loginuser}">
+							<i class="fas fa-trash"></i>
+						</c:if>
+						<!-- 댓글일때 본인이거나 admin일때 대댓글버튼 -->
+						<c:choose>
+							<c:when test="${qnaComm.qnaCommDept == 0 and qnaComm.userEmail==loginuser}">
+								<i class="fas fa-comment"></i>
+							</c:when>
+							<c:when test="${qnaComm.qnaCommDept == 0 and role=='[ROLE_ADMIN]'}">
+								<i class="fas fa-comment"></i>
+							</c:when>
+						</c:choose> 				
+					</small>
+					<div class="qnaCommContent">
+						<c:if test="${qnaComm.qnaCommDept==1}">
+							&ensp;&ensp;
+						</c:if>
+						${qnaComm.qnaCommContent}
+					</div>
+				</div>				
 			</c:forEach>
-
-			<div class="input-group">
+			</div>
+			<se:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
+			<div class="qnaComm-inputBox input-group">
 				<input type="text" id="userComment"
 					class="form-control input-sm chat-input" placeholder="댓글을 입력하세요" />
-				<span class="input-group-btn" onclick="addComment()">
+				<span class="input-group-btn">
 					<div>
-						<a href="#" class="btn main-btn center-block" id="commentbtn"><i
-							class="fas fa-check"></i> Add Comment</a>
-					</div>
+							<a href="#" class="btn main-btn center-block" id="commentbtn">
+								<i class="fas fa-check"></i> Add Comment
+							</a>
+						</div>
 				</span>
 			</div>
+			</se:authorize>
+			<!-- 비회원일때 -->
+			<se:authorize access="!hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
+				<div class="qnaComm-inputBox input-group">
+					<input type="text" id="userComment" disabled 
+						class="form-control input-sm chat-input" placeholder="로그인 후 이용해주세요" />
+					<span class="input-group-btn">
+						<div>
+							<a href="#" class="btn main-btn center-block" id="commentbtn">
+								<i class="fas fa-check"></i> Add Comment
+							</a>
+						</div>
+					</span>
+				</div>
+			</se:authorize>
 		</div>
 	</div>
 </section>
+<script>
+	$(function() {
+		$('.input-group-btn').click(function(){
+			console.log(${qna.qnaNum});
+			$.ajax({
+				url : "<%=request.getContextPath()%>/qna/newQnaComm.json",
+			    type : "get",
+			    data : {
+			    	"qnaCommContent": $('#userComment').val(),
+			    	"qnaNum":${qna.qnaNum}
+			    },
+			    success : function(data){
+			    	location.reload();
+			    },
+			    error : function(){
+			        	console.log("실패");
+			    }
+			});	
+		});
+	});
+</script>
