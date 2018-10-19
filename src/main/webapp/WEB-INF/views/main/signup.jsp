@@ -7,7 +7,7 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 <div class="container">
 	<div class="row">
 		<div class="center-block ">
@@ -33,12 +33,11 @@
 				<div class="form-group">
 					<label class="control-label col-sm-4">Email ID </label>
 					<div class="col-sm-4 pr-0">
-						
 							<input type="email" class="form-control" name="userEmail"
-								id="userEmail" placeholder="example@example.com" required
+								id="mailto" placeholder="example@example.com" required
 								autofocus>						
 					</div>
-					<div class="col-sm-4 "><button type="button" class="btn btn-secondary">이메일인증</button>
+					<div class="col-sm-4 "><button type="button" id="mailtoBtn" class="btn btn-secondary">이메일인증</button>
 					</div>
 				</div>
 				<div class="form-group">
@@ -48,7 +47,7 @@
 								id="authnum" placeholder="인증번호를 입력해주세요.">
 						</div>
 					<div class="col-sm-4 ">
-					     <button type="button" class="btn btn-secondary" >&ensp;인증확인&ensp;</button>
+					     <button type="button" id="mailtoOkBtn" class="btn btn-secondary">&ensp;인증확인&ensp;</button>
 					     </div>
 				</div>
 					<div class="form-group">
@@ -86,12 +85,12 @@
 				
 				<div class="form-group">
                   <label class="checkbox text-center">
-    			<input type="checkbox" value="remember-me"><a href="" >이용약관</a>에 동의합니다.</label>
+    			<input type="checkbox" value="remember-me" id="userCheck"><a href="" >이용약관</a>에 동의합니다.</label>
     			</div>
 			
 				<div class="form-group">
 					<div class="col-sm-12 text-center">
-						<input name="join" type="submit" value="&nbsp;&nbsp;회원가입&nbsp;&nbsp;" class="btn btn-danger btn-md">
+						<input name="join" id="join" type="submit" value="&nbsp;&nbsp;회원가입&nbsp;&nbsp;" class="btn btn-danger btn-md">
 					</div>
 				</div>
 				</form>
@@ -107,3 +106,84 @@
 	<br>	<br>	<br>
 </div>
 
+<script type="text/javascript">
+	var mailtoNum;
+	var mailCheck;
+	$('#mailtoBtn').click(function(){
+		$.ajax({
+            type : 'post',
+            url : '${pageContext.request.contextPath}/member/singupEmail.do',
+            data : {mailto:$('#mailto').val()},
+            success : function(data) {
+            	swal("୧༼ ヘ ᗜ ヘ ༽୨", "이메일 인증을 위한 메일이 발송 되었습니다.", "success")
+            	mailtoNum=data; 
+            	console.log(mailtoNum);
+
+            },
+            error : function(error) {
+				swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 확인해 주세요.", "error");
+				console.log(error);
+				console.log(error.status);
+            	console.log($('#userPwd').val().length());
+            }
+         });
+	});
+	
+	$('#mailtoOkBtn').click(function(){
+		if(mailtoNum==$('#authnum').val()){
+        	swal("୧༼ ヘ ᗜ ヘ ༽୨", "이메일 인증이 완료 되었습니다.", "success")
+        	mailCheck = 'ok';
+		}else{
+        	swal("٩(இ ⌓ இ๑)۶", "인증번호를 정확히 적어 주세요.", "error");
+			$('#authnum').val("");
+		}
+	});
+	
+	
+  	/* $('#join').click(function(){
+		if($('#mailto').val() == ''){
+        	swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 입력해 주세요", "error");
+        	$('#mailto').focus();
+        	return false;
+		} else {
+			if(mailCheck != 'ok'){
+				swal("٩(இ ⌓ இ๑)۶", "이메일 인증을 진행해 주세요.", "error");
+				$('#authnum').focus();
+				return false;
+			} else {
+				if($('#userNick').val() ==''){
+					swal("٩(இ ⌓ இ๑)۶", "닉네임을 입력해 주세요.", "error");
+					$('#userNick').focus();
+					return false;
+					} else {
+						if($('#userPwd').val()==''){
+							swal("٩(இ ⌓ இ๑)۶", "비밀번호를 입력해 주세요.", "error");
+							$('#userPwd').focus();
+							return false;
+						} else {
+							if ($('#userPwd').val().)
+							if($('#cuserPwd').val()==''){
+								swal("٩(இ ⌓ இ๑)۶", "비밀번호 확인을 진행해 주세요.", "error");
+								$('#cuserPwd').focus();
+								return false;
+							} else {
+								if ($('#userPwd').val() !=$('#cuserPwd')){
+									swal("٩(இ ⌓ இ๑)۶", "비밀번호를 정확히 확인해 주세요.", "error");
+									$('#cuserPwd').focus();
+								}
+							}
+							else {
+								if ($('#userCheck').is(":checked")){	
+								} else {
+									swal("٩(இ ⌓ இ๑)۶", "이용약관에 동의해 주세요.", "error");
+									return false;
+								}
+							}
+						}
+					}
+				}
+			}
+	}) */
+
+	
+</script>
