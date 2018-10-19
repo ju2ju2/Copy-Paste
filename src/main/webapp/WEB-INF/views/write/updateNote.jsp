@@ -17,7 +17,7 @@ $(document).ready(function() {
 	$.ajax({
       url: "${pageContext.request.contextPath}/folder/selectAllFolder.json", // url_pettern 
       type:"POST",
-      dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
+      dataType:"json",
       success:function(data){
     	  console.log(data)
       	$.each(data, function(key,value){
@@ -32,7 +32,7 @@ $(document).ready(function() {
 	$.ajax({
       url: "${pageContext.request.contextPath}/note/selectSubjectCode.json", // url_pettern 
       type:"POST",
-      dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
+      dataType:"json",
       success:function(data){
       	console.log(data);
       	$.each(data, function(key,value){
@@ -42,33 +42,34 @@ $(document).ready(function() {
       	});
        }
     }); 
-	
 
-	//노트 등록
-	$('#insertNoteBtn').click(function() {
+	//노트 수정 실행
+	$('#updateNoteBtn').click(function() {
+	
 	 	$.ajax({
-	      url: "${pageContext.request.contextPath}/note/write.json", // url_pettern 
-	      type:"post",
+	      url: "${pageContext.request.contextPath}/note/updateNote.json", // url_pettern 
+	      type:"POST",
 	      dataType:"json",
-	      data: {'noteTitle':$("#noteTitle").val(),
+	      data: {'noteNum':$("#noteNum").val(),
+	    	 	 'noteTitle':$("#noteTitle").val(),
 	    	 	 'noteContent':tinymce.get('noteContent').getContent(),
 	    	 	 'folderName':$("#folderList").val(),
 	    	 	 'subjectCode':$("#subjectList").val(),
 	    	 	 'notePublic':$("input:radio[name=notePublic] :selected").val()
 	     		 },	
 	      success:function(result){
-	    	  swal({type: "success",
-				  title: '성공적으로 등록되었습니다.',
-	              confirmButtonClass : "btn-danger",
-				  closeOnConfirm: false
-			},
-			function(){
-				location.href="${pageContext.request.contextPath}/note/note.htm";
-			});	
-	       },
-	      error:function(request,status,error){
+	    	    	  swal({type: "success",
+	    				  title: '성공적으로 수정되었습니다.',
+	    	              confirmButtonClass : "btn-danger",
+	    				  closeOnConfirm: false
+	    			},
+	    			function(){
+	    				location.href="${pageContext.request.contextPath}/note/note.htm";
+	    			});	
+	    	       },
+	       error:function(request,status,error){
 	    	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	    }
+	    	  }
 
 	     		 
 	    })
@@ -82,7 +83,7 @@ $(document).ready(function() {
 
 </script>
 <!-- 등록 전 띄워지는 모달창 -->
-<form action="">
+<form action="" method="post">
 	<div id="publishModal" class="modal fade form-horizontal">
 		<div class="modal-dialog noteModalSize">
 			<div class="modal-content">
@@ -104,7 +105,7 @@ $(document).ready(function() {
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" id="insertNoteBtn">발행하기</button>
+					<button type="button" class="btn btn-danger" id="updateNoteBtn">발행하기</button>
 				</div>
 			</div>
 		</div>
@@ -115,9 +116,10 @@ $(document).ready(function() {
 	<div class="n-container">
 	<div class="n-inner">
 		<div class="form-group">
-			<input id="noteTitle" name="noteTitle" type="text" size="158" placeholder="제목을 입력해주세요">
+			<input id="noteNum" name="noteNum" type="hidden" value="${note.noteNum}">
+			<input id="noteTitle" name="noteTitle" type="text" size="158" value="${note.noteTitle}">
 		</div>
-		<textarea id="noteContent" name="noteContent" rows="20"></textarea>
+		<textarea id="noteContent" name="noteContent" rows="20">${note.noteContent}</textarea>
 		<input name="image" type="file" id="upload" multiple class="hidden" onchange="">
 		<br>
 		<div class="col-sm-12 text-right">

@@ -37,7 +37,7 @@
 						url: "${pageContext.request.contextPath}/note/deleteNote.json",
 						type: "POST",
 						dataType: "json",
-						data: {'noteNum': ${note.noteNum} }
+						data: {	'noteNum': ${note.noteNum} }//
 					}).done(function(result) {
 						swal({type: "success",
 							  title: '성공적으로 삭제되었습니다.',
@@ -79,7 +79,7 @@
 	
 		
 		
-	})
+	});
 </script>
 <!-- modal-header -->
 <div class="modal-header">
@@ -111,7 +111,7 @@
 					<br> <br> <br> <br>
 					<div class="col-sm-9"></div>
 					<div class="col-sm-3">
-						<strong> <a href=""><i class="far fa-edit 3x notewrite"></i> &nbsp;</a> 
+						<strong> <a href="${pageContext.request.contextPath}/note/updateNote.htm?noteNum=${note.noteNum}"><i class="far fa-edit 3x notewrite"></i> &nbsp;</a> 
 								 <a href=""><i class="fas fa-arrow-down"></i> &nbsp;</a> 
 								 <a id="deleteNoteBtn"><i class="fas fa-trash"></i> &nbsp;</a> 
 								 <a href=""><i class="fas fa-archive"></i></a>
