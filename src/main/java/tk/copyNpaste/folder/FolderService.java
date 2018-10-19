@@ -79,7 +79,7 @@ public class FolderService {
 	public int insertFolderUserScrap(String userEmail) 
 			throws IOException, ClassNotFoundException, SQLException {
 		FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
-		return folderdao.insertFolderUserScrap(userEmail);
+		return folderdao.insertFolderUserDefault(userEmail);
 	}
 	
 }

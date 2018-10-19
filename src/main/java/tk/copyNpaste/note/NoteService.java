@@ -8,6 +8,7 @@ package tk.copyNpaste.note;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -25,9 +26,9 @@ public class NoteService {
 	 private SqlSession sqlsession;
 	 
 	//주제별 상위노트 목록 보기
-	public List<NoteVO> selectTopNote() throws Exception{		
+	public List<NoteVO> selectTopNote(String subjectName) throws Exception{		
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
-		List<NoteVO> notelist = notedao.selectTopNote();
+		List<NoteVO> notelist = notedao.selectTopNote(subjectName);
 		return notelist;
 	} 
 	//노트 목록 보기

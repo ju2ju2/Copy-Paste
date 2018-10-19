@@ -39,4 +39,6 @@ public interface FolderMapper {
 	public int insertFolderUserScrap(String userEmail)
 			throws ClassNotFoundException, SQLException;
 
+
+
 }
