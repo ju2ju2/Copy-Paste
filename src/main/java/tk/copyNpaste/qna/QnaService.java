@@ -12,6 +12,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import tk.copyNpaste.mapper.QnaMapper;
 import tk.copyNpaste.vo.QnaCommVO;
@@ -70,14 +71,23 @@ public class QnaService {
 	};
 	
 	//QNA 댓글 작성
-	public int insertQnaComm(QnaCommVO qnaComm) throws Exception{
+	@Transactional
+	public List<QnaCommVO> insertQnaComm(QnaCommVO qnaComm) throws Exception{
 		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
-		return qnadao.insertQnaComm(qnaComm);
+		List<QnaCommVO> qnaCommList = new ArrayList<>();
+		try {
+		qnadao.insertQnaComm(qnaComm);
+		qnaCommList = qnadao.selectQnaComm(qnaComm.getQnaNum());
+		}catch(Exception e){
+			throw e;			
+		}
+		return qnaCommList;
 	};
 	
 	//QNA 댓글 삭제
 	public int deleteQnaComm(int qnaCommNum) throws Exception{
 		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
+		
 		return qnadao.deleteQnaComm(qnaCommNum);
 	};
 
