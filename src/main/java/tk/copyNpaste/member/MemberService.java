@@ -74,7 +74,7 @@ public class MemberService {
     	
     	System.out.println(userPhotoName);
        
-    	/*member.setUserPhoto(userPhotoName); // DB에 들어갈 파일명 지정
+    	member.setUserPhoto(userPhotoName); // DB에 들어갈 파일명 지정
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
 		FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
 		
@@ -86,7 +86,7 @@ public class MemberService {
 		} catch (Exception e) {
 			System.out.println("에러" + e.getMessage());		
 			throw e; // 예외 발생 시기면 : 자동 rollback
-		}	*/
+		}	
 	}
 	
 	//회원 가입 시 권한 부여
