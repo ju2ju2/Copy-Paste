@@ -23,7 +23,7 @@
 				<li><a
 					href="${pageContext.request.contextPath}/etc/adminStatistic.htm"><i class="fas fa-chart-line"></i>&nbsp;&nbsp;통계</a></li>
 				<li><a
-					href="${pageContext.request.contextPath}/etc/selectQnaboard.htm"><i class="far fa-question-circle"></i>&nbsp;&nbsp;Q&A</a></li>
+					href="${pageContext.request.contextPath}/qna/selectQnaboard.htm"><i class="far fa-question-circle"></i>&nbsp;&nbsp;Q&A</a></li>
 			</ul>
 
 </div>

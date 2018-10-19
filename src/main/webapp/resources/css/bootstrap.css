@@ -1575,6 +1575,9 @@ pre code {
   .container {
     width: 970px;
   }
+  .qnaDitailContent{
+  	margin-top: 30px;
+  }
 }
 @media (min-width: 1200px) {
   .container {

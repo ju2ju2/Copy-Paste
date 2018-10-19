@@ -65,8 +65,19 @@
     <select id="selectSubjectCode" resultType="NoteVO">
 	select subjectCode, subjectName from subject
 	</select>
-    
+
 	<!-- 노트 수정 -->
+	<update id="updateNote">
+	 	<!-- <selectKey order="BEFORE" keyProperty="subjectName" resultType="String">
+        select subjectCode from subject where subjectName = #{subjectName}
+        </selectKey> -->
+		 update note 
+			SET noteTitle=#{noteTitle},
+				noteContent=#{noteContent}, 
+				folderName=#{folderName},
+				subjectCode=#{subjectCode}
+		WHERE noteNum=#{noteNum}
+	</update>
 	
 	<!-- 노트 삭제 -->
 	<delete id="deleteNote">
@@ -122,6 +133,10 @@
 	private int noteCommPNum;
 	-->
 	
+<!--     update note n
+  	join subject s on s.subjectCode = n.subjectCode
+  	set m.ever_seq_no = s.ever_seq_no; -->
+    
 </mapper>
 
 

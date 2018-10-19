@@ -48,9 +48,9 @@ public class FolderService {
 	}
 	
 	//폴더 삭제
-	public int deleteFolder(String folderName,String userEmail) throws Exception {
+	public int deleteFolder(FolderVO folder) throws Exception {
 		FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
-		return folderdao.deleteFolder(folderName, userEmail);
+		return folderdao.deleteFolder(folder);
 		
 	}
 	

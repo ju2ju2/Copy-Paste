@@ -10,16 +10,20 @@ package tk.copyNpaste.note;
 import java.io.PrintWriter;
 import java.security.Principal;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import tk.copyNpaste.folder.FolderService;
 import tk.copyNpaste.vo.FolderVO;
@@ -47,8 +51,6 @@ public class NoteController {
 		List<FolderVO> folderList = folderService.selectAllFolder(principal.getName());
 		model.addAttribute("noteList", noteList);
 		model.addAttribute("folderList", folderList);
-		
-		
 		return "note.list";
 	}
 
@@ -62,31 +64,6 @@ public class NoteController {
 		return "notedetail";//(modal/notedetail.jsp)
 	}
 
-	
-	// 노트 작성페이지로 이동
-	@RequestMapping(value="write.htm",method = RequestMethod.GET)
-	public String writeNotePage() throws Exception {
-		return "write.insertNote";
-	}
-	
-	// 노트 작성 
-	@RequestMapping(value="write.htm",method = RequestMethod.POST)
-	public void insertNote(Model model, NoteVO note,Principal principal, HttpServletResponse response) throws Exception {
-		note.setUserEmail(principal.getName());
-		note.setSubjectCode(note.getSubjectCode());
-		note.setFolderName(note.getFolderName());
-		int result =noteService.insertNote(note);
-		model.addAttribute("result", result);//1일때 등록성공, 0일때 등록실패
-		if(result > 0) {
-	      response.setContentType("text/html");
-	      response.setCharacterEncoding("UTF-8");
-	      PrintWriter writer = response.getWriter();
-	       writer.write("<script>alert('등록 성공'); location.href='../note/note.htm';</script>");
-	       writer.flush();						 //노트 작성 후 노트 리스트로 이동.
-	       writer.close();
-	    }
-	}
-	
 	// 노트 주제 검색 
 	@RequestMapping(value="selectSubjectCode.json")
 	public @ResponseBody List<NoteVO> selectSubjectCode() throws Exception {
@@ -94,12 +71,32 @@ public class NoteController {
 		return note;
 	}
 	
+	// 노트 작성페이지로 이동
+	@RequestMapping(value="write.htm", method = RequestMethod.GET)
+	public String writeNotePage() throws Exception {
+		return "write.insertNote";
+	}
 	
-	// 노트 수정
-	public int updateNote(NoteVO note) throws Exception {
+	// 노트 작성 
+	@RequestMapping(value="write.json")
+	public @ResponseBody int insertNote(NoteVO note,Principal principal) throws Exception {
+		note.setUserEmail(principal.getName());
+		return noteService.insertNote(note);
+	}
+	
+	// 노트 수정 페이지로 이동
+	@RequestMapping(value="updateNote.htm", method = RequestMethod.GET)
+	public String updateNotePage(int noteNum, Model model) throws Exception {
+		NoteVO note = noteService.selectDetailNote(noteNum);
+		model.addAttribute("note", note);
+		return "write.updateNote";//(write/updateNote.jsp)
+	}
+	// 노트 수정 -비동기
+	@RequestMapping(value="updateNote.json")
+	public @ResponseBody int updateNote(NoteVO note, Principal principal) throws Exception {
 		return noteService.updateNote(note);
 	}
-
+		
 	// 노트 삭제
 	@RequestMapping(value="deleteNote.json")
 	public @ResponseBody int deleteNote(int noteNum) throws Exception {
