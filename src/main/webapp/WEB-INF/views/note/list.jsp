@@ -35,7 +35,7 @@
 						</div>
 						<div>
 							<h4>${noteList.noteTitle}</h4>
-							<strong>${noteList.userNick}</strong> <span>${noteList.noteDate}</span>
+							<strong>${noteList.userNick}</strong><span >${noteList.noteDate}</span>
 						</div>
 					</a>
 				</div>
@@ -58,5 +58,4 @@
 			"note/noteDetail.htm" file</div>
 	</div>
 </div>
-
 

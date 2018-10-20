@@ -7,17 +7,19 @@
 package tk.copyNpaste.drag;
 
 import java.security.Principal;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import tk.copyNpaste.vo.DragVO;
-import tk.copyNpaste.vo.NoteCommVO;
-import tk.copyNpaste.vo.NoteVO;
 
  //동기 컨트롤러. retrun>> ModelAndView or String.
 //@RestController //비동기 컨트롤러. retrun>> json.
@@ -26,7 +28,7 @@ import tk.copyNpaste.vo.NoteVO;
 public class DragController {
 	@Autowired
 	DragService dragservice;
-	private Object dregdetail;
+
 
 	//드래그 페이지
 	@RequestMapping("drag.htm")
@@ -44,10 +46,10 @@ public class DragController {
 
 /*	//드래그 전체목록 보기
 	public void selectAllDrag(DragVO drag) throws Exception {
-		
 		dragservice.selectAllDrag();
 	}
 	*/
+	
 	//드래그 상세 보기(+노트 작성)
 	@RequestMapping(value="dragDetail.htm")
 	public String selectDetail(int dragNum , Model model) throws Exception {
@@ -58,8 +60,8 @@ public class DragController {
 		
 
 	//드래그 삭제
-	public void deleteDrag(int dragNo) throws Exception {
-		dragservice.deleteDrag(dragNo);
+	public void deleteDrag(int dragNum) throws Exception {
+		dragservice.deleteDrag(dragNum);
 	}
 	
 	//드래그 달력 검색
@@ -67,14 +69,17 @@ public class DragController {
 		dragservice.selectByCalDrag(period);
 	}
 	
-	//드래그 키워드 검색
-	public void selectByKeyDrag(String keyword) throws Exception {
-		dragservice.selectByKeyDrag(keyword);	
-	}
+	
+/*	//드래그 키워드 검색 dragSearch.json
+	@RequestMapping(value="dragSearch.json")
+	public @ResponseBody List<DragVO>  selectByKeyDrag(String keyword , Model model) throws Exception {
+		List<DragVO> dragList = dragservice.selectByKeyDrag(keyword);
+		model.addAttribute("dragList", dragList);
+		return ;*/
 	
 	//드래그 중요표시 등록
-	public void setDragMark(int dragNo) throws Exception {
-		dragservice.setDragMark(dragNo);
+	public void setDragMark(int dragNum) throws Exception {
+		dragservice.setDragMark(dragNum);
 	}
 	
 	//드래그 중요표시 삭제

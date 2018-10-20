@@ -69,20 +69,22 @@ $(function() {
     );
 
     // 드래그 div들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
-    $('.dragitem').draggable({
-    	 revert: true, 
+    $('.dragDiv').draggable({
+    	revert: true, 
     	 revertDuration: 200,
     	 snapMode: "inner",
     	 scroll: true,
     	 scrollSensitivity: 100 ,
     	 scrollSpeed: 100
+    
     });
-
-
+ 
     // 별 클릭하면 토글되는 이벤트
     $('.fa-star').click(function(){
     	if($(this).hasClass('far')){
     		$(this).removeClass('far').addClass('fas');
+    		
+    		
     	} else {
     		$(this).removeClass('fas').addClass('far');
     	}

@@ -22,7 +22,21 @@
             select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate
             from drag where dragNum= #{dragNum}
         </select>
-      
+      <!-- 드래그 리스트 보기 -->
+      <select id="dragList" parameterType="DragVO" >
+		select *
+		  from drag
+		 where dragNum = #{dragNum}
+		 	<!-- <if test='searchWrd != "" and searchWrd != null '>
+				<![CDATA[
+				AND (
+						(drag_content LIKE concat('%',#{searchWrd},'%'))
+					)
+				]]>
+			</if>
+		  -->
+		 order by dragNum desc
+	</select>
 
 
 </mapper>
