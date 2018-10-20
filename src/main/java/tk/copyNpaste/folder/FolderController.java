@@ -36,8 +36,7 @@ public class FolderController {
 	//비동기 폴더 목록 조회
 	@RequestMapping(value="/selectAllFolder.json")
 	public @ResponseBody List<FolderVO> selectAllFolder(Model model,Principal principal) throws Exception {
-		List<FolderVO> folderList= new ArrayList<FolderVO>(); 
-		folderList = folderService.selectAllFolder(principal.getName());
+		List<FolderVO> folderList = folderService.selectAllFolder(principal.getName());
 		model.addAttribute("folderList", folderList);
 		return folderList;
 	};
@@ -50,7 +49,10 @@ public class FolderController {
 	};
 		
 	//폴더 수정
-	public void updateFolder(FolderVO folder) throws Exception {
+	@RequestMapping(value="/updatefolder.json")
+	public @ResponseBody void updateFolder(FolderVO folder, Principal principal) throws Exception {
+		System.out.println("이전 폴더 이름 : " + folder.getBeforefolderName());
+		folder.setUserEmail(principal.getName());
 		folderService.updateFolder(folder);
 	};
 	

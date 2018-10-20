@@ -13,7 +13,6 @@
 <script>
 
 
-
 </script>
 <!-- banner start -->
 <!-- ================ -->
@@ -71,8 +70,8 @@
 						href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum=${noteList.noteNum}"
 						data-target="#modal-testNew" role="button" data-backdrop="static">
 						<div class="item">
-							<img class="img-rounded"
-								src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
+							<img class="img-rounded thumnail" id="thumnail"
+								src="${noteList.noteThumnail}"
 								alt="${noteList.noteTitle}" width="100%">
 							<div class="caption">
 								<i class="fa fa-plus" aria-hidden="true"></i>
@@ -102,8 +101,9 @@
 						href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum=${noteList.noteNum}"
 						data-target="#modal-testNew" role="button" data-backdrop="static">
 						<div class="item">
+						<input class="noteNum" type="hidden" value="${noteList.noteNum}">
 							<img class="img-rounded"
-								src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
+								src="${noteList.noteThumnail}"
 								alt="${noteList.noteTitle}" width="100%">
 							<div class="caption">
 								<i class="fa fa-plus" aria-hidden="true"></i>
@@ -135,7 +135,7 @@
 						data-target="#modal-testNew" role="button" data-backdrop="static">
 						<div class="item">
 							<img class="img-rounded"
-								src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
+								src="${noteList.noteThumnail}"
 								alt="${noteList.noteTitle}" width="100%">
 							<div class="caption">
 								<i class="fa fa-plus" aria-hidden="true"></i>
@@ -166,7 +166,7 @@
 						data-target="#modal-testNew" role="button" data-backdrop="static">
 						<div class="item">
 							<img class="img-rounded"
-								src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
+								src="${noteList.noteThumnail}"
 								alt="${noteList.noteTitle}" width="100%">
 							<div class="caption">
 								<i class="fa fa-plus" aria-hidden="true"></i>

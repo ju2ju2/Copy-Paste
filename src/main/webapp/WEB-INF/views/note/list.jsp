@@ -27,7 +27,7 @@
 						data-target="#modal-testNew" role="button" data-backdrop="static">
 						<div class="item">
 							<img class="img-rounded"
-								src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
+								src="${noteList.noteThumnail}"
 								alt="${noteList.noteTitle}" width="100%">
 							<div class="caption">
 								<i class="fa fa-plus" aria-hidden="true"></i>
@@ -35,7 +35,7 @@
 						</div>
 						<div>
 							<h4>${noteList.noteTitle}</h4>
-							<strong>${noteList.userNick}</strong> <span>${noteList.noteDate}</span>
+							<strong>${noteList.userNick}</strong><span >${noteList.noteDate}</span>
 						</div>
 					</a>
 				</div>
@@ -58,5 +58,4 @@
 			"note/noteDetail.htm" file</div>
 	</div>
 </div>
-
 
