@@ -379,6 +379,26 @@
 }
 
 /* 드래그 목록 사이즈 설정 */
+.mini-posts article {
+	border-top: solid 1px rgba(210, 215, 217, 0.75);
+	margin-top: 2rem;
+	padding-top: 2rem;
+}
+
+.mini-posts article .image {
+	margin: 0 0 1.5rem 0;
+}
+
+.mini-posts article .image img {
+	width: 80%;
+	display: inline;
+}
+
+.mini-posts article:first-child {
+	border-top: 0;
+	margin-top: 0;
+	padding-top: 0;
+}
 
 
 /* 검색 */
