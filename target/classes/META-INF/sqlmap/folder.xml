@@ -34,6 +34,10 @@
 		delete from folder where userEmail = #{userEmail} and folderName=#{folderName};
 	</delete>
 	
+	<update id="updateFolder" parameterType="FolderVO">
+		update folder set folderName=#{folderName} where userEmail=#{userEmail} and folderName=#{beforefolderName};
+	</update>
+		
 </mapper>
 
 

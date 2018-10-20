@@ -31,7 +31,6 @@ public class QnaService {
 	
 	//QNA 게시물 상세보기
 		public QnaVO selectDetailQna(int qnaNum) throws Exception{
-			System.out.println("게시물 상세보기 qnaNum>>"+qnaNum);
 			QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
 
 			return qnadao.selectDetailQna(qnaNum);
@@ -39,7 +38,6 @@ public class QnaService {
 		
 	//QNA 댓글 조회
 		public List<QnaCommVO> selectQnaComm(int qnaNum) throws Exception{
-			System.out.println("댓글조회 서비스 qnaNum>>"+qnaNum);
 			QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
 			
 			return qnadao.selectQnaComm(qnaNum);
