@@ -62,7 +62,7 @@
 						</c:if>
 						<!-- 댓글일때 본인이거나 admin일때 대댓글버튼 -->
 						<c:choose>
-							<c:when test="${qnaComm.qnaCommDept == 0 and qnaComm.userEmail==loginuser}">
+							<c:when test="${qnaComm.qnaCommDept == 0 and qna.userEmail==loginuser}">
 								<i class="fas fa-comment qnaCommCommBtn">
 									<input id="qnaCommNum" type="hidden" value="${qnaComm.qnaCommNum}" />
 									<input id="qnaCommPos" type="hidden" value="${qnaComm.qnaCommPos}" />								
