@@ -36,7 +36,7 @@
 			<div class="row" >
 				<c:forEach items="${dragList}" var="dragList">
  			          
-					<div class="col-xs-4 col-md-3 ">
+					<div class="col-xs-12 col-sm-3 col-md-3">
 						<div class="text-center dragDiv mt-10">
 					
 						<blockquote class="grapefruit">
