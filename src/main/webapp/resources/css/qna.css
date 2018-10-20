@@ -15,3 +15,9 @@
 .comment{
 	margin-top: 5px;
 }
+.qnaCommTrashBtn, .qnaCommCommBtn{
+	cursor: pointer;
+}
+#commCommAtag{
+	margin-top: 0px !important;
+}

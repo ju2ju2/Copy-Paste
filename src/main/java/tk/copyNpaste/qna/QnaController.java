@@ -87,7 +87,7 @@ public class QnaController {
 	
 	/*비동기관련 컨트롤러*/
 	//QNA댓글 작성
-	@RequestMapping(value="/newQnaComm.json")
+	@RequestMapping(value="/insertQnaComm.json")
 	public @ResponseBody List<QnaCommVO> insertQnaComm(QnaCommVO qnaComm,Principal principal) throws Exception{
 		List<QnaCommVO> qnaCommList = new ArrayList<>();
 		qnaComm.setUserEmail(principal.getName());
@@ -96,5 +96,14 @@ public class QnaController {
 
 		return qnaCommList;
 	};
+	//QNA대댓글 작성
+		@RequestMapping(value="/insertQnaCommComm.json")
+		public @ResponseBody List<QnaCommVO> insertQnaCommComm(QnaCommVO qnaComm,Principal principal) throws Exception{
+			List<QnaCommVO> qnaCommList = new ArrayList<>();
+			qnaComm.setUserEmail(principal.getName());
+			qnaCommList = qnaService.insertQnaCommComm(qnaComm);
+			
+			return qnaCommList;
+		};
 
 }

@@ -13,6 +13,7 @@ import tk.copyNpaste.vo.QnaCommVO;
 import tk.copyNpaste.vo.QnaVO;
 
 public interface QnaMapper {
+	/* 진행한 애들*/
 	//QNA 게시물 조회
 	public List<QnaVO> selectAllQna() throws Exception;
 	
@@ -22,6 +23,15 @@ public interface QnaMapper {
 	//QNA 게시물 댓글 조회
 	public List<QnaCommVO> selectQnaComm(int qnaNum) throws Exception;
 	
+	//댓글 작성
+	public int insertQnaComm(QnaCommVO qnaComm) throws Exception;
+		
+	//대댓글 작성
+	public int insertQnaCommComm(QnaCommVO qnaComm) throws Exception;
+	//대댓글 Pos수정
+	public int updateQnaCommComm(QnaCommVO qnaComm) throws Exception;
+	
+	/* 아직 안돼*/
 	//QNA 게시물 검색
 	public List<QnaVO> selectSearchQna(String keyword) throws Exception;
 	
@@ -34,8 +44,6 @@ public interface QnaMapper {
 	//QNA 게시글 삭제
 	public int deleteQna(int qnaNum) throws Exception;
 	
-	//QNA 댓글 작성
-	public int insertQnaComm(QnaCommVO qnaComm) throws Exception;
 	
 	//QNA 댓글 삭제
 	public int deleteQnaComm(int qnaCommNum) throws Exception;

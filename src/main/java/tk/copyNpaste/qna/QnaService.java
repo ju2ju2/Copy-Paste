@@ -83,6 +83,20 @@ public class QnaService {
 		}
 		return qnaCommList;
 	};
+	//QNA 대댓글 작성
+	@Transactional
+	public List<QnaCommVO> insertQnaCommComm(QnaCommVO qnaComm) throws Exception{
+		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
+		List<QnaCommVO> qnaCommList = new ArrayList<>();
+		try {
+			qnadao.updateQnaCommComm(qnaComm);
+			qnadao.insertQnaCommComm(qnaComm);
+			qnaCommList = qnadao.selectQnaComm(qnaComm.getQnaNum());
+		}catch(Exception e){
+			throw e;			
+		}
+		return qnaCommList;
+	};
 	
 	//QNA 댓글 삭제
 	public int deleteQnaComm(int qnaCommNum) throws Exception{
