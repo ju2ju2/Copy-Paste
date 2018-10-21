@@ -89,7 +89,7 @@ public class NoteController {
 		if(imgs.size() > 0) { 
 			String src = imgs.get(0).attr("src"); 
 			note.setNoteThumnail(src);
-		}
+		}else {	note.setNoteThumnail("https://d1u1amw606tzwl.cloudfront.net/assets/users/avatar-default-96007ee5610cdc5a9eed706ec0889aec2257a3937d0fbb747cf335f8915f09b2.png");}
 		return noteService.insertNote(note);
 	}
 	
