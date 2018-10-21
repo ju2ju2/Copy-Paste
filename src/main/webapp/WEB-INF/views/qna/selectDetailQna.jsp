@@ -15,6 +15,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se"
 	uri="http://www.springframework.org/security/tags"%>
+	<!-- Sweet Alert cdn -->
+		<link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
+		<script type="text/javascript"	src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
+	
 <se:authentication property="name" var="loginuser" />
 <se:authentication property="authorities" var="role" />
 
@@ -58,7 +62,10 @@
 					<small class="pull-right text-muted">
 						<!-- 본인이거나 admin일때 삭제버튼 -->
 						<c:if test="${role=='[ROLE_ADMIN]' or qnaComm.userEmail==loginuser}">
-							<i class="fas fa-trash qnaCommTrashBtn"></i>
+							<i class="fas fa-trash qnaCommTrashBtn">
+								<input id="qnaCommNum" type="hidden" value="${qnaComm.qnaCommNum}" />
+								<input id="qnaCommPos" type="hidden" value="${qnaComm.qnaCommPos}" />	
+							</i>
 						</c:if>
 						<!-- 댓글일때 본인이거나 admin일때 대댓글버튼 -->
 						<c:choose>
@@ -138,7 +145,7 @@
 			    }
 			});	
 		});
-		/* 답글아이콘 클릭시 */
+		/* 대댓글아이콘 클릭시 */
 		$('.qnaCommCommBtn').click(function() {
 			if(commCommClickNum==0){
 				qnaCommNum=$(this).children('#qnaCommNum').val();
@@ -171,5 +178,50 @@
 			    }
 			});	
 		});
+		
+		/* 댓글삭제아이콘 클릭시 */
+		$('.qnaCommTrashBtn').click(function() {
+			swal({
+				  title: "댓글을 삭제하시겠습니까?",
+				  text: "",
+				  type: "warning",
+				  confirmButtonClass: "btn-danger",
+				  confirmButtonText: "OK",
+				  showCancelButton: true
+				},
+				function(isConfirm) {
+				  if (isConfirm) {
+					  $.ajax(
+								{
+						    url : "<%=request.getContextPath()%>/qna/deleteQnaComm.json",
+						    type : "get",
+						    data : {
+						    	"qnaCommNum":qnaCommNum,
+						    	"qnaCommPos":qnaCommPos	
+						    },
+						    success : function(data){
+						    	location.reload();
+						    	/* sql문
+						    		update qnaComm set qnaCommPos=qnaCommPos-1 where qnaCommPos>선택한댓글의Pos번호
+									delete from qnaComm
+									where 댓글번호 = 선택한 댓글번호
+ 								*/
+						    },
+						    error : function(){
+						    	swal({
+									  title: "댓글 삭제에 실패하였습니다",
+									  text: "",
+									  type: "warning",
+									  confirmButtonClass: "btn-danger",
+									  confirmButtonText: "OK",
+									  showCancelButton: true
+									});
+						    }
+								});
+				  } 
+				}); 
+		});
+		
+		
 	});
 </script>
