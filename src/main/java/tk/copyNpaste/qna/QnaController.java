@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -86,14 +87,23 @@ public class QnaController {
 	
 	/*비동기관련 컨트롤러*/
 	//QNA댓글 작성
-	@RequestMapping(value="/newQnaComm.json")
+	@RequestMapping(value="/insertQnaComm.json")
 	public @ResponseBody List<QnaCommVO> insertQnaComm(QnaCommVO qnaComm,Principal principal) throws Exception{
 		List<QnaCommVO> qnaCommList = new ArrayList<>();
 		qnaComm.setUserEmail(principal.getName());
-		qnaService.insertQnaComm(qnaComm);
-		qnaCommList = qnaService.selectQnaComm(qnaComm.getQnaNum());
+		qnaCommList = qnaService.insertQnaComm(qnaComm);
+
 
 		return qnaCommList;
 	};
+	//QNA대댓글 작성
+		@RequestMapping(value="/insertQnaCommComm.json")
+		public @ResponseBody List<QnaCommVO> insertQnaCommComm(QnaCommVO qnaComm,Principal principal) throws Exception{
+			List<QnaCommVO> qnaCommList = new ArrayList<>();
+			qnaComm.setUserEmail(principal.getName());
+			qnaCommList = qnaService.insertQnaCommComm(qnaComm);
+			
+			return qnaCommList;
+		};
 
 }

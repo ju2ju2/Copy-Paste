@@ -43,15 +43,16 @@ public class DragService {
 	}
 	
 	//드래그 삭제
-	public int deleteDrag(int dragNo) throws Exception {
+	public int deleteDrag(int dragNum) throws Exception {
 		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
-		return dragdao.deleteDrag(dragNo);
+		return dragdao.deleteDrag(dragNum);
 	}
-	
+
 	//드래그 달력 검색
 	public List<DragVO> selectByCalDrag(Date period) throws Exception {
 		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
-		return  dragdao.selectByCalDrag(period);
+		List<DragVO> dragList = dragdao.selectByCalDrag(period);
+		return  dragList;
 	}
 	
 	//드래그 키워드 검색

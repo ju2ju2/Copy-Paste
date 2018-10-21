@@ -8,16 +8,12 @@
 @Author : 고은아
 @Desc : 휴지통, 별 추가
 
+@Date : 2018.10.19
+@Author : 문지은
+@Desc : 드래그 목록보기, 상세보기
+
 
 --%>
-
-<!-- 	private int dragNum;
-	private int dragMark;
-	private String userEmail;
-	private String dragText;
-	private String dragOrigin;
-	private Date dragDate;
- -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -37,44 +33,38 @@
 				</div>
 			</header>
 
-			<div class="row">
+			<div class="row" >
 				<c:forEach items="${dragList}" var="dragList">
  			          
-					<div class="col-xs-6 col-md-3">
-						<div class="text-center">
-
-							<!-- a HTML (Modal) -->
-									
-							<a data-toggle="modal"
-								href="${pageContext.request.contextPath}/drag/dragDetail.htm?dragNum=${dragList.dragNum}"
-								data-target="#modal-testNew" role="button"
-								data-backdrop="static">
-								<div class="dragitem">
-									<div class="icon-right">
+					<div class="col-xs-12 col-sm-3 col-md-3">
+						<div class="text-center dragDiv mt-10">
+					
+						<blockquote class="grapefruit">
+							      <div class="dragContent">
+   				    			  <!-- 별 아이콘 -->
+							        <div class=" icon-right starDiv">
 										<i class="far fa-star icon-size"></i>
 									</div>
-									<img class="img-rounded"
-										src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-										alt="${dragList.dragText}" width="100%">
-									<div class="caption">
-										<i class="fa fa-plus" aria-hidden="true"></i>
-									</div>
-									<div>
-										<h4>${dragList.dragOrigin}</h4>
-										 <span>${dragList.dragDate}</span>
-									</div>
-								</div>
-							</a>
-							        
+								<!-- 모달 창 -->
+ 								 <a data-toggle="modal"
+								href="${pageContext.request.contextPath}/drag/dragDetail.htm?dragNum=${dragList.dragNum}"
+								data-target="#modal-testNew" role="button"
+								data-backdrop="static"> 
+ 								 <h1 id="mydrag"><span class="Cgrapefruit">MYDARG</span></h1>  
+  								 <p>${dragList.dragText}</p>
+								<code>
+ 									&lt;출처 : <span class="Cgrapefruit">${dragList.dragOrigin}</span>&gt;
+      							 <span>${dragList.dragDate}</span></code></a>
+					         		</div>
+					        </blockquote>
 						</div>
 					</div>
-					
                         </c:forEach>
-				
 			</div>
 		</section>
+  </div>
 	</div>
-</div>
+
 <br>
 
 <!-- Modal HTML -->
