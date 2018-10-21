@@ -40,8 +40,10 @@ public class DragController {
      }
 
 	//드래그 하기(등록)
-	public void insertDrag(DragVO drag) throws Exception {
-		dragservice.insertDrag(drag);
+	@RequestMapping("insertDrag.json")
+	public @ResponseBody int insertDrag(DragVO drag,Principal principal) throws Exception {
+		drag.setUserEmail(principal.getName());
+		return dragservice.insertDrag(drag);
 	}
 
 /*	//드래그 전체목록 보기
