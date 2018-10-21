@@ -56,11 +56,11 @@ public class MemberMailService {
 			helper.setFrom("bitcamp109@gmail.com");
 			helper.setTo(mailto);
 			if (command == "singupEmail.do") {
-				helper.setSubject("벨로시티-회원가입 인증 이메일");// 메일제목
+				helper.setSubject("copyNpaste-회원가입 인증 이메일");// 메일제목
 				template = velocityEngine
 						.getTemplate("jointemplate.vm");// 메일내용
 			} else {
-				helper.setSubject("벨로시티-로그인실패 이메일");// 메일제목
+				helper.setSubject("copyNpaste-로그인실패 이메일");// 메일제목
 				template = velocityEngine
 						.getTemplate("logintemplate.vm");// 메일내용		
 				//"./src/main/resources/templates/"
@@ -69,8 +69,8 @@ public class MemberMailService {
 			
 			VelocityContext velocityContext = new VelocityContext();
 			velocityContext.put("userEmail", mailto);
-			velocityContext.put("company", "벨로시티");
-			velocityContext.put("mailFrom", "벨로시티");
+			velocityContext.put("company", "copyNpaste");
+			velocityContext.put("mailFrom", "copyNpaste");
 			velocityContext.put("randomNum", randomNum);
 			velocityContext.put("randomPwd", this.randomPwd());
 			

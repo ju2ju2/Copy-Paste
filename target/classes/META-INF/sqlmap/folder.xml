@@ -20,12 +20,14 @@
   		values (#{userEmail}, #{folderName}, 0, 1) ;
 	</insert>
 
-	<insert id="insertFolderUserDefault" >
+	<!-- 회원가입 시, 미분류 폴더 생성 -->
+	<insert id="insertFolderUserDefault" parameterType="String">
 		insert into folder(userEmail, folderName, defaultFolder, candelete)
  		values (#{userEmail}, '미분류', 1, 1);
 	</insert>
 
-	<insert id="insertFolderUserScrap" >
+	<!-- 회원가입 시, 스크랩 폴더 생성 -->
+	<insert id="insertFolderUserScrap" parameterType="String">
 		insert into folder(userEmail, folderName, defaultFolder, candelete)
   		values (#{userEmail}, '스크랩', 0, 1);
 	</insert>

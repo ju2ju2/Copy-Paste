@@ -6,6 +6,8 @@
 */
 package tk.copyNpaste.member;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -29,21 +31,23 @@ public class MemberService {
 	 @Autowired
 	 private SqlSession sqlsession;
 	
-	//회원가입 인증메일
+/*	//회원가입 인증메일
 	public void sendSingupEmail(String userEmail) throws Exception {
-		//벨로시티 회원가입 이메일전송
-	};
+	};*/
 	
 	//이메일 중복체크
-	public String checkUserEmail(String userEmail) throws Exception {
+	public int checkUserEmail(String userEmail) throws Exception {
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
-		return memberdao.checkUserEmail(userEmail);
+		int result = memberdao.checkUserEmail(userEmail);
+		System.out.println("이메일 서비스 result: " +result);
+		return result;
 	};
 	
 	//닉네임 중복체크
-	public String checkUserNick(String userNick) throws Exception{
+	public int checkUserNick(String userNick) throws Exception{
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
-		return memberdao.checkUserNick(userNick);
+		int result = memberdao.checkUserNick(userNick);
+		return result;
 	};
 	
 	//회원가입
@@ -60,8 +64,6 @@ public class MemberService {
     	String originFileName = userPhotoFile.getOriginalFilename(); // 원본 파일 명
     	long fileSize = userPhotoFile.getSize(); // 파일 사이즈
     	String path= request.getServletContext().getRealPath("resources/image/userPhoto/");
-       
-    	System.out.println(path);
     	
     	String safeFile = path + System.currentTimeMillis() + originFileName;
     	userPhotoFile.transferTo(new File(safeFile));  //폴더에 파일 쓰기
@@ -71,8 +73,6 @@ public class MemberService {
     	} else {
     		userPhotoName = userPhoto;
     	}
-    	
-    	System.out.println(userPhotoName);
        
     	member.setUserPhoto(userPhotoName); // DB에 들어갈 파일명 지정
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
@@ -90,10 +90,10 @@ public class MemberService {
 	}
 	
 	//회원 가입 시 권한 부여
-	public int insertMemberRole(String userEmail) throws Exception {
+/*	public int insertMemberRole(String userEmail) throws Exception {
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
 		return memberdao.insertMemberRole(userEmail);
-	}
+	}*/
 	
 	//회원 정보 보기
 	public List<MemberVO> selectAllMember() throws Exception{

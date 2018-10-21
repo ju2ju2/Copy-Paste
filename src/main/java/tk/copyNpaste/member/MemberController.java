@@ -42,13 +42,18 @@ public class MemberController {
 	}
 	
 	//이메일 중복체크
-	public void checkUserEmail(String userEmail) throws Exception {
-		
+	@RequestMapping(value="checkUserEmail.do", method = RequestMethod.POST)
+	public @ResponseBody int checkUserEmail(String mailto) throws Exception {
+		int result=memberService.checkUserEmail(mailto);
+		System.out.println("이메일 컨트롤러" + result);
+		return result;
 	};
 	
 	//닉네임 중복체크
-	public void checkUserNick(String userNick) throws Exception{
-		
+	@RequestMapping(value="checkUserNick.do", method = RequestMethod.POST)
+	public @ResponseBody int checkUserNick(String userNick) throws Exception{
+		int result=memberService.checkUserNick(userNick);
+		return result;
 	};
 	
 	//회원가입 + 회원가입시 미분류,스크랩 폴더 부여
