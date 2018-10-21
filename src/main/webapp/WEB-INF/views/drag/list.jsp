@@ -110,7 +110,7 @@ $(document).on("ready",function() {
 	$(document).on("mouseup",function() {
 		  var span = document.createElement('span');
 		  var sel = document.getSelection();
-		  if (sel && sel.rangeCount) {
+		  if (sel!="" && sel.rangeCount) {
 		    var range = sel.getRangeAt(0).cloneRange();
 		    // wrap text in span element
 		    range.surroundContents(span);
