@@ -27,6 +27,8 @@ public class NoteVO {
 	private int notePublic;
 	private int noteScrap;
 	private int notePNum;
+	private String noteThumnail;
+
 
 	public String getUserNick() {
 		return userNick;
@@ -107,12 +109,19 @@ public class NoteVO {
 		this.notePNum = notePNum;
 	}
 	
+	public String getNoteThumnail() {
+		return noteThumnail;
+	}
+	public void setNoteThumnail(String noteThumnail) {
+		this.noteThumnail = noteThumnail;
+	}
 	@Override
 	public String toString() {
 		return "NoteVO [noteNum=" + noteNum + ", folderName=" + folderName + ", userEmail=" + userEmail + ", userNick="
 				+ userNick + ", noteTitle=" + noteTitle + ", noteContent=" + noteContent + ", noteDate=" + noteDate
 				+ ", subjectCode=" + subjectCode + ", subjectName=" + subjectName + ", noteCount=" + noteCount
-				+ ", notePublic=" + notePublic + ", noteScrap=" + noteScrap + ", notePNum=" + notePNum + "]";
+				+ ", notePublic=" + notePublic + ", noteScrap=" + noteScrap + ", notePNum=" + notePNum
+				+ ", noteThumnail=" + noteThumnail + "]";
 	}
 
 

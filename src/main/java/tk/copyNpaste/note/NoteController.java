@@ -7,23 +7,19 @@
 
 package tk.copyNpaste.note;
 
-import java.io.PrintWriter;
 import java.security.Principal;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
-
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import tk.copyNpaste.folder.FolderService;
 import tk.copyNpaste.vo.FolderVO;
@@ -56,12 +52,18 @@ public class NoteController {
 
 	// 노트 상세 보기(+노트 작성)
 	@RequestMapping(value = "noteDetail.htm")
-	public String selectDetailNote(int noteNum, Model model) throws Exception {
+	public String selectDetailNote(int noteNum,String cmd, Model model) throws Exception {
 		NoteVO note = noteService.selectDetailNote(noteNum);
 		List<NoteCommVO> noteCommList = noteService.selectAllNoteComm(noteNum);
 		model.addAttribute("note", note);
 		model.addAttribute("noteCommList", noteCommList);
-		return "notedetail";//(modal/notedetail.jsp)
+		String viewpage;
+		if(cmd!=null) {
+			viewpage="mynotedetail";
+			System.out.println("mynotedetail");
+		}else {viewpage="notedetail";}
+		
+		return viewpage;//(modal/notedetail.jsp)
 	}
 
 	// 노트 주제 검색 
@@ -81,6 +83,15 @@ public class NoteController {
 	@RequestMapping(value="write.json")
 	public @ResponseBody int insertNote(NoteVO note,Principal principal) throws Exception {
 		note.setUserEmail(principal.getName());
+		String NoteContent = note.getNoteContent();
+		Document doc = Jsoup.parseBodyFragment(NoteContent);
+		Elements imgs = doc.getElementsByTag("img");
+		if(imgs.size() > 0) { 
+			String src = imgs.get(0).attr("src"); 
+			note.setNoteThumnail(src);
+		} else { note.setNoteThumnail(
+				"https://d1u1amw606tzwl.cloudfront.net/assets/users/avatar-default-96007ee5610cdc5a9eed706ec0889aec2257a3937d0fbb747cf335f8915f09b2.png");
+		}
 		return noteService.insertNote(note);
 	}
 	
@@ -94,6 +105,13 @@ public class NoteController {
 	// 노트 수정 -비동기
 	@RequestMapping(value="updateNote.json")
 	public @ResponseBody int updateNote(NoteVO note, Principal principal) throws Exception {
+		String NoteContent = note.getNoteContent();
+		Document doc = Jsoup.parseBodyFragment(NoteContent);
+		Elements imgs = doc.getElementsByTag("img");
+		if(imgs.size() > 0) { 
+			String src = imgs.get(0).attr("src"); 
+			note.setNoteThumnail(src);
+		} else {note.setNoteThumnail("https://d1u1amw606tzwl.cloudfront.net/assets/users/avatar-default-96007ee5610cdc5a9eed706ec0889aec2257a3937d0fbb747cf335f8915f09b2.png");}// 수정시 이미지 없을때 기본이미지로.
 		return noteService.updateNote(note);
 	}
 		

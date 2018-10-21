@@ -18,7 +18,7 @@ public interface MemberMapper {
 	//닉네임 중복체크
 	public int checkUserNick(String userNick) throws Exception;
 	
-	//회원가입. 회원가입시 미분류,스크랩 폴더 부여는 folderMapper에 있음
+	//회원가입. 회원가입시 미분류, 스크랩 폴더 부여는 folderMapper에 있음
 	public int insertMember(MemberVO member) 
 			throws ClassNotFoundException, SQLException;
 	

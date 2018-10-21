@@ -1,0 +1,23 @@
+/* qna.css 
+@css : qna.css
+@Date : 2018.10.19
+@Author : 임지현
+@Desc :	qna.css
+*/
+
+@import url(main.css);
+@import url("https://use.fontawesome.com/releases/v5.3.1/css/all.css");
+
+.qnaComm-inputBox{
+	margin-bottom: 30px;
+    margin-top: 10px;
+}
+.comment{
+	margin-top: 5px;
+}
+.qnaCommTrashBtn, .qnaCommCommBtn{
+	cursor: pointer;
+}
+#commCommAtag{
+	margin-top: 0px !important;
+}
