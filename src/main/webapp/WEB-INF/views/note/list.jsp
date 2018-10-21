@@ -19,7 +19,7 @@
 
 		<div class="row">
 		<c:forEach var="noteList" items="${noteList}">
-			<div class="col-xs-6 col-md-3">
+			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
 				<div class="text-center">
 					<!-- a HTML (to Trigger Modal) -->
 					<a data-toggle="modal"

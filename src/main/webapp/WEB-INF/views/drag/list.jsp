@@ -36,26 +36,27 @@
 			<div class="row" >
 				<c:forEach items="${dragList}" var="dragList">
  			          
-					<div class="col-xs-12 col-sm-3 col-md-3">
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
 						<div class="text-center dragDiv mt-10">
 					
 						<blockquote class="grapefruit">
-							      <div class="dragContent">
+								 <div class="dragContent">
    				    			  <!-- 별 아이콘 -->
-							        <div class=" icon-right starDiv">
-										<i class="far fa-star icon-size"></i>
+							        <div class="icon-right starDiv">
+										<br><i class="far fa-star icon-size"></i>
 									</div>
 								<!-- 모달 창 -->
+								<div class="drag-a">
  								 <a data-toggle="modal"
 								href="${pageContext.request.contextPath}/drag/dragDetail.htm?dragNum=${dragList.dragNum}"
-								data-target="#modal-testNew" role="button"
+								data-target="#modal-drag" role="button"
 								data-backdrop="static"> 
- 								 <h1 id="mydrag"><span class="Cgrapefruit">MYDARG</span></h1>  
+ 								<%--  <h1 id="mydrag"><p class="Cgrapefruit">${dragList.dragText}</span></h1>   --%>
   								 <p>${dragList.dragText}</p>
 								<code>
  									&lt;출처 : <span class="Cgrapefruit">${dragList.dragOrigin}</span>&gt;
       							 <span>${dragList.dragDate}</span></code></a>
-					         		</div>
+					         	</div>
 					        </blockquote>
 						</div>
 					</div>
@@ -68,8 +69,8 @@
 <br>
 
 <!-- Modal HTML -->
-<div id="modal-testNew" class="modal fade text-center overlay"
-	tabindex="-1" role="dialog">
+<div id="modal-drag" class="modal fade text-center overlay"
+	 role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">Content will be loaded here from
 			"drag/dragDetail.htm" file</div>
