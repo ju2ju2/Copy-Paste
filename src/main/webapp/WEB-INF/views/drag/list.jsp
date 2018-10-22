@@ -30,7 +30,7 @@
 		<!-- Section -->
 		<section>
 			<header id="droppable" class="major">
-				<div > 
+				<div>
 					<h3>
 						드래그 목록<i class="fas fa-trash icon-size"></i>
 					</h3>
@@ -44,27 +44,26 @@
 						<div class="text-center dragDiv mt-10">
 
 							<blockquote class="grapefruit">
-							<!-- 별 아이콘 -->
-									<div class="icon-right starDiv">
-										<br>
-										<i class="far fa-star icon-size"></i>
-									</div>
+								<!-- 별 아이콘 -->
+								<div class="icon-right starDiv">
+									<br> <i class="far fa-star icon-size"></i>
+								</div>
 								<div class="dragContent">
-									
+
 									<!-- 모달 창 -->
 									<div class="drag-a">
 										<a data-toggle="modal"
 											href="${pageContext.request.contextPath}/drag/dragDetail.htm?dragNum=${dragList.dragNum}"
 											data-target="#modal-drag" role="button"
-											data-backdrop="static"> 
+											data-backdrop="static">
 											<p>${dragList.dragText}</p> <code>
 												&lt;출처 : <span class="Cgrapefruit">${dragList.dragOrigin}</span>&gt;
 												<span>${dragList.dragDate}</span>
-											</code>
-											<input type="hidden" id="dragNum"  class="dragNum" value="${dragList.dragNum}">
-											</a>
+											</code> <input type="hidden" id="dragNum" class="dragNum"
+											value="${dragList.dragNum}">
+										</a>
 									</div>
-									</div>
+								</div>
 							</blockquote>
 						</div>
 					</div>
@@ -86,11 +85,10 @@
 </div>
 
 <p class="row">
-
 <div id="toolbar-options" class="hidden">
-   <a href="#" id="insertDrag"><i class="fa fa-copyright"></i></a>
-   <a href="#"><i class="fa fa-star"></i></a>
-   <a href="#"><i class="fa fa-sticky-note"></i></a>
+	<a href="#" id="insertDrag"><i class="fa fa-copyright"></i></a> <a
+		href="#"><i class="fa fa-star"></i></a> <a href="#"><i
+		class="fa fa-sticky-note"></i></a>
 </div>
 <script>
 $(document).on("ready",function() {
@@ -131,17 +129,7 @@ $(document).on("ready",function() {
 		    range.surroundContents(span);
 		    sel.removeAllRanges();
 		    sel.addRange(range);
-		    // show tooltip
-		    $(span).toolbar({
-		        content: '#toolbar-options',
-				position: 'bottom',
-				style: 'dark',
-				//hideOnClick: true
-		    // remove span when tooltip is hidden
-		    }).on('toolbarShown',  function( event ) {
-		    	$('#insertDrag').on("click",function() {
-		    		console.log(sel.toString())
-		    		$.ajax({
+			 $.ajax({
 		    		      url: "${pageContext.request.contextPath}/drag/insertDrag.json", // url_pettern 
 		    		      type:"POST",
 		    		      data:{ 'dragText' : sel.toString(),
@@ -155,15 +143,13 @@ $(document).on("ready",function() {
 		    					  closeOnConfirm: false
 		    				} ,
 		    				function(){
-		    					location.href="${pageContext.request.contextPath}/drag/drag.htm";
+		    					location.reload();
 		    				}
 		    				);  
 		    		      }
 		    		    }); 
 		    	});
-		     }).on('toolbarHidden', function (e) {
-		      $(span).contents().unwrap('span');
-		    });
+		     })
 		  }
 		});
 	
