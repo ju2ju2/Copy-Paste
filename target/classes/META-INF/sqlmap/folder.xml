@@ -16,10 +16,15 @@
 		select folderName from folder where userEmail = #{userEmail} order by defaultFolder desc;
 	</select>
 
-	<!-- 폴더 추가 -->
+	<!-- 폴더 추가 
+	defaultFolder 0 → 디폴트 폴더 X
+				  1 → 디폴트 폴더 O 
+	candelete 	  0 → 삭제, 수정 가능
+				  1 → 삭제, 수정 불가
+	-->
 	<insert id="insertFolder" parameterType="FolderVO">
 		insert into folder(userEmail, folderName, defaultFolder, candelete)
-  		values (#{userEmail}, #{folderName}, 0, 1) ;
+  		values (#{userEmail}, #{folderName}, 0, 0) ;
 	</insert>
 
 	<!-- 회원가입 시, 미분류 폴더 생성 -->
@@ -45,9 +50,14 @@
 	</update>
 	
 	<!-- 기본폴더 지정 setDefaultFolder-->
-
+	<update id="setDefaultFolder" parameterType="FolderVO">
+		update folder set defaultFolder=1, candelete=1 where userEmail=#{userEmail} and folderName=#{beforefolderName};
+	</update>
+	
 	<!-- 기본폴더 해제 removeDefaultFolder-->
-
+	<update id=" removeDefaultFolder" parameterType="FolderVO">
+		update folder set defaultFolder=0, candelete=0 where userEmail=#{userEmail} and folderName=#{beforefolderName};
+	</update>
 
 
 </mapper>
