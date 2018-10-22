@@ -162,6 +162,7 @@
 </nav>
 
 <script>
+
 	/* 폴더 아코디언 */
 	var acc = document.getElementsByClassName("accordion");
 	var i;
@@ -250,6 +251,18 @@
 		      }
 		 })
 
+		 
+	//노트 드래그 가능, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
+    $('.asideNoteDiv').draggable({
+    	revert: true, 
+    	 revertDuration: 200,
+    	 snapMode: "inner",
+    	 scroll: true,
+    	 scrollSensitivity: 100 ,
+    	 scrollSpeed: 100
+    	});
+	
+		 
 	//노트 탭 폴더목록 추가 //노트 리스트 
 	$.ajax({
       url: "${pageContext.request.contextPath}/folder/selectAllFolder.json", // url_pettern 
@@ -260,9 +273,9 @@
       	 if(data != null) {
       		$.each(data, function(key, value){
       			$('#asideFolderList').empty();	
-      			a += '<div class="row" alt="'+value.folderName+'"><div class="col-xs-10 pt"> <h5 class="accordion asideFolderName" id="asideFolderName">'+value.folderName+'</h5>'
+      			a += '<div class="row" class="accordion" alt="'+value.folderName+'"><div class="col-xs-10 pt"> <h5 class="accordion asideFolderName" id="asideFolderName">'+value.folderName+'</h5>'
       			a += '</div><div class="col-xs-2 panel-margin">	<i class="far fa-bookmark icon-size"></i>'
-      			a += '</div></div>';
+      			a += '</div><div class="row"><div id="asideNoteList"></div></div></div>';
       		});
       	}
 			$("#asideFolderList").html(a);
@@ -277,10 +290,11 @@
     		      success:function(data){
     		    	 console.log(data)
     		      	 if(data != null) {
+    		      		var aa = "";
     		      		$.each(data, function(key, value){
-    		      			var aa="";
-    		      			aa+='<div class="col-xs-12">'
-    		      			aa+='<div class="text-center">'
+    		      			$('#asideNoteList').empty();	
+    		      			aa+='<div class="col-xs-12 asideNoteDiv">'
+    		      			aa+='<div class="text-center asideNoteDiv">'
     		      			aa+='<!-- a HTML (to Trigger Modal) -->'
     		      			aa+='<a data-toggle="modal"'
     		      			aa+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&cmd=mynote"'
@@ -300,11 +314,11 @@
     		      			aa+='</a>'
     		      			aa+='</div>'
     		      			aa+='</div>'
-    		      			$('div[alt="'+value.folderName+'"]').append(aa);
-    		      			
+    		      			$("div[alt='"+value.folderName+"']").find("#asideNoteList").html(aa);
     		      		});
-    		      	}
 
+    		      	}
+    		      
     		       }
     		    })
     	}) 
