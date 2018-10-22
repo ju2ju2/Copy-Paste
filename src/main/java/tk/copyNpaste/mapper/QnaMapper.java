@@ -36,12 +36,12 @@ public interface QnaMapper {
 	//QNA 댓글 삭제시 자식 댓글들 삭제
 	public int deleteQnaCommChild(int qnaCommPNum) throws Exception;
 	
+	//QNA 게시물 작성
+	public int insertQna(QnaVO qna) throws Exception;
+	
 	/* 아직 안돼*/
 	//QNA 게시물 검색
 	public List<QnaVO> selectSearchQna(String keyword) throws Exception;
-	
-	//QNA 게시물 작성
-	public int insertQna(QnaVO qna) throws Exception;
 	
 	//QNA 게시글 수정
 	public int updateQna(int qnaNum) throws Exception;

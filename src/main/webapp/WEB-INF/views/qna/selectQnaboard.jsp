@@ -34,8 +34,10 @@ $(document).ready(function() {
     		<tr>
 				<td><c:if test="${qna.qnaNotice >0}">-</c:if><c:if test="${qna.qnaNotice ==0}">${qna.qnaNum}</c:if> </td>
 				<td>
-					<a href="${pageContext.request.contextPath}/qna/selectDetailQna.htm?qnaNum=${qna.qnaNum}">
-						<c:if test="${qna.qnaDept == 1}">ㄴ답변: </c:if> ${qna.qnaTitle}
+					<a href="${pageContext.request.contextPath}/qna/selectDetailQna.htm?qnaNum=${qna.qnaNum}" class="title">
+						<c:if test="${qna.qnaDept == 1}">ㄴ답변: </c:if>
+						<c:if test="${qna.qnaSecret == 1}"><i class="fas fa-lock"></i></c:if>
+						 ${qna.qnaTitle}
 					</a>
 				</td>
 				<td>${qna.userNick}</td>
@@ -45,6 +47,9 @@ $(document).ready(function() {
     	
     </tbody>
 </table>
+	<div style="text-align: right;">
 	<a href="" class="btn main-btn" id="qnaboard_btn_list" role="button">목록</a>
 	<a href="${pageContext.request.contextPath}/qna/insertQnaboard.htm" class="btn main-btn" id="qnaboard_btn_write" role="button">글쓰기</a>
-</div></section>
+	</div>
+</div>
+</section>

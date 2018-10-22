@@ -15,9 +15,12 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -61,15 +64,22 @@ public class QnaController {
 	
 	//QNA 게시물 작성
 	@RequestMapping(value="/insertQnaboard.htm",method = RequestMethod.GET)
-	public String insertQnaboard() {
+	public String insertQna() throws Exception{
+
 		return "qna.insertQnaboard";
 	}
-	public int insertQna(QnaVO qna) throws Exception{
-		return qnaService.insertQna(qna);
-	};
+	@RequestMapping(value="/insertQnaboard.htm", method = RequestMethod.POST)
+	public String insertQna(HttpServletRequest request,HttpServletResponse response,QnaVO qna, Principal principal) throws Exception{
+		System.out.println("작성 컨트롤러 진입");
+		System.out.println("qnaSecret>>"+qna.getQnaSecret());
+		System.out.println("qnaNotice>>"+qna.getQnaNotice());
+		qna.setUserEmail(principal.getName());
+		qnaService.insertQna(qna);
+		System.out.println("작성 리턴받음");
+		return "redirect:/qna/selectQnaboard.htm";
+	}
 
-	
-	
+
 	//QNA 게시글 수정
 	public int updateQna(int qnaNum) throws Exception{
 		return qnaService.updateQna(qnaNum);

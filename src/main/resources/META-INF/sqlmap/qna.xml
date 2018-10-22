@@ -12,17 +12,15 @@
 	
 <mapper namespace="tk.copyNpaste.mapper.QnaMapper">
 <!-- 진행중 영역 -->
+	<!-- 	//QNA 게시물 작성 -->
+	<insert id="insertQna" >
+ 		<selectKey order="BEFORE" keyProperty="qnaPos" resultType="int">
+ 			select max(qnaPos)+1 from qna;
+ 		</selectKey> 
+		insert into qna(userEmail,qnaTitle,qnaContent,qnaNotice,qnaSecret,qnaPos)
+		values (#{userEmail},#{qnaTitle},#{qnaContent},#{qnaNotice},#{qnaSecret},#{qnaPos});
+ 	</insert>
 
-	<!-- //QNA 댓글 삭제 -->
-	<delete id="deleteQnaComm" parameterType="Integer">
-		delete from qnaComm
-		where qnaCommNum = #{qnaCommNum}
-	</delete>
-	<!-- //QNA 댓글 삭제시 자식 댓글들 삭제  -->
-	<delete id="deleteQnaCommChild" parameterType="Integer">
-		delete from qnaComm
-		where qnaCommPNum = #{qnaCommNum}
-	</delete>
 	
 <!-- /진행중 영역 -->
 
@@ -30,7 +28,7 @@
 	<!-- QNA 게시물 조회-->
 	<select id="selectAllQna" resultType="QnaVO" >
 		select qna.qnaNum, qna.userEmail, users.userNick, qna.qnaTitle, qna.qnaContent, qna.qnaDate, qna.qnaDept, qna.qnaPNum, qna.qnaNotice, qna.qnaSecret, qna.qnaPos
-		from qna join users on qna.userEmail = users.userEmail order by qna.qnaNotice desc, qna.qnaPos
+		from qna join users on qna.userEmail = users.userEmail order by qna.qnaNotice desc, qna.qnaPos desc
 	</select>
 	
 	<!-- 	//QNA 게시물 상세보기 -->
@@ -67,13 +65,20 @@
 		insert into qnaComm(qnaNum,userEmail,qnaCommContent,qnaCommDept,qnaCommPNum,qnaCommPos)
 		values (#{qnaNum},#{userEmail},#{qnaCommContent},1,#{qnaCommNum},#{qnaCommPos})
   	</insert>
+  	
+  		<!-- //QNA 댓글 삭제 -->
+	<delete id="deleteQnaComm" parameterType="Integer">
+		delete from qnaComm
+		where qnaCommNum = #{qnaCommNum}
+	</delete>
+	<!-- //QNA 댓글 삭제시 자식 댓글들 삭제  -->
+	<delete id="deleteQnaCommChild" parameterType="Integer">
+		delete from qnaComm
+		where qnaCommPNum = #{qnaCommNum}
+	</delete>
 	
 <!-- 	//QNA 게시물 검색
 	public List<QnaVO> selectSearchQna(String keyword) throws Exception;-->	
- 
-<!-- 	//QNA 게시물 작성
-	public int insertQna(QnaVO qna) throws Exception;
- -->
 
 <!-- 	//QNA 게시글 수정
 	public int updateQna(int qnaNum) throws Exception;

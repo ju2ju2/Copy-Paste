@@ -52,6 +52,7 @@ public class QnaService {
 	
 	//QNA 게시물 작성
 	public int insertQna(QnaVO qna) throws Exception{
+		System.out.println("작성 서비스 진입");
 		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
 		return qnadao.insertQna(qna);
 	};
