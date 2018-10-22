@@ -18,25 +18,25 @@ public interface DragMapper {
 	public int insertDrag(DragVO drag) throws Exception;
 	
 	//드래그 목록 보기
-	public List<DragVO> selectAllDrag() throws Exception;
+	public List<DragVO> selectAllDrag(String userEmail) throws Exception;
 	
 	//드래그 상세 보기(+노트 작성)
-	public DragVO selectDetail(int dragNo) throws Exception;
+	public DragVO selectDetail(int dragNum) throws Exception;
 	
 	//드래그 삭제
-	public int deleteDrag(int dragNo) throws Exception;
+	public int deleteDrag(int dragNum) throws Exception;
 	
 	//드래그 달력 검색
-	public List<DragVO> selectByCalDrag(Date period) throws Exception;
-	
+	public List<DragVO> selectByCalDrag(Date dargDate) throws Exception;
+		
 	//드래그 키워드 검색
 	public List<DragVO> selectByKeyDrag(String keyword) throws Exception;
 	
 	//드래그 중요표시 등록
-	public int setDragMark(int dragNo) throws Exception;
+	public int setDragMark(int dragNum) throws Exception;
 	
 	//드래그 중요표시 삭제
-	public int removeDragMark(int dragNo) throws Exception;
+	public int removeDragMark(int dragNum) throws Exception;
 
 
 	

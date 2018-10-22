@@ -6,6 +6,7 @@
 */
 package tk.copyNpaste.mapper;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import tk.copyNpaste.vo.MemberVO;
@@ -17,8 +18,13 @@ public interface MemberMapper {
 	//닉네임 중복체크
 	public String checkUserNick(String userNick) throws Exception;
 	
-	//회원가입 + 회원가입시 미분류,스크랩 폴더 부여
-	public int insertMember(MemberVO member) throws Exception;
+	//회원가입. 회원가입시 미분류, 스크랩 폴더 부여는 folderMapper에 있음
+	public int insertMember(MemberVO member) 
+			throws ClassNotFoundException, SQLException;
+	
+	//회원가입 시 권한 부여
+	public int insertMemberRole(String userEmail) 
+			throws ClassNotFoundException, SQLException;
 	
 	//로그인
 	public MemberVO login(MemberVO member) throws Exception;

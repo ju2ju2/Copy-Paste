@@ -1,8 +1,10 @@
 package tk.copyNpaste.etc;
 
-import java.util.HashMap;
 import java.util.List;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,7 +36,6 @@ public class IndexController {
 			model.addAttribute("lifeNoteList", lifeNoteList);
 			List<NoteVO> eduNoteList = noteService.selectTopNote(subjectNames[3]);
 			model.addAttribute("eduNoteList", eduNoteList);
-
 			return "index.main";//return "index.jsp";
 		}
 		
@@ -58,6 +59,27 @@ public class IndexController {
 			return "index.signup";
 		}
 	
+		//썸네일 비동기
+		@RequestMapping("/thumnail.json")
+		public String jsouptest() throws Exception {
+			int noteNum=19;
+			NoteVO note = noteService.selectDetailNote(noteNum);
+			String NoteContent = note.getNoteContent();
+			Document doc = Jsoup.parseBodyFragment(NoteContent);
+			Elements imgs = doc.getElementsByTag("img");
+			if(imgs.size() > 0) { 
+				String src = imgs.get(0).attr("src"); 
+				System.out.println(src);
+			}
+			//첫번째 소스
+			/*Element img = doc.getElementByTag("img").first();
+			if(img != null) {
+			    String src = img.attr("src");
+			}
+			배열 소스 */
+			return "index.main";
+		}
+		
 		
 		
 		

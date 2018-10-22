@@ -39,55 +39,137 @@
 				</div>
 			</div>
 			<div class="col-md-12">
-				<div class="qnacontent">${qna.qnaContent}</div><br/>
+				<div class="qnacontent">${qna.qnaContent}</div>
+				<br />
 			</div>
 		</form>
 		<!-- QnA 댓글 -->
-	<div class="col-lg-12 col-sm-12 text-left">
-			
-			<c:forEach var="qnaComm" items="${qnaCommList}">
-				
-				<div class="">
-					<ul data-brackets-id="12674" id="sortable" class="list-unstyled ui-sortable">
-						<div class="media-body">
-							<strong class="pull-left primary-font">
-							<c:if test="${qnaComm.qnaCommDept==1}">ㄴ</c:if>
-							${qnaComm.userNick}</strong>${qnaComm.qnaCommDate}<br>
-							<small class="pull-right text-muted">
-								<c:choose>
-									<c:when test="${qnaComm.userEmail==loginuser}">
-										<i class="fas fa-trash"></i>
-									</c:when>
-									<c:when test="${role=='ROLE_ADMIN'}">
-										<i class="fas fa-trash"></i>
-									</c:when>
-								</c:choose>
-								<c:if test="${qnaComm.userEmail==loginuser}">
-									
-								</c:if>
-								 &ensp; 
-								 <c:if test="${qna.userEmail==loginuser}">
-									<i class="fas fa-comment"></i>
-								</c:if>
-							</small>
-							<div class="qnaCommContent">
-							<c:if test="${qnaComm.qnaCommDept==1}">&ensp;&ensp;</c:if>
-							${qnaComm.qnaCommContent}</div>
-						</div>
-					</ul>
-				</div>
+		<div class="col-lg-12 col-sm-12 text-left">
+			<div class="commentBox">
+			<c:forEach var="qnaComm" items="${qnaCommList}">	
+				<div class="comment">
+					<strong class="pull-left primary-font"> 
+						<c:if test="${qnaComm.qnaCommDept==1}">
+						ㄴ
+						</c:if> 
+						${qnaComm.userNick} 
+					</strong>
+					${qnaComm.qnaCommDate}<br> 
+					<small class="pull-right text-muted">
+						<!-- 본인이거나 admin일때 삭제버튼 -->
+						<c:if test="${role=='[ROLE_ADMIN]' or qnaComm.userEmail==loginuser}">
+							<i class="fas fa-trash qnaCommTrashBtn"></i>
+						</c:if>
+						<!-- 댓글일때 본인이거나 admin일때 대댓글버튼 -->
+						<c:choose>
+							<c:when test="${qnaComm.qnaCommDept == 0 and qnaComm.userEmail==loginuser}">
+								<i class="fas fa-comment qnaCommCommBtn">
+									<input id="qnaCommNum" type="hidden" value="${qnaComm.qnaCommNum}" />
+									<input id="qnaCommPos" type="hidden" value="${qnaComm.qnaCommPos}" />								
+								</i>
+							</c:when>
+							<c:when test="${qnaComm.qnaCommDept == 0 and role=='[ROLE_ADMIN]'}">
+								<i class="fas fa-comment qnaCommCommBtn">
+									<input id="qnaCommNum" type="hidden" value="${qnaComm.qnaCommNum}" />
+									<input id="qnaCommPos" type="hidden" value="${qnaComm.qnaCommPos}" />
+								</i>
+							</c:when>
+						</c:choose> 				
+					</small>
+					<div class="qnaCommContent">
+						<c:if test="${qnaComm.qnaCommDept==1}">
+							&ensp;&ensp;
+						</c:if>
+						${qnaComm.qnaCommContent}
+					</div>
+				</div>				
 			</c:forEach>
-			
-			<div class="input-group">
+			</div>
+			<!-- 로그인한 회원,어드민들 댓글창 -->
+			<se:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
+			<div class="qnaComm-inputBox input-group">
 				<input type="text" id="userComment"
 					class="form-control input-sm chat-input" placeholder="댓글을 입력하세요" />
-				<span class="input-group-btn" onclick="addComment()">
+				<span class="input-group-btn commentBtn">
 					<div>
-						<a href="#" class="btn main-btn center-block" id="commentbtn"><i
-							class="fas fa-check"></i> Add Comment</a>
+						<a href="#" class="btn main-btn center-block" id="commentBtn">
+							<i class="fas fa-check"></i> Add Comment
+						</a>
 					</div>
 				</span>
 			</div>
+			</se:authorize>
+			<!-- 비회원일때 댓글창 -->
+			<se:authorize access="!hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
+				<div class="qnaComm-inputBox input-group">
+					<input type="text" id="userComment" disabled 
+						class="form-control input-sm chat-input" placeholder="로그인 후 이용해주세요" />
+				</div>
+			</se:authorize>
 		</div>
 	</div>
 </section>
+<script>
+	$(function() {
+		var commCommClickNum = 0;
+		var qnaCommNum;
+		var qnaCommPos;
+		var commBoxHtml="<div class='qnaComm-inputBox input-group'>"
+			+" <input type='text' id='userCommComm' class='form-control input-sm chat-input' placeholder='답댓글을 입력하세요' />"
+			+" <span class='input-group-btn' id='commCommbtn'>"
+			+" <div>"
+			+" <a href='#' class='btn main-btn center-block' id='commCommAtag'>"
+			+" <i class='fas fa-check'></i> Add Comment"
+			+" </a></div></span></div>";
+		/* 댓글 작성 버튼 클릭시 */
+		$('.commentBtn').click(function(){
+			$.ajax({
+				url : "<%=request.getContextPath()%>/qna/insertQnaComm.json",
+			    type : "get",
+			    data : {
+			    	"qnaCommContent": $('#userComment').val(),
+			    	"qnaNum":${qna.qnaNum}
+			    },
+			    success : function(data){
+			    	location.reload();
+			    },
+			    error : function(){
+			        	console.log("실패");
+			    }
+			});	
+		});
+		/* 답글아이콘 클릭시 */
+		$('.qnaCommCommBtn').click(function() {
+			if(commCommClickNum==0){
+				qnaCommNum=$(this).children('#qnaCommNum').val();
+				qnaCommPos=$(this).children('#qnaCommPos').val();
+				commCommClickNum=1;
+				$(this).parents('.comment').append(commBoxHtml);
+				
+			}		
+		});
+		/* 대댓글 작성 버튼 클릭시 */
+		$(document).on("click", "#commCommbtn", function(){
+			console.log(${qna.qnaNum});
+			$.ajax({
+				url : "<%=request.getContextPath()%>/qna/insertQnaCommComm.json",
+			    type : "get",
+			    data : {
+			    	"qnaCommContent": $('#userCommComm').val(),
+			    	"qnaNum":${qna.qnaNum},
+			    	"qnaCommNum":qnaCommNum,
+			    	"qnaCommPos":qnaCommPos
+			    },
+			    success : function(data){
+			    	commCommClickNum=0;
+			    	qnaCommNum="";
+			    	qnaCommPos="";
+			    	location.reload();
+			    },
+			    error : function(){
+			        	console.log("실패");
+			    }
+			});	
+		});
+	});
+</script>

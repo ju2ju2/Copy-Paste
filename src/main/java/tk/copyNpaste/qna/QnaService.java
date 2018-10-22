@@ -12,6 +12,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import tk.copyNpaste.mapper.QnaMapper;
 import tk.copyNpaste.vo.QnaCommVO;
@@ -31,7 +32,6 @@ public class QnaService {
 	
 	//QNA 게시물 상세보기
 		public QnaVO selectDetailQna(int qnaNum) throws Exception{
-			System.out.println("게시물 상세보기 qnaNum>>"+qnaNum);
 			QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
 
 			return qnadao.selectDetailQna(qnaNum);
@@ -39,7 +39,6 @@ public class QnaService {
 		
 	//QNA 댓글 조회
 		public List<QnaCommVO> selectQnaComm(int qnaNum) throws Exception{
-			System.out.println("댓글조회 서비스 qnaNum>>"+qnaNum);
 			QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
 			
 			return qnadao.selectQnaComm(qnaNum);
@@ -72,14 +71,37 @@ public class QnaService {
 	};
 	
 	//QNA 댓글 작성
-	public int insertQnaComm(QnaCommVO qnaComm) throws Exception{
+	@Transactional
+	public List<QnaCommVO> insertQnaComm(QnaCommVO qnaComm) throws Exception{
 		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
-		return qnadao.insertQnaComm(qnaComm);
+		List<QnaCommVO> qnaCommList = new ArrayList<>();
+		try {
+		qnadao.insertQnaComm(qnaComm);
+		qnaCommList = qnadao.selectQnaComm(qnaComm.getQnaNum());
+		}catch(Exception e){
+			throw e;			
+		}
+		return qnaCommList;
+	};
+	//QNA 대댓글 작성
+	@Transactional
+	public List<QnaCommVO> insertQnaCommComm(QnaCommVO qnaComm) throws Exception{
+		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
+		List<QnaCommVO> qnaCommList = new ArrayList<>();
+		try {
+			qnadao.updateQnaCommComm(qnaComm);
+			qnadao.insertQnaCommComm(qnaComm);
+			qnaCommList = qnadao.selectQnaComm(qnaComm.getQnaNum());
+		}catch(Exception e){
+			throw e;			
+		}
+		return qnaCommList;
 	};
 	
 	//QNA 댓글 삭제
 	public int deleteQnaComm(int qnaCommNum) throws Exception{
 		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
+		
 		return qnadao.deleteQnaComm(qnaCommNum);
 	};
 

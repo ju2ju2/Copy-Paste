@@ -45,7 +45,6 @@ $(document).ready(function() {
 
 	//노트 수정 실행
 	$('#updateNoteBtn').click(function() {
-	
 	 	$.ajax({
 	      url: "${pageContext.request.contextPath}/note/updateNote.json", // url_pettern 
 	      type:"POST",
