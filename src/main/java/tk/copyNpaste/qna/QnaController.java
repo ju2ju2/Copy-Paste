@@ -80,10 +80,6 @@ public class QnaController {
 		return qnaService.deleteQna(qnaNum);
 	};
 	
-	//QNA 댓글 삭제
-	public int deleteQnaComm(int qnaCommNum) throws Exception{
-		return qnaService.deleteQnaComm(qnaCommNum);
-	};
 	
 	/*비동기관련 컨트롤러*/
 	//QNA댓글 작성
@@ -97,13 +93,19 @@ public class QnaController {
 		return qnaCommList;
 	};
 	//QNA대댓글 작성
-		@RequestMapping(value="/insertQnaCommComm.json")
-		public @ResponseBody List<QnaCommVO> insertQnaCommComm(QnaCommVO qnaComm,Principal principal) throws Exception{
-			List<QnaCommVO> qnaCommList = new ArrayList<>();
-			qnaComm.setUserEmail(principal.getName());
-			qnaCommList = qnaService.insertQnaCommComm(qnaComm);
+	@RequestMapping(value="/insertQnaCommComm.json")
+	public @ResponseBody List<QnaCommVO> insertQnaCommComm(QnaCommVO qnaComm,Principal principal) throws Exception{
+		List<QnaCommVO> qnaCommList = new ArrayList<>();
+		qnaComm.setUserEmail(principal.getName());
+		qnaCommList = qnaService.insertQnaCommComm(qnaComm);
 			
-			return qnaCommList;
-		};
+		return qnaCommList;
+	};
+	
+	//QNA 댓글 삭제
+	@RequestMapping(value="/deleteQnaComm.json")
+	public @ResponseBody void deleteQnaComm(QnaCommVO qnaComm) throws Exception{
+		qnaService.deleteQnaComm(qnaComm);
+	};
 
 }

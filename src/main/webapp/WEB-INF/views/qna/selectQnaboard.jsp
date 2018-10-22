@@ -23,10 +23,10 @@ $(document).ready(function() {
 	<table id="table_id" class="hover">
     <thead>
         <tr>
-            <td>No.</td>
-            <td>제목</td>
-            <td>작성자</td>
-            <td>작성일자</td>
+            <th>No.</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일자</th>
         </tr>
     </thead>
     <tbody>

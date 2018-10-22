@@ -64,7 +64,6 @@
 						<c:if test="${role=='[ROLE_ADMIN]' or qnaComm.userEmail==loginuser}">
 							<i class="fas fa-trash qnaCommTrashBtn">
 								<input id="qnaCommNum" type="hidden" value="${qnaComm.qnaCommNum}" />
-								<input id="qnaCommPos" type="hidden" value="${qnaComm.qnaCommPos}" />	
 							</i>
 						</c:if>
 						<!-- 댓글일때 본인이거나 admin일때 대댓글버튼 -->
@@ -181,9 +180,11 @@
 		
 		/* 댓글삭제아이콘 클릭시 */
 		$('.qnaCommTrashBtn').click(function() {
+			qnaCommNum=$(this).children('#qnaCommNum').val();
+			qnaCommPos=$(this).children('#qnaCommPos').val();
 			swal({
 				  title: "댓글을 삭제하시겠습니까?",
-				  text: "",
+				  text: "답댓글이 달려있는 경우 함께 삭제됩니다.",
 				  type: "warning",
 				  confirmButtonClass: "btn-danger",
 				  confirmButtonText: "OK",
@@ -191,21 +192,15 @@
 				},
 				function(isConfirm) {
 				  if (isConfirm) {
-					  $.ajax(
-								{
+					 $.ajax({
 						    url : "<%=request.getContextPath()%>/qna/deleteQnaComm.json",
 						    type : "get",
 						    data : {
-						    	"qnaCommNum":qnaCommNum,
-						    	"qnaCommPos":qnaCommPos	
+						    	"qnaCommNum":qnaCommNum
 						    },
 						    success : function(data){
+						    	qnaCommNum="";
 						    	location.reload();
-						    	/* sql문
-						    		update qnaComm set qnaCommPos=qnaCommPos-1 where qnaCommPos>선택한댓글의Pos번호
-									delete from qnaComm
-									where 댓글번호 = 선택한 댓글번호
- 								*/
 						    },
 						    error : function(){
 						    	swal({
@@ -217,7 +212,7 @@
 									  showCancelButton: true
 									});
 						    }
-								});
+					});
 				  } 
 				}); 
 		});
