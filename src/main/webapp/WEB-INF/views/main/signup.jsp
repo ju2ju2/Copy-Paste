@@ -127,14 +127,14 @@
 			swal("٩(இ ⌓ இ๑)۶", "이메일 중복확인부터 진행해 주세요.", "error");
 		} else{
 			$.ajax({
-         	   type : 'post',
-          	  url : '${pageContext.request.contextPath}/member/singupEmail.do',
-           	 data : {mailto:$('#mailto').val()},
-           	 success : function(data) {
-            		swal("୧༼ ヘ ᗜ ヘ ༽୨", "이메일 인증을 위한 메일이 발송 되었습니다.", "success")
-            		mailtoNum=data; 
-            		writtenMail = $('#mailto').val();
-            		console.log("인증번호:"+mailtoNum);
+				type : 'post',
+				url : '${pageContext.request.contextPath}/member/singupEmail.do',
+				data : {mailto:$('#mailto').val()},
+				success : function(data) {
+						swal("୧༼ ヘ ᗜ ヘ ༽୨", "이메일 인증을 위한 메일이 발송 되었습니다.", "success")
+						mailtoNum=data; 
+						writtenMail = $('#mailto').val();
+						console.log("인증번호:"+mailtoNum);
          	   },
           	  error : function(error) {
 					swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 확인해 주세요.", "error");
@@ -154,30 +154,6 @@
         		swal("٩(இ ⌓ இ๑)۶", "인증번호를 정확히 적어 주세요.", "error");
 				$('#authnum').val("");
 			}
-	});
-	
-	//인증메일 발송
-	$('#mailtoBtn').click(function(){
-		if (mailDupCheck != 'ok'){
-			swal("٩(இ ⌓ இ๑)۶", "이메일 중복확인부터 진행해 주세요.", "error");
-		} else{
-			$.ajax({
-         	   type : 'post',
-          	  url : '${pageContext.request.contextPath}/member/singupEmail.do',
-           	 data : {mailto:$('#mailto').val()},
-           	 success : function(data) {
-            		swal("୧༼ ヘ ᗜ ヘ ༽୨", "이메일 인증을 위한 메일이 발송 되었습니다.", "success")
-            		mailtoNum=data; 
-            		writtenMail = $('#mailto').val();
-            		console.log("인증번호:"+mailtoNum);
-         	   },
-          	  error : function(error) {
-					swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 확인해 주세요.", "error");
-					console.log(error);
-					console.log(error.status);
-            }
-         });
-		}
 	});
 
 	//비밀번호 확인

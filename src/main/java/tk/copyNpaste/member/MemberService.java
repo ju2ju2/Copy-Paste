@@ -46,7 +46,6 @@ public class MemberService {
 	public int checkUserEmail(String userEmail) throws Exception {
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
 		int result = memberdao.checkUserEmail(userEmail);
-		System.out.println("이메일 서비스 result: " +result);
 		return result;
 	};
 	

@@ -39,8 +39,10 @@ public class MemberController {
 	 @RequestMapping(value="singupEmail.do", method = RequestMethod.POST)
 	 public @ResponseBody String sendSingupEmail(String mailto) throws Exception {
 		//벨로시티 회원가입 인증메일전송
+		System.out.println("1컨트롤러 들어감");
 		String randomNum = mailer.sendMail(mailto, "singupEmail.do");// 회원가입 메일발송
 		/*System.out.println("randomNum>>"+randomNum);*/
+		System.out.println("4서비스 갔다 온 컨트롤러");
 		return randomNum;
 	}
 	 
@@ -56,7 +58,6 @@ public class MemberController {
 	@RequestMapping(value="checkUserEmail.do", method = RequestMethod.POST)
 	public @ResponseBody int checkUserEmail(String mailto) throws Exception {
 		int result=memberService.checkUserEmail(mailto);
-		System.out.println("이메일 컨트롤러" + result);
 		return result;
 	};
 	
