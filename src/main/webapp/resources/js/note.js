@@ -1,9 +1,5 @@
 $(function() {
-<<<<<<< HEAD
-		// 노트  드래그로 삭제
-=======
 	// 노트  드래그로 삭제
->>>>>>> master
 		function deleteNote(noteNum) {
 			var noteNum = noteNum;
 		
@@ -121,17 +117,18 @@ $(function() {
       
       })
 
-<<<<<<< HEAD
     //노트 키워드 검색
 	 $('#search').click(function(e) {
+	
 	  	$.ajax({
-	        url: "selectByKeyNote.json", // url_pettern 
+	        url: "../note/selectByKeyNote.json", // url_pettern 
 	        type:"get",
-	        data:{"keyword":$('#search-text').val().trim()},
+	        data:{"keyword":$('#search-text').val()},
 	        dataType:"json",
 	        success:function(data){
+	        	
 	      	  var a = "";
-	          	if(data != null) {
+	          	if(data !=null) {
 	          		$.each(data, function(key, value){
 	          			$('#noteList').empty();
 	          			a+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 ">';
@@ -156,11 +153,15 @@ $(function() {
 	          			a+='	</a>';
 	          			a+='	</div>';
 	          			a+='</div>';
-	  			
-	  			
-	  			
 	          			$("#noteList").html(a);
 	          		})
+	          	}else{
+	          		/*swal({type: "success",
+					  title: '해당 검색어가 없습니다.',
+		              confirmButtonClass : "btn-danger",
+					  closeOnConfirm: false
+				})*/
+	          		
 	          	}
 	          }
 	        }).done(function (result){
@@ -187,10 +188,6 @@ $(function() {
 	        })
 	
 	 })
-=======
-
-
->>>>>>> master
 
 });
 

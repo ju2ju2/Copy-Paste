@@ -218,7 +218,6 @@ function folderEdit(fedit, folderName){
 		        	
 					if(data != null) {
 		        		$.each(data, function(key, value){
-		        			console.log(">"+value.folderName+"<");
 		        			if ((value.folderName).trim()!='미분류'&&(value.folderName).trim()!='스크랩'){
 								folder += "<div class='col-xs-10 n-folder'>";
 								folder += "<h5 class='ml-10 f-name'>";

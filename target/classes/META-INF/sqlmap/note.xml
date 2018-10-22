@@ -105,9 +105,9 @@
 		  n.folderName like CONCAT('%',#{keyword},'%') or 
 		  s.subjectName like CONCAT('%',#{keyword},'%'))
 	order by noteNum desc;
-
 	</select>
 	<!-- 회원별 노트 검색 -->
+	
 	
 	<!-- 회원별 노트 일괄 삭제 -->
 	
