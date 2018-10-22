@@ -81,6 +81,16 @@
 	<delete id="deleteNote">
 		DELETE FROM note WHERE noteNum = #{noteNum}
 	</delete>
+	
+	<!--노트 폴더별 조회 -->
+	<select id="selectByFolderNote" resultType="NoteVO">
+	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
+	from note n join users u on u.userEmail=n.userEmail 
+	where u.userEmail = #{userEmail} and n.folderName =#{folderName}
+	order by noteNum desc;
+	</select>
+	
 	<!-- 노트 달력 검색 -->
 	
 	<!-- 노트 키워드 검색 -->
