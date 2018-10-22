@@ -88,10 +88,10 @@ public class NoteService {
 		return notedao.selectByCalNote(period);
 	}
 	//노트 키워드 검색
-	public List<NoteVO> selectByKeyNote(String keyword) throws Exception{
-		List<NoteVO> list= new ArrayList<NoteVO>();
-		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
-		return notedao.selectByKeyNote(keyword);
+	public List<NoteVO> selectByKeyNote(HashMap map) throws Exception{
+		List<NoteVO> list = new ArrayList<NoteVO>();
+		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
+		return notedao.selectByKeyNote(map);
 	}
 	//회원별 노트 검색
 	public List<NoteVO> selectByMemNote(String userEmail) throws Exception{

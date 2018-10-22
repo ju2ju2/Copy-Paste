@@ -9,6 +9,7 @@ package tk.copyNpaste.note;
 
 import java.security.Principal;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.jsoup.Jsoup;
@@ -128,8 +129,12 @@ public class NoteController {
 	}
 
 	// 노트 키워드 검색
-	public List<NoteVO> selectByKeyNote(String keyword) throws Exception {
-		return noteService.selectByKeyNote(keyword);
+	@RequestMapping(value="selectByKeyNote.json")
+	public @ResponseBody List<NoteVO> selectByKeyNote(String keyword,Principal principal) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("keyword", keyword);
+		map.put("userEmail", principal.getName());
+		return noteService.selectByKeyNote(map);
 	}
 
 	// 회원별 노트 검색

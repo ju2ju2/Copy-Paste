@@ -17,34 +17,11 @@
 				</h3>
 			</header>
 
-		<div class="row">
-		<c:forEach var="noteList" items="${noteList}">
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-				<div class="text-center">
-					<!-- a HTML (to Trigger Modal) -->
-					<a data-toggle="modal"
-						href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum=${noteList.noteNum}&cmd=mynote"
-						data-target="#modal-testNew" role="button" data-backdrop="static">
-						<div class="item">
-							<img class="img-rounded"
-								src="${noteList.noteThumnail}"
-								alt="${noteList.noteTitle}" width="100%">
-							<div class="caption">
-								<i class="fa fa-plus" aria-hidden="true"></i>
-							</div>
-						</div>
-						<div>
-							<h4>${noteList.noteTitle}</h4>
-							<strong>${noteList.userNick}</strong><span >${noteList.noteDate}</span>
-						</div>
-					</a>
-				</div>
-			</div>
-				</c:forEach>
-			</div>
-	</section>
+		</section>
+		
+		<!-- 노트리스트 출력 -->
+		<div class="row" id="noteList"></div>
 
-		</div>
 	</div>
 	<br>
 

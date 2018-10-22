@@ -43,7 +43,7 @@ public interface NoteMapper {
 	public List<NoteVO> selectByCalNote(Date period) throws Exception;
 
 	//노트 키워드 검색
-	public List<NoteVO> selectByKeyNote(String keyword) throws Exception;
+	public List<NoteVO> selectByKeyNote(HashMap map) throws Exception;
 
 	//회원별 노트 검색
 	public List<NoteVO> selectByMemNote(String userEmail) throws Exception;
