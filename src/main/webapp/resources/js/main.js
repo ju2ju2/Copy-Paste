@@ -184,37 +184,50 @@ window.onload = function() {
 	;
 
 };
+//이전 드래그 텍스트
+var prevText;
+
 
 // 드래그 저장
-$(document).on("mouseup", function() {
-	
-	// 이전 드래그 텍스트
-	var prevText;
-	var selection = window.getSelection();
-	var text = selection.toString();
-	// 드래그 텍스트 공백인지 앞의 드래그와 중복되는지 체크
-	if (text !='' && text.length > 1 && $.trim(text).length != 0 && prevText != text) {
-
+$(document).mouseup(function(){
+     var selection = window.getSelection();
+	 var text = selection.toString();
+	 // 드래그 텍스트 공백인지 앞의 드래그와 중복되는지 체크
+	 if (text !='' && text.length > 1 && $.trim(text).length != 0 && prevText != text) {
+		 // 드래그 저장
+		var dragfd = new FormData();
+		
+		dragfd.append("dragOrigin","copyNpaste");
+		dragfd.append("dragText", text);
 		$.ajax({
-			url : "drag/insertDrag.json", // url_pettern
-			type : "POST",
-			data : {
-				'dragText' : text,
-				'dragOrigin' : "copyNpaste"
-			},
-			dataType : "json",// 서버에서 응답하는 데이터 타입(xml,json,script,html)
-			success : function(data) {
-				console.log(data)
-				swal({
-					type : "success",
-					title : '드래그가 저장되었습니다.',
-					confirmButtonClass : "btn-danger",
-					closeOnConfirm : false
-				}, function() {
-					location.reload();
-				});
-			}
-		});
+			url : "drag/insertDrag.json",
+			type:"POST",
+			data :dragfd,
+			dataType : "json",
+			processData: false,
+			contentType:false
+		})
+		.done(function (result) {
+			swal({
+				type : "success",
+				title : '드래그가 저장되었습니다.',
+				confirmButtonClass : "btn-danger",
+				closeOnConfirm : false
+			}, function() {
+				location.reload();
+				prevText = text;
+			});
+			
+			
+		})
+		
+		return false;
+	 }	
+ });
 
-	}
-});
+
+
+
+
+
+
