@@ -120,7 +120,13 @@ public class NoteController {
 	public @ResponseBody int deleteNote(int noteNum) throws Exception {
 		return noteService.deleteNote(noteNum);
 	}
-
+	// 노트 폴더별 조회
+	@RequestMapping(value = "selectByFolderNote.json")
+	public @ResponseBody List<NoteVO> selectByFolderNote(NoteVO note,Principal principal) throws Exception {
+		note.setUserEmail(principal.getName());
+		return noteService.selectByFolderNote(note);
+	}
+	
 	// 노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws
 	// Exception;
 	public List<NoteVO> selectByCalNote(Date period) throws Exception {
@@ -187,4 +193,6 @@ public class NoteController {
 	public int moveNoteFolder(NoteVO note) throws Exception {
 		return noteService.moveNoteFolder(note);
 	}
+	
+	
 }

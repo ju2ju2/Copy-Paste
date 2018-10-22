@@ -82,6 +82,13 @@ public class NoteService {
 		return notelist;
 	}
 	
+	//노트 폴더조회
+	public List<NoteVO> selectByFolderNote(NoteVO note) {
+		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
+		List<NoteVO> notelist = notedao.selectByFolderNote(note);
+		return notelist;
+	}
+	
 	//노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws Exception;
 	public List<NoteVO> selectByCalNote(Date period) throws Exception{
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
@@ -122,6 +129,7 @@ public class NoteService {
 			
 		 return notedao.moveNoteFolder(note);
 	}
+	
 	
 
 	/*	for (NoteVO note: notelist ) {

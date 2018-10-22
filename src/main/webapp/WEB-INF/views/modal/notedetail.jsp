@@ -16,13 +16,14 @@
 
 
 	$(document).ready(function() {
+	
+		
 		//노트삭제
 		$('#deleteNoteBtn').click(function(e) {
 			swal({
 				  title: "정말 삭제하시겠습니까?",
 				  text: "삭제 후에는 다시 복구 할 수 없습니다.",
 				  type: 'warning',
-				  showCancelButton: false,
 				  showCancelButton: true,
 				  confirmButtonClass : "btn-danger btn-sm",
 				  cancelButtonClass: "btn btn-sm",
