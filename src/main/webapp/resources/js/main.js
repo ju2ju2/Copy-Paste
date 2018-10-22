@@ -18,12 +18,6 @@ $('#modal-testNew').on('shown.bs.modal', function() {
 	$(document).off('focusin.modal');
 });
 
-$('.swal').click(function() {
-	swal({
-		title : 'Test',
-		input : 'text'
-	});
-});
 // 메인 텍스트 슬라이드
 var TxtType = function(el, toRotate, period) {
 	this.toRotate = toRotate;
@@ -215,10 +209,10 @@ $(document).mouseup(function(){
 				closeOnConfirm : false
 			}, function() {
 				location.reload();
-				prevText = text;
+				
 			});
 			
-			
+			prevText = text;
 		})
 		
 		return false;
