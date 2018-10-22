@@ -108,69 +108,6 @@ $(document).on("ready",function() {
     		$(this).removeClass('fas').addClass('far');
     	}
     });
-/* 	function get_selection() {
-		var txt = '';
-		if (window.getSelection) {
-			txt = window.getSelection();
-		} else if (document.getSelection) {
-			txt = document.getSelection();
-		} else if (document.selection) {
-			txt = document.selection.createRange().text;
-		}
-		return txt;
-	} */
-	$(document).on("mouseup",function() {
-		  var span = document.createElement('span');
-		  var sel = document.getSelection();
-		  
-		  // 드래그 텍스트 공백인지 앞의 드래그와 중복되는지 체크
-		 /* 참고	 if (text !='' && text.length > 1 && $.trim(text).length != 0 && prevText != text)  */
-		  if (sel!="" && sel.rangeCount) {
-		    var range = sel.getRangeAt(0).cloneRange();
-		    // wrap text in span element
-		    range.surroundContents(span);
-		    sel.removeAllRanges();
-		    sel.addRange(range);
-		    // show tooltip
-		    $(span).toolbar({
-		        content: '#toolbar-options',
-				position: 'bottom',
-				style: 'dark',
-				//hideOnClick: true
-		    // remove span when tooltip is hidden
-		    }).on('toolbarShown',  function( event ) {
-		    	$('#insertDrag').on("click",function() {
-		    		console.log(sel.toString())
-		    		$.ajax({
-		    		      url: "${pageContext.request.contextPath}/drag/insertDrag.json", // url_pettern 
-		    		      type:"POST",
-		    		      data:{ 'dragText' : sel.toString(),
-		    		    	     'dragOrigin': "copyNpaste"},
-		    		      dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
-		    		      success:function(data){
-		    		    	  console.log(data)
-		    		    	  swal({type: "success",
-		    					  title: '성공적으로 등록되었습니다.',
-		    		              confirmButtonClass : "btn-danger",
-		    					  closeOnConfirm: false
-		    				} ,
-		    				function(){
-		    					location.href="${pageContext.request.contextPath}/drag/drag.htm";
-		    				}
-		    				);  
-		    		      }
-		    		    }); 
-		    	});
-		     }).on('toolbarHidden', function (e) {
-		      $(span).contents().unwrap('span');
-		    });
-		  }
-		});
-	
-	 
-	
-	 
-	 
 
 </script>
 

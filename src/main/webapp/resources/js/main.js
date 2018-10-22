@@ -179,3 +179,63 @@ window.onload = function() {
 	 };
 
 };
+
+//드래그버튼 생성
+$(document).on("ready",function() {
+	var dragButton=""
+		dragButton += '<div id="toolbar-options" class="hidden">';
+		dragButton += '<a href="${pageContext.request.contextPath}/drag/insertDrag.json" id="insertDrag"><i class="fa fa-copyright"></i></a>';
+		dragButton += '<a href="#"><i class="fa fa-star"></i></a>';
+		dragButton += '<a href="#"><i class="fa fa-sticky-note"></i></a></div>';
+		$('body').prepend(dragButton);
+})
+//드래그시 툴팁생성 및 드래그등록
+$(document).on("mouseup",function() {
+	  var span = document.createElement('span');
+	  var sel = document.getSelection();
+	 var seltxt =sel.toString()
+	  // 드래그 텍스트 공백인지 앞의 드래그와 중복되는지 체크
+	 /* 참고	 if (text !='' && text.length > 1 && $.trim(text).length != 0 && prevText != text)  */
+	  if (sel!="" && sel.rangeCount) {
+	    var range = sel.getRangeAt(0).cloneRange();
+	    // wrap text in span element
+	    range.surroundContents(span);
+	    sel.removeAllRanges();
+	    sel.addRange(range);
+	    // show tooltip
+	    $(span).toolbar({
+	        content: '#toolbar-options',
+			position: 'bottom',
+			style: 'dark',
+			hideOnClick: false
+			/*adjustment :-95,*/
+	    // remove span when tooltip is hidden
+	    }).on('toolbarShown',  function( event, seltxt ) {
+	    	$('#insertDrag').on("click",function() {
+	    		alert(this.txt())
+	    		$.ajax({
+	    		      url: "drag/insertDrag.json", // url_pettern 
+	    		      type:"POST",
+	    		      data:{ 'dragText' : sel.toString(),
+	    		    	     'dragOrigin': "copyNpaste"},
+	    		      dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
+	    		      success:function(data){
+	    		    	  console.log(data)
+	    		    	  swal({type: "success",
+	    					  title: '성공적으로 등록되었습니다.',
+	    		              confirmButtonClass : "btn-danger",
+	    					  closeOnConfirm: false
+	    				} ,
+	    				function(){
+	    					location.reload();
+	    				}
+	    				);  
+	    		      }
+	    		    }); 
+	    	});
+	     }).on('toolbarHidden', function (e) {
+	      $(span).contents().unwrap('span');
+	    });
+	  }
+	});
+

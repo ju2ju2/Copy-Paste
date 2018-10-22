@@ -214,7 +214,8 @@ if ( typeof Object.create !== 'function' ) {
                 case 'bottom':
                     return {
                         left: self.coordinates.left-(self.toolbar.width()/2)+(self.$elem.outerWidth()/2),
-                        top: self.coordinates.top+self.$elem.outerHeight()+adjustment,
+/*                        top: self.coordinates.top+self.$elem.outerHeight()+adjustment*/
+                        top: self.coordinates.top-(self.toolbar.height()/2)+(self.$elem.outerHeight()/2)-90,
                         right: 'auto'
                     };
             }

@@ -18,10 +18,14 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/api/weather/weather-icons.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/api/weather/weather-icons-wind.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/api/jquery/jquery.toolbar.css" />
+		
 		<!-- Sweet Alert cdn -->
 		<link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
 		<script type="text/javascript"	src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
 		<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/jquery.toolbar.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<!-- title 영역 -->
 		<title><tiles:insertAttribute name="title" /></title>
 	</head>
@@ -39,7 +43,5 @@
 		<tiles:insertAttribute name="footer" />
 		<!-- scripts -->
 
-<!-- 		<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
-	 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</body>
 </html>

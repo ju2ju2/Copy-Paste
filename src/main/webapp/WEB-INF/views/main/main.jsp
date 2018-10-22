@@ -31,7 +31,7 @@
 					<p class="lead text-center ">
 						<!-- data-toggle="modal" data-target="#myModal"  -->
 						<a href="${pageContext.request.contextPath}/login.htm"
-							onclick="document.getElementById('subscribe').style.display='block'"
+					
 							class="typewrite" data-period="2000"
 							data-type='[ "드래그가 글이 되는 공간, COPY&PASTE. ", "로그인을 해주세요 :)   ", "Click Click !   " ]'>
 							<span class="wrap"></span>
@@ -191,4 +191,9 @@
 		<div class="modal-content">Content will be loaded here from
 			"note/noteDetail.htm" file</div>
 	</div>
+</div>
+<div id="toolbar-options" class="hidden">
+   <a href="#" id="insertDrag"><i class="fa fa-copyright"></i></a>
+   <a href="#"><i class="fa fa-star"></i></a>
+   <a href="#"><i class="fa fa-sticky-note"></i></a>
 </div>
