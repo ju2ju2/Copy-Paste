@@ -87,7 +87,8 @@
 						</div>
 					</div>
 				</div>
-				<small id="userPwdMessage"></small>
+				<div class="col-sm-5"></div>
+				<div id="userPwdMessage"></div>
 				
 				<div class="form-group">
                   <label class="checkbox text-center">
@@ -199,6 +200,9 @@
 
 	//닉네임 중복확인
 	$('#NickDupBtn').click(function(){
+		if ($('#userNick').val() == ''){
+			swal("٩(இ ⌓ இ๑)۶", "닉네임을 입력해 주세요.", "error");
+		} else {
 		$.ajax({
             type : 'post',
             url : '${pageContext.request.contextPath}/member/checkUserNick.do',
@@ -217,6 +221,7 @@
 				console.log(error.status);
             }
          });
+		}
 	});
 	
 	

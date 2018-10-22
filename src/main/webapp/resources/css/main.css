@@ -719,9 +719,10 @@ img .user-photo{
 
 
 /* 회원가입 시 css */
-#noMessage, #userPwdMessage {
+#userPwdMessage {
 	height: 1.5rem !important;
 	color: #f56a6a;
+	margin-bottom: 2rem;
 }
 
 .noresize {
@@ -730,7 +731,6 @@ img .user-photo{
 .img-rounded{
 	height:190px;
 }
-
 
 
 
@@ -769,5 +769,4 @@ img .user-photo{
   font-stretch: condensed;
   text-decoration: none;
   box-shadow: 0 0 10px black;
->>>>>>> master
 }
