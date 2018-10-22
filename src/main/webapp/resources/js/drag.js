@@ -1,5 +1,5 @@
 
-	// 드래그 드래그로 삭제
+// 드래그 드래그로 삭제
 		function deleteDrag(dragNum) {
 			var dragNum = dragNum;
 			var dragList = localStorage.getItem("dragList");
@@ -29,15 +29,14 @@
 								},function(){
 									location.reload()
 								})
-					});
-				}
-			);
-			
-		}	
+							});
+						}
+					);
+				}	
 
+//드래그 앤 드랍 		
 $(function() {
-   
-    // 드래그 div들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
+    // 드래그 div들 제어.
     $('.dragDiv').draggable({
     	revert: true, 
     	 revertDuration: 200,
@@ -46,7 +45,7 @@ $(function() {
     	 scrollSensitivity: 100 ,
     	 scrollSpeed: 100
     	});
-     // 드래그를 드랍하여 삭제 메소드 
+     // 드래그를 드랍하여 삭제 메소드. 
     $("#droppable").droppable({
         activeClass:"ui-state-active",
         accept:".dragDiv",
@@ -56,3 +55,48 @@ $(function() {
          }     
       });    
     });
+
+/*
+function setDragMark(){
+data = var dragNum = $('.dragNum').val()
+var dragMark =$('.dragMark').val()
+
+$.ajax({
+	url:"../drag/setDragMark.json",
+	dataType:"json",
+	data: {"dragNum":dragNum},
+	type: "POST"
+	}).done(function (result){
+		swal({type: "success",
+				  title: '중요체크',
+	              confirmButtonClass : "btn-danger",
+				  closeOnConfirm: false
+		
+		},
+		function(){
+			location.reload()
+		}
+	)
+	.success(data){
+			alret(data)
+			if( data = 0) {
+				 $('.fa-star').click(function(){
+					 $(this).removeClass('fas').addClass('far');
+				 }
+				 else (data != 0 {
+					 $('.fa-star').click(function(){
+							$(this).removeClass('far').addClass('fas');
+					 }
+				 }	 
+			}
+		}	
+		
+		function(){
+			location.reload()
+		}
+
+  });
+}
+
+*/
+

@@ -47,7 +47,7 @@
 							<!-- 별 아이콘 -->
 									<div class="icon-right starDiv">
 										<br>
-										<i class="far fa-star icon-size"></i>
+										<a><i class="far fa-star icon-size"></i></a>
 									</div>
 								<div class="dragContent">
 									
@@ -99,15 +99,50 @@ $(document).on("ready",function() {
 })
 
  // 별 클릭하면 토글되는 이벤트
-    $('.fa-star').click(function(){
-    	if($(this).hasClass('far')){
-    		$(this).removeClass('far').addClass('fas');
+    $('.fa-star').click(function(){ 	
+    	var dragNum = $('.dragNum').val()
+    		$.ajax({
+    		url:"../drag/setDragMark.json",
+    		dataType:"json",
+    		data: {"dragNum":dragNum},
+    		type: "POST",
+    		successs: function(data){
+    			alret(data);
+    			
+    			if(data.dragMark == 0){
+    				$('.fa-star').removeClass('far').addClass('fas');
+    			}
+    			else {
+    				$('.fa-star').removeClass('fas').addClass('far');
+    			}
     		
-    		
-    	} else {
-    		$(this).removeClass('fas').addClass('far');
-    	}
+    			}
+    		})
+     		.done(function (result){
+    			swal({type: "success",
+    					  title: '중요체크',
+    		              confirmButtonClass : "btn-danger",
+    					  closeOnConfirm: false
+    			},
+    			function(){
+    				location.reload()
+    			}
+    		  )}
+    		)
+    
     });
+    
+    	
+    
+
+    	/*   $('.fa-star').click(function(){
+    		if($(this).hasClass('far')){
+    		$(this).removeClass('far').addClass('fas');
+    	} 
+    	else {
+    		$(this).removeClass('fas').addClass('far');
+    	} */
+  
 /* 	function get_selection() {
 		var txt = '';
 		if (window.getSelection) {

@@ -85,12 +85,15 @@ public class DragController {
 	//드래그 중요표시 등록
 	@RequestMapping(value="setDragMark.json")
 	public  @ResponseBody int setDragMark(int dragNum) throws Exception {
+		System.out.println("setDragMark 드래그 컨트롤러 탄다 : " + dragNum);
 		return dragservice.setDragMark(dragNum);
 	}
 	
 	//드래그 중요표시 삭제
-	public void removeDragMark(int dragNo) throws Exception {
-		dragservice.removeDragMark(dragNo);
+	@RequestMapping(value="removeDragMark.json")
+	public @ResponseBody int removeDragMark(int dragNum) throws Exception {
+		System.out.println("removeDragMark 드래그 컨트롤러 탄다 : " + dragNum);
+		return  dragservice.removeDragMark(dragNum);
 	}
 
 }

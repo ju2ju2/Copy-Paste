@@ -62,15 +62,16 @@ public class DragService {
 	}
 	
 	//드래그 중요표시 등록
-	public int setDragMark(int dragNo) throws Exception {
+	public int setDragMark(int dragNum) throws Exception {
 		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
-		return dragdao.setDragMark(dragNo);
+		System.out.println("서비스 "+dragNum);
+		return dragdao.setDragMark(dragNum);
 	}
 	
 	//드래그 중요표시 삭제
-	public int removeDragMark(int dragNo) throws Exception {
+	public int removeDragMark(int dragNum) throws Exception {
 		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
-		return dragdao.removeDragMark(dragNo);
+		return dragdao.removeDragMark(dragNum);
 	}
 
 }
