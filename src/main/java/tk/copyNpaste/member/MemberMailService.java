@@ -3,6 +3,11 @@
 * @ Date : 2018.10.05
 * @ Author : 이주원
 * @ Desc : 인증, 임시비밀번호 전송
+* 
+* @Class : MemberMailService
+* @ Date : 2018.10.20
+* @ Author : 임효진
+* @ Desc : 이메일 전송(이메일 인증, 임시 비밀번호), 임시 비밀번호로 업데이트 
 */
 package tk.copyNpaste.member;
 
@@ -12,6 +17,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.session.SqlSession;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -19,19 +25,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import tk.copyNpaste.mapper.MemberMapper;
 import tk.copyNpaste.vo.MemberVO;
 
 @Service
 public class MemberMailService {
-	
+	@Autowired
+	 private SqlSession sqlsession;
 	@Autowired
 	private JavaMailSenderImpl mailSender;
 	@Autowired
 	private VelocityEngine velocityEngine;
 
-	private MemberVO member;
-	
+	/*private MemberVO member;*/
 	HttpServletRequest request;
 
 	public void setMailSender(JavaMailSenderImpl mailSender) {
@@ -42,53 +50,56 @@ public class MemberMailService {
 		this.velocityEngine = velocityEngine;
 	}
 
-	public String sendMail(String mailto,String command) {
-	
+	@Transactional
+	public String sendMail(String mailto,String command) throws Exception {
 		Template template;
 		String randomNum = this.randomNum();
-
+		String randomPwd = this.randomPwd();
+		MemberVO member = new MemberVO();
 		// SimpleMailMessage message = new SimpleMailMessage();
 		MimeMessage message = mailSender.createMimeMessage();
 		
 		MimeMessageHelper helper;
+		
+		System.out.println("2서비스 들어옴");
 		try {
 			// 멀티파트 메시지가 필요하다는 의미로 true 플래그를 사용한다
 			helper = new MimeMessageHelper(message, true, "utf-8");
 			helper.getEncoding();
 			helper.setFrom("bitcamp109@gmail.com");
-			helper.setTo(member.getUserEmail());
-			if (command == "join") {
-				helper.setSubject("벨로시티-회원가입 인증 이메일");// 메일제목
+			helper.setTo(mailto);
+			if (command == "singupEmail.do") {
+				System.out.println("3이메일인증 서비스");
+				helper.setSubject("copyNpaste-회원가입 이메일 인증 이메일");// 메일제목
 				template = velocityEngine
 						.getTemplate("jointemplate.vm");// 메일내용
 			} else {
-				helper.setSubject("벨로시티-로그인실패 이메일");// 메일제목
+				helper.setSubject("copyNpaste-임시 비밀번호 발송 이메일");// 메일제목
 				template = velocityEngine
 						.getTemplate("logintemplate.vm");// 메일내용		
 				//"./src/main/resources/templates/"
-										
+				member.setUserEmail(mailto);
+				member.setUserPwd(randomPwd);
+				MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
+				memberdao.updateUserPwd(member);
+				randomNum = randomPwd;
 			}
-
 			
 			VelocityContext velocityContext = new VelocityContext();
-			velocityContext.put("userNick", member.getUserNick());
-			velocityContext.put("userEmail", member.getUserEmail());
-			velocityContext.put("company", "벨로시티");
-			velocityContext.put("mailFrom", "벨로시티");
+			velocityContext.put("userEmail", mailto);
+			velocityContext.put("company", "copyNpaste");
+			velocityContext.put("mailFrom", "copyNpaste");
 			velocityContext.put("randomNum", randomNum);
-			velocityContext.put("randomPwd", this.randomPwd());
+			velocityContext.put("randomPwd", randomPwd);
 			
-
 			StringWriter stringWriter = new StringWriter();
 			template.merge(velocityContext, stringWriter);
 			
 			helper.setText(stringWriter.toString(), true);
-			
-			
+						
 		} catch (MessagingException e) {
 
 		}
-
 		mailSender.send(message);
 		return randomNum;
 		

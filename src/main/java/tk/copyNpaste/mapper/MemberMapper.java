@@ -9,14 +9,16 @@ package tk.copyNpaste.mapper;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import tk.copyNpaste.vo.MemberVO;
 
 public interface MemberMapper {
 	//이메일 중복체크
-	public String checkUserEmail(String userEmail) throws Exception;
+	public int checkUserEmail(String userEmail) throws Exception;
 	
 	//닉네임 중복체크
-	public String checkUserNick(String userNick) throws Exception;
+	public int checkUserNick(String userNick) throws Exception;
 	
 	//회원가입. 회원가입시 미분류, 스크랩 폴더 부여는 folderMapper에 있음
 	public int insertMember(MemberVO member) 
@@ -44,11 +46,14 @@ public interface MemberMapper {
 	//회원 검색
 	public List<MemberVO> selectSearchMember (String userEmail) throws Exception;
 		
+	//내 정보 보기
+	public MemberVO selectSearchMemberByEmail (String userEmail) throws Exception;
+	
 	//회원 정보 수정
 	public int updateMember(MemberVO member) throws Exception;
 	
 	//임시비밀번호
-	public int updateUserPwd(String userEmail) throws Exception;
+	public int updateUserPwd(MemberVO member) throws Exception;
 	
 	//회원 비활성하기>>update
 	public int deleteMember(String userEmail) throws Exception;

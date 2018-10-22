@@ -46,11 +46,13 @@ public class DragController {
 		return dragservice.insertDrag(drag);
 	}
 
-/*	//드래그 전체목록 보기
-	public void selectAllDrag(DragVO drag) throws Exception {
-		dragservice.selectAllDrag();
+	//드래그 전체목록 보기 (비동기/글작성페이지)
+	@RequestMapping("selectAllDrag.json")
+	public @ResponseBody List<DragVO> selectAllDrag(DragVO drag,Principal principal) throws Exception {
+		String userEmail= principal.getName();
+		return dragservice.selectAllDrag(userEmail);
 	}
-	*/
+	
 	
 	//드래그 상세 보기(+노트 작성)
 	@RequestMapping(value="dragDetail.htm")
@@ -62,8 +64,9 @@ public class DragController {
 		
 
 	//드래그 삭제
-	public void deleteDrag(int dragNum) throws Exception {
-		dragservice.deleteDrag(dragNum);
+	@RequestMapping(value="deleteDrag.json")
+	public @ResponseBody int deleteDrag(int dragNum) throws Exception {
+		return dragservice.deleteDrag(dragNum);
 	}
 	
 	//드래그 달력 검색
@@ -80,8 +83,9 @@ public class DragController {
 		return ;*/
 	
 	//드래그 중요표시 등록
-	public void setDragMark(int dragNum) throws Exception {
-		dragservice.setDragMark(dragNum);
+	@RequestMapping(value="setDragMark.json")
+	public  @ResponseBody int setDragMark(int dragNum) throws Exception {
+		return dragservice.setDragMark(dragNum);
 	}
 	
 	//드래그 중요표시 삭제

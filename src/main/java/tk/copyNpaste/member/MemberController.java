@@ -8,19 +8,16 @@
 
 package tk.copyNpaste.member;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
+import java.security.Principal;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import tk.copyNpaste.folder.FolderService;
@@ -35,20 +32,40 @@ public class MemberController {
 	 LoginService loginService;
 	 @Autowired
 	 FolderService folderService;
+	 @Autowired
+	 MemberMailService mailer;
 	
 	//회원가입 인증메일
-	public void sendSingupEmail(String userEmail) throws Exception {
+	 @RequestMapping(value="singupEmail.do", method = RequestMethod.POST)
+	 public @ResponseBody String sendSingupEmail(String mailto) throws Exception {
 		//벨로시티 회원가입 인증메일전송
+		System.out.println("1컨트롤러 들어감");
+		String randomNum = mailer.sendMail(mailto, "singupEmail.do");// 회원가입 메일발송
+		/*System.out.println("randomNum>>"+randomNum);*/
+		System.out.println("4서비스 갔다 온 컨트롤러");
+		return randomNum;
+	}
+	 
+	//임시비밀번호 메일 발송 및 비밀번호 변경
+	 @RequestMapping(value="findUserPwd.do", method = RequestMethod.POST)
+	public @ResponseBody String sendUserPwd(String mailto) throws Exception{
+		//임시비밀번호 벨로시티발송.
+		 String randomNum = mailer.sendMail(mailto, "findUserPwd.do");// 회원가입 메일발송
+		 return randomNum; 
 	};
 	
 	//이메일 중복체크
-	public void checkUserEmail(String userEmail) throws Exception {
-		
+	@RequestMapping(value="checkUserEmail.do", method = RequestMethod.POST)
+	public @ResponseBody int checkUserEmail(String mailto) throws Exception {
+		int result=memberService.checkUserEmail(mailto);
+		return result;
 	};
 	
 	//닉네임 중복체크
-	public void checkUserNick(String userNick) throws Exception{
-		
+	@RequestMapping(value="checkUserNick.do", method = RequestMethod.POST)
+	public @ResponseBody int checkUserNick(String userNick) throws Exception{
+		int result=memberService.checkUserNick(userNick);
+		return result;
 	};
 	
 	//회원가입 + 회원가입시 미분류,스크랩 폴더 부여
@@ -56,9 +73,10 @@ public class MemberController {
     public String insertMember(MemberVO member, MultipartHttpServletRequest request, HttpServletResponse response) 
     		throws Exception{
     	memberService.insertMember(member, request);
-
     	return "redirect:/login.htm";
     };
+    
+
 	
 	//로그인
 	public void login(MemberVO member) throws Exception{
@@ -80,14 +98,24 @@ public class MemberController {
 		
 	};
 		
-	//회원 정보 보기
-	public void selectAllMember() throws Exception{
-		
+	//전회원 정보 보기
+	public @ResponseBody List<MemberVO> selectAllMember() throws Exception{
+		List<MemberVO> memberList = memberService.selectAllMember();
+		return memberList;
 	};
 	
 	//회원 검색
-	public void selectSearchMember (String userEmail) throws Exception{
-		
+	public @ResponseBody List<MemberVO> selectSearchMember (String userEmail) throws Exception{
+		List<MemberVO> memberList = memberService.selectSearchMember(userEmail);
+		return memberList;
+	};
+	
+	//내 정보 보기
+	@RequestMapping(value="myinfo.do", method = RequestMethod.POST)
+	public @ResponseBody MemberVO selectSearchMemberByEmail (Principal principal) throws Exception{
+		String userEmail = principal.getName();
+		MemberVO member = memberService.selectSearchMemberByEmail(userEmail);
+		return member;
 	};
 		
 	//내 정보 보기 페이지 들어가기 * 작업자 : 이주원
@@ -96,10 +124,7 @@ public class MemberController {
 		return "index.myinfo";
 	};
 	
-	//임시비밀번호
-	public void updateUserPwd(String userEmail) throws Exception{
-		//임시비밀번호 벨로시티발송.
-	};
+
 	
 	//회원 삭제
 	public void deleteMember(String userEmail) throws Exception{

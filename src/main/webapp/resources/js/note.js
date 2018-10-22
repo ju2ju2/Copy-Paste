@@ -1,5 +1,9 @@
 $(function() {
+<<<<<<< HEAD
 		// 노트  드래그로 삭제
+=======
+	// 노트  드래그로 삭제
+>>>>>>> master
 		function deleteNote(noteNum) {
 			var noteNum = noteNum;
 		
@@ -117,6 +121,7 @@ $(function() {
       
       })
 
+<<<<<<< HEAD
     //노트 키워드 검색
 	 $('#search').click(function(e) {
 	  	$.ajax({
@@ -182,6 +187,10 @@ $(function() {
 	        })
 	
 	 })
+=======
+
+
+>>>>>>> master
 
 });
 

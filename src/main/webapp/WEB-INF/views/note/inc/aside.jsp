@@ -75,9 +75,20 @@
 				노트 폴더 목록<i class="fas fa-folder-plus icon-size" id="Addfolder"></i>
 			</h3>
 		</header>
-		<div class="row" id="scrap">
-			<!-- 폴더 목록이 뿌려질 공간 -->
+		<!-- 미분류가 들어갈 공간 -->
+		<div class="row" id="unclassified">
+			
 		</div>	
+		
+		<!-- 폴더 목록 뿌려질 공간 -->
+		<div class="row" id="folder">
+			
+		</div>
+		
+		<!-- 스크랩이 들어갈 공간 -->
+		<div class="row" id="scrap">
+		
+		</div>
 	</div>
 </div>
 </nav>
@@ -200,24 +211,72 @@ function folderEdit(fedit, folderName){
 		        type : "post",
 		        dataType : "json",
 		        success : function(data){
-		        	var a = "";
-		        	if(data != null) {
+		        	
+		        	var unclassified = "";
+		        	var scrap="";
+		        	var folder="";
+		        	
+					if(data != null) {
 		        		$.each(data, function(key, value){
-		        			$('#scrap').empty();
-		                	a += "<div class='col-xs-10 n-folder'>";
-							a += "<h5 class='ml-10 f-name'>";
-							a += "<span class='f-count'>";
-							a += 0
-							a += "</span>";
-							a += "<span class='f-name'>";
-							a += value.folderName+"</span>";
-							a += "<span class='f-modify'>";
-							a += "<i class='fas fa-edit icon-size' id='folderEdit' onclick=folderEdit(this,'"+value.folderName+"')>";
-							a += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i>";
-							a += "<i class='fas fa-trash icon-size' id='folderdelete' onclick=folderDelete('"+value.folderName+"');>";
-							a += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></span></h5></div>";
-							a += "<div class='col-xs-2 icon'><i class='far fa-bookmark icon-size'></i></div>";	
-							$('#scrap').append(a);
+		        			console.log(">"+value.folderName+"<");
+		        			if ((value.folderName).trim()!='미분류'&&(value.folderName).trim()!='스크랩'){
+								folder += "<div class='col-xs-10 n-folder'>";
+								folder += "<h5 class='ml-10 f-name'>";
+								folder += "<span class='f-count'>";
+								folder += 0
+								folder += "</span>";
+								folder += "<span class='f-name'>";
+								folder += value.folderName+"</span>";
+								folder += "<span class='f-modify' id='modify'>";
+								folder += "<i class='fas fa-edit icon-size' id='folderEdit' onclick=folderEdit(this,'"+value.folderName+"')>";
+								folder += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i>";
+								folder += "<i class='fas fa-trash icon-size' id='folderdelete' onclick=folderDelete('"+value.folderName+"');>";
+								folder += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></span></h5></div>";
+								folder += "<div class='col-xs-2 icon'><i class='far fa-bookmark icon-size'></i></div>";
+								$('#folder').append(folder);
+								folder="";
+							} 
+     			
+		        			if(value.folderName = "미분류"){
+								$('#unclassified').empty();
+								unclassified += "<div class='col-xs-10 n-folder'>";
+								unclassified += "<h5 class='ml-10 f-name'>";
+								unclassified += "<span class='f-count'>";
+								unclassified += 0
+								unclassified += "</span>";
+								unclassified += "<span class='f-name'>";
+								unclassified += value.folderName+"</span>";
+								unclassified += "<span class='f-modify' id='modify'>";
+								unclassified += "<i class='fas fa-edit icon-size' id='folderEdit' style='display: none;' onclick=folderEdit(this,'"+value.folderName+"')>";
+								unclassified += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i>";
+								unclassified += "<i class='fas fa-trash icon-size' id='folderdelete' style='display: none;' onclick=folderDelete('"+value.folderName+"');>";
+								unclassified += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></span></h5></div>";
+								unclassified += "<div class='col-xs-2 icon'><i class='fas fa-bookmark icon-size'></i></div>";
+								$('#unclassified').append(unclassified);
+								unclassified="";
+							} 
+		        			
+		        			if (value.folderName = "스크랩"){
+								$('#scrap').empty();
+								scrap += "<div class='col-xs-10 n-folder'>";
+								scrap += "<h5 class='ml-10 f-name'>";
+								scrap += "<span class='f-count'>";
+								scrap += 0
+								scrap += "</span>";
+								scrap += "<span class='f-name'>";
+								scrap += value.folderName+"</span>";
+								scrap += "<span class='f-modify' id='modify'>";
+								scrap += "<i class='fas fa-edit icon-size' id='folderEdit' style='display: none;' onclick=folderEdit(this,'"+value.folderName+"')>";
+								scrap += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i>";
+								scrap += "<i class='fas fa-trash icon-size' id='folderdelete' style='display: none;' onclick=folderDelete('"+value.folderName+"');>";
+								scrap += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></span></h5></div>";
+								scrap += "<div class='col-xs-2 icon'><i class='far fa-bookmark icon-size' style='display: none;'></i></div>";
+								$('#scrap').append(scrap);
+								scrap="";
+							} 
+		        			 
+		        			
+									
 		        							});
 		       							 }
 		        	
@@ -238,10 +297,14 @@ function folderEdit(fedit, folderName){
 		        	$('.n-folder').mouseleave(function() {
 		        		$(this).find('.f-modify').hide();
 		        	});
+		       
+		       	
+		        
 		        },
-		        error:function(request,status,error){   alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
+		        error:function(request,status,error)
+		        { alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
 			    });
-		}
+	
 		
 		/* 폴더 추가 버튼 클릭 → 텍스트 박스 열림 */
 		$('#Addfolder').click(function(){
@@ -275,7 +338,8 @@ function folderEdit(fedit, folderName){
 		                a += "<div class='col-xs-2 icon'>";
 		                a += "<i class='far fa-bookmark icon-size' style='margin-left:11px;'></i>";
 		                a += "</div></div>"; 
-		                $('#scrap:last-child').append(a);
+		                $('#folder:last-child').append(a);
+
 							$.ajax(
 									{
 							    url : "<%=request.getContextPath()%>/folder/insertfolder.json",
@@ -292,6 +356,8 @@ function folderEdit(fedit, folderName){
 				}	
 			 });
 		});
+	}
+		
 	});
 	
 /* 	$('.n-folder').mouseleave(function() {

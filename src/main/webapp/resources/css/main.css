@@ -707,8 +707,6 @@ img .user-photo{
 
 }
 
-
-
 .modal{
 	top:100px;
 }	
@@ -719,13 +717,20 @@ img .user-photo{
 	/* width:100%; */
 }
 
+
+/* 회원가입 시 css */
+#userPwdMessage {
+	height: 1.5rem !important;
+	color: #f56a6a;
+	margin-bottom: 2rem;
+}
+
 .noresize {
   resize: none; /* 사용자 임의 변경 불가 */
 }
 .img-rounded{
 	height:190px;
 }
-
 
 
 

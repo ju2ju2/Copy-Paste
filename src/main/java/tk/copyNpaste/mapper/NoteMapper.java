@@ -38,6 +38,9 @@ public interface NoteMapper {
 	
 	//노트 주제 조회
 	public List<NoteVO> selectSubjectCode() throws Exception;
+
+	//폴더별 노트 조회
+	public List<NoteVO> selectByFolderNote(NoteVO note);
 	
 	//노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws Exception;
 	public List<NoteVO> selectByCalNote(Date period) throws Exception;
@@ -74,6 +77,8 @@ public interface NoteMapper {
 	
 	//노트의 폴더 이동
 	public int moveNoteFolder(NoteVO note) throws Exception;
+
+	
 
 
 		

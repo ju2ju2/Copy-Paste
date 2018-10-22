@@ -1,28 +1,24 @@
 /*
 * @ Class : ReportVO
-* @ Date : 2018.10.06
-* @ Author : boatemplate
+* @ Date : 2018.10.19
+* @ Author : 고은아
 * @ Desc : ReportVO
 */
 package tk.copyNpaste.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class ReportVO {
-	//ReportVO
-	//신고게시판글번호,신고한회원이메일,노트or댓글번호,신고처리상태코드,
-	//신고일,처리일,신고사유코드,신고내용,메모,노트댓글여부코드
-	
+
 	private int reportNum;
-	private int noteNum;
-	private int checkCode;
-	private int reportCauseCode;
-	private int noteOrCommCod;
 	private String userEmail;
+	private int noteNum;
+	private String checkCode;
+	private Date reportInDate;
+	private String reportCauseCode;
 	private String reportContent;
 	private String reportmemo;
-	private Date reportInDate;
-	private Date reportHandleDate;
+	private String noteOrCommCode;
 	
 	public int getReportNum() {
 		return reportNum;
@@ -30,35 +26,35 @@ public class ReportVO {
 	public void setReportNum(int reportNum) {
 		this.reportNum = reportNum;
 	}
+	public String getUserEmail() {
+		return userEmail;
+	}
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
 	public int getNoteNum() {
 		return noteNum;
 	}
 	public void setNoteNum(int noteNum) {
 		this.noteNum = noteNum;
 	}
-	public int getCheckCode() {
+	public String getCheckCode() {
 		return checkCode;
 	}
-	public void setCheckCode(int checkCode) {
+	public void setCheckCode(String checkCode) {
 		this.checkCode = checkCode;
 	}
-	public int getReportCauseCode() {
+	public Date getReportInDate() {
+		return reportInDate;
+	}
+	public void setReportInDate(Date reportInDate) {
+		this.reportInDate = reportInDate;
+	}
+	public String getReportCauseCode() {
 		return reportCauseCode;
 	}
-	public void setReportCauseCode(int reportCauseCode) {
+	public void setReportCauseCode(String reportCauseCode) {
 		this.reportCauseCode = reportCauseCode;
-	}
-	public int getNoteOrCommCod() {
-		return noteOrCommCod;
-	}
-	public void setNoteOrCommCod(int noteOrCommCod) {
-		this.noteOrCommCod = noteOrCommCod;
-	}
-	public String getUserEmail() {
-		return userEmail;
-	}
-	public void setUserEmail(String userEmail) {
-		this.userEmail = userEmail;
 	}
 	public String getReportContent() {
 		return reportContent;
@@ -72,19 +68,12 @@ public class ReportVO {
 	public void setReportmemo(String reportmemo) {
 		this.reportmemo = reportmemo;
 	}
-	public Date getReportInDate() {
-		return reportInDate;
+	public String getNoteOrCommCode() {
+		return noteOrCommCode;
 	}
-	public void setReportInDate(Date reportInDate) {
-		this.reportInDate = reportInDate;
+	public void setNoteOrCommCode(String noteOrCommCode) {
+		this.noteOrCommCode = noteOrCommCode;
 	}
-	public Date getReportHandleDate() {
-		return reportHandleDate;
-	}
-	public void setReportHandleDate(Date reportHandleDate) {
-		this.reportHandleDate = reportHandleDate;
-	}
-	
 	
 	
 }

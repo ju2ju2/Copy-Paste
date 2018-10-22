@@ -57,12 +57,11 @@
 					
 					<!--프로필사진-->
 					<se:authentication property="name" var="loginuser" />
-					<li class="dropdown inline"><a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><img
-							src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"
-							class="img-circle " alt="user"> <span>${loginuser}</span><span class="caret"></span></a>
+					<li class="dropdown inline"><a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+						<img class="img-circle" alt="user" id="headerUserPhoto"><span>${loginuser}</span><span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a
-								href="${pageContext.request.contextPath}/member/myinfo.htm"><i class="far fa-user"></i><span>PROFILE</span></a></li>
+								href="${pageContext.request.contextPath}/member/myinfo.htm"><i class="far fa-user"></i><span>PROFILE\</span></a></li>
 					
 					<!-- 관리자권한일때 -->
 							<se:authorize access="hasRole('ROLE_ADMIN')">
@@ -124,9 +123,26 @@
 
 			</se:authorize>
 
-
-
 		</div>
 	</div>
 	<hr class="nav-hr" />
 </nav>
+
+<script type="text/javascript">
+var userPhoto;
+
+ $.ajax({
+	type : 'post',
+	url : '${pageContext.request.contextPath}/member/myinfo.do',
+	success : function(data) {
+				console.log(data);
+				userPhoto = data.userPhoto; 
+				$('#headerUserPhoto').attr("src", "${pageContext.request.contextPath}/resources/image/userPhoto/" + userPhoto);
+     	   },
+      	  error : function(error) {
+				console.log(error);
+				console.log(error.status);
+        }
+     })
+
+</script>
