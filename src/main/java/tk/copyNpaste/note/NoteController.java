@@ -38,11 +38,17 @@ public class NoteController {
 	@Autowired
 	FolderService folderService;
 
-
-
+	
+	// 회원의 노트 목록 보기
+	@RequestMapping(value = "selectAllNote.json")
+	public @ResponseBody List<NoteVO> selectAllNote(Model model, Principal principal) throws Exception {
+		List<NoteVO> noteList = noteService.selectAllNote(principal.getName());
+		return noteList;
+	}
+	
 	// 회원의 노트 목록 보기+폴더 목록 조회
 	@RequestMapping(value = "note.htm")
-	public String selectAllNote(Model model, Principal principal) throws Exception {
+	public String notepage(Model model, Principal principal) throws Exception {
 		List<NoteVO> noteList = noteService.selectAllNote(principal.getName());
 		List<FolderVO> folderList = folderService.selectAllFolder(principal.getName());
 		model.addAttribute("noteList", noteList);
@@ -120,6 +126,7 @@ public class NoteController {
 	public @ResponseBody int deleteNote(int noteNum) throws Exception {
 		return noteService.deleteNote(noteNum);
 	}
+	
 	// 노트 폴더별 조회
 	@RequestMapping(value = "selectByFolderNote.json")
 	public @ResponseBody List<NoteVO> selectByFolderNote(NoteVO note,Principal principal) throws Exception {
