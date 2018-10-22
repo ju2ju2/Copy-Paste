@@ -262,16 +262,13 @@
 		                	a += '</div>';
 		            		a += '<!-- 모달 창 -->';
 		                	a += '<div class="drag-a">';
-		                	a += '<p class="mt-10" id="dragText">'+value.dragText+'</p> <code>';
+		                	a += '<p class="mt-10" class="dragText" id="dragText">'+value.dragText+'</p> <code>';
 		                	a += '&lt;출처 : <span class="Cgrapefruit">'+value.dragOrigin+'</span>&gt; ';
 		                	a += '<span>'+value.dragDate+'</span>';
 		                	a += '</code>';
 		                	a += '</div>';
 		                	a += '</blockquote>';
-		                	a += '</div>';
-						
-							
-							
+		                	a += '</div>';		
 		        		});
 		        	}
 		        	if (data.length == 0) {
@@ -281,21 +278,54 @@
 					}
 					$("#dragList").html(a);
 		        	
-		        	$('.dragDiv').draggable({
+		         	$('.dragDiv').draggable({
 		            	revert: true, 
 		            	 revertDuration: 200,
 		            	 snapMode: "inner",
 		            	 scroll: true,
 		            	 scrollSensitivity: 100 ,
 		            	 scrollSpeed: 100
-		            });
-		        	
-		        	
+		            }); 
+		            
+		            <!-- 드래그 클릭시 텍스트 에디터기에 추가-->
+		        	$('.dragDiv').on("click",function(){
+		        		var editor = tinyMCE.activeEditor;
+		    			var dragText = $(this).find('#dragText').text();
+		    			editor.dom.add(editor.getBody(), 'p', {}, dragText+ "<br>");
+		    		})
 		      }
 		 })
 	
-		 	
-
+		
+	
+		
+	/* $(document).on("ready",function() {
+	
+	
+	}) */
+	// 드래그 노트에 추가하기.
+/* 	$("div[id^=drag]").click(function(event){
+		var addDragNo = event.target.id.substring(4);
+		var eoBtnStyle = $("#editorOpenBtn").attr("style");
+		var ecBtnStyle = $("#editorCloseBtn").attr("style");
+//	 	alert("eoBtnStyle" + eoBtnStyle);
+//	 	alert("ecBtnStyle" + ecBtnStyle);
+		if (eoBtnStyle.indexOf('none') !== -1 && ecBtnStyle.indexOf('display') == -1) {
+			$.ajax({
+				url : "/00_drag-note/drag/selectDrag.do",
+				type:"POST",
+				data :{"dragNo" : addDragNo},
+				dataType : "json"
+			})
+			.done(function (result) {
+				$(".nicEdit-main").append(result.dragContent + "<br>");
+			})
+			.fail(function (jqXhr, textStatus, errorText) {
+				alert("에러발생 : " + errorText);
+			});
+		}
+		return false;
+	}); */
 		 
 	
 </script>
