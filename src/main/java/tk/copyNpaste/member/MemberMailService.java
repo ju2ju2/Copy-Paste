@@ -31,7 +31,6 @@ public class MemberMailService {
 	private VelocityEngine velocityEngine;
 
 	private MemberVO member;
-	
 	HttpServletRequest request;
 
 	public void setMailSender(JavaMailSenderImpl mailSender) {
@@ -43,7 +42,6 @@ public class MemberMailService {
 	}
 
 	public String sendMail(String mailto,String command) {
-	
 		Template template;
 		String randomNum = this.randomNum();
 
@@ -56,25 +54,23 @@ public class MemberMailService {
 			helper = new MimeMessageHelper(message, true, "utf-8");
 			helper.getEncoding();
 			helper.setFrom("bitcamp109@gmail.com");
-			helper.setTo(member.getUserEmail());
-			if (command == "join") {
-				helper.setSubject("벨로시티-회원가입 인증 이메일");// 메일제목
+			helper.setTo(mailto);
+			if (command == "singupEmail.do") {
+				helper.setSubject("copyNpaste-회원가입 인증 이메일");// 메일제목
 				template = velocityEngine
 						.getTemplate("jointemplate.vm");// 메일내용
 			} else {
-				helper.setSubject("벨로시티-로그인실패 이메일");// 메일제목
+				helper.setSubject("copyNpaste-로그인실패 이메일");// 메일제목
 				template = velocityEngine
 						.getTemplate("logintemplate.vm");// 메일내용		
 				//"./src/main/resources/templates/"
 										
 			}
-
 			
 			VelocityContext velocityContext = new VelocityContext();
-			velocityContext.put("userNick", member.getUserNick());
-			velocityContext.put("userEmail", member.getUserEmail());
-			velocityContext.put("company", "벨로시티");
-			velocityContext.put("mailFrom", "벨로시티");
+			velocityContext.put("userEmail", mailto);
+			velocityContext.put("company", "copyNpaste");
+			velocityContext.put("mailFrom", "copyNpaste");
 			velocityContext.put("randomNum", randomNum);
 			velocityContext.put("randomPwd", this.randomPwd());
 			
@@ -88,7 +84,6 @@ public class MemberMailService {
 		} catch (MessagingException e) {
 
 		}
-
 		mailSender.send(message);
 		return randomNum;
 		

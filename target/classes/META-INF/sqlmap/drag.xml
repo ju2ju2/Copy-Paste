@@ -14,29 +14,8 @@
      <!--전체보기  -->
     <select id="selectAllDrag" resultType="DragVO">
             select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate
-            from drag where userEmail= #{userEmail}
+            from drag
         </select>
-
-      <!--상세보기  -->
-    <select id="selectDetail" resultType="DragVO">
-            select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate
-            from drag where dragNum= #{dragNum}
-        </select>
-      <!-- 드래그 리스트 보기 -->
-      <select id="dragList" parameterType="DragVO" >
-		select *
-		  from drag
-		 where dragNum = #{dragNum}
-		 	<!-- <if test='searchWrd != "" and searchWrd != null '>
-				<![CDATA[
-				AND (
-						(drag_content LIKE concat('%',#{searchWrd},'%'))
-					)
-				]]>
-			</if>
-		  -->
-		 order by dragNum desc
-	</select>
 
 
 </mapper>

@@ -52,12 +52,18 @@ public class NoteController {
 
 	// 노트 상세 보기(+노트 작성)
 	@RequestMapping(value = "noteDetail.htm")
-	public String selectDetailNote(int noteNum, Model model) throws Exception {
+	public String selectDetailNote(int noteNum,String cmd, Model model) throws Exception {
 		NoteVO note = noteService.selectDetailNote(noteNum);
 		List<NoteCommVO> noteCommList = noteService.selectAllNoteComm(noteNum);
 		model.addAttribute("note", note);
 		model.addAttribute("noteCommList", noteCommList);
-		return "notedetail";//(modal/notedetail.jsp)
+		String viewpage;
+		if(cmd!=null) {
+			viewpage="mynotedetail";
+			System.out.println("mynotedetail");
+		}else {viewpage="notedetail";}
+		
+		return viewpage;//(modal/notedetail.jsp)
 	}
 
 	// 노트 주제 검색 
@@ -83,6 +89,8 @@ public class NoteController {
 		if(imgs.size() > 0) { 
 			String src = imgs.get(0).attr("src"); 
 			note.setNoteThumnail(src);
+		} else { note.setNoteThumnail(
+				"https://d1u1amw606tzwl.cloudfront.net/assets/users/avatar-default-96007ee5610cdc5a9eed706ec0889aec2257a3937d0fbb747cf335f8915f09b2.png");
 		}
 		return noteService.insertNote(note);
 	}

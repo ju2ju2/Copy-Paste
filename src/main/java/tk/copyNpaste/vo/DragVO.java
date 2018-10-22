@@ -6,7 +6,7 @@
 */
 package tk.copyNpaste.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class DragVO {
 	//드래그VO

@@ -40,15 +40,19 @@ public class DragController {
      }
 
 	//드래그 하기(등록)
-	public void insertDrag(DragVO drag) throws Exception {
-		dragservice.insertDrag(drag);
+	@RequestMapping("insertDrag.json")
+	public @ResponseBody int insertDrag(DragVO drag,Principal principal) throws Exception {
+		drag.setUserEmail(principal.getName());
+		return dragservice.insertDrag(drag);
 	}
 
-/*	//드래그 전체목록 보기
-	public void selectAllDrag(DragVO drag) throws Exception {
-		dragservice.selectAllDrag();
+	//드래그 전체목록 보기 (비동기/글작성페이지)
+	@RequestMapping("selectAllDrag.json")
+	public @ResponseBody List<DragVO> selectAllDrag(DragVO drag,Principal principal) throws Exception {
+		String userEmail= principal.getName();
+		return dragservice.selectAllDrag(userEmail);
 	}
-	*/
+	
 	
 	//드래그 상세 보기(+노트 작성)
 	@RequestMapping(value="dragDetail.htm")

@@ -45,6 +45,8 @@
 	</bean>
 	<!--클래스에 @Transactional 이 적용되어있다면 트랜잭션 처리	-->
 	<tx:annotation-driven transaction-manager="transactionManager" />
+
+	
 	
 	<!-- MyBatis와 Spring 연동 (sqlSessionFactory, sqlSessionTemplate) -->
 	<!-- sqlmap 경로 설정, vo 경로 설정 -->

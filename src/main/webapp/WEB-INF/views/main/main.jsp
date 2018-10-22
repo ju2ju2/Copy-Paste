@@ -192,5 +192,3 @@
 			"note/noteDetail.htm" file</div>
 	</div>
 </div>
-
-

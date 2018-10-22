@@ -18,9 +18,6 @@ $('#modal-testNew').on('shown.bs.modal', function() {
     $(document).off('focusin.modal');
 });
 
-$('#myModal').on('shown.bs.modal', function() {
-    $(document).off('focusin.modal');
-});
 
 $('.swal').click(function() {
 	swal({title:'Test', input: 'text'});

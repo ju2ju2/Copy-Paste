@@ -20,6 +20,12 @@ public interface EtcMapper {
 	//신고 목록 보기
 	public List<ReportVO> selectAllReport() throws Exception;
 	
+	//노트 신고 목록 보기
+	public List<ReportVO> selectNoteReport() throws Exception;
+	
+	//댓글 신고 목록 보기
+	public List<ReportVO> selectCommReport() throws Exception;
+	
 	//신고 처리 하기
 	public int updateReport(int reportNum) throws Exception;
 	
