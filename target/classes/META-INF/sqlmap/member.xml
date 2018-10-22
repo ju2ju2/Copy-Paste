@@ -15,11 +15,6 @@
         insert into users(userEmail, userNick, userPwd, userPhoto)
                 values(#{userEmail}, #{userNick}, #{userPwd}, #{userPhoto})
     </insert>
-    
-	<insert id="insertMemberRole" parameterType="String">
-        insert into rolls (userEmail) values (#{userEmail});
-    </insert>
-    
 
 </mapper>
 

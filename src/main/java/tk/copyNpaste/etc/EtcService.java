@@ -19,56 +19,65 @@ import tk.copyNpaste.vo.ReportVO;
 
 @Service
 public class EtcService {
-	 @Autowired
-	 private SqlSession sqlsession;
-	 
-	//신고 하기
+	@Autowired
+	private SqlSession sqlsession;
+
+	// 신고 하기
 	public int insertReport(int noteNum) throws Exception {
-		EtcMapper etcdao= sqlsession.getMapper(EtcMapper.class);
+		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
 		return etcdao.insertReport(noteNum);
 	}
-	
-	//신고 목록 보기
+
+	// 신고 목록 보기
 	public List<ReportVO> selectAllReport() throws Exception {
-		EtcMapper etcdao= sqlsession.getMapper(EtcMapper.class);
+		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
 		return etcdao.selectAllReport();
 	}
-	
-	//신고 처리 하기
+
+	// 노트 신고 목록 보기
+	public List<ReportVO> selectNoteReport() throws Exception {
+		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
+		return etcdao.selectNoteReport();
+	}
+
+	// 댓글 신고 목록 보기
+	public List<ReportVO> selectCommReport() throws Exception {
+		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
+		return etcdao.selectCommReport();
+	}
+
+	// 신고 처리 하기
 	public int updateReport(int reportNum) throws Exception {
-		EtcMapper etcdao= sqlsession.getMapper(EtcMapper.class);
+		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
 		return etcdao.updateReport(reportNum);
 	}
 
-	
-	
-	
-	//댓글알림
-	public void commAlarm() throws Exception {}
+	// 댓글알림
+	public void commAlarm() throws Exception {
+	}
 
-	//노트신고알림
-	public void noteReportAlarm() throws Exception {}
+	// 노트신고알림
+	public void noteReportAlarm() throws Exception {
+	}
 
-	//댓글신고알림
-	public void commReportAlarm() throws Exception {}
+	// 댓글신고알림
+	public void commReportAlarm() throws Exception {
+	}
 
-	//상위랭크알림
-	public void topRankAlarm() throws Exception {}
+	// 상위랭크알림
+	public void topRankAlarm() throws Exception {
+	}
 
-	
-	
-	
-	//통계 회원 가입월
+	// 통계 회원 가입월
 	public List<EtcVO> stateMember() throws Exception {
-		EtcMapper etcdao= sqlsession.getMapper(EtcMapper.class);
+		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
 		return etcdao.stateMember();
 	}
-	
-	//통계 상위노트 참조수
+
+	// 통계 상위노트 참조수
 	public List<EtcVO> stateNoteSubject() throws Exception {
-		EtcMapper etcdao= sqlsession.getMapper(EtcMapper.class);
+		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
 		return etcdao.stateNoteSubject();
 	}
-
 
 }

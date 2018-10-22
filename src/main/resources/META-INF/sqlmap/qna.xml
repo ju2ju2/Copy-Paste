@@ -12,19 +12,17 @@
 	
 <mapper namespace="tk.copyNpaste.mapper.QnaMapper">
 <!-- 진행중 영역 -->
-	<!-- //대댓글 작성전 Pos수정  -->
-	<update id="updateQnaCommComm">
-		update qnaComm set qnaCommPos=qnaCommPos+1
-		where qnaCommPos>#{qnaCommPos}
-	</update>
-	<!-- //대댓글 작성 -->
-	<insert id="insertQnaCommComm">
-		<selectKey order="BEFORE" keyProperty="qnaCommPos" resultType="int">
-   	   		select (qnacommPos+1) from qnaComm where qnaCommNum=#{qnaCommNum}
-     	</selectKey>
-		insert into qnaComm(qnaNum,userEmail,qnaCommContent,qnaCommDept,qnaCommPNum,qnaCommPos)
-		values (#{qnaNum},#{userEmail},#{qnaCommContent},1,#{qnaNum},#{qnaCommPos})
-  	</insert>
+
+	<!-- //QNA 댓글 삭제 -->
+	<delete id="deleteQnaComm" parameterType="Integer">
+		delete from qnaComm
+		where qnaCommNum = #{qnaCommNum}
+	</delete>
+	<!-- //QNA 댓글 삭제시 자식 댓글들 삭제  -->
+	<delete id="deleteQnaCommChild" parameterType="Integer">
+		delete from qnaComm
+		where qnaCommPNum = #{qnaCommNum}
+	</delete>
 	
 <!-- /진행중 영역 -->
 
@@ -50,11 +48,25 @@
 	 <!-- 	//QNA 댓글 작성 -->
  	<insert id="insertQnaComm">
   	   <selectKey order="BEFORE" keyProperty="qnaCommPos" resultType="int">
-   	   		select max(qnacommPos)+1 from qnaComm
+   	   		select max(qnaCommPos)+1 from qnaComm
      	</selectKey>
      	insert into qnaComm(qnaNum,userEmail,qnaCommContent,qnaCommPos)
 		values (#{qnaNum},#{userEmail},#{qnaCommContent},#{qnaCommPos})
     </insert>
+    
+    <!-- //대댓글 작성전 Pos수정  -->
+	<update id="updateQnaCommComm">
+		update qnaComm set qnaCommPos=qnaCommPos+1
+		where qnaCommPos>#{qnaCommPos}
+	</update>
+	<!-- //대댓글 작성 -->
+	<insert id="insertQnaCommComm">
+		<selectKey order="BEFORE" keyProperty="qnaCommPos" resultType="int">
+   	   		select (qnacommPos+1) from qnaComm where qnaCommNum=#{qnaCommNum}
+     	</selectKey>
+		insert into qnaComm(qnaNum,userEmail,qnaCommContent,qnaCommDept,qnaCommPNum,qnaCommPos)
+		values (#{qnaNum},#{userEmail},#{qnaCommContent},1,#{qnaCommNum},#{qnaCommPos})
+  	</insert>
 	
 <!-- 	//QNA 게시물 검색
 	public List<QnaVO> selectSearchQna(String keyword) throws Exception;-->	
@@ -69,8 +81,4 @@
 <!-- 	//QNA 게시글 삭제
 	public int deleteQna(int qnaNum) throws Exception;
  -->	
-
- <!-- 	//QNA 댓글 삭제
-	public int deleteQnaComm(int qnaCommNum) throws Exception; -->
-
 </mapper>

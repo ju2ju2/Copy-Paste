@@ -8,19 +8,13 @@
 
 package tk.copyNpaste.member;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
-
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import tk.copyNpaste.folder.FolderService;
@@ -35,20 +29,31 @@ public class MemberController {
 	 LoginService loginService;
 	 @Autowired
 	 FolderService folderService;
+	 @Autowired
+	 MemberMailService mailer;
 	
 	//회원가입 인증메일
-	public void sendSingupEmail(String userEmail) throws Exception {
+	 @RequestMapping(value="singupEmail.do", method = RequestMethod.POST)
+	 public @ResponseBody String sendSingupEmail(String mailto) throws Exception {
 		//벨로시티 회원가입 인증메일전송
-	};
+		String randomNum = mailer.sendMail(mailto, "singupEmail.do");// 회원가입 메일발송
+		/*System.out.println("randomNum>>"+randomNum);*/
+		return randomNum;
+	}
 	
 	//이메일 중복체크
-	public void checkUserEmail(String userEmail) throws Exception {
-		
+	@RequestMapping(value="checkUserEmail.do", method = RequestMethod.POST)
+	public @ResponseBody int checkUserEmail(String mailto) throws Exception {
+		int result=memberService.checkUserEmail(mailto);
+		System.out.println("이메일 컨트롤러" + result);
+		return result;
 	};
 	
 	//닉네임 중복체크
-	public void checkUserNick(String userNick) throws Exception{
-		
+	@RequestMapping(value="checkUserNick.do", method = RequestMethod.POST)
+	public @ResponseBody int checkUserNick(String userNick) throws Exception{
+		int result=memberService.checkUserNick(userNick);
+		return result;
 	};
 	
 	//회원가입 + 회원가입시 미분류,스크랩 폴더 부여

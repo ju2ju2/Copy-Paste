@@ -14,7 +14,7 @@
 	<!--주제별 상위노트 목록 보기 -->
 	<select id="selectTopNote" resultType="NoteVO">
 	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
-	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
+	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, u.userNick
 	from note n join users u on u.userEmail=n.userEmail 
 				join subject s on s.subjectCode=n.subjectCode 
 	where s.subjectName = #{subjectName}		
@@ -24,7 +24,7 @@
 	<!--회원의 MY노트 목록 보기 -->
 	<select id="selectAllNote" resultType="NoteVO">
 	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
-	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
+	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, u.userNick
 	from note n join users u on u.userEmail=n.userEmail where u.userEmail = #{userEmail} order by noteNum desc;
 	</select>
 	
@@ -57,8 +57,8 @@
         <selectKey order="BEFORE" keyProperty="noteNum" resultType="int">
             select max(noteNum)+1 from note
         </selectKey>
-        insert into note(noteNum, folderName, userEmail, noteTitle, noteContent, subjectCode, notePublic, noteThumnail)
-        values(#{noteNum}, #{folderName}, #{userEmail}, #{noteTitle}, #{noteContent}, #{subjectCode}, #{notePublic}, #{noteThumnail})
+        insert into note(noteNum, folderName, userEmail, noteTitle, noteContent, subjectCode, notePublic)
+        values(#{noteNum}, #{folderName}, #{userEmail}, #{noteTitle}, #{noteContent}, #{subjectCode}, #{notePublic})
     </insert>
     
     <!-- 노트 주제 조회 -->
@@ -68,13 +68,15 @@
 
 	<!-- 노트 수정 -->
 	<update id="updateNote">
+	 	<!-- <selectKey order="BEFORE" keyProperty="subjectName" resultType="String">
+        select subjectCode from subject where subjectName = #{subjectName}
+        </selectKey> -->
 		 update note 
 			SET noteTitle=#{noteTitle},
 				noteContent=#{noteContent}, 
 				folderName=#{folderName},
-				subjectCode=#{subjectCode},
-				noteThumnail=#{noteThumnail}
-		  WHERE noteNum=#{noteNum}
+				subjectCode=#{subjectCode}
+		WHERE noteNum=#{noteNum}
 	</update>
 	
 	<!-- 노트 삭제 -->
@@ -141,14 +143,10 @@
 	private int noteCommPNum;
 	-->
 	
-  
- 	<!-- <selectKey order="BEFORE" keyProperty="subjectName" resultType="String">
-        select subjectCode from subject where subjectName = #{subjectName}
-        </selectKey> 
-   update note n
+<!--     update note n
   	join subject s on s.subjectCode = n.subjectCode
-  	set m.ever_seq_no = s.ever_seq_no; 
- <foreach collection="subjectNames" item="subject"  open="(" close=")" separator=",">
+  	set m.ever_seq_no = s.ever_seq_no; -->
+ <!-- 	 <foreach collection="subjectNames" item="subject"  open="(" close=")" separator=",">
                </foreach>  -->   
 </mapper>
 

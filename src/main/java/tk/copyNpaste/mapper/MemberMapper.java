@@ -13,10 +13,10 @@ import tk.copyNpaste.vo.MemberVO;
 
 public interface MemberMapper {
 	//이메일 중복체크
-	public String checkUserEmail(String userEmail) throws Exception;
+	public int checkUserEmail(String userEmail) throws Exception;
 	
 	//닉네임 중복체크
-	public String checkUserNick(String userNick) throws Exception;
+	public int checkUserNick(String userNick) throws Exception;
 	
 	//회원가입. 회원가입시 미분류, 스크랩 폴더 부여는 folderMapper에 있음
 	public int insertMember(MemberVO member) 

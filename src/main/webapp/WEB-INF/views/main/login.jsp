@@ -35,11 +35,9 @@
 					<h3 class="mg-top-6 text-center login-title">SNS LOGIN</h3>
 					<div class="text-center">
 						<hr>
-						&nbsp;<a href="#"><img src="./resources/image/naver.png"
-							class="inline"> &ensp;</a> <a href="#"><img
-							src="./resources/image/kakao.png" class="inline"> &ensp;</a> <a
-							href="#"><img src="./resources/image/google.png"
-							class="inline"></a>
+						&nbsp;<a href="#"><img src="./resources/image/naver.png" class="inline">&ensp;</a> 
+						<a href="#"><img src="./resources/image/kakao.png" class="inline"> &ensp;</a>
+						<a href="#"><img src="./resources/image/google.png" class="inline"></a>
 					</div>
 
 				<form:form class="form-signin" name="f" method="POST"
@@ -72,7 +70,7 @@
 					<div class="row">
 						<div>
 							<form class="form-signin" name="f" action="${loginUrl}"	method="POST">
-							<input type="text" id="userEmail" name="userEmail"
+							<input type="text" id="findUserEmail" name="userEmail"
 								class="form-control" placeholder="Email" required autofocus />
 							<button class="mt-10 btn btn-sm btn-danger btn-block" type="submit">임시비밀번호
 								발송</button>
