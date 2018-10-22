@@ -11,45 +11,29 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="tk.copyNpaste.mapper.FolderMapper">
-	<!-- 폴더 목록  -->
 	<select id="selectAllFolder" resultType="FolderVO" >
 		select folderName from folder where userEmail = #{userEmail} order by defaultFolder desc;
 	</select>
 
-	<!-- 폴더 추가 -->
 	<insert id="insertFolder" parameterType="FolderVO">
 		insert into folder(userEmail, folderName, defaultFolder, candelete)
   		values (#{userEmail}, #{folderName}, 0, 1) ;
 	</insert>
 
-	<!-- 회원 가입 시 기본폴더 추가 -->
-	<insert id="insertFolderUserDefault" parameterType="String">
+	<insert id="insertFolderUserDefault" >
 		insert into folder(userEmail, folderName, defaultFolder, candelete)
  		values (#{userEmail}, '미분류', 1, 1);
 	</insert>
 
-	<!-- 회원 가입 시 스크랩 폴더 추가	 -->
-	<insert id="insertFolderUserScrap" parameterType="String">
+	<insert id="insertFolderUserScrap" >
 		insert into folder(userEmail, folderName, defaultFolder, candelete)
   		values (#{userEmail}, '스크랩', 0, 1);
 	</insert>
 	
-	<!-- 폴더 삭제 -->
 	<delete id="deleteFolder" parameterType="FolderVO">
 		delete from folder where userEmail = #{userEmail} and folderName=#{folderName};
 	</delete>
 	
-	<!-- 폴더 수정 -->
-	<update id="updateFolder" parameterType="FolderVO">
-		update folder set folderName=#{folderName} where userEmail=#{userEmail} and folderName=#{beforefolderName};
-	</update>
-	
-	<!-- 기본폴더 지정 setDefaultFolder-->
-
-	<!-- 기본폴더 해제 removeDefaultFolder-->
-
-
-
 </mapper>
 
 

@@ -659,39 +659,3 @@ span.Cgrapefruit{
 	padding-top: 0;
 }
 
-.dragtooltip:hover:after{
-  background: #333;
-  background: rgba(0,0,0,.9);
-  border-radius: 5px;
-  bottom: 26px;
-  color: rgb(255, 77, 85);
-  content: attr(title);
-  right: 20%;
-  padding: 5px 15px;
-  position: absolute;
-  z-index: 98;
-  width: 220px;}
-.dragtooltip:hover:before{
-    border: solid;
-    border-color: #333 transparent;
-    border-width: 6px 6px 0 6px;
-    bottom: 20px;
-    content: "";
-    right: 50%;
-    position: absolute;
-    z-index: 99;
-}
-
-.dragtooltip {
-  radius: 4px !important;
-  background-color: black;
-   color: rgb(255, 77, 85) !important;
-  padding: 5px 20px;
-  border-radius: 20px;
-  margin: 50px;
-  text-align: center;
-  font: bold 14px ;
-  font-stretch: condensed;
-  text-decoration: none;
-  box-shadow: 0 0 10px black;
-}

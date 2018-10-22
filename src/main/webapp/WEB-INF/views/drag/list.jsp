@@ -110,6 +110,9 @@ $(document).on("ready",function() {
 	$(document).on("mouseup",function() {
 		  var span = document.createElement('span');
 		  var sel = document.getSelection();
+		  
+		  // 드래그 텍스트 공백인지 앞의 드래그와 중복되는지 체크
+		 /* 참고	 if (text !='' && text.length > 1 && $.trim(text).length != 0 && prevText != text)  */
 		  if (sel!="" && sel.rangeCount) {
 		    var range = sel.getRangeAt(0).cloneRange();
 		    // wrap text in span element
@@ -162,42 +165,4 @@ $(document).on("ready",function() {
 
 </script>
 
-<!-- <script>
-var timeout;
-$("body").on("mouseup", function(){
-  var selection = document.getSelection();
 
-  if (!selection.toString().trim().length)
-    return;
-
-  clearTimeout(timeout);
-  document.execCommand('copy');
-
-  var rect = selection.getRangeAt(0).getBoundingClientRect();
-
-  $(this).tooltip("show").off('focusout');
-
-  var tooltipLeft = Math.max(rect.left - ($('.tooltip').width() - rect.width), 0);
-
-  $('.tooltip').css({
-    left: tooltipLeft
-  });
-
-  var selectable = this;
-  timeout = setTimeout(function() {
-    $(selectable).tooltip("hide");
-  }, 100000000);
-});
-
-$("span").tooltip({
- trigger: 'manual',
- title:"",
- placement: "top" ,
- content: "<button class='btn btn-danger'>D</button>",
- classes: {
-	    /* "ui-tooltip": "highlight", */
-	    "ui-tooltip":"dragtooltip",
-	  }
-});
-</script>
- -->
