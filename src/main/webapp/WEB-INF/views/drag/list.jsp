@@ -29,9 +29,8 @@
 	<div class="d-inner">
 		<!-- Section -->
 		<section>
-			<header class="major">
-				<div id="target" ondrop="drop_handler(event);"
-					ondragover="dragover_handler(event);">
+			<header id="droppable" class="major">
+				<div > 
 					<h3>
 						드래그 목록<i class="fas fa-trash icon-size"></i>
 					</h3>
@@ -45,22 +44,26 @@
 						<div class="text-center dragDiv mt-10">
 
 							<blockquote class="grapefruit">
-								<div class="dragContent">
-									<!-- 별 아이콘 -->
+							<!-- 별 아이콘 -->
 									<div class="icon-right starDiv">
 										<br>
 										<i class="far fa-star icon-size"></i>
 									</div>
+								<div class="dragContent">
+									
 									<!-- 모달 창 -->
 									<div class="drag-a">
 										<a data-toggle="modal"
 											href="${pageContext.request.contextPath}/drag/dragDetail.htm?dragNum=${dragList.dragNum}"
 											data-target="#modal-drag" role="button"
-											data-backdrop="static"> <%--  <h1 id="mydrag"><p class="Cgrapefruit">${dragList.dragText}</span></h1>   --%>
+											data-backdrop="static"> 
 											<p>${dragList.dragText}</p> <code>
 												&lt;출처 : <span class="Cgrapefruit">${dragList.dragOrigin}</span>&gt;
 												<span>${dragList.dragDate}</span>
-											</code></a>
+											</code>
+											<input type="hidden" id="dragNum"  class="dragNum" value="${dragList.dragNum}">
+											</a>
+									</div>
 									</div>
 							</blockquote>
 						</div>
@@ -95,7 +98,16 @@ $(document).on("ready",function() {
 	
 })
 
-
+ // 별 클릭하면 토글되는 이벤트
+    $('.fa-star').click(function(){
+    	if($(this).hasClass('far')){
+    		$(this).removeClass('far').addClass('fas');
+    		
+    		
+    	} else {
+    		$(this).removeClass('fas').addClass('far');
+    	}
+    });
 /* 	function get_selection() {
 		var txt = '';
 		if (window.getSelection) {
@@ -148,20 +160,17 @@ $(document).on("ready",function() {
 		    				);  
 		    		      }
 		    		    }); 
-		    		
-		    		
-		    		
-		    		
 		    	});
-		    	
 		     }).on('toolbarHidden', function (e) {
 		      $(span).contents().unwrap('span');
 		    });
-		    
-		    
-		    
 		  }
 		});
+	
+	 
+	
+	 
+	 
 
 </script>
 

@@ -64,8 +64,9 @@ public class DragController {
 		
 
 	//드래그 삭제
-	public void deleteDrag(int dragNum) throws Exception {
-		dragservice.deleteDrag(dragNum);
+	@RequestMapping(value="deleteDrag.json")
+	public @ResponseBody int deleteDrag(int dragNum) throws Exception {
+		return dragservice.deleteDrag(dragNum);
 	}
 	
 	//드래그 달력 검색
@@ -82,8 +83,9 @@ public class DragController {
 		return ;*/
 	
 	//드래그 중요표시 등록
-	public void setDragMark(int dragNum) throws Exception {
-		dragservice.setDragMark(dragNum);
+	@RequestMapping(value="setDragMark.json")
+	public  @ResponseBody int setDragMark(int dragNum) throws Exception {
+		return dragservice.setDragMark(dragNum);
 	}
 	
 	//드래그 중요표시 삭제

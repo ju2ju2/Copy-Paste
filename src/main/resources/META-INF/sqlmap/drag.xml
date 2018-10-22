@@ -29,13 +29,26 @@
     
 
 	<!-- 드래그 삭제 deleteDrag-->
+	<delete id="deleteDrag">
+		DELETE FROM drag WHERE dragNum = #{dragNum}
+	</delete>
 
 	<!-- 드래그 달력 검색 selectByCalDrag-->
 	
 	<!-- 드래그 키워드 검색 selectByKeyDrag -->
 	
 	<!-- 드래그 중요표시 등록 setDragMark-->
+	<update id="setDragMark">
+	   UPDATE drag 
+	   <set>
+	   <if test ="dragMark= 0"> dragMark=#{1},
+	   </if>
+	    <if test ="dragMark = 1"> dragMark=#{0}
+	   </if>
+	   </set>
+	   where dragNum=#{dragNum}
 	
+	</update>
 	<!-- 드래그 중요표시 삭제 removeDragMark-->
 	
 
