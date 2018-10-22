@@ -70,13 +70,14 @@ public interface NoteMapper {
 	public List<NoteVO> selectPopNote() throws Exception;
 	
 	//노트 정렬 
-	public List<NoteVO> selectOrderby() throws Exception;
+	public List<NoteVO> selectOrderbyNote(HashMap map) throws Exception;
 	
 	//노트 블라인드 처리
 	public List<NoteVO> dd() throws Exception;
 	
 	//노트의 폴더 이동
 	public int moveNoteFolder(NoteVO note) throws Exception;
+
 
 	
 

@@ -67,7 +67,6 @@ public class NoteController {
 		String viewpage;
 		if(cmd!=null) {
 			viewpage="mynotedetail";
-			System.out.println("mynotedetail");
 		}else {viewpage="notedetail";}
 		
 		return viewpage;//(modal/notedetail.jsp)
@@ -118,7 +117,8 @@ public class NoteController {
 		if(imgs.size() > 0) { 
 			String src = imgs.get(0).attr("src"); 
 			note.setNoteThumnail(src);
-		} else {note.setNoteThumnail("https://d1u1amw606tzwl.cloudfront.net/assets/users/avatar-default-96007ee5610cdc5a9eed706ec0889aec2257a3937d0fbb747cf335f8915f09b2.png");}// 수정시 이미지 없을때 기본이미지로.
+		} else {
+			note.setNoteThumnail("https://d1u1amw606tzwl.cloudfront.net/assets/users/avatar-default-96007ee5610cdc5a9eed706ec0889aec2257a3937d0fbb747cf335f8915f09b2.png");}// 수정시 이미지 없을때 기본이미지로.
 		return noteService.updateNote(note);
 	}
 		
@@ -133,6 +133,15 @@ public class NoteController {
 	public @ResponseBody List<NoteVO> selectByFolderNote(NoteVO note,Principal principal) throws Exception {
 		note.setUserEmail(principal.getName());
 		return noteService.selectByFolderNote(note);
+	}
+	
+	// 노트 정렬
+	@RequestMapping(value="selectOrderbyNote.json")
+	public @ResponseBody List<NoteVO> selectOrderbyNote(String sortCategory,Principal principal) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("sortCategory", sortCategory);
+		map.put("userEmail", principal.getName());
+		return noteService.selectOrderbyNote(map);
 	}
 	
 	// 노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws

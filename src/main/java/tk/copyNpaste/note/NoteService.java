@@ -89,6 +89,12 @@ public class NoteService {
 		return notelist;
 	}
 	
+	//노트 정렬
+	public List<NoteVO> selectOrderbyNote(HashMap map) throws Exception{
+		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
+		return notedao.selectOrderbyNote(map);
+	}
+	
 	//노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws Exception;
 	public List<NoteVO> selectByCalNote(Date period) throws Exception{
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);

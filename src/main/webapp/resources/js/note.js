@@ -183,12 +183,83 @@ $(function() {
 	    	        	deleteNote(noteNum)
 	    	         }     
 	    	      });  
+	        })
+	 })
+
+	    //노트 정렬 
+	 $('#sort-category').on("change",function(e) {
+		 alert($('#sort-category option:selected').val())
+	  	$.ajax({
+	        url: "../note/selectOrderbyNote.json", // url_pettern 
+	        type:"post",
+	        data:{"sortCategory":$('#sort-category option:selected').val()},
+	        dataType:"json",
+	        success:function(data){
+	      	  var a = "";
+	          	if(data !=null) {
+	          		$.each(data, function(key, value){
+	          			$('#noteList').empty();
+	          			a+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 ">';
+	          			a+='<div class="text-center noteDiv" id="'+value.noteNum+'">';
+	          			a+='	<!-- a HTML (to Trigger Modal) -->';
+	          			a+='	<a data-toggle="modal"';
+	          			a+='		href="../note/noteDetail.htm?noteNum='+value.noteNum+'&cmd=mynote"';
+	          			a+='		data-target="#modal-testNew" role="button" data-backdrop="static">';
+	          			a+='		<div class="item">';
+	          			a+='			<img class="img-rounded"';
+	          			a+='				src="'+value.noteThumnail+'"';
+	          			a+='					alt="${noteList.noteTitle}" width="100%">';
+	          			a+='			 <div class="caption">';
+	          			a+='				<i class="fa fa-plus" aria-hidden="true"></i>';
+	          			a+='			</div> ';
+	          			a+='		</div>';
+	          			a+='		<div>';
+	          			a+='		<input type="hidden" id="noteNum" class="noteNum" value="'+value.noteNum+'">';
+	          			a+='			<h4>'+value.noteTitle+'</h4>';
+	          			a+='			<strong>'+value.userNick+'</strong> <span> '+value.noteDate+'</span>';
+	          			a+='	</div>';
+	          			a+='	</a>';
+	          			a+='	</div>';
+	          			a+='</div>';
+	          			$("#noteList").html(a);
+	          		})
+	          	}else{
+	          		/*swal({type: "success",
+					  title: '해당 검색어가 없습니다.',
+		              confirmButtonClass : "btn-danger",
+					  closeOnConfirm: false
+				})*/
+	          		
+	          	}
+	          }
+	        }).done(function (result){
+	  		  // noteDiv들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
+	    	    $('.noteDiv').draggable({
+	    	    	revert: true, 
+	    	    	 revertDuration: 200,
+	    	    	 snapMode: "inner",
+	    	    	 scroll: true,
+	    	    	 scrollSensitivity: 100 ,
+	    	    	 scrollSpeed: 100
+	    	    	});
+	    	     // 노트를 드랍하여 삭제 메소드 
+	    	    $("#droppable").droppable({
+	    	        activeClass:"ui-state-active",
+	    	        accept:".noteDiv",
+	    	        drop: function(event,ui) {
+	    	        	var noteNum = ui.draggable.prop("id")
+	    	        	deleteNote(noteNum)
+	    	         }     
+	    	      });  
 	        
 	        
 	        })
 	
 	 })
-
+	 
+	 
+	 
+	 
 });
 
 

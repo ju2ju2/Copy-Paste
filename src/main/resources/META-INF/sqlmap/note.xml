@@ -91,6 +91,14 @@
 	order by noteNum desc;
 	</select>
 	
+	<!-- 노트 정렬 -->
+	<select id="selectOrderbyNote" resultType="NoteVO">
+	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
+	from note n join users u on u.userEmail=n.userEmail 
+	where u.userEmail = #{userEmail} order by #{sortCategory} 
+	</select>
+	
 	<!-- 노트 달력 검색 -->
 	
 	<!-- my노트 키워드 검색 -->
