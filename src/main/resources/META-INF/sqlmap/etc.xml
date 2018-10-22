@@ -26,6 +26,30 @@ where userDate between DATE_ADD(NOW(),INTERVAL -6 MONTH ) and now()
 group by date_format(userDate, '%Y-%m')
 </select>
 
+<!-- 신고한 것들을 데리고 온다 -->
+<select id="selectAllReport" resultType="ReportVO">
+select reportNum, userEmail, noteNum, checkCode, reportInDate,
+reportCauseCode, reportContent, reportmemo, noteOrCommCode
+from report
+order by checkCode desc, noteOrCommCode, noteNum, reportNum
+</select>
+
+<!-- 노트 신고한 것들을 데리고 온다 -->
+<select id="selectNoteReport" resultType="ReportVO">
+select reportNum, userEmail, noteNum, checkCode, reportInDate, 
+reportCauseCode, reportContent, reportmemo, noteOrCommCode
+from report where noteOrCommCode='NC00'
+order by checkCode desc, noteNum, reportNum
+</select>
+
+<!-- 댓글 신고한 것들을 데리고 온다 -->
+<select id="selectCommReport" resultType="ReportVO">
+select reportNum, userEmail, noteNum, checkCode, reportInDate, 
+reportCauseCode, reportContent, reportmemo, noteOrCommCode
+from report where noteOrCommCode='NC01'
+order by checkCode desc, noteNum, reportNum
+</select>
+
 </mapper>
 
 
