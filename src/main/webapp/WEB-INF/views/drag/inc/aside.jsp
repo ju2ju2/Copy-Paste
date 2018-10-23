@@ -26,9 +26,9 @@
          <div class="col-xs-12 mb">
          <select name="sort-category" id="sort-category">  
             <option value="">- 정렬 분류 -</option>
-            <option value="1">최신순</option>
-            <option value="1">오래된 순</option>
-            <option value="1">중요표시 있는 순</option>
+            <option value="dragDate desc">최신순</option>
+            <option value="dragDate asc">오래된 순</option>
+            <option value="dragMark desc">중요표시 있는 순</option>
             <option value="1">전체보기</option>
          </select>
          </div>
@@ -38,7 +38,7 @@
             <div class="col-xs-12">
             <label> &ensp;&ensp;키워드 검색</label>
                <form method="post" action="#">
-                  <input type="text" id="search-text" placeholder="검색" />
+                  <input type="text" id="search-Text" placeholder="검색" />
                   <a href="#"><i id="search" class="fas fa-search icon-size" style="padding-top:15px"></i></a>
                </form>
             </div>

@@ -38,20 +38,21 @@
 								autofocus>						
 					</div>
 					<div class="col-sm-4 ">
-						<button type="button" id="mailDupBtn" class="btn btn-secondary">&ensp;중복확인&ensp;</button>
 						<button type="button" id="mailtoBtn" class="btn btn-secondary">이메일인증</button>
 					</div>
+				<div class="col-sm-12 text-center"><div id="userEmailMessage" class="mt-10"></div></div>
 				</div>
 				
+			
+				
 				<div class="form-group">
-					<label class="control-label col-sm-4">Email  인증번호 </label>
+					<label class="control-label col-sm-4">Email 인증번호 </label>
 					<div class="col-sm-4 pr-0">
 						<input type="text" class="form-control" name="authnum"
 								id="authnum" placeholder="인증번호를 입력해주세요.">
 					</div>
-					<div class="col-sm-4 ">
-					     <button type="button" id="mailtoOkBtn" class="btn btn-secondary">&ensp;인증확인&ensp;</button>
-					</div>
+					<div class="col-sm-4 "></div>
+					<div class="col-sm-12 text-center"><div id="userMailToMessage" class="mt-10"></div></div>
 				</div>
 
 				
@@ -63,10 +64,10 @@
 								id="userNick" placeholder="사용할 닉네임을 입력해주세요.">
 						</div>
 						</div>
-					<div class="col-sm-4 ">
-					 <button type="button" id ="NickDupBtn" class="btn btn-secondary">&ensp;중복확인&ensp;</button>
-					</div>
+					<div class="col-sm-4"></div>
+				<div class="col-sm-12 text-center"><div id="userNickMessage" class="mt-10"></div></div>
 				</div>
+	
 				
 				<div class="form-group">
 					<label class="control-label col-sm-4">비밀번호</label>
@@ -76,6 +77,8 @@
 								id="userPwd" placeholder="알파벳 대소문자, 숫자를 이용해 6자리 이상 입력해주세요.">
 						</div>
 					</div>
+					<div class="col-sm-12 text-center">
+					<div id="userPwdMessage" class="mt-10"></div></div>
 				</div>
 				
 				<div class="form-group">
@@ -88,7 +91,7 @@
 					</div>
 				</div>
 				<div class="col-sm-5"></div>
-				<div id="userPwdMessage"></div>
+				<div id="userPwdConfirmMessage"></div>
 				
 				<div class="form-group">
                   <label class="checkbox text-center">
@@ -97,7 +100,7 @@
 			
 				<div class="form-group">
 					<div class="col-sm-12 text-center">
-						<input name="join" id="join" type="submit" value="&nbsp;&nbsp;회원가입&nbsp;&nbsp;" class="btn btn-danger btn-md">
+						<input name="join" id="join" type="button" value="&nbsp;&nbsp;회원가입&nbsp;&nbsp;" class="btn btn-danger btn-md">
 					</div>
 				</div>
 				</form>
@@ -127,18 +130,22 @@
 	
 	//인증메일 발송
 	$('#mailtoBtn').click(function(){
+		$('#userMailToMessage').addClass("failMessage")
+		$('#userMailToMessage').text("메일이 전송되는데 1분 정도 소요될 수 있습니다.");
 		if (mailDupCheck != 'ok'){
-			swal("٩(இ ⌓ இ๑)۶", "이메일 중복확인부터 진행해 주세요.", "error");
+			$('#userMailToMessage').addClass("failMessage")
+			$('#userMailToMessage').text("아직 이메일 중복확인이 되지 않았습니다.");
 		} else{
 			$.ajax({
 				type : 'post',
 				url : '${pageContext.request.contextPath}/member/singupEmail.do',
 				data : {mailto:$('#mailto').val()},
 				success : function(data) {
-						swal("୧༼ ヘ ᗜ ヘ ༽୨", "이메일 인증을 위한 메일이 발송 되었습니다.", "success")
 						mailtoNum=data; 
 						writtenMail = $('#mailto').val();
 						console.log("인증번호:"+mailtoNum);
+						$('#userMailToMessage').addClass("successMessage")
+	            		
          	   },
           	  error : function(error) {
 					swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 확인해 주세요.", "error");
@@ -150,62 +157,84 @@
 	});
 	
 	//이메일 인증 번호 확인
-	$('#mailtoOkBtn').click(function(){
+	$('#authnum').keyup(function(){
 			if(mailtoNum==$('#authnum').val() && writtenMail == $('#mailto').val()){
-        		swal("୧༼ ヘ ᗜ ヘ ༽୨", "이메일 인증이 완료 되었습니다.", "success")
+				$('#userMailToMessage').addClass("successMessage")
+        		$('#userMailToMessage').text("인증번호가 확인되었습니다");
         		mailCheck = 'ok';
 			}else{
-        		swal("٩(இ ⌓ இ๑)۶", "인증번호를 정확히 적어 주세요.", "error");
-				$('#authnum').val("");
+				$('#userMailToMessage').addClass("failMessage")
+        		$('#userMailToMessage').text("인증번호가 일치 하지 않습니다.");
 			}
 	});
+
 
 	//비밀번호 확인
  	$('#cuserPwd').keyup(function(){
 		if($(this).val() != $('#userPwd').val()){
-			$('#userPwdMessage').text("비밀번호를 정확히 입력해 주세요.");
+			$('#userPwdConfirmMessage').addClass("failMessage")
+			$('#userPwdConfirmMessage').text("비밀번호를 정확히 입력해 주세요.");
 		} else {
-			$('#userPwdMessage').text("");
+			$('#userPwdConfirmMessage').addClass("successMessage")
+			$('#userPwdConfirmMessage').text("비밀번호가 일치합니다.");
 		}
 	})
-	
+
 	//비밀번호 영문, 숫자만 입력 가능
 	$("#userPwd").keyup(function (event) {
-		regexp = /[^a-zA-Z0-9]/gi;
+		regexp =  /^[0-9a-zA-Z]{6,20}$/i;
 		var v = $(this).val();
 		if (regexp.test(v)) {
-			swal("٩(இ ⌓ இ๑)۶", "알파벳 대소문자, 숫자만 입력 가능합니다.", "error");
-			$(this).val(v.replace(regexp, ''));
+			$('#userPwdMessage').addClass("successMessage")
+			$('#userPwdMessage').text("사용 가능한 비밀번호 입니다.");
+
+			
+			/* $(this).val(v.replace(regexp, '')); */
+			}else{
+
+				$('#userPwdMessage').addClass("failMessage")
+				 $('#userPwdMessage').text("알파벳 대소문자, 숫자로 6자이상 입력해주세요."); 
 			}
 	})
+
 	
-	//이메일 중복확인
-	$('#mailDupBtn').click(function(){
-		$.ajax({
-            type : 'post',
-            url : '${pageContext.request.contextPath}/member/checkUserEmail.do',
-            data : {mailto:$('#mailto').val()},
-            success : function(data) {
-            	if (data > 0) {
-            		swal("٩(இ ⌓ இ๑)۶", "사용 중인 이메일 주소입니다.", "error");
-                	$('#mailto').val("");
-                	$('#mailto').focus();	
-            	} else {
-        			swal("୧༼ ヘ ᗜ ヘ ༽୨", "사용 가능한 이메일 주소입니다.\n이메일 인증을 진행해 주세요.", "success");
-        			mailDupCheck = 'ok'; }
-            },
-            error : function(error) {
-				swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 확인.", "error");
-				console.log(error);
-				console.log(error.status);
-            }
-         });
+	//이메일 형식 검사 + 중복확인
+	$('#mailto').keyup(function(){
+		regexp =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		var v = $(this).val();
+		if (regexp.test(v)) {
+			$.ajax({
+	            type : 'post',
+	            url : '${pageContext.request.contextPath}/member/checkUserEmail.do',
+	            data : {mailto:$('#mailto').val()},
+	            success : function(data) {
+	            	if (data > 0) {
+	            		$('#userEmailMessage').addClass("failMessage")
+	            		$('#userEmailMessage').text("이미 사용 중인 이메일입니다.");
+	            	} else {
+	            		$('#userEmailMessage').addClass("successMessage")
+	            		$('#userEmailMessage').text("사용 가능한 이메일입니다.");
+	        			mailDupCheck = 'ok'; }
+	            },
+	            error : function(error) {
+					swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 확인해 주세요.", "error");
+					console.log(error);
+					console.log(error.status);
+	            }
+	         });
+			
+			
+			}else{
+				$('#userEmailMessage').addClass("failMessage")
+				$('#userEmailMessage').text("이메일 형식으로 입력해주세요");
+			}
+
 	});
 
 	//닉네임 중복확인
-	$('#NickDupBtn').click(function(){
+	$('#userNick').keyup(function(){
 		if ($('#userNick').val() == ''){
-			swal("٩(இ ⌓ இ๑)۶", "닉네임을 입력해 주세요.", "error");
+			$('#userNickMessage').text("사용할 닉네임을 입력해 주세요");
 		} else {
 		$.ajax({
             type : 'post',
@@ -213,9 +242,11 @@
             data : {userNick:$('#userNick').val()},
             success : function(data) {
             	if (data > 0) {
-            		swal("٩(இ ⌓ இ๑)۶", "사용 중인 닉네임입니다.", "error");
+            		$('#userNickMessage').addClass("failMessage")
+            		$('#userNickMessage').text("이미 사용 중인 닉네임입니다.");
             	} else {
-        			swal("୧༼ ヘ ᗜ ヘ ༽୨", "사용 가능한 닉네임입니다.", "success");
+            		$('#userNickMessage').addClass("successMessage")
+            		$('#userNickMessage').text("사용 가능한 닉네임입니다.");
         			nickDupCheck = 'ok';
         			writtenNick = $('#userNick').val();	
             }},
@@ -259,7 +290,6 @@ function validate(){
 							return false;
   						} else {
   							if ($('#userCheck').is(":checked")) {
-  								
   							} else {
   								swal("٩(இ ⌓ இ๑)۶", "이용약관에 동의해 주세요.", "error");
 								return false;
@@ -294,6 +324,37 @@ function validate(){
         }
      });
 
-	})  
+  //회원가입 
+   $('#join').click(function(e){      
+       var form = $('form')[0];
+       //FormData parameter에 담아줌
+       var formData = new FormData(form);
+
+      $.ajax({
+         type : 'post',
+         data: formData, 
+         enctype: 'multipart/form-data',
+         processData : false,
+         contentType : false,
+         url :  '${pageContext.request.contextPath}/member/signup.do',
+         success : function(data) {
+	    	  swal({type: "success",
+				  title: '성공적으로 가입되었습니다.',
+	              confirmButtonClass : "btn-danger",
+				  closeOnConfirm: false
+			},
+			function(){
+				location.href="${pageContext.request.contextPath}/login.htm";
+			});	
+	       },
+           error : function(error) {
+            swal("٩(இ ⌓ இ๑)۶", "에러가 발생했습니다.", "error");
+            console.log(error);
+            console.log(error.status);
+        }
+     });
+
+   }) 
+
   	
 </script>

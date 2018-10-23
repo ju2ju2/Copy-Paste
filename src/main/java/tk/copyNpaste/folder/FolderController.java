@@ -3,6 +3,11 @@
 * @ Date : 2018.10.05
 * @ Author : 이주원
 * @ Desc : 폴더 관련 컨트롤러. (service 사용, 뷰 매핑)
+* 
+* @Class : FolderService
+* @ Date : 2018.10.23
+* @ Author : 이주원
+* @ Desc : 폴더 북마크 설정 시 토글기능 제공
 */
 
 package tk.copyNpaste.folder;
@@ -51,7 +56,6 @@ public class FolderController {
 	//폴더 수정
 	@RequestMapping(value="/updatefolder.json")
 	public @ResponseBody void updateFolder(FolderVO folder, Principal principal) throws Exception {
-		System.out.println("이전 폴더 이름 : " + folder.getBeforefolderName());
 		folder.setUserEmail(principal.getName());
 		folderService.updateFolder(folder);
 	};
@@ -64,13 +68,19 @@ public class FolderController {
 	};
 	
 	//기본폴더 지정
-	public void setDefaultFolder(String folderName,String userEmail) throws Exception {
-		folderService.setDefaultFolder(folderName, userEmail);
+	@RequestMapping(value="/setDefaultFolder.json")
+	public @ResponseBody void setDefaultFolder(FolderVO folder, Principal principal) throws Exception {
+		folder.setUserEmail(principal.getName());
+		folderService.setDefaultFolder(folder);
 	};
 	
+	
+	
 	//기본폴더 해제
-	public void removeDefaultFolder(String folderName,String userEmail) throws Exception {
-		folderService.removeDefaultFolder(folderName, userEmail);
+	@RequestMapping(value="/removeDefaultFolder.json")
+	public void removeDefaultFolder(FolderVO folder, Principal principal) throws Exception {
+		folder.setUserEmail(principal.getName());
+		folderService.removeDefaultFolder(folder);
 	};
 
 	

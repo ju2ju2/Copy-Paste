@@ -68,6 +68,7 @@ public class MemberService {
     	MultipartFile userPhotoFile = request.getFile("userPhotoFile");
        	
     	String originFileName = userPhotoFile.getOriginalFilename(); // 원본 파일 명
+    	
     	long fileSize = userPhotoFile.getSize(); // 파일 사이즈
     	String path= request.getServletContext().getRealPath("resources/image/userPhoto/");
     	
@@ -92,7 +93,8 @@ public class MemberService {
 		} catch (Exception e) {
 			System.out.println("에러" + e.getMessage());		
 			throw e; // 예외 발생 시기면 : 자동 rollback
-		}	
+		}
+
 		return 1;
 	}
 	

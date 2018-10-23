@@ -67,20 +67,13 @@ public class MemberController {
 		return result;
 	};
 	
-	//회원가입 + 회원가입시 미분류,스크랩 폴더 부여(동기)
-/*    @RequestMapping(value="signup.do", method = RequestMethod.POST)
-    public void insertMember(MemberVO member, MultipartHttpServletRequest request, HttpServletResponse response) 
-    		throws Exception{
-    	memberService.insertMember(member, request);
-    };*/
-    
-	//회원가입 + 회원가입시 미분류,스크랩 폴더 부여 비동기로 해보고 싶은데~
+
+	//회원가입 + 회원가입시 미분류,스크랩 폴더 부여
 	@RequestMapping(value="signup.do", method = RequestMethod.POST)
-    public @ResponseBody int insertMember(MemberVO member, MultipartHttpServletRequest request, HttpServletResponse response) 
-    		throws Exception{
-    	return memberService.insertMember(member, request);
+    public @ResponseBody int insertMember(MemberVO member, MultipartHttpServletRequest request) 
+          throws Exception{
+       return memberService.insertMember(member, request);
     };
-    
 
 	
 	//로그인
