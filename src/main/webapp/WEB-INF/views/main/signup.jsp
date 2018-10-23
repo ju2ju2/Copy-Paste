@@ -178,7 +178,7 @@
 
 	//비밀번호 영문, 숫자만 입력 가능
 	$("#userPwd").keyup(function (event) {
-		regexp =  /^[0-9a-zA-Z]{6,10}$/i;
+		regexp =  /^[0-9a-zA-Z]{6,20}$/i;
 		var v = $(this).val();
 		if (regexp.test(v)) {
 			$('#userPwdMessage').addClass("successMessage")
