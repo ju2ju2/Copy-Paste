@@ -129,20 +129,22 @@
 </nav>
 
 <script type="text/javascript">
-var userPhoto;
+var session  = ('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal}'); //세션 유무 확인
+var userPhoto; //사용자 프로필 이미지 명
 
- $.ajax({
-	type : 'post',
-	url : '${pageContext.request.contextPath}/member/myinfo.do',
-	success : function(data) {
-				console.log(data);
-				userPhoto = data.userPhoto; 
-				$('#headerUserPhoto').attr("src", "${pageContext.request.contextPath}/resources/image/userPhoto/" + userPhoto);
-     	   },
-      	  error : function(error) {
-				console.log(error);
-				console.log(error.status);
-        }
-     })
-
+//사용자 프로필 이미지 출력
+	if(session != ''){
+		 $.ajax({
+				type : 'post',
+				url : '${pageContext.request.contextPath}/member/myinfo.do',
+				success : function(data) {
+							userPhoto = data.userPhoto; 
+							$('#headerUserPhoto').attr("src", "${pageContext.request.contextPath}/resources/image/userPhoto/" + userPhoto);
+			     	   },
+				error : function(error) {
+							console.log(error);
+							console.log(error.status);
+			       	  }
+			     })
+	}
 </script>

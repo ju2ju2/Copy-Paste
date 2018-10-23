@@ -92,7 +92,7 @@
 				
 				<div class="form-group">
                   <label class="checkbox text-center">
-    			<input type="checkbox" value="remember-me" id="userCheck"><a href="" >이용약관</a>에 동의합니다.</label>
+    			<input type="checkbox" value="remember-me" id="userCheck"><a ="" >이용약관</a>에 동의합니다.</label>
     			</div>
 			
 				<div class="form-group">
@@ -113,6 +113,9 @@
 	<br>	<br>	<br>
 </div>
 
+
+
+
 <script type="text/javascript">
 	var mailtoNum; //인증번호 담는 변수
 	var mailCheck; //메일 인증 진행했는지 확인하는 변수
@@ -120,6 +123,7 @@
 	var nickDupCheck; //닉네임 중복 진행했는지 확인하는 변수
 	var writtenMail; //회원이 입력한 메일주소
 	var writtenNick //회원이 입력한 닉네임
+	var signUpComplete; //회원가입 완료했는지 확인하는 변수
 	
 	//인증메일 발송
 	$('#mailtoBtn').click(function(){
@@ -191,7 +195,7 @@
         			mailDupCheck = 'ok'; }
             },
             error : function(error) {
-				swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 확인해 주세요.", "error");
+				swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 확인.", "error");
 				console.log(error);
 				console.log(error.status);
             }
@@ -223,11 +227,10 @@
          });
 		}
 	});
-	
-	
-	//유효성 체크
-  	$('#join').click(function(){
-  		if ($('#mailto').val() == ''){
+			
+  	//유효성 체크
+function validate(){
+  	if ($('#mailto').val() == ''){
   			swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 입력해 주세요", "error");
   	    	$('#mailto').focus();
   	    	return false;
@@ -237,6 +240,7 @@
 				$('#authnum').focus();
 				return false;
   			} else {
+  				
   				if (nickDupCheck != 'ok' || writtenNick != $('#userNick').val()) {
   					swal("٩(இ ⌓ இ๑)۶", "닉네임 중복확인을 진행해 주세요.", "error");
   					return false;
@@ -255,7 +259,7 @@
 							return false;
   						} else {
   							if ($('#userCheck').is(":checked")) {
-  								swal("୧༼ ヘ ᗜ ヘ ༽୨", "회원가입이 완료되었습니다.\n로그인 페이지로 이동합니다.", "success");
+  								
   							} else {
   								swal("٩(இ ⌓ இ๑)۶", "이용약관에 동의해 주세요.", "error");
 								return false;
@@ -265,7 +269,31 @@
   				}
   			}
   		}
-  		
-  	})
+  	}
+  	
 
+	 $('#join').click(function(){		
+ 		var form = $('#fileform')[0];
+		//FormData parameter에 담아줌
+		var formData = new FormData(form);
+		
+		$.ajax({
+			type : 'post',
+ 			data: formData,
+			processData : false,
+			contentType : false,
+			url : '${pageContext.request.contextPath}/member/signup.do',
+			success : function(data) {
+				console.log(data)
+					swal("୧༼ ヘ ᗜ ヘ ༽୨", "회원가입 성공 ", "success")
+     	   },
+      	  error : function(error) {
+				swal("٩(இ ⌓ இ๑)۶", "이ddd주세요.", "error");
+				console.log(error);
+				console.log(error.status);
+        }
+     });
+
+	})  
+  	
 </script>

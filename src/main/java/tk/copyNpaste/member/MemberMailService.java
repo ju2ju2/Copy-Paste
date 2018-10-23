@@ -51,7 +51,7 @@ public class MemberMailService {
 	}
 
 	@Transactional
-	public String sendMail(String mailto,String command) throws Exception {
+	public String sendMail(String mailto, String command) throws Exception {
 		Template template;
 		String randomNum = this.randomNum();
 		String randomPwd = this.randomPwd();
@@ -60,8 +60,7 @@ public class MemberMailService {
 		MimeMessage message = mailSender.createMimeMessage();
 		
 		MimeMessageHelper helper;
-		
-		System.out.println("2서비스 들어옴");
+
 		try {
 			// 멀티파트 메시지가 필요하다는 의미로 true 플래그를 사용한다
 			helper = new MimeMessageHelper(message, true, "utf-8");
@@ -69,7 +68,6 @@ public class MemberMailService {
 			helper.setFrom("bitcamp109@gmail.com");
 			helper.setTo(mailto);
 			if (command == "singupEmail.do") {
-				System.out.println("3이메일인증 서비스");
 				helper.setSubject("copyNpaste-회원가입 이메일 인증 이메일");// 메일제목
 				template = velocityEngine
 						.getTemplate("jointemplate.vm");// 메일내용
