@@ -4,21 +4,28 @@
 @Author : 우나연, 임효진(노트 폴더목록만)
 @Desc : note aside부분 jsp
  -->
- 
+
  <!-- note>>inc
 @JSP : aside.jsp
 @Date : 2018.10.19
 @Author : 이주원 (폴더 목록, 추가, 수정, 삭제 가능)
-@Desc : 정말 기능 큰 부분만 구현했습니다. 
+@Desc : 정말 기능 큰 부분만 구현했습니다.
 		미분류, 스크랩 휴지통, 수정안되게 막아놓지 않았습니다. 이 부분은 주요기능 구현 끝나는 대로 틈틈이 고치겠습니다.
  -->
- 
+
   <!-- note>>inc
 @JSP : aside.jsp
 @Date : 2018.10.20
 @Author : 이주원 (폴더 목록, 추가, 수정, 삭제 가능) 제이쿼리 forEach를 사용하여 폴더 목록 뿌릴 수있도록 수정함.
-@Desc : 정말 기능 큰 부분만 구현했습니다. 
+@Desc : 정말 기능 큰 부분만 구현했습니다.
 		미분류, 스크랩 휴지통, 수정안되게 막아놓지 않았습니다. 이 부분은 주요기능 구현 끝나는 대로 틈틈이 고치겠습니다.
+
+
+ <!-- note>>inc
+@JSP : aside.jsp
+@Date : 2018.10.23
+@Author : 이주원
+@Desc :  폴더 목록 [미분류][사용자 추가 폴더][스크랩] 순으로 뿌림. 북마크 토글 기능 가능.
  -->
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -35,20 +42,20 @@
 	<div class="form-group">
 		<!-- Sort -->
 			<div class="col-xs-12 mb">
-			<select name="sort-category" id="sort-category">  
+			<select name="sort-category" id="sort-category">
 				<option value="">- 정렬 분류 -</option>
-				<option value="1">최신순</option>
-				<option value="1">오래된 순</option>
-				<option value="1">중요표시 있는 순</option>
+				<option value="n.noteDate desc">최신 순</option>
+				<option value="n.noteDate asc">오래된 순</option>
+				<option value="n.noteTitle asc">가나다 순</option>
 				<option value="1">전체보기</option>
 			</select>
 			</div>
 		<!-- Search -->
 		<section id="subject-search" class="alt">
-				
+
 				<div class="col-xs-12">
 				<label> &ensp;&ensp;키워드 검색</label>
-					<form method="post" action="#">
+					<form method="get" action="#">
 						<input type="text" id="search-text" placeholder="검색" />
 						<a href="#"><i id="search" class="fas fa-search icon-size" style="padding-top:15px"></i></a>
 					</form>
@@ -77,17 +84,17 @@
 		</header>
 		<!-- 미분류가 들어갈 공간 -->
 		<div class="row" id="unclassified">
-			
-		</div>	
-		
+
+		</div>
+
 		<!-- 폴더 목록 뿌려질 공간 -->
 		<div class="row" id="folder">
-			
+
 		</div>
-		
+
 		<!-- 스크랩이 들어갈 공간 -->
 		<div class="row" id="scrap">
-		
+
 		</div>
 	</div>
 </div>
@@ -125,8 +132,8 @@ function folderDelete(folderName){
 							});
 				    }
 						});
-		  } 
-		}); 
+		  }
+		});
 }
 
 /* 폴더 수정 */
@@ -138,8 +145,8 @@ function folderEdit(fedit, folderName){
 	a += folderName;
 	a += " autofocus/ >";
 	a += "</h5>";
-	$(fedit).closest('h5').replaceWith(a); 
-	
+	$(fedit).closest('h5').replaceWith(a);
+
 	/* 엔터키 → 폴더명 수정 */
 	$("#folname").keypress(function(key){
 		if(key.keyCode == 13){
@@ -164,16 +171,45 @@ function folderEdit(fedit, folderName){
 								  showCancelButton: true
 								});
 					    }
-							});	 
-		}	
+							});
+		}
 	 });
 }
 
+/* 디폴트폴더 설정 */
+function setDefaultFolder(bookmark, folderName){
+/* 	$('.fa-bookmark').click(function() {
+		if ($(this).hasClass('far')) {
+			    	$('.fa-bookmark').removeClass('fas').addClass('far');
+        			$(this).removeClass('far').addClass('fas');	
+			    }
+	});   */
+	 
+	$.ajax(
+			{
+	    url : "<%=request.getContextPath()%>/folder/setDefaultFolder.json",
+	    DataType :"text",
+	    type : "post",
+	    data : {"beforefolderName": $('#bookmarkO').text(),
+	    		"folderName" : folderName},
+	    success : function(data){
+	    	location.reload();
+	    	console.log("폴더 수정 성공");
 
-
-
-
-
+	    },
+	    error : function(){
+	    	swal({
+				  title: "폴더 수정에 실패하였습니다",
+				  text: "",
+				  type: "warning",
+				  confirmButtonClass: "btn-danger",
+				  confirmButtonText: "OK",
+				  showCancelButton: true
+				});
+	    }
+			});	 
+		
+	}
 
 
 	/* var dateFormat = "yyyy-mm-dd", //이거 지금 안 먹음
@@ -201,7 +237,7 @@ function folderEdit(fedit, folderName){
 
 	return date;
 	}  */
-		
+
 
 	$(document).ready(function() {
 		folderlist();
@@ -218,7 +254,7 @@ function folderEdit(fedit, folderName){
 		        	
 					if(data != null) {
 		        		$.each(data, function(key, value){
-		        			console.log(">"+value.folderName+"<");
+		        			/* 일반 폴더 출력 */
 		        			if ((value.folderName).trim()!='미분류'&&(value.folderName).trim()!='스크랩'){
 								folder += "<div class='col-xs-10 n-folder'>";
 								folder += "<h5 class='ml-10 f-name'>";
@@ -232,12 +268,25 @@ function folderEdit(fedit, folderName){
 								folder += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i>";
 								folder += "<i class='fas fa-trash icon-size' id='folderdelete' onclick=folderDelete('"+value.folderName+"');>";
 								folder += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></span></h5></div>";
-								folder += "<div class='col-xs-2 icon'><i class='far fa-bookmark icon-size'></i></div>";
 								$('#folder').append(folder);
+								if(value.defaultFolder==1){
+									console.log(">>폴더명<<"+value.folderName+">>폴더 상태<<"+value.defaultFolder);
+									folder = "";
+									folder += "<div class='col-xs-2 icon'><i class='fas fa-bookmark icon-size' id='bookmarkO' onclick=setDefaultFolder(this,'"+value.folderName+"');>";
+									folder += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></div>";
+									$('#folder').append(folder);
+									
+								}else{
+									folder = "";
+									folder += "<div class='col-xs-2 icon'><i class='far fa-bookmark icon-size' id='bookmarkX' onclick=setDefaultFolder(this,'"+value.folderName+"');>";
+									folder += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></div>";
+									$('#folder').append(folder);
+									
+								}
 								folder="";
 							} 
-     			
-		        			if(value.folderName = "미분류"){
+		        			/* 미분류 폴더 출력 */
+		        			if(value.folderName == "미분류"){
 								$('#unclassified').empty();
 								unclassified += "<div class='col-xs-10 n-folder'>";
 								unclassified += "<h5 class='ml-10 f-name'>";
@@ -251,12 +300,26 @@ function folderEdit(fedit, folderName){
 								unclassified += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i>";
 								unclassified += "<i class='fas fa-trash icon-size' id='folderdelete' style='display: none;' onclick=folderDelete('"+value.folderName+"');>";
 								unclassified += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></span></h5></div>";
-								unclassified += "<div class='col-xs-2 icon'><i class='fas fa-bookmark icon-size'></i></div>";
 								$('#unclassified').append(unclassified);
+								
+								if(value.defaultFolder==1){
+									console.log(">>폴더명<<"+value.folderName+">>폴더 상태<<"+value.defaultFolder+">>삭제 가능 여부<<"+value.candelete);
+									unclassified = "";
+									unclassified += "<div class='col-xs-2 icon'><i class='fas fa-bookmark icon-size' id='bookmarkO' onclick=setDefaultFolder(this,'"+value.folderName+"');>";
+									unclassified += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></div>";
+									$('#unclassified').append(unclassified);
+									unclassified = "";
+								}else{
+									unclassified = "";
+									unclassified += "<div class='col-xs-2 icon'><i class='far fa-bookmark icon-size' id='bookmarkX' onclick=setDefaultFolder(this,'"+value.folderName+"');>";
+									unclassified += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></div>";
+									$('#unclassified').append(unclassified);
+									unclassified = "";
+								}
 								unclassified="";
 							} 
 		        			
-		        			if (value.folderName = "스크랩"){
+		        			if (value.folderName == "스크랩"){
 								$('#scrap').empty();
 								scrap += "<div class='col-xs-10 n-folder'>";
 								scrap += "<h5 class='ml-10 f-name'>";
@@ -270,23 +333,18 @@ function folderEdit(fedit, folderName){
 								scrap += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i>";
 								scrap += "<i class='fas fa-trash icon-size' id='folderdelete' style='display: none;' onclick=folderDelete('"+value.folderName+"');>";
 								scrap += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></span></h5></div>";
-								scrap += "<div class='col-xs-2 icon'><i class='far fa-bookmark icon-size' style='display: none;'></i></div>";
+								scrap += "<div class='col-xs-2 icon'><i class='far fa-bookmark icon-size' style='display: none;'></i></div>";						
 								$('#scrap').append(scrap);
 								scrap="";
 							} 
-		        			 
-		        			
-									
-		        							});
-		       							 }
+						});
+		       		}
 		        	
-		        	/* 스크랩 아이콘 토글  */
-		        	$('.fa-bookmark').click(function() {
-		        		if ($(this).hasClass('far')) {
-		        			$('.fa-bookmark').removeClass('fas').addClass('far');
-		        			$(this).removeClass('far').addClass('fas');
-		        		}
-		        	});
+		        	/* 스크랩 아이콘 토글 
+		        	fas → 디폴트 폴더 O
+		        	far → 디폴트 폴더 X
+		        	*/
+		        
 
 
 		        	/* 폴더 수정 및 삭제 아이콘 토글 */
@@ -347,7 +405,7 @@ function folderEdit(fedit, folderName){
 							    type : "post",
 							    data : {"folderName": $(this).val()},
 							    success : function(data){
-							    		folderlist();
+							    		location.reload();
 							    },
 							    error : function(){
 							    		alert("제대로 들어가지 않는다.");
@@ -359,7 +417,7 @@ function folderEdit(fedit, folderName){
 	}
 		
 	});
-	
+
 /* 	$('.n-folder').mouseleave(function() {
 		$(this).find('.f-modify').hide();
 		$(this).find('.f-count').show();

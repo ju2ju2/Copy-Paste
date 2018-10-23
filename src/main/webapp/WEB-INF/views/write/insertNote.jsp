@@ -18,8 +18,7 @@ $(document).ready(function() {
       url: "${pageContext.request.contextPath}/folder/selectAllFolder.json", // url_pettern 
       type:"POST",
       dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
-      success:function(data){
-    	  console.log(data)
+      success:function(data){  	
       	$.each(data, function(key,value){
       			$("#folderList").append($("<option />")
       				.val(value.folderName)
@@ -34,7 +33,7 @@ $(document).ready(function() {
       type:"POST",
       dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
       success:function(data){
-      	console.log(data);
+      	$("#folderList").prepend("<option value='주제 선택'/>");
       	$.each(data, function(key,value){
       			$("#subjectList").append($("<option />")
       				.val(value.subjectCode)

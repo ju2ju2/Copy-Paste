@@ -89,16 +89,22 @@ public class NoteService {
 		return notelist;
 	}
 	
+	//노트 정렬
+	public List<NoteVO> selectOrderbyNote(HashMap map) throws Exception{
+		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
+		return notedao.selectOrderbyNote(map);
+	}
+	
 	//노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws Exception;
 	public List<NoteVO> selectByCalNote(Date period) throws Exception{
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
 		return notedao.selectByCalNote(period);
 	}
 	//노트 키워드 검색
-	public List<NoteVO> selectByKeyNote(String keyword) throws Exception{
-		List<NoteVO> list= new ArrayList<NoteVO>();
-		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
-		return notedao.selectByKeyNote(keyword);
+	public List<NoteVO> selectByKeyNote(HashMap map) throws Exception{
+		List<NoteVO> list = new ArrayList<NoteVO>();
+		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
+		return notedao.selectByKeyNote(map);
 	}
 	//회원별 노트 검색
 	public List<NoteVO> selectByMemNote(String userEmail) throws Exception{

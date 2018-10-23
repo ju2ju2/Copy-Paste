@@ -6,7 +6,10 @@
 */
 package tk.copyNpaste.drag;
 
+import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -14,8 +17,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tk.copyNpaste.mapper.DragMapper;
+import tk.copyNpaste.mapper.NoteMapper;
 import tk.copyNpaste.vo.DragVO;
 import tk.copyNpaste.vo.NoteVO;
+
 
 @Service
 public class DragService {
@@ -56,21 +61,30 @@ public class DragService {
 	}
 	
 	//드래그 키워드 검색
-	public List<DragVO> selectByKeyDrag(String keyword) throws Exception {
+	public List<DragVO> selectByKeyDrag(HashMap<String, Object> map) throws Exception {
+		List<DragVO> list = new ArrayList<DragVO>();
 		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
-		return dragdao.selectByKeyDrag(keyword);
+		return dragdao.selectByKeyDrag(map);
+	}
+	
+	//드래그 정렬
+	public List<DragVO> selectOrderbyDrag(HashMap<String, Object> map) throws Exception{
+		DragMapper notedao = sqlsession.getMapper(DragMapper.class);
+		return notedao.selectOrderbyDrag(map);
 	}
 	
 	//드래그 중요표시 등록
-	public int setDragMark(int dragNo) throws Exception {
+	public int setDragMark(int dragNum) throws Exception {
 		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
-		return dragdao.setDragMark(dragNo);
+		System.out.println("서비스 "+dragNum);
+		return dragdao.setDragMark(dragNum);
 	}
 	
 	//드래그 중요표시 삭제
-	public int removeDragMark(int dragNo) throws Exception {
+	public int removeDragMark(int dragNum) throws Exception {
 		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
-		return dragdao.removeDragMark(dragNo);
+		return dragdao.removeDragMark(dragNum);
 	}
+
 
 }

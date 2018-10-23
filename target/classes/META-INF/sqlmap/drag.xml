@@ -1,56 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- @Project : @File name : drag.xml @Date : 2018.10.06 @Author : 우나연 @Desc 
-	: drag dao 매퍼 쿼리문 작성. -->		
+<!--
+@Project : 
+@File name : drag.xml
+@Date : 2018.10.06
+@Author : 우나연
+@Desc : drag dao 매퍼 쿼리문 작성.
+-->		
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+	
 <mapper namespace="tk.copyNpaste.mapper.DragMapper">
-	<!--전체보기 -->
-	<select id="selectAllDrag" resultType="DragVO">
-		select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate
-		from drag where userEmail= #{userEmail}
-	</select>
-
-	<!--상세보기 -->
-	<select id="selectDetail" resultType="DragVO">
-		select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate
-		from drag where dragNum= #{dragNum}
-	</select>
-
-	<!--드래그등록 -->	
- 	<insert id="insertDrag">
-        <selectKey order="BEFORE" keyProperty="dragNum" resultType="int">
-            select max(dragNum)+1 from drag
-        </selectKey>
-        insert into drag(dragNum, userEmail, dragText, dragOrigin)
-        values(#{dragNum}, #{userEmail}, #{dragText}, #{dragOrigin})
-    </insert>
-    
-
-	<!-- 드래그 삭제 deleteDrag-->
-	<delete id="deleteDrag">
-		DELETE FROM drag WHERE dragNum = #{dragNum}
-	</delete>
-
-	<!-- 드래그 달력 검색 selectByCalDrag-->
-	
-	<!-- 드래그 키워드 검색 selectByKeyDrag -->
-	
-	<!-- 드래그 중요표시 등록 setDragMark-->
-	<update id="setDragMark">
-	   UPDATE drag 
-	   <set>
-	   <if test ="dragMark= 0"> dragMark=#{1},
-	   </if>
-	    <if test ="dragMark = 1"> dragMark=#{0}
-	   </if>
-	   </set>
-	   where dragNum=#{dragNum}
-	
-	</update>
-	<!-- 드래그 중요표시 삭제 removeDragMark-->
-	
+     <!--전체보기  -->
+    <select id="selectAllDrag" resultType="DragVO">
+            select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate
+            from drag
+        </select>
 
 
 </mapper>

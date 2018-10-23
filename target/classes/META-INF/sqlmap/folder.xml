@@ -11,39 +11,31 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="tk.copyNpaste.mapper.FolderMapper">
-	<!-- 폴더 목록  -->
 	<select id="selectAllFolder" resultType="FolderVO" >
-		select folderName from folder where userEmail = #{userEmail} order by defaultFolder desc;
+		select folderName, defaultFolder from folder where userEmail = #{userEmail} order by defaultFolder desc;
 	</select>
 
-	<!-- 폴더 추가 
-	defaultFolder 0 → 디폴트 폴더 X
-				  1 → 디폴트 폴더 O 
-	candelete 	  0 → 삭제, 수정 가능
-				  1 → 삭제, 수정 불가
-	-->
 	<insert id="insertFolder" parameterType="FolderVO">
 		insert into folder(userEmail, folderName, defaultFolder, candelete)
-  		values (#{userEmail}, #{folderName}, 0, 0) ;
+  		values (#{userEmail}, #{folderName}, 0, 1) ;
 	</insert>
 
-	<!-- 회원가입 시, 미분류 폴더 생성 -->
-	<insert id="insertFolderUserDefault" parameterType="String">
+	<insert id="insertFolderUserDefault" >
 		insert into folder(userEmail, folderName, defaultFolder, candelete)
- 		values (#{userEmail}, '미분류', 1, 1);
+ 		values (#{userEmail}, replace('미분류','\r\n', ''), 1, 1);
 	</insert>
 
-	<!-- 회원가입 시, 스크랩 폴더 생성 -->
-	<insert id="insertFolderUserScrap" parameterType="String">
+	<insert id="insertFolderUserScrap" >
 		insert into folder(userEmail, folderName, defaultFolder, candelete)
-  		values (#{userEmail}, '스크랩', 0, 1);
+  		values (#{userEmail}, replace('스크랩','\r\n', ''), 0, 1);
 	</insert>
 	
-	<!-- 폴더 삭제 -->
 	<delete id="deleteFolder" parameterType="FolderVO">
 		delete from folder where userEmail = #{userEmail} and folderName=#{folderName};
 	</delete>
 	
+<<<<<<< HEAD
+=======
 	<!-- 폴더 수정 -->
 	<update id="updateFolder" parameterType="FolderVO">
 		update folder set folderName=#{folderName} where userEmail=#{userEmail} and folderName=#{beforefolderName};
@@ -51,15 +43,16 @@
 	
 	<!-- 기본폴더 지정 setDefaultFolder-->
 	<update id="setDefaultFolder" parameterType="FolderVO">
-		update folder set defaultFolder=1, candelete=1 where userEmail=#{userEmail} and folderName=#{beforefolderName};
+		update folder set defaultFolder=1, candelete=1 where userEmail=#{userEmail} and folderName=#{folderName};
 	</update>
 	
 	<!-- 기본폴더 해제 removeDefaultFolder-->
-	<update id=" removeDefaultFolder" parameterType="FolderVO">
+	<update id="removeDefaultFolder" parameterType="FolderVO">
 		update folder set defaultFolder=0, candelete=0 where userEmail=#{userEmail} and folderName=#{beforefolderName};
 	</update>
 
 
+>>>>>>> master
 </mapper>
 
 
