@@ -7,11 +7,8 @@
 package tk.copyNpaste.drag;
 
 import java.security.Principal;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,12 +27,23 @@ public class DragController {
 	DragService dragservice;
 
 
+	//드래그 전체목록 보기 (비동기/글작성페이지)
+	@RequestMapping(value ="selectAllDrag.json")
+	public @ResponseBody List<DragVO> selectAllDrag(Model model,Principal principal) throws Exception {
+		System.out.println("컨트롤러 들어옴");
+		 String userEmail= principal.getName();
+		 List<DragVO> dragList =  dragservice.selectAllDrag(userEmail);
+		 model.addAttribute("dragList", dragList);
+		return dragList;
+	}
+	
+	
 	//드래그 페이지
-	@RequestMapping("drag.htm")
-	public String selectAllDrag(Model model ,Principal principal) throws Exception {
+	@RequestMapping(value ="drag.htm")
+	public String dragpage(Model model ,Principal principal) throws Exception {
         String userEmail= principal.getName();
-		List<DragVO> dragList = dragservice.selectAllDrag(userEmail);
-		model.addAttribute("dragList", dragList);
+		List<DragVO> dragList =  dragservice.selectAllDrag(userEmail);
+		 model.addAttribute("dragList", dragList);
 		return "drag.list";
      }
 
@@ -46,13 +54,7 @@ public class DragController {
 		return dragservice.insertDrag(drag);
 	}
 
-	//드래그 전체목록 보기 (비동기/글작성페이지)
-	@RequestMapping("selectAllDrag.json")
-	public @ResponseBody List<DragVO> selectAllDrag(DragVO drag,Principal principal) throws Exception {
-		String userEmail= principal.getName();
-		return dragservice.selectAllDrag(userEmail);
-	}
-	
+
 	
 	//드래그 상세 보기(+노트 작성)
 	@RequestMapping(value="dragDetail.htm")

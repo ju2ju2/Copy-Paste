@@ -6,6 +6,7 @@
 */
 package tk.copyNpaste.drag;
 
+import java.security.Principal;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 import tk.copyNpaste.mapper.DragMapper;
 import tk.copyNpaste.vo.DragVO;
-import tk.copyNpaste.vo.NoteVO;
+
 
 @Service
 public class DragService {
@@ -30,6 +31,7 @@ public class DragService {
 
 	//드래그 목록 보기
 	public List<DragVO> selectAllDrag(String userEmail) throws Exception {
+		System.out.println("selectAllDrag 드래그 서비스" + userEmail);
 		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
 		List<DragVO> dragList = dragdao.selectAllDrag(userEmail);
 		return dragList;
@@ -73,5 +75,7 @@ public class DragService {
 		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
 		return dragdao.removeDragMark(dragNum);
 	}
+
+	
 
 }

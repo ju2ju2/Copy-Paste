@@ -61,9 +61,11 @@ $(function() {
       type:"POST",
       dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
       success:function(data){
+    	  console.log(data);
     	  var a = "";
         	if(data != null) {
         		$.each(data, function(key, value){
+        			console.log("foreach문 안으로 들어옵니다.");
         			$('#noteList').empty();
         			a+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 ">';
         			a+='<div class="text-center noteDiv" id="'+value.noteNum+'">';
@@ -114,12 +116,7 @@ $(function() {
   	         }     
   	      });  
       
-      
       })
-
-
-
-
 });
 
 

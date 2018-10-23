@@ -36,9 +36,10 @@
 					</h3>
 				</div>
 			</header>
+			</section>
 
-			<div class="row">
-				<c:forEach items="${dragList}" var="dragList">
+			<div class="row" id="dragList">
+		<%-- <c:forEach items="${dragList}" var="dragList">
 
 					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
 						<div class="text-center dragDiv mt-10">
@@ -67,12 +68,11 @@
 							</blockquote>
 						</div>
 					</div>
-				</c:forEach>
-			</div>
-		</section>
+				</c:forEach> --%>
+	
+ 		</div>
 	</div>
 </div>
-
 <br>
 
 <!-- Modal HTML -->

@@ -19,7 +19,7 @@
 		</section>
 		
 		
-		<div class="row" id="noteList">
+		<div class="row"  id="noteList">
 		<!-- 	<div id="noteList"></div> -->
 			<%-- 	<c:forEach var="noteList" items="${noteList}">
 			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 ">
