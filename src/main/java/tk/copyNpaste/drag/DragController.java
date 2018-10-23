@@ -30,20 +30,19 @@ public class DragController {
 	//드래그 전체목록 보기 (비동기/글작성페이지)
 	@RequestMapping(value ="selectAllDrag.json")
 	public @ResponseBody List<DragVO> selectAllDrag(Model model,Principal principal) throws Exception {
-		System.out.println("컨트롤러 들어옴");
 		 String userEmail= principal.getName();
-		 List<DragVO> dragList =  dragservice.selectAllDrag(userEmail);
-		 model.addAttribute("dragList", dragList);
-		return dragList;
+	/*	 List<DragVO> dragList =  dragservice.selectAllDrag(userEmail);
+		 model.addAttribute("dragList", dragList);*/
+		return dragservice.selectAllDrag(userEmail);
 	}
 	
 	
 	//드래그 페이지
 	@RequestMapping(value ="drag.htm")
 	public String dragpage(Model model ,Principal principal) throws Exception {
-        String userEmail= principal.getName();
+	  String userEmail= principal.getName();
 		List<DragVO> dragList =  dragservice.selectAllDrag(userEmail);
-		 model.addAttribute("dragList", dragList);
+		model.addAttribute("dragList", dragList);
 		return "drag.list";
      }
 
@@ -87,14 +86,12 @@ public class DragController {
 	//드래그 중요표시 등록
 	@RequestMapping(value="setDragMark.json")
 	public  @ResponseBody int setDragMark(int dragNum) throws Exception {
-		System.out.println("setDragMark 드래그 컨트롤러 탄다 : " + dragNum);
-		return dragservice.setDragMark(dragNum);
+			return dragservice.setDragMark(dragNum);
 	}
 	
 	//드래그 중요표시 삭제
 	@RequestMapping(value="removeDragMark.json")
 	public @ResponseBody int removeDragMark(int dragNum) throws Exception {
-		System.out.println("removeDragMark 드래그 컨트롤러 탄다 : " + dragNum);
 		return  dragservice.removeDragMark(dragNum);
 	}
 

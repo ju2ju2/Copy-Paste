@@ -20,11 +20,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <script src="${pageContext.request.contextPath}/resources/js/drag.js"></script>
 
-
-
-
-
-
 <div class="d-container">
 	<div class="d-inner">
 		<!-- Section -->
@@ -37,9 +32,8 @@
 				</div>
 			</header>
 			</section>
-
-			<div class="row" id="dragList">
-		<%-- <c:forEach items="${dragList}" var="dragList">
+		<div class="row"  id="dragList"></div>
+ <%--  <c:forEach items="${dragList}" var="dragList">
 
 					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
 						<div class="text-center dragDiv mt-10">
@@ -68,8 +62,8 @@
 							</blockquote>
 						</div>
 					</div>
-				</c:forEach> --%>
-	
+				</c:forEach> 
+	 --%>
  		</div>
 	</div>
 </div>
@@ -91,21 +85,15 @@
 		class="fa fa-sticky-note"></i></a>
 </div>
 <script>
-
- // 별 클릭하면 토글되는 이벤트
+  // 별 클릭하면 토글되는 이벤트
     $('.fa-star').click(function(){
     	if($(this).hasClass('far')){
     		$(this).removeClass('far').addClass('fas');
-    		
-    		
     	} else {
     		$(this).removeClass('fas').addClass('far');
     	}
-    });
+    }); 
 
-	
-	 
-	 
 
 </script>
 

@@ -31,7 +31,6 @@ public class DragService {
 
 	//드래그 목록 보기
 	public List<DragVO> selectAllDrag(String userEmail) throws Exception {
-		System.out.println("selectAllDrag 드래그 서비스" + userEmail);
 		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
 		List<DragVO> dragList = dragdao.selectAllDrag(userEmail);
 		return dragList;
@@ -77,5 +76,4 @@ public class DragService {
 	}
 
 	
-
 }
