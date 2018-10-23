@@ -17,7 +17,7 @@
 			<hr>
 			<div>
 				<c:url value="/login" var="loginUrl" />
-				<form:form class="form-signin" name="f" action="${loginUrl}"
+				<form:form id="signin" class="form-signin" name="f" action="${loginUrl}"
 							method="POST">
 					<c:if test="${param.error != null}">
 						<p>아이디와 비밀번호가 잘못되었습니다.</p>
@@ -35,11 +35,9 @@
 					<h3 class="mg-top-6 text-center login-title">SNS LOGIN</h3>
 					<div class="text-center">
 						<hr>
-						&nbsp;<a href="#"><img src="./resources/image/naver.png"
-							class="inline"> &ensp;</a> <a href="#"><img
-							src="./resources/image/kakao.png" class="inline"> &ensp;</a> <a
-							href="#"><img src="./resources/image/google.png"
-							class="inline"></a>
+						&nbsp;<a href="#"><img src="./resources/image/naver.png" class="inline">&ensp;</a> 
+						<a href="#"><img src="./resources/image/kakao.png" class="inline"> &ensp;</a>
+						<a href="#"><img src="./resources/image/google.png" class="inline"></a>
 					</div>
 
 				<form:form class="form-signin" name="f" method="POST"
@@ -71,10 +69,11 @@
 				<div class="form-group">
 					<div class="row">
 						<div>
-							<form class="form-signin" name="f" action="${loginUrl}"	method="POST">
-							<input type="text" id="userEmail" name="userEmail"
+							<form id="findUserPwd" class="form-signin" name="f" action="${loginUrl}" method="POST">
+							<input type="text" id="userEmailForfindUserPwd" name="userEmail"
 								class="form-control" placeholder="Email" required autofocus />
-							<button class="mt-10 btn btn-sm btn-danger btn-block" type="submit">임시비밀번호
+							<button class="mt-10 btn btn-sm btn-danger btn-block" 
+									id ="findUserPwdBtn" type="submit">임시비밀번호
 								발송</button>
 							</form>
 						</div>
@@ -94,3 +93,29 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+
+var currentMember; //회원가입된 이메일인지 확인하는 변수
+var tempPwd; //임시 비밀번호
+
+//임시 비밀번호 메일 발송
+$('#findUserPwdBtn').click(function(){
+		$.ajax({
+		type : 'post',
+		url : '${pageContext.request.contextPath}/member/findUserPwd.do',
+ 		data : {mailto:$('#userEmailForfindUserPwd').val()},
+		success : function(data) {
+					console.log(data);
+					swal("୧༼ ヘ ᗜ ヘ ༽୨", "임시 비밀번호가 메일로 전송되었습니다.", "success");
+					tempPwd=data;
+            		console.log(tempPwd);
+         	   },
+          	  error : function(error) {
+					swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 확인해 주세요.", "error");
+					console.log(error);
+					console.log(error.status);
+            }
+         });
+	});
+</script>

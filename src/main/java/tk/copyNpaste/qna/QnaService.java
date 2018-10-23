@@ -99,10 +99,17 @@ public class QnaService {
 	};
 	
 	//QNA 댓글 삭제
-	public int deleteQnaComm(int qnaCommNum) throws Exception{
+	@Transactional
+	public int deleteQnaComm(QnaCommVO qnaComm) throws Exception{
 		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
-		
-		return qnadao.deleteQnaComm(qnaCommNum);
+		int result=0;
+		try {
+			result=qnadao.deleteQnaComm(qnaComm.getQnaCommNum());
+			qnadao.deleteQnaCommChild(qnaComm.getQnaCommNum());
+		}catch(Exception e){
+			throw e;			
+		}
+		return result;
 	};
 
 }

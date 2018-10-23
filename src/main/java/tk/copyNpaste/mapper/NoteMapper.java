@@ -38,12 +38,15 @@ public interface NoteMapper {
 	
 	//노트 주제 조회
 	public List<NoteVO> selectSubjectCode() throws Exception;
+
+	//폴더별 노트 조회
+	public List<NoteVO> selectByFolderNote(NoteVO note);
 	
 	//노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws Exception;
 	public List<NoteVO> selectByCalNote(Date period) throws Exception;
 
 	//노트 키워드 검색
-	public List<NoteVO> selectByKeyNote(String keyword) throws Exception;
+	public List<NoteVO> selectByKeyNote(HashMap map) throws Exception;
 
 	//회원별 노트 검색
 	public List<NoteVO> selectByMemNote(String userEmail) throws Exception;
@@ -67,13 +70,16 @@ public interface NoteMapper {
 	public List<NoteVO> selectPopNote() throws Exception;
 	
 	//노트 정렬 
-	public List<NoteVO> selectOrderby() throws Exception;
+	public List<NoteVO> selectOrderbyNote(HashMap map) throws Exception;
 	
 	//노트 블라인드 처리
 	public List<NoteVO> dd() throws Exception;
 	
 	//노트의 폴더 이동
 	public int moveNoteFolder(NoteVO note) throws Exception;
+
+
+	
 
 
 		

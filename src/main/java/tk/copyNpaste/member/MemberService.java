@@ -6,6 +6,8 @@
 */
 package tk.copyNpaste.member;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -30,25 +32,33 @@ public class MemberService {
 	 private SqlSession sqlsession;
 	
 	//회원가입 인증메일
-	public void sendSingupEmail(String userEmail) throws Exception {
-		//벨로시티 회원가입 이메일전송
-	};
+/*	public void sendSingupEmail(String userEmail) throws Exception {
+	};*/
+	 
+	//임시비밀번호
+/*	public int updateUserPwd(String userEmail) throws Exception{
+		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
+			//임시비밀번호 벨로시티발송.
+			return memberdao.updateUserPwd(userEmail);
+		}*/
 	
 	//이메일 중복체크
-	public String checkUserEmail(String userEmail) throws Exception {
+	public int checkUserEmail(String userEmail) throws Exception {
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
-		return memberdao.checkUserEmail(userEmail);
+		int result = memberdao.checkUserEmail(userEmail);
+		return result;
 	};
 	
 	//닉네임 중복체크
-	public String checkUserNick(String userNick) throws Exception{
+	public int checkUserNick(String userNick) throws Exception{
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
-		return memberdao.checkUserNick(userNick);
+		int result = memberdao.checkUserNick(userNick);
+		return result;
 	};
-	
+
 	//회원가입
 	@Transactional
-	public void insertMember(MemberVO member, MultipartHttpServletRequest request) 
+	public int insertMember(MemberVO member, MultipartHttpServletRequest request) 
 			throws IOException, ClassNotFoundException, SQLException {
 	
 		String userPhoto = "userProfile.png"; //프로필 사진 미업로드 시 기본 파일명
@@ -58,21 +68,18 @@ public class MemberService {
     	MultipartFile userPhotoFile = request.getFile("userPhotoFile");
    
     	String originFileName = userPhotoFile.getOriginalFilename(); // 원본 파일 명
+    	
     	long fileSize = userPhotoFile.getSize(); // 파일 사이즈
     	String path= request.getServletContext().getRealPath("resources/image/userPhoto/");
-       
-    	System.out.println(path);
     	
-    	String safeFile = path + System.currentTimeMillis() + originFileName;
+    	String safeFile = path + userEmail + originFileName;
     	userPhotoFile.transferTo(new File(safeFile));  //폴더에 파일 쓰기
     	
     	if( fileSize > 0) {
-    		userPhotoName = userEmail+originFileName; 
+    		userPhotoName = userEmail +originFileName; 
     	} else {
     		userPhotoName = userPhoto;
     	}
-    	
-    	System.out.println(userPhotoName);
        
     	member.setUserPhoto(userPhotoName); // DB에 들어갈 파일명 지정
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
@@ -86,16 +93,23 @@ public class MemberService {
 		} catch (Exception e) {
 			System.out.println("에러" + e.getMessage());		
 			throw e; // 예외 발생 시기면 : 자동 rollback
-		}	
+		}
+		return 1;
 	}
 	
 	//회원 가입 시 권한 부여
-	public int insertMemberRole(String userEmail) throws Exception {
+/*	public int insertMemberRole(String userEmail) throws Exception {
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
 		return memberdao.insertMemberRole(userEmail);
+	}*/
+	
+	//임시 비밀번호 부여
+	public int updatePwd(MemberVO member) throws Exception{
+		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
+		return memberdao.updateMember(member);
 	}
 	
-	//회원 정보 보기
+	//전회원 정보 보기
 	public List<MemberVO> selectAllMember() throws Exception{
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
 		return memberdao.selectAllMember();
@@ -107,18 +121,18 @@ public class MemberService {
 		return memberdao.selectSearchMember(userEmail);
 	}
 	
+	//내 정보 보기
+	public MemberVO selectSearchMemberByEmail (String userEmail) throws Exception{
+		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
+		return memberdao.selectSearchMemberByEmail(userEmail);
+	}
+
 	//회원 정보 수정
 	public int updateMember(MemberVO member) throws Exception{
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
 		return memberdao.updateMember(member);
 	}
-	
-	//임시비밀번호
-	public int updateUserPwd(String userEmail) throws Exception{
-		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
-		//임시비밀번호 벨로시티발송.
-		return memberdao.updateUserPwd(userEmail);
-	}
+
 	
 	//회원 비활성하기>>update
 	public int deleteMember(String userEmail) throws Exception{
