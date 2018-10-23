@@ -69,13 +69,11 @@ public class MemberController {
 	};
 	
 	//회원가입 + 회원가입시 미분류,스크랩 폴더 부여
-    @RequestMapping(value="signup.do", method = RequestMethod.POST)
-    public String insertMember(MemberVO member, MultipartHttpServletRequest request, HttpServletResponse response) 
-    		throws Exception{
-    	memberService.insertMember(member, request);
-    	return "redirect:/login.htm";
+	@RequestMapping(value="signup.do", method = RequestMethod.POST)
+    public @ResponseBody int insertMember(MemberVO member, MultipartHttpServletRequest request) 
+          throws Exception{
+       return memberService.insertMember(member, request);
     };
-    
 
 	
 	//로그인
