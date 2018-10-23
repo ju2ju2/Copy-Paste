@@ -50,6 +50,10 @@ from report where noteOrCommCode='NC01'
 order by checkCode desc, noteNum, reportNum
 </select>
 
+<update id="updateReport">
+update report set reportmemo = #{param2, jdbcType=VARCHAR}, checkCode = #{param3}
+where reportNum = #{param1}
+</update>
 </mapper>
 
 

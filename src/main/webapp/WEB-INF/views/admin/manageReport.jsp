@@ -17,13 +17,16 @@
 	href="${pageContext.request.contextPath}/resources/css/dataTables.css">
 <script type="text/javascript" charset="utf8"
 	src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+		<!-- Sweet Alert cdn -->
+		<link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
+		<script type="text/javascript"	src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
 
 <!-- 메모 모달창 -->
 
 	<div id="memoModal" class="modal fade form-horizontal">
 		<div class="modal-dialog">
 			<div class="modal-content">
-			<form action="">
+			<form>
 				<div class="modal-header">
 				처리 메모
 				</div>
@@ -44,7 +47,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<input type="submit"class="btn btn-danger" value="추가">
+					<input type="button"class="btn btn-danger" id="submitBtn" value="추가">
 				</div>
 			</form>
 			</div>
@@ -130,9 +133,8 @@
 
 					tbodyAppendAll +='</td><td><button class="btn btn-sm drop-btn reportBtn" data-toggle="modal" data-target="#memoModal">설정</button></td><td>';
 					
-					if(!obj.reportmemo) tbodyAppendAll += obj.reportmemo;
-					
-					tbodyAppendAll += '</td><td></tr>';
+					if(obj.reportmemo != 'null') tbodyAppendAll += obj.reportmemo+'</td><td></tr>';
+					else tbodyAppendAll += '</td><td></tr>';
 					
 				});
 				
@@ -292,7 +294,29 @@
 
 	})
 	
-	
+	$('#submitBtn').click(function() {
+		$.ajax({
+			url: "../etc/reportCheck.json",
+			 type:"POST",
+		     dataType:"json",
+		     data: {'reportNum':$("#reportNum").val(),
+		    	 'reportmemo':$("#reportmemo").val(), 
+		    	 'checkCode':$("#checkCode").val()},
+		   	 success:function(result){
+   	    	  swal({type: "success",
+				  title: '성공적으로 반영했습니다.',
+	              confirmButtonClass : "btn-danger",
+				  closeOnConfirm: false
+				},
+			 function(){
+				location.href="../etc/adminReport.htm";
+			});	 
+	       },
+  			 error:function(request,status,error){
+	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+	  }
+		})
+	})
 	
 	})
 </script>
