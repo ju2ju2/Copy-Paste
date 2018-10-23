@@ -9,6 +9,8 @@ package tk.copyNpaste.mapper;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import tk.copyNpaste.vo.MemberVO;
 
 public interface MemberMapper {
@@ -44,11 +46,14 @@ public interface MemberMapper {
 	//회원 검색
 	public List<MemberVO> selectSearchMember (String userEmail) throws Exception;
 		
+	//내 정보 보기
+	public MemberVO selectSearchMemberByEmail (String userEmail) throws Exception;
+	
 	//회원 정보 수정
 	public int updateMember(MemberVO member) throws Exception;
 	
 	//임시비밀번호
-	public int updateUserPwd(String userEmail) throws Exception;
+	public int updateUserPwd(MemberVO member) throws Exception;
 	
 	//회원 비활성하기>>update
 	public int deleteMember(String userEmail) throws Exception;

@@ -31,15 +31,21 @@ public class MemberService {
 	 @Autowired
 	 private SqlSession sqlsession;
 	
-/*	//회원가입 인증메일
-	public void sendSingupEmail(String userEmail) throws Exception {
+	//회원가입 인증메일
+/*	public void sendSingupEmail(String userEmail) throws Exception {
 	};*/
+	 
+	//임시비밀번호
+/*	public int updateUserPwd(String userEmail) throws Exception{
+		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
+			//임시비밀번호 벨로시티발송.
+			return memberdao.updateUserPwd(userEmail);
+		}*/
 	
 	//이메일 중복체크
 	public int checkUserEmail(String userEmail) throws Exception {
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
 		int result = memberdao.checkUserEmail(userEmail);
-		System.out.println("이메일 서비스 result: " +result);
 		return result;
 	};
 	
@@ -49,7 +55,7 @@ public class MemberService {
 		int result = memberdao.checkUserNick(userNick);
 		return result;
 	};
-	
+
 	//회원가입
 	@Transactional
 	public void insertMember(MemberVO member, MultipartHttpServletRequest request) 
@@ -65,11 +71,11 @@ public class MemberService {
     	long fileSize = userPhotoFile.getSize(); // 파일 사이즈
     	String path= request.getServletContext().getRealPath("resources/image/userPhoto/");
     	
-    	String safeFile = path + System.currentTimeMillis() + originFileName;
+    	String safeFile = path + userEmail + originFileName;
     	userPhotoFile.transferTo(new File(safeFile));  //폴더에 파일 쓰기
     	
     	if( fileSize > 0) {
-    		userPhotoName = userEmail+originFileName; 
+    		userPhotoName = userEmail +originFileName; 
     	} else {
     		userPhotoName = userPhoto;
     	}
@@ -95,7 +101,13 @@ public class MemberService {
 		return memberdao.insertMemberRole(userEmail);
 	}*/
 	
-	//회원 정보 보기
+	//임시 비밀번호 부여
+	public int updatePwd(MemberVO member) throws Exception{
+		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
+		return memberdao.updateMember(member);
+	}
+	
+	//전회원 정보 보기
 	public List<MemberVO> selectAllMember() throws Exception{
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
 		return memberdao.selectAllMember();
@@ -107,18 +119,18 @@ public class MemberService {
 		return memberdao.selectSearchMember(userEmail);
 	}
 	
+	//내 정보 보기
+	public MemberVO selectSearchMemberByEmail (String userEmail) throws Exception{
+		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
+		return memberdao.selectSearchMemberByEmail(userEmail);
+	}
+
 	//회원 정보 수정
 	public int updateMember(MemberVO member) throws Exception{
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
 		return memberdao.updateMember(member);
 	}
-	
-	//임시비밀번호
-	public int updateUserPwd(String userEmail) throws Exception{
-		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
-		//임시비밀번호 벨로시티발송.
-		return memberdao.updateUserPwd(userEmail);
-	}
+
 	
 	//회원 비활성하기>>update
 	public int deleteMember(String userEmail) throws Exception{

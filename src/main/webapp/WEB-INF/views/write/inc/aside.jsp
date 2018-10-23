@@ -196,7 +196,6 @@
 		}
 	})
 
-	
 	<!--드래그목록-->
 	$.ajax({
 		      url: "${pageContext.request.contextPath}/drag/selectAllDrag.json", // url_pettern 
@@ -273,7 +272,7 @@
       	 if(data != null) {
       		$.each(data, function(key, value){
       			$('#asideFolderList').empty();	
-      			a += '<div class="row" class="accordion" alt="'+value.folderName+'"><div class="col-xs-10 pt"> <h5 class="accordion asideFolderName" id="asideFolderName">'+value.folderName+'</h5>'
+      			a += '<div class="row" class="accordion" alt="'+value.folderName.trim()+'"><div class="col-xs-10 pt"> <h5 class="accordion asideFolderName" id="asideFolderName">'+value.folderName+'</h5>'
       			a += '</div><div class="col-xs-2 panel-margin">	<i class="far fa-bookmark icon-size"></i>'
       			a += '</div><div class="row"><div id="asideNoteList"></div></div></div>';
       		});
@@ -327,8 +326,4 @@
 	
 	<!-- 폴더명 클릭시 노트 조회 -->
 
-	
-	
-		 
-		 
 </script>

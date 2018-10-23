@@ -8,6 +8,11 @@
 * @ Date : 2018.10.18
 * @ Author : 임효진
 * @ Desc : 회원가입 시 미분류/스크랩 폴더 생성 
+* 
+* @Class : FolderService
+* @ Date : 2018.10.23
+* @ Author : 이주원
+* @ Desc : 폴더 북마크 설정 시 토글기능 제공
 */
 package tk.copyNpaste.folder;
 
@@ -18,6 +23,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import tk.copyNpaste.mapper.EtcMapper;
 import tk.copyNpaste.mapper.FolderMapper;
@@ -55,16 +61,22 @@ public class FolderService {
 	}
 	
 	//기본폴더 지정
-	public int setDefaultFolder(String folderName,String userEmail) throws Exception {
-		FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
-		return folderdao.setDefaultFolder(folderName, userEmail);
-		
-	}
+		@Transactional
+		public void setDefaultFolder(FolderVO folder) throws Exception {
+			FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
+			try {
+				folderdao.setDefaultFolder(folder); 
+				folderdao.removeDefaultFolder(folder);
+			}catch (Exception e) {
+				System.out.println("에러" + e.getMessage());
+				throw e;
+			}
+		}
 	
 	//기본폴더 해제
-	public int removeDefaultFolder(String folderName,String userEmail) throws Exception {
+	public int removeDefaultFolder(FolderVO folder) throws Exception {
 		FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
-		return folderdao.removeDefaultFolder(folderName, userEmail);
+		return folderdao.removeDefaultFolder(folder);
 	}
 	
 	//회원 가입 시 기본폴더 추가

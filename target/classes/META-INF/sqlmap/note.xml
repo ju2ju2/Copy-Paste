@@ -26,6 +26,10 @@
 	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
 	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, u.userNick
 	from note n join users u on u.userEmail=n.userEmail where u.userEmail = #{userEmail} order by noteNum desc;
+	<!-- select distinct n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
+	from note n join users u on u.userEmail=n.userEmail
+	join folder f on f.folderName=n.folderName where u.userEmail = #{userEmail} and f.folderName= #{folderName} order by noteNum desc; -->
 	</select>
 	
 	<!-- 노트 상세 보기(+노트 작성) -->
@@ -93,11 +97,31 @@
 	order by noteNum desc;
 	</select>
 	
+	<!-- 노트 정렬 -->
+	<select id="selectOrderbyNote" resultType="NoteVO">
+	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
+	from note n join users u on u.userEmail=n.userEmail 
+	where u.userEmail = #{userEmail} order by #{sortCategory} 
+	</select>
+	
 	<!-- 노트 달력 검색 -->
 	
-	<!-- 노트 키워드 검색 -->
-		
+	<!-- my노트 키워드 검색 -->
+	<select id="selectByKeyNote"  parameterType="hashmap" resultType="NoteVO">
+  	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+	n.subjectCode,s.subjectName, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
+	from note n join users u on u.userEmail=n.userEmail 
+				join subject s on s.subjectCode=n.subjectCode 
+	where n.userEmail = #{userEmail} and 
+		 (n.noteTitle like CONCAT('%',#{keyword},'%') or 
+		  n.noteContent like CONCAT('%',#{keyword},'%') or 
+		  n.folderName like CONCAT('%',#{keyword},'%') or 
+		  s.subjectName like CONCAT('%',#{keyword},'%'))
+	order by noteNum desc;
+	</select>
 	<!-- 회원별 노트 검색 -->
+	
 	
 	<!-- 회원별 노트 일괄 삭제 -->
 	

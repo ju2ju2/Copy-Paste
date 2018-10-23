@@ -20,10 +20,18 @@ $(document).ready(function() {
       dataType:"json",
       success:function(data){
     	  console.log(data)
+    
+    	  
+ 
       	$.each(data, function(key,value){
       			$("#folderList").append($("<option />")
       				.val(value.folderName)
-      				.text(value.folderName) );
+      				.text(value.folderName));
+      			  if($(this).val()=="${note.folderName}"){
+      			      $(this).prop("selected",true); // attr적용안될경우 prop으로 
+      			    }
+      	//$('select[val=${note.subjectCode}]').prop("selected", true);		
+      	
       	});
        }
     }); 
