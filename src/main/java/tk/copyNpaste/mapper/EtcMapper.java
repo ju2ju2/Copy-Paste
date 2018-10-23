@@ -29,6 +29,18 @@ public interface EtcMapper {
 	//신고 처리 하기
 	public int updateReport(int reportNum, String reportmemo, String checkCode) throws Exception;
 
+	//노트 블라인드
+	public int updateReportNoteBlind(int noteNum) throws Exception;
+	
+	//노트 블라인드 해제
+	public int updateReportNoteDontBlind(int noteNum) throws Exception;
+	
+	//댓글 블라인드
+	public int updateReportNoteCommBlind(int noteNum) throws Exception;
+	
+	//댓글 블라인드 해제
+	public int updateReportNoteCommDontBlind(int noteNum) throws Exception;
+	
 	//댓글알림
 	public void commAlarm() throws Exception;
 	

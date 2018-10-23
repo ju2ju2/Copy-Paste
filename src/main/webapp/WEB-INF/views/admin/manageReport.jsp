@@ -33,6 +33,8 @@
 				<div class="modal-body">
 					<div class="form-group">
 					<input type="hidden" id="reportNum" name="reportNum">
+					<input type="hidden" id="noteOrCommCode" name="noteOrCommCode">
+					<input type="hidden" id="noteNum" name="noteNum">
 					<br/>
 						<label class="control-label col-sm-2">메모 </label>
 						<textarea rows="15" cols="60" name="reportmemo" id="reportmemo"></textarea>
@@ -143,6 +145,9 @@
 				$('.reportBtn').click(function() {
 					$('#reportNum').val( $(this).parent().parent().children().first().html() );
 					$('#reportmemo').val( $(this).parent().parent().children().last().html() );
+					$('#noteOrCommCode').val( $(this).parent().parent().children().eq(2).html() );
+					$('#noteNum').val( $(this).parent().parent().children().eq(3).html() );
+					
 					
 					if ($(this).parent().parent().children().eq(7).html() == '기각') {
 						$('#checkCode').val('PS00');
@@ -216,6 +221,8 @@
 					$('.reportBtn').click(function() {
 						$('#reportNum').val( $(this).parent().parent().children().first().html() );
 						$('#reportmemo').val( $(this).parent().parent().children().last().html() );
+						$('#noteOrCommCode').val('노트');
+						$('#noteNum').val( $(this).parent().parent().children().eq(3).html() );
 						
 						if ($(this).parent().parent().children().eq(7).html() == '기각') {
 							$('#checkCode').val('PS00');
@@ -280,6 +287,8 @@
 					$('.reportBtn').click(function() {
 						$('#reportNum').val( $(this).parent().parent().children().first().html() );
 						$('#reportmemo').val( $(this).parent().parent().children().last().html() );
+						$('#noteOrCommCode').val('댓글');
+						$('#noteNum').val( $(this).parent().parent().children().eq(3).html() );
 						
 						if ($(this).parent().parent().children().eq(7).html() == '기각') {
 							$('#checkCode').val('PS00');
@@ -301,8 +310,12 @@
 		     dataType:"json",
 		     data: {'reportNum':$("#reportNum").val(),
 		    	 'reportmemo':$("#reportmemo").val(), 
-		    	 'checkCode':$("#checkCode").val()},
+		    	 'checkCode':$("#checkCode").val(),
+		    	 'noteOrCommCode':$("#noteOrCommCode").val(),
+		    	 'noteNum':$("#noteNum").val()
+		    	 },
 		   	 success:function(result){
+		   		  if (result >= 2) { 
    	    	  swal({type: "success",
 				  title: '성공적으로 반영했습니다.',
 	              confirmButtonClass : "btn-danger",
@@ -310,13 +323,25 @@
 				},
 			 function(){
 				location.href="../etc/adminReport.htm";
-			});	 
+			});	
+		   		 } else {
+		   			swal({type: "error",
+						  title: '처리에 실패했습니다.',
+			              confirmButtonClass : "btn-danger",
+						  closeOnConfirm: false
+						});
+		   		 }
 	       },
   			 error:function(request,status,error){
 	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 	  }
 		})
 	})
+	
+	/* $('tr').click(function() {
+		console.log($(this).children.eq(2).html());
+		
+	}) */
 	
 	})
 </script>

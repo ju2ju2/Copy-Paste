@@ -12,6 +12,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import tk.copyNpaste.mapper.EtcMapper;
 import tk.copyNpaste.vo.EtcVO;
@@ -47,9 +48,41 @@ public class EtcService {
 	}
 
 	// 신고 처리 하기
-	public int updateReport(int reportNum, String reportmemo, String checkCode) throws Exception {
-		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
-		return etcdao.updateReport(reportNum, reportmemo, checkCode);
+	@Transactional
+	public int updateReport(int reportNum, String reportmemo, String checkCode,
+			String noteOrCommCode, int noteNum) throws Exception {
+		
+		try {
+			EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
+			int reportInt = etcdao.updateReport(reportNum, reportmemo, checkCode);
+			int noteOrCommInt = 0;
+			if (checkCode.equals("PS01")) {
+				System.out.println("블라인드 도달");
+				if (noteOrCommCode.equals("노트")) {
+					System.out.println("노트 블라인드");
+					noteOrCommInt = etcdao.updateReportNoteBlind(noteNum);
+				} else {
+					System.out.println("댓글 블라인드");
+					noteOrCommInt = etcdao.updateReportNoteCommBlind(noteNum);
+				}
+			} else {
+				System.out.println("블라인드 해제");
+				if (noteOrCommCode.equals("노트")) {
+					System.out.println("노트 블라인드 해제");
+					noteOrCommInt = etcdao.updateReportNoteDontBlind(noteNum);
+				} else {
+					System.out.println("댓글 블라인드 해제");
+					noteOrCommInt = etcdao.updateReportNoteCommDontBlind(noteNum);
+				}
+			}
+			
+			return reportInt+noteOrCommInt;
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
 	}
 
 	// 댓글알림

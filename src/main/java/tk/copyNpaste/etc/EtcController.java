@@ -73,8 +73,15 @@ public class EtcController {
 
 	// 신고 처리 하기
 	@RequestMapping("reportCheck.json")
-	public @ResponseBody int updateReport(int reportNum, String reportmemo, String checkCode) throws Exception {
-		return etcService.updateReport(reportNum, reportmemo, checkCode);
+	public @ResponseBody int updateReport(int reportNum, String reportmemo, String checkCode,
+			String noteOrCommCode, int noteNum) throws Exception {
+		System.out.println("reportNum "+reportNum);
+		System.out.println("reportmemo "+reportmemo);
+		System.out.println("checkCode "+checkCode);
+		System.out.println("noteOrCommCode "+noteOrCommCode);
+		System.out.println("noteNum "+noteNum);
+		
+		return etcService.updateReport(reportNum, reportmemo, checkCode, noteOrCommCode, noteNum);
 	};
 
 	// 댓글알림
