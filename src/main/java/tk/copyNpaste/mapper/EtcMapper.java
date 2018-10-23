@@ -27,10 +27,8 @@ public interface EtcMapper {
 	public List<ReportVO> selectCommReport() throws Exception;
 	
 	//신고 처리 하기
-	public int updateReport(int reportNum) throws Exception;
-	
+	public int updateReport(int reportNum, String reportmemo, String checkCode) throws Exception;
 
-	
 	//댓글알림
 	public void commAlarm() throws Exception;
 	

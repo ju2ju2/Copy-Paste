@@ -47,9 +47,9 @@ public class EtcService {
 	}
 
 	// 신고 처리 하기
-	public int updateReport(int reportNum) throws Exception {
+	public int updateReport(int reportNum, String reportmemo, String checkCode) throws Exception {
 		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
-		return etcdao.updateReport(reportNum);
+		return etcdao.updateReport(reportNum, reportmemo, checkCode);
 	}
 
 	// 댓글알림
