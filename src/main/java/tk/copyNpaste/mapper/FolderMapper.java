@@ -26,10 +26,10 @@ public interface FolderMapper {
 	public int deleteFolder(FolderVO folder) throws Exception;
 	
 	//기본폴더 지정
-	public int setDefaultFolder(String folderName,String userEmail) throws Exception;
+	public int setDefaultFolder(FolderVO folder) throws Exception;
 	
 	//기본폴더 해제
-	public int removeDefaultFolder(String folderName,String userEmail) throws Exception;
+	public int removeDefaultFolder(FolderVO folder) throws Exception;
 	
 	//회원 가입 시 기본폴더 추가
 	public int insertFolderUserDefault(String userEmail)
