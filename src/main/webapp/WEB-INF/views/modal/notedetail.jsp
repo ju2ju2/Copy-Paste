@@ -6,18 +6,22 @@
 		댓글 신고 클릭시 모달창 추가, OK버튼 누를 때 스위트알럳 뜸. 버튼색은 추후 수정 필요.(이주원, 10월 12일)
 		스위트 알럿 cdn방식이 아닌 js와 css를 임포트 하는 방식으로 변경. (이주원, 10월 15일)
 --%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="se"
+	uri="http://www.springframework.org/security/tags"%>
+	<!-- Sweet Alert cdn -->
+		<link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
+		<script type="text/javascript"	src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
+	
+<se:authentication property="name" var="loginuser" />
+<se:authentication property="authorities" var="role" />
 <!-- 신고 모달창에서 ok버튼 눌렀을 때 스윗알럳 띄우기 -->
 <script>
 
 
 	$(document).ready(function() {
-	
-		
 		//노트삭제
 		$('#deleteNoteBtn').click(function(e) {
 			swal({
@@ -119,8 +123,13 @@
 		
 	
 		
+	
+		
+		
+		
 		
 	});
+
 </script>
 <!-- modal-header -->
 <div class="modal-header">
@@ -145,9 +154,8 @@
 	<div class="panel panel-default">
 		<div class="panel-body">
 			<div class="row">
-				<div class="text-right col-sm-1"></div>
 				<!-- 본문 -->
-				<div class="text-left col-sm-10">${note.noteContent}</div>
+				<div class="text-left col-sm-12" id="noteContent">${note.noteContent}</div>
 				<div class="row">
 					<br> <br> <br> <br>
 					<div class="col-sm-9"></div>
@@ -163,53 +171,40 @@
 				</div>
 
 			</div>
+			
 			<!-- modal-footer-->
 			<div class="modal-footer">
 				<div class="panel-footer">
 					<div class="comment-box">
+					<!-- 노트 댓글 리스트 -->
+						<ul id="noteCommList"class="list-unstyled ui-sortable" ></ul>
 
-						<ul data-brackets-id="12674" id="sortable"
-							class="list-unstyled ui-sortable">
-							<c:choose>
-								<c:when test="${empty noteCommList}">
-									<div class="col-lg-12 col-sm-12 text-left">등록된 댓글이 없습니다.
+
+							<!-- 로그인한 회원,어드민들 댓글창 -->
+							<se:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
+							<div class="qnaComm-inputBox input-group">
+								<input type="text" id="userComment"
+									class="form-control input-sm chat-input" placeholder="댓글을 입력하세요" />
+								<span class="input-group-btn commentBtn">
+									<div>
+										<a href="#" class="btn main-btn center-block commentBtn" id="commentBtn">
+											<i class="fas fa-check"></i> Add Comment
+										</a>
 									</div>
-								</c:when>
-								<c:otherwise>
-									<c:forEach var="noteCommList" items="${noteCommList}">
-										<div class="row">
-											<div class="col-lg-12 col-sm-12 text-left">
-												<div class="media-left">
-													<img class="user-photo"
-														src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
-												</div>
-												<div class="media-body">
-													<strong class="pull-left primary-font" id="commWriter">${noteCommList.userNick}</strong>
-													<small> &ensp;${noteCommList.commDate}</small><br> 
-													<small	class="pull-right text-muted"> <span class="">삭제</span>&ensp;
-														<span class="">댓글</span>&ensp; <a href="#" id="commReportForm">신고</a>&ensp;
-													</small>
-													<p id="commContent">${noteCommList.commContent}</p>
-												</div>
-											</div>
-										</div>
-									</c:forEach>
-								</c:otherwise>
-							</c:choose>
-						</ul>
-
-
-						<!-- 댓글입력 -->
-						<div class="input-group">
-							<input type="text" id="userComment"
-								class="form-control input-sm chat-input" placeholder="댓글을 입력하세요" />
-							<span class="input-group-btn" onclick="addComment()">
-								<div>
-									<a href="#" class="btn main-btn center-block" id="commentbtn"><i
-										class="fas fa-check"></i> Add Comment</a>
+								</span>
+							</div>
+							</se:authorize>
+							<!-- 비회원일때 댓글창 -->
+							<se:authorize access="!hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
+								<div class="qnaComm-inputBox input-group">
+									<input type="text" id="userComment" disabled 
+										class="form-control input-sm chat-input" placeholder="로그인 후 이용해주세요" />
 								</div>
-							</span>
-						</div>
+							</se:authorize>
+							</div>
+							
+						
+						
 					</div>		
 					<!-- 닫기버튼 -->
 					<input type="button" class="btn btn-default mr-10" data-dismiss="modal"
@@ -218,7 +213,247 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
-</div>
 
+<script>
+
+$(document).ready(function(){
+	//페이지 로딩시 댓글리스트 출력
+	makeNoteCommList(${note.noteNum})	
+	
+	
+
+
+		
+		//댓글 등록
+		$('.commentBtn').click(function(){
+			$.ajax({
+				url : "<%=request.getContextPath()%>/note/insertNoteComm.json",
+			    type : "post",
+			    data : {
+			    	"CommContent": $('#userComment').val(),
+			    	"noteNum":${note.noteNum}
+			    },
+			    success : function(data){
+					makeNoteCommList(${note.noteNum});
+			    }
+			})
+			    
+		})
+	
+		
+		 
+	 	
+	/* 노트 댓글 조회 */
+	function makeNoteCommList(noteNum) {
+		var userEmail = '${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}';
+		var role='${sessionScope.SPRING_SECURITY_CONTEXT.authentication.authorities}';
+	
+			$.ajax({
+				url : "<%=request.getContextPath()%>/note/selectAllNoteComm.json",
+			    type : "post",
+			    data : {
+			    	"noteNum":noteNum
+			    },
+			    success : function(data){
+			    	  var noteCommList = "";
+			          if(data !=null) {
+			          		$.each(data, function(key, value){
+			          		$('#noteCommList').empty();
+			          		noteCommList += '<div class="col-lg-12 col-sm-12 text-left noteCommList">';
+			          		noteCommList += '	<div class="media-left">';
+			          		noteCommList += '	<img class="user-photo" src="${pageContext.request.contextPath}/resources/image/userPhoto/'+value.userPhoto+'"></div>';
+			          		noteCommList += '		<div class="media-body comment">';
+			          		noteCommList += '          	<strong class="pull-left primary-font" id="commWriter">';
+			          		/* 	대댓글일때 */6
+			          		if(value.commDept==1){
+			          			noteCommList += '							ㄴ';	
+			          		}
+			          		noteCommList += '						'+value.userNick+'</strong>';
+			          		noteCommList += '			          		<small> &ensp;'+value.commDate+'</small><br>';
+			          		noteCommList += '			          		<small class="pull-right text-muted"> ';
+			          		/*  본인이거나 admin일때 삭제버튼  */
+			          		if(value.userEmail==userEmail){
+			          			noteCommList += '							 <a id="noteCommDelete"><i class="fas fa-trash noeCommTrashBtn">';
+				          		noteCommList += '								<input id="noteCommNum" type="hidden" value="'+value.noteCommNum+'" />';
+				          		noteCommList += '							</i></a>';
+				          	}  
+			          		/* 댓글하나일때 노트작성자 대댓글버튼생성 */ 
+			          		if(value.commDept==0 && '${note.userEmail}'==userEmail){
+			          			noteCommList += '					 <a id="noteCommCommBtn"> <i class="fas fa-comment noteCommCommBtn">';
+				          		noteCommList += '						<input id="noteCommNum" type="hidden" value="'+value.noteCommNum+'" />';
+				          		noteCommList += '						<input id="noteCommPos" type="hidden" value="'+value.noteCommPos+'" />';							
+								noteCommList += '					</i></a>&ensp;';
+				          	}  
+			          		
+							noteCommList += '      		 <a id="noteCommReportForm"> <i class="fas fa-flag">';
+			          		noteCommList += '						<input id="noteCommNum" type="hidden" value="'+value.noteCommNum+'" />';
+			          		noteCommList += '						<input id="noteCommPos" type="hidden" value="'+value.noteCommPos+'" />';
+							noteCommList += '			 </i></a>&ensp;';
+							noteCommList += '      		</small>';
+							noteCommList += '   		<!-- 댓글일때 본인이거나 admin일때 대댓글버튼 -->';
+							noteCommList += '    		<div class="noteCommContent">';
+							if(value.commDept==1){
+								noteCommList += '				&ensp;&ensp;';
+				          	}  
+							noteCommList += '			'+value.commContent+' </div>';
+							noteCommList += '		</div>';
+							noteCommList += '	</div>';
+	
+							})
+						if (data.length == 0) {
+							noteCommList += "<div class='text-center'>";
+							noteCommList += "등록된 댓글이 없습니다.";
+							noteCommList += "</div>";
+							}
+						}$('#noteCommList').html(noteCommList);
+						
+						/* 대댓글 */
+						var commCommClickNum = 0;
+						var noteCommNum;
+						var noteCommPos;
+						var commBoxHtml="<div class='noteComm-inputBox input-group'>"
+							+" <input type='text' id='userCommComm' class='form-control input-sm chat-input' style='margin-top:17px;' placeholder='답댓글을 입력하세요' />"
+							+" <span class='input-group-btn' id='commCommbtn'>"
+							+" <div>"
+							+' <button href="#" class="btn main-btn center-block commentBtn" id="commCommentBtn">'
+							+' <i class="fas fa-check"></i> Add Comment'
+							+" </button></div></span></div>";
+							
+					 		/* 대댓글아이콘 클릭시 */
+							$('.noteCommCommBtn').on("click",function() {
+							if(commCommClickNum==0){
+								noteCommNum=$(this).children('#noteCommNum').val();
+								noteCommPos=$(this).children('#noteCommPos').val();
+								commCommClickNum=1;
+								$(this).parents('.comment').append(commBoxHtml);
+							}	
+							
+							/* 대댓글 작성 버튼 클릭시 */
+							$('#commCommentBtn').on("click",  function(){
+								$.ajax({
+									url : "<%=request.getContextPath()%>/note/insertNoteCommComm.json",
+								    type : "get",
+								    data : {    	
+								    	"CommContent": $('#userComment').val(),
+								    	"noteCommContent": $('#userCommComm').val(),
+								    	"noteNum":${note.noteNum},
+								    	"noteCommNum":noteCommNum,
+								    	"noteCommPos":noteCommPos
+								    },
+								    success : function(data){
+								    	commCommClickNum=0;
+								    	qnaCommNum="";
+								    	qnaCommPos="";
+								    	location.reload();
+								    },
+								    error : function(){
+								        	console.log("대댓글 작성 실패");
+								    }
+								});	
+							});
+						}); 
+						/* 대댓글 */
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+				}
+		
+			}).done(function (result){
+				
+			
+			
+			
+			});
+		
+		 
+		 
+		 
+		}
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		<%-- /* 대댓글 작성 버튼 클릭시 */
+		$(document).on("click", "#commCommbtn", function(){
+			console.log(${qna.qnaNum});
+			$.ajax({
+				url : "<%=request.getContextPath()%>/qna/insertQnaCommComm.json",
+			    type : "get",
+			    data : {
+			    	"qnaCommContent": $('#userCommComm').val(),
+			    	"qnaNum":${qna.qnaNum},
+			    	"qnaCommNum":qnaCommNum,
+			    	"qnaCommPos":qnaCommPos
+			    },
+			    success : function(data){
+			    	commCommClickNum=0;
+			    	qnaCommNum="";
+			    	qnaCommPos="";
+			    	location.reload();
+			    },
+			    error : function(){
+			        	console.log("실패");
+			    }
+			});	
+		}); --%>
+	<%-- 	
+		/* 댓글삭제아이콘 클릭시 */
+		$('.qnaCommTrashBtn').click(function() {
+			qnaCommNum=$(this).children('#qnaCommNum').val();
+			qnaCommPos=$(this).children('#qnaCommPos').val();
+			swal({
+				  title: "댓글을 삭제하시겠습니까?",
+				  text: "답댓글이 달려있는 경우 함께 삭제됩니다.",
+				  type: "warning",
+				  confirmButtonClass: "btn-danger",
+				  confirmButtonText: "OK",
+				  showCancelButton: true
+				},
+				function(isConfirm) {
+				  if (isConfirm) {
+					 $.ajax({
+						    url : "<%=request.getContextPath()%>/qna/deleteQnaComm.json",
+						    type : "get",
+						    data : {
+						    	"qnaCommNum":qnaCommNum
+						    },
+						    success : function(data){
+						    	qnaCommNum="";
+						    	location.reload();
+						    },
+						    error : function(){
+						    	swal({
+									  title: "댓글 삭제에 실패하였습니다",
+									  text: "",
+									  type: "warning",
+									  confirmButtonClass: "btn-danger",
+									  confirmButtonText: "OK",
+									  showCancelButton: true
+									});
+						    }
+					});
+				  } 
+				}); 
+		}); 
+		
+		
+	})--%>
+})
+</script>

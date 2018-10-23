@@ -63,6 +63,9 @@ public interface NoteMapper {
 	//노트 댓글 작성
 	public int insertNoteComm(NoteCommVO note) throws Exception;
 		
+	//노트 대댓글 작성
+	public int insertQnaCommComm(NoteCommVO note);
+
 	//노트 댓글 삭제
 	public int deleteNoteComm(int noteCommNum) throws Exception;
 	
@@ -77,6 +80,7 @@ public interface NoteMapper {
 	
 	//노트의 폴더 이동
 	public int moveNoteFolder(NoteVO note) throws Exception;
+
 
 
 	

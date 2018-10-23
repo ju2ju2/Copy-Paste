@@ -12,6 +12,10 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -54,6 +58,13 @@ public class NoteService {
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
 		return notedao.insertNoteComm(note);
 	}
+	//노트 대댓글 작성
+	public int insertQnaCommComm(NoteCommVO note) {
+		NoteMapper notedao=sqlsession.getMapper(NoteMapper.class);
+		 return notedao.insertQnaCommComm(note);
+	}
+	
+	
 	//노트 댓글 삭제
 	public int deleteNoteComm(int noteCommNum) throws Exception{
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
@@ -70,9 +81,18 @@ public class NoteService {
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
 		return notedao.deleteNote(noteNum);
 	}
-	//노트 등록
+	//노트 등록-썸네일 등록
 	public int insertNote(NoteVO note) throws Exception{
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
+		String NoteContent = note.getNoteContent();
+		Document doc = Jsoup.parseBodyFragment(NoteContent);
+		Elements imgs = doc.getElementsByTag("img");
+		if(imgs.size() > 0) { 
+			String src = imgs.get(0).attr("src"); 
+			note.setNoteThumnail(src);
+		} else { note.setNoteThumnail(
+				"https://d1u1amw606tzwl.cloudfront.net/assets/users/avatar-default-96007ee5610cdc5a9eed706ec0889aec2257a3937d0fbb747cf335f8915f09b2.png");
+		}
 		return notedao.insertNote(note);
 	}
 	//노트 주제 조회
@@ -135,6 +155,7 @@ public class NoteService {
 			
 		 return notedao.moveNoteFolder(note);
 	}
+
 	
 	
 

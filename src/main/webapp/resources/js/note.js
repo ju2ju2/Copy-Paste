@@ -188,7 +188,7 @@ $(function() {
 
 	    //노트 정렬 
 	 $('#sort-category').on("change",function(e) {
-		 alert($('#sort-category option:selected').val())
+		 alert($('#sort-category option:selected').val());
 	  	$.ajax({
 	        url: "../note/selectOrderbyNote.json", // url_pettern 
 	        type:"post",
@@ -260,6 +260,12 @@ $(function() {
 	 
 	 
 	 
+	 
+	 
+
+	 
 });
+
+
 
 
