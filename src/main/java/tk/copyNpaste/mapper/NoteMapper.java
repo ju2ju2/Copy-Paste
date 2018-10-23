@@ -78,6 +78,8 @@ public interface NoteMapper {
 	//노트의 폴더 이동
 	public int moveNoteFolder(NoteVO note) throws Exception;
 
+	// MY NOTE → 노트 폴더별 조회
+	public List<NoteVO> selectNoteByFolder(NoteVO note) throws Exception;
 
 	
 
