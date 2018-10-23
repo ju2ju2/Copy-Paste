@@ -157,6 +157,12 @@
 						$('#checkCode').val('PS02');
 					}
 				});
+				
+				$('tr').click(function() {
+					console.log($(this).children().eq(2).html());
+					console.log($(this).children().eq(3).html());
+					
+				});
 			}
 		});
 		
@@ -337,11 +343,6 @@
 	  }
 		})
 	})
-	
-	/* $('tr').click(function() {
-		console.log($(this).children.eq(2).html());
-		
-	}) */
-	
+
 	})
 </script>
