@@ -323,6 +323,8 @@ function validate(){
 				console.log(error.status);
         }
      });
+		
+	 })
 
   //회원가입 
    $('#join').click(function(e){      
@@ -352,8 +354,7 @@ function validate(){
             console.log(error);
             console.log(error.status);
         }
-     });
-
+     })
    }) 
 
   	
