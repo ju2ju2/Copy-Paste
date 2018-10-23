@@ -36,6 +36,21 @@
 	<!-- 드래그 달력 검색 selectByCalDrag-->
 	
 	<!-- 드래그 키워드 검색 selectByKeyDrag -->
+	<select id="selectByKeyDrag"  parameterType="hashmap" resultType="DragVO">
+  	select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate from drag
+	where userEmail = #{userEmail} and 
+		  (dragText like CONCAT('%',#{keyword},'%') or 
+		  dragOrigin like CONCAT('%',#{keyword},'%') or 
+		  dragDate like CONCAT('%',#{keyword},'%'))
+			order by dragNum desc;
+	</select>
+	
+		<!-- 드래그 정렬 -->
+	<select id="selectOrderbyDrag" resultType="DragVO">
+	select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate
+		from drag where userEmail = #{userEmail} order by #{sortCategory} 
+	</select>	
+	
 	
 	<!-- 드래그 중요표시 등록 setDragMark-->
 	<update id="setDragMark">

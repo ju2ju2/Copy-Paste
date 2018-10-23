@@ -8,6 +8,7 @@ package tk.copyNpaste.drag;
 
 import java.security.Principal;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import tk.copyNpaste.vo.DragVO;
+
 
  //동기 컨트롤러. retrun>> ModelAndView or String.
 //@RestController //비동기 컨트롤러. retrun>> json.
@@ -67,6 +69,8 @@ public class DragController {
 	//드래그 삭제
 	@RequestMapping(value="deleteDrag.json")
 	public @ResponseBody int deleteDrag(int dragNum) throws Exception {
+	
+		System.out.println("삭제 컨트롤러");
 		return dragservice.deleteDrag(dragNum);
 	}
 	
@@ -76,12 +80,25 @@ public class DragController {
 	}
 	
 	
-/*	//드래그 키워드 검색 dragSearch.json
-	@RequestMapping(value="dragSearch.json")
-	public @ResponseBody List<DragVO>  selectByKeyDrag(String keyword , Model model) throws Exception {
-		List<DragVO> dragList = dragservice.selectByKeyDrag(keyword);
-		model.addAttribute("dragList", dragList);
-		return ;*/
+	//드래그 키워드 검색 dragSearch.json
+	@RequestMapping(value="selectByKeyDrag.json")
+	public @ResponseBody List<DragVO>  selectByKeyDrag(String keyword,Principal principal) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("keyword", keyword);
+		map.put("userEmail", principal.getName());
+		  
+		return dragservice.selectByKeyDrag(map);		
+	}
+	
+	
+	// 드래그 정렬
+		@RequestMapping(value="selectOrderbyDrag.json")
+		public @ResponseBody List<DragVO> selectOrderbyNote(String sortCategory,Principal principal) throws Exception {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("sortCategory", sortCategory);
+			map.put("userEmail", principal.getName());
+			return dragservice.selectOrderbyDrag(map);
+		}
 	
 	//드래그 중요표시 등록
 	@RequestMapping(value="setDragMark.json")

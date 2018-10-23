@@ -7,7 +7,9 @@
 package tk.copyNpaste.drag;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -15,7 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tk.copyNpaste.mapper.DragMapper;
+import tk.copyNpaste.mapper.NoteMapper;
 import tk.copyNpaste.vo.DragVO;
+import tk.copyNpaste.vo.NoteVO;
 
 
 @Service
@@ -57,9 +61,16 @@ public class DragService {
 	}
 	
 	//드래그 키워드 검색
-	public List<DragVO> selectByKeyDrag(String keyword) throws Exception {
+	public List<DragVO> selectByKeyDrag(HashMap<String, Object> map) throws Exception {
+		List<DragVO> list = new ArrayList<DragVO>();
 		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
-		return dragdao.selectByKeyDrag(keyword);
+		return dragdao.selectByKeyDrag(map);
+	}
+	
+	//드래그 정렬
+	public List<DragVO> selectOrderbyDrag(HashMap<String, Object> map) throws Exception{
+		DragMapper notedao = sqlsession.getMapper(DragMapper.class);
+		return notedao.selectOrderbyDrag(map);
 	}
 	
 	//드래그 중요표시 등록
@@ -75,5 +86,5 @@ public class DragService {
 		return dragdao.removeDragMark(dragNum);
 	}
 
-	
+
 }
