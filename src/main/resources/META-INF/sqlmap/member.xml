@@ -45,11 +45,10 @@
 	<!-- 내 정보 보기 -->
 	<select id="selectSearchMemberByEmail" parameterType="String" resultType="MemberVO">
 		select userEmail, userNick, userPhoto from users 
-			<where>
-				<if test='value != null'>
-					userEmail=#{userEmail}
-				</if>
-			</where> 
+			<if test='value != null'>
+					where userEmail=#{userEmail}
+			</if>
+
 	</select>
     
 	<!-- 회원정보 보기 -->
