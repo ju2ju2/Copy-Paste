@@ -125,8 +125,10 @@ public class MemberController {
 
 	
 	//회원 삭제
-	public void deleteMember(String userEmail) throws Exception{
-		
+	@RequestMapping(value="deleteMember.do", method = RequestMethod.POST)
+	public @ResponseBody int deleteMember(String userEmail) throws Exception{
+		int result = memberService.deleteMember(userEmail);
+		return result;
 	};
 	
 	

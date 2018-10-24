@@ -24,7 +24,9 @@
       					username-parameter="userEmail" password-parameter="userPwd" 
       						/> 			
 	<security:logout logout-success-url="/index.htm" 
-					 invalidate-session ="true"/>	
+					 invalidate-session ="true"
+					 delete-cookies="JSESSIONID"/>	
+	
 	
 	<security:intercept-url pattern="/login.htm" access="permitAll" />
 	<security:intercept-url	pattern="/signup.htm" access="permitAll" />
@@ -40,8 +42,13 @@
 	<security:authentication-provider>
 		<!-- db연결객체 참조 -->
 		<security:jdbc-user-service data-source-ref="dataSource"
-			users-by-username-query="select userEmail, userPwd, 1 enabled from users where userEmail=?"
-			authorities-by-username-query="select u.userEmail, r.rollCode 
+			users-by-username-query="select userEmail, userPwd, CASE
+      													WHEN userEnabled=1 THEN '1'
+       													ELSE '0'
+      													END AS enabled
+       								FROM users where userEmail=?"
+       								
+			authorities-by-username-query="select u.userEmail, r.rollCode
 											from users as u 
 											join rolls as r 
 											on u.userEmail = r.userEmail 

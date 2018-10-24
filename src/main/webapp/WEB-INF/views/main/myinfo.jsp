@@ -41,15 +41,15 @@
 					</div>
 				</div>
 					<div class="form-group">
-					<label class="control-label col-sm-5">닉네임 <span
-						class="text-danger"></span></label>
+					<label class="control-label col-sm-5">닉네임 <span class="text-danger"></span></label>
 						<div class="col-lg-3 col-sm-4">
-						<div >
-							<input type="text" class="form-control" name="userNick"
+							<div>
+								<input type="text" class="form-control" name="userNick"
 								id="userNick">
+							</div>
 						</div>
-					</div>
-					 <button type="button" class="btn">&ensp;중복확인&ensp;</button>
+						<div class="col-sm-4"></div>
+					 <div class="col-sm-12 text-center"><div id="userNickMessage" class="mt-10"></div></div>
 				</div>
 				
 				
@@ -75,7 +75,8 @@
 				</div>
 			
 				<div class="social-btn text-center">
-				&nbsp;<a href="#" class="btn btn-primary ">정보수정 </a>&nbsp;<a href="#" class="btn btn-danger ">회원탈퇴 </a>
+				&nbsp;<button type="button" class="btn btn-primary" id="infoUpdate">정보수정 </button>
+				&nbsp;<button type="button" class="btn btn-danger" id="deleteMember">회원탈퇴</button>
 		  		</div>
 			<br>
 			</form>
@@ -85,22 +86,137 @@
 </div>
 
 <script type="text/javascript">
+var userPhoto; //회원 프로필 사진
+var userNick; //회원 닉네임
+var nickDupCheck; //닉네임 중복 진행했는지 확인하는 변수
+var userEmail; //회원 이메일 담는 변수
 
+//회원 정보 뿌리기
 $.ajax({
 	type : 'post',
 	url : '${pageContext.request.contextPath}/member/myinfo.do',
 	success : function(data) {
-		var userPhoto = data.userPhoto; 
+		userPhoto = data.userPhoto; 
+		userNick = data.userNick;
+		userEmail = data.userEmail;
 		$('#userEmail').val(data.userEmail);
-		$('#userNick').val(data.userNick);
-		/* $('#beforUserPhoto').attr("src", attr("src", "${pageContext.request.contextPath}/resources/image/userPhoto/" + userPhoto); */
-		},
+		$('#userNick').val(userNick);
+		$('#beforUserPhoto').attr("src", "${pageContext.request.contextPath}/resources/image/userPhoto/" + userPhoto);
+		}
+		
+	,
 	error : function(error) {
 		console.log(error);
 		console.log(error.status);
 		}
 	})
 	
+//닉네임 중복확인
+	$('#userNick').keyup(function(){
+		if ($('#userNick').val() == ''){
+			$('#userNickMessage').text("사용할 닉네임을 입력해 주세요");
+		} else {
+			$.ajax({
+				type : 'post',
+				url : '${pageContext.request.contextPath}/member/checkUserNick.do',
+				data : {userNick:$('#userNick').val()},
+           	 	success : function(data) {
+            		if ($('#userNick').val()==userNick){
+            			$('#userNickMessage').addClass("successMessage")
+            			$('#userNickMessage').text("사용 가능한 닉네임입니다.");
+        				nickDupCheck = 'ok';
+            		}else {
+            			if (data > 0 ) {
+                			$('#userNickMessage').addClass("failMessage")
+                			$('#userNickMessage').text("이미 사용 중인 닉네임입니다.");
+                			nickDupCheck = ''
+                		} else {
+                			$('#userNickMessage').addClass("successMessage")
+                			$('#userNickMessage').text("사용 가능한 닉네임입니다.");
+            				nickDupCheck = 'ok';
+               		 }
+            		}
+            	},
+            error : function(error) {
+				swal("٩(இ ⌓ இ๑)۶", "잠시 후 다시 시도해 주세요.", "error");
+				console.log(error);
+				console.log(error.status);
+            }
+         });
+		}
+	});
+	
+
+$('#infoUpdate').click(function(){
+
+	infoUpdateVali();
+	
+    var form = $('form')[0];
+    //FormData parameter에 담아줌
+    var formData = new FormData(form);
+	
+	swal({
+		  title: "An input!",
+		  text: "Write something interesting:",
+		  type: "input",
+		  showCancelButton: true,
+		  closeOnConfirm: false,
+		  inputPlaceholder: "Write something"
+		}, function (inputValue) {
+		  if (inputValue === false) return false;
+		  if (inputValue === "") {
+		    swal.showInputError("You need to write something!");
+		    return false
+		  }
+		  swal("Nice!", "You wrote: " + inputValue, "success");
+		});
+})
+		
+	
+//정보 수정 유효성 체크
+function infoUpdateVali(){
+if ($('#userNick').val() != userNick){
+	if (nickDupCheck != 'ok' || userNick != $('#userNick').val()) {
+  		swal("٩(இ ⌓ இ๑)۶", "사용할 수 없는 닉네임입니다.", "error");
+  		return false;
+		}
+	}
+}
+
+//회원탈퇴
+$('#deleteMember').click(function(){
+    $.ajax({
+        type : 'post',
+        url :  '${pageContext.request.contextPath}/member/deleteMember.do',
+        data: {userEmail:userEmail},
+        beforeSend: function (){
+        			swal({
+        				  title: "٩(இ ⌓ இ๑)۶",
+        				  text: "회원 탈퇴를 진행하시겠습니까? 작성한 노트와 댓글은 삭제되지 않으며, 동일한 Email로는 재가입이 불가능합니다.",
+						  type: "warning",
+        		 		  showCancelButton: true,
+        		 		  confirmButtonClass: "btn-danger",
+        		 		  confirmButtonText: "탈퇴 진행",
+        		 		  closeOnConfirm: false
+        					})
+       	 					},
+        success : function(data) {
+				  swal({type: "success",
+				  title: '회원 탈퇴가 완료 되었습니다.',
+	              confirmButtonClass : "btn-danger",
+				  closeOnConfirm: false
+			},
+			function(){
+				location.href="${pageContext.request.contextPath}/login.htm";
+			});	
+	       },
+          error : function(error) {
+           swal("٩(இ ⌓ இ๑)۶", "에러가 발생했습니다.", "error");
+           console.log(error);
+           console.log(error.status);
+       }
+    })
+})
 
 
 </script>
