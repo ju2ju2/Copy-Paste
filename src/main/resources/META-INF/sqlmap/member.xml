@@ -62,7 +62,9 @@
 	</update>
 	
 	<!-- 회원 삭제 -->
-    
+    <update id="deleteMember" parameterType="String">
+    	update users set userEnabled = 0 where userEmail=#{userEmail}
+    </update>
 
 </mapper>
 

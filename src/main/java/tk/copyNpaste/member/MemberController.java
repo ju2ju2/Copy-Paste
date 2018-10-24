@@ -8,6 +8,7 @@
 
 package tk.copyNpaste.member;
 
+import java.io.PrintWriter;
 import java.security.Principal;
 import java.util.List;
 
@@ -39,10 +40,8 @@ public class MemberController {
 	 @RequestMapping(value="singupEmail.do", method = RequestMethod.POST)
 	 public @ResponseBody String sendSingupEmail(String mailto) throws Exception {
 		//벨로시티 회원가입 인증메일전송
-		System.out.println("1컨트롤러 들어감");
 		String randomNum = mailer.sendMail(mailto, "singupEmail.do");// 회원가입 메일발송
 		/*System.out.println("randomNum>>"+randomNum);*/
-		System.out.println("4서비스 갔다 온 컨트롤러");
 		return randomNum;
 	}
 	 
@@ -68,6 +67,7 @@ public class MemberController {
 		return result;
 	};
 	
+
 	//회원가입 + 회원가입시 미분류,스크랩 폴더 부여
 	@RequestMapping(value="signup.do", method = RequestMethod.POST)
     public @ResponseBody int insertMember(MemberVO member, MultipartHttpServletRequest request) 
@@ -125,8 +125,9 @@ public class MemberController {
 
 	
 	//회원 삭제
-	public void deleteMember(String userEmail) throws Exception{
-		
+	@RequestMapping(value="deleteMember.do", method = RequestMethod.POST)
+	public @ResponseBody void deleteMember(String userEmail) throws Exception{
+		memberService.deleteMember(userEmail);
 	};
 	
 	

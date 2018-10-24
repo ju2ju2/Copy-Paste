@@ -135,6 +135,15 @@ public class NoteController {
 		return noteService.selectByFolderNote(note);
 	}
 	
+	// MY NOTE → 노트 폴더별 조회
+	@RequestMapping(value = "selectNoteByFolder.json")
+	public @ResponseBody List<NoteVO> selectNoteByFolder(NoteVO note,Principal principal) throws Exception {
+		note.setUserEmail(principal.getName());
+		System.out.println("폴더명 : " + note.getFolderName());
+		System.out.println("유저명 : " + note.getUserEmail());
+		return noteService.selectNoteByFolder(note);
+	}
+	
 	// 노트 정렬
 	@RequestMapping(value="selectOrderbyNote.json")
 	public @ResponseBody List<NoteVO> selectOrderbyNote(String sortCategory,Principal principal) throws Exception {

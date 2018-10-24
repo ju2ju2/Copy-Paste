@@ -53,6 +53,7 @@
 		<beans:property name="prefix" value="/WEB-INF/views/modal/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
+	
 
 	<!-- 트랜잭션 처리	-->
 	<beans:bean id="transactionManager"	class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

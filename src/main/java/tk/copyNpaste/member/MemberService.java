@@ -64,9 +64,9 @@ public class MemberService {
 		String userPhoto = "userProfile.png"; //프로필 사진 미업로드 시 기본 파일명
     	String userPhotoName = ""; //DB에 들어갈 파일명(이메일 + 파일명)
     	String userEmail = member.getUserEmail();
-    	
+    	    	
     	MultipartFile userPhotoFile = request.getFile("userPhotoFile");
-   
+       	
     	String originFileName = userPhotoFile.getOriginalFilename(); // 원본 파일 명
     	
     	long fileSize = userPhotoFile.getSize(); // 파일 사이즈
@@ -94,6 +94,7 @@ public class MemberService {
 			System.out.println("에러" + e.getMessage());		
 			throw e; // 예외 발생 시기면 : 자동 rollback
 		}
+
 		return 1;
 	}
 	
@@ -135,9 +136,9 @@ public class MemberService {
 
 	
 	//회원 비활성하기>>update
-	public int deleteMember(String userEmail) throws Exception{
+	public void deleteMember(String userEmail) throws Exception{
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
-		return memberdao.deleteMember(userEmail);
+		memberdao.deleteMember(userEmail);
 	}
 	
 }

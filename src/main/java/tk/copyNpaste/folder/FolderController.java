@@ -57,7 +57,14 @@ public class FolderController {
 	@RequestMapping(value="/updatefolder.json")
 	public @ResponseBody void updateFolder(FolderVO folder, Principal principal) throws Exception {
 		folder.setUserEmail(principal.getName());
-		folderService.updateFolder(folder);
+		int count = folder.getCount();
+		System.out.println("폴더에 등록된 게시글 개수 : " + folder.getCount());
+		if(count > 0) {
+			folderService.updateFolder(folder);
+		}else {
+			folderService.updateFolder2(folder);
+		}
+		
 	};
 	
 	//폴더 삭제

@@ -95,7 +95,7 @@
 				
 				<div class="form-group">
                   <label class="checkbox text-center">
-    			<input type="checkbox" value="remember-me" id="userCheck"><a href="" >이용약관</a>에 동의합니다.</label>
+    			<input type="checkbox" value="remember-me" id="userCheck"><a ="" >이용약관</a>에 동의합니다.</label>
     			</div>
 			
 				<div class="form-group">
@@ -116,6 +116,9 @@
 	<br>	<br>	<br>
 </div>
 
+
+
+
 <script type="text/javascript">
 	var mailtoNum; //인증번호 담는 변수
 	var mailCheck; //메일 인증 진행했는지 확인하는 변수
@@ -123,15 +126,12 @@
 	var nickDupCheck; //닉네임 중복 진행했는지 확인하는 변수
 	var writtenMail; //회원이 입력한 메일주소
 	var writtenNick //회원이 입력한 닉네임
+	var signUpComplete; //회원가입 완료했는지 확인하는 변수
 	
 	//인증메일 발송
 	$('#mailtoBtn').click(function(){
 		$('#userMailToMessage').addClass("failMessage")
 		$('#userMailToMessage').text("메일이 전송되는데 1분 정도 소요될 수 있습니다.");
-		if (mailDupCheck != 'ok'){
-			$('#userMailToMessage').addClass("failMessage")
-			$('#userMailToMessage').text("아직 이메일 중복확인이 되지 않았습니다.");
-		} else{
 			$.ajax({
 				type : 'post',
 				url : '${pageContext.request.contextPath}/member/singupEmail.do',
@@ -141,16 +141,15 @@
 						writtenMail = $('#mailto').val();
 						console.log("인증번호:"+mailtoNum);
 						$('#userMailToMessage').addClass("successMessage")
-	            		
-         	   },
-          	  error : function(error) {
+						$('#userMailToMessage').text("이메일 인증을 위한 메일이 발송 되었습니다.");
+				},
+				error : function(error) {
 					swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 확인해 주세요.", "error");
 					console.log(error);
 					console.log(error.status);
-            }
+           		 }
          });
-		}
-	});
+		})
 	
 	//이메일 인증 번호 확인
 	$('#authnum').keyup(function(){
@@ -163,7 +162,6 @@
         		$('#userMailToMessage').text("인증번호가 일치 하지 않습니다.");
 			}
 	});
-
 
 	//비밀번호 확인
  	$('#cuserPwd').keyup(function(){
@@ -183,8 +181,7 @@
 		if (regexp.test(v)) {
 			$('#userPwdMessage').addClass("successMessage")
 			$('#userPwdMessage').text("사용 가능한 비밀번호 입니다.");
-
-			
+	
 			/* $(this).val(v.replace(regexp, '')); */
 			}else{
 
@@ -194,7 +191,6 @@
 	})
 
 	
-
 	//이메일 형식 검사 + 중복확인
 	$('#mailto').keyup(function(){
 		regexp =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -225,8 +221,7 @@
 				$('#userEmailMessage').addClass("failMessage")
 				$('#userEmailMessage').text("이메일 형식으로 입력해주세요");
 			}
-		
-		
+
 	});
 
 	//닉네임 중복확인
@@ -256,11 +251,45 @@
          });
 		}
 	});
-	
-	
-	//유효성 체크
-  	$('#join').click(function(){
-  		if ($('#mailto').val() == ''){
+			
+  //회원가입 
+   $('#join').click(function(e){   
+ 
+       var form = $('form')[0];
+       //FormData parameter에 담아줌
+       var formData = new FormData(form);
+
+      $.ajax({
+         type : 'post',
+         data: formData, 
+         enctype: 'multipart/form-data',
+         processData : false,
+         contentType : false,
+         url :  '${pageContext.request.contextPath}/member/signup.do',
+         beforeSend: function (){
+        	 					signupVali();
+        	 					},
+         success : function(data) {
+				  swal({type: "success",
+				  title: '성공적으로 가입되었습니다.',
+	              confirmButtonClass : "btn-danger",
+				  closeOnConfirm: false
+			},
+			function(){
+				location.href="${pageContext.request.contextPath}/login.htm";
+			});	
+	       },
+           error : function(error) {
+            swal("٩(இ ⌓ இ๑)۶", "에러가 발생했습니다.", "error");
+            console.log(error);
+            console.log(error.status);
+        }
+     })
+   }) 
+
+//유효성 체크
+ function signupVali(){
+  	if ($('#mailto').val() == ''){
   			swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 입력해 주세요", "error");
   	    	$('#mailto').focus();
   	    	return false;
@@ -271,7 +300,7 @@
 				return false;
   			} else {
   				if (nickDupCheck != 'ok' || writtenNick != $('#userNick').val()) {
-  					swal("٩(இ ⌓ இ๑)۶", "닉네임 중복확인을 진행해 주세요.", "error");
+  					swal("٩(இ ⌓ இ๑)۶", "사용할 수 없는 닉네임입니다.", "error");
   					return false;
   				} else {
   					if($('#userPwd').val().length < 6 ){
@@ -288,7 +317,6 @@
 							return false;
   						} else {
   							if ($('#userCheck').is(":checked")) {
-  								/* swal("୧༼ ヘ ᗜ ヘ ༽୨", "회원가입이 완료되었습니다.\n로그인 페이지로 이동합니다.", "success"); */
   							} else {
   								swal("٩(இ ⌓ இ๑)۶", "이용약관에 동의해 주세요.", "error");
 								return false;
@@ -298,43 +326,6 @@
   				}
   			}
   		}
-  		
-  	})
-
-  //회원가입 
-   $('#join').click(function(e){      
-       var form = $('form')[0];
-       //FormData parameter에 담아줌
-       var formData = new FormData(form);
-
-      $.ajax({
-         type : 'post',
-         data: formData, 
-         enctype: 'multipart/form-data',
-         processData : false,
-         contentType : false,
-         url :  '${pageContext.request.contextPath}/member/signup.do',
-         success : function(data) {
-	    	  swal({type: "success",
-				  title: '성공적으로 가입되었습니다.',
-	              confirmButtonClass : "btn-danger",
-				  closeOnConfirm: false
-			},
-			function(){
-				location.href="${pageContext.request.contextPath}/login.htm";
-			});	
-	       },
-           error : function(error) {
-            swal("٩(இ ⌓ இ๑)۶", "에러가 발생했습니다.", "error");
-            console.log(error);
-            console.log(error.status);
-        }
-     });
-
-   }) 
-     
-  	
-  	
-  	
+  	} 
   	
 </script>
