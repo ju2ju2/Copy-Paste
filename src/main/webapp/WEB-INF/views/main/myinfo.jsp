@@ -184,7 +184,7 @@ if ($('#userNick').val() != userNick){
 }
 
 //회원탈퇴
-$('#deleteMember').click(function(){
+/* $('#deleteMember').click(function(){
     $.ajax({
         type : 'post',
         url :  '${pageContext.request.contextPath}/member/deleteMember.do',
@@ -201,6 +201,7 @@ $('#deleteMember').click(function(){
         					})
        	 					},
         success : function(data) {
+        	sessionStorage.removeItem('itemName');
 				  swal({type: "success",
 				  title: '회원 탈퇴가 완료 되었습니다.',
 	              confirmButtonClass : "btn-danger",
@@ -217,6 +218,6 @@ $('#deleteMember').click(function(){
        }
     })
 })
-
+ */
 
 </script>
