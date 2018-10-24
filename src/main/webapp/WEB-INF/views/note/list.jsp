@@ -27,7 +27,7 @@
 				<div class="text-center">
 					<!-- a HTML (to Trigger Modal) -->
 					<a data-toggle="modal"
-						href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum=${noteList.noteNum}"
+						href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum=${noteList.noteNum}&cmd=mynote"
 						data-target="#modal-testNew" role="button" data-backdrop="static">
 						<div class="item">
 							<img class="img-rounded"
@@ -46,7 +46,6 @@
 			</div>
 				</c:forEach>
 		</div>
-			<!-- my note 클릭하자마자 미분류 뿌려줌? -->
 	</div>
 	<br>
 

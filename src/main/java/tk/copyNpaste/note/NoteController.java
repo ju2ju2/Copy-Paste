@@ -203,6 +203,26 @@ public class NoteController {
 		return noteService.removeScrapNote(userEmail);
 	}
 
+	// 노트 댓글 조회-비동기
+	@RequestMapping(value="selectAllNoteComm.json")
+	public @ResponseBody List<NoteCommVO> selectAllNoteComm(int noteNum, Principal principal) throws Exception {
+		return noteService.selectAllNoteComm(noteNum);
+	}
+
+	// 노트 댓글 작성-비동기
+	@RequestMapping(value="insertNoteComm.json")
+	public @ResponseBody List<NoteCommVO> insertNoteComm(NoteCommVO note, int noteNum, Principal principal) throws Exception {
+		note.setUserEmail(principal.getName());//로그인한 사용자 ID
+		noteService.insertNoteComm(note);
+		return noteService.selectAllNoteComm(noteNum);
+	}
+
+	// 노트 대댓글 작성-비동기
+	@RequestMapping(value="insertNoteCommComm.json")
+	public @ResponseBody int insertNoteCommComm(NoteCommVO note, int noteNum, Principal principal) throws Exception {
+		note.setUserEmail(principal.getName());//로그인한 사용자 ID
+		return noteService.insertNoteCommComm(note);
+	}
 	// 노트 댓글 작성-비동기
 		public void insertNoteComm(NoteCommVO note, Principal principal) throws Exception {
 			note.setUserEmail(principal.getName());//로그인한 사용자 ID
@@ -241,3 +261,6 @@ public class NoteController {
 	
 	
 }
+
+
+

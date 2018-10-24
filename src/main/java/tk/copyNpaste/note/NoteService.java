@@ -54,6 +54,13 @@ public class NoteService {
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
 		return notedao.insertNoteComm(note);
 	}
+	
+	//노트 대댓글 작성
+	public int insertNoteCommComm(NoteCommVO note) throws Exception {
+		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
+		return notedao.insertNoteCommComm(note);
+	}
+	
 	//노트 댓글 삭제
 	public int deleteNoteComm(int noteCommNum) throws Exception{
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
@@ -157,6 +164,7 @@ public class NoteService {
 		List<NoteVO> notelist = notedao.selectNoteByFolder(note);
 		return notelist;
 	}
+
 	
 
 	/*	for (NoteVO note: notelist ) {

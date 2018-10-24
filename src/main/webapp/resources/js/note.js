@@ -34,26 +34,7 @@ $(function() {
 			
 		}	
 
-		  // noteDiv들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
-	    $('.noteDiv').draggable({
-	    	revert: true, 
-	    	 revertDuration: 200,
-	    	 snapMode: "inner",
-	    	 scroll: true,
-	    	 scrollSensitivity: 100 ,
-	    	 scrollSpeed: 100
-	    	});
-	     // 노트를 드랍하여 삭제 메소드 
-	    $("#droppable").droppable({
-	        activeClass:"ui-state-active",
-	        accept:".noteDiv",
-	        drop: function(event,ui) {
-	        	var noteNum = $(this).find('#noteNum').val()
-	        	alert($(this).find('#noteNum').val())
-	        	//deleteNote(noteNum)
-	         }     
-	      });  
-    
+	
 
    //노트목록
 	$.ajax({
@@ -261,5 +242,6 @@ $(function() {
 	 
 	 
 });
+
 
 
