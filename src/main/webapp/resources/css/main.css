@@ -719,12 +719,22 @@ img .user-photo{
 
 
 /* 회원가입 시 css */
-#userPwdMessage {
+/* #userPwdMessage {
 	height: 1.5rem !important;
 	color: #f56a6a;
 	margin-bottom: 2rem;
 }
-
+ */
+.failMessage {
+	height: 1.5rem !important;
+	color: #f56a6a !important;
+	margin-bottom: 2rem;
+}
+.successMessage{
+	height: 1.5rem !important;
+	color: #008080;
+	margin-bottom: 2rem;
+}
 .noresize {
   resize: none; /* 사용자 임의 변경 불가 */
 }
@@ -770,3 +780,4 @@ img .user-photo{
   text-decoration: none;
   box-shadow: 0 0 10px black;
 }
+

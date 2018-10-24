@@ -21,7 +21,7 @@
 						<div>
 							<div class="col-sm-3 pr-0 pl-0" >
 								<div class="imgfile" style="width:92.5px;height:92.5px;"><img style="height: 100%;width: 100%" class="img-responsive user-photo img-rounded" 
-              						src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" ></div>				
+              						id="beforUserPhoto" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" ></div>				
            					</div>
            				<input type="file" class="userPhoto" name="userPhoto" id="userPhoto" 
 								aria-describedby="file_upload" accept="image/*">
@@ -35,9 +35,8 @@
 					<label class="control-label col-sm-5">Email ID <span class="text-danger"></span></label>
 					<div class="col-lg-3 col-sm-4">
 						<span><!-- class="input-group" -->
-							<input type="email" class="form-control" name="emailid"
-								id="emailid" placeholder="admin@admin.com" required
-								autofocus value="" readonly>
+							<input type="email" class="form-control" name="userEmail"
+								id="userEmail" readonly>
 						   </span>
 					</div>
 				</div>
@@ -46,8 +45,8 @@
 						class="text-danger"></span></label>
 						<div class="col-lg-3 col-sm-4">
 						<div >
-							<input type="text" class="form-control" name="nickname"
-								id="nickname" placeholder="사용할 닉네임을 입력해주세요." value="">
+							<input type="text" class="form-control" name="userNick"
+								id="userNick">
 						</div>
 					</div>
 					 <button type="button" class="btn">&ensp;중복확인&ensp;</button>
@@ -59,9 +58,8 @@
 						class="text-danger"></span></label>
 					<div class="col-lg-3 col-sm-4">
 						<div >
-							<input type="password" class="form-control" name="password"
-								id="password" placeholder="6자리 이상 입력해주세요."
-								value="">
+							<input type="password" class="form-control" name="userPwd"
+								id="userPwd">
 						</div>
 					</div>
 				</div>
@@ -70,8 +68,8 @@
 						class="text-danger"></span></label>
 					<div class="col-lg-3 col-sm-4">
 						<div >
-							<input type="password" class="form-control" name="cpassword"
-								id="cpassword" placeholder="비밀번호를 확인 해주세요." value="">
+							<input type="password" class="form-control" name="cuserPwd"
+								id="cuserPwd">
 						</div>
 					</div>
 				</div>
@@ -86,3 +84,23 @@
 	<br>	<br>	<br>
 </div>
 
+<script type="text/javascript">
+
+$.ajax({
+	type : 'post',
+	url : '${pageContext.request.contextPath}/member/myinfo.do',
+	success : function(data) {
+		var userPhoto = data.userPhoto; 
+		$('#userEmail').val(data.userEmail);
+		$('#userNick').val(data.userNick);
+		/* $('#beforUserPhoto').attr("src", attr("src", "${pageContext.request.contextPath}/resources/image/userPhoto/" + userPhoto); */
+		},
+	error : function(error) {
+		console.log(error);
+		console.log(error.status);
+		}
+	})
+	
+
+
+</script>

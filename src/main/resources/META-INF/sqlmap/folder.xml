@@ -13,7 +13,11 @@
 <mapper namespace="tk.copyNpaste.mapper.FolderMapper">
 	<!-- 폴더 목록  -->
 	<select id="selectAllFolder" resultType="FolderVO" >
-		select folderName, defaultFolder from folder where userEmail = #{userEmail} order by defaultFolder desc;
+		select count(n.noteNum) as count, f.folderName, f.defaultFolder, f.candelete
+		from folder f left join note n on f.folderName=n.folderName and f.userEmail=n.userEmail 
+		where f.userEmail=#{userEmail}
+		group by f.folderName
+		order by f.defaultFolder desc;
 	</select>
 
 	<!-- 폴더 추가 

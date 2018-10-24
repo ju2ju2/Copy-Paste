@@ -12,15 +12,16 @@
 		<!-- Section -->
 		<section id="droppable">
 			<header class="major">
-				<h3>
-					미분류<i class="fas fa-trash icon-size"></i>
+			<%-- <c:set var="folderList" items="${folderList}"/> --%>
+				<h3 id="fName">
+					My Note <i class="fas fa-trash icon-size"></i> 
 				</h3>
 			</header>
 		</section>
 		
 		<!-- 노트리스트 출력 -->
-		<div class="row" id="noteList"></div>
-
+		<div class="row" id="foldernoteList"></div>
+			<!-- my note 클릭하자마자 미분류 뿌려줌? -->
 	</div>
 	<br>
 

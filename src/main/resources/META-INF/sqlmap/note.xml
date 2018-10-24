@@ -26,10 +26,6 @@
 	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
 	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
 	from note n join users u on u.userEmail=n.userEmail where u.userEmail = #{userEmail} order by noteNum desc;
-	<!-- select distinct n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
-	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
-	from note n join users u on u.userEmail=n.userEmail
-	join folder f on f.folderName=n.folderName where u.userEmail = #{userEmail} and f.folderName= #{folderName} order by noteNum desc; -->
 	</select>
 	
 	<!-- 노트 상세 보기(+노트 작성) -->
@@ -133,7 +129,13 @@
 	
 	<!-- 노트의 폴더 이동 -->
 	
-	
+	<!-- MY NOTE에서 폴더 별 노트 조회 -->
+	<select id="selectNoteByFolder" resultType="NoteVO">
+	select distinct n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
+	from note n join users u on u.userEmail=n.userEmail
+	join folder f on f.folderName=n.folderName where u.userEmail = #{userEmail} and f.folderName= #{folderName} order by noteNum desc;
+	</select>
 	
 	<!-- 	
 	//NoteVO
