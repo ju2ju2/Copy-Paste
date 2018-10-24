@@ -1,12 +1,4 @@
-/*var swaljs = document.createElement("script");
-swaljs.src = "../resources/js/sweetalert.min.js"; 
-document.body.appendChild(swaljs);
 
-var swalcss = document.createElement("style");
-swalcss.src = "../resources/css/alert/sweetalert.css";
-document.body.appendChild(swalcss);
-
-*/
 function selectAll() {
 		var tbodyAppendAll = "";
 		$('tbody').empty();
@@ -25,7 +17,7 @@ function selectAll() {
 						tbodyAppendAll += '댓글';
 					}
 					 		
-					tbodyAppendAll += '</td><td>'+obj.noteNum+'</td><td><a href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+obj.noteNum+'" class="btn btn-sm drop-btn reportViewBtn" data-toggle="modal" data-target="#reportModal" role="button" data-backdrop="static">확인</a></td><td>';
+					tbodyAppendAll += '</td><td>'+obj.noteNum+'</td><td><a href="../note/noteDetail.htm?noteNum='+obj.noteNum+'" class="btn btn-sm drop-btn reportViewBtn" data-toggle="modal" data-target="#reportModal" role="button" data-backdrop="static">확인</a></td><td>';
 					
 					if ((obj.reportCauseCode).trim() == 'NR01') {
 						tbodyAppendAll += '광고성/음란성';
@@ -84,7 +76,7 @@ function selectAll() {
 							success : function(data) {
 								console.log("넘어온 값 / "+data);
 								console.log("요청 url ${pageContext.request.contextPath}/note/noteDetail.htm?noteNum="+data);
-								$(this).attr("href", "${pageContext.request.contextPath}/note/noteDetail.htm?noteNum="+data);
+								$(this).attr("href", "../note/noteDetail.htm?noteNum="+data);
 							}
 						})
 					}
@@ -236,7 +228,7 @@ function selectAll() {
 								url : '../etc/hasReportComm.json',
 								data : {'reportNum':$(this).parent().parent().children().eq(3).html()},
 								success : function(data) {
-									$(this).attr("href", "${pageContext.request.contextPath}/note/noteDetail.htm?noteNum="+data);
+									$(this).attr("href", "../note/noteDetail.htm?noteNum="+data);
 								}
 							})
 
