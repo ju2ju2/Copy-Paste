@@ -15,9 +15,20 @@
 .comment{
 	margin-top: 5px;
 }
-.qnaCommTrashBtn, .qnaCommCommBtn{
+.qnaCommTrashBtn, .qnaCommCommBtn,.titleLink{
 	cursor: pointer;
 }
 #commCommAtag{
 	margin-top: 0px !important;
+}
+.qnaNotice{
+	display: inline-block;
+}
+
+.qnaTitle{
+	display: inline-block;
+	width: 90%;
+}
+.qnaSecret{
+	margin-bottom: 30px;
 }

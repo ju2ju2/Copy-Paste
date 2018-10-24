@@ -38,13 +38,26 @@
 			</div>
 			<div class="col-md-12">
 				<div class="form-group" align="right">
-
 					<strong>${qna.userNick}</strong>&nbsp;&nbsp;${qna.qnaDate}
 				</div>
 			</div>
 			<div class="col-md-12">
 				<div class="qnacontent">${qna.qnaContent}</div>
 				<br />
+			</div>
+			<div class="col-md-12">
+				<div class="form-group" align="right">
+					<!-- 게시글 답글, 삭제버튼 -->
+					<c:choose>
+						<c:when test="${role=='[ROLE_ADMIN]'}">
+							<i class="fas fa-reply"></i>&nbsp;&nbsp;<i class="fas fa-trash"></i>
+						</c:when>
+						<c:when test="${qna.userEmail==loginuser}">
+							<i class="fas fa-trash"></i>
+						</c:when>
+					</c:choose> 		
+					
+				</div>
 			</div>
 		</form>
 		<!-- QnA 댓글 -->
@@ -129,20 +142,24 @@
 			+" </a></div></span></div>";
 		/* 댓글 작성 버튼 클릭시 */
 		$('.commentBtn').click(function(){
-			$.ajax({
-				url : "<%=request.getContextPath()%>/qna/insertQnaComm.json",
-			    type : "get",
-			    data : {
-			    	"qnaCommContent": $('#userComment').val(),
-			    	"qnaNum":${qna.qnaNum}
-			    },
-			    success : function(data){
-			    	location.reload();
-			    },
-			    error : function(){
-			        	console.log("실패");
-			    }
-			});	
+			if($('#userComment').val()==""){
+				swal("", "내용을 입력해주세요", "warning");
+			}else{
+				$.ajax({
+					url : "<%=request.getContextPath()%>/qna/insertQnaComm.json",
+				    type : "get",
+				    data : {
+				    	"qnaCommContent": $('#userComment').val(),
+				    	"qnaNum":${qna.qnaNum}
+				    },
+				    success : function(data){
+				    	location.reload();
+				    },
+				    error : function(){
+				        	console.log("실패");
+				    }
+				});	
+			}	
 		});
 		/* 대댓글아이콘 클릭시 */
 		$('.qnaCommCommBtn').click(function() {

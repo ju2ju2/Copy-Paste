@@ -215,8 +215,6 @@
 					console.log(error.status);
 	            }
 	         });
-			
-			
 			}else{
 				$('#userEmailMessage').addClass("failMessage")
 				$('#userEmailMessage').text("이메일 형식으로 입력해주세요");
@@ -274,15 +272,15 @@
 				  title: '성공적으로 가입되었습니다.',
 	              confirmButtonClass : "btn-danger",
 				  closeOnConfirm: false
-			},
-			function(){
-				location.href="${pageContext.request.contextPath}/login.htm";
-			});	
-	       },
+					},
+				  function(){
+					location.href="${pageContext.request.contextPath}/login.htm";
+					});	
+	       			},
            error : function(error) {
-            swal("٩(இ ⌓ இ๑)۶", "에러가 발생했습니다.", "error");
-            console.log(error);
-            console.log(error.status);
+            	swal("٩(இ ⌓ இ๑)۶", "에러가 발생했습니다.", "error");
+            	console.log(error);
+            	console.log(error.status);
         }
      })
    }) 

@@ -311,3 +311,9 @@ table.dataTable td {
     text-align: center; }
   .dataTables_wrapper .dataTables_filter {
     margin-top: 0.5em; } }
+    
+ #table_id_paginate{
+ 	text-align: center !important;
+    float: none;
+    margin-right: 150px;
+ }

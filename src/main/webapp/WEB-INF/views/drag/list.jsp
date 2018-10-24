@@ -86,7 +86,7 @@
 </div>
 <script>
 
-//별 클릭하면 토글되는 이벤트
+/* //별 클릭하면 토글되는 이벤트
 $('.fa-star').click(function(){
 	if($(this).hasClass('far')){
 		$(this).removeClass('far').addClass('fas');
@@ -94,7 +94,8 @@ $('.fa-star').click(function(){
 		$(this).removeClass('fas').addClass('far');
 	}
 }); 
-
+ */
 </script>
+
 
 
