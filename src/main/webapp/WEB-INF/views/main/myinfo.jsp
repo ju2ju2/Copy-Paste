@@ -102,8 +102,7 @@ $.ajax({
 		$('#userEmail').val(data.userEmail);
 		$('#userNick').val(userNick);
 		$('#beforUserPhoto').attr("src", "${pageContext.request.contextPath}/resources/image/userPhoto/" + userPhoto);
-		}
-		
+		}	
 	,
 	error : function(error) {
 		console.log(error);
@@ -184,40 +183,45 @@ if ($('#userNick').val() != userNick){
 }
 
 //회원탈퇴
-/* $('#deleteMember').click(function(){
-    $.ajax({
-        type : 'post',
-        url :  '${pageContext.request.contextPath}/member/deleteMember.do',
-        data: {userEmail:userEmail},
-        beforeSend: function (){
-        			swal({
-        				  title: "٩(இ ⌓ இ๑)۶",
-        				  text: "회원 탈퇴를 진행하시겠습니까? 작성한 노트와 댓글은 삭제되지 않으며, 동일한 Email로는 재가입이 불가능합니다.",
-						  type: "warning",
-        		 		  showCancelButton: true,
-        		 		  confirmButtonClass: "btn-danger",
-        		 		  confirmButtonText: "탈퇴 진행",
-        		 		  closeOnConfirm: false
-        					})
-       	 					},
-        success : function(data) {
-        	sessionStorage.removeItem('itemName');
-				  swal({type: "success",
-				  title: '회원 탈퇴가 완료 되었습니다.',
-	              confirmButtonClass : "btn-danger",
-				  closeOnConfirm: false
-			},
-			function(){
-				location.href="${pageContext.request.contextPath}/login.htm";
-			});	
-	       },
-          error : function(error) {
-           swal("٩(இ ⌓ இ๑)۶", "에러가 발생했습니다.", "error");
-           console.log(error);
-           console.log(error.status);
-       }
-    })
+ $('#deleteMember').click(function(){
+	  swal({
+		  title: "Are you sure?",
+		  text: "You will not be able to recover this imaginary file!",
+		  type: "warning",
+		  showCancelButton: true,
+		  confirmButtonClass: "btn-danger",
+		  confirmButtonText: "Yes, delete it!",
+		  cancelButtonText: "No, cancel plx!",
+		  closeOnConfirm: false,
+		  closeOnCancel: true
+		},
+			function(isConfirm) {
+		 		 if (isConfirm) {
+					  $.ajax({
+			       		type : 'post',
+			        	data: {userEmail:userEmail},
+			        	url :  '${pageContext.request.contextPath}/member/deleteMember.do',
+			        	success : function(data) {
+								 swal({type: "success",
+								 title: '회원 탈퇴가 완료 되었습니다.',
+				             	 confirmButtonClass : "btn-danger",
+							 	 closeOnConfirm: false
+									},
+								 function(){
+								 location.href="${pageContext.request.contextPath}/logout";
+									});	
+				       			},
+						error : function(error) {
+			          			 swal("٩(இ ⌓ இ๑)۶", "에러가 발생했습니다.", "error");
+			           	  	 	console.log(error);
+			           		 	console.log(error.status);
+			       				}
+			    		})
+		  		} else {
+		    		return false;
+		  			}
+		});
 })
- */
+
 
 </script>
