@@ -48,8 +48,7 @@ $(function() {
 	        accept:".noteDiv",
 	        drop: function(event,ui) {
 	        	var noteNum = $(this).find('#noteNum').val()
-	        	alert($(this).find('#noteNum').val())
-	        	//deleteNote(noteNum)
+	        	deleteNote(noteNum)
 	         }     
 	      });  
     
@@ -186,7 +185,6 @@ $(function() {
 
 	    //노트 정렬 
 	 $('#sort-category').on("change",function(e) {
-		 alert($('#sort-category option:selected').val())
 	  	$.ajax({
 	        url: "../note/selectOrderbyNote.json", // url_pettern 
 	        type:"post",
@@ -196,7 +194,7 @@ $(function() {
 	      	  var a = "";
 	          	if(data !=null) {
 	          		$.each(data, function(key, value){
-	          			$('#noteList').empty();
+	          			$('#foldernoteList').empty();
 	          			a+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 ">';
 	          			a+='<div class="text-center noteDiv" id="'+value.noteNum+'">';
 	          			a+='	<!-- a HTML (to Trigger Modal) -->';
@@ -219,7 +217,7 @@ $(function() {
 	          			a+='	</a>';
 	          			a+='	</div>';
 	          			a+='</div>';
-	          			$("#noteList").html(a);
+	          			$("#foldernoteList").html(a);
 	          		})
 	          	}else{
 	          		/*swal({type: "success",

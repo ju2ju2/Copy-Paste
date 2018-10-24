@@ -139,18 +139,33 @@ public class NoteController {
 	@RequestMapping(value = "selectNoteByFolder.json")
 	public @ResponseBody List<NoteVO> selectNoteByFolder(NoteVO note,Principal principal) throws Exception {
 		note.setUserEmail(principal.getName());
-		System.out.println("폴더명 : " + note.getFolderName());
-		System.out.println("유저명 : " + note.getUserEmail());
 		return noteService.selectNoteByFolder(note);
 	}
 	
 	// 노트 정렬
 	@RequestMapping(value="selectOrderbyNote.json")
 	public @ResponseBody List<NoteVO> selectOrderbyNote(String sortCategory,Principal principal) throws Exception {
+		System.out.println("정렬 기준 : " + sortCategory);
+		String sortCategory1 = sortCategory;
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("sortCategory", sortCategory);
 		map.put("userEmail", principal.getName());
-		return noteService.selectOrderbyNote(map);
+		
+		List<NoteVO> a;
+		if(sortCategory.trim().equals("n.noteDateDesc")) {
+			a= noteService.selectOrderbyNote1(map);
+			System.out.println("노트 최신순 정렬");
+		}else if(sortCategory.trim().equals("n.noteDateAsc")){
+			a= noteService.selectOrderbyNote2(map);
+			System.out.println("노트 오래된순 정렬");
+		}else if(sortCategory.trim().equals("n.noteTitle")) {
+			a= noteService.selectOrderbyNote3(map);
+			System.out.println("노트 가나다순 정렬");
+		}else {
+			a= noteService.selectOrderbyNote4(map);
+			System.out.println("노트 전체보기");
+		}
+		return a;
 	}
 	
 	// 노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws

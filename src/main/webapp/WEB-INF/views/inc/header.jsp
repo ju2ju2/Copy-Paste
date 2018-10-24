@@ -70,7 +70,13 @@
 							</se:authorize>		
 									
 									
-							<li><a href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt"></i><span>LOGOUT</span></a></li>
+							<li>
+								<form id="logoutForm" action="${pageContext.request.contextPath}/logout" method="POST">
+								<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+									&nbsp;&ensp;<a href="${pageContext.request.contextPath}/logout"><i class="fas fa-sign-out-alt"></i>
+									<span>LOGOUT</span></a>
+								</form>
+							</li>
 							
 							
 		

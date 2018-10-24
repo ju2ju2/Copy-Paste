@@ -29,8 +29,8 @@
 			<div class="col-xs-12 mb">
 			<select name="sort-category" id="sort-category">
 				<option value="">- 정렬 분류 -</option>
-				<option value="n.noteDate">최신 순</option>
-				<option value="n.noteDate">오래된 순</option>
+				<option value="n.noteDateDesc">최신 순</option>
+				<option value="n.noteDateAsc">오래된 순</option>
 				<option value="n.noteTitle">가나다 순</option>
 				<option value="1">전체보기</option>
 			</select>
@@ -134,10 +134,12 @@ function folderDelete(folderName, defaultFolder){
 }
 
 /* 폴더 수정 */
-function folderEdit(fedit, folderName){
+function folderEdit(fedit, folderName, count){
 	var a = "";
 	a += "<h5 class='ml-10 f-name'>";
-	a += "<span class='f-count'>4</span>";
+	a += "<span class='f-count'>";
+	a += count;
+	a += "</span>";
 	a += "<input type='text' id='folname' required minlength='1' maxlength='8' style='width:200px;height:40px;margin-left:25px;margin-top:-25px;' placeholder=";
 	a += folderName;
 	a += " autofocus/ >";
@@ -154,7 +156,8 @@ function folderEdit(fedit, folderName){
 					    DataType :"text",
 					    type : "post",
 					    data : {"beforefolderName": folderName,
-					    		"folderName" : $(this).val()},
+					    		"folderName" : $(this).val(),
+					    		"count" : count},
 					    success : function(data){
 					    	location.reload();
 					    	console.log("폴더 수정 성공");
@@ -215,6 +218,41 @@ function setDefaultFolder(bookmark, folderName){
 		
 	}
 
+/* 드래그로 노트 삭제 */
+		function deleteNote(noteNum) {
+			var noteNum = noteNum;
+		
+			swal({
+				 title: "정말 삭제하시겠습니까?",
+				  text: "삭제 후에는 다시 복구 할 수 없습니다.",
+				  type: 'warning',
+				  showCancelButton: true,
+				  confirmButtonClass : "btn-danger btn-sm",
+				  cancelButtonClass: "btn btn-sm",
+				  confirmButtonText: '확인',
+				  cancelButtonText: "아니요!",
+				  closeOnConfirm: false
+				},
+				function(){
+					$.ajax({
+						url:"../note/deleteNote.json",
+						dataType:"json",
+						data: {"noteNum":noteNum},
+						type: "POST"
+						}).done(function (result){
+								swal({type: "success",
+									  title: '성공적으로 삭제되었습니다.',
+						              confirmButtonClass : "btn-danger",
+									  closeOnConfirm: false
+								},function(){
+									location.reload()
+						})
+					});
+				}
+			);
+		}	 
+
+
 /* 폴더에 들어있는 콘텐츠 뿌리기 */
 function folderContents(folder,folderName){
 	$.ajax(
@@ -228,14 +266,18 @@ function folderContents(folder,folderName){
 		      		var b = "";
 		      		var c = "";
 		      		$.each(data, function(key, value){
-			      		$('#fName').empty();
+			      		$('#droppable').empty();
+			      		c+='<header class="major">';
+			      		c+='<h3 id="fName">';
 		      			c+=value.folderName
 		      			c+='<i class="fas fa-trash icon-size"></i>';
-		      			$('#fName').append(c);
+		      			c+='</h3>';
+		      			$('#droppable').append(c);
 		      			c="";
 		      			$('#foldernoteList').empty();	
 		      			b+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">';
-		      			b+='<div class="text-center">';
+		      			b+='<div class="text-center noteDiv" id="'+value.noteNum+'">';
+		      			b+='	<!-- a HTML (to Trigger Modal) -->';
 		      			b+='<a data-toggle="modal"';
 		      			b+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&cmd=mynote"';
 		      			b+='data-target="#modal-testNew" role="button" data-backdrop="static">';
@@ -272,7 +314,28 @@ function folderContents(folder,folderName){
 				  showCancelButton: true
 				});
 	    }
-			});	 
+			}).done(function (result){
+	  		  // noteDiv들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
+	    	    $('.noteDiv').draggable({
+	    	    	revert: true, 
+	    	    	 revertDuration: 200,
+	    	    	 snapMode: "inner",
+	    	    	 scroll: true,
+	    	    	 scrollSensitivity: 100 ,
+	    	    	 scrollSpeed: 100
+	    	    	});
+	    	     // 노트를 드랍하여 삭제 메소드 
+	    	    $("#droppable").droppable({
+	    	        activeClass:"ui-state-active",
+	    	        accept:".noteDiv",
+	    	        drop: function(event,ui) {
+	    	        	var noteNum = ui.draggable.prop("id");
+	    	        	deleteNote(noteNum)
+	    	         }     
+	    	      });  
+	        
+	        
+	        })
 	
 	
 }
@@ -307,6 +370,7 @@ function folderContents(folder,folderName){
 	$(document).ready(function() {
 		folderlist();
 		
+		/* 노트 폴더 리스트 */
 		function folderlist(){
 			$.ajax({
 		        url : "<%=request.getContextPath()%>/folder/selectAllFolder.json",
@@ -330,7 +394,7 @@ function folderContents(folder,folderName){
 								folder += "<span class='f-name'><a href='#' onclick=folderContents(this,'"+value.folderName+"')>";
 								folder += value.folderName+"</a></span>";
 								folder += "<span class='f-modify' id='modify'>";
-								folder += "<i class='fas fa-edit icon-size' id='folderEdit' onclick=folderEdit(this,'"+value.folderName+"')>";
+								folder += "<i class='fas fa-edit icon-size' id='folderEdit' onclick=folderEdit(this,'"+value.folderName+"','"+value.count+"')>";
 								folder += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i>";
 								folder += "<i class='fas fa-trash icon-size' id='folderdelete' onclick=folderDelete('"+value.folderName+"','"+value.defaultFolder+"');>";
 								folder += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></span></h5></div>";
@@ -417,7 +481,28 @@ function folderContents(folder,folderName){
 		        },
 		        error:function(request,status,error)
 		        { alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
-			    });
+			    }).done(function (result){
+			  		  // noteDiv들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
+		    	    $('.noteDiv').draggable({
+		    	    	revert: true, 
+		    	    	 revertDuration: 200,
+		    	    	 snapMode: "inner",
+		    	    	 scroll: true,
+		    	    	 scrollSensitivity: 100 ,
+		    	    	 scrollSpeed: 100
+		    	    	});
+		    	     // 노트를 드랍하여 삭제 메소드 
+		    	    $("#droppable").droppable({
+		    	        activeClass:"ui-state-active",
+		    	        accept:".noteDiv",
+		    	        drop: function(event,ui) {
+		    	        	var noteNum = ui.draggable.prop("id")
+		    	        	deleteNote(noteNum)
+		    	         }     
+		    	      });  
+		        
+		        
+		        })
 	
 		
 		/* 폴더 추가 버튼 클릭 → 텍스트 박스 열림 */

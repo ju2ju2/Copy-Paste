@@ -136,9 +136,9 @@ public class MemberService {
 
 	
 	//회원 비활성하기>>update
-	public int deleteMember(String userEmail) throws Exception{
+	public void deleteMember(String userEmail) throws Exception{
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
-		return memberdao.deleteMember(userEmail);
+		memberdao.deleteMember(userEmail);
 	}
 	
 }
