@@ -12,6 +12,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import tk.copyNpaste.mapper.EtcMapper;
 import tk.copyNpaste.vo.EtcVO;
@@ -45,11 +46,42 @@ public class EtcService {
 		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
 		return etcdao.selectCommReport();
 	}
+	
+	public int selectHasReportComm(int reportNum) throws Exception {
+		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
+		return etcdao.selectHasReportComm(reportNum);
+	}
 
 	// 신고 처리 하기
-	public int updateReport(int reportNum) throws Exception {
-		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
-		return etcdao.updateReport(reportNum);
+	@Transactional
+	public int updateReport(int reportNum, String reportmemo, String checkCode,
+			String noteOrCommCode, int noteNum) throws Exception {
+		
+		try {
+			EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
+			int reportInt = etcdao.updateReport(reportNum, reportmemo, checkCode);
+			int noteOrCommInt = 0;
+			if (checkCode.equals("PS01")) {
+				if (noteOrCommCode.equals("노트")) {
+					noteOrCommInt = etcdao.updateReportNoteBlind(noteNum);
+				} else {
+					noteOrCommInt = etcdao.updateReportNoteCommBlind(noteNum);
+				}
+			} else {
+				if (noteOrCommCode.equals("노트")) {
+					noteOrCommInt = etcdao.updateReportNoteDontBlind(noteNum);
+				} else {
+					noteOrCommInt = etcdao.updateReportNoteCommDontBlind(noteNum);
+				}
+			}
+			
+			return reportInt+noteOrCommInt;
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
 	}
 
 	// 댓글알림

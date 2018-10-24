@@ -26,10 +26,23 @@ public interface EtcMapper {
 	//댓글 신고 목록 보기
 	public List<ReportVO> selectCommReport() throws Exception;
 	
-	//신고 처리 하기
-	public int updateReport(int reportNum) throws Exception;
+	//신고된 댓글 노트 보러 가기
+	public int selectHasReportComm(int reportNum) throws Exception;
 	
+	//신고 처리 하기
+	public int updateReport(int reportNum, String reportmemo, String checkCode) throws Exception;
 
+	//노트 블라인드
+	public int updateReportNoteBlind(int noteNum) throws Exception;
+	
+	//노트 블라인드 해제
+	public int updateReportNoteDontBlind(int noteNum) throws Exception;
+	
+	//댓글 블라인드
+	public int updateReportNoteCommBlind(int noteNum) throws Exception;
+	
+	//댓글 블라인드 해제
+	public int updateReportNoteCommDontBlind(int noteNum) throws Exception;
 	
 	//댓글알림
 	public void commAlarm() throws Exception;

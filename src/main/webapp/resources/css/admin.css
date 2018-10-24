@@ -11,6 +11,14 @@
 
 @import url(main.css);
 
+.checkCode {
+	width: 50rem;
+}
+
+textarea {
+	resize: none;
+}
+
 #adminBtnDiv {
 	text-align: right;
 }

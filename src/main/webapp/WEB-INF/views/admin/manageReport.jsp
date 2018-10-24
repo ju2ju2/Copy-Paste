@@ -12,19 +12,69 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/dataTables.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/css/dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+		<!-- Sweet Alert cdn -->
+		<link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
+		<script type="text/javascript"	src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
 
+
+<!-- 노트 모달창 -->
+<div id="reportModal" class="modal fade text-center overlay"
+	 role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content"></div>
+	</div>
+</div>
+
+<!-- 메모 모달창 -->
+
+	<div id="memoModal" class="modal fade form-horizontal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			<form>
+				<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title"> 처리 메모 </h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+					<input type="hidden" id="reportNum" name="reportNum">
+					<input type="hidden" id="noteOrCommCode" name="noteOrCommCode">
+					<input type="hidden" id="noteNum" name="noteNum">
+					<br/>
+						<label class="control-label col-sm-2">메모 </label>
+						<textarea rows="15" cols="60" name="reportmemo" id="reportmemo"></textarea>
+					</div>
+					<div class="form-group">
+						<label class="control-label col-sm-2">처리여부 </label>
+						<select name="checkCode" class="form-control checkCode" id="checkCode">
+						<option value="PS00">기각</option>
+						<option value="PS01">블라인드</option>
+						<option value="PS02">미확인</option>
+						</select>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<input type="button"class="btn btn-danger" id="submitBtn" value="추가">
+				</div>
+			</form>
+			</div>
+		</div>
+	</div>
+	
 <section>
 	<div class="container">
 		<div>
-			<h3>신고 관리</h3>		
+			<h3>신고 관리</h3>
 		</div>
 		<div id="adminBtnDiv">
 			<button id="report" class="btn btn-sm drop-btn">전체 신고 내역</button>
 			<button id="noteReport" class="btn btn-sm drop-btn">노트 신고 내역</button>
-			<button id="commReport" class="btn  btn-sm drop-btn">댓글 신고 내역</button>
-			</div>
+			<button id="commReport" class="btn  btn-sm drop-btn">댓글 신고
+				내역</button>
+		</div>
 		<br>
 		<table id="table_id">
 			<thead>
@@ -33,6 +83,7 @@
 					<th>신고자 이메일</th>
 					<th>대상</th>
 					<th>대상번호</th>
+					<th>확인</th>
 					<th>신고사유</th>
 					<th>상세내용</th>
 					<th>신고일자</th>
@@ -42,68 +93,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				
+
 			</tbody>
 		</table>
 	</div>
 </section>
-<script>
-	function selectAll() {
-		$.ajax({
-			url : '../etc/allReport.json',
-			dataType:"json",
-			success : function(data) {
-				$('tbody').empty();
-				$.each(data, function(index, obj) {
-					$('tbody').append('<tr><td>'+obj.reportNum+'</td><td>'
-							+obj.userEmail+'</td><td>'+obj.noteOrCommCode+'</td><td>'
-							+obj.noteNum+'</td><td>'+obj.reportCauseCode+'</td><td>'
-							+obj.reportContent+'</td><td>'+obj.reportInDate+'</td><td>'
-							+obj.checkCode+'</td><td><button class="btn btn-sm drop-btn">설정</button></td><td>'
-							+obj.reportmemo+'</td><td></tr>');
-				})
-			}
-		})
-	}
-	
-	$(document).ready(function() {
-		$('#table_id').DataTable();
-
-		$('#report').click(selectAll());
+<script type="text/javascript"	src="${pageContext.request.contextPath}/resources/js/report.js"></script>	
 		
-		$('#noteReport').click(function() {
-			$.ajax({
-				url : '../etc/noteReport.json',
-				success : function(data) {
-					$('tbody').empty();
-					$.each(data, function(index, obj) {
-						$('tbody').append('<tr><td>'+obj.reportNum+'</td><td>'
-								+obj.userEmail+'</td><td>'+obj.noteOrCommCode+'</td><td>'
-								+obj.noteNum+'</td><td>'+obj.reportCauseCode+'</td><td>'
-								+obj.reportContent+'</td><td>'+obj.reportInDate+'</td><td>'
-								+obj.checkCode+'</td><td><button class="btn btn-sm drop-btn">설정</button></td><td>'
-								+obj.reportmemo+'</td><td></tr>');
-					})
-				}
-			})
-		})
-
-		$('#commReport').click(function() {
-			$.ajax({
-				url : '../etc/commReport.json',
-				success : function(data) {
-					$('tbody').empty();
-					$.each(data, function(index, obj) {
-						$('tbody').append('<tr><td>'+obj.reportNum+'</td><td>'
-								+obj.userEmail+'</td><td>'+obj.noteOrCommCode+'</td><td>'
-								+obj.noteNum+'</td><td>'+obj.reportCauseCode+'</td><td>'
-								+obj.reportContent+'</td><td>'+obj.reportInDate+'</td><td>'
-								+obj.checkCode+'</td><td><button class="btn btn-sm drop-btn">설정</button></td><td>'
-								+obj.reportmemo+'</td><td></tr>');
-					})
-				}
-			})
-		})
-
-	});
-</script>

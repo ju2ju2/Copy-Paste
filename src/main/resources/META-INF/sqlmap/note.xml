@@ -92,12 +92,33 @@
 	</select>
 	
 	<!-- 노트 정렬 -->
-	<select id="selectOrderbyNote" parameterType="hashmap" resultType="NoteVO">
-	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
-	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
-	from note n join users u on u.userEmail=n.userEmail 
-	where u.userEmail = #{userEmail} order by #{sortCategory} desc
-	</select>
+		<!-- 1. 최신 순 -->
+		<select id="selectOrderbyNote1" parameterType="hashmap" resultType="NoteVO">
+		select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+		n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
+		from note n join users u on u.userEmail=n.userEmail 
+		where u.userEmail = #{userEmail} order by n.noteDate desc;
+		</select>
+		<!-- 2. 오래된 순 -->
+		<select id="selectOrderbyNote2" parameterType="hashmap" resultType="NoteVO">
+		select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+		n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
+		from note n join users u on u.userEmail=n.userEmail 
+		where u.userEmail = #{userEmail} order by n.noteDate asc;
+		</select>
+		<!-- 3. 가나다 순 -->
+		<select id="selectOrderbyNote3" parameterType="hashmap" resultType="NoteVO">
+		select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+		n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
+		from note n join users u on u.userEmail=n.userEmail 
+		where u.userEmail = #{userEmail} order by binary(n.noteTitle);
+		</select>
+		<!-- 4. 전체보기 -->
+		<select id="selectOrderbyNote4" parameterType="hashmap" resultType="NoteVO">
+		select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+		n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
+		from note n join users u on u.userEmail=n.userEmail where u.userEmail = #{userEmail} order by n.noteNum desc;
+		</select> 
 	
 	<!-- 노트 달력 검색 -->
 	
