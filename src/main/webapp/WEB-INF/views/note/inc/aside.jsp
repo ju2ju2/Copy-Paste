@@ -134,10 +134,12 @@ function folderDelete(folderName, defaultFolder){
 }
 
 /* 폴더 수정 */
-function folderEdit(fedit, folderName){
+function folderEdit(fedit, folderName, count){
 	var a = "";
 	a += "<h5 class='ml-10 f-name'>";
-	a += "<span class='f-count'>4</span>";
+	a += "<span class='f-count'>";
+	a += count;
+	a += "</span>";
 	a += "<input type='text' id='folname' required minlength='1' maxlength='8' style='width:200px;height:40px;margin-left:25px;margin-top:-25px;' placeholder=";
 	a += folderName;
 	a += " autofocus/ >";
@@ -154,7 +156,8 @@ function folderEdit(fedit, folderName){
 					    DataType :"text",
 					    type : "post",
 					    data : {"beforefolderName": folderName,
-					    		"folderName" : $(this).val()},
+					    		"folderName" : $(this).val(),
+					    		"count" : count},
 					    success : function(data){
 					    	location.reload();
 					    	console.log("폴더 수정 성공");
@@ -330,7 +333,7 @@ function folderContents(folder,folderName){
 								folder += "<span class='f-name'><a href='#' onclick=folderContents(this,'"+value.folderName+"')>";
 								folder += value.folderName+"</a></span>";
 								folder += "<span class='f-modify' id='modify'>";
-								folder += "<i class='fas fa-edit icon-size' id='folderEdit' onclick=folderEdit(this,'"+value.folderName+"')>";
+								folder += "<i class='fas fa-edit icon-size' id='folderEdit' onclick=folderEdit(this,'"+value.folderName+"','"+value.count+"')>";
 								folder += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i>";
 								folder += "<i class='fas fa-trash icon-size' id='folderdelete' onclick=folderDelete('"+value.folderName+"','"+value.defaultFolder+"');>";
 								folder += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></span></h5></div>";

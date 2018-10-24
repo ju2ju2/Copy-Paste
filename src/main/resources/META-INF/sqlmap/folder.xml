@@ -48,8 +48,16 @@
 		delete from folder where userEmail = #{userEmail} and folderName=#{folderName};
 	</delete>
 	
-	<!-- 폴더 수정 -->
+	<!-- 폴더 수정 : 컨텐츠 有 -->
 	<update id="updateFolder" parameterType="FolderVO">
+		
+		update folder f, note n 
+		set f.folderName=#{folderName}, n.folderName=#{folderName} 
+		where f.userEmail=n.userEmail and f.userEmail=#{userEmail} and f.folderName=#{beforefolderName} and n.folderName=#{beforefolderName};
+	</update>
+	
+	<!-- 폴더 수정 : 컨텐츠 無 -->
+	<update id="updateFolder2" parameterType="FolderVO">
 		update folder set folderName=#{folderName} where userEmail=#{userEmail} and folderName=#{beforefolderName};
 	</update>
 	
