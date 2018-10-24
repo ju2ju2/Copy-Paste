@@ -273,37 +273,6 @@ $('#sort-category').on("change",function(e) {
 //끝
 });
 
-/*중요표시
-function setDragMark(){
-	console.log("넘어오나요"+ dragNum + dragMark);
-    var dargNum = $('#dargNum').val();
-    var dragMark = $('#dragMark').val();
-		$.ajax({
-		    url : "../drag/setDragMark.json",
-		    DataType :"text",
-		    type : "post",
-		    data : {"dragMark": dragMark ,
-		    		"dragNum" : dragNum},
-		    		
-		    success : function(data){
-		    	console.log(data);
-		    	if(dragMark == 1) {
-		    		//별 클릭하면 토글되는 이벤트
-		    		$('.fa-star').removeClass('far').addClass('fas').show();
-		    			} 
-		                else {
-		    				$('.fa-star').removeClass('fas').addClass('far').show();
-		    			}
-		     	}
-		    }); 
-		    	location.reload();
-		    	console.log("중요표시 성공");
-		  
-		}
-
-*/
-
-
 
 
 

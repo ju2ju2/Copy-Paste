@@ -70,8 +70,6 @@ public class DragController {
 	//드래그 삭제
 	@RequestMapping(value="deleteDrag.json")
 	public @ResponseBody int deleteDrag(int dragNum) throws Exception {
-	
-		System.out.println("삭제 컨트롤러");
 		return dragservice.deleteDrag(dragNum);
 	}
 	
@@ -116,19 +114,14 @@ public class DragController {
 			List<DragVO> dragList ;   
 			if(sortCategory.trim().equals("dragDateDesc")) {
 				dragList= dragservice.selectOrderbyDrag1(map);
-				System.out.println("드래그 최신순 정렬");
 			}else if(sortCategory.trim().equals("dragDateAsc")){
 				dragList= dragservice.selectOrderbyDrag2(map);
-				System.out.println("드래그 오래된순 정렬");
 			}else if(sortCategory.trim().equals("dragMark")) {
 				dragList= dragservice.selectOrderbyDrag3(map);
-				System.out.println("드래그 중요표시 정렬");
 			}else if(sortCategory.trim().equals("dragText")) {
 					dragList= dragservice.selectOrderbyDrag4(map);
-					System.out.println("드래그 가나다순 정렬");
 			}else {
 				dragList= dragservice.selectOrderbyDrag5(map);
-				System.out.println("드래그 전체보기");
 			}
 			return dragList;
 		}
