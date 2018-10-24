@@ -68,7 +68,6 @@ public class EtcService {
 					noteOrCommInt = etcdao.updateReportNoteCommBlind(noteNum);
 				}
 			} else {
-				System.out.println("블라인드 해제");
 				if (noteOrCommCode.equals("노트")) {
 					noteOrCommInt = etcdao.updateReportNoteDontBlind(noteNum);
 				} else {
