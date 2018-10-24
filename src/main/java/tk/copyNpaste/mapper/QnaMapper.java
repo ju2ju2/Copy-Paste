@@ -25,6 +25,8 @@ public interface QnaMapper {
 	
 	//댓글 작성
 	public int insertQnaComm(QnaCommVO qnaComm) throws Exception;
+	//QNA 댓글 부모글 업데이트
+	public int updateInsertQnaComm(int num) throws Exception;
 		
 	//대댓글 작성
 	public int insertQnaCommComm(QnaCommVO qnaComm) throws Exception;
@@ -38,6 +40,8 @@ public interface QnaMapper {
 	
 	//QNA 게시물 작성
 	public int insertQna(QnaVO qna) throws Exception;
+	//QNA 게시물 부모글 업데이트
+	public int updateInsertQna(int num) throws Exception;
 	
 	/* 아직 안돼*/
 	//QNA 게시물 검색

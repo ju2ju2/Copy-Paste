@@ -22,6 +22,7 @@ import tk.copyNpaste.vo.QnaVO;
 public class QnaService {
 	@Autowired
 	private SqlSession sqlsession;
+	/* 게시물 관련 */
 	
 	//QNA 게시물 조회
 	public List<QnaVO> selectAllQna() throws Exception {
@@ -36,40 +37,42 @@ public class QnaService {
 
 			return qnadao.selectDetailQna(qnaNum);
 		};
-		
-	//QNA 댓글 조회
-		public List<QnaCommVO> selectQnaComm(int qnaNum) throws Exception{
-			QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
-			
-			return qnadao.selectQnaComm(qnaNum);
-		}
-	
-	//QNA 게시물 검색
-	public List<QnaVO> selectSearchQna(String keyword) throws Exception{
-		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
-		return qnadao.selectSearchQna(keyword);
-	};
 	
 	//QNA 게시물 작성
+	@Transactional
 	public int insertQna(QnaVO qna) throws Exception{
 		System.out.println("작성 서비스 진입");
 		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
-		return qnadao.insertQna(qna);
+		int resulte = 0;
+		try {
+			qnadao.insertQna(qna);
+			resulte = qnadao.updateInsertQna(qna.getNum());
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return resulte;
 	};
-
 	
-	
-	//QNA 게시글 수정
+	//QNA 게시글 수정 (아직안됨)
 	public int updateQna(int qnaNum) throws Exception{
 		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
 		return qnadao.updateQna(qnaNum);
 	};
 	
-	//QNA 게시글 삭제
+	//QNA 게시글 삭제 (아직안됨)
 	public int deleteQna(int qnaNum) throws Exception{
 		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
+		
 		return qnadao.deleteQna(qnaNum);
 	};
+	
+	/* 댓글 관련 */
+
+	//QNA 댓글 조회
+	public List<QnaCommVO> selectQnaComm(int qnaNum) throws Exception{
+		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
+		return qnadao.selectQnaComm(qnaNum);
+	}
 	
 	//QNA 댓글 작성
 	@Transactional
@@ -78,6 +81,7 @@ public class QnaService {
 		List<QnaCommVO> qnaCommList = new ArrayList<>();
 		try {
 		qnadao.insertQnaComm(qnaComm);
+		qnadao.updateInsertQnaComm(qnaComm.getNum());
 		qnaCommList = qnadao.selectQnaComm(qnaComm.getQnaNum());
 		}catch(Exception e){
 			throw e;			
@@ -90,7 +94,6 @@ public class QnaService {
 		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
 		List<QnaCommVO> qnaCommList = new ArrayList<>();
 		try {
-			qnadao.updateQnaCommComm(qnaComm);
 			qnadao.insertQnaCommComm(qnaComm);
 			qnaCommList = qnadao.selectQnaComm(qnaComm.getQnaNum());
 		}catch(Exception e){

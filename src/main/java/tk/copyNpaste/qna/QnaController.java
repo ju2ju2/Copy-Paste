@@ -57,11 +57,6 @@ public class QnaController {
 			return "qna.selectDetailQna";
 		};
 	
-	//QNA 게시물 검색
-	public List<QnaVO> selectSearchQna(String keyword) throws Exception{
-		return qnaService.selectSearchQna(keyword);
-	};
-	
 	//QNA 게시물 작성
 	@RequestMapping(value="/insertQnaboard.htm",method = RequestMethod.GET)
 	public String insertQna() throws Exception{
