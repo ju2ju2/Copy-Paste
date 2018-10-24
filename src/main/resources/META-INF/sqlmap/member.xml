@@ -45,16 +45,19 @@
 	<!-- 내 정보 보기 -->
 	<select id="selectSearchMemberByEmail" parameterType="String" resultType="MemberVO">
 		select userEmail, userNick, userPhoto from users 
-			<where>
 				<if test='value != null'>
-					userEmail=#{userEmail}
+					where userEmail=#{userEmail}
 				</if>
-			</where> 
 	</select>
     
 	<!-- 회원정보 보기 -->
 	
 	<!-- 회원 검색 -->
+    <select id="selectAllMember" resultType="MemberVO">
+    	select userEmail, userNick, userEnabled
+    	from users
+    	order by userEnabled desc
+    </select>
     
 	<!-- 임시 비밀번호로 비밀번호 변경 -->
 	<update id="updateUserPwd" parameterType="MemberVO">
@@ -62,7 +65,9 @@
 	</update>
 	
 	<!-- 회원 삭제 -->
-    
+    <update id="deleteMember" parameterType="String">
+    	update users set userEnabled = 0 where userEmail=#{userEmail}
+    </update>
 
 </mapper>
 

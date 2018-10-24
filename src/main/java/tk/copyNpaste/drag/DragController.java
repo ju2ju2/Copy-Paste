@@ -7,11 +7,9 @@
 package tk.copyNpaste.drag;
 
 import java.security.Principal;
-import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import tk.copyNpaste.vo.DragVO;
+import tk.copyNpaste.vo.NoteVO;
+
 
  //동기 컨트롤러. retrun>> ModelAndView or String.
 //@RestController //비동기 컨트롤러. retrun>> json.
@@ -30,11 +30,21 @@ public class DragController {
 	DragService dragservice;
 
 
+	//드래그 전체목록 보기 (비동기/글작성페이지)
+	@RequestMapping(value ="selectAllDrag.json")
+	public @ResponseBody List<DragVO> selectAllDrag(Model model,Principal principal) throws Exception {
+		 String userEmail= principal.getName();
+	/*	 List<DragVO> dragList =  dragservice.selectAllDrag(userEmail);
+		 model.addAttribute("dragList", dragList);*/
+		return dragservice.selectAllDrag(userEmail);
+	}
+	
+	
 	//드래그 페이지
-	@RequestMapping("drag.htm")
-	public String selectAllDrag(Model model ,Principal principal) throws Exception {
-        String userEmail= principal.getName();
-		List<DragVO> dragList = dragservice.selectAllDrag(userEmail);
+	@RequestMapping(value ="drag.htm")
+	public String dragpage(Model model ,Principal principal) throws Exception {
+	  String userEmail= principal.getName();
+		List<DragVO> dragList =  dragservice.selectAllDrag(userEmail);
 		model.addAttribute("dragList", dragList);
 		return "drag.list";
      }
@@ -46,13 +56,7 @@ public class DragController {
 		return dragservice.insertDrag(drag);
 	}
 
-	//드래그 전체목록 보기 (비동기/글작성페이지)
-	@RequestMapping("selectAllDrag.json")
-	public @ResponseBody List<DragVO> selectAllDrag(DragVO drag,Principal principal) throws Exception {
-		String userEmail= principal.getName();
-		return dragservice.selectAllDrag(userEmail);
-	}
-	
+
 	
 	//드래그 상세 보기(+노트 작성)
 	@RequestMapping(value="dragDetail.htm")
@@ -76,21 +80,63 @@ public class DragController {
 	
 	
 /*	//드래그 키워드 검색 dragSearch.json
-	@RequestMapping(value="dragSearch.json")
-	public @ResponseBody List<DragVO>  selectByKeyDrag(String keyword , Model model) throws Exception {
-		List<DragVO> dragList = dragservice.selectByKeyDrag(keyword);
+	@RequestMapping(value="selectByKeyDrag.json")
+	public  String  selectByKeyDrag(String keyword,Principal principal,Model model ) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("keyword", keyword);
+		map.put("userEmail", principal.getName());
+		List<DragVO> dragList= dragservice.selectByKeyDrag(map);	
 		model.addAttribute("dragList", dragList);
-		return ;*/
+		System.out.println("키워드 검색");
+		return "makeDragList";
+	}
+	*/
 	
+	//드래그 키워드 검색 dragSearch.json
+	@RequestMapping(value="selectByKeyDrag.json")
+	public @ResponseBody List<DragVO> selectByKeyDrag(String keyword,Principal principal,Model model ) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("keyword", keyword);
+		map.put("userEmail", principal.getName());
+	
+		return dragservice.selectByKeyDrag(map);	
+	}
+	
+	// 드래그 정렬
+		@RequestMapping(value="selectOrderbyDrag.json")
+		public @ResponseBody List<DragVO> selectOrderbyNote(String sortCategory,Principal principal,Model model ) throws Exception {
+			
+			String sortCategory1 = sortCategory;
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("sortCategory", sortCategory);
+			map.put("userEmail", principal.getName());
+		
+			List<DragVO> dragList ;   
+			if(sortCategory.trim().equals("dragDateDesc")) {
+				dragList= dragservice.selectOrderbyDrag1(map);
+			}else if(sortCategory.trim().equals("dragDateAsc")){
+				dragList= dragservice.selectOrderbyDrag2(map);
+			}else if(sortCategory.trim().equals("dragMark")) {
+				dragList= dragservice.selectOrderbyDrag3(map);
+			}else if(sortCategory.trim().equals("dragText")) {
+					dragList= dragservice.selectOrderbyDrag4(map);
+			}else {
+				dragList= dragservice.selectOrderbyDrag5(map);
+			}
+			return dragList;
+		}
+			
+
 	//드래그 중요표시 등록
 	@RequestMapping(value="setDragMark.json")
 	public  @ResponseBody int setDragMark(int dragNum) throws Exception {
-		return dragservice.setDragMark(dragNum);
+			return dragservice.setDragMark(dragNum);
 	}
 	
 	//드래그 중요표시 삭제
-	public void removeDragMark(int dragNo) throws Exception {
-		dragservice.removeDragMark(dragNo);
+	@RequestMapping(value="removeDragMark.json")
+	public @ResponseBody int removeDragMark(int dragNum) throws Exception {
+		return  dragservice.removeDragMark(dragNum);
 	}
 
 }

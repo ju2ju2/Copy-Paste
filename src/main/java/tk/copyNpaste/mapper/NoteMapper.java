@@ -72,8 +72,17 @@ public interface NoteMapper {
 	//인기노트 상세보기 
 	public List<NoteVO> selectPopNote() throws Exception;
 	
-	//노트 정렬 
-	public List<NoteVO> selectOrderbyNote(HashMap map) throws Exception;
+	//노트 정렬 1
+	public List<NoteVO> selectOrderbyNote1(HashMap map) throws Exception;
+	
+	//노트 정렬 2
+	public List<NoteVO> selectOrderbyNote2(HashMap map) throws Exception;
+	
+	//노트 정렬 3
+	public List<NoteVO> selectOrderbyNote3(HashMap map) throws Exception;
+	
+	//노트 정렬 4
+	public List<NoteVO> selectOrderbyNote4(HashMap map) throws Exception;
 	
 	//노트 블라인드 처리
 	public List<NoteVO> dd() throws Exception;
@@ -81,6 +90,8 @@ public interface NoteMapper {
 	//노트의 폴더 이동
 	public int moveNoteFolder(NoteVO note) throws Exception;
 
+	// MY NOTE → 노트 폴더별 조회
+	public List<NoteVO> selectNoteByFolder(NoteVO note) throws Exception;
 
 
 	

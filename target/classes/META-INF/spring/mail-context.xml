@@ -22,7 +22,7 @@
 		<property name="password" value="room404404" />
 		<property name="javaMailProperties">
 			<props>
-				<prop key="mail.debug">false</prop>
+				<prop key="mail.debug">true</prop>
 				<prop key="mail.smtp.auth">true</prop>
 				<prop key="mail.smtp.starttls.enable">true</prop>
 				<prop key="mail.mime.charset">UTF-8</prop>

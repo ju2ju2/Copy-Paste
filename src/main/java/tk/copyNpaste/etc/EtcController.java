@@ -9,12 +9,15 @@ package tk.copyNpaste.etc;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import tk.copyNpaste.vo.EtcVO;
+import tk.copyNpaste.vo.MemberVO;
 import tk.copyNpaste.vo.ReportVO;
 
 @RequestMapping("/etc/")
@@ -25,8 +28,18 @@ public class EtcController {
 
 	@RequestMapping("admin.htm")
 	// 관리자 페이지 (회원관리)
-	public String adminMemberPage() throws Exception {
-		return "admin.manageMember";
+	public ModelAndView adminMemberPage() throws Exception {
+		List<MemberVO> memberlist = etcService.showMember();
+		ModelAndView adminmav = new ModelAndView();
+		adminmav.setViewName("admin.manageMember");
+		adminmav.addObject("memberVo", memberlist);
+		return adminmav;
+	};
+	
+	@RequestMapping("memberdelete.json")
+	// 관리자 페이지 (회원 탈퇴)
+	public @ResponseBody int deleteMember(String userEmail) throws Exception {
+		return etcService.deleteMember(userEmail);
 	};
 
 	@RequestMapping("adminNote.htm")
@@ -58,6 +71,12 @@ public class EtcController {
 	public @ResponseBody List<ReportVO> selectCommReport() throws Exception {
 		return etcService.selectCommReport();
 	};
+	
+	// 댓글 신고된 노트로 이동
+	@RequestMapping("hasReportComm.json")
+	public @ResponseBody int selectHasReportComm(int reportNum) throws Exception {
+		return etcService.selectHasReportComm(reportNum);
+	};
 
 	// 신고 목록 전체 보기
 	@RequestMapping("allReport.json")
@@ -71,8 +90,10 @@ public class EtcController {
 	};
 
 	// 신고 처리 하기
-	public void updateReport(int reportNum) throws Exception {
-		etcService.updateReport(reportNum);
+	@RequestMapping("reportCheck.json")
+	public @ResponseBody int updateReport(int reportNum, String reportmemo, String checkCode,
+			String noteOrCommCode, int noteNum) throws Exception {
+		return etcService.updateReport(reportNum, reportmemo, checkCode, noteOrCommCode, noteNum);
 	};
 
 	// 댓글알림

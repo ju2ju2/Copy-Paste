@@ -17,7 +17,7 @@
 			<hr>
 			<div>
 				<c:url value="/login" var="loginUrl" />
-				<form:form id="signin" class="form-signin" name="f" action="${loginUrl}"
+				<form id="signin" class="form-signin" name="f1" action="${loginUrl}"
 							method="POST">
 					<c:if test="${param.error != null}">
 						<p>아이디와 비밀번호가 잘못되었습니다.</p>
@@ -30,7 +30,7 @@
 					<input type="password" id="userPwd" name="userPwd"
 						class="form-control" placeholder="Password" required />
 					<button class="btn btn-lg btn-danger btn-block" type="submit">로그인</button>
-				</form:form>
+				</form>
 					<hr>
 					<h3 class="mg-top-6 text-center login-title">SNS LOGIN</h3>
 					<div class="text-center">
@@ -40,15 +40,15 @@
 						<a href="#"><img src="./resources/image/google.png" class="inline"></a>
 					</div>
 
-				<form:form class="form-signin" name="f" method="POST"
-					action="${pageContext.request.contextPath}/pwd" >
+				<form class="form-signin" name="f2" method="POST"
+					action="#modal-tempPassword" >
 					<a data-toggle="modal" href="#" class="pull-right need-help"
 						data-target="#modal-tempPassword" role="button"
 						data-backdrop="static"> Forgot password? </a>
 					<span class="clearfix"></span>
 					<a href="signup.htm" class="pull-right new-account">SING UP</a>
 					<span class="clearfix"></span>
-				</form:form>
+				</form>
 			</div>
 			<br> <br> <br> <br>
 		</div>
@@ -69,11 +69,11 @@
 				<div class="form-group">
 					<div class="row">
 						<div>
-							<form id="findUserPwd" class="form-signin" name="f" action="${loginUrl}" method="POST">
+							<form id="findUserPwd" class="form-signin" name="f3" method="POST">
 							<input type="text" id="userEmailForfindUserPwd" name="userEmail"
 								class="form-control" placeholder="Email" required autofocus />
 							<button class="mt-10 btn btn-sm btn-danger btn-block" 
-									id ="findUserPwdBtn" type="submit">임시비밀번호
+									id ="findUserPwdBtn" type="button">임시비밀번호
 								발송</button>
 							</form>
 						</div>
@@ -104,12 +104,11 @@ $('#findUserPwdBtn').click(function(){
 		$.ajax({
 		type : 'post',
 		url : '${pageContext.request.contextPath}/member/findUserPwd.do',
- 		data : {mailto:$('#userEmailForfindUserPwd').val()},
+ 		data : {mailto:$('#userEmailForfindUserPwd').val()}	,
 		success : function(data) {
 					console.log(data);
 					swal("୧༼ ヘ ᗜ ヘ ༽୨", "임시 비밀번호가 메일로 전송되었습니다.", "success");
-					tempPwd=data;
-            		console.log(tempPwd);
+					$('#modal-tempPassword').hide();
          	   },
           	  error : function(error) {
 					swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 확인해 주세요.", "error");
