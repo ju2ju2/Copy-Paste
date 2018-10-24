@@ -1,90 +1,293 @@
-
-/*		// 드래그 드래그로 삭제
-		function deleteDrag(dragNum) {
-			var dragNum = dragNum;
-			var dragList = localStorage.getItem("dragList");
-			
-			swal({
-				  title: "* :-O",
-				  text: "드래그를 삭제하시겠어요~?",
-				  type: "warning",
-				  showCancelButton: true,
-				  confirmButtonText: "네, 삭제해주세요 :)",
-				  cancelButtonText: "아니요!",
-				  closeOnConfirm: false
-				},
-				function(){
-					$.ajax({
-						url:"/deleteDrag.do",
-						dataType:"json",
-						data: {"dragNum":dragNum},
-						type: "POST"
-						}).done(function (result){
-							swal("₍ᐢ•ﻌ•ᐢ₎*･ﾟ｡", result.msg);
-							makeDragList();
-					});
-				}
-			);
-			
-		}	*/
-		
-		/*// 드롭 허용
-		function allowDrop(ev) {
-			ev.preventDefault(); 
-			}
-		
-		// 드래그 이벤트
-		function drag(ev) { 
-			ev.dataTransfer.setData("text", ev.target.id); 
-			} 
-		
-		// 노트 및 드래그 삭제 드랍 이벤트
-		function drop(ev) {
-			ev.preventDefault();
-			var deleteId = ev.dataTransfer.getData($(".mini-posts")); 
-			var deleteNum = deleteId.substring(4);
-			if (deleteId.startsWith("d")){
-			 	deleteDrag(deleteNum);
-			} else if (deleteId.startsWith("c")){
-				deleteNum = deleteId.substring(8);
-				deleteCategory(deleteNum);
-			} else{
-			 	deleteNote(deleteNum);
-			} 
-		}
-		
+/*
+@JSP : drag.js
+@Date : 2018.10.24
+@Author : 문지은
+@Desc : list 경로 makeDragList.jsp 로 스크립트 수정 
 */
-	
-
 
 
 
 $(function() {
-    $('#dragTrash').droppable( {
-        // 펑션으로 ajax 이용해서 데이터 삭제되고 시각적으로 새로운 데이터 불러오는 식의 처리해야함        
-    /*	$( ".blog" ).hide( "drop", { direction: "down" }, "slow" );*/
-    	} 
-    );
+	    // 노트  드래그로 삭제
+		function deleteDrag(dragNum) {
+			var dragNum = dragNum;
+			swal({
+				 title: "정말 삭제하시겠습니까?",
+				  text: "삭제 후에는 다시 복구 할 수 없습니다.",
+				  type: 'warning',
+				  showCancelButton: true,
+				  confirmButtonClass : "btn-danger btn-sm",
+				  cancelButtonClass: "btn btn-sm",
+				  confirmButtonText: '확인',
+				  cancelButtonText: "아니요!",
+				  closeOnConfirm: false
+				},
+				function(isConfirm){
+				if(isConfirm){
+					$.ajax({
+						url:"../drag/deleteDrag.json",
+						dataType:"json",
+						data: {"dragNum":dragNum},
+						type: "POST"
+						}).done(function (result){
+								console.log("드래그가 성공적으로 삭제됨");
+								swal({type: "success",
+									  title: '성공적으로 삭제되었습니다.',
+						              confirmButtonClass : "btn-danger",
+									  closeOnConfirm: false
+								},function(){
+									location.reload();
+								})
+						});
+				}
+					}
+				);
+			}	
 
-    // 드래그 div들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
-    $('.dragDiv').draggable({
-    	revert: true, 
-    	 revertDuration: 200,
-    	 snapMode: "inner",
-    	 scroll: true,
-    	 scrollSensitivity: 100 ,
-    	 scrollSpeed: 100
+		  // dragDiv들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
+   	    $('.dragDiv').draggable({
+   	    	revert: true, 
+   	    	 revertDuration: 200,
+   	    	 snapMode: "inner",
+   	    	 scroll: true,
+   	    	 scrollSensitivity: 100 ,
+   	    	 scrollSpeed: 100
+   	    	});
+   	   // 노트를 드랍하여 삭제 메소드 
+	    $("#droppable").droppable({
+	        activeClass:"ui-state-active",
+	        accept:".dragDiv",
+	        drop: function(event,ui) {
+	        	var dragNum = $(this).find('#dragNum').text();
+	        	alert($(this).find('#dragNum').text());
+	         }     
+	      });  
+
+   //드래그목록
+	 $.ajax({
+      url: "../drag/selectAllDrag.json", // url_pettern 
+      type:"POST",
+      dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
+      success:function(data){
+    	    var dragList ="";   	    
+        	if(data != null) {
+        		$.each(data, function(key, value){
+        			$('#dragList').empty();
+        			dragList+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">';
+        			dragList+='<div class="text-center dragDiv mt-10" id="'+value.dragNum+'">';
+        			dragList+='<blockquote class="grapefruit">';
+        			dragList+='<!-- 별 아이콘 -->';
+        			dragList+='<div class="icon-right starDiv">';
+        			dragList+='<br> <i class="far fa-star icon-size" onclick="setDragMark()";></i>';
+        			dragList+='</div>';
+        			dragList+='<div class="dragContent">';
+        			dragList+='<!-- 모달 창 -->';
+        			dragList+='<div class="drag-a">';
+        			dragList+='<a data-toggle="modal"';
+        			dragList+='href="../drag/dragDetail.htm?dragNum='+value.dragNum+'"';
+        			dragList+='data-target="#modal-drag" role="button"';
+        			dragList+='data-backdrop="static">';
+        			dragList+='<p>'+value.dragText+'</p><code>';
+        			dragList+='&lt;출처 : <span class="Cgrapefruit">"'+value.dragOrigin+'"</span>&gt;';
+        			dragList+='<span>"'+value.dragDate+'"</span>';
+        			dragList+='</code> <input type="hidden" id="dragNum" class="dragNum"';
+        			dragList+='value="'+value.dragNum+'">';
+        			dragList+='<input type="hidden" id="dragMark" class="dragMark" value="'+value.dragMark+'">';
+        			dragList+='</a>';
+        			dragList+='</div>';
+        			dragList+='</div>';
+        			dragList+='</blockquote>';
+        			dragList+='</div>';
+        			dragList+='</div>';
+        			
+        			$("#dragList").html(dragList);
+        		})
+        	}
+        }
+      }).done(function (result){
+		  // dragDiv들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
+     	    $('.dragDiv').draggable({
+     	    	revert: true, 
+     	    	 revertDuration: 200,
+     	    	 snapMode: "inner",
+     	    	 scroll: true,
+     	    	 scrollSensitivity: 100 ,
+     	    	 scrollSpeed: 100
+     	    	});
+     	     // 드래그를 드랍하여 삭제 메소드 
+     	    $("#droppable").droppable({
+     	        activeClass:"ui-state-active",
+     	        accept:".dragDiv",
+     	        drop: function(event,ui) {
+     	        	var dragNum = ui.draggable.prop("id")
+     	        	deleteDrag(dragNum)
+     	         }     
+     	      });  
+      
+      })
+
+
+//드래그 키워드 검색
+$('#search').click(function(e) {
+   
+ 	$.ajax({
+       url: "../drag/selectByKeyDrag.json", // url_pettern 
+       type:"get",
+       data:{"keyword":$('#search-Text').val()},
+      /* dataType:"html",
+       success:function(data){
+		console.log(data);
+		$('#dragList').html(data);
+       }
+ */   dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
+ success:function(data){
+	    var dragList ="";   	    
+  	if(data != null) {
+  		$.each(data, function(key, value){
+  			$('#dragList').empty();
+  			dragList+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">';
+  			dragList+='<div class="text-center dragDiv mt-10" id="'+value.dragNum+'">';
+  			dragList+='<blockquote class="grapefruit">';
+  			dragList+='<!-- 별 아이콘 -->';
+  			dragList+='<div class="icon-right starDiv">';
+  			dragList+='<br> <i class="far fa-star icon-size" onclick="setDragMark()";></i>';
+  			dragList+='</div>';
+  			dragList+='<div class="dragContent">';
+  			dragList+='<!-- 모달 창 -->';
+  			dragList+='<div class="drag-a">';
+  			dragList+='<a data-toggle="modal"';
+  			dragList+='href="../drag/dragDetail.htm?dragNum='+value.dragNum+'"';
+  			dragList+='data-target="#modal-drag" role="button"';
+  			dragList+='data-backdrop="static">';
+  			dragList+='<p>'+value.dragText+'</p><code>';
+  			dragList+='&lt;출처 : <span class="Cgrapefruit">"'+value.dragOrigin+'"</span>&gt;';
+  			dragList+='<span>"'+value.dragDate+'"</span>';
+  			dragList+='</code> <input type="hidden" id="dragNum" class="dragNum"';
+  			dragList+='value="'+value.dragNum+'">';
+  			dragList+='<input type="hidden" id="dragMark" class="dragMark" value="'+value.dragMark+'">';
+  			dragList+='</a>';
+  			dragList+='</div>';
+  			dragList+='</div>';
+  			dragList+='</blockquote>';
+  			dragList+='</div>';
+  			dragList+='</div>';
+  			
+  			$("#dragList").html(dragList);
+  		})
+  	}
+  }
     
-    });
- 
-    // 별 클릭하면 토글되는 이벤트
-    $('.fa-star').click(function(){
-    	if($(this).hasClass('far')){
-    		$(this).removeClass('far').addClass('fas');
-    		
-    		
-    	} else {
-    		$(this).removeClass('fas').addClass('far');
-    	}
-    });
+       
+       }).done(function (result){
+ 		  // dragDiv들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
+      	    $('.dragDiv').draggable({
+      	    	revert: true, 
+      	    	 revertDuration: 200,
+      	    	 snapMode: "inner",
+      	    	 scroll: true,
+      	    	 scrollSensitivity: 100 ,
+      	    	 scrollSpeed: 100
+      	    	});
+      	     // 드래그를 드랍하여 삭제 메소드 
+      	    $("#droppable").droppable({
+      	        activeClass:"ui-state-active",
+      	        accept:".dragDiv",
+      	        drop: function(event,ui) {
+      	        	var dragNum = ui.draggable.prop("id")
+      	        	deleteDrag(dragNum)
+      	         }     
+      	      });  
+       })
+})
+
+//드래그 정렬 
+$('#sort-category').on("change",function(e) {
+
+ 	$.ajax({
+       url: "../drag/selectOrderbyDrag.json", // url_pettern 
+       type:"post",
+       data:{"sortCategory":$('#sort-category option:selected').val()},
+       dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
+       success:function(data){
+     	    var dragList ="";   	    
+         	if(data != null) {
+         		$.each(data, function(key, value){
+         			$('#dragList').empty();
+         			dragList+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">';
+         			dragList+='<div class="text-center dragDiv mt-10" id="'+value.dragNum+'">';
+         			dragList+='<blockquote class="grapefruit">';
+         			dragList+='<!-- 별 아이콘 -->';
+         			dragList+='<div class="icon-right starDiv">';
+         			dragList+='<br> <i class="far fa-star icon-size" onclick="setDragMark()";></i>';
+         			dragList+='</div>';
+         			dragList+='<div class="dragContent">';
+         			dragList+='<!-- 모달 창 -->';
+         			dragList+='<div class="drag-a">';
+         			dragList+='<a data-toggle="modal"';
+         			dragList+='href="../drag/dragDetail.htm?dragNum='+value.dragNum+'"';
+         			dragList+='data-target="#modal-drag" role="button"';
+         			dragList+='data-backdrop="static">';
+         			dragList+='<p>'+value.dragText+'</p><code>';
+         			dragList+='&lt;출처 : <span class="Cgrapefruit">"'+value.dragOrigin+'"</span>&gt;';
+         			dragList+='<span>"'+value.dragDate+'"</span>';
+         			dragList+='</code> <input type="hidden" id="dragNum" class="dragNum"';
+         			dragList+='value="'+value.dragNum+'">';
+         			dragList+='<input type="hidden" id="dragMark" class="dragMark" value="'+value.dragMark+'">';
+         			dragList+='</a>';
+         			dragList+='</div>';
+         			dragList+='</div>';
+         			dragList+='</blockquote>';
+         			dragList+='</div>';
+         			dragList+='</div>';
+         			
+         			$("#dragList").html(dragList);
+         		})
+         	}
+         }
+       }).done(function (result){
+ 		  // dragDiv들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
+   	    $('.dragDiv').draggable({
+   	    	revert: true, 
+   	    	 revertDuration: 200,
+   	    	 snapMode: "inner",
+   	    	 scroll: true,
+   	    	 scrollSensitivity: 100 ,
+   	    	 scrollSpeed: 100
+   	    	});
+   	     // 드래그를 드랍하여 삭제 메소드 
+   	    $("#droppable").droppable({
+   	        activeClass:"ui-state-active",
+   	        accept:".dragDiv",
+   	        drop: function(event,ui) {
+   	        	var dragNum = ui.draggable.prop("id")
+   	        	deleteDrag(dragNum)
+   	         }     
+   	      });  
+       })
+})
+
+
+
+
+
+//끝
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

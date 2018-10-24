@@ -82,16 +82,44 @@ public class NoteService {
 		return notelist;
 	}
 	
+	//노트 폴더조회
+	public List<NoteVO> selectByFolderNote(NoteVO note) {
+		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
+		List<NoteVO> notelist = notedao.selectByFolderNote(note);
+		return notelist;
+	}
+	
+	//노트 정렬 1 : 최신순
+	public List<NoteVO> selectOrderbyNote1(HashMap map) throws Exception{
+		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
+		return notedao.selectOrderbyNote1(map);
+	}
+	//노트 정렬 2 : 오래된순
+	public List<NoteVO> selectOrderbyNote2(HashMap map) throws Exception{
+		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
+		return notedao.selectOrderbyNote2(map);
+	}
+	//노트 정렬 3 : 가나다순
+	public List<NoteVO> selectOrderbyNote3(HashMap map) throws Exception{
+		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
+		return notedao.selectOrderbyNote3(map);
+	}
+	//노트 정렬 4 : 전체보기
+		public List<NoteVO> selectOrderbyNote4(HashMap map) throws Exception{
+			NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
+			return notedao.selectOrderbyNote4(map);
+		}
+	
 	//노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws Exception;
 	public List<NoteVO> selectByCalNote(Date period) throws Exception{
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
 		return notedao.selectByCalNote(period);
 	}
 	//노트 키워드 검색
-	public List<NoteVO> selectByKeyNote(String keyword) throws Exception{
-		List<NoteVO> list= new ArrayList<NoteVO>();
-		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
-		return notedao.selectByKeyNote(keyword);
+	public List<NoteVO> selectByKeyNote(HashMap map) throws Exception{
+		List<NoteVO> list = new ArrayList<NoteVO>();
+		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
+		return notedao.selectByKeyNote(map);
 	}
 	//회원별 노트 검색
 	public List<NoteVO> selectByMemNote(String userEmail) throws Exception{
@@ -121,6 +149,13 @@ public class NoteService {
 		NoteMapper notedao=sqlsession.getMapper(NoteMapper.class);
 			
 		 return notedao.moveNoteFolder(note);
+	}
+	
+	// MY NOTE → 노트 폴더별 조회
+	public List<NoteVO> selectNoteByFolder(NoteVO note) throws Exception {
+		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
+		List<NoteVO> notelist = notedao.selectNoteByFolder(note);
+		return notelist;
 	}
 	
 

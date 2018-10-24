@@ -7,9 +7,11 @@
 package tk.copyNpaste.mapper;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import tk.copyNpaste.vo.DragVO;
+import tk.copyNpaste.vo.NoteVO;
 
 public interface DragMapper {
 
@@ -30,13 +32,25 @@ public interface DragMapper {
 	public List<DragVO> selectByCalDrag(Date dargDate) throws Exception;
 		
 	//드래그 키워드 검색
-	public List<DragVO> selectByKeyDrag(String keyword) throws Exception;
+	public List<DragVO> selectByKeyDrag(HashMap<String, Object> map) throws Exception;
+	
+	//드래그 정렬 
+	public List<DragVO> selectOrderbyDrag1(HashMap<String, Object> map) throws Exception;
+	
+	public List<DragVO> selectOrderbyDrag2(HashMap<String, Object> map) throws Exception;
+	
+	public List<DragVO> selectOrderbyDrag3(HashMap<String, Object> map) throws Exception;
+	
+	public List<DragVO> selectOrderbyDrag4(HashMap<String, Object> map) throws Exception;
+	
+	public List<DragVO> selectOrderbyDrag5(HashMap<String, Object> map) throws Exception;
 	
 	//드래그 중요표시 등록
 	public int setDragMark(int dragNum) throws Exception;
 	
 	//드래그 중요표시 삭제
 	public int removeDragMark(int dragNum) throws Exception;
+
 
 
 	

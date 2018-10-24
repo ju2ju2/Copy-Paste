@@ -14,6 +14,7 @@ public class FolderVO {
 	private String defaultFolder;
 	private String canDelete;
 	private String beforefolderName;
+	private int count;
 
 	public String getFolderName() {
 		return folderName;
@@ -45,7 +46,11 @@ public class FolderVO {
 	public void setBeforefolderName(String beforefolderName) {
 		this.beforefolderName = beforefolderName;
 	}
-
-
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 
 }

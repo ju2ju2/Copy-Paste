@@ -32,7 +32,7 @@
 				<div id="drag" class="tab-pane fade in active">
 					<div class="row">
 						<div class="form-group">
-							<!-- Sort -->
+							<!-- 드래그정렬 -->
 							<div class="col-xs-12">
 								<select name="sort-category" id="sort-category">
 									<option value="">- 정렬 분류 -</option>
@@ -70,7 +70,7 @@
 				<div id="myNote" class="tab-pane fade">
 					<div class="row">
 						<div class="form-group">
-							<!-- Sort -->
+							<!-- 노트정렬 -->
 							<div class="col-xs-12">
 								<select name="sort-category" id="sort-category" class="w-90">
 									<option value="">- 정렬 분류 -</option>
@@ -80,7 +80,7 @@
 									<option value="1">전체보기</option>
 								</select>
 							</div>
-							<!-- Search -->
+							<!-- 노트검색 -->
 							<section id="subject-search" class="alt">
 								<div class="col-xs-12">
 									<form method="post" action="#">
@@ -92,72 +92,25 @@
 							</section>
 						</div>
 					</div>
-					<!-- Section -->
 					<section>
 						<br>
 						<header class="major">
 							<h2>
-								노트 폴더 목록<i class="fas fa-trash icon-size"></i>
+								노트 폴더 목록
 							</h2>
 						</header>
-						<div class="row">
-							<div class="col-xs-10 pt">
-								<h5 class="accordion">미분류</h5>
-								<div class="panel">
-									<div class="card text-center">
-										<img class="card-img-top"
-											src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-											alt="" width="100%">
-										<div class="card-block">
-											<h4>가을에 쓴 편지</h4>
-											<span>음담패썰</span> <span>2018.08.30</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-xs-2 panel-margin">
-								<i class="fas fa-bookmark icon-size"></i>
-							</div>
-						</div>
 
-						<div class="row">
-							<div class="col-xs-10 pt">
-								<h5 class="accordion">미분류</h5>
-								<div class="panel">
-									<div class="card text-center">
-										<img class="card-img-top"
-											src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-											alt="" width="100%">
-										<div class="card-block">
-											<h4>가을에 쓴 편지</h4>
-											<span>음담패썰</span> <span>2018.08.30</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-xs-2 panel-margin">
-								<i class="far fa-bookmark icon-size"></i>
-							</div>
+						<!-- 폴더목록,노트목록 -->	
+						<div id="asideFolderList"></div>
+	
+					<!-- 노트상세보기 모달 -->
+					<div id="modal-testNew" class="modal fade text-center overlay"
+						 role="dialog">
+						<div class="modal-dialog">
+							<div class="modal-content">Content will be loaded here from
+								"note/noteDetail.htm" file</div>
 						</div>
-
-						<div class="row">
-							<div class="col-xs-10 pt">
-								<h5 class="accordion">스크랩</h5>
-								<div class="panel">
-									<div class="card text-center">
-										<img class="card-img-top"
-											src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-											alt="" width="100%">
-										<div class="card-block">
-											<h4>가을에 쓴 편지</h4>
-											<span>음담패썰</span> <span>2018.08.30</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-xs-2 panel-margin"></div>
-						</div>
-
+					</div>
 
 					</section>
 				</div>
@@ -209,6 +162,7 @@
 </nav>
 
 <script>
+
 	/* 폴더 아코디언 */
 	var acc = document.getElementsByClassName("accordion");
 	var i;
@@ -242,7 +196,6 @@
 		}
 	})
 
-	
 	<!--드래그목록-->
 	$.ajax({
 		      url: "${pageContext.request.contextPath}/drag/selectAllDrag.json", // url_pettern 
@@ -269,8 +222,9 @@
 		                	a += '</div>';
 		                	a += '</blockquote>';
 		                	a += '</div>';		
-		        		});
+		        		})
 		        	}
+		        
 		        	if (data.length == 0) {
 						a += "<div class='text-center'>";
 						a += "<h6>등록된 드래그가 없습니다.</h6>";
@@ -285,7 +239,7 @@
 		            	 scroll: true,
 		            	 scrollSensitivity: 100 ,
 		            	 scrollSpeed: 100
-		            }); 
+		            })
 		            
 		            <!-- 드래그 클릭시 텍스트 에디터기에 추가-->
 		        	$('.dragDiv').on("click",function(){
@@ -295,37 +249,81 @@
 		    		})
 		      }
 		 })
-	
-		
-	
-		
-	/* $(document).on("ready",function() {
-	
-	
-	}) */
-	// 드래그 노트에 추가하기.
-/* 	$("div[id^=drag]").click(function(event){
-		var addDragNo = event.target.id.substring(4);
-		var eoBtnStyle = $("#editorOpenBtn").attr("style");
-		var ecBtnStyle = $("#editorCloseBtn").attr("style");
-//	 	alert("eoBtnStyle" + eoBtnStyle);
-//	 	alert("ecBtnStyle" + ecBtnStyle);
-		if (eoBtnStyle.indexOf('none') !== -1 && ecBtnStyle.indexOf('display') == -1) {
-			$.ajax({
-				url : "/00_drag-note/drag/selectDrag.do",
-				type:"POST",
-				data :{"dragNo" : addDragNo},
-				dataType : "json"
-			})
-			.done(function (result) {
-				$(".nicEdit-main").append(result.dragContent + "<br>");
-			})
-			.fail(function (jqXhr, textStatus, errorText) {
-				alert("에러발생 : " + errorText);
-			});
-		}
-		return false;
-	}); */
+
 		 
+	//노트 드래그 가능, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
+    $('.asideNoteDiv').draggable({
+    	revert: true, 
+    	 revertDuration: 200,
+    	 snapMode: "inner",
+    	 scroll: true,
+    	 scrollSensitivity: 100 ,
+    	 scrollSpeed: 100
+    	});
 	
+		 
+	//노트 탭 폴더목록 추가 //노트 리스트 
+	$.ajax({
+      url: "${pageContext.request.contextPath}/folder/selectAllFolder.json", // url_pettern 
+      type:"POST",
+      dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
+      success:function(data){
+    	 var a = "";
+      	 if(data != null) {
+      		$.each(data, function(key, value){
+      			$('#asideFolderList').empty();	
+      			a += '<div class="row" class="accordion" alt="'+value.folderName.trim()+'"><div class="col-xs-10 pt"> <h5 class="accordion asideFolderName" id="asideFolderName">'+value.folderName+'</h5>'
+      			a += '</div><div class="col-xs-2 panel-margin">	<i class="far fa-bookmark icon-size"></i>'
+      			a += '</div><div class="row"><div id="asideNoteList"></div></div></div>';
+      		});
+      	}
+			$("#asideFolderList").html(a);
+       }
+    }).done(function (result) {
+    	$('.asideFolderName').click(function(){
+    		$.ajax({
+    		      url: "${pageContext.request.contextPath}/note/selectByFolderNote.json", // url_pettern 
+    		      type:"POST",
+    		      data: {'folderName':$(this).text()},
+    		      dataType:"json",
+    		      success:function(data){
+    		    	 console.log(data)
+    		      	 if(data != null) {
+    		      		var aa = "";
+    		      		$.each(data, function(key, value){
+    		      			$('#asideNoteList').empty();	
+    		      			aa+='<div class="col-xs-12 asideNoteDiv">'
+    		      			aa+='<div class="text-center asideNoteDiv">'
+    		      			aa+='<!-- a HTML (to Trigger Modal) -->'
+    		      			aa+='<a data-toggle="modal"'
+    		      			aa+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&cmd=mynote"'
+    		      			aa+='data-target="#modal-testNew" role="button" data-backdrop="static">'
+    		      			aa+='<div class="item">'
+    		      			aa+='<img class="img-rounded"'
+    		      			aa+='src="'+value.noteThumnail+'"'
+    		      			aa+='alt="'+value.noteTitle+'" width="100%">'
+    		      			aa+='<div class="caption">'
+    		      			aa+='<i class="fa fa-plus" aria-hidden="true"></i>'
+    		      			aa+='</div>'
+    		      			aa+='</div>'
+    		      			aa+='<div>'
+    		      			aa+='<h4>'+value.noteTitle+'</h4>'
+    		      			aa+='<strong>'+value.userNick+'</strong><span>'+value.noteDate+'</span>'
+    		      			aa+='</div>'
+    		      			aa+='</a>'
+    		      			aa+='</div>'
+    		      			aa+='</div>'
+    		      			$("div[alt='"+value.folderName+"']").find("#asideNoteList").html(aa);
+    		      		});
+
+    		      	}
+    		      
+    		       }
+    		    })
+    	}) 
+    	
+	}) 
+	
+	<!-- 폴더명 클릭시 노트 조회 -->
+
 </script>

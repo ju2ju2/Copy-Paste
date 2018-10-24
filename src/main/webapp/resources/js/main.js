@@ -11,17 +11,13 @@
  });*/
 //활성화 된 링크 active 클래스주기
 //모달 내용 초기화
-$('body').on('hidden.bs.modal', '.modal', function () {
-    $(this).removeData('bs.modal');
+$('body').on('hidden.bs.modal', '.modal', function() {
+	$(this).removeData('bs.modal');
 });
 $('#modal-testNew').on('shown.bs.modal', function() {
-    $(document).off('focusin.modal');
+	$(document).off('focusin.modal');
 });
 
-
-$('.swal').click(function() {
-	swal({title:'Test', input: 'text'});
-});
 // 메인 텍스트 슬라이드
 var TxtType = function(el, toRotate, period) {
 	this.toRotate = toRotate;
@@ -75,34 +71,36 @@ window.onload = function() {
 			new TxtType(elements[i], JSON.parse(toRotate), period);
 		}
 	}
-    // INJECT CSS
-    var css = document.createElement("style");
-    css.type = "text/css";
-    css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
-    document.body.appendChild(css);
+	// INJECT CSS
+	var css = document.createElement("style");
+	css.type = "text/css";
+	css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+	document.body.appendChild(css);
 
 	/* 날씨 api */
 
 	var apiURI = "http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=786c99bd6467a4ab58300feffccd96d2";
 
-	$.ajax({
+	$
+			.ajax({
 				url : apiURI,
 				dataType : "json",
 				type : "GET",
 				async : "false",
 				success : function(resp) {
-					/*console.log(resp);
-					console.log("현재온도 : " + (resp.main.temp - 273.15));
-					console.log("현재습도 : " + resp.main.humidity);
-					console.log("날씨 : " + resp.weather[0].main);
-					console.log("상세날씨설명 : " + resp.weather[0].description);
-					console.log("날씨 이미지 : " + resp.weather[0].icon);
-					console.log("바람   : " + resp.wind.speed);
-					console.log("나라   : " + resp.sys.country);
-					console.log("도시이름  : " + resp.name);
-					console.log("구름  : " + (resp.clouds.all) + "%");*/
+					/*
+					 * console.log(resp); console.log("현재온도 : " +
+					 * (resp.main.temp - 273.15)); console.log("현재습도 : " +
+					 * resp.main.humidity); console.log("날씨 : " +
+					 * resp.weather[0].main); console.log("상세날씨설명 : " +
+					 * resp.weather[0].description); console.log("날씨 이미지 : " +
+					 * resp.weather[0].icon); console.log("바람 : " +
+					 * resp.wind.speed); console.log("나라 : " +
+					 * resp.sys.country); console.log("도시이름 : " + resp.name);
+					 * console.log("구름 : " + (resp.clouds.all) + "%");
+					 */
 					var temp = resp.main.temp - 273.15; /* 온도 */
-				/*	console.log("temp  : " + Math.round(temp));*/
+					/* console.log("temp : " + Math.round(temp)); */
 					var img = resp.weather[0].icon; /* 날씨 아이콘 */
 					var wtext; /* 날씨 내용 */
 					var wImg; /* 날씨 아이콘 변경 */
@@ -155,27 +153,75 @@ window.onload = function() {
 
 				}
 			});
-	
-	/* file업로드시 영역에 이미지 읽어오기 */
-	 var file = document.querySelector('.userPhoto');
-	 if(file!=null){
-	    file.onchange = function () { 
-	        var fileList = file.files ;
-	        
-	        // 읽기
-	        var reader = new FileReader();
-	        reader.readAsDataURL(fileList [0]);
 
-	        // 로드 한 후
-	        reader.onload = function  () {
-	            // 로컬 이미지를 보여주기
-	            /*
+	/* file업로드시 영역에 이미지 읽어오기 */
+	var file = document.querySelector('.userPhoto');
+	if (file != null) {
+		file.onchange = function() {
+			var fileList = file.files;
+
+			// 읽기
+			var reader = new FileReader();
+			reader.readAsDataURL(fileList[0]);
+
+			// 로드 한 후
+			reader.onload = function() {
+				// 로컬 이미지를 보여주기
+				/*
 				 * var imglink="<img class='img-responsive user-photo
 				 * img-rounded' src='' >"; $('.imgfile').html(imglink);
 				 */
-	            document.querySelector('.img-responsive').src = reader.result;
-	        }; 
-	    };    
-	 };
+				document.querySelector('.img-responsive').src = reader.result;
+			};
+		};
+	}
+	;
 
 };
+//이전 드래그 텍스트
+var prevText;
+
+
+// 드래그 저장
+$(document).mouseup(function(){
+     var selection = window.getSelection();
+	 var text = selection.toString();
+	 // 드래그 텍스트 공백인지 앞의 드래그와 중복되는지 체크
+	 if (text !='' && text.length > 1 && $.trim(text).length != 0 && prevText != text) {
+		 // 드래그 저장
+		var dragfd = new FormData();
+		
+		dragfd.append("dragOrigin","copyNpaste");
+		dragfd.append("dragText", text);
+		$.ajax({
+			url : "drag/insertDrag.json",
+			type:"POST",
+			data :dragfd,
+			dataType : "json",
+			processData: false,
+			contentType:false
+		})
+		.done(function (result) {
+			swal({
+				type : "success",
+				title : '드래그가 저장되었습니다.',
+				confirmButtonClass : "btn-danger",
+				closeOnConfirm : false
+			}, function() {
+				location.reload();
+				
+			});
+			
+			prevText = text;
+		})
+		
+		return false;
+	 }	
+ });
+
+
+
+
+
+
+
