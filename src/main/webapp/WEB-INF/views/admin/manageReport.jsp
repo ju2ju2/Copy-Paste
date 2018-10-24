@@ -176,6 +176,7 @@
 							data : {'reportNum':$(this).parent().parent().children().eq(3).html()},
 							success : function(data) {
 								console.log("넘어온 값 / "+data);
+								console.log("요청 url ${pageContext.request.contextPath}/note/noteDetail.htm?noteNum="+data);
 								$(this).attr("href", "${pageContext.request.contextPath}/note/noteDetail.htm?noteNum="+data);
 							}
 						})

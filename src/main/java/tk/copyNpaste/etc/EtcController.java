@@ -81,12 +81,6 @@ public class EtcController {
 	@RequestMapping("reportCheck.json")
 	public @ResponseBody int updateReport(int reportNum, String reportmemo, String checkCode,
 			String noteOrCommCode, int noteNum) throws Exception {
-		System.out.println("reportNum "+reportNum);
-		System.out.println("reportmemo "+reportmemo);
-		System.out.println("checkCode "+checkCode);
-		System.out.println("noteOrCommCode "+noteOrCommCode);
-		System.out.println("noteNum "+noteNum);
-		
 		return etcService.updateReport(reportNum, reportmemo, checkCode, noteOrCommCode, noteNum);
 	};
 

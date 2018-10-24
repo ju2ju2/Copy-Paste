@@ -62,21 +62,16 @@ public class EtcService {
 			int reportInt = etcdao.updateReport(reportNum, reportmemo, checkCode);
 			int noteOrCommInt = 0;
 			if (checkCode.equals("PS01")) {
-				System.out.println("블라인드 도달");
 				if (noteOrCommCode.equals("노트")) {
-					System.out.println("노트 블라인드");
 					noteOrCommInt = etcdao.updateReportNoteBlind(noteNum);
 				} else {
-					System.out.println("댓글 블라인드");
 					noteOrCommInt = etcdao.updateReportNoteCommBlind(noteNum);
 				}
 			} else {
 				System.out.println("블라인드 해제");
 				if (noteOrCommCode.equals("노트")) {
-					System.out.println("노트 블라인드 해제");
 					noteOrCommInt = etcdao.updateReportNoteDontBlind(noteNum);
 				} else {
-					System.out.println("댓글 블라인드 해제");
 					noteOrCommInt = etcdao.updateReportNoteCommDontBlind(noteNum);
 				}
 			}
