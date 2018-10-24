@@ -31,11 +31,11 @@ public class DragController {
 
 	//드래그 전체목록 보기 (비동기/글작성페이지)
 	@RequestMapping(value ="selectAllDrag.json")
-	public String selectAllDrag(Model model,Principal principal) throws Exception {
+	public @ResponseBody List<DragVO> selectAllDrag(Model model,Principal principal) throws Exception {
 		 String userEmail= principal.getName();
-		 List<DragVO> dragList =  dragservice.selectAllDrag(userEmail);
-		 model.addAttribute("dragList", dragList);
-		return "makeDragList";
+	/*	 List<DragVO> dragList =  dragservice.selectAllDrag(userEmail);
+		 model.addAttribute("dragList", dragList);*/
+		return dragservice.selectAllDrag(userEmail);
 	}
 	
 	
