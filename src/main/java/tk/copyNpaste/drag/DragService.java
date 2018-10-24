@@ -3,6 +3,11 @@
 * @ Date : 2018.10.05
 * @ Author : 이주원
 * @ Desc : dao 사용, 업무수행.
+* 
+*  @Class : DragService
+* @ Date : 2018.10.24
+* @ Author : 문지은
+* @ Desc : 드래그 목록, 상세보기, 삭제, 키워드 검색
 */
 package tk.copyNpaste.drag;
 

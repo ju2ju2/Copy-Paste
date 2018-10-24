@@ -136,6 +136,12 @@ public class NoteService {
 		 return notedao.moveNoteFolder(note);
 	}
 	
+	// MY NOTE → 노트 폴더별 조회
+	public List<NoteVO> selectNoteByFolder(NoteVO note) throws Exception {
+		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
+		List<NoteVO> notelist = notedao.selectNoteByFolder(note);
+		return notelist;
+	}
 	
 
 	/*	for (NoteVO note: notelist ) {

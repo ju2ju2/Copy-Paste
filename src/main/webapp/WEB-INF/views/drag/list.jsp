@@ -85,15 +85,15 @@
 		class="fa fa-sticky-note"></i></a>
 </div>
 <script>
-  // 별 클릭하면 토글되는 이벤트
-    $('.fa-star').click(function(){
-    	if($(this).hasClass('far')){
-    		$(this).removeClass('far').addClass('fas');
-    	} else {
-    		$(this).removeClass('fas').addClass('far');
-    	}
-    }); 
 
+//별 클릭하면 토글되는 이벤트
+$('.fa-star').click(function(){
+	if($(this).hasClass('far')){
+		$(this).removeClass('far').addClass('fas');
+	} else {
+		$(this).removeClass('fas').addClass('far');
+	}
+}); 
 
 </script>
 
