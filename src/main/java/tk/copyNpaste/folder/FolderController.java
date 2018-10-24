@@ -58,7 +58,6 @@ public class FolderController {
 	public @ResponseBody void updateFolder(FolderVO folder, Principal principal) throws Exception {
 		folder.setUserEmail(principal.getName());
 		int count = folder.getCount();
-		System.out.println("폴더에 등록된 게시글 개수 : " + folder.getCount());
 		if(count > 0) {
 			folderService.updateFolder(folder);
 		}else {
