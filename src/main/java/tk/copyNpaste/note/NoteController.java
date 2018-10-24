@@ -8,7 +8,6 @@
 package tk.copyNpaste.note;
 
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -27,7 +26,6 @@ import tk.copyNpaste.folder.FolderService;
 import tk.copyNpaste.vo.FolderVO;
 import tk.copyNpaste.vo.NoteCommVO;
 import tk.copyNpaste.vo.NoteVO;
-import tk.copyNpaste.vo.QnaCommVO;
 
 @Controller
 @RequestMapping(value = "/note/")
@@ -91,6 +89,15 @@ public class NoteController {
 	@RequestMapping(value="write.json")
 	public @ResponseBody int insertNote(NoteVO note,Principal principal) throws Exception {
 		note.setUserEmail(principal.getName());
+		String NoteContent = note.getNoteContent();
+		Document doc = Jsoup.parseBodyFragment(NoteContent);
+		Elements imgs = doc.getElementsByTag("img");
+		if(imgs.size() > 0) { 
+			String src = imgs.get(0).attr("src"); 
+			note.setNoteThumnail(src);
+		} else { note.setNoteThumnail(
+				"https://d1u1amw606tzwl.cloudfront.net/assets/users/avatar-default-96007ee5610cdc5a9eed706ec0889aec2257a3937d0fbb747cf335f8915f09b2.png");
+		}
 		return noteService.insertNote(note);
 	}
 	
@@ -196,28 +203,11 @@ public class NoteController {
 		return noteService.removeScrapNote(userEmail);
 	}
 
-	// 노트 댓글 조회-비동기
-	@RequestMapping(value="selectAllNoteComm.json")
-	public @ResponseBody List<NoteCommVO> selectAllNoteComm(int noteNum, Principal principal) throws Exception {
-		return noteService.selectAllNoteComm(noteNum);
-	}
-
 	// 노트 댓글 작성-비동기
-	@RequestMapping(value="insertNoteComm.json")
-	public @ResponseBody List<NoteCommVO> insertNoteComm(NoteCommVO note, int noteNum, Principal principal) throws Exception {
-		note.setUserEmail(principal.getName());//로그인한 사용자 ID
-		noteService.insertNoteComm(note);
-		return noteService.selectAllNoteComm(noteNum);
-	}
-
-	
-	// 노트 대댓글 작성-비동기
-	@RequestMapping(value="insertNoteCommComm.json")
-	public @ResponseBody int insertNoteCommComm(NoteCommVO note, int noteNum, Principal principal) throws Exception {
-		note.setUserEmail(principal.getName());//로그인한 사용자 ID
-		noteService.insertNoteComm(note);
-		return noteService.insertQnaCommComm(note);
-	}
+		public void insertNoteComm(NoteCommVO note, Principal principal) throws Exception {
+			note.setUserEmail(principal.getName());//로그인한 사용자 ID
+			noteService.insertNoteComm(note);
+		}
 
 	// 노트 댓글 삭제
 	public int deleteNoteComm(int noteCommNum) throws Exception {

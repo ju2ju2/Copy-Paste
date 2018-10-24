@@ -137,7 +137,7 @@
 	<div class="row">
 		<div class="text-right col-sm-1"></div>
 		<!-- 본문 -->
-		<div class="text-center col-sm-10" id="noteContent">${note.noteContent}</div>
+		<div class="text-left col-sm-10">${note.noteContent}</div>
 		<div class="row">
 			<br> <br> <br> <br>
 			<div class="col-sm-9"></div>
@@ -159,13 +159,12 @@
 				class="list-unstyled ui-sortable">
 				<c:choose>
 					<c:when test="${empty noteCommList}">
-						<div class="col-lg-12 col-sm-12 text-center">등록된 댓글이 없습니다.</div>
+						<div class="col-lg-12 col-sm-12 text-left">등록된 댓글이 없습니다.</div>
 					</c:when>
 					<c:otherwise>
 						<c:forEach var="noteCommList" items="${noteCommList}">
 							<div class="row">
-							<div class="col-sm-1"></div>
-								<div class="col-lg-10 col-sm-10 text-left">
+								<div class="col-lg-12 col-sm-12 text-left">
 									<div class="media-left">
 										<img class="user-photo"
 											src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">

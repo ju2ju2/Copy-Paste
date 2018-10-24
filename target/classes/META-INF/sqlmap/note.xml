@@ -34,63 +34,21 @@
 	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, u.userNick
 	from note n join users u on u.userEmail=n.userEmail where noteNum = #{noteNum};
 	</select>
-<!--//QNA 게시물 댓글 조회
-	 public List<QnaCommVO> selectQnaComm(int qnaNum) throws Exception; -->
-	 <select id="selectQnaComm" parameterType="Integer" resultType="QnaCommVO">
-	  </select>
-	 <!-- 	//QNA 댓글 작성 -->
- 	<insert id="insertQnaComm">
-  	   <selectKey order="BEFORE" keyProperty="qnaCommPos" resultType="int">
-   	   		select max(qnaCommPos)+1 from qnaComm
-     	</selectKey>
-     	insert into qnaComm(qnaNum,userEmail,qnaCommContent,qnaCommPos)
-		values (#{qnaNum},#{userEmail},#{qnaCommContent},#{qnaCommPos})
-    </insert>
-    
-    <!-- //대댓글 작성전 Pos수정  -->
-	<update id="updateQnaCommComm">
-		update qnaComm set qnaCommPos=qnaCommPos+1
-		where qnaCommPos>#{qnaCommPos}
-	</update>
-	<!-- //대댓글 작성 -->
-	<insert id="insertQnaCommComm">
-		<selectKey order="BEFORE" keyProperty="qnaCommPos" resultType="int">
-   	   		select (qnacommPos+1) from qnaComm where qnaCommNum=#{qnaCommNum}
-     	</selectKey>
-		insert into qnaComm(qnaNum,userEmail,qnaCommContent,qnaCommDept,qnaCommPNum,qnaCommPos)
-		values (#{qnaNum},#{userEmail},#{qnaCommContent},1,#{qnaCommNum},#{qnaCommPos})
-  	</insert>
-	
+
 	<!-- 노트 댓글 보기 -->
 	<select id="selectAllNoteComm" resultType="NoteCommVO">
-	select nc.noteCommNum, nc.userEmail, nc.noteNum, nc.commDept, nc.commContent, nc.commDate, nc.noteCommPNum, u.userNick, u.userPhoto,nc.noteCommPos
-	from notecomm nc join users u on u.userEmail=nc.userEmail where noteNum = #{nc.noteNum} order by comm.qnaCommPos;
+	select nc.noteCommNum, nc.userEmail, nc.noteNum, nc.commDept, nc.commContent, nc.commDate, nc.noteCommPNum, u.userNick
+	from notecomm nc join users u on u.userEmail=nc.userEmail where noteNum = #{nc.noteNum};
 	</select>
 	
 	<!-- 노트 댓글 작성 -->
  	<insert id="insertNoteComm">
-        <selectKey order="BEFORE" keyProperty="noteCommPos" resultType="int">
-        select max(noteCommPos)+1 from notecomm
+        <selectKey order="BEFORE" keyProperty="noteCommNum" resultType="int">
+        select max(noteCommNum)+1 from notecomm
         </selectKey>
-        insert into notecomm(userEmail, noteNum, commContent,noteCommPos)
-        values(#{userEmail}, #{noteNum}, #{commContent}, #{commContent})
+        insert into notecomm(noteCommNum, userEmail, noteNum, commContent)
+        values(#{noteCommNum}, #{userEmail}, #{noteNum}, #{commContent})
     </insert>
-    
-    <!-- //대댓글 작성전 Pos수정  -->
-	<update id="updateNoteCommComm">
-		update NoteComm set NoteCommPos=NoteCommPos+1
-		where NoteCommPos>#{NoteCommPos}
-	</update>
-	
-    <!-- //대댓글 작성 -->
-	<insert id="insertQnaCommComm">
-		<selectKey order="BEFORE" keyProperty="qnaCommPos" resultType="int">
-   	   		select (qnacommPos+1) from qnaComm where qnaCommNum=#{qnaCommNum}
-     	</selectKey>
-		insert into qnaComm(qnaNum,userEmail,qnaCommContent,qnaCommDept,qnaCommPNum,qnaCommPos)
-		values (#{qnaNum},#{userEmail},#{qnaCommContent},1,#{qnaCommNum},#{qnaCommPos})
-  	</insert>
-    
     
 	<!-- 노트 댓글 삭제 -->
 	<!-- useGeneratedKeys="true" keyProperty="dragNo" (as id붙여서) 셀렉트키 사용시 필요-->

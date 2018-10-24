@@ -20,9 +20,6 @@ public class NoteCommVO {
 	private String commContent;
 	private Date commDate;
 	private int noteCommPNum;
-	private String userPhoto;
-	private int CommDept;
-	private int noteCommPos;
 	
 	public int getNoteCommNum() {
 		return noteCommNum;
@@ -73,19 +70,7 @@ public class NoteCommVO {
 		this.userNick = userNick;
 	}
 
-	public String getUserPhoto() {
-		return userPhoto;
-	}
-	public void setUserPhoto(String userPhoto) {
-		this.userPhoto = userPhoto;
-	}
 	
-	public int getNoteCommPos() {
-		return noteCommPos;
-	}
-	public void setNoteCommPos(int noteCommPos) {
-		this.noteCommPos = noteCommPos;
-	}
 	
 	@Override
 	public String toString() {

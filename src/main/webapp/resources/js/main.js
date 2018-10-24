@@ -183,13 +183,9 @@ var prevText;
 
 
 // 드래그 저장
-$(document).mouseup(function(event){
-	event.preventDefault(); 
-	event.stopPropagation(); 
-	
+$(document).mouseup(function(){
      var selection = window.getSelection();
 	 var text = selection.toString();
-	 
 	 // 드래그 텍스트 공백인지 앞의 드래그와 중복되는지 체크
 	 if (text !='' && text.length > 1 && $.trim(text).length != 0 && prevText != text) {
 		 // 드래그 저장
@@ -222,6 +218,8 @@ $(document).mouseup(function(event){
 		return false;
 	 }	
  });
+
+
 
 
 
