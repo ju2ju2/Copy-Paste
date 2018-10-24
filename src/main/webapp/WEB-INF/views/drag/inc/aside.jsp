@@ -26,9 +26,10 @@
          <div class="col-xs-12 mb">
          <select name="sort-category" id="sort-category">  
             <option value="">- 정렬 분류 -</option>
-            <option value="dragDate desc">최신순</option>
-            <option value="dragDate asc">오래된 순</option>
-            <option value="dragMark desc">중요표시 있는 순</option>
+            <option value="dragNum">최신순</option>
+            <option value="dragNum">오래된 순</option>
+            <option value="dragMark">중요표시 있는 순</option>
+            <option value="dragText">가나다순</option>
             <option value="1">전체보기</option>
          </select>
          </div>

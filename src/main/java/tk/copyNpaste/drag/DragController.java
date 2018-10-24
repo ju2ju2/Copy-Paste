@@ -31,11 +31,11 @@ public class DragController {
 
 	//드래그 전체목록 보기 (비동기/글작성페이지)
 	@RequestMapping(value ="selectAllDrag.json")
-	public @ResponseBody List<DragVO> selectAllDrag(Model model,Principal principal) throws Exception {
+	public String selectAllDrag(Model model,Principal principal) throws Exception {
 		 String userEmail= principal.getName();
-	/*	 List<DragVO> dragList =  dragservice.selectAllDrag(userEmail);
-		 model.addAttribute("dragList", dragList);*/
-		return dragservice.selectAllDrag(userEmail);
+		 List<DragVO> dragList =  dragservice.selectAllDrag(userEmail);
+		 model.addAttribute("dragList", dragList);
+		return "makeDragList";
 	}
 	
 	
@@ -82,22 +82,27 @@ public class DragController {
 	
 	//드래그 키워드 검색 dragSearch.json
 	@RequestMapping(value="selectByKeyDrag.json")
-	public @ResponseBody List<DragVO>  selectByKeyDrag(String keyword,Principal principal) throws Exception {
+	public  String  selectByKeyDrag(String keyword,Principal principal,Model model ) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("keyword", keyword);
 		map.put("userEmail", principal.getName());
-		  
-		return dragservice.selectByKeyDrag(map);		
+		List<DragVO> dragList= dragservice.selectByKeyDrag(map);	
+		model.addAttribute("dragList", dragList);
+		System.out.println("키워드 검색");
+		return "makeDragList";
 	}
 	
 	
 	// 드래그 정렬
 		@RequestMapping(value="selectOrderbyDrag.json")
-		public @ResponseBody List<DragVO> selectOrderbyNote(String sortCategory,Principal principal) throws Exception {
+		public String selectOrderbyNote(String sortCategory,Principal principal,Model model ) throws Exception {
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("sortCategory", sortCategory);
 			map.put("userEmail", principal.getName());
-			return dragservice.selectOrderbyDrag(map);
+		
+			List<DragVO> dragList= dragservice.selectOrderbyDrag(map);
+			model.addAttribute("dragList", dragList);
+			return "makeDragList";
 		}
 	
 	//드래그 중요표시 등록

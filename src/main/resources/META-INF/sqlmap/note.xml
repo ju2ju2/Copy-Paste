@@ -96,11 +96,11 @@
 	</select>
 	
 	<!-- 노트 정렬 -->
-	<select id="selectOrderbyNote" resultType="NoteVO">
+	<select id="selectOrderbyNote" parameterType="hashmap" resultType="NoteVO">
 	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
 	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
 	from note n join users u on u.userEmail=n.userEmail 
-	where u.userEmail = #{userEmail} order by #{sortCategory} 
+	where u.userEmail = #{userEmail} order by #{sortCategory} desc
 	</select>
 	
 	<!-- 노트 달력 검색 -->
