@@ -19,8 +19,11 @@ public interface FolderMapper {
 	//폴더 추가
 	public int insertFolder(FolderVO folder) throws Exception;
 		
-	//폴더 수정
+	//폴더 수정 : 컨텐츠 有
 	public int updateFolder(FolderVO folder) throws Exception;
+
+	//폴더 수정 : 컨텐츠 無
+	public int updateFolder2(FolderVO folder) throws Exception;
 	
 	//폴더 삭제
 	public int deleteFolder(FolderVO folder) throws Exception;
@@ -38,6 +41,8 @@ public interface FolderMapper {
 	//회원 가입 시 스크랩 폴더 추가
 	public int insertFolderUserScrap(String userEmail)
 			throws ClassNotFoundException, SQLException;
+
+
 
 
 

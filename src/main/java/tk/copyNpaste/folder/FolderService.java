@@ -47,10 +47,16 @@ public class FolderService {
 		return folderdao.insertFolder(folder);
 	}
 	
-	//폴더 수정
+	//폴더 수정 : 컨텐츠 有
 	public int updateFolder(FolderVO folder) throws Exception {
 		FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
 		return folderdao.updateFolder(folder);
+	}
+	
+	//폴더 수정 : 컨텐츠 無
+	public int updateFolder2(FolderVO folder) throws Exception {
+		FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
+		return folderdao.updateFolder2(folder);
 	}
 	
 	//폴더 삭제
@@ -93,5 +99,7 @@ public class FolderService {
 		FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
 		return folderdao.insertFolderUserDefault(userEmail);
 	}
+
+
 	
 }
