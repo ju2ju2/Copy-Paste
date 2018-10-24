@@ -48,8 +48,7 @@ $(function() {
 	        accept:".noteDiv",
 	        drop: function(event,ui) {
 	        	var noteNum = $(this).find('#noteNum').val()
-	        	alert($(this).find('#noteNum').val())
-	        	//deleteNote(noteNum)
+	        	deleteNote(noteNum)
 	         }     
 	      });  
     
