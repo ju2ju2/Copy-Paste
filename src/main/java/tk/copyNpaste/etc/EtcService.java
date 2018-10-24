@@ -46,6 +46,11 @@ public class EtcService {
 		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
 		return etcdao.selectCommReport();
 	}
+	
+	public int selectHasReportComm(int reportNum) throws Exception {
+		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
+		return etcdao.selectHasReportComm(reportNum);
+	}
 
 	// 신고 처리 하기
 	@Transactional

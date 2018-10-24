@@ -77,6 +77,10 @@
 	<update id="updateReportNoteCommDontBlind">
 		update notecomm set noteCommBlind = 0 where noteCommNum = #{noteNum}
 	</update>
+	
+	<select id="selectHasReportComm" resultType="Integer">
+		select noteNum from notecomm where noteCommNum =#{reportNum}
+	</select>
 
 </mapper>
 

@@ -59,6 +59,12 @@ public class EtcController {
 	public @ResponseBody List<ReportVO> selectCommReport() throws Exception {
 		return etcService.selectCommReport();
 	};
+	
+	// 댓글 신고된 노트로 이동
+	@RequestMapping("hasReportComm.json")
+	public @ResponseBody int selectHasReportComm(int reportNum) throws Exception {
+		return etcService.selectHasReportComm(reportNum);
+	};
 
 	// 신고 목록 전체 보기
 	@RequestMapping("allReport.json")

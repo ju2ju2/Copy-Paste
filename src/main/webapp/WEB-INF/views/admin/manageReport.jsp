@@ -21,6 +21,14 @@
 		<link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
 		<script type="text/javascript"	src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
 
+<!-- 노트 모달창 -->
+<div id="reportModal" class="modal fade text-center overlay"
+	 role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content"></div>
+	</div>
+</div>
+
 <!-- 메모 모달창 -->
 
 	<div id="memoModal" class="modal fade form-horizontal">
@@ -28,7 +36,8 @@
 			<div class="modal-content">
 			<form>
 				<div class="modal-header">
-				처리 메모
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title"> 처리 메모 </h4>
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
@@ -75,6 +84,7 @@
 					<th>신고자 이메일</th>
 					<th>대상</th>
 					<th>대상번호</th>
+					<th>확인</th>
 					<th>신고사유</th>
 					<th>상세내용</th>
 					<th>신고일자</th>
@@ -108,7 +118,7 @@
 						tbodyAppendAll += '댓글';
 					}
 					 		
-					tbodyAppendAll += '</td><td>'+obj.noteNum+'</td><td>';
+					tbodyAppendAll += '</td><td>'+obj.noteNum+'</td><td><a href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+obj.noteNum+'" class="btn btn-sm drop-btn reportViewBtn" data-toggle="modal" data-target="#reportModal" role="button" data-backdrop="static">확인</a></td><td>';
 					
 					if ((obj.reportCauseCode).trim() == 'NR01') {
 						tbodyAppendAll += '광고성/음란성';
@@ -149,19 +159,28 @@
 					$('#noteNum').val( $(this).parent().parent().children().eq(3).html() );
 					
 					
-					if ($(this).parent().parent().children().eq(7).html() == '기각') {
+					if ($(this).parent().parent().children().eq(8).html() == '기각') {
 						$('#checkCode').val('PS00');
-					} else if ($(this).parent().parent().children().eq(7).html() == '블라인드') {
+					} else if ($(this).parent().parent().children().eq(8).html() == '블라인드') {
 						$('#checkCode').val('PS01');
 					} else {
 						$('#checkCode').val('PS02');
 					}
 				});
 				
-				$('tr').click(function() {
-					console.log($(this).children().eq(2).html());
-					console.log($(this).children().eq(3).html());
-					
+				$('.reportViewBtn').click(function() {
+					if ($(this).parent().parent().children().eq(2).html() == '댓글') {
+						console.log("넘기는 값 / "+$(this).parent().parent().children().eq(3).html());
+						$.ajax({
+							url : '../etc/hasReportComm.json',
+							data : {'reportNum':$(this).parent().parent().children().eq(3).html()},
+							success : function(data) {
+								console.log("넘어온 값 / "+data);
+								$(this).attr("href", "${pageContext.request.contextPath}/note/noteDetail.htm?noteNum="+data);
+							}
+						})
+					}
+
 				});
 			}
 		});
@@ -230,9 +249,9 @@
 						$('#noteOrCommCode').val('노트');
 						$('#noteNum').val( $(this).parent().parent().children().eq(3).html() );
 						
-						if ($(this).parent().parent().children().eq(7).html() == '기각') {
+						if ($(this).parent().parent().children().eq(8).html() == '기각') {
 							$('#checkCode').val('PS00');
-						} else if ($(this).parent().parent().children().eq(7).html() == '블라인드') {
+						} else if ($(this).parent().parent().children().eq(8).html() == '블라인드') {
 							$('#checkCode').val('PS01');
 						} else {
 							$('#checkCode').val('PS02');
@@ -296,9 +315,9 @@
 						$('#noteOrCommCode').val('댓글');
 						$('#noteNum').val( $(this).parent().parent().children().eq(3).html() );
 						
-						if ($(this).parent().parent().children().eq(7).html() == '기각') {
+						if ($(this).parent().parent().children().eq(8).html() == '기각') {
 							$('#checkCode').val('PS00');
-						} else if ($(this).parent().parent().children().eq(7).html() == '블라인드') {
+						} else if ($(this).parent().parent().children().eq(8).html() == '블라인드') {
 							$('#checkCode').val('PS01');
 						} else {
 							$('#checkCode').val('PS02');
