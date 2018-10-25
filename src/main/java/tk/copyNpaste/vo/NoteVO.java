@@ -8,6 +8,10 @@ package tk.copyNpaste.vo;
 
 import java.sql.Date;
 
+/**
+ * @author bit
+ *
+ */
 public class NoteVO {
 	//NoteVO
 	
@@ -30,7 +34,8 @@ public class NoteVO {
 	private String noteThumnail;
 	private int noteCommBlind;
 	private int newNoteNum;
-
+	private Date fromDate;
+	private Date toDate;
 
 	public String getUserNick() {
 		return userNick;
@@ -123,6 +128,19 @@ public class NoteVO {
 	}
 	public void setNoteCommBlind(int noteCommBlind) {
 		this.noteCommBlind = noteCommBlind;
+		}
+		
+	public Date getFromDate() {
+		return fromDate;
+	}
+	public void setFromDate(Date fromDate) {
+		this.fromDate = fromDate;
+	}
+	public Date getToDate() {
+		return toDate;
+	}
+	public void setToDate(Date toDate) {
+		this.toDate = toDate;
 	}
 	
 	public int getNewNoteNum() {

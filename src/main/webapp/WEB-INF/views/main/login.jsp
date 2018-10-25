@@ -95,16 +95,37 @@
 </div>
 
 <script type="text/javascript">
-
-var currentMember; //회원가입된 이메일인지 확인하는 변수
 var tempPwd; //임시 비밀번호
 
+//임시 비밀번호 메일 발송 전 유효성 체크
+$('#findUserPwdBtn').click(function(){	
+	$.ajax({
+        type : 'post',
+        url : '${pageContext.request.contextPath}/member/checkUserEmail.do',
+        data : {mailto: $('#userEmailForfindUserPwd').val()},
+        success : function(data) {
+        	if (data > 0) {
+        		updatePwd();
+        	} else {
+        		swal("٩(இ ⌓ இ๑)۶", "가입된 이메일 주소가 아닙니다.", "error");
+        		$('#userEmailForfindUserPwd').val("");				
+        	}
+        },
+        error : function(error) {
+			swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 확인해 주세요.", "error");
+			$('#userEmailForfindUserPwd').val("");
+			console.log(error);
+			console.log(error.status);
+        }
+     });
+})
+
 //임시 비밀번호 메일 발송
-$('#findUserPwdBtn').click(function(){
+function updatePwd(){
 		$.ajax({
 		type : 'post',
 		url : '${pageContext.request.contextPath}/member/findUserPwd.do',
- 		data : {mailto:$('#userEmailForfindUserPwd').val()}	,
+ 		data : {mailto:$('#userEmailForfindUserPwd').val()},
 		success : function(data) {
 					console.log(data);
 					swal("୧༼ ヘ ᗜ ヘ ༽୨", "임시 비밀번호가 메일로 전송되었습니다.", "success");
@@ -116,5 +137,5 @@ $('#findUserPwdBtn').click(function(){
 					console.log(error.status);
             }
          });
-	});
+	}
 </script>

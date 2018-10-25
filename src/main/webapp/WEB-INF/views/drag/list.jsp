@@ -32,7 +32,9 @@
 				</div>
 			</header>
 			</section>
+		<!--드래그 리스트 영역 -->
 		<div class="row"  id="dragList"></div>
+		
  <%--  <c:forEach items="${dragList}" var="dragList">
 
 					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
@@ -85,6 +87,7 @@
 		class="fa fa-sticky-note"></i></a>
 </div>
 <script>
+
 
 /* //별 클릭하면 토글되는 이벤트
 $('.fa-star').click(function(){

@@ -47,15 +47,15 @@ public class QnaController {
 	}
 	
 	//QNA 게시물 상세보기
-		@RequestMapping(value="/selectDetailQna.htm",method = RequestMethod.GET)
-		public String selectDetailQna(int qnaNum, Model model) throws Exception{
-			QnaVO qna = qnaService.selectDetailQna(qnaNum);
-			model.addAttribute("qna",qna);
-			List<QnaCommVO> qnaCommList = qnaService.selectQnaComm(qnaNum);
-			model.addAttribute("qnaCommList",qnaCommList);
+	@RequestMapping(value="/selectDetailQna.htm",method = RequestMethod.GET)
+	public String selectDetailQna(int qnaNum, Model model) throws Exception{
+		QnaVO qna = qnaService.selectDetailQna(qnaNum);
+		model.addAttribute("qna",qna);
+		List<QnaCommVO> qnaCommList = qnaService.selectQnaComm(qnaNum);
+		model.addAttribute("qnaCommList",qnaCommList);
 
-			return "qna.selectDetailQna";
-		};
+		return "qna.selectDetailQna";
+	};
 	
 	//QNA 게시물 및 답글 작성
 	@RequestMapping(value="/insertQnaboard.htm",method = RequestMethod.GET)
@@ -77,15 +77,24 @@ public class QnaController {
 		return "redirect:/qna/selectQnaboard.htm";
 	}
 
-
 	//QNA 게시글 수정
-	public int updateQna(int qnaNum) throws Exception{
-		return qnaService.updateQna(qnaNum);
+	@RequestMapping(value="/updateQna.htm", method = RequestMethod.GET)
+	public String updateQna(int qnaNum, Model model) throws Exception{
+		QnaVO qna = qnaService.selectDetailQna(qnaNum);
+		model.addAttribute("qna",qna);
+		return "qna.updateQnaboard";
+	};
+	@RequestMapping(value="/updateQna.htm", method = RequestMethod.POST)
+	public String updateQna1(QnaVO qna) throws Exception{
+		qnaService.updateQna(qna);
+		return  "redirect:/qna/selectDetailQna.htm?qnaNum="+qna.getQnaNum();
 	};
 	
 	//QNA 게시글 삭제
-	public int deleteQna(int qnaNum) throws Exception{
-		return qnaService.deleteQna(qnaNum);
+	@RequestMapping(value="/deleteQna.htm")
+	public String deleteQna(int qnaNum) throws Exception{
+		qnaService.deleteQna(qnaNum);
+		return "redirect:/qna/selectQnaboard.htm";
 	};
 	
 	

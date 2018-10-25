@@ -54,10 +54,13 @@
 						<!-- 게시글 답글, 삭제버튼 -->
 						<c:choose>
 							<c:when test="${role=='[ROLE_ADMIN]'}">
-								<a href="insertQnaboard.htm?qnaNum=${qna.qnaNum}&qnaDept=1" class="qnaReply"><i class="fas fa-reply"></i></a>&nbsp;&nbsp;<i class="fas fa-trash"></i>
+								<a href="updateQna.htm?qnaNum=${qna.qnaNum}&qnaDept=1" ><i class="fas fa-edit"></i></a>
+								<a href="insertQnaboard.htm?qnaNum=${qna.qnaNum}&qnaDept=1" class="qnaReply"><i class="fas fa-reply"></i></a>&nbsp;&nbsp;
+								<a href="deleteQna.htm?qnaNum=${qna.qnaNum}" class="qnaDel"><i class="fas fa-trash"></i></a>
 							</c:when>
 							<c:when test="${qna.userEmail==loginuser}">
-								<i class="fas fa-trash"></i>
+								<a href="updateQna.htm?qnaNum=${qna.qnaNum}&qnaDept=1" ><i class="fas fa-edit"></i></a>
+								<a href="deleteQna.htm?qnaNum=${qna.qnaNum}" class="qnaDel"><i class="fas fa-trash"></i></a>
 							</c:when>
 						</c:choose>
 					</div>
@@ -166,10 +169,13 @@
 						<!-- 게시글 답글, 삭제버튼 -->
 						<c:choose>
 							<c:when test="${role=='[ROLE_ADMIN]'}">
-								<a href="insertQnaboard.htm?qnaNum=${qna.qnaNum}&qnaDept=1" class="qnaReply"><i class="fas fa-reply"></i></a>&nbsp;&nbsp;<i class="fas fa-trash"></i>
+								<a href="updateQna.htm?qnaNum=${qna.qnaNum}&qnaDept=1" ><i class="fas fa-edit"></i></a>
+								<a href="insertQnaboard.htm?qnaNum=${qna.qnaNum}&qnaDept=1" class="qnaReply"><i class="fas fa-reply"></i></a>&nbsp;&nbsp;
+								<a href="deleteQna.htm?qnaNum=${qna.qnaNum}" class="qnaDel"><i class="fas fa-trash"></i></a>
 							</c:when>
 							<c:when test="${qna.userEmail==loginuser}">
-								<i class="fas fa-trash"></i>
+								<a href="updateQna.htm?qnaNum=${qna.qnaNum}&qnaDept=1" ><i class="fas fa-edit"></i></a>
+								<a href="deleteQna.htm?qnaNum=${qna.qnaNum}" class="qnaDel"><i class="fas fa-trash"></i></a>
 							</c:when>
 						</c:choose>
 					</div>
@@ -346,6 +352,7 @@
 				  } 
 				}); 
 		});
+		
 		$('.historyBtn').click(function(){
 			history.go(-1);
 		});

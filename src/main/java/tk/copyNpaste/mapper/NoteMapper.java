@@ -43,7 +43,7 @@ public interface NoteMapper {
 	public List<NoteVO> selectByFolderNote(NoteVO note);
 	
 	//노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws Exception;
-	public List<NoteVO> selectByCalNote(Date period) throws Exception;
+	public List<NoteVO> selectByCalNote(HashMap map) throws Exception;
 
 	//노트 키워드 검색
 	public List<NoteVO> selectByKeyNote(HashMap map) throws Exception;
