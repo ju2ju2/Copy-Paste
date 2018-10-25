@@ -6,7 +6,6 @@
 */
 package tk.copyNpaste.note;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -14,13 +13,10 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import tk.copyNpaste.mapper.NoteMapper;
-import tk.copyNpaste.mapper.QnaMapper;
 import tk.copyNpaste.vo.NoteCommVO;
 import tk.copyNpaste.vo.NoteVO;
-import tk.copyNpaste.vo.QnaCommVO;
 
 @Service
 public class NoteService {
@@ -77,8 +73,6 @@ public class NoteService {
 		return result;
 	}
 
-	
-	
 	//노트 수정
 	public int updateNote(NoteVO note) throws Exception{
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
@@ -124,46 +118,29 @@ public class NoteService {
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
 		return notedao.selectByKeyNote(map);
 	}
-	//회원별 노트 검색
-	public List<NoteVO> selectByMemNote(String userEmail) throws Exception{
-		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
-		return notedao.selectByMemNote(userEmail);
-	}
-	//회원별 노트 일괄 삭제
-	public int deleteMemNote(String userEmail) throws Exception{
-		
-		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
-		return notedao.deleteMemNote(userEmail);
-	}
+
 	//노트 스크랩
 	public int scrapNote(NoteVO note) throws Exception{
 		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
 		return notedao.scrapNote(note);
 	}
-	//노트 스크랩해제
-	public int removeScrapNote(String userEmail) throws Exception{
+
+	//회원별 노트 검색-관리자
+	public List<NoteVO> selectByMemNote(String userEmail) throws Exception{
 		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
-		return notedao.removeScrapNote(userEmail);
+		return notedao.selectByMemNote(userEmail);
+	}
+	//회원별 노트 일괄 삭제-관리자
+	public int deleteMemNote(String userEmail) throws Exception{
+		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
+		return notedao.deleteMemNote(userEmail);
+	}
+	//회원별 노트 일괄 삭제-관리자
+	public int blindNote(int noteNum) throws Exception{	
+		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
+		return notedao.blindNote(noteNum);
 	}
 
-	
-	//노트의 폴더 이동
-	public int moveNoteFolder(NoteVO note) throws Exception {
-		NoteMapper notedao=sqlsession.getMapper(NoteMapper.class);
-			
-		 return notedao.moveNoteFolder(note);
-	}
-
-	
-	// MY NOTE → 노트 폴더별 조회
-/*	public List<NoteVO> selectNoteByFolder(NoteVO note) throws Exception {
-		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
-		List<NoteVO> notelist = notedao.selectNoteByFolder(note);
-		return notelist;
-	}
-	*/
-
-	
 
 	/*	for (NoteVO note: notelist ) {
 		System.out.println(note.getUserNick());

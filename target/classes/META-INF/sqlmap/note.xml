@@ -150,11 +150,7 @@
 		  s.subjectName like CONCAT('%',#{keyword},'%'))
 	order by noteNum desc;
 	</select>
-	<!-- 회원별 노트 검색 -->
-	
-	
-	<!-- 회원별 노트 일괄 삭제 -->
-	
+
 
 	<!-- 스크랩노트 등록 -->
   	<insert id="scrapNote">
@@ -180,15 +176,19 @@
 		FROM   note 
 		WHERE  noteNum = #{noteNum};
      </insert> 
-	<!-- 스크랩노트 삭제 -->
 
-	<!-- 노트 정렬 -->
+
 	
-	<!-- 노트 블라인드 처리 -->
+	<!-- 노트의 폴더 이동-노트수정시 -->
+
+	<!-- 회원별 노트 검색 -관리자-->
 	
-	<!-- 노트의 폴더 이동 -->
+	<!-- 회원별 노트 일괄 삭제 -관리자-->
 	
-	<!-- MY NOTE에서 폴더 별 노트 조회 -->
+	<!-- 노트 블라인드 처리 -관리자 -->
+	<update id="blindNote">
+	 update Note set noteBlind=1 where noteNum = #{noteNum}
+	</update> 
 	
 	<!-- 	
 	//NoteVO

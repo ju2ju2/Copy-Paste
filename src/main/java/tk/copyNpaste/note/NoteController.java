@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import tk.copyNpaste.folder.FolderService;
+import tk.copyNpaste.mapper.NoteMapper;
 import tk.copyNpaste.vo.FolderVO;
 import tk.copyNpaste.vo.NoteCommVO;
 import tk.copyNpaste.vo.NoteVO;
@@ -168,26 +169,11 @@ public class NoteController {
 		return noteService.selectByKeyNote(map);
 	}
 
-	// 회원별 노트 검색-관리자-노트관리
-	public List<NoteVO> selectByMemNote(String userEmail) throws Exception {
-		return noteService.selectByMemNote(userEmail);
-	}
-
-	// 회원별 노트 일괄 삭제-관리자-노트관리
-	public int deleteMemNote(String userEmail) throws Exception {
-		return noteService.deleteMemNote(userEmail);
-	}
-
 	// 노트 스크랩
 	@RequestMapping(value="scrapNote.json")
 	public @ResponseBody int scrapNote(NoteVO note, Principal principal) throws Exception {
 		note.setUserEmail(principal.getName());
 		return noteService.scrapNote(note);
-	}
-
-	// 노트 스크랩해제 -스크랩노트 삭제
-	public int removeScrapNote(String userEmail) throws Exception {
-		return noteService.removeScrapNote(userEmail);
 	}
 
 	// 노트 댓글 조회-비동기
@@ -239,14 +225,21 @@ public class NoteController {
 	public NoteVO hwpDownNote(NoteVO note) throws Exception {
 		return null;
 	}
-
-	// 노트의 폴더 이동
-	public int moveNoteFolder(NoteVO note) throws Exception {
-		return noteService.moveNoteFolder(note);
+	
+	// 회원별 노트 검색-관리자-노트관리
+	public List<NoteVO> selectByMemNote(String userEmail) throws Exception {
+		return noteService.selectByMemNote(userEmail);
 	}
+
+	// 회원별 노트 일괄 삭제-관리자-노트관리
+	public int deleteMemNote(String userEmail) throws Exception {
+		return noteService.deleteMemNote(userEmail);
+	}	
 	
-	
-	
+	// 노트 블라인드 처리-관리자
+	public int blindNote(int noteNum) throws Exception{	
+		return noteService.blindNote(noteNum);
+	}
 	
 	
 }
