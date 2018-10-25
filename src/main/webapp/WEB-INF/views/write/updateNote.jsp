@@ -58,7 +58,7 @@ $(document).ready(function() {
 	    	 	 'noteContent':tinymce.get('noteContent').getContent(),
 	    	 	 'folderName':$("#folderList").val(),
 	    	 	 'subjectCode':$("#subjectList").val(),
-	    	 	 'notePublic':$("input:radio[name=notePublic] :selected").val()
+	    	 	 'notePublic':$("input[name='notePublic']:checked").val()
 	     		 },	
 	      success:function(result){
 	    	    	  swal({type: "success",

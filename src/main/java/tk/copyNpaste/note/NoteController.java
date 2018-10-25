@@ -69,12 +69,7 @@ public class NoteController {
 		List<NoteCommVO> noteCommList = noteService.selectAllNoteComm(noteNum);
 		model.addAttribute("note", note);
 		model.addAttribute("noteCommList", noteCommList);
-		String viewpage;
-		if(cmd!=null) {
-			viewpage="mynotedetail";
-		}else {viewpage="notedetail";}
-		
-		return viewpage;//(modal/notedetail.jsp)
+		return "notedetail";//(modal/notedetail.jsp)
 	}
 
 	// 노트 주제 검색 

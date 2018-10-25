@@ -25,10 +25,10 @@
 
 	<!--회원의 MY노트 목록 보기 -->
 	<select id="selectAllNote" resultType="NoteVO">
-	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
-	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
+	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate, n.noteScrap,
+	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick, n.noteBlind
 	from note n join users u on u.userEmail=n.userEmail 
-	where u.userEmail = #{userEmail} and n.notePublic=1 and n.noteBlind=0<!-- 공개1 블라인드0 -->
+	where u.userEmail = #{userEmail} <!-- 공개1 블라인드0 -->
 	order by noteNum desc;
 	</select>
 	

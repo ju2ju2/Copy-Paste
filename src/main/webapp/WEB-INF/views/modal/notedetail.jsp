@@ -261,8 +261,8 @@
 </div>
 <!-- modal-body-->
 <div class="modal-body">
-	<div class="panel panel-default">
-		<div class="panel-body">
+	<div class="">
+		<div class="">
 			<div class="row">
 				<!-- 본문 -->
 				<div class="text-left col-sm-12" id="noteContent">${note.noteContent}</div>
@@ -303,7 +303,7 @@
 			
 			<!-- modal-footer-->
 			<div class="modal-footer">
-				<div class="panel-footer">
+				<div class="">
 					<div class="comment-box">
 					<!-- 노트 댓글 리스트 -->
 						<ul id="noteCommList"class="list-unstyled ui-sortable" ></ul>
