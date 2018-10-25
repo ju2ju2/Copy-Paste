@@ -55,6 +55,49 @@
 				return false;
 			});
 		
+		//노트 이메일 전송
+		$('#emailNoteBtn').click(function() {
+			swal({
+				  title:'<span class="title">이메일전송</span>',
+				  text: '<form id="email">'+
+						'<input type="text" class="form-control mb-10" id="noteEmailTo" placeholder="노트를 전송할 이메일을 입력하세요"/>'+
+						'</form>'
+				  ,
+				  html: true,
+				  inputAttributes: { autocapitalize: 'off' },
+				  showCancelButton: true,
+				  confirmButtonText : "OK",
+				  confirmButtonClass : "btn-danger btn-sm",
+				  cancelButtonClass : "btn btn-sm"
+			},
+			function(){
+				$.ajax ({
+						url: "${pageContext.request.contextPath}/note/emailNote.json",
+						type: "POST",
+						dataType: "json",
+						data: {	'noteNum': ${note.noteNum},
+								'noteEmailTo' : $('#noteEmailTo').val() }//
+				}).done(function(result) {
+					swal({type: "success",
+						  title: '성공적으로 전송되었습니다.',
+			              confirmButtonClass : "btn-danger",
+						  closeOnConfirm: false
+					},
+					function(){
+						
+					})
+					
+				
+				})
+				.fail(function(jqXhr, testStatus, errorText){
+					alert("에러발생 :" + errorText);
+				});
+			});
+		return false;
+	});
+		
+
+		
 		//노트삭제
 		$('#deleteNoteBtn').click(function(e) {
 			swal({
@@ -197,17 +240,20 @@
 						<c:choose>
 							<c:when test="${note.userEmail==loginuser}">
 								 <a href="${pageContext.request.contextPath}/note/updateNote.htm?noteNum=${note.noteNum}"><i class="far fa-edit 3x notewrite"></i> &nbsp;</a> 
+								 <a id="emailNoteBtn"><i class="far fa-envelope"></i> &nbsp;</a> 
 								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down"></i> &nbsp;</a> 
 								 <a id="deleteNoteBtn"><i class="fas fa-trash"></i> &nbsp;</a> 
 							</c:when>
 							<c:when test="${role=='[ROLE_ADMIN]'}">
 							 	 <a href="${pageContext.request.contextPath}/note/insertWithOtherNote.htm?noteNum=${note.noteNum}"><i class="far fa-edit 3x notewrite"></i> &nbsp;</a> 
+								 <a id="emailNoteBtn"><i class="far fa-envelope"></i> &nbsp;</a> 
 								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down"></i> &nbsp;</a> 
 								 <a href=""><i class="fas fa-archive"></i>&nbsp;</a>
 								 <a id="deleteNoteBtn"><i class="fas fa-trash"></i> &nbsp;</a> 
 							</c:when>
 							<c:otherwise>
 							 	 <a href="${pageContext.request.contextPath}/note/insertWithOtherNote.htm?noteNum=${note.noteNum}"><i class="far fa-edit 3x notewrite"></i> &nbsp;</a> 
+								 <a id="emailNoteBtn"><i class="far fa-envelope"></i> &nbsp;</a> 
 								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down"></i> &nbsp;</a> 
 								 <a href=""><i class="fas fa-archive"></i>&nbsp;</a>
 								 <a id="noteReportForm"> <i class="fas fa-flag"></i></a>
