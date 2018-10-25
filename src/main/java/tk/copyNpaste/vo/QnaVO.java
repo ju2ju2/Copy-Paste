@@ -24,8 +24,15 @@ public class QnaVO {
 	private int qnaPos;
 	//join시 필요에의해 생성
 	private String userNick;
+	private int num;
 
 	
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
 	public int getQnaPos() {
 		return qnaPos;
 	}

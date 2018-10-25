@@ -15,9 +15,12 @@ import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -54,22 +57,27 @@ public class QnaController {
 			return "qna.selectDetailQna";
 		};
 	
-	//QNA 게시물 검색
-	public List<QnaVO> selectSearchQna(String keyword) throws Exception{
-		return qnaService.selectSearchQna(keyword);
-	};
-	
-	//QNA 게시물 작성
+	//QNA 게시물 및 답글 작성
 	@RequestMapping(value="/insertQnaboard.htm",method = RequestMethod.GET)
-	public String insertQnaboard() {
+	public String insertQna(QnaVO qna, Model model) throws Exception{
+		model.addAttribute("qna",qna);
 		return "qna.insertQnaboard";
 	}
-	public int insertQna(QnaVO qna) throws Exception{
-		return qnaService.insertQna(qna);
-	};
+	@RequestMapping(value="/insertQnaboard.htm", method = RequestMethod.POST)
+	public String insertQna(HttpServletRequest request,HttpServletResponse response,QnaVO qna, Principal principal) throws Exception{
+		qna.setUserEmail(principal.getName());
+		qnaService.insertQna(qna);
+		return "redirect:/qna/selectQnaboard.htm";
+	}
+	//답글
+	@RequestMapping(value="/insertQnaReply.htm", method = RequestMethod.POST)
+	public String insertQnaReply(HttpServletRequest request,HttpServletResponse response,QnaVO qna, Principal principal) throws Exception{
+		qna.setUserEmail(principal.getName());
+		qnaService.insertQnaReply(qna);
+		return "redirect:/qna/selectQnaboard.htm";
+	}
 
-	
-	
+
 	//QNA 게시글 수정
 	public int updateQna(int qnaNum) throws Exception{
 		return qnaService.updateQna(qnaNum);

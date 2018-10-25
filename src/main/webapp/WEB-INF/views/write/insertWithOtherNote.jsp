@@ -1,8 +1,8 @@
 <!-- write>>
-* @ jsp : insertNote.jsp
+* @ jsp : insertWithOtherNote.jsp
 * @ Date : 2018.10.10
-* @ Author : 고은아
-* @ Desc : 노트 작성을 위해 들어오는 페이지
+* @ Author : 우나연
+* @ Desc : 다른 노트이용해 새노트 작성을 위해 들어오는 페이지
 -->
 
 <%@ page language="java" contentType="text/html; charset=utf-8"
@@ -17,12 +17,18 @@ $(document).ready(function() {
 	$.ajax({
       url: "${pageContext.request.contextPath}/folder/selectAllFolder.json", // url_pettern 
       type:"POST",
-      dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
-      success:function(data){  	
+      dataType:"json",
+      success:function(data){
+ 
       	$.each(data, function(key,value){
       			$("#folderList").append($("<option />")
       				.val(value.folderName)
-      				.text(value.folderName) );
+      				.text(value.folderName));
+      			  if($(this).val()=="${note.folderName}"){
+      			      $(this).prop("selected",true); // attr적용안될경우 prop으로 
+      			    }
+      	//$('select[val=${note.subjectCode}]').prop("selected", true);		
+      	
       	});
        }
     }); 
@@ -31,9 +37,8 @@ $(document).ready(function() {
 	$.ajax({
       url: "${pageContext.request.contextPath}/note/selectSubjectCode.json", // url_pettern 
       type:"POST",
-      dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
+      dataType:"json",
       success:function(data){
-      	$("#folderList").prepend("<option value='주제 선택'/>");
       	$.each(data, function(key,value){
       			$("#subjectList").append($("<option />")
       				.val(value.subjectCode)
@@ -41,9 +46,8 @@ $(document).ready(function() {
       	});
        }
     }); 
-	
 
-	//노트 등록
+	//다른 노트이용해 새노트 작성
 	$('#insertNoteBtn').click(function() {
 	 	$.ajax({
 	      url: "${pageContext.request.contextPath}/note/insertNote.json", // url_pettern 
@@ -77,11 +81,9 @@ $(document).ready(function() {
 	
 })
 
-
-
 </script>
 <!-- 등록 전 띄워지는 모달창 -->
-<form action="">
+<form action="" method="post">
 	<div id="publishModal" class="modal fade form-horizontal">
 		<div class="modal-dialog noteModalSize">
 			<div class="modal-content">
@@ -114,9 +116,9 @@ $(document).ready(function() {
 	<div class="n-container">
 	<div class="n-inner">
 		<div class="form-group">
-			<input id="noteTitle" name="noteTitle" type="text" size="158" placeholder="제목을 입력해주세요">
+			<input id="noteTitle" name="noteTitle" type="text" size="158" value="${note.noteTitle}">
 		</div>
-		<textarea id="noteContent" name="noteContent" rows="20"></textarea>
+		<textarea id="noteContent" name="noteContent" rows="20">${note.noteContent}</textarea>
 		<input name="image" type="file" id="upload" multiple class="hidden" onchange="">
 		<br>
 		<div class="col-sm-12 text-right">

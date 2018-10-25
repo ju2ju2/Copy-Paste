@@ -22,8 +22,7 @@
 											data-backdrop="static">
 											<p>${dragList.dragText}</p> <code>&lt;출처 : <span class="Cgrapefruit">${dragList.dragOrigin}</span>&gt;
 												<span>${dragList.dragDate}</span>
-											</code> <input type="hidden" id="dragNum" class="dragNum"
-											value="${dragList.dragNum}">
+											</code> <input type="hidden" id="dragNum" class="dragNum"  value="${dragList.dragNum}">
 										</a>
 									</div>
 								</div>
@@ -31,4 +30,4 @@
 						</div>
 					</div>
 				</c:forEach> 
-
+   

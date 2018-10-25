@@ -29,10 +29,10 @@
 			<div class="col-xs-12 mb">
 			<select name="sort-category" id="sort-category">
 				<option value="">- 정렬 분류 -</option>
-				<option value="n.noteDateDesc">최신 순</option>
-				<option value="n.noteDateAsc">오래된 순</option>
+				<option value="n.noteDate desc">최신 순</option>
+				<option value="n.noteDate asc">오래된 순</option>
 				<option value="n.noteTitle">가나다 순</option>
-				<option value="1">전체보기</option>
+				<option value="n.noteNum">전체보기</option>
 			</select>
 			</div>
 		<!-- Search -->
@@ -160,7 +160,6 @@ function folderEdit(fedit, folderName, count){
 					    		"count" : count},
 					    success : function(data){
 					    	location.reload();
-					    	console.log("폴더 수정 성공");
 					    },
 					    error : function(){
 					    	swal({
@@ -171,8 +170,8 @@ function folderEdit(fedit, folderName, count){
 								  confirmButtonText: "OK",
 								  showCancelButton: true
 								});
-					    }
-							});
+					   		 }
+						});
 				}
 					
 		}
@@ -201,8 +200,6 @@ function setDefaultFolder(bookmark, folderName){
 	    		"folderName" : folderName},
 	    success : function(data){
 	    	location.reload();
-	    	console.log("폴더 수정 성공");
-
 	    },
 	    error : function(){
 	    	swal({
@@ -257,7 +254,7 @@ function setDefaultFolder(bookmark, folderName){
 function folderContents(folder,folderName){
 	$.ajax(
 			{
-	    url : "<%=request.getContextPath()%>/note/selectNoteByFolder.json",
+	    url : "<%=request.getContextPath()%>/note/selectByFolderNote.json",
 	    DataType :"json",
 	    type : "post",
 	    data : {"folderName" : folderName},
@@ -274,7 +271,7 @@ function folderContents(folder,folderName){
 		      			c+='</h3>';
 		      			$('#droppable').append(c);
 		      			c="";
-		      			$('#foldernoteList').empty();	
+		      			$('#noteList').empty();	
 		      			b+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">';
 		      			b+='<div class="text-center noteDiv" id="'+value.noteNum+'">';
 		      			b+='	<!-- a HTML (to Trigger Modal) -->';
@@ -297,7 +294,7 @@ function folderContents(folder,folderName){
 		      			b+='</div>';
 		      			b+='</div>';
 		      			/* $("div[alt='"+value.folderName+"']").find("#foldernoteList").html(b); */
-		      			$('#foldernoteList').append(b);
+		      			$('#noteList').append(b);
 		      		});
 
 		      	}
@@ -383,7 +380,6 @@ function folderContents(folder,folderName){
 		        	
 					if(data != null) {
 		        		$.each(data, function(key, value){
-		        			console.log(value.folderName);
 		        			/* 일반 폴더 출력 */
 		        			if ((value.folderName).trim()!='미분류'&&(value.folderName).trim()!='스크랩'){
 								folder += "<div class='col-xs-10 n-folder'>";
@@ -432,7 +428,7 @@ function folderContents(folder,folderName){
 								$('#unclassified').append(unclassified);
 								
 								if(value.defaultFolder==1){
-									console.log(">>폴더명<<"+value.folderName+">>폴더 상태<<"+value.defaultFolder+">>삭제 가능 여부<<"+value.candelete);
+	/* 								console.log(">>폴더명<<"+value.folderName+">>폴더 상태<<"+value.defaultFolder+">>삭제 가능 여부<<"+value.candelete); */
 									unclassified = "";
 									unclassified += "<div class='col-xs-2 icon'><i class='fas fa-bookmark icon-size' id='bookmarkO' onclick=setDefaultFolder(this,'"+value.folderName+"');>";
 									unclassified += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></div>";
