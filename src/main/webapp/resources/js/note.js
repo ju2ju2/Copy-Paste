@@ -194,7 +194,7 @@ $(function() {
 	      	  var a = "";
 	          	if(data !=null) {
 	          		$.each(data, function(key, value){
-	          			$('#foldernoteList').empty();
+	          			$('#noteList').empty();
 	          			a+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 ">';
 	          			a+='<div class="text-center noteDiv" id="'+value.noteNum+'">';
 	          			a+='	<!-- a HTML (to Trigger Modal) -->';
@@ -217,7 +217,7 @@ $(function() {
 	          			a+='	</a>';
 	          			a+='	</div>';
 	          			a+='</div>';
-	          			$("#foldernoteList").html(a);
+	          			$("#noteList").html(a);
 	          		})
 	          	}else{
 	          		/*swal({type: "success",

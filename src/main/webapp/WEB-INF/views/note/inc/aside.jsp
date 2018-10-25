@@ -29,10 +29,10 @@
 			<div class="col-xs-12 mb">
 			<select name="sort-category" id="sort-category">
 				<option value="">- 정렬 분류 -</option>
-				<option value="n.noteDateDesc">최신 순</option>
-				<option value="n.noteDateAsc">오래된 순</option>
+				<option value="n.noteDate desc">최신 순</option>
+				<option value="n.noteDate asc">오래된 순</option>
 				<option value="n.noteTitle">가나다 순</option>
-				<option value="1">전체보기</option>
+				<option value="n.noteNum">전체보기</option>
 			</select>
 			</div>
 		<!-- Search -->
@@ -257,7 +257,7 @@ function setDefaultFolder(bookmark, folderName){
 function folderContents(folder,folderName){
 	$.ajax(
 			{
-	    url : "<%=request.getContextPath()%>/note/selectNoteByFolder.json",
+	    url : "<%=request.getContextPath()%>/note/selectByFolderNote.json",
 	    DataType :"json",
 	    type : "post",
 	    data : {"folderName" : folderName},
@@ -274,7 +274,7 @@ function folderContents(folder,folderName){
 		      			c+='</h3>';
 		      			$('#droppable').append(c);
 		      			c="";
-		      			$('#foldernoteList').empty();	
+		      			$('#noteList').empty();	
 		      			b+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">';
 		      			b+='<div class="text-center noteDiv" id="'+value.noteNum+'">';
 		      			b+='	<!-- a HTML (to Trigger Modal) -->';
@@ -297,7 +297,7 @@ function folderContents(folder,folderName){
 		      			b+='</div>';
 		      			b+='</div>';
 		      			/* $("div[alt='"+value.folderName+"']").find("#foldernoteList").html(b); */
-		      			$('#foldernoteList').append(b);
+		      			$('#noteList').append(b);
 		      		});
 
 		      	}
