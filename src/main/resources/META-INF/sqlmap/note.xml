@@ -17,21 +17,25 @@
 	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
 	from note n join users u on u.userEmail=n.userEmail 
 				join subject s on s.subjectCode=n.subjectCode 
-	where s.subjectName = #{subjectName}		
-	order by n.noteCount desc , n.noteDate desc limit 4;
+	where s.subjectName = #{subjectName} 
+	and n.notePublic=1 and n.noteBlind=0 and n.notescrap=0<!-- 공개1 블라인드0 스크랩글 아닌것0-->
+	order by n.noteCount desc, n.noteDate desc 
+	limit 4;
 	</select>
 
 	<!--회원의 MY노트 목록 보기 -->
 	<select id="selectAllNote" resultType="NoteVO">
 	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
 	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
-	from note n join users u on u.userEmail=n.userEmail where u.userEmail = #{userEmail} order by noteNum desc;
+	from note n join users u on u.userEmail=n.userEmail 
+	where u.userEmail = #{userEmail} and n.notePublic=1 and n.noteBlind=0<!-- 공개1 블라인드0 -->
+	order by noteNum desc;
 	</select>
 	
 	<!-- 노트 상세 보기(+노트 작성) -->
 	<select id="selectDetailNote" resultType="NoteVO">
 	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
-	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, u.userNick
+	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, u.userNick, n.noteBlind
 	from note n join users u on u.userEmail=n.userEmail where noteNum = #{noteNum};
 	</select>
 	
@@ -41,7 +45,7 @@
 	from noteComm nc join users u on u.userEmail=nc.userEmail where noteNum = #{nc.noteNum} order by nc.noteCommPNum , nc.noteCommNum
 	</select>
 	
-		 <!-- //노트 댓글 작성 -->
+	<!-- //노트 댓글 작성 -->
  	<insert id="insertNoteComm">
      	insert into notecomm(noteNum,userEmail,commContent)
 		values (#{noteNum},#{userEmail},#{commContent})
