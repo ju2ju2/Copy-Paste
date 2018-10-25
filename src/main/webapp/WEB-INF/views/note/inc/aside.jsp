@@ -301,8 +301,6 @@ function folderContents(folder,folderName){
 		      		});
 
 		      	}
-	    	
-
 	    },
 	    error : function(){
 	    	swal({
@@ -312,8 +310,8 @@ function folderContents(folder,folderName){
 				  confirmButtonClass: "btn-danger",
 				  confirmButtonText: "OK",
 				  showCancelButton: true
-				});
-	    }
+					});
+			    }
 			}).done(function (result){
 	  		  // noteDiv들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
 	    	    $('.noteDiv').draggable({
@@ -333,12 +331,8 @@ function folderContents(folder,folderName){
 	    	        	deleteNote(noteNum)
 	    	         }     
 	    	      });  
-	        
-	        
 	        })
-	
-	
-}
+	}
 
 	/* var dateFormat = "yyyy-mm-dd", //이거 지금 안 먹음
 	fromDate = $("#fromDate").datepicker({

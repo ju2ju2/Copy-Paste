@@ -72,37 +72,16 @@ public class DragService {
 		return dragdao.selectByKeyDrag(map);
 	}
 	
-		//드래그 정렬 1 : 최신순
-		public List<DragVO> selectOrderbyDrag1(HashMap map) throws Exception{
+		//드래그 정렬
+		public List<DragVO> selectOrderbyDrag(HashMap<String, Object> map) throws Exception{
 			DragMapper dragdao = sqlsession.getMapper(DragMapper.class);
-			return dragdao.selectOrderbyDrag1(map);
+			return dragdao.selectOrderbyDrag(map);
 		}
-		//드래그 정렬 2 : 오래된순
-		public List<DragVO> selectOrderbyDrag2(HashMap map) throws Exception{
-			DragMapper dragdao = sqlsession.getMapper(DragMapper.class);
-			return dragdao.selectOrderbyDrag2(map);
-		}
-		//드래그 정렬 3 : 중요표시순
-		public List<DragVO> selectOrderbyDrag3(HashMap map) throws Exception{
-			DragMapper dragdao = sqlsession.getMapper(DragMapper.class);
-			return dragdao.selectOrderbyDrag3(map);
-		}
-		//드래그 정렬 4 : 가나다순
-			public List<DragVO> selectOrderbyDrag4(HashMap map) throws Exception{
-				DragMapper dragdao = sqlsession.getMapper(DragMapper.class);
-				return dragdao.selectOrderbyDrag4(map);
-			}
-			//드래그 정렬 5 : 전체보기
-			public List<DragVO> selectOrderbyDrag5(HashMap map) throws Exception{
-				DragMapper dragdao = sqlsession.getMapper(DragMapper.class);
-				return dragdao.selectOrderbyDrag5(map);
-			}
-	
-	
 	//드래그 중요표시 등록
 	public int setDragMark(int dragNum) throws Exception {
 		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
-		System.out.println("서비스 "+dragNum);
+	
+		System.out.println("마크서비스"+dragNum);
 		return dragdao.setDragMark(dragNum);
 	}
 	
