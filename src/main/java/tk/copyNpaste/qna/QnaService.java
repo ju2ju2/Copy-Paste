@@ -41,12 +41,23 @@ public class QnaService {
 	//QNA 게시물 작성
 	@Transactional
 	public int insertQna(QnaVO qna) throws Exception{
-		System.out.println("작성 서비스 진입");
 		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
 		int resulte = 0;
 		try {
 			qnadao.insertQna(qna);
 			resulte = qnadao.updateInsertQna(qna.getNum());
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return resulte;
+	};
+	//QNA 게시물 답글
+	@Transactional
+	public int insertQnaReply(QnaVO qna) throws Exception{
+		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
+		int resulte = 0;
+		try {
+			resulte = qnadao.insertQnaReply(qna);
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -32,3 +32,36 @@
 .qnaSecret{
 	margin-bottom: 30px;
 }
+.secretQna{
+	margin-top: 30px;
+	margin-bottom: 500px;
+	margin-left: auto;
+	
+}
+.qnaDetail{
+	border-bottom: 1px solid #D5D5D5;
+	margin-bottom:10px; 
+}
+.qnaContent{
+	padding:5px 30px;
+	height: 300px;
+}
+.secretQnaBox{
+	margin: auto;
+	width:500px;
+	border: 0.5px solid #4C4C4C;
+	text-align: center;
+}
+.secretQnaBox *{
+	display: inline-block;
+}
+.secretQnaBoxContent, .secretQnaBtn{
+	margin:10px 50px;
+}
+.qnaReply{
+	margin-bottom:30px;
+	text-align: left;
+	font-size:20px;
+	font-weight: bold;
+	
+}

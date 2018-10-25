@@ -57,20 +57,23 @@ public class QnaController {
 			return "qna.selectDetailQna";
 		};
 	
-	//QNA 게시물 작성
+	//QNA 게시물 및 답글 작성
 	@RequestMapping(value="/insertQnaboard.htm",method = RequestMethod.GET)
-	public String insertQna() throws Exception{
-
+	public String insertQna(QnaVO qna, Model model) throws Exception{
+		model.addAttribute("qna",qna);
 		return "qna.insertQnaboard";
 	}
 	@RequestMapping(value="/insertQnaboard.htm", method = RequestMethod.POST)
 	public String insertQna(HttpServletRequest request,HttpServletResponse response,QnaVO qna, Principal principal) throws Exception{
-		System.out.println("작성 컨트롤러 진입");
-		System.out.println("qnaSecret>>"+qna.getQnaSecret());
-		System.out.println("qnaNotice>>"+qna.getQnaNotice());
 		qna.setUserEmail(principal.getName());
 		qnaService.insertQna(qna);
-		System.out.println("작성 리턴받음");
+		return "redirect:/qna/selectQnaboard.htm";
+	}
+	//답글
+	@RequestMapping(value="/insertQnaReply.htm", method = RequestMethod.POST)
+	public String insertQnaReply(HttpServletRequest request,HttpServletResponse response,QnaVO qna, Principal principal) throws Exception{
+		qna.setUserEmail(principal.getName());
+		qnaService.insertQnaReply(qna);
 		return "redirect:/qna/selectQnaboard.htm";
 	}
 
