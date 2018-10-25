@@ -320,8 +320,6 @@ $(document).ready(function(){
 				          	} else{
 								noteCommList += '			'+value.commContent+' </div>';
 				          	}
-							
-
 							noteCommList += '		</div>';
 							noteCommList += '	</div>';
 	

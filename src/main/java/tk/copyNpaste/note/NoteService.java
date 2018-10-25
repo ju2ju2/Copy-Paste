@@ -67,20 +67,16 @@ public class NoteService {
 	}
 	
 	//노트 댓글 삭제
-	public int deleteNoteComm(int noteCommNum) {
+	public int deleteNoteComm(int noteCommNum) throws Exception {
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
-		int result =0;
-		try {
-			notedao.blindNoteComm(noteCommNum);
-			try {
+			int result=notedao.blindNoteComm(noteCommNum);//부모댓글 블라인드 시도
+			if (result>0) {
+				System.out.println("노트 블라인드 성공 "); }
+			else {
 				notedao.deleteNoteComm(noteCommNum);
-			} catch (Exception e1) {
-				e1.printStackTrace();
+				System.out.println("노트  삭제 성공 "); 
 			}
-			
-		} catch (Exception e) {
-			
-		}
+		
 		return result;
 	}
 

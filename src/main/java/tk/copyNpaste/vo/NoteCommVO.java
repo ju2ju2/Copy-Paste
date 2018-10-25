@@ -24,6 +24,7 @@ public class NoteCommVO {
 	private int noteCommPos;
 	private String sortCategory;
 	private int num;
+	private int noteCommBlind;
 	
 	
 	public int getNoteCommNum() {
@@ -103,13 +104,22 @@ public class NoteCommVO {
 		this.num = num;
 	}
 	
+	
+	public int getNoteCommBlind() {
+		return noteCommBlind;
+	}
+	public void setNoteCommBlind(int noteCommBlind) {
+		this.noteCommBlind = noteCommBlind;
+	}
 	@Override
 	public String toString() {
 		return "NoteCommVO [noteCommNum=" + noteCommNum + ", userEmail=" + userEmail + ", userNick=" + userNick
 				+ ", noteNum=" + noteNum + ", commDept=" + commDept + ", commContent=" + commContent + ", commDate="
 				+ commDate + ", noteCommPNum=" + noteCommPNum + ", userPhoto=" + userPhoto + ", noteCommPos="
-				+ noteCommPos + ", sortCategory=" + sortCategory + "]";
+				+ noteCommPos + ", sortCategory=" + sortCategory + ", num=" + num + ", noteCommBlind=" + noteCommBlind
+				+ "]";
 	}
+
 
 
 

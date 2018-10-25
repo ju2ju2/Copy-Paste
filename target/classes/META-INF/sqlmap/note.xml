@@ -70,8 +70,11 @@
     
     <!-- 대댓글 있을때 삭제 (블라인드) -->
 	<update id="blindNoteComm">
-	   update NoteComm set noteCommBlind=1
-	   where  #{noteCommNum} in (select nc1.noteCommNum noteCommNumRange from noteComm nc, noteComm nc1 where nc.noteCommPNum = nc1.noteCommNum) 
+	 update NoteComm set noteCommBlind=1
+	 where noteCommNum in 
+		 (select nc1.noteCommPNum from noteComm nc, noteComm nc1 
+	 	  where nc.noteCommPNum = nc1.noteCommNum and nc.commDept =1) 
+	 and noteCommNum = #{noteCommNum}
 	</update>
 	<!-- 대댓글  없을때 삭제 -->
 	<delete id="deleteNoteComm">
@@ -128,7 +131,7 @@
           Case when #{sortCategory}='n.noteDate asc' then n.noteDate End asc,
           Case when #{sortCategory}='binary(n.noteTitle)' then binary(n.noteTitle) End asc,
           Case when #{sortCategory}='n.noteNum' then n.noteNum End desc;
-        </select>
+       </select>
 
  
 	
