@@ -136,6 +136,14 @@
  
 	
 	<!-- 노트 달력 검색 -->
+	<select id="selectByCalNote" parameterType="hashmap" resultType="NoteVO">
+	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+	n.subjectCode,s.subjectName, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
+	from note n join users u on u.userEmail=n.userEmail 
+	join subject s on s.subjectCode=n.subjectCode 
+	where n.noteDate between #{fromDate} and #{toDate} and n.userEmail=#{userEmail}
+	order by n.noteDate desc;
+	</select>
 	
 	<!-- my노트 키워드 검색 -->
 	<select id="selectByKeyNote"  parameterType="hashmap" resultType="NoteVO">

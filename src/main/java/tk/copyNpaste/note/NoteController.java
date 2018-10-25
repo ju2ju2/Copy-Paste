@@ -8,6 +8,7 @@
 package tk.copyNpaste.note;
 
 import java.security.Principal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -141,7 +142,7 @@ public class NoteController {
 		note.setUserEmail(principal.getName());
 		return noteService.selectByFolderNote(note);
 	}
-	
+
 	// 노트 정렬
 	@RequestMapping(value="selectOrderbyNote.json")
 	public @ResponseBody List<NoteVO> selectOrderbyNote(String sortCategory,Principal principal) throws Exception {
@@ -151,13 +152,30 @@ public class NoteController {
 		return noteService.selectOrderbyNote(map);
 	}
 	
+
 	// 노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws
-	public List<NoteVO> selectByCalNote(Date period) throws Exception {
-		return noteService.selectByCalNote(period);
+/*	public List<NoteVO> selectByCalNote(Date period) throws Exception {
+		return noteService.selectByCalNote(period);}*/
+
+	// 노트 달력 검색 public List<NoteVO> noteByDate(HashMap<String, Object> map) throws
+	// Exception;
+	// 노트 날짜별 검색
+	@RequestMapping(value="selectByCalNote.json")
+	public @ResponseBody List<NoteVO> selectByCalNote(Date fromDate, Date toDate, Principal principal) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+		System.out.println("from : " + date.format(fromDate));
+		System.out.println("to : " + date.format(toDate));
+		map.put("fromDate", date.format(fromDate));
+		map.put("toDate", date.format(toDate));
+		map.put("userEmail", principal.getName());
+		
+		return noteService.selectByCalNote(map);
 	}
 
 	// 노트 키워드 검색
-	@RequestMapping(value="selectByKeyNote.json")
+	@RequestMapping(value="selectByKeyNote.json", method = RequestMethod.GET)
 	public @ResponseBody List<NoteVO> selectByKeyNote(String keyword,Principal principal) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("keyword", keyword);
