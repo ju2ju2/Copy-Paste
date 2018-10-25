@@ -118,10 +118,11 @@ public class NoteService {
 	}
 	
 	//노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws Exception;
-	public List<NoteVO> selectByCalNote(Date period) throws Exception{
+	public List<NoteVO> selectByCalNote(HashMap map) throws Exception{
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
-		return notedao.selectByCalNote(period);
+		return notedao.selectByCalNote(map);
 	}
+	
 	//노트 키워드 검색
 	public List<NoteVO> selectByKeyNote(HashMap map) throws Exception{
 		List<NoteVO> list = new ArrayList<NoteVO>();
