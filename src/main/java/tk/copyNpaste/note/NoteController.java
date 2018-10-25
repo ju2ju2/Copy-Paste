@@ -180,8 +180,9 @@ public class NoteController {
 
 	// 노트 스크랩
 	@RequestMapping(value="scrapNote.json")
-	public int scrapNote(String userEmail) throws Exception {
-		return noteService.scrapNote(userEmail);
+	public @ResponseBody int scrapNote(NoteVO note, Principal principal) throws Exception {
+		note.setUserEmail(principal.getName());
+		return noteService.scrapNote(note);
 	}
 
 	// 노트 스크랩해제 -스크랩노트 삭제

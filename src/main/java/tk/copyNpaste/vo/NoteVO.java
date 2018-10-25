@@ -29,6 +29,7 @@ public class NoteVO {
 	private int notePNum;
 	private String noteThumnail;
 	private int noteCommBlind;
+	private int newNoteNum;
 
 
 	public String getUserNick() {
@@ -123,14 +124,23 @@ public class NoteVO {
 	public void setNoteCommBlind(int noteCommBlind) {
 		this.noteCommBlind = noteCommBlind;
 	}
+	
+	public int getNewNoteNum() {
+		return newNoteNum;
+	}
+	public void setNewNoteNum(int newNoteNum) {
+		this.newNoteNum = newNoteNum;
+	}
 	@Override
 	public String toString() {
 		return "NoteVO [noteNum=" + noteNum + ", folderName=" + folderName + ", userEmail=" + userEmail + ", userNick="
 				+ userNick + ", noteTitle=" + noteTitle + ", noteContent=" + noteContent + ", noteDate=" + noteDate
 				+ ", subjectCode=" + subjectCode + ", subjectName=" + subjectName + ", noteCount=" + noteCount
 				+ ", notePublic=" + notePublic + ", noteScrap=" + noteScrap + ", notePNum=" + notePNum
-				+ ", noteThumnail=" + noteThumnail + ", noteCommBlind=" + noteCommBlind + "]";
+				+ ", noteThumnail=" + noteThumnail + ", noteCommBlind=" + noteCommBlind + ", newNoteNum=" + newNoteNum
+				+ "]";
 	}
+
 
 
 

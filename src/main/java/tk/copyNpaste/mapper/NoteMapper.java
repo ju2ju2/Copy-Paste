@@ -55,7 +55,7 @@ public interface NoteMapper {
 	public int deleteMemNote(String userEmail) throws Exception;
 
 	//스크랩노트 등록
-	public int scrapNote(String userEmail) throws Exception;
+	public int scrapNote(NoteVO note) throws Exception;
 	
 	//스크랩노트 삭제
 	public int removeScrapNote(String userEmail) throws Exception;
