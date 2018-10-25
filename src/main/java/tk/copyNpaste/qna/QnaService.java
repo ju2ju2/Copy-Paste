@@ -65,12 +65,12 @@ public class QnaService {
 	};
 	
 	//QNA 게시글 수정 (아직안됨)
-	public int updateQna(int qnaNum) throws Exception{
+	public int updateQna(QnaVO qna) throws Exception{
 		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
-		return qnadao.updateQna(qnaNum);
+		return qnadao.updateQna(qna);
 	};
 	
-	//QNA 게시글 삭제 (아직안됨)
+	//QNA 게시글 삭제
 	@Transactional
 	public int deleteQna(int qnaNum) throws Exception{
 		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);

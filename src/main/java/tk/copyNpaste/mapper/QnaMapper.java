@@ -48,7 +48,7 @@ public interface QnaMapper {
 	/* 아직 안돼*/
 	
 	//QNA 게시글 수정
-	public int updateQna(int qnaNum) throws Exception;
+	public int updateQna(QnaVO qna) throws Exception;
 	
 	//QNA 게시글 삭제
 	public int deleteQna(int qnaNum) throws Exception;
