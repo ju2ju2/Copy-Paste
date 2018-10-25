@@ -128,15 +128,18 @@ $.ajax({
 				data : {userNick:$('#userNick').val()},
            	 	success : function(data) {
             		if ($('#userNick').val()==userNick){
+            			$('#userNickMessage').removeClass("failMessage")
             			$('#userNickMessage').addClass("successMessage")
             			$('#userNickMessage').text("사용 가능한 닉네임입니다.");
         				nickDupCheck = 'ok';   
             		}else {
             			if (data > 0 ) {
+            				$('#userNickMessage').removeClass("successMessage")
                 			$('#userNickMessage').addClass("failMessage")
                 			$('#userNickMessage').text("이미 사용 중인 닉네임입니다.");
                 			nickDupCheck = ''
                 		} else {
+                			$('#userNickMessage').removeClass("failMessage")
                 			$('#userNickMessage').addClass("successMessage")
                 			$('#userNickMessage').text("사용 가능한 닉네임입니다.");
             				nickDupCheck = 'ok';
@@ -155,10 +158,12 @@ $.ajax({
 //비밀번호 일치 확인. signup.jsp와 같음
 	$('#cuserPwd').keyup(function(){
 	if($(this).val() != $('#userPwd').val()){
+		$('#userPwdConfirmMessage').removeClass("successMessage")
 		$('#userPwdConfirmMessage').addClass("failMessage")
 		$('#userPwdConfirmMessage').text("비밀번호를 정확히 입력해 주세요.");
 		pwdDupCheck = '';
 	} else {
+		$('#userPwdConfirmMessage').removeClass("failMessage")
 		$('#userPwdConfirmMessage').addClass("successMessage")
 		$('#userPwdConfirmMessage').text("비밀번호가 일치합니다.");
 		pwdDupCheck = 'ok';
@@ -170,10 +175,12 @@ $("#userPwd").keyup(function (event) {
 	regexp =  /^[0-9a-zA-Z]{6,20}$/i;
 	var v = $(this).val();
 	if (regexp.test(v)) {
+		$('#userPwdMessage').removeClass("failMessage")
 		$('#userPwdMessage').addClass("successMessage")
 		$('#userPwdMessage').text("사용 가능한 비밀번호 입니다.");
 		rightPwd = 'ok';
 		}else{
+			$('#userPwdMessage').removeClass("successMessage")
 			$('#userPwdMessage').addClass("failMessage")
 			$('#userPwdMessage').text("알파벳 대소문자, 숫자로 6자이상 입력해주세요."); 
 			rightPwd = '';

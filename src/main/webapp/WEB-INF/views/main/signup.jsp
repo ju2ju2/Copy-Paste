@@ -33,14 +33,17 @@
 				<div class="form-group">
 					<label class="control-label col-sm-4">Email ID </label>
 					<div class="col-sm-4 pr-0">
+						<div>
 							<input type="email" class="form-control" name="userEmail"
 								id="mailto" placeholder="example@example.com" required
-								autofocus>						
+								autofocus>		
+						</div>				
 					</div>
 					<div class="col-sm-4 ">
 						<button type="button" id="mailtoBtn" class="btn btn-secondary">이메일인증</button>
 					</div>
-				<div class="col-sm-12 text-center"><div id="userEmailMessage" class="mt-10"></div></div>
+				<div class="col-sm-12 text-center">
+				<div id="userEmailMessage" class="mt-10"></div></div>
 				</div>
 				
 			
@@ -48,31 +51,33 @@
 				<div class="form-group">
 					<label class="control-label col-sm-4">Email 인증번호 </label>
 					<div class="col-sm-4 pr-0">
-						<input type="text" class="form-control" name="authnum"
-								id="authnum" placeholder="인증번호를 입력해주세요.">
+						<div>
+							<input type="text" class="form-control" name="authnum"
+									id="authnum" placeholder="인증번호를 입력해주세요.">
+						</div>
 					</div>
-					<div class="col-sm-4 "></div>
-					<div class="col-sm-12 text-center"><div id="userMailToMessage" class="mt-10"></div></div>
+					<div class="col-sm-12 text-center">
+					<div id="userMailToMessage" class="mt-10"></div></div>
 				</div>
 
 				
 				<div class="form-group">
 					<label class="control-label col-sm-4">닉네임 </label>
-						<div class="col-sm-4 pr-0">
+					<div class="col-sm-4 pr-0">
 						<div>
 							<input type="text" class="form-control" name="userNick"
 								id="userNick" placeholder="사용할 닉네임을 입력해주세요.">
 						</div>
-						</div>
-					<div class="col-sm-4"></div>
-				<div class="col-sm-12 text-center"><div id="userNickMessage" class="mt-10"></div></div>
+					</div>
+					<div class="col-sm-12 text-center">
+					<div id="userNickMessage" class="mt-10"></div></div>
 				</div>
 	
 				
 				<div class="form-group">
 					<label class="control-label col-sm-4">비밀번호</label>
 					<div class="col-sm-4 pr-0">
-						<div >
+						<div>
 							<input type="password" class="form-control" name="userPwd"
 								id="userPwd" placeholder="알파벳 대소문자, 숫자를 이용해 6자리 이상 입력해주세요.">
 						</div>
@@ -89,13 +94,13 @@
 								id="cuserPwd" placeholder="비밀번호를 확인 해주세요.">
 						</div>
 					</div>
+				<div class="col-sm-12 text-center">
+				<div id="userPwdConfirmMessage" class="mt-10"></div></div>
 				</div>
-				<div class="col-sm-5"></div>
-				<div id="userPwdConfirmMessage"></div>
 				
 				<div class="form-group">
                   <label class="checkbox text-center">
-    			<input type="checkbox" value="remember-me" id="userCheck"><a ="" >이용약관</a>에 동의합니다.</label>
+    			<input type="checkbox" value="remember-me" id="userCheck"><a>이용약관</a>에 동의합니다.</label>
     			</div>
 			
 				<div class="form-group">
@@ -132,35 +137,43 @@
 	
 	//인증메일 발송
 	$('#mailtoBtn').click(function(){
-		$('#userMailToMessage').addClass("failMessage")
-		$('#userMailToMessage').text("메일이 전송되는데 1분 정도 소요될 수 있습니다.");
-			$.ajax({
-				type : 'post',
-				url : '${pageContext.request.contextPath}/member/singupEmail.do',
-				data : {mailto:$('#mailto').val()},
-				success : function(data) {
-						mailtoNum=data; 
-						writtenMail = $('#mailto').val();
-						console.log("인증번호:"+mailtoNum);
-						$('#userMailToMessage').addClass("successMessage")
-						$('#userMailToMessage').text("이메일 인증을 위한 메일이 발송 되었습니다.");
-				},
-				error : function(error) {
-					swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 확인해 주세요.", "error");
-					console.log(error);
-					console.log(error.status);
-           		 }
-         });
+		if (mailDupCheck == 'ok'){
+			$('#userMailToMessage').removeClass("successMessage")
+			$('#userMailToMessage').addClass("failMessage");
+			$('#userMailToMessage').text("메일이 전송되는데 1분 정도 소요될 수 있습니다.");
+				$.ajax({
+					type : 'post',
+					url : '${pageContext.request.contextPath}/member/singupEmail.do',
+					data : {mailto:$('#mailto').val()},
+					success : function(data) {
+							mailtoNum=data; 
+							writtenMail = $('#mailto').val();
+							console.log("인증번호:"+mailtoNum);
+							$('#userMailToMessage').removeClass("failMessage");
+							$('#userMailToMessage').addClass("successMessage");
+							$('#userMailToMessage').text("이메일 인증을 위한 메일이 발송 되었습니다.");
+					},
+					error : function(error) {
+						swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 확인해 주세요.", "error");
+						console.log(error);
+						console.log(error.status);
+	           		 }
+	         });
+		} else {
+			swal("٩(இ ⌓ இ๑)۶", "이미 사용 중인 이메일입니다.", "error");
+		}
 		})
 	
 	//이메일 인증 번호 확인
 	$('#authnum').keyup(function(){
 			if(mailtoNum==$('#authnum').val() && writtenMail == $('#mailto').val()){
+				$('#userMailToMessage').removeClass("failMessage");
 				$('#userMailToMessage').addClass("successMessage");
         		$('#userMailToMessage').text("인증번호가 확인되었습니다");
         		mailCheck = 'ok';
 			}else{
-				$('#userMailToMessage').addClass("failMessage")
+				$('#userMailToMessage').removeClass("successMessage");
+				$('#userMailToMessage').addClass("failMessage");
         		$('#userMailToMessage').text("인증번호가 일치 하지 않습니다.");
 				mailCheck = '';
 			}
@@ -169,11 +182,13 @@
 	//비밀번호 일치 확인 myinfo.jsp와 같음
  	$('#cuserPwd').keyup(function(){
 		if($(this).val() != $('#userPwd').val()){
+			$('#userPwdConfirmMessage').removeClass("successMessage");
 			$('#userPwdConfirmMessage').addClass("failMessage");
 			$('#userPwdConfirmMessage').text("비밀번호를 정확히 입력해 주세요.");
 			pwdDupCheck = '';
 		} else {
-			$('#userPwdConfirmMessage').addClass("successMessage")
+			$('#userPwdConfirmMessage').removeClass("failMessage");
+			$('#userPwdConfirmMessage').addClass("successMessage");
 			$('#userPwdConfirmMessage').text("비밀번호가 일치합니다.");
 			pwdDupCheck = 'ok';
 		}
@@ -184,10 +199,12 @@
 		regexp =  /^[0-9a-zA-Z]{6,20}$/i;
 		var v = $(this).val();
 		if (regexp.test(v)) {
+			$('#userPwdMessage').removeClass("failMessage");
 			$('#userPwdMessage').addClass("successMessage");
 			$('#userPwdMessage').text("사용 가능한 비밀번호 입니다.");
 			rightPwd = 'ok';
 			}else{
+				$('#userPwdMessage').removeClass("successMessage");
 				$('#userPwdMessage').addClass("failMessage");
 				$('#userPwdMessage').text("알파벳 대소문자, 숫자로 6자이상 입력해주세요."); 
 				rightPwd = '';
@@ -206,13 +223,17 @@
 	            data : {mailto:$('#mailto').val()},
 	            success : function(data) {
 	            	if (data > 0) {
+	            		$('#userEmailMessage').removeClass("successMessage");
 	            		$('#userEmailMessage').addClass("failMessage");
 	            		$('#userEmailMessage').text("이미 사용 중인 이메일입니다.");
 	            		mailDupCheck = '';
+	            		console.log(mailDupCheck);
 	            	} else {
+	            		$('#userEmailMessage').removeClass("failMessage");
 	            		$('#userEmailMessage').addClass("successMessage");
 	            		$('#userEmailMessage').text("사용 가능한 이메일입니다.");
-	        			mailDupCheck = 'ok'; }
+	        			mailDupCheck = 'ok'; 
+	        			console.log(mailDupCheck);}
 	            },
 	            error : function(error) {
 					swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 확인해 주세요.", "error");
@@ -221,6 +242,7 @@
 	            }
 	         });
 			}else{
+				$('#userEmailMessage').removeClass("successMessage");
 				$('#userEmailMessage').addClass("failMessage");
 				$('#userEmailMessage').text("이메일 형식으로 입력해주세요");
 			}
@@ -238,10 +260,12 @@
             data : {userNick:$('#userNick').val()},
             success : function(data) {
             	if (data > 0) {
+            		$('#userNickMessage').removeClass("successMessage");
             		$('#userNickMessage').addClass("failMessage");
             		$('#userNickMessage').text("이미 사용 중인 닉네임입니다.");
             		nickDupCheck = '';
             	} else {
+            		$('#userNickMessage').removeClass("failMessage");
             		$('#userNickMessage').addClass("successMessage");
             		$('#userNickMessage').text("사용 가능한 닉네임입니다.");
         			nickDupCheck = 'ok';
