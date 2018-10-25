@@ -42,10 +42,10 @@ public interface QnaMapper {
 	public int insertQna(QnaVO qna) throws Exception;
 	//QNA 게시물 부모글 업데이트
 	public int updateInsertQna(int num) throws Exception;
+	//QNA 게시물 답글 작성
+	public int insertQnaReply(QnaVO qna)throws Exception;
 	
 	/* 아직 안돼*/
-	//QNA 게시물 검색
-	public List<QnaVO> selectSearchQna(String keyword) throws Exception;
 	
 	//QNA 게시글 수정
 	public int updateQna(int qnaNum) throws Exception;

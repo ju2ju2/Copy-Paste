@@ -118,33 +118,19 @@
 	</select>
 	
 	<!-- 노트 정렬 -->
-		<!-- 1. 최신 순 -->
-		<select id="selectOrderbyNote1" parameterType="hashmap" resultType="NoteVO">
-		select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
-		n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
-		from note n join users u on u.userEmail=n.userEmail 
-		where u.userEmail = #{userEmail} order by n.noteDate desc;
-		</select>
-		<!-- 2. 오래된 순 -->
-		<select id="selectOrderbyNote2" parameterType="hashmap" resultType="NoteVO">
-		select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
-		n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
-		from note n join users u on u.userEmail=n.userEmail 
-		where u.userEmail = #{userEmail} order by n.noteDate asc;
-		</select>
-		<!-- 3. 가나다 순 -->
-		<select id="selectOrderbyNote3" parameterType="hashmap" resultType="NoteVO">
-		select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
-		n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
-		from note n join users u on u.userEmail=n.userEmail 
-		where u.userEmail = #{userEmail} order by binary(n.noteTitle);
-		</select>
-		<!-- 4. 전체보기 -->
-		<select id="selectOrderbyNote4" parameterType="hashmap" resultType="NoteVO">
-		select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
-		n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
-		from note n join users u on u.userEmail=n.userEmail where u.userEmail = #{userEmail} order by n.noteNum desc;
-		</select> 
+	  <select id="selectOrderbyNote" parameterType="hashmap" resultType="NoteVO">
+	  select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+      n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
+      from note n join users u on u.userEmail=n.userEmail 
+      where u.userEmail = #{userEmail} 
+      order by 
+          Case when #{sortCategory}='n.noteDate desc' then n.noteDate End desc,
+          Case when #{sortCategory}='n.noteDate asc' then n.noteDate End asc,
+          Case when #{sortCategory}='binary(n.noteTitle)' then binary(n.noteTitle) End asc,
+          Case when #{sortCategory}='n.noteNum' then n.noteNum End desc;
+        </select>
+
+ 
 	
 	<!-- 노트 달력 검색 -->
 	
@@ -177,12 +163,6 @@
 	<!-- 노트의 폴더 이동 -->
 	
 	<!-- MY NOTE에서 폴더 별 노트 조회 -->
-	<select id="selectNoteByFolder" resultType="NoteVO">
-	select distinct n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
-	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
-	from note n join users u on u.userEmail=n.userEmail
-	join folder f on f.folderName=n.folderName where u.userEmail = #{userEmail} and f.folderName= #{folderName} order by noteNum desc;
-	</select>
 	
 	<!-- 	
 	//NoteVO

@@ -13,17 +13,29 @@
 <se:authentication property="authorities" var="role" />
 <section id="content">
 	<div class="container">
-		<form action="${pageContext.request.contextPath}/qna/insertQnaboard.htm" method="post" id="insertQnaform"
-			class="contact-form">
-
+		<c:choose>
+			<c:when test="${qna.qnaDept==1}">
+				<div class="qnaReply">
+					QnA 답글 작성
+				</div>
+				<form action="${pageContext.request.contextPath}/qna/insertQnaReply.htm" method="post" id="insertQnaform" class="contact-form">
+					<input type="hidden" name="qnaNum" value="${qna.qnaNum}" />
+					<input type="hidden" name="qnaDept" value="${qna.qnaDept}" />
+			</c:when>
+			<c:otherwise>
+				<form action="${pageContext.request.contextPath}/qna/insertQnaboard.htm" method="post" id="insertQnaform" class="contact-form">
+			</c:otherwise>
+		</c:choose>
 			<div class="col-md-12">
 				<div class="form-group">
 					<input type="text" class="form-control qnaTitle" name="qnaTitle"
 						autocomplete="off" id="qnatitle" placeholder="제목"/>&ensp;
 					<!-- 관리자 - 공지사항 여부 -->
+					<c:if test="${qna.qnaDept==0}">
 					<se:authorize access="hasAnyRole('ROLE_ADMIN')">
 						<div class="qnaNotice"><input type="checkbox" value="1"  name="qnaNotice" class="qnaNotice">&nbsp;공지사항</div>
 					</se:authorize>
+					</c:if>
 				</div>
 			</div>
 			<div class="col-md-12">
@@ -40,3 +52,8 @@
 		</form>
 	</div>
 </section>
+<script type="text/javascript">
+$(function(){
+	
+});
+</script>

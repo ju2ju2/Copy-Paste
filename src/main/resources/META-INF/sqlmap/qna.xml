@@ -12,7 +12,14 @@
 	
 <mapper namespace="tk.copyNpaste.mapper.QnaMapper">
 <!-- 진행중 영역 -->
-
+	<!-- //QNA 게시물 답글 작성 -->
+	<insert id="insertQnaReply">
+		<selectKey order="BEFORE" keyProperty="qnaPos" resultType="int">
+   	   		select max(qnaPos+1) from qna where qnaPNum=#{qnaNum}
+     	</selectKey>
+		insert into qna(userEmail,qnaTitle,qnaContent,qnaDept,qnaPNum,qnaPos)
+		values (#{userEmail},#{qnaTitle},#{qnaContent},#{qnaDept},#{qnaNum},#{qnaPos});
+	</insert>
 
 	
 <!-- /진행중 영역 -->
@@ -30,7 +37,7 @@
 		from qna join users on qna.userEmail = users.userEmail where qna.qnaNum=#{qnaNum}
 	</select>
 	
-		<!-- 	//QNA 게시물 작성 -->
+	<!-- 	//QNA 게시물 작성 -->
 	<insert id="insertQna" useGeneratedKeys="true">
 		insert into qna(userEmail,qnaTitle,qnaContent,qnaNotice,qnaSecret)
 		values (#{userEmail},#{qnaTitle},#{qnaContent},#{qnaNotice},#{qnaSecret});
@@ -82,8 +89,6 @@
 		where qnaCommPNum = #{qnaCommNum}
 	</delete>
 	
-<!-- 	//QNA 게시물 검색
-	public List<QnaVO> selectSearchQna(String keyword) throws Exception;-->	
 
 <!-- 	//QNA 게시글 수정
 	public int updateQna(int qnaNum) throws Exception;
