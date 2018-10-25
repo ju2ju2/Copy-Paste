@@ -95,6 +95,41 @@
 		return false;
 	});
 		
+		//노트 스크랩 등록
+		$('#scrapNoteBtn').click(function(e) {
+			swal({
+				  title: "노트를 스크랩 하시겠습니까?",
+				  type: 'warning',
+				  showCancelButton: true,
+				  confirmButtonClass : "btn-danger btn-sm",
+				  cancelButtonClass: "btn btn-sm",
+				  confirmButtonText: '확인',
+				  closeOnConfirm: false
+				},
+				function(){
+					$.ajax ({
+						url: "${pageContext.request.contextPath}/note/scrapNote.json",
+						type: "POST",
+						data: {'noteNum': ${note.noteNum}}
+						})//다운로드 받을 html
+						.done(function(result) {
+							swal({type: "success",
+								  title: '스크랩 노트가 저장되었습니다.',
+					              confirmButtonClass : "btn-danger btn-sm",
+								  closeOnConfirm: true
+							},
+							function(){
+							
+							})
+							
+						
+						})
+						.fail(function(jqXhr, testStatus, errorText){
+							alert("에러발생 :" + errorText);
+						});
+					});
+				return false;
+			});
 
 		
 		//노트삭제
@@ -247,14 +282,14 @@
 							 	 <a href="${pageContext.request.contextPath}/note/insertWithOtherNote.htm?noteNum=${note.noteNum}"><i class="far fa-edit 3x notewrite"></i> &nbsp;</a> 
 								 <a id="emailNoteBtn"><i class="far fa-envelope"></i> &nbsp;</a> 
 								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down"></i> &nbsp;</a> 
-								 <a href=""><i class="fas fa-archive"></i>&nbsp;</a>
+								 <a id="scrapNoteBtn"><i class="fas fa-archive"></i>&nbsp;</a>
 								 <a id="deleteNoteBtn"><i class="fas fa-trash"></i> &nbsp;</a> 
 							</c:when>
 							<c:otherwise>
 							 	 <a href="${pageContext.request.contextPath}/note/insertWithOtherNote.htm?noteNum=${note.noteNum}"><i class="far fa-edit 3x notewrite"></i> &nbsp;</a> 
 								 <a id="emailNoteBtn"><i class="far fa-envelope"></i> &nbsp;</a> 
 								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down"></i> &nbsp;</a> 
-								 <a href=""><i class="fas fa-archive"></i>&nbsp;</a>
+								 <a id="scrapNoteBtn"><i class="fas fa-archive"></i>&nbsp;</a>
 								 <a id="noteReportForm"> <i class="fas fa-flag"></i></a>
 							</c:otherwise>
 						</c:choose> 	

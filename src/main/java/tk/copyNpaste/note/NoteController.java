@@ -1,7 +1,7 @@
 /*
 * @Class : NoteController
 * @ Date : 2018.10.05
-* @ Author : 이주원
+* @ Author : 우나연
 * @ Desc : 노트 관련 컨트롤러. (service 사용, 뷰 매핑)
 */
 
@@ -168,22 +168,23 @@ public class NoteController {
 		return noteService.selectByKeyNote(map);
 	}
 
-	// 회원별 노트 검색
+	// 회원별 노트 검색-관리자-노트관리
 	public List<NoteVO> selectByMemNote(String userEmail) throws Exception {
 		return noteService.selectByMemNote(userEmail);
 	}
 
-	// 회원별 노트 일괄 삭제
+	// 회원별 노트 일괄 삭제-관리자-노트관리
 	public int deleteMemNote(String userEmail) throws Exception {
 		return noteService.deleteMemNote(userEmail);
 	}
 
 	// 노트 스크랩
+	@RequestMapping(value="scrapNote.json")
 	public int scrapNote(String userEmail) throws Exception {
 		return noteService.scrapNote(userEmail);
 	}
 
-	// 노트 스크랩해제
+	// 노트 스크랩해제 -스크랩노트 삭제
 	public int removeScrapNote(String userEmail) throws Exception {
 		return noteService.removeScrapNote(userEmail);
 	}
