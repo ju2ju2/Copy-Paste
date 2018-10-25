@@ -60,7 +60,7 @@
 			swal({
 				  title:'<span class="title">이메일전송</span>',
 				  text: '<form id="email">'+
-						'<input type="text" class="form-control mb-10" id="noteEmailTo" placeholder="노트를 전송할 이메일을 입력하세요"/>'+
+						'<input type="email" class="form-control mb-10" id="noteEmailTo" placeholder="노트를 전송할 이메일을 입력하세요"/>'+
 						'</form>'
 				  ,
 				  html: true,
@@ -74,14 +74,13 @@
 				$.ajax ({
 						url: "${pageContext.request.contextPath}/note/emailNote.json",
 						type: "POST",
-						dataType: "json",
 						data: {	'noteNum': ${note.noteNum},
 								'noteEmailTo' : $('#noteEmailTo').val() }//
 				}).done(function(result) {
 					swal({type: "success",
 						  title: '성공적으로 전송되었습니다.',
-			              confirmButtonClass : "btn-danger",
-						  closeOnConfirm: false
+			              confirmButtonClass : "btn-danger btn-sm",
+						  closeOnConfirm: ture
 					},
 					function(){
 						

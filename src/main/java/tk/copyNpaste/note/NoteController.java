@@ -217,8 +217,8 @@ public class NoteController {
 	
 	// 노트 메일 전송
 	@RequestMapping(value="emailNote.json")
-	public @ResponseBody void emailNote(NoteVO note) throws Exception {
-		noteMailnFileService.emailNote(note);
+	public @ResponseBody void emailNote(NoteVO note, String noteEmailTo) throws Exception {
+		noteMailnFileService.emailNote(note, noteEmailTo);
 	}
 
 	// 노트 pdf파일로 다운로드
