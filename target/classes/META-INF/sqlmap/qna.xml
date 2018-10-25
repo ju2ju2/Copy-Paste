@@ -12,6 +12,16 @@
 	
 <mapper namespace="tk.copyNpaste.mapper.QnaMapper">
 <!-- 진행중 영역 -->
+	<!-- 	//QNA 게시글 삭제  -->	
+ 	<delete id="deleteQna">
+ 		delete from qna
+		where qnaNum = #{qnaNum}
+ 	</delete>
+	<!-- //QNA 삭제시 자식 답글들 삭제  -->
+	<delete id="deleteQnaChild" parameterType="Integer">
+		delete from qna
+		where qnaPNum = #{qnaNum}
+	</delete>
 	<!-- //QNA 게시물 답글 작성 -->
 	<insert id="insertQnaReply">
 		<selectKey order="BEFORE" keyProperty="qnaPos" resultType="int">
@@ -93,7 +103,5 @@
 <!-- 	//QNA 게시글 수정
 	public int updateQna(int qnaNum) throws Exception;
  -->	
-<!-- 	//QNA 게시글 삭제
-	public int deleteQna(int qnaNum) throws Exception;
- -->	
+
 </mapper>

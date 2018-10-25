@@ -81,11 +81,62 @@
 	<delete id="deleteNote">
 		DELETE FROM note WHERE noteNum = #{noteNum}
 	</delete>
+	
+	<!--노트 폴더별 조회 -->
+	<select id="selectByFolderNote" resultType="NoteVO">
+	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
+	from note n join users u on u.userEmail=n.userEmail 
+	where u.userEmail = #{userEmail} and n.folderName =#{folderName}
+	order by noteNum desc;
+	</select>
+	
+	<!-- 노트 정렬 -->
+		<!-- 1. 최신 순 -->
+		<select id="selectOrderbyNote1" parameterType="hashmap" resultType="NoteVO">
+		select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+		n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
+		from note n join users u on u.userEmail=n.userEmail 
+		where u.userEmail = #{userEmail} order by n.noteDate desc;
+		</select>
+		<!-- 2. 오래된 순 -->
+		<select id="selectOrderbyNote2" parameterType="hashmap" resultType="NoteVO">
+		select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+		n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
+		from note n join users u on u.userEmail=n.userEmail 
+		where u.userEmail = #{userEmail} order by n.noteDate asc;
+		</select>
+		<!-- 3. 가나다 순 -->
+		<select id="selectOrderbyNote3" parameterType="hashmap" resultType="NoteVO">
+		select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+		n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
+		from note n join users u on u.userEmail=n.userEmail 
+		where u.userEmail = #{userEmail} order by binary(n.noteTitle);
+		</select>
+		<!-- 4. 전체보기 -->
+		<select id="selectOrderbyNote4" parameterType="hashmap" resultType="NoteVO">
+		select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+		n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
+		from note n join users u on u.userEmail=n.userEmail where u.userEmail = #{userEmail} order by n.noteNum desc;
+		</select> 
+	
 	<!-- 노트 달력 검색 -->
 	
-	<!-- 노트 키워드 검색 -->
-		
+	<!-- my노트 키워드 검색 -->
+	<select id="selectByKeyNote"  parameterType="hashmap" resultType="NoteVO">
+  	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+	n.subjectCode,s.subjectName, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
+	from note n join users u on u.userEmail=n.userEmail 
+				join subject s on s.subjectCode=n.subjectCode 
+	where n.userEmail = #{userEmail} and 
+		 (n.noteTitle like CONCAT('%',#{keyword},'%') or 
+		  n.noteContent like CONCAT('%',#{keyword},'%') or 
+		  n.folderName like CONCAT('%',#{keyword},'%') or 
+		  s.subjectName like CONCAT('%',#{keyword},'%'))
+	order by noteNum desc;
+	</select>
 	<!-- 회원별 노트 검색 -->
+	
 	
 	<!-- 회원별 노트 일괄 삭제 -->
 	
@@ -99,7 +150,13 @@
 	
 	<!-- 노트의 폴더 이동 -->
 	
-	
+	<!-- MY NOTE에서 폴더 별 노트 조회 -->
+	<select id="selectNoteByFolder" resultType="NoteVO">
+	select distinct n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
+	from note n join users u on u.userEmail=n.userEmail
+	join folder f on f.folderName=n.folderName where u.userEmail = #{userEmail} and f.folderName= #{folderName} order by noteNum desc;
+	</select>
 	
 	<!-- 	
 	//NoteVO

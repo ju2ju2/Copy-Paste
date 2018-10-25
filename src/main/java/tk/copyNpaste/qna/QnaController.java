@@ -84,8 +84,10 @@ public class QnaController {
 	};
 	
 	//QNA 게시글 삭제
-	public int deleteQna(int qnaNum) throws Exception{
-		return qnaService.deleteQna(qnaNum);
+	@RequestMapping(value="/deleteQna.htm")
+	public String deleteQna(int qnaNum) throws Exception{
+		qnaService.deleteQna(qnaNum);
+		return "redirect:/qna/selectQnaboard.htm";
 	};
 	
 	

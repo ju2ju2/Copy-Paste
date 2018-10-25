@@ -52,6 +52,7 @@ public interface QnaMapper {
 	
 	//QNA 게시글 삭제
 	public int deleteQna(int qnaNum) throws Exception;
+	public int deleteQnaChild(int qnaNum) throws Exception;
 	
 	
 	
