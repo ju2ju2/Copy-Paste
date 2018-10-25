@@ -8,6 +8,7 @@
 package tk.copyNpaste.note;
 
 import java.security.Principal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -86,7 +87,7 @@ public class NoteController {
 	}
 	
 	// 노트 작성 
-	@RequestMapping(value="write.json")
+	@RequestMapping(value="insertNote.json")
 	public @ResponseBody int insertNote(NoteVO note,Principal principal) throws Exception {
 		note.setUserEmail(principal.getName());
 		String NoteContent = note.getNoteContent();
@@ -107,6 +108,13 @@ public class NoteController {
 		NoteVO note = noteService.selectDetailNote(noteNum);
 		model.addAttribute("note", note);
 		return "write.updateNote";//(write/updateNote.jsp)
+	}
+	// 작성된 노트 이용해 작성하는 페이지로 이동
+	@RequestMapping(value="insertWithOtherNote.htm", method = RequestMethod.GET)
+	public String insertWithOtherNote(int noteNum, Model model) throws Exception {
+		NoteVO note = noteService.selectDetailNote(noteNum);
+		model.addAttribute("note", note);
+		return "write.insertWithOtherNote";//(write/updateNote.jsp)
 	}
 	// 노트 수정 -비동기
 	@RequestMapping(value="updateNote.json")
@@ -134,48 +142,40 @@ public class NoteController {
 		note.setUserEmail(principal.getName());
 		return noteService.selectByFolderNote(note);
 	}
-	
-	// MY NOTE → 노트 폴더별 조회
-	@RequestMapping(value = "selectNoteByFolder.json")
-	public @ResponseBody List<NoteVO> selectNoteByFolder(NoteVO note,Principal principal) throws Exception {
-		note.setUserEmail(principal.getName());
-		return noteService.selectNoteByFolder(note);
-	}
-	
+
 	// 노트 정렬
 	@RequestMapping(value="selectOrderbyNote.json")
 	public @ResponseBody List<NoteVO> selectOrderbyNote(String sortCategory,Principal principal) throws Exception {
-		System.out.println("정렬 기준 : " + sortCategory);
-		String sortCategory1 = sortCategory;
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("sortCategory", sortCategory);
 		map.put("userEmail", principal.getName());
-		
-		List<NoteVO> a;
-		if(sortCategory.trim().equals("n.noteDateDesc")) {
-			a= noteService.selectOrderbyNote1(map);
-			System.out.println("노트 최신순 정렬");
-		}else if(sortCategory.trim().equals("n.noteDateAsc")){
-			a= noteService.selectOrderbyNote2(map);
-			System.out.println("노트 오래된순 정렬");
-		}else if(sortCategory.trim().equals("n.noteTitle")) {
-			a= noteService.selectOrderbyNote3(map);
-			System.out.println("노트 가나다순 정렬");
-		}else {
-			a= noteService.selectOrderbyNote4(map);
-			System.out.println("노트 전체보기");
-		}
-		return a;
+		return noteService.selectOrderbyNote(map);
 	}
 	
+
 	// 노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws
+/*	public List<NoteVO> selectByCalNote(Date period) throws Exception {
+		return noteService.selectByCalNote(period);}*/
+
+	// 노트 달력 검색 public List<NoteVO> noteByDate(HashMap<String, Object> map) throws
 	// Exception;
-	public List<NoteVO> selectByCalNote(Date period) throws Exception {
-		return noteService.selectByCalNote(period);
+	// 노트 날짜별 검색
+	@RequestMapping(value="selectByCalNote.json")
+	public @ResponseBody List<NoteVO> selectByCalNote(Date fromDate, Date toDate, Principal principal) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		
+		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+		System.out.println("from : " + date.format(fromDate));
+		System.out.println("to : " + date.format(toDate));
+		map.put("fromDate", date.format(fromDate));
+		map.put("toDate", date.format(toDate));
+		map.put("userEmail", principal.getName());
+		
+		return noteService.selectByCalNote(map);
 	}
 
 	// 노트 키워드 검색
-	@RequestMapping(value="selectByKeyNote.json")
+	@RequestMapping(value="selectByKeyNote.json", method = RequestMethod.GET)
 	public @ResponseBody List<NoteVO> selectByKeyNote(String keyword,Principal principal) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("keyword", keyword);
@@ -203,17 +203,33 @@ public class NoteController {
 		return noteService.removeScrapNote(userEmail);
 	}
 
-	// 노트 댓글 작성-비동기
-		public void insertNoteComm(NoteCommVO note, Principal principal) throws Exception {
-			note.setUserEmail(principal.getName());//로그인한 사용자 ID
-			noteService.insertNoteComm(note);
-		}
-
-	// 노트 댓글 삭제
-	public int deleteNoteComm(int noteCommNum) throws Exception {
-		return noteService.deleteNoteComm(noteCommNum);
+	// 노트 댓글 조회-비동기
+	@RequestMapping(value="selectAllNoteComm.json")
+	public @ResponseBody List<NoteCommVO> selectAllNoteComm(int noteNum, Principal principal) throws Exception {
+		return noteService.selectAllNoteComm(noteNum);
 	}
 
+	// 노트 댓글 작성-비동기
+	@RequestMapping(value="insertNoteComm.json")
+	public @ResponseBody int /*List<NoteCommVO> */insertNoteComm(NoteCommVO note, int noteNum, Principal principal) throws Exception {
+		note.setUserEmail(principal.getName());//로그인한 사용자 ID
+		return noteService.insertNoteComm(note);
+		/*return noteService.selectAllNoteComm(noteNum);*/
+	}
+
+	// 노트 대댓글 작성-비동기
+	@RequestMapping(value="insertNoteCommComm.json")
+	public @ResponseBody int insertNoteCommComm(NoteCommVO note, int noteNum, Principal principal) throws Exception {
+		note.setUserEmail(principal.getName());//로그인한 사용자 ID
+		return noteService.insertNoteCommComm(note);
+	}
+
+	// 댓글  삭제 
+	@RequestMapping(value="deleteNoteComm.json")
+	public @ResponseBody int deleteNoteComm(int noteCommNum, String cmd) throws Exception {
+		return noteService.deleteNoteComm(noteCommNum);
+	}
+	
 	// 노트 메일 전송
 	public NoteVO emailNote(NoteVO note) throws Exception {
 		return null;
@@ -240,4 +256,10 @@ public class NoteController {
 	}
 	
 	
+	
+	
+	
 }
+
+
+

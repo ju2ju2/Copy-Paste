@@ -25,6 +25,8 @@ public interface QnaMapper {
 	
 	//댓글 작성
 	public int insertQnaComm(QnaCommVO qnaComm) throws Exception;
+	//QNA 댓글 부모글 업데이트
+	public int updateInsertQnaComm(int num) throws Exception;
 		
 	//대댓글 작성
 	public int insertQnaCommComm(QnaCommVO qnaComm) throws Exception;
@@ -36,18 +38,21 @@ public interface QnaMapper {
 	//QNA 댓글 삭제시 자식 댓글들 삭제
 	public int deleteQnaCommChild(int qnaCommPNum) throws Exception;
 	
-	/* 아직 안돼*/
-	//QNA 게시물 검색
-	public List<QnaVO> selectSearchQna(String keyword) throws Exception;
-	
 	//QNA 게시물 작성
 	public int insertQna(QnaVO qna) throws Exception;
+	//QNA 게시물 부모글 업데이트
+	public int updateInsertQna(int num) throws Exception;
+	//QNA 게시물 답글 작성
+	public int insertQnaReply(QnaVO qna)throws Exception;
+	
+	/* 아직 안돼*/
 	
 	//QNA 게시글 수정
-	public int updateQna(int qnaNum) throws Exception;
+	public int updateQna(QnaVO qna) throws Exception;
 	
 	//QNA 게시글 삭제
 	public int deleteQna(int qnaNum) throws Exception;
+	public int deleteQnaChild(int qnaNum) throws Exception;
 	
 	
 	

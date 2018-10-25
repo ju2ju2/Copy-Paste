@@ -61,7 +61,7 @@
 						<img class="img-circle" alt="user" id="headerUserPhoto"><span>${loginuser}</span><span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a
-								href="${pageContext.request.contextPath}/member/myinfo.htm"><i class="far fa-user"></i><span>PROFILE\</span></a></li>
+								href="${pageContext.request.contextPath}/member/myinfo.htm"><i class="far fa-user"></i><span>PROFILE</span></a></li>
 					
 					<!-- 관리자권한일때 -->
 							<se:authorize access="hasRole('ROLE_ADMIN')">
@@ -138,7 +138,7 @@
 var session  = ('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal}'); //세션 유무 확인
 var userPhoto; //사용자 프로필 이미지 명
 
-//사용자 프로필 이미지 출력
+//사용자 프로필 이미지 출력. myinfo.jsp와 같은 함수 쓰고 있음
 	if(session != ''){
 		 $.ajax({
 				type : 'post',

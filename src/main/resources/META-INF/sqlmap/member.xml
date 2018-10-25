@@ -44,16 +44,32 @@
     
 	<!-- 내 정보 보기 -->
 	<select id="selectSearchMemberByEmail" parameterType="String" resultType="MemberVO">
-		select userEmail, userNick, userPhoto from users 
+		select userEmail, userNick, userPwd, userPhoto from users 
 			<if test='value != null'>
 					where userEmail=#{userEmail}
-			</if>
-
+				</if>
 	</select>
+    
+    <!-- 내 정보 수정 -->
+    <update id="updateMember" parameterType="MemberVO">
+		update users set userNick=#{userNick}
+			<if test='userPwd != null'>
+				, userPwd=#{userPwd}
+			</if>
+			<if test='userPhoto != null'>
+				, userPhoto=#{userPhoto}
+			</if>
+		 where userEmail = #{userEmail};
+    </update>
     
 	<!-- 회원정보 보기 -->
 	
 	<!-- 회원 검색 -->
+    <select id="selectAllMember" resultType="MemberVO">
+    	select userEmail, userNick, userEnabled
+    	from users
+    	order by userEnabled desc
+    </select>
     
 	<!-- 임시 비밀번호로 비밀번호 변경 -->
 	<update id="updateUserPwd" parameterType="MemberVO">

@@ -15,7 +15,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import tk.copyNpaste.mapper.EtcMapper;
+import tk.copyNpaste.mapper.MemberMapper;
 import tk.copyNpaste.vo.EtcVO;
+import tk.copyNpaste.vo.MemberVO;
 import tk.copyNpaste.vo.ReportVO;
 
 @Service
@@ -23,6 +25,18 @@ public class EtcService {
 	@Autowired
 	private SqlSession sqlsession;
 
+	// 회원 보기
+	public List<MemberVO> showMember() throws Exception {
+		MemberMapper memberdao = sqlsession.getMapper(MemberMapper.class);
+		return memberdao.selectAllMember();
+	}
+	
+	// 회원 탈퇴 시키기
+	public int deleteMember(String userEmail) throws Exception {
+		MemberMapper memberdao = sqlsession.getMapper(MemberMapper.class);
+		return memberdao.deleteMember(userEmail);
+	}
+	
 	// 신고 하기
 	public int insertReport(int noteNum) throws Exception {
 		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
@@ -47,6 +61,7 @@ public class EtcService {
 		return etcdao.selectCommReport();
 	}
 	
+	// 신고된 댓글을 가진 노트 num 구하기
 	public int selectHasReportComm(int reportNum) throws Exception {
 		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
 		return etcdao.selectHasReportComm(reportNum);
