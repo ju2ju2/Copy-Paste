@@ -118,7 +118,6 @@ public class DragController {
 	//드래그 중요표시 등록
 	@RequestMapping(value="setDragMark.json")
 	public  @ResponseBody int setDragMark(int dragNum) throws Exception {
-		System.out.println("마크컨트롤러"+dragNum);
 		return dragservice.setDragMark(dragNum);
 	}
 	

@@ -45,14 +45,14 @@
 			order by dragNum desc;
 	</select>
 	
-		<!-- 최신순-->
+		<!-- 드래그 정렬-->
 	<select id="selectOrderbyDrag" parameterType="hashmap"  resultType="DragVO" >
 	   select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate
       from drag where userEmail = #{userEmail}
       order by 
           Case when #{sortCategory}='dragNumDesc' then dragNum End desc,
           Case when #{sortCategory}='dragNumAsc' then dragNum End asc,
-          Case when #{sortCategory}='dragMark' then dragMark End asc,
+          Case when #{sortCategory}='dragMark' then dragMark End desc,
           Case when #{sortCategory}='dragText' then dragText End desc;
 	</select>
 
