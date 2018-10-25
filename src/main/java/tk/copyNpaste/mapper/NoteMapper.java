@@ -62,12 +62,18 @@ public interface NoteMapper {
 	
 	//노트 댓글 작성
 	public int insertNoteComm(NoteCommVO note) throws Exception;
+	
+	//Note 댓글 부모글 업데이트
+	public int updateInsertNoteComm(int num) throws Exception;
 		
 	//노트 대댓글 작성
 	public int insertNoteCommComm(NoteCommVO note) throws Exception;
 	
 	//노트 댓글 삭제
 	public int deleteNoteComm(int noteCommNum) throws Exception;
+	
+	//노트 댓글 블라인드 처리
+	public int blindNoteComm(int noteCommNum) throws Exception;
 	
 	//인기노트 상세보기 
 	public List<NoteVO> selectPopNote() throws Exception;
@@ -92,10 +98,10 @@ public interface NoteMapper {
 
 	// MY NOTE → 노트 폴더별 조회
 	public List<NoteVO> selectNoteByFolder(NoteVO note) throws Exception;
-
-
-
 	
+	//Note 댓글 삭제시 자식 댓글들 삭제
+	public void deleteNoteCommChild(int noteCommPNum) throws Exception;
+
 
 
 		

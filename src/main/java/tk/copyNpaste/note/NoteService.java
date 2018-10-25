@@ -14,10 +14,13 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import tk.copyNpaste.mapper.NoteMapper;
+import tk.copyNpaste.mapper.QnaMapper;
 import tk.copyNpaste.vo.NoteCommVO;
 import tk.copyNpaste.vo.NoteVO;
+import tk.copyNpaste.vo.QnaCommVO;
 
 @Service
 public class NoteService {
@@ -50,9 +53,11 @@ public class NoteService {
 		return noteCommList;
 	}
 	//노트 댓글 작성
-	public int insertNoteComm(NoteCommVO note) throws Exception{
+	public int insertNoteComm(NoteCommVO noteComm) throws Exception{
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
-		return notedao.insertNoteComm(note);
+		notedao.insertNoteComm(noteComm);
+		notedao.updateInsertNoteComm(noteComm.getNum());
+		return 0;
 	}
 	
 	//노트 대댓글 작성
@@ -62,10 +67,24 @@ public class NoteService {
 	}
 	
 	//노트 댓글 삭제
-	public int deleteNoteComm(int noteCommNum) throws Exception{
+	public int deleteNoteComm(int noteCommNum) {
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
-		return notedao.deleteNoteComm(noteCommNum);
+		int result =0;
+		try {
+			notedao.blindNoteComm(noteCommNum);
+			try {
+				notedao.deleteNoteComm(noteCommNum);
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+			
+		} catch (Exception e) {
+			
+		}
+		return result;
 	}
+
+	
 	
 	//노트 수정
 	public int updateNote(NoteVO note) throws Exception{
@@ -164,6 +183,7 @@ public class NoteService {
 		List<NoteVO> notelist = notedao.selectNoteByFolder(note);
 		return notelist;
 	}
+	
 
 	
 

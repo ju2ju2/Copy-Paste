@@ -23,6 +23,8 @@ public class NoteCommVO {
 	private String userPhoto;
 	private int noteCommPos;
 	private String sortCategory;
+	private int num;
+	
 	
 	public int getNoteCommNum() {
 		return noteCommNum;
@@ -93,6 +95,14 @@ public class NoteCommVO {
 	public void setSortCategory(String sortCategory) {
 		this.sortCategory = sortCategory;
 	}
+	
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
+	
 	@Override
 	public String toString() {
 		return "NoteCommVO [noteCommNum=" + noteCommNum + ", userEmail=" + userEmail + ", userNick=" + userNick

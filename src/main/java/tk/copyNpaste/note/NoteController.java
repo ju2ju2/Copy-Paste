@@ -86,7 +86,7 @@ public class NoteController {
 	}
 	
 	// 노트 작성 
-	@RequestMapping(value="write.json")
+	@RequestMapping(value="insertNote.json")
 	public @ResponseBody int insertNote(NoteVO note,Principal principal) throws Exception {
 		note.setUserEmail(principal.getName());
 		String NoteContent = note.getNoteContent();
@@ -107,6 +107,13 @@ public class NoteController {
 		NoteVO note = noteService.selectDetailNote(noteNum);
 		model.addAttribute("note", note);
 		return "write.updateNote";//(write/updateNote.jsp)
+	}
+	// 작성된 노트 이용해 작성하는 페이지로 이동
+	@RequestMapping(value="insertWithOtherNote.htm", method = RequestMethod.GET)
+	public String insertWithOtherNote(int noteNum, Model model) throws Exception {
+		NoteVO note = noteService.selectDetailNote(noteNum);
+		model.addAttribute("note", note);
+		return "write.insertWithOtherNote";//(write/updateNote.jsp)
 	}
 	// 노트 수정 -비동기
 	@RequestMapping(value="updateNote.json")
@@ -211,10 +218,10 @@ public class NoteController {
 
 	// 노트 댓글 작성-비동기
 	@RequestMapping(value="insertNoteComm.json")
-	public @ResponseBody List<NoteCommVO> insertNoteComm(NoteCommVO note, int noteNum, Principal principal) throws Exception {
+	public @ResponseBody int /*List<NoteCommVO> */insertNoteComm(NoteCommVO note, int noteNum, Principal principal) throws Exception {
 		note.setUserEmail(principal.getName());//로그인한 사용자 ID
-		noteService.insertNoteComm(note);
-		return noteService.selectAllNoteComm(noteNum);
+		return noteService.insertNoteComm(note);
+		/*return noteService.selectAllNoteComm(noteNum);*/
 	}
 
 	// 노트 대댓글 작성-비동기
@@ -223,17 +230,13 @@ public class NoteController {
 		note.setUserEmail(principal.getName());//로그인한 사용자 ID
 		return noteService.insertNoteCommComm(note);
 	}
-	// 노트 댓글 작성-비동기
-		public void insertNoteComm(NoteCommVO note, Principal principal) throws Exception {
-			note.setUserEmail(principal.getName());//로그인한 사용자 ID
-			noteService.insertNoteComm(note);
-		}
 
-	// 노트 댓글 삭제
-	public int deleteNoteComm(int noteCommNum) throws Exception {
+	// 댓글  삭제 
+	@RequestMapping(value="deleteNoteComm.json")
+	public @ResponseBody int deleteNoteComm(int noteCommNum, String cmd) throws Exception {
 		return noteService.deleteNoteComm(noteCommNum);
 	}
-
+	
 	// 노트 메일 전송
 	public NoteVO emailNote(NoteVO note) throws Exception {
 		return null;
@@ -258,6 +261,9 @@ public class NoteController {
 	public int moveNoteFolder(NoteVO note) throws Exception {
 		return noteService.moveNoteFolder(note);
 	}
+	
+	
+	
 	
 	
 }

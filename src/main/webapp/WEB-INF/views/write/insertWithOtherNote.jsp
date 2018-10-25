@@ -1,8 +1,8 @@
 <!-- write>>
-* @ jsp : insertNote.jsp
+* @ jsp : insertWithOtherNote.jsp
 * @ Date : 2018.10.10
-* @ Author : 고은아
-* @ Desc : 노트 작성을 위해 들어오는 페이지
+* @ Author : 우나연
+* @ Desc : 다른 노트이용해 새노트 작성을 위해 들어오는 페이지
 -->
 
 <%@ page language="java" contentType="text/html; charset=utf-8"
@@ -48,32 +48,31 @@ $(document).ready(function() {
        }
     }); 
 
-	//노트 수정 실행
-	$('#updateNoteBtn').click(function() {
+	//다른 노트이용해 새노트 작성
+	$('#insertNoteBtn').click(function() {
 	 	$.ajax({
-	      url: "${pageContext.request.contextPath}/note/updateNote.json", // url_pettern 
-	      type:"POST",
+	      url: "${pageContext.request.contextPath}/note/insertNote.json", // url_pettern 
+	      type:"post",
 	      dataType:"json",
-	      data: {'noteNum':$("#noteNum").val(),
-	    	 	 'noteTitle':$("#noteTitle").val(),
+	      data: {'noteTitle':$("#noteTitle").val(),
 	    	 	 'noteContent':tinymce.get('noteContent').getContent(),
 	    	 	 'folderName':$("#folderList").val(),
 	    	 	 'subjectCode':$("#subjectList").val(),
 	    	 	 'notePublic':$("input:radio[name=notePublic] :selected").val()
 	     		 },	
 	      success:function(result){
-	    	    	  swal({type: "success",
-	    				  title: '성공적으로 수정되었습니다.',
-	    	              confirmButtonClass : "btn-danger",
-	    				  closeOnConfirm: false
-	    			},
-	    			function(){
-	    				location.href="${pageContext.request.contextPath}/note/note.htm";
-	    			});	
-	    	       },
-	       error:function(request,status,error){
+	    	  swal({type: "success",
+				  title: '성공적으로 등록되었습니다.',
+	              confirmButtonClass : "btn-danger",
+				  closeOnConfirm: false
+			},
+			function(){
+				location.href="${pageContext.request.contextPath}/note/note.htm";
+			});	
+	       },
+	      error:function(request,status,error){
 	    	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	    	  }
+	    }
 
 	     		 
 	    })
@@ -82,8 +81,6 @@ $(document).ready(function() {
 	
 	
 })
-
-
 
 </script>
 <!-- 등록 전 띄워지는 모달창 -->
@@ -109,7 +106,7 @@ $(document).ready(function() {
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" id="updateNoteBtn">수정하기</button>
+					<button type="button" class="btn btn-danger" id="insertNoteBtn">발행하기</button>
 				</div>
 			</div>
 		</div>
@@ -120,7 +117,6 @@ $(document).ready(function() {
 	<div class="n-container">
 	<div class="n-inner">
 		<div class="form-group">
-			<input id="noteNum" name="noteNum" type="hidden" value="${note.noteNum}">
 			<input id="noteTitle" name="noteTitle" type="text" size="158" value="${note.noteTitle}">
 		</div>
 		<textarea id="noteContent" name="noteContent" rows="20">${note.noteContent}</textarea>

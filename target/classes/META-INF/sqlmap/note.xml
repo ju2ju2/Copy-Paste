@@ -34,48 +34,25 @@
 	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, u.userNick
 	from note n join users u on u.userEmail=n.userEmail where noteNum = #{noteNum};
 	</select>
-<!--//QNA 게시물 댓글 조회
-	 public List<QnaCommVO> selectQnaComm(int qnaNum) throws Exception; -->
-	 <select id="selectQnaComm" parameterType="Integer" resultType="QnaCommVO">
-	  </select>
-	 <!-- 	//QNA 댓글 작성 -->
- 	<insert id="insertQnaComm">
-  	   <selectKey order="BEFORE" keyProperty="qnaCommPos" resultType="int">
-   	   		select max(qnaCommPos)+1 from qnaComm
-     	</selectKey>
-     	insert into qnaComm(qnaNum,userEmail,qnaCommContent,qnaCommPos)
-		values (#{qnaNum},#{userEmail},#{qnaCommContent},#{qnaCommPos})
-    </insert>
-    
-    <!-- //대댓글 작성전 Pos수정  -->
-	<update id="updateQnaCommComm">
-		update qnaComm set qnaCommPos=qnaCommPos+1
-		where qnaCommPos>#{qnaCommPos}
-	</update>
-	<!-- //대댓글 작성 -->
-	<insert id="insertQnaCommComm">
-		<selectKey order="BEFORE" keyProperty="qnaCommPos" resultType="int">
-   	   		select (qnacommPos+1) from qnaComm where qnaCommNum=#{qnaCommNum}
-     	</selectKey>
-		insert into qnaComm(qnaNum,userEmail,qnaCommContent,qnaCommDept,qnaCommPNum,qnaCommPos)
-		values (#{qnaNum},#{userEmail},#{qnaCommContent},1,#{qnaCommNum},#{qnaCommPos})
-  	</insert>
 	
 	<!-- 노트 댓글 보기 -->
 	<select id="selectAllNoteComm" resultType="NoteCommVO">
-	select nc.noteCommNum, nc.userEmail, nc.noteNum, nc.commDept, nc.commContent, nc.commDate, nc.noteCommPNum, u.userNick, u.userPhoto,nc.noteCommPos
-	from notecomm nc join users u on u.userEmail=nc.userEmail where noteNum = #{nc.noteNum} order by nc.noteCommPos;
+	select nc.noteCommNum, nc.userEmail, nc.noteNum, nc.commDept,nc.noteCommBlind, nc.commContent, nc.commDate, nc.noteCommPNum, u.userNick, u.userPhoto,nc.noteCommPos
+	from noteComm nc join users u on u.userEmail=nc.userEmail where noteNum = #{nc.noteNum} order by nc.noteCommPNum , nc.noteCommNum
 	</select>
 	
-	<!-- 노트 댓글 작성 -->
+		 <!-- //노트 댓글 작성 -->
  	<insert id="insertNoteComm">
-        <selectKey order="BEFORE" keyProperty="noteCommPos" resultType="int">
-        select max(noteCommPos)+1 from notecomm
-        </selectKey>
-        insert into notecomm(userEmail, noteNum, commContent,noteCommPos)
-        values(#{userEmail}, #{noteNum}, #{commContent}, #{noteCommPos})
+     	insert into notecomm(noteNum,userEmail,commContent)
+		values (#{noteNum},#{userEmail},#{commContent})
+		<selectKey order="AFTER" keyProperty="num" resultType="Integer">
+			select LAST_INSERT_ID() as num;
+		</selectKey>
     </insert>
-    
+    <update id="updateInsertNoteComm">
+		update notecomm set noteCommPNum=#{num} where noteCommNum=#{num}
+	</update>
+	
     <!-- //대댓글 작성전 Pos수정  -->
 	<update id="updateNoteCommComm">
 		update NoteComm set NoteCommPos=NoteCommPos+1
@@ -89,19 +66,26 @@
      	</selectKey>
 		insert into noteComm(noteNum,userEmail,commContent,CommDept,noteCommPNum,noteCommPos)
 		values (#{noteNum},#{userEmail},#{commContent},1,#{noteCommNum},#{noteCommPos})
-  	</insert> 
+  	</insert>    
     
-    
-	<!-- 노트 댓글 삭제 -->
-	<!-- useGeneratedKeys="true" keyProperty="dragNo" (as id붙여서) 셀렉트키 사용시 필요-->
+    <!-- 대댓글 있을때 삭제 (블라인드) -->
+	<update id="blindNoteComm">
+	   update NoteComm set noteCommBlind=1
+	   where  #{noteCommNum} in (select nc1.noteCommNum noteCommNumRange from noteComm nc, noteComm nc1 where nc.noteCommPNum = nc1.noteCommNum) 
+	</update>
+	<!-- 대댓글  없을때 삭제 -->
+	<delete id="deleteNoteComm">
+	    delete from noteComm where noteCommNum = #{noteCommNum} 
+	</delete>
+
 	<!-- 노트 등록 -->
-	 <insert id="insertNote">
+	 <update id="insertNote">
         <selectKey order="BEFORE" keyProperty="noteNum" resultType="int">
             select max(noteNum)+1 from note
         </selectKey>
         insert into note(noteNum, folderName, userEmail, noteTitle, noteContent, subjectCode, notePublic, noteThumnail)
         values(#{noteNum}, #{folderName}, #{userEmail}, #{noteTitle}, #{noteContent}, #{subjectCode}, #{notePublic}, #{noteThumnail})
-    </insert>
+    </update>
     
     <!-- 노트 주제 조회 -->
     <select id="selectSubjectCode" resultType="NoteVO">
@@ -240,8 +224,6 @@
  <foreach collection="subjectNames" item="subject"  open="(" close=")" separator=",">
                </foreach>  -->   
 </mapper>
-
-
 
 
 

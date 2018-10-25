@@ -770,3 +770,9 @@ img .user-photo{
   text-decoration: none;
   box-shadow: 0 0 10px black;
 }
+
+/* 노트 상세보기 이미지 맞춤 */
+#noteContent>p>img{
+	background-size:cover;
+	width: 100%;
+}

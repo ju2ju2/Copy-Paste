@@ -46,7 +46,7 @@ $(document).ready(function() {
 	//노트 등록
 	$('#insertNoteBtn').click(function() {
 	 	$.ajax({
-	      url: "${pageContext.request.contextPath}/note/write.json", // url_pettern 
+	      url: "${pageContext.request.contextPath}/note/insertNote.json", // url_pettern 
 	      type:"post",
 	      dataType:"json",
 	      data: {'noteTitle':$("#noteTitle").val(),
