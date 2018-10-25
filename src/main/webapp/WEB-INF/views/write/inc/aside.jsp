@@ -287,7 +287,6 @@
     		      data: {'folderName':$(this).text()},
     		      dataType:"json",
     		      success:function(data){
-    		    	 console.log(data)
     		      	 if(data != null) {
     		      		var aa = "";
     		      		$.each(data, function(key, value){

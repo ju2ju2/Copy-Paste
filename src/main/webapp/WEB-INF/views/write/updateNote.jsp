@@ -39,7 +39,6 @@ $(document).ready(function() {
       type:"POST",
       dataType:"json",
       success:function(data){
-      	console.log(data);
       	$.each(data, function(key,value){
       			$("#subjectList").append($("<option />")
       				.val(value.subjectCode)

@@ -160,7 +160,6 @@ function folderEdit(fedit, folderName, count){
 					    		"count" : count},
 					    success : function(data){
 					    	location.reload();
-					    	console.log("폴더 수정 성공");
 					    },
 					    error : function(){
 					    	swal({
@@ -171,8 +170,8 @@ function folderEdit(fedit, folderName, count){
 								  confirmButtonText: "OK",
 								  showCancelButton: true
 								});
-					    }
-							});
+					   		 }
+						});
 				}
 					
 		}
@@ -201,8 +200,6 @@ function setDefaultFolder(bookmark, folderName){
 	    		"folderName" : folderName},
 	    success : function(data){
 	    	location.reload();
-	    	console.log("폴더 수정 성공");
-
 	    },
 	    error : function(){
 	    	swal({
@@ -383,7 +380,6 @@ function folderContents(folder,folderName){
 		        	
 					if(data != null) {
 		        		$.each(data, function(key, value){
-		        			console.log(value.folderName);
 		        			/* 일반 폴더 출력 */
 		        			if ((value.folderName).trim()!='미분류'&&(value.folderName).trim()!='스크랩'){
 								folder += "<div class='col-xs-10 n-folder'>";
@@ -432,7 +428,7 @@ function folderContents(folder,folderName){
 								$('#unclassified').append(unclassified);
 								
 								if(value.defaultFolder==1){
-									console.log(">>폴더명<<"+value.folderName+">>폴더 상태<<"+value.defaultFolder+">>삭제 가능 여부<<"+value.candelete);
+	/* 								console.log(">>폴더명<<"+value.folderName+">>폴더 상태<<"+value.defaultFolder+">>삭제 가능 여부<<"+value.candelete); */
 									unclassified = "";
 									unclassified += "<div class='col-xs-2 icon'><i class='fas fa-bookmark icon-size' id='bookmarkO' onclick=setDefaultFolder(this,'"+value.folderName+"');>";
 									unclassified += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></div>";

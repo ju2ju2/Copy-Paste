@@ -142,26 +142,16 @@ public class NoteController {
 		return noteService.selectByFolderNote(note);
 	}
 	
-/*	// MY NOTE → 노트 폴더별 조회
-	@RequestMapping(value = "selectNoteByFolder.json")
-	public @ResponseBody List<NoteVO> selectNoteByFolder(NoteVO note,Principal principal) throws Exception {
-		note.setUserEmail(principal.getName());
-		return noteService.selectNoteByFolder(note);
-	}*/
-	
 	// 노트 정렬
 	@RequestMapping(value="selectOrderbyNote.json")
 	public @ResponseBody List<NoteVO> selectOrderbyNote(String sortCategory,Principal principal) throws Exception {
-		System.out.println("정렬 기준 : " + sortCategory);
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("sortCategory", sortCategory);
 		map.put("userEmail", principal.getName());
-		
 		return noteService.selectOrderbyNote(map);
 	}
 	
 	// 노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws
-	// Exception;
 	public List<NoteVO> selectByCalNote(Date period) throws Exception {
 		return noteService.selectByCalNote(period);
 	}
