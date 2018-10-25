@@ -12,6 +12,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
@@ -218,8 +221,10 @@ public class NoteController {
 	}
 
 	// 노트 pdf파일로 다운로드
-	public NoteVO pdfDownNote(NoteVO note) throws Exception {
-		return null;
+	@RequestMapping(value="downloadNotePdf.json")
+	public @ResponseBody void pdfDownNote(NoteVO note, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		noteMailnFileService.pdfDownNote(note, request, response);
+		
 	}
 
 	// 노트 xls파일로 다운로드

@@ -11,10 +11,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se"
 	uri="http://www.springframework.org/security/tags"%>
-	<!-- Sweet Alert cdn -->
-		<link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
-		<script type="text/javascript"	src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
-	
+
 <se:authentication property="name" var="loginuser" />
 <se:authentication property="authorities" var="role" />
 <!-- 신고 모달창에서 ok버튼 눌렀을 때 스윗알럳 띄우기 -->
@@ -22,6 +19,42 @@
 
 
 	$(document).ready(function() {
+		//노트 pdf 파일 다운로드
+		$('#downloadPdfBtn').click(function(e) {
+			swal({
+				  title: "파일을 다운로드 하시겠습니까?",
+				  type: 'warning',
+				  showCancelButton: true,
+				  confirmButtonClass : "btn-danger btn-sm",
+				  cancelButtonClass: "btn btn-sm",
+				  confirmButtonText: '확인',
+				  closeOnConfirm: false
+				},
+				function(){
+					$.ajax ({
+						url: "${pageContext.request.contextPath}/note/downloadNotePdf.json",
+						type: "POST",
+						data: {	'noteNum': ${note.noteNum}}
+						})//다운로드 받을 html
+						.done(function(result) {
+							swal({type: "success",
+								  title: '성공적으로 저장되었습니다.',
+					              confirmButtonClass : "btn-danger btn-sm",
+								  closeOnConfirm: true
+							},
+							function(){
+							
+							})
+							
+						
+						})
+						.fail(function(jqXhr, testStatus, errorText){
+							alert("에러발생 :" + errorText);
+						});
+					});
+				return false;
+			});
+		
 		//노트삭제
 		$('#deleteNoteBtn').click(function(e) {
 			swal({
@@ -164,18 +197,18 @@
 						<c:choose>
 							<c:when test="${note.userEmail==loginuser}">
 								 <a href="${pageContext.request.contextPath}/note/updateNote.htm?noteNum=${note.noteNum}"><i class="far fa-edit 3x notewrite"></i> &nbsp;</a> 
-								 <a href=""><i class="fas fa-arrow-down"></i> &nbsp;</a> 
+								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down"></i> &nbsp;</a> 
 								 <a id="deleteNoteBtn"><i class="fas fa-trash"></i> &nbsp;</a> 
 							</c:when>
 							<c:when test="${role=='[ROLE_ADMIN]'}">
 							 	 <a href="${pageContext.request.contextPath}/note/insertWithOtherNote.htm?noteNum=${note.noteNum}"><i class="far fa-edit 3x notewrite"></i> &nbsp;</a> 
-								 <a href=""><i class="fas fa-arrow-down"></i> &nbsp;</a> 
+								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down"></i> &nbsp;</a> 
 								 <a href=""><i class="fas fa-archive"></i>&nbsp;</a>
 								 <a id="deleteNoteBtn"><i class="fas fa-trash"></i> &nbsp;</a> 
 							</c:when>
 							<c:otherwise>
 							 	 <a href="${pageContext.request.contextPath}/note/insertWithOtherNote.htm?noteNum=${note.noteNum}"><i class="far fa-edit 3x notewrite"></i> &nbsp;</a> 
-								 <a href=""><i class="fas fa-arrow-down"></i> &nbsp;</a> 
+								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down"></i> &nbsp;</a> 
 								 <a href=""><i class="fas fa-archive"></i>&nbsp;</a>
 								 <a id="noteReportForm"> <i class="fas fa-flag"></i></a>
 							</c:otherwise>

@@ -120,8 +120,5 @@ public class NoteCommVO {
 				+ "]";
 	}
 
-
-
-
 	
 }
