@@ -31,27 +31,10 @@ $(function() {
 					});
 				}
 			);
+			
 		}	
 
-		  // noteDiv들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
-	    $('.noteDiv').draggable({
-	    	revert: true, 
-	    	 revertDuration: 200,
-	    	 snapMode: "inner",
-	    	 scroll: true,
-	    	 scrollSensitivity: 100 ,
-	    	 scrollSpeed: 100
-	    	});
-	     // 노트를 드랍하여 삭제 메소드 
-	    $("#droppable").droppable({
-	        activeClass:"ui-state-active",
-	        accept:".noteDiv",
-	        drop: function(event,ui) {
-	        	var noteNum = $(this).find('#noteNum').val()
-	        	deleteNote(noteNum)
-	         }     
-	      });  
-    
+	
 
    //노트목록
 	$.ajax({
@@ -111,6 +94,7 @@ $(function() {
   	        	deleteNote(noteNum)
   	         }     
   	      });  
+      
       
       })
 
@@ -194,7 +178,7 @@ $(function() {
 	      	  var a = "";
 	          	if(data !=null) {
 	          		$.each(data, function(key, value){
-	          			$('#foldernoteList').empty();
+	          			$('#noteList').empty();
 	          			a+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 ">';
 	          			a+='<div class="text-center noteDiv" id="'+value.noteNum+'">';
 	          			a+='	<!-- a HTML (to Trigger Modal) -->';
@@ -217,7 +201,7 @@ $(function() {
 	          			a+='	</a>';
 	          			a+='	</div>';
 	          			a+='</div>';
-	          			$("#foldernoteList").html(a);
+	          			$("#noteList").html(a);
 	          		})
 	          	}else{
 	          		/*swal({type: "success",
@@ -257,5 +241,6 @@ $(function() {
 	 
 	 
 });
+
 
 

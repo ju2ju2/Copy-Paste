@@ -20,6 +20,12 @@ public class NoteCommVO {
 	private String commContent;
 	private Date commDate;
 	private int noteCommPNum;
+	private String userPhoto;
+	private int noteCommPos;
+	private String sortCategory;
+	private int num;
+	private int noteCommBlind;
+	
 	
 	public int getNoteCommNum() {
 		return noteCommNum;
@@ -70,14 +76,51 @@ public class NoteCommVO {
 		this.userNick = userNick;
 	}
 
+	public String getUserPhoto() {
+		return userPhoto;
+	}
+	public void setUserPhoto(String userPhoto) {
+		this.userPhoto = userPhoto;
+	}
+	
+	public int getNoteCommPos() {
+		return noteCommPos;
+	}
+	public void setNoteCommPos(int noteCommPos) {
+		this.noteCommPos = noteCommPos;
+	}
+	
+	public String getSortCategory() {
+		return sortCategory;
+	}
+	public void setSortCategory(String sortCategory) {
+		this.sortCategory = sortCategory;
+	}
+	
+	public int getNum() {
+		return num;
+	}
+	public void setNum(int num) {
+		this.num = num;
+	}
 	
 	
+	public int getNoteCommBlind() {
+		return noteCommBlind;
+	}
+	public void setNoteCommBlind(int noteCommBlind) {
+		this.noteCommBlind = noteCommBlind;
+	}
 	@Override
 	public String toString() {
-		return "NoteCommVO [noteCommNum=" + noteCommNum + ", userEmail=" + userEmail + ", noteNum=" + noteNum
-				+ ", commDept=" + commDept + ", commContent=" + commContent + ", commDate=" + commDate
-				+ ", noteCommPNum=" + noteCommPNum + "]";
+		return "NoteCommVO [noteCommNum=" + noteCommNum + ", userEmail=" + userEmail + ", userNick=" + userNick
+				+ ", noteNum=" + noteNum + ", commDept=" + commDept + ", commContent=" + commContent + ", commDate="
+				+ commDate + ", noteCommPNum=" + noteCommPNum + ", userPhoto=" + userPhoto + ", noteCommPos="
+				+ noteCommPos + ", sortCategory=" + sortCategory + ", num=" + num + ", noteCommBlind=" + noteCommBlind
+				+ "]";
 	}
+
+
 
 
 	

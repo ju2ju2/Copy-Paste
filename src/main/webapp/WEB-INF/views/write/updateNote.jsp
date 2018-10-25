@@ -19,9 +19,6 @@ $(document).ready(function() {
       type:"POST",
       dataType:"json",
       success:function(data){
-    	  console.log(data)
-    
-    	  
  
       	$.each(data, function(key,value){
       			$("#folderList").append($("<option />")
@@ -42,7 +39,6 @@ $(document).ready(function() {
       type:"POST",
       dataType:"json",
       success:function(data){
-      	console.log(data);
       	$.each(data, function(key,value){
       			$("#subjectList").append($("<option />")
       				.val(value.subjectCode)
@@ -112,7 +108,7 @@ $(document).ready(function() {
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" id="updateNoteBtn">발행하기</button>
+					<button type="button" class="btn btn-danger" id="updateNoteBtn">수정하기</button>
 				</div>
 			</div>
 		</div>

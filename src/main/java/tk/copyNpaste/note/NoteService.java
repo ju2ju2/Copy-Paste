@@ -14,10 +14,13 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import tk.copyNpaste.mapper.NoteMapper;
+import tk.copyNpaste.mapper.QnaMapper;
 import tk.copyNpaste.vo.NoteCommVO;
 import tk.copyNpaste.vo.NoteVO;
+import tk.copyNpaste.vo.QnaCommVO;
 
 @Service
 public class NoteService {
@@ -50,15 +53,34 @@ public class NoteService {
 		return noteCommList;
 	}
 	//노트 댓글 작성
-	public int insertNoteComm(NoteCommVO note) throws Exception{
+	public int insertNoteComm(NoteCommVO noteComm) throws Exception{
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
-		return notedao.insertNoteComm(note);
+		notedao.insertNoteComm(noteComm);
+		notedao.updateInsertNoteComm(noteComm.getNum());
+		return 0;
 	}
+	
+	//노트 대댓글 작성
+	public int insertNoteCommComm(NoteCommVO note) throws Exception {
+		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
+		return notedao.insertNoteCommComm(note);
+	}
+	
 	//노트 댓글 삭제
-	public int deleteNoteComm(int noteCommNum) throws Exception{
+	public int deleteNoteComm(int noteCommNum) throws Exception {
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
-		return notedao.deleteNoteComm(noteCommNum);
+			int result=notedao.blindNoteComm(noteCommNum);//부모댓글 블라인드 시도
+			if (result>0) {
+				System.out.println("노트 블라인드 성공 "); }
+			else {
+				notedao.deleteNoteComm(noteCommNum);
+				System.out.println("노트  삭제 성공 "); 
+			}
+		
+		return result;
 	}
+
+	
 	
 	//노트 수정
 	public int updateNote(NoteVO note) throws Exception{
@@ -89,26 +111,11 @@ public class NoteService {
 		return notelist;
 	}
 	
-	//노트 정렬 1 : 최신순
-	public List<NoteVO> selectOrderbyNote1(HashMap map) throws Exception{
+	//노트 정렬
+	public List<NoteVO> selectOrderbyNote(HashMap map) throws Exception{
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
-		return notedao.selectOrderbyNote1(map);
+		return notedao.selectOrderbyNote(map);
 	}
-	//노트 정렬 2 : 오래된순
-	public List<NoteVO> selectOrderbyNote2(HashMap map) throws Exception{
-		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
-		return notedao.selectOrderbyNote2(map);
-	}
-	//노트 정렬 3 : 가나다순
-	public List<NoteVO> selectOrderbyNote3(HashMap map) throws Exception{
-		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
-		return notedao.selectOrderbyNote3(map);
-	}
-	//노트 정렬 4 : 전체보기
-		public List<NoteVO> selectOrderbyNote4(HashMap map) throws Exception{
-			NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
-			return notedao.selectOrderbyNote4(map);
-		}
 	
 	//노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws Exception;
 	public List<NoteVO> selectByCalNote(Date period) throws Exception{
@@ -152,11 +159,13 @@ public class NoteService {
 	}
 	
 	// MY NOTE → 노트 폴더별 조회
-	public List<NoteVO> selectNoteByFolder(NoteVO note) throws Exception {
+/*	public List<NoteVO> selectNoteByFolder(NoteVO note) throws Exception {
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
 		List<NoteVO> notelist = notedao.selectNoteByFolder(note);
 		return notelist;
 	}
+	*/
+
 	
 
 	/*	for (NoteVO note: notelist ) {

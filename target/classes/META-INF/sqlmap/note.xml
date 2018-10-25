@@ -34,32 +34,61 @@
 	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, u.userNick
 	from note n join users u on u.userEmail=n.userEmail where noteNum = #{noteNum};
 	</select>
-
+	
 	<!-- 노트 댓글 보기 -->
 	<select id="selectAllNoteComm" resultType="NoteCommVO">
-	select nc.noteCommNum, nc.userEmail, nc.noteNum, nc.commDept, nc.commContent, nc.commDate, nc.noteCommPNum, u.userNick
-	from notecomm nc join users u on u.userEmail=nc.userEmail where noteNum = #{nc.noteNum};
+	select nc.noteCommNum, nc.userEmail, nc.noteNum, nc.commDept,nc.noteCommBlind, nc.commContent, nc.commDate, nc.noteCommPNum, u.userNick, u.userPhoto,nc.noteCommPos
+	from noteComm nc join users u on u.userEmail=nc.userEmail where noteNum = #{nc.noteNum} order by nc.noteCommPNum , nc.noteCommNum
 	</select>
 	
-	<!-- 노트 댓글 작성 -->
+		 <!-- //노트 댓글 작성 -->
  	<insert id="insertNoteComm">
-        <selectKey order="BEFORE" keyProperty="noteCommNum" resultType="int">
-        select max(noteCommNum)+1 from notecomm
-        </selectKey>
-        insert into notecomm(noteCommNum, userEmail, noteNum, commContent)
-        values(#{noteCommNum}, #{userEmail}, #{noteNum}, #{commContent})
+     	insert into notecomm(noteNum,userEmail,commContent)
+		values (#{noteNum},#{userEmail},#{commContent})
+		<selectKey order="AFTER" keyProperty="num" resultType="Integer">
+			select LAST_INSERT_ID() as num;
+		</selectKey>
     </insert>
+    <update id="updateInsertNoteComm">
+		update notecomm set noteCommPNum=#{num} where noteCommNum=#{num}
+	</update>
+	
+    <!-- //대댓글 작성전 Pos수정  -->
+	<update id="updateNoteCommComm">
+		update NoteComm set NoteCommPos=NoteCommPos+1
+		where NoteCommPos>#{NoteCommPos}
+	</update>
+	
+    <!-- //대댓글 작성 -->
+	<insert id="insertNoteCommComm">
+		<selectKey order="BEFORE" keyProperty="noteCommPos" resultType="int">
+   	   		select (noteCommPos+1) from noteComm where noteCommNum=#{noteCommNum}
+     	</selectKey>
+		insert into noteComm(noteNum,userEmail,commContent,CommDept,noteCommPNum,noteCommPos)
+		values (#{noteNum},#{userEmail},#{commContent},1,#{noteCommNum},#{noteCommPos})
+  	</insert>    
     
-	<!-- 노트 댓글 삭제 -->
-	<!-- useGeneratedKeys="true" keyProperty="dragNo" (as id붙여서) 셀렉트키 사용시 필요-->
+    <!-- 대댓글 있을때 삭제 (블라인드) -->
+	<update id="blindNoteComm">
+	 update NoteComm set noteCommBlind=1
+	 where noteCommNum in 
+		 (select nc1.noteCommPNum from noteComm nc, noteComm nc1 
+	 	  where nc.noteCommPNum = nc1.noteCommNum and nc.commDept =1) 
+	 and noteCommNum = #{noteCommNum}
+	</update>
+	<!-- 대댓글  없을때 삭제 -->
+	<delete id="deleteNoteComm">
+	    delete from noteComm where noteCommNum = #{noteCommNum} 
+	</delete>
+
 	<!-- 노트 등록 -->
-	 <insert id="insertNote">
+	 <update id="insertNote">
         <selectKey order="BEFORE" keyProperty="noteNum" resultType="int">
             select max(noteNum)+1 from note
         </selectKey>
         insert into note(noteNum, folderName, userEmail, noteTitle, noteContent, subjectCode, notePublic, noteThumnail)
         values(#{noteNum}, #{folderName}, #{userEmail}, #{noteTitle}, #{noteContent}, #{subjectCode}, #{notePublic}, #{noteThumnail})
-    </insert>
+    </update>
     
     <!-- 노트 주제 조회 -->
     <select id="selectSubjectCode" resultType="NoteVO">
@@ -92,33 +121,19 @@
 	</select>
 	
 	<!-- 노트 정렬 -->
-		<!-- 1. 최신 순 -->
-		<select id="selectOrderbyNote1" parameterType="hashmap" resultType="NoteVO">
-		select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
-		n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
-		from note n join users u on u.userEmail=n.userEmail 
-		where u.userEmail = #{userEmail} order by n.noteDate desc;
-		</select>
-		<!-- 2. 오래된 순 -->
-		<select id="selectOrderbyNote2" parameterType="hashmap" resultType="NoteVO">
-		select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
-		n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
-		from note n join users u on u.userEmail=n.userEmail 
-		where u.userEmail = #{userEmail} order by n.noteDate asc;
-		</select>
-		<!-- 3. 가나다 순 -->
-		<select id="selectOrderbyNote3" parameterType="hashmap" resultType="NoteVO">
-		select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
-		n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
-		from note n join users u on u.userEmail=n.userEmail 
-		where u.userEmail = #{userEmail} order by binary(n.noteTitle);
-		</select>
-		<!-- 4. 전체보기 -->
-		<select id="selectOrderbyNote4" parameterType="hashmap" resultType="NoteVO">
-		select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
-		n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
-		from note n join users u on u.userEmail=n.userEmail where u.userEmail = #{userEmail} order by n.noteNum desc;
-		</select> 
+	  <select id="selectOrderbyNote" parameterType="hashmap" resultType="NoteVO">
+	  select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+      n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
+      from note n join users u on u.userEmail=n.userEmail 
+      where u.userEmail = #{userEmail} 
+      order by 
+          Case when #{sortCategory}='n.noteDate desc' then n.noteDate End desc,
+          Case when #{sortCategory}='n.noteDate asc' then n.noteDate End asc,
+          Case when #{sortCategory}='binary(n.noteTitle)' then binary(n.noteTitle) End asc,
+          Case when #{sortCategory}='n.noteNum' then n.noteNum End desc;
+       </select>
+
+ 
 	
 	<!-- 노트 달력 검색 -->
 	
@@ -151,12 +166,6 @@
 	<!-- 노트의 폴더 이동 -->
 	
 	<!-- MY NOTE에서 폴더 별 노트 조회 -->
-	<select id="selectNoteByFolder" resultType="NoteVO">
-	select distinct n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
-	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
-	from note n join users u on u.userEmail=n.userEmail
-	join folder f on f.folderName=n.folderName where u.userEmail = #{userEmail} and f.folderName= #{folderName} order by noteNum desc;
-	</select>
 	
 	<!-- 	
 	//NoteVO
@@ -198,8 +207,6 @@
  <foreach collection="subjectNames" item="subject"  open="(" close=")" separator=",">
                </foreach>  -->   
 </mapper>
-
-
 
 
 
