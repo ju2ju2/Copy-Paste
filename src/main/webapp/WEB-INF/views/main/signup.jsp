@@ -125,8 +125,10 @@
 	var mailDupCheck; //메일 중복 진행했는지 확인하는 변수
 	var nickDupCheck; //닉네임 중복 진행했는지 확인하는 변수
 	var writtenMail; //회원이 입력한 메일주소
-	var writtenNick //회원이 입력한 닉네임
-	var signUpComplete; //회원가입 완료했는지 확인하는 변수
+	var writtenNick; //회원이 입력한 닉네임
+	var rightPwd; //비밀번호 유효성 체크 변수
+	var pwdDupCheck; //비밀번호 중복 진행했는지 확인하는 변수
+
 	
 	//인증메일 발송
 	$('#mailtoBtn').click(function(){
@@ -154,39 +156,41 @@
 	//이메일 인증 번호 확인
 	$('#authnum').keyup(function(){
 			if(mailtoNum==$('#authnum').val() && writtenMail == $('#mailto').val()){
-				$('#userMailToMessage').addClass("successMessage")
+				$('#userMailToMessage').addClass("successMessage");
         		$('#userMailToMessage').text("인증번호가 확인되었습니다");
         		mailCheck = 'ok';
 			}else{
 				$('#userMailToMessage').addClass("failMessage")
         		$('#userMailToMessage').text("인증번호가 일치 하지 않습니다.");
+				mailCheck = '';
 			}
 	});
 
-	//비밀번호 확인
+	//비밀번호 일치 확인 myinfo.jsp와 같음
  	$('#cuserPwd').keyup(function(){
 		if($(this).val() != $('#userPwd').val()){
-			$('#userPwdConfirmMessage').addClass("failMessage")
+			$('#userPwdConfirmMessage').addClass("failMessage");
 			$('#userPwdConfirmMessage').text("비밀번호를 정확히 입력해 주세요.");
+			pwdDupCheck = '';
 		} else {
 			$('#userPwdConfirmMessage').addClass("successMessage")
 			$('#userPwdConfirmMessage').text("비밀번호가 일치합니다.");
+			pwdDupCheck = 'ok';
 		}
 	})
 
-	//비밀번호 영문, 숫자만 입력 가능
+	//비밀번호 영문, 숫자만 입력 가능 myinfo.jsp와 같음
 	$("#userPwd").keyup(function (event) {
 		regexp =  /^[0-9a-zA-Z]{6,20}$/i;
 		var v = $(this).val();
 		if (regexp.test(v)) {
-			$('#userPwdMessage').addClass("successMessage")
+			$('#userPwdMessage').addClass("successMessage");
 			$('#userPwdMessage').text("사용 가능한 비밀번호 입니다.");
-	
-			/* $(this).val(v.replace(regexp, '')); */
+			rightPwd = 'ok';
 			}else{
-
-				$('#userPwdMessage').addClass("failMessage")
-				 $('#userPwdMessage').text("알파벳 대소문자, 숫자로 6자이상 입력해주세요."); 
+				$('#userPwdMessage').addClass("failMessage");
+				$('#userPwdMessage').text("알파벳 대소문자, 숫자로 6자이상 입력해주세요."); 
+				rightPwd = '';
 			}
 	})
 
@@ -202,10 +206,11 @@
 	            data : {mailto:$('#mailto').val()},
 	            success : function(data) {
 	            	if (data > 0) {
-	            		$('#userEmailMessage').addClass("failMessage")
+	            		$('#userEmailMessage').addClass("failMessage");
 	            		$('#userEmailMessage').text("이미 사용 중인 이메일입니다.");
+	            		mailDupCheck = '';
 	            	} else {
-	            		$('#userEmailMessage').addClass("successMessage")
+	            		$('#userEmailMessage').addClass("successMessage");
 	            		$('#userEmailMessage').text("사용 가능한 이메일입니다.");
 	        			mailDupCheck = 'ok'; }
 	            },
@@ -216,13 +221,13 @@
 	            }
 	         });
 			}else{
-				$('#userEmailMessage').addClass("failMessage")
+				$('#userEmailMessage').addClass("failMessage");
 				$('#userEmailMessage').text("이메일 형식으로 입력해주세요");
 			}
 
 	});
 
-	//닉네임 중복확인
+	//닉네임 중복확인. myinfo.jsp와 다름
 	$('#userNick').keyup(function(){
 		if ($('#userNick').val() == ''){
 			$('#userNickMessage').text("사용할 닉네임을 입력해 주세요");
@@ -233,10 +238,11 @@
             data : {userNick:$('#userNick').val()},
             success : function(data) {
             	if (data > 0) {
-            		$('#userNickMessage').addClass("failMessage")
+            		$('#userNickMessage').addClass("failMessage");
             		$('#userNickMessage').text("이미 사용 중인 닉네임입니다.");
+            		nickDupCheck = '';
             	} else {
-            		$('#userNickMessage').addClass("successMessage")
+            		$('#userNickMessage').addClass("successMessage");
             		$('#userNickMessage').text("사용 가능한 닉네임입니다.");
         			nickDupCheck = 'ok';
         			writtenNick = $('#userNick').val();	
@@ -249,44 +255,9 @@
          });
 		}
 	});
-			
-  //회원가입 
-   $('#join').click(function(e){   
- 
-       var form = $('form')[0];
-       //FormData parameter에 담아줌
-       var formData = new FormData(form);
 
-      $.ajax({
-         type : 'post',
-         data: formData, 
-         enctype: 'multipart/form-data',
-         processData : false,
-         contentType : false,
-         url :  '${pageContext.request.contextPath}/member/signup.do',
-         beforeSend: function (){
-        	 					signupVali();
-        	 					},
-         success : function(data) {
-				  swal({type: "success",
-				  title: '성공적으로 가입되었습니다.',
-	              confirmButtonClass : "btn-danger",
-				  closeOnConfirm: false
-					},
-				  function(){
-					location.href="${pageContext.request.contextPath}/login.htm";
-					});	
-	       			},
-           error : function(error) {
-            	swal("٩(இ ⌓ இ๑)۶", "에러가 발생했습니다.", "error");
-            	console.log(error);
-            	console.log(error.status);
-        }
-     })
-   }) 
-
-//유효성 체크
- function signupVali(){
+//회원 가입 + 유효성 체크
+ $('#join').click(function(e){ 
   	if ($('#mailto').val() == ''){
   			swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 입력해 주세요", "error");
   	    	$('#mailto').focus();
@@ -301,20 +272,21 @@
   					swal("٩(இ ⌓ இ๑)۶", "사용할 수 없는 닉네임입니다.", "error");
   					return false;
   				} else {
-  					if($('#userPwd').val().length < 6 ){
-  						swal("٩(இ ⌓ இ๑)۶", "비밀번호를 6글자 이상 입력해 주세요.", "error");
+  					if(rightPwd != 'ok' ){
+  						swal("٩(இ ⌓ இ๑)۶", "비밀번호를 형식에 맞게 입력해 주세요.", "error");
 						$('#userPwd').val("");
 						$('#cuserPwd').val("");
 						$('#userPwd').focus();
 						return false;
   					} else {
-  						if($('#userPwd').val() != $('#cuserPwd').val()) {
+  						if(pwdDupCheck != 'ok') {
   							swal("٩(இ ⌓ இ๑)۶", "비밀번호를 정확히 확인해 주세요.", "error");
 							$('#cuserPwd').val("");
 							$('#cuserPwd').focus();
 							return false;
   						} else {
   							if ($('#userCheck').is(":checked")) {
+  								signupAjax();
   							} else {
   								swal("٩(இ ⌓ இ๑)۶", "이용약관에 동의해 주세요.", "error");
 								return false;
@@ -324,6 +296,35 @@
   				}
   			}
   		}
-  	} 
-  	
+  	})
+
+  function signupAjax(){  
+      var form = $('form')[0];
+      //FormData parameter에 담아줌
+      var formData = new FormData(form);
+     $.ajax({
+        type : 'post',
+        data: formData, 
+        enctype: 'multipart/form-data',
+        processData : false,
+        contentType : false,
+        url : '${pageContext.request.contextPath}/member/signup.do',
+        success : function(data) {
+				  swal({type: "success",
+				  title: "୧༼ ヘ ᗜ ヘ ༽୨",
+				  text: "회원가입이 완료되었습니다.",
+	              confirmButtonClass : "btn-danger",
+				  closeOnConfirm: false
+					},
+				  function(){
+					location.href="${pageContext.request.contextPath}/login.htm";
+					});	
+	       			},
+          error : function(error) {
+           	swal("٩(இ ⌓ இ๑)۶", "에러가 발생했습니다.", "error");
+           	console.log(error);
+           	console.log(error.status);
+       }
+    })  
+  }
 </script>

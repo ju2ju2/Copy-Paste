@@ -10,6 +10,7 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -58,7 +59,7 @@ public class MemberService {
 
 	//회원가입
 	@Transactional
-	public int insertMember(MemberVO member, MultipartHttpServletRequest request) 
+	public void insertMember(MemberVO member, MultipartHttpServletRequest request) 
 			throws IOException, ClassNotFoundException, SQLException {
 	
 		String userPhoto = "userProfile.png"; //프로필 사진 미업로드 시 기본 파일명
@@ -94,8 +95,6 @@ public class MemberService {
 			System.out.println("에러" + e.getMessage());		
 			throw e; // 예외 발생 시기면 : 자동 rollback
 		}
-
-		return 1;
 	}
 	
 	//회원 가입 시 권한 부여
@@ -105,9 +104,9 @@ public class MemberService {
 	}*/
 	
 	//임시 비밀번호 부여
-	public int updatePwd(MemberVO member) throws Exception{
+	public void updatePwd(MemberVO member) throws Exception{
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
-		return memberdao.updateMember(member);
+		memberdao.updateMember(member);
 	}
 	
 	//전회원 정보 보기
@@ -128,10 +127,33 @@ public class MemberService {
 		return memberdao.selectSearchMemberByEmail(userEmail);
 	}
 
-	//회원 정보 수정
-	public int updateMember(MemberVO member) throws Exception{
-		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
-		return memberdao.updateMember(member);
+	//내 정보 수정
+	public void updateMember(MemberVO member, MultipartHttpServletRequest request) 
+			throws Exception{
+    	
+		String userPhotoName = ""; //DB에 들어갈 파일명(이메일 + 파일명)
+    	String userEmail = member.getUserEmail();
+    	String userPwd = member.getUserPwd();
+    	MultipartFile userPhotoFile = request.getFile("userPhotoFile");   
+    	long fileSize = userPhotoFile.getSize(); // 파일 사이즈
+    	
+    	if (fileSize > 0) {  
+        		String originFileName = userPhotoFile.getOriginalFilename(); // 원본 파일명
+        		String path= request.getServletContext().getRealPath("resources/image/userPhoto/");
+        		String safeFile = path + userEmail + originFileName;
+        		userPhotoFile.transferTo(new File(safeFile));  //폴더에 파일 쓰기
+        	
+        		userPhotoName = userEmail +originFileName; 
+        		member.setUserPhoto(userPhotoName); // DB에 들어갈 파일명 지정
+    	}
+    	
+    	long pwdSize = userPwd.length(); // 비밀번호 사이즈
+    	if (pwdSize == 0) {
+    			userPwd=null;
+    			member.setUserPwd(userPwd);
+    	}  	
+		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);			
+		memberdao.updateMember(member); //회원정보 수정	
 	}
 
 	

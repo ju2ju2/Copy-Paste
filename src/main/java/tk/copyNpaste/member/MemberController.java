@@ -67,9 +67,9 @@ public class MemberController {
 
 	//회원가입 + 회원가입시 미분류,스크랩 폴더 부여
 	@RequestMapping(value="signup.do", method = RequestMethod.POST)
-    public @ResponseBody int insertMember(MemberVO member, MultipartHttpServletRequest request) 
+    public @ResponseBody void insertMember(MemberVO member, MultipartHttpServletRequest request) 
           throws Exception{
-       return memberService.insertMember(member, request);
+       memberService.insertMember(member, request);
     };
 
 	
@@ -105,6 +105,12 @@ public class MemberController {
 		return memberList;
 	};
 	
+	//내 정보 보기 페이지 들어가기 * 작업자 : 이주원
+	@RequestMapping("myinfo.htm")
+	public String updateMember(String userEmail) throws Exception{
+		return "index.myinfo";
+	};
+	
 	//내 정보 보기
 	@RequestMapping(value="myinfo.do", method = RequestMethod.POST)
 	public @ResponseBody MemberVO selectSearchMemberByEmail (Principal principal) throws Exception{
@@ -112,14 +118,13 @@ public class MemberController {
 		MemberVO member = memberService.selectSearchMemberByEmail(userEmail);
 		return member;
 	};
-		
-	//내 정보 보기 페이지 들어가기 * 작업자 : 이주원
-	@RequestMapping("myinfo.htm")
-	public String updateMember(String userEmail) throws Exception{
-		return "index.myinfo";
-	};
 	
-
+	//내 정보 수정
+	@RequestMapping(value="updateMember.do", method = RequestMethod.POST)
+	public @ResponseBody void updateMember(MemberVO member, MultipartHttpServletRequest request) 
+			throws Exception{
+		memberService.updateMember(member, request);
+	};
 	
 	//회원 삭제
 	@RequestMapping(value="deleteMember.do", method = RequestMethod.POST)

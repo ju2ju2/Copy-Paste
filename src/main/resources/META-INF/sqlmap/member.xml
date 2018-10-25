@@ -44,12 +44,24 @@
     
 	<!-- 내 정보 보기 -->
 	<select id="selectSearchMemberByEmail" parameterType="String" resultType="MemberVO">
-		select userEmail, userNick, userPhoto from users 
+		select userEmail, userNick, userPwd, userPhoto from users 
 			<if test='value != null'>
 					where userEmail=#{userEmail}
 			</if>
 
 	</select>
+    
+    <!-- 내 정보 수정 -->
+    <update id="updateMember" parameterType="MemberVO">
+		update users set userNick=#{userNick}
+			<if test='userPwd != null'>
+				, userPwd=#{userPwd}
+			</if>
+			<if test='userPhoto != null'>
+				, userPhoto=#{userPhoto}
+			</if>
+		 where userEmail = #{userEmail};
+    </update>
     
 	<!-- 회원정보 보기 -->
 	

@@ -50,7 +50,7 @@ public interface MemberMapper {
 	public MemberVO selectSearchMemberByEmail (String userEmail) throws Exception;
 	
 	//회원 정보 수정
-	public int updateMember(MemberVO member) throws Exception;
+	public void updateMember(MemberVO member) throws Exception;
 	
 	//임시비밀번호
 	public int updateUserPwd(MemberVO member) throws Exception;
