@@ -9,6 +9,7 @@ package tk.copyNpaste.etc;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -128,22 +129,22 @@ public class EtcController {
 		return etcService.stateNoteSubject();
 	};
 
-	/*
-	 * 검색 게시판에 관련된 내용. [작성자 : 임효진] [작성날짜 : 2018-10-10]
-	 */
-
+	// 사이트내 검색
 	@RequestMapping("/selectSearchSite.htm")
 	public String selectSearchSite() {
 		return "search.selectSearchSite";
 	}
 
+	// 네이버 검색
 	@RequestMapping("/selectSearchNaver.htm")
 	public String selectSearchNaver() {
 		return "search.selectSearchNaver";
 	}
 
+	// 구글 검색
 	@RequestMapping("/selectSearchGoogle.htm")
-	public String selectSearchGoogle() {
+	public String selectSearchGoogle(HttpServletRequest request) {
+		//etcService.google(request);
 		return "search.selectSearchGoogle";
 	}
 
