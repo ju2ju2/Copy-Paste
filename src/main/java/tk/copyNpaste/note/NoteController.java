@@ -163,10 +163,7 @@ public class NoteController {
 	@RequestMapping(value="selectByCalNote.json")
 	public @ResponseBody List<NoteVO> selectByCalNote(Date fromDate, Date toDate, Principal principal) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		
 		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-		System.out.println("from : " + date.format(fromDate));
-		System.out.println("to : " + date.format(toDate));
 		map.put("fromDate", date.format(fromDate));
 		map.put("toDate", date.format(toDate));
 		map.put("userEmail", principal.getName());
