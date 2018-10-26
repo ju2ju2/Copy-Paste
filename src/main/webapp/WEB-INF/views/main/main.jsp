@@ -186,7 +186,7 @@
 
 <!-- Modal HTML -->
 <div id="modal-testNew" class="modal fade text-center overlay"
-	 role="dialog">
+	 role="dialog" style="display: none; z-index: 1050;">
 	<div class="modal-dialog">
 		<div class="modal-content">Content will be loaded here from
 			"note/noteDetail.htm" file</div>

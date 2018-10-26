@@ -20,6 +20,15 @@ public class ReportVO {
 	private String reportmemo;
 	private String noteOrCommCode;
 	
+	
+	
+	@Override
+	public String toString() {
+		return "ReportVO [reportNum=" + reportNum + ", userEmail=" + userEmail + ", noteNum=" + noteNum + ", checkCode="
+				+ checkCode + ", reportInDate=" + reportInDate + ", reportCauseCode=" + reportCauseCode
+				+ ", reportContent=" + reportContent + ", reportmemo=" + reportmemo + ", noteOrCommCode="
+				+ noteOrCommCode + "]";
+	}
 	public int getReportNum() {
 		return reportNum;
 	}

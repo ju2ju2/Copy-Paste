@@ -13,6 +13,7 @@ public class EtcVO {
 	private int subjectyAxis;
 	private String memberxAxis;
 	private int memberyAxis;
+	
 	public String getSubjectxAxis() {
 		return subjectxAxis;
 	}
