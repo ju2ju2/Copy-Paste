@@ -24,10 +24,8 @@ $(document).ready(function() {
       			$("#folderList").append($("<option />")
       				.val(value.folderName)
       				.text(value.folderName));
-      			  if($(this).val()=="${note.folderName}"){
-      			      $(this).prop("selected",true); // attr적용안될경우 prop으로 
-      			    }
-      	//$('select[val=${note.subjectCode}]').prop("selected", true);		
+      			/*  <option value="tochi" <c:if test="${Name eq 'tochi'}">selected</c:if>>또치</option> */
+   	//$('select[val=${note.subjectCode}]').prop("selected", true);		
       	
       	});
        }
@@ -58,7 +56,7 @@ $(document).ready(function() {
 	    	 	 'noteContent':tinymce.get('noteContent').getContent(),
 	    	 	 'folderName':$("#folderList").val(),
 	    	 	 'subjectCode':$("#subjectList").val(),
-	    	 	 'notePublic':$("input:radio[name=notePublic] :selected").val()
+	    	 	 'notePublic':$("input[name='notePublic']:checked").val()
 	     		 },	
 	      success:function(result){
 	    	    	  swal({type: "success",

@@ -239,13 +239,32 @@
 		</dependency>
 	
 	      
-		<!-- 추가 작업 -->
+		<!-- junit 테스트용 -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- PDF 파일로 다운 지원하는 itext -->
+	    <dependency>
+	     <groupId>com.itextpdf</groupId>
+	     <artifactId>itextpdf</artifactId>
+	     <version>5.5.6</version>
+	    </dependency>
+	    <dependency>
+	     <groupId>com.itextpdf.tool</groupId>
+	     <artifactId>xmlworker</artifactId>
+	     <version>5.5.6</version>
+	    </dependency>
+	    <!-- 차트 파일로 다운 지원하는 jfreechart -->
+		<dependency>
+		    <groupId>org.jfree</groupId>
+		    <artifactId>jfreechart</artifactId>
+		    <version>1.0.19</version>
+		</dependency>
+		
 		
 		
 	</dependencies>
