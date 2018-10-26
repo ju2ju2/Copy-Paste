@@ -296,7 +296,6 @@
 			}
 			/* 대댓글 화면 닫기 */
 			$('.qnaCommCommExit').click(function(){
-				console.log('닫기');
 				$('.qnaCommCommBox').remove();
 				commCommClickNum=0;
 			});
