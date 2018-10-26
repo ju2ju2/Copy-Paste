@@ -1,4 +1,4 @@
-<!-- drag>>inc
+<!-- drag>>
 @JSP : layout.jsp
 @Date : 2018.10.09
 @Author : 우나연, 임효진

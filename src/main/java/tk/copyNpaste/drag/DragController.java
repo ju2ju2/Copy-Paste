@@ -105,24 +105,12 @@ public class DragController {
 	// 드래그 정렬
 		@RequestMapping(value="selectOrderbyDrag.json")
 		public @ResponseBody List<DragVO> selectOrderbyNote(String sortCategory,Principal principal,Model model ) throws Exception {
-			
-			String sortCategory1 = sortCategory;
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("sortCategory", sortCategory);
 			map.put("userEmail", principal.getName());
 		
-			List<DragVO> dragList ;   
-			if(sortCategory.trim().equals("dragDateDesc")) {
-				dragList= dragservice.selectOrderbyDrag1(map);
-			}else if(sortCategory.trim().equals("dragDateAsc")){
-				dragList= dragservice.selectOrderbyDrag2(map);
-			}else if(sortCategory.trim().equals("dragMark")) {
-				dragList= dragservice.selectOrderbyDrag3(map);
-			}else if(sortCategory.trim().equals("dragText")) {
-					dragList= dragservice.selectOrderbyDrag4(map);
-			}else {
-				dragList= dragservice.selectOrderbyDrag5(map);
-			}
+			List<DragVO> dragList = dragservice.selectOrderbyDrag(map);   
+		
 			return dragList;
 		}
 			
@@ -130,7 +118,7 @@ public class DragController {
 	//드래그 중요표시 등록
 	@RequestMapping(value="setDragMark.json")
 	public  @ResponseBody int setDragMark(int dragNum) throws Exception {
-			return dragservice.setDragMark(dragNum);
+		return dragservice.setDragMark(dragNum);
 	}
 	
 	//드래그 중요표시 삭제

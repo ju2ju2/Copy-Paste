@@ -8,6 +8,10 @@ package tk.copyNpaste.vo;
 
 import java.sql.Date;
 
+/**
+ * @author bit
+ *
+ */
 public class NoteVO {
 	//NoteVO
 	
@@ -29,7 +33,9 @@ public class NoteVO {
 	private int notePNum;
 	private String noteThumnail;
 	private int noteCommBlind;
-
+	private int newNoteNum;
+	private Date fromDate;
+	private Date toDate;
 
 	public String getUserNick() {
 		return userNick;
@@ -122,6 +128,26 @@ public class NoteVO {
 	}
 	public void setNoteCommBlind(int noteCommBlind) {
 		this.noteCommBlind = noteCommBlind;
+		}
+		
+	public Date getFromDate() {
+		return fromDate;
+	}
+	public void setFromDate(Date fromDate) {
+		this.fromDate = fromDate;
+	}
+	public Date getToDate() {
+		return toDate;
+	}
+	public void setToDate(Date toDate) {
+		this.toDate = toDate;
+	}
+	
+	public int getNewNoteNum() {
+		return newNoteNum;
+	}
+	public void setNewNoteNum(int newNoteNum) {
+		this.newNoteNum = newNoteNum;
 	}
 	@Override
 	public String toString() {
@@ -129,8 +155,10 @@ public class NoteVO {
 				+ userNick + ", noteTitle=" + noteTitle + ", noteContent=" + noteContent + ", noteDate=" + noteDate
 				+ ", subjectCode=" + subjectCode + ", subjectName=" + subjectName + ", noteCount=" + noteCount
 				+ ", notePublic=" + notePublic + ", noteScrap=" + noteScrap + ", notePNum=" + notePNum
-				+ ", noteThumnail=" + noteThumnail + ", noteCommBlind=" + noteCommBlind + "]";
+				+ ", noteThumnail=" + noteThumnail + ", noteCommBlind=" + noteCommBlind + ", newNoteNum=" + newNoteNum
+				+ "]";
 	}
+
 
 
 

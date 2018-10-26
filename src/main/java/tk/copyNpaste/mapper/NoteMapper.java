@@ -43,7 +43,7 @@ public interface NoteMapper {
 	public List<NoteVO> selectByFolderNote(NoteVO note);
 	
 	//노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws Exception;
-	public List<NoteVO> selectByCalNote(Date period) throws Exception;
+	public List<NoteVO> selectByCalNote(HashMap map) throws Exception;
 
 	//노트 키워드 검색
 	public List<NoteVO> selectByKeyNote(HashMap map) throws Exception;
@@ -55,7 +55,7 @@ public interface NoteMapper {
 	public int deleteMemNote(String userEmail) throws Exception;
 
 	//스크랩노트 등록
-	public int scrapNote(String userEmail) throws Exception;
+	public int scrapNote(NoteVO note) throws Exception;
 	
 	//스크랩노트 삭제
 	public int removeScrapNote(String userEmail) throws Exception;
@@ -75,24 +75,15 @@ public interface NoteMapper {
 	//노트 댓글 블라인드 처리
 	public int blindNoteComm(int noteCommNum) throws Exception;
 	
-	//인기노트 상세보기 
-	public List<NoteVO> selectPopNote() throws Exception;
-	
 	//노트 정렬
 	public List<NoteVO> selectOrderbyNote(HashMap map) throws Exception;
 	
 	//노트 블라인드 처리
-	public List<NoteVO> dd() throws Exception;
-	
-	//노트의 폴더 이동
-	public int moveNoteFolder(NoteVO note) throws Exception;
+	public int blindNote(int noteNum) throws Exception;
 
-	// MY NOTE → 노트 폴더별 조회
-	public List<NoteVO> selectNoteByFolder(NoteVO note) throws Exception;
+/*	//노트의 폴더 이동 드래그 가능하면 구현
+	public int moveNoteFolder(NoteVO note) throws Exception;*/
 	
-	//Note 댓글 삭제시 자식 댓글들 삭제
-	public void deleteNoteCommChild(int noteCommPNum) throws Exception;
-
 
 
 		

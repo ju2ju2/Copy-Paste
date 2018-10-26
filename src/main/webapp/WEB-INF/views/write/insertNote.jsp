@@ -12,6 +12,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/textEditer.js"></script>
 <script>
 $(document).ready(function() {
+
 	
 	//회원의 폴더목록  조회 및 옵션추가 
 	$.ajax({
@@ -53,7 +54,7 @@ $(document).ready(function() {
 	    	 	 'noteContent':tinymce.get('noteContent').getContent(),
 	    	 	 'folderName':$("#folderList").val(),
 	    	 	 'subjectCode':$("#subjectList").val(),
-	    	 	 'notePublic':$("input:radio[name=notePublic] :selected").val()
+	    	 	 'notePublic':$("input[name='notePublic']:checked").val()
 	     		 },	
 	      success:function(result){
 	    	  swal({type: "success",
@@ -97,8 +98,7 @@ $(document).ready(function() {
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-2 noteLabels" id="noteLabel">공개<br/>설정</label>
-						<input type="radio" name="notePublic" value="1"
-							checked="checked" id="noteRadio1"> 전체 공개 <br/>
+						<input type="radio" name="notePublic" value="1" checked="checked" id="noteRadio1"> 전체 공개 <br/>
 						<input type="radio" name="notePublic" value="0" > 비공개
 					</div>
 				</div>
@@ -116,7 +116,7 @@ $(document).ready(function() {
 		<div class="form-group">
 			<input id="noteTitle" name="noteTitle" type="text" size="158" placeholder="제목을 입력해주세요">
 		</div>
-		<textarea id="noteContent" name="noteContent" rows="20"></textarea>
+		<textarea id="noteContent" name="noteContent" rows="25"></textarea>
 		<input name="image" type="file" id="upload" multiple class="hidden" onchange="">
 		<br>
 		<div class="col-sm-12 text-right">

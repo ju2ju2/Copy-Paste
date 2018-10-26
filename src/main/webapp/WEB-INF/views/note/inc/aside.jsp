@@ -16,10 +16,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<!-- Sweet Alert cdn -->
-		<link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
-		<script type="text/javascript"	src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
+<link rel="stylesheet"
+   href="${pageContext.request.contextPath}/resources/css/drag-jquery-ui.theme.css" />
 <nav>
 <div id="sidebar">
 <div class="inner">
@@ -31,7 +29,7 @@
 				<option value="">- 정렬 분류 -</option>
 				<option value="n.noteDate desc">최신 순</option>
 				<option value="n.noteDate asc">오래된 순</option>
-				<option value="n.noteTitle">가나다 순</option>
+				<option value="binary(n.noteTitle)">가나다 순</option>
 				<option value="n.noteNum">전체보기</option>
 			</select>
 			</div>
@@ -276,7 +274,7 @@ function folderContents(folder,folderName){
 		      			b+='<div class="text-center noteDiv" id="'+value.noteNum+'">';
 		      			b+='	<!-- a HTML (to Trigger Modal) -->';
 		      			b+='<a data-toggle="modal"';
-		      			b+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&cmd=mynote"';
+		      			b+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'"';
 		      			b+='data-target="#modal-testNew" role="button" data-backdrop="static">';
 		      			b+='<div class="item">';
 		      			b+='<img class="img-rounded"';
@@ -298,8 +296,6 @@ function folderContents(folder,folderName){
 		      		});
 
 		      	}
-	    	
-
 	    },
 	    error : function(){
 	    	swal({
@@ -309,8 +305,8 @@ function folderContents(folder,folderName){
 				  confirmButtonClass: "btn-danger",
 				  confirmButtonText: "OK",
 				  showCancelButton: true
-				});
-	    }
+					});
+			    }
 			}).done(function (result){
 	  		  // noteDiv들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
 	    	    $('.noteDiv').draggable({
@@ -330,39 +326,136 @@ function folderContents(folder,folderName){
 	    	        	deleteNote(noteNum)
 	    	         }     
 	    	      });  
-	        
-	        
 	        })
-	
-	
-}
-
-	/* var dateFormat = "yyyy-mm-dd", //이거 지금 안 먹음
-	fromDate = $("#fromDate").datepicker({
-	defaultDate : "+1w",
-	changeMonth : true,
-	numberOfMonths : 1
-	}).on("change", function() {
-	toDate.datepicker("option", "minDate", getDate(this));
-	}), toDate = $("#toDate").datepicker({
-	defaultDate : "+1w",
-	changeMonth : true,
-	numberOfMonths : 1
-	}).on("change", function() {
-	from.datepicker("option", "maxDate", getDate(this));
-	});
-
-	function getDate(element) {
-	var date;
-	try {
-		date = $.datepicker.parseDate(dateFormat, element.value);
-	} catch (error) {
-		date = null;
 	}
 
-	return date;
-	}  */
+//노트 키워드 검색
+$('#search').click(function(e) {
+   
+ 	$.ajax({
+       url: "../note/selectByKeyNote.json", // url_pettern 
+       type:"get",
+       data:{"keyword":$('#search-Text').val()},
+       dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
+ 	   success:function(data){
+	    var noteList ="";   	    
+  	if(data != null) {
+  		$.each(data, function(key, value){
+  			$('#noteList').empty();
+  			noteList+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">';
+  			noteList+='<div class="text-center noteDiv" id="'+value.noteNum+'">';
+  			noteList+='	<!-- a HTML (to Trigger Modal) -->';
+  			noteList+='<a data-toggle="modal"';
+  			noteList+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&cmd=mynote"';
+  			noteList+='data-target="#modal-testNew" role="button" data-backdrop="static">';
+  			noteList+='<div class="item">';
+  			noteList+='<img class="img-rounded"';
+  			noteList+='src="'+value.noteThumnail+'"';
+  			noteList+='alt="'+value.noteTitle+'" width="100%">';
+  			noteList+='<div class="caption">';
+  			noteList+='<i class="fa fa-plus" aria-hidden="true"></i>';
+  			noteList+='</div>';
+  			noteList+='</div>';
+  			noteList+='<div>';
+  			noteList+='<h4>'+value.noteTitle+'</h4>';
+  			noteList+='<strong>'+value.userNick+'</strong><span>'+value.noteDate+'</span>';
+  			noteList+='</div>';
+  			noteList+='</a>';
+  			noteList+='</div>';
+  			noteList+='</div>';
+  			$("#noteList").html(noteList);
+  		})
+  	}
+  },error : function(){
+	 console.log("키워드 검색 실패");
+  }
+    
+       
+       }).done(function (result){
+ 		  // dragDiv들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
+      	    $('.dragDiv').draggable({
+      	    	revert: true, 
+      	    	 revertDuration: 200,
+      	    	 snapMode: "inner",
+      	    	 scroll: true,
+      	    	 scrollSensitivity: 100 ,
+      	    	 scrollSpeed: 100
+      	    	});
+      	     // 드래그를 드랍하여 삭제 메소드 
+      	    $("#droppable").droppable({
+      	        activeClass:"ui-state-active",
+      	        accept:".dragDiv",
+      	        drop: function(event,ui) {
+      	        	var dragNum = ui.draggable.prop("id")
+      	        	deleteDrag(dragNum)
+      	         }     
+      	      });  
+       })
+})
 
+
+/* 날짜 별 검색 */
+$("#toDate").change(function() {
+	if($("#fromDate").val()!="" && $("#toDate").val()!=""){
+		 $.ajax(
+		         {
+		            url : "<%=request.getContextPath()%>/note/selectByCalNote.json",
+		            type : "get",
+		            DataType :"json",
+		            data : {"fromDate": $("#fromDate").val(),
+		                 	"toDate" :  $("#toDate").val()
+		                 	},
+		            success : function(data){
+		                var notecal ="";
+		                 if(data != null) {
+		                    $.each(data, function(key, value){
+		                       $('#noteList').empty();
+		                       notecal+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">';
+		                       notecal+='<div class="text-center noteDiv" id="'+value.noteNum+'">';
+		                       notecal+='   <!-- a HTML (to Trigger Modal) -->';
+		                       notecal+='<a data-toggle="modal"';
+		                       notecal+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&cmd=mynote"';
+		                       notecal+='data-target="#modal-testNew" role="button" data-backdrop="static">';
+		                       notecal+='<div class="item">';
+		                       notecal+='<img class="img-rounded"';
+		                       notecal+='src="'+value.noteThumnail+'"';
+		                       notecal+='alt="'+value.noteTitle+'" width="100%">';
+		                       notecal+='<div class="caption">';
+		                       notecal+='<i class="fa fa-plus" aria-hidden="true"></i>';
+		                       notecal+='</div>';
+		                       notecal+='</div>';
+		                       notecal+='<div>';
+		                       notecal+='<h4>'+value.noteTitle+'</h4>';
+		                       notecal+='<strong>'+value.userNick+'</strong><span>'+value.noteDate+'</span>';
+		                       notecal+='</div>';
+		                       notecal+='</a>';
+		                       notecal+='</div>';
+		                       notecal+='</div>';
+		                       
+		                       $("#noteList").html(notecal);
+		                    })
+		                 }
+		               
+		                  
+		                  },
+		            error : function(){
+		            	console.log("안들어온다우");
+		              /*  swal({
+		                    title: "해당 기간에 존재하는 게시물이 없습니다.",
+		                    text: "",
+		                    type: "info",
+		                    confirmButtonClass: "btn-danger",
+		                    confirmButtonText: "OK",
+		                    showCancelButton: false
+		                  }) */
+		            }
+		      });  
+	}else{
+		alert("null뜨는데?");
+	}
+	  
+ 	}) 
+	
 
 	$(document).ready(function() {
 		folderlist();
