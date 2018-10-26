@@ -111,6 +111,9 @@
 		
 		//노트 스크랩 등록
 		$('#scrapNoteBtn').click(function(e) {
+			var path = "${pageContext.request.contextPath}/note/noteDetail.htm?noteNum="+${note.noteNum}
+			var noteContent = $('#noteContent').html();
+			var noteOrgin ='<br/><br/> 출처:'+ path+ "["+${note.userNick}+ "]";
 			swal({
 				  title: "노트를 스크랩 하시겠습니까?",
 				  type: 'warning',
@@ -124,7 +127,9 @@
 					$.ajax ({
 						url: "${pageContext.request.contextPath}/note/scrapNote.json",
 						type: "POST",
-						data: {'noteNum': ${note.noteNum}}
+						data: {'noteNum': ${note.noteNum},
+							   'noteContent': noteContent + noteOrgin
+							   }
 						})//다운로드 받을 html
 						.done(function(result) {
 							swal({type: "success",
@@ -288,7 +293,6 @@
 								 <a id="emailNoteBtn"><i class="far fa-envelope"></i> &nbsp;</a> 
 								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down"></i> &nbsp;</a> 
 								 <a id="deleteNoteBtn"><i class="fas fa-trash"></i> &nbsp;</a> <!-- 스크랩글 삭제 -->
-								 <a id="addToNoteBtn"><i class="far fa-hand-point-up"></i> &nbsp;</a> 
 							</c:when>
 							<c:when test="${note.noteScrap eq 0 and note.userEmail==loginuser}">
 								 <a href="${pageContext.request.contextPath}/note/updateNote.htm?noteNum=${note.noteNum}"><i class="far fa-edit 3x notewrite"></i> &nbsp;</a> 

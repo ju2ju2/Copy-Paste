@@ -82,7 +82,6 @@ public class NoteController {
 	// 노트 작성페이지로 이동
 	@RequestMapping(value="write.htm", method = RequestMethod.GET)
 	public String writeNotePage(Model model) throws Exception {
-		model.addAttribute("write", 1);
 		return "write.insertNote";
 	}
 	
@@ -107,7 +106,6 @@ public class NoteController {
 	public String updateNotePage(int noteNum, Model model) throws Exception {
 		NoteVO note = noteService.selectDetailNote(noteNum);
 		model.addAttribute("note", note);
-		model.addAttribute("write", 1);
 		return "write.updateNote";//(write/updateNote.jsp)
 	}
 	// 작성된 노트 이용해 작성하는 페이지로 이동
@@ -115,7 +113,6 @@ public class NoteController {
 	public String insertWithOtherNote(int noteNum, Model model) throws Exception {
 		NoteVO note = noteService.selectDetailNote(noteNum);
 		model.addAttribute("note", note);
-		model.addAttribute("write", 1);
 		return "write.insertWithOtherNote";//(write/updateNote.jsp)
 	}
 	// 노트 수정 -비동기
@@ -177,6 +174,7 @@ public class NoteController {
 	@RequestMapping(value="scrapNote.json")
 	public @ResponseBody int scrapNote(NoteVO note, Principal principal) throws Exception {
 		note.setUserEmail(principal.getName());
+		System.out.println(note.getNoteContent());
 		return noteService.scrapNote(note);
 	}
 
