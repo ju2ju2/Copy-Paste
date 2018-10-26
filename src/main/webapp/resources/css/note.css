@@ -609,7 +609,7 @@ header.main > :last-child {
     margin-left: 0.2em;
 }
 
-.panel {
+.panel { /* 상세보기 깨짐...ㅠㅠㅠ */
     padding: 0 18px;
     background-color: white;
     max-height: 0;

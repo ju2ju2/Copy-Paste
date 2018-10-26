@@ -53,7 +53,7 @@ $(document).ready(function() {
 	    	 	 'noteContent':tinymce.get('noteContent').getContent(),
 	    	 	 'folderName':$("#folderList").val(),
 	    	 	 'subjectCode':$("#subjectList").val(),
-	    	 	 'notePublic':$("input:radio[name=notePublic] :selected").val()
+	    	 	 'notePublic':$("input[name='notePublic']:checked").val()
 	     		 },	
 	      success:function(result){
 	    	  swal({type: "success",
@@ -97,8 +97,7 @@ $(document).ready(function() {
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-2 noteLabels" id="noteLabel">공개<br/>설정</label>
-						<input type="radio" name="notePublic" value="1"
-							checked="checked" id="noteRadio1"> 전체 공개 <br/>
+						<input type="radio" name="notePublic" value="1" checked="checked" id="noteRadio1"> 전체 공개 <br/>
 						<input type="radio" name="notePublic" value="0" > 비공개
 					</div>
 				</div>

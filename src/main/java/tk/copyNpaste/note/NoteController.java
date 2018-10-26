@@ -1,7 +1,7 @@
 /*
 * @Class : NoteController
 * @ Date : 2018.10.05
-* @ Author : 이주원
+* @ Author : 우나연
 * @ Desc : 노트 관련 컨트롤러. (service 사용, 뷰 매핑)
 */
 
@@ -12,6 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -24,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import tk.copyNpaste.folder.FolderService;
+import tk.copyNpaste.mapper.NoteMapper;
 import tk.copyNpaste.vo.FolderVO;
 import tk.copyNpaste.vo.NoteCommVO;
 import tk.copyNpaste.vo.NoteVO;
@@ -65,12 +69,7 @@ public class NoteController {
 		List<NoteCommVO> noteCommList = noteService.selectAllNoteComm(noteNum);
 		model.addAttribute("note", note);
 		model.addAttribute("noteCommList", noteCommList);
-		String viewpage;
-		if(cmd!=null) {
-			viewpage="mynotedetail";
-		}else {viewpage="notedetail";}
-		
-		return viewpage;//(modal/notedetail.jsp)
+		return "notedetail";//(modal/notedetail.jsp)
 	}
 
 	// 노트 주제 검색 
@@ -183,24 +182,11 @@ public class NoteController {
 		return noteService.selectByKeyNote(map);
 	}
 
-	// 회원별 노트 검색
-	public List<NoteVO> selectByMemNote(String userEmail) throws Exception {
-		return noteService.selectByMemNote(userEmail);
-	}
-
-	// 회원별 노트 일괄 삭제
-	public int deleteMemNote(String userEmail) throws Exception {
-		return noteService.deleteMemNote(userEmail);
-	}
-
 	// 노트 스크랩
-	public int scrapNote(String userEmail) throws Exception {
-		return noteService.scrapNote(userEmail);
-	}
-
-	// 노트 스크랩해제
-	public int removeScrapNote(String userEmail) throws Exception {
-		return noteService.removeScrapNote(userEmail);
+	@RequestMapping(value="scrapNote.json")
+	public @ResponseBody int scrapNote(NoteVO note, Principal principal) throws Exception {
+		note.setUserEmail(principal.getName());
+		return noteService.scrapNote(note);
 	}
 
 	// 노트 댓글 조회-비동기
@@ -231,13 +217,16 @@ public class NoteController {
 	}
 	
 	// 노트 메일 전송
-	public NoteVO emailNote(NoteVO note) throws Exception {
-		return null;
+	@RequestMapping(value="emailNote.json")
+	public @ResponseBody void emailNote(NoteVO note, String noteEmailTo) throws Exception {
+		noteMailnFileService.emailNote(note, noteEmailTo);
 	}
 
 	// 노트 pdf파일로 다운로드
-	public NoteVO pdfDownNote(NoteVO note) throws Exception {
-		return null;
+	@RequestMapping(value="downloadNotePdf.json")
+	public @ResponseBody void pdfDownNote(NoteVO note, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		noteMailnFileService.pdfDownNote(note, request, response);
+		
 	}
 
 	// 노트 xls파일로 다운로드
@@ -249,14 +238,21 @@ public class NoteController {
 	public NoteVO hwpDownNote(NoteVO note) throws Exception {
 		return null;
 	}
-
-	// 노트의 폴더 이동
-	public int moveNoteFolder(NoteVO note) throws Exception {
-		return noteService.moveNoteFolder(note);
+	
+	// 회원별 노트 검색-관리자-노트관리
+	public List<NoteVO> selectByMemNote(String userEmail) throws Exception {
+		return noteService.selectByMemNote(userEmail);
 	}
+
+	// 회원별 노트 일괄 삭제-관리자-노트관리
+	public int deleteMemNote(String userEmail) throws Exception {
+		return noteService.deleteMemNote(userEmail);
+	}	
 	
-	
-	
+	// 노트 블라인드 처리-관리자
+	public int blindNote(int noteNum) throws Exception{	
+		return noteService.blindNote(noteNum);
+	}
 	
 	
 }
