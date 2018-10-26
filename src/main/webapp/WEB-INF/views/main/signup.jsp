@@ -111,7 +111,8 @@
 				</form>
 				
 				<div class="col-sm-12 text-center social-btn">
-				<a href="#" class="btn btn-md social-btn"> Sign up with <b>&nbsp;Kakao&nbsp;</b><img src="./resources/image/kakao.png" class="inline"></a><br>
+				
+				<a class="btn btn-md social-btn" id="kakaoSignup"> Sign up with <b>&nbsp;Kakao&nbsp;</b><img src="./resources/image/kakao.png" class="inline"></a><br>
 				<a href="#" class="btn  btn-md social-btn" > Sign up with <b>&nbsp;Naver &nbsp;</b><img src="./resources/image/naver.png" class="inline"></a><br>
 				<a href="#" class="btn  btn-md social-btn "> Sign up with <b>Google&nbsp;</b><img src="./resources/image/google.png" class="inline"></a>
 		  		</div>
@@ -351,4 +352,49 @@
        }
     })  
   }
+  
+	
+/* //카카오 로그인
+//<![CDATA[
+       // 사용할 앱의 JavaScript 키를 설정해 주세요.
+       Kakao.init('79d75b8a6b103fc187445852e5301a0c');
+       
+       //function loginWithKakao() 로그인 창을 띄웁니다.
+       $('#kakaoSignup').click(function(){
+    	   Kakao.Auth.login({
+               success: function(authObj) {     	
+                 var token = Kakao.Auth.getAccessToken();
+                 console.log(token);
+                 
+                 $.ajax({
+                     type : 'post',
+                     data: {userEmail: token},
+                     url : '${pageContext.request.contextPath}/member/kakaoLogin.do',
+                     success : function(data) {
+             				  swal({type: "success",
+             				  title: "୧༼ ヘ ᗜ ヘ ༽୨",
+             				  text: "회원가입이 완료되었습니다.",
+             	              confirmButtonClass : "btn-danger",
+             				  closeOnConfirm: false
+             					},
+             				  function(){
+             					location.href="${pageContext.request.contextPath}/login.htm";
+             					});	
+             	       			},
+                       error : function(error) {
+                        	swal("٩(இ ⌓ இ๑)۶", "에러가 발생했습니다.", "error");
+                        	console.log(error);
+                        	console.log(error.status);
+                    }
+                 }) 
+                 
+                 
+                 
+               },
+               fail: function(err) {
+                 alert(JSON.stringify(err));
+               }
+             });
+       })
+       //]]> */
 </script>

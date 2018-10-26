@@ -34,8 +34,8 @@ public interface MemberMapper {
 	//구글로그인
 	public MemberVO googleLogin(String userEmail) throws Exception;
 	
-	//카카오로그인
-	public MemberVO kakaoLogin(String userEmail) throws Exception;
+	//카카오 회원가입
+	public void kakaoLogin(String userEmail) throws Exception;
 		
 	//네이버로그인
 	public MemberVO naverLogin(String userEmail) throws Exception;
