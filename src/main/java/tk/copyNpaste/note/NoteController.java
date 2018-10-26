@@ -163,14 +163,14 @@ public class NoteController {
 	// Exception;
 	// 노트 날짜별 검색
 	@RequestMapping(value="selectByCalNote.json")
-	public @ResponseBody List<NoteVO> selectByCalNote(Date fromDate, Date toDate, Principal principal) throws Exception {
+	public @ResponseBody List<NoteVO> selectByCalNote(String fromDate, String toDate, Principal principal) throws Exception {
+		System.out.println("안들어오니? 왜니?");
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		
-		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-		System.out.println("from : " + date.format(fromDate));
-		System.out.println("to : " + date.format(toDate));
-		map.put("fromDate", date.format(fromDate));
-		map.put("toDate", date.format(toDate));
+/*		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");*/
+		System.out.println("from : " + fromDate);
+		System.out.println("to : " + toDate);
+		map.put("fromDate", fromDate);
+		map.put("toDate", toDate);
 		map.put("userEmail", principal.getName());
 		
 		return noteService.selectByCalNote(map);
