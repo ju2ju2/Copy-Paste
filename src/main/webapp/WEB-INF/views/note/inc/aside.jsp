@@ -275,7 +275,7 @@ function folderContents(folder,folderName){
 		      			b+='<div class="text-center noteDiv" id="'+value.noteNum+'">';
 		      			b+='	<!-- a HTML (to Trigger Modal) -->';
 		      			b+='<a data-toggle="modal"';
-		      			b+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&cmd=mynote"';
+		      			b+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'"';
 		      			b+='data-target="#modal-testNew" role="button" data-backdrop="static">';
 		      			b+='<div class="item">';
 		      			b+='<img class="img-rounded"';
