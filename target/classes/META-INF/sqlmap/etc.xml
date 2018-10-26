@@ -12,8 +12,8 @@
 		<selectKey keyProperty="reportNum" order="BEFORE" resultType="int">
 			select max(reportNum)+1 from report
 		</selectKey>
-		insert into report(reportNum, userEmail, noteNum, reportCauseCode, reportContent, noteOrCommCode)
-		values(#{reportNum}, #{userEmail}, #{noteNum}, #{reportCauseCode}, #{reportContent}, #{noteOrCommCode} )
+		insert into report(reportNum, userEmail, noteNum, reportCauseCode, reportContent, noteOrCommCode, reportmemo)
+		values(#{reportNum}, #{userEmail}, #{noteNum}, #{reportCauseCode}, #{reportContent}, #{noteOrCommCode}," " )
 	</insert>
 
 	<!-- 주제에 맞게 노트 개수 가지고 온다 -->
