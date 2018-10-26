@@ -50,38 +50,45 @@ public class EtcController {
 
 	@RequestMapping("adminReport.htm")
 	// 관리자 페이지 (신고관리)
-	public String adminReportPage() throws Exception {
-		return "admin.manageReport";
+	public ModelAndView adminReportPage() throws Exception {
+		List<ReportVO> reportList = etcService.selectAllReport();
+		ModelAndView adminmav = new ModelAndView();
+		adminmav.setViewName("admin.manageReport");
+		adminmav.addObject("reportVo", reportList);
+		return adminmav;
 	};
+	
+	// 노트 신고 목록 보기
+	@RequestMapping("noteReport.htm")
+	public ModelAndView selectNoteReport() throws Exception {
+		List<ReportVO> reportList = etcService.selectNoteReport();
+		ModelAndView adminmav = new ModelAndView();
+		adminmav.setViewName("admin.manageReport");
+		adminmav.addObject("reportVo", reportList);
+		return adminmav;
+	};
+
+	// 댓글 신고 목록 보기
+	@RequestMapping("commReport.htm")
+	public ModelAndView selectCommReport() throws Exception {
+		List<ReportVO> reportList = etcService.selectCommReport();
+		ModelAndView adminmav = new ModelAndView();
+		adminmav.setViewName("admin.manageReport");
+		adminmav.addObject("reportVo", reportList);
+		return adminmav;
+	};
+
 
 	@RequestMapping("adminStatistic.htm")
 	// 관리자 페이지 (통계)
 	public String adminStatisticPage() throws Exception {
 		return "admin.manageStatistic";
 	};
-
-	// 노트 신고 목록 보기
-	@RequestMapping("noteReport.json")
-	public @ResponseBody List<ReportVO> selectNoteReport() throws Exception {
-		return etcService.selectNoteReport();
-	};
-
-	// 댓글 신고 목록 보기
-	@RequestMapping("commReport.json")
-	public @ResponseBody List<ReportVO> selectCommReport() throws Exception {
-		return etcService.selectCommReport();
-	};
 	
 	// 댓글 신고된 노트로 이동
 	@RequestMapping("hasReportComm.json")
 	public @ResponseBody int selectHasReportComm(int reportNum) throws Exception {
 		return etcService.selectHasReportComm(reportNum);
-	};
-
-	// 신고 목록 전체 보기
-	@RequestMapping("allReport.json")
-	public @ResponseBody List<ReportVO> selectAllReport() throws Exception {
-		return etcService.selectAllReport();
 	};
 
 	// 신고 하기
