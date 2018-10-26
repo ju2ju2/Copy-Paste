@@ -1,4 +1,4 @@
-/*
+﻿/*
 * @Class : NoteController
 * @ Date : 2018.10.05
 * @ Author : 우나연
@@ -81,7 +81,8 @@ public class NoteController {
 	
 	// 노트 작성페이지로 이동
 	@RequestMapping(value="write.htm", method = RequestMethod.GET)
-	public String writeNotePage() throws Exception {
+	public String writeNotePage(Model model) throws Exception {
+		model.addAttribute("write", 1);
 		return "write.insertNote";
 	}
 	
@@ -106,6 +107,7 @@ public class NoteController {
 	public String updateNotePage(int noteNum, Model model) throws Exception {
 		NoteVO note = noteService.selectDetailNote(noteNum);
 		model.addAttribute("note", note);
+		model.addAttribute("write", 1);
 		return "write.updateNote";//(write/updateNote.jsp)
 	}
 	// 작성된 노트 이용해 작성하는 페이지로 이동
@@ -113,6 +115,7 @@ public class NoteController {
 	public String insertWithOtherNote(int noteNum, Model model) throws Exception {
 		NoteVO note = noteService.selectDetailNote(noteNum);
 		model.addAttribute("note", note);
+		model.addAttribute("write", 1);
 		return "write.insertWithOtherNote";//(write/updateNote.jsp)
 	}
 	// 노트 수정 -비동기
@@ -160,11 +163,16 @@ public class NoteController {
 	// Exception;
 	// 노트 날짜별 검색
 	@RequestMapping(value="selectByCalNote.json")
-	public @ResponseBody List<NoteVO> selectByCalNote(Date fromDate, Date toDate, Principal principal) throws Exception {
+	public @ResponseBody List<NoteVO> selectByCalNote(String fromDate, String toDate, Principal principal) throws Exception {
+		
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-		map.put("fromDate", date.format(fromDate));
-		map.put("toDate", date.format(toDate));
+
+
+		System.out.println("from : " + fromDate);
+		System.out.println("to : " + toDate);
+		map.put("fromDate", fromDate);
+		map.put("toDate", toDate);
+
 		map.put("userEmail", principal.getName());
 		
 		return noteService.selectByCalNote(map);

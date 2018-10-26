@@ -12,6 +12,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/textEditer.js"></script>
 <script>
 $(document).ready(function() {
+
 	
 	//회원의 폴더목록  조회 및 옵션추가 
 	$.ajax({
@@ -115,7 +116,7 @@ $(document).ready(function() {
 		<div class="form-group">
 			<input id="noteTitle" name="noteTitle" type="text" size="158" placeholder="제목을 입력해주세요">
 		</div>
-		<textarea id="noteContent" name="noteContent" rows="20"></textarea>
+		<textarea id="noteContent" name="noteContent" rows="25"></textarea>
 		<input name="image" type="file" id="upload" multiple class="hidden" onchange="">
 		<br>
 		<div class="col-sm-12 text-right">

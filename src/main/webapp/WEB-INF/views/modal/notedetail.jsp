@@ -19,6 +19,20 @@
 
 
 	$(document).ready(function() {
+		
+		
+		///* 작성,수정페이지에서 에디터기에 추가 */
+		$('#addToNoteBtn').click(function(e) {
+				$(".modal").modal("hide");
+				var editor = tinyMCE.activeEditor;
+    			var noteContent = $('#noteContent').html();
+    			console.log(noteContent)
+    			editor.dom.add(editor.getBody(), 'p', {}, noteContent+ "<br>");
+    	
+			});
+		
+		
+		
 		//노트 pdf 파일 다운로드
 		$('#downloadPdfBtn').click(function(e) {
 			swal({
@@ -270,19 +284,20 @@
 					<br> <br> <br> <br>
 					<div class="col-sm-9"></div>
 					<div class="col-sm-3">
-						<strong> ${note.noteScrap}
+						<strong>
 						<c:choose>
-							<c:when test="${note.noteScrap eq 0 and note.userEmail==loginuser}">
-								 <a href="${pageContext.request.contextPath}/note/updateNote.htm?noteNum=${note.noteNum}"><i class="far fa-edit 3x notewrite"></i> &nbsp;</a> 
-								 <a id="emailNoteBtn"><i class="far fa-envelope"></i> &nbsp;</a> 
-								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down"></i> &nbsp;</a> 
-								 <a id="deleteNoteBtn"><i class="fas fa-trash"></i> &nbsp;</a> 
-							</c:when>
 							<c:when test="${note.noteScrap eq 1 and note.userEmail==loginuser}"><!-- 스크랩한 글일때 수정버튼>>새노트작성  -->
 								<a href="${pageContext.request.contextPath}/note/insertWithOtherNote.htm?noteNum=${note.noteNum}"><i class="far fa-edit 3x notewrite"></i> &nbsp;</a> 
 								 <a id="emailNoteBtn"><i class="far fa-envelope"></i> &nbsp;</a> 
 								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down"></i> &nbsp;</a> 
 								 <a id="deleteNoteBtn"><i class="fas fa-trash"></i> &nbsp;</a> <!-- 스크랩글 삭제 -->
+								 <a id="addToNoteBtn"><i class="far fa-hand-point-up"></i> &nbsp;</a> 
+							</c:when>
+							<c:when test="${note.noteScrap eq 0 and note.userEmail==loginuser}">
+								 <a href="${pageContext.request.contextPath}/note/updateNote.htm?noteNum=${note.noteNum}"><i class="far fa-edit 3x notewrite"></i> &nbsp;</a> 
+								 <a id="emailNoteBtn"><i class="far fa-envelope"></i> &nbsp;</a> 
+								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down"></i> &nbsp;</a> 
+								 <a id="deleteNoteBtn"><i class="fas fa-trash"></i> &nbsp;</a> 
 							</c:when>
 							<c:when test="${role=='[ROLE_ADMIN]'}">
 							 	 <a href="${pageContext.request.contextPath}/note/insertWithOtherNote.htm?noteNum=${note.noteNum}"><i class="far fa-edit 3x notewrite"></i> &nbsp;</a> 
@@ -298,9 +313,8 @@
 								 <a id="scrapNoteBtn"><i class="fas fa-archive"></i>&nbsp;</a>
 								 <a id="noteReportForm"> <i class="fas fa-flag"></i></a>
 							</c:otherwise>
-						</c:choose> 	
-						
-
+						</c:choose> 
+						<c:if test="${param.write eq 'y'}"> <a id="addToNoteBtn"><i class="far fa-hand-point-up"></i> &nbsp;</a> </c:if>
 						</strong>
 					</div>
 				</div>
