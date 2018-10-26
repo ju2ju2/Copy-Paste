@@ -39,6 +39,9 @@ public class MemberMailService {
 	@Autowired
 	private VelocityEngine velocityEngine;
 
+	
+
+	
 	/*private MemberVO member;*/
 	HttpServletRequest request;
 
