@@ -44,34 +44,49 @@ $(document).ready(function() {
     }); 
 	
 
-	//노트 등록
+	//노트 등록	
 	$('#insertNoteBtn').click(function() {
-	 	$.ajax({
-	      url: "${pageContext.request.contextPath}/note/insertNote.json", // url_pettern 
-	      type:"post",
-	      dataType:"json",
-	      data: {'noteTitle':$("#noteTitle").val(),
-	    	 	 'noteContent':tinymce.get('noteContent').getContent(),
-	    	 	 'folderName':$("#folderList").val(),
-	    	 	 'subjectCode':$("#subjectList").val(),
-	    	 	 'notePublic':$("input[name='notePublic']:checked").val()
-	     		 },	
-	      success:function(result){
-	    	  swal({type: "success",
-				  title: '성공적으로 등록되었습니다.',
-	              confirmButtonClass : "btn-danger",
-				  closeOnConfirm: false
-			},
-			function(){
-				location.href="${pageContext.request.contextPath}/note/note.htm";
-			});	
-	       },
-	      error:function(request,status,error){
-	    	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	    }
-
-	     		 
-	    })
+		if ($('#noteTitle').val()==''){
+			swal({type: "success",
+				  title: '제목을 입력해주세요',
+	              confirmButtonClass : "btn-danger btn-sm",
+				  closeOnConfirm: true
+			})
+		}else if (tinymce.get('noteContent').getContent()==''){
+			swal({type: "success",
+				  title: '내용을 입력해주세요',
+	              confirmButtonClass : "btn-danger btn-sm",
+				  closeOnConfirm: true
+			})
+		} 
+		else {
+		 	$.ajax({
+		      url: "${pageContext.request.contextPath}/note/insertNote.json", // url_pettern 
+		      type:"post",
+		      dataType:"json",
+		      data: {'noteTitle':$("#noteTitle").val(),
+		    	 	 'noteContent':tinymce.get('noteContent').getContent(),
+		    	 	 'folderName':$("#folderList").val(),
+		    	 	 'subjectCode':$("#subjectList").val(),
+		    	 	 'notePublic':$("input[name='notePublic']:checked").val()
+		     		 },	
+		      success:function(result){
+		    	  swal({type: "success",
+					  title: '성공적으로 등록되었습니다.',
+		              confirmButtonClass : "btn-danger",
+					  closeOnConfirm: false
+				},
+				function(){
+					location.href="${pageContext.request.contextPath}/note/note.htm";
+				});	
+		       },
+		      error:function(request,status,error){
+		    	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		    }
+	
+		     		 
+		    })
+		}
 	})
 
 	
@@ -94,7 +109,7 @@ $(document).ready(function() {
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-2 noteLabels">주제 </label> 
-						<select	id="subjectList" name="subjectCode" class="form-control notePublish"></select>
+						<select	id="subjectList" name="subjectCode" class="form-control notePublish" ></select>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-2 noteLabels" id="noteLabel">공개<br/>설정</label>
@@ -114,9 +129,9 @@ $(document).ready(function() {
 	<div class="n-container">
 	<div class="n-inner">
 		<div class="form-group">
-			<input id="noteTitle" name="noteTitle" type="text" size="158" placeholder="제목을 입력해주세요">
+			<input id="noteTitle" name="noteTitle" type="text" size="158" required placeholder="제목을 입력해주세요">
 		</div>
-		<textarea id="noteContent" name="noteContent" rows="25"></textarea>
+		<textarea id="noteContent" name="noteContent" rows="25" required></textarea>
 		<input name="image" type="file" id="upload" multiple class="hidden" onchange="">
 		<br>
 		<div class="col-sm-12 text-right">
