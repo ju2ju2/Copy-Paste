@@ -15,7 +15,7 @@ public interface EtcMapper {
 	
 	
 	//신고 하기
-	public int insertReport(int noteNum) throws Exception;
+	public int insertReport(ReportVO report) throws Exception;
 	
 	//신고 목록 보기
 	public List<ReportVO> selectAllReport() throws Exception;

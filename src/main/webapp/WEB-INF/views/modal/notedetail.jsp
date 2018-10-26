@@ -19,7 +19,9 @@
 
 
 	$(document).ready(function() {
-		
+		var userEmail = '${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}';
+		var role='${sessionScope.SPRING_SECURITY_CONTEXT.authentication.authorities}';
+	
 		
 		///* 작성,수정페이지에서 에디터기에 추가 */
 		$('#addToNoteBtn').click(function(e) {
@@ -30,8 +32,6 @@
     			editor.dom.add(editor.getBody(), 'p', {}, noteContent+ "<br>");
     	
 			});
-		
-		
 		
 		//노트 pdf 파일 다운로드
 		$('#downloadPdfBtn').click(function(e) {
@@ -182,24 +182,16 @@
 				});
 			return false;
 		});
-			
-		
-		
-		//신고 모달 클릭시 db 댓글 조회
-		$('#report').click(function() {
-			$('#commWriterOut').text($('#commWriter').text());
-			$('#commContentOut').text($('#commContent').text());
-		});
 
-		//신고 모달 모달에서 확인시 경고창.
+		//노트 신고
 		$('#noteReportForm').click(function() {
 			swal({
 				  title:'<span class="title">노트신고</span>',
-				  text: '<form><p><strong>작성자</strong> <span id="commWriterOut">${note.userNick}</span></p>'+
+				  text: '<form><p><strong>작성자</strong> <span id="noteWriter">${note.userNick}</span></p>'+
 						'<input type="hidden" value=${note.userEmail}/>'+
 						'</p><p style="padding-top: 10px;">'+
-						'<strong>신고 사유</strong>&ensp; <select name="cause-category"'+
-						'	id="cause-category">'+
+						'<strong>신고 사유</strong>&ensp; <select name="causeCategory"'+
+						'	id="causeCategory">'+
 						'	<option>신고 사유를 선택하세요</option>'+
 						'	<option>저작권 위반</option>'+
 						'	<option>음란성</option>'+
@@ -208,7 +200,7 @@
 						'	<option>부적절한 홍보</option>'+
 						'	<option>기타</option>'+
 						'</select></p> <p style="padding-top: 10px;"><strong>신고 사유 상세</strong>'+
-						'</p><textarea rows="5" class="form-control textarea noresize"'+
+						'</p><textarea rows="5" id="causeText"class="form-control textarea noresize"'+
 						'placeholder="신고 사유를 입력하세요"></textarea><br>'+
 						'<p align="center"><strong>위와 같은 내용으로 <br/>해당 댓글을 신고하시겠습니까?</strong>'+
 						'</p></div></form>'
@@ -222,21 +214,22 @@
 			},
 			function(){
 				$.ajax ({
-					/* url: "${pageContext.request.contextPath}/note/deleteNote.json",
+					url : '${pageContext.request.contextPath}/etc/insertReport.json',
 					type: "POST",
-					dataType: "json",
-					data: {	'noteNum': ${note.noteNum} } *///
+					data : {
+						"userEmail" : userEmail,
+						"noteNum" : ${note.noteNum},
+						"noteOrCommCode" : 'NC00',//노트신고코드
+						"reportCauseCode" : $("#causeCategory option:selected").val(),
+						"reportContent" : $('#causeText').val()  
+						},
 				}).done(function(result) {
 					swal({type: "success",
 						  title: '성공적으로 신고되었습니다.',
+						  text:'관리자가 확인 후 해당 건을 블라인드 처리합니다.',
 			              confirmButtonClass : "btn-danger",
-						  closeOnConfirm: false
-					},
-					function(){
-						location.href="${pageContext.request.contextPath}/index.htm";
+						  closeOnConfirm: true
 					})
-					
-				
 				})
 				.fail(function(jqXhr, testStatus, errorText){
 					alert("에러발생 :" + errorText);
@@ -245,7 +238,7 @@
 		return false;
 	});
 		
-	
+		
 		
 	
 		
@@ -411,12 +404,12 @@ $(document).ready(function(){
 			          		noteCommList += '	<div class="media-left">';
 			          		noteCommList += '	<img class="user-photo" src="${pageContext.request.contextPath}/resources/image/userPhoto/'+value.userPhoto+'"></div>';
 			          		noteCommList += '		<div class="media-body comment">';
-			          		noteCommList += '          	<strong class="pull-left primary-font" id="commWriter">';
+			          		noteCommList += '          	<strong class="pull-left primary-font">';
 			          		/* 	대댓글일때 */
 			          		if(value.commDept==1){
 			          			noteCommList += '							ㄴ';	
 			          		}
-			          		noteCommList += '						'+value.userNick+'</strong>';
+			          		noteCommList += '						   <span>'+value.userNick+'</span></strong>';
 			          		noteCommList += '			          		<small> &ensp;'+value.commDate+'</small><br>';
 			          		noteCommList += '			          		<small class="pull-right text-muted"> ';
 			          		/*  본인이거나 삭제버튼  */
@@ -436,10 +429,12 @@ $(document).ready(function(){
 			          		
 			          		/* 타인의 글일때 신고 버튼 생성*/ 
 			          		if(value.userEmail!=userEmail){
-			          			noteCommList += '      		 <a id="noteCommReportForm"> <i class="fas fa-flag">';
+			          			noteCommList += '      		 <a id="noteCommReportForm" class="noteCommReportForm"> <i class="fas fa-flag">';
+			          			noteCommList += '						<input id="commWriter" type="hidden" value="'+value.userEmail+'" />';
+			          			noteCommList += '						<input id="commContent" type="hidden" value="'+value.commContent+'" />';	
 				          		noteCommList += '						<input id="noteCommNum" type="hidden" value="'+value.noteCommNum+'" />';
-				          		noteCommList += '						<input id="noteCommPos" type="hidden" value="'+value.noteCommPos+'" />';
-								noteCommList += '			 </i></a>&ensp;&ensp;';
+				          		noteCommList += '						<input id="noteNum" type="hidden" value="'+noteNum+'" />';
+				          		noteCommList += '			 </i></a>&ensp;&ensp;';
 				          	}  
 						
 							noteCommList += '      		</small>';
@@ -469,52 +464,55 @@ $(document).ready(function(){
 			     
 			        
 						
-						/* 대댓글 */
-						var commCommClickNum = 0;
-						var noteCommNum;
-						var noteCommPos;
-						var commBoxHtml="<div class='noteComm-inputBox input-group'>"
-							+" <input type='text' id='userCommComm' class='form-control input-sm chat-input' style='margin-top:17px;' placeholder='답댓글을 입력하세요' />"
-							+" <span class='input-group-btn' id='commCommbtn'>"
-							+" <div>"
-							+' <button href="#" class="btn main-btn center-block" id="commCommentBtn">'
-							+' <i class="fas fa-check"></i> Add Comment'
-							+" </button></div></span></div>";
+							/* 대댓글 */
+							var commCommClickNum = 0;
+							var noteCommNum;
+							var noteCommPos;
+							var commWriter;
+							var commContent;
 							
-					 		/* 대댓글아이콘 클릭시 */
-							$('.noteCommCommBtn').on("click",function() {
-							if(commCommClickNum==0){
-								noteCommNum=$(this).children('#noteCommNum').val();
-								noteCommPos=$(this).children('#noteCommPos').val();
-								commCommClickNum=1;
-								$(this).parents('.comment').append(commBoxHtml);
-							}	
-							
-							/* 대댓글 작성 버튼 클릭시 */
-							$('#commCommentBtn').on("click",  function(){
-								$.ajax({
-									url : "<%=request.getContextPath()%>/note/insertNoteCommComm.json",
-								    type : "get",
-								    data : {    	
-								    	"commContent": $('#userCommComm').val(),
-								    	"noteNum":${note.noteNum},
-								    	"noteCommNum":noteCommNum,
-								    	"noteCommPos":noteCommPos
-								    },
-								    success : function(data){
-								    	commCommClickNum=0;
-								    	noteCommNum="";
-								    	noteCommPos="";
-								    	makeNoteCommList(${note.noteNum})
-								    	
-								    },
-								    error : function(){
-								        	console.log("대댓글 작성 실패");
-								    }
-								});	
-							});
-						}); 
-						/* 대댓글 */
+							var commBoxHtml="<div class='noteComm-inputBox input-group'>"
+								+" <input type='text' id='userCommComm' class='form-control input-sm chat-input' style='margin-top:17px;' placeholder='답댓글을 입력하세요' />"
+								+" <span class='input-group-btn' id='commCommbtn'>"
+								+" <div>"
+								+' <button href="#" class="btn main-btn center-block" id="commCommentBtn">'
+								+' <i class="fas fa-check"></i> Add Comment'
+								+" </button></div></span></div>";
+								
+						 		/* 대댓글아이콘 클릭시 */
+								$('.noteCommCommBtn').on("click",function() {
+								if(commCommClickNum==0){
+									noteCommNum=$(this).children('#noteCommNum').val();
+									noteCommPos=$(this).children('#noteCommPos').val();
+									commCommClickNum=1;
+									$(this).parents('.comment').append(commBoxHtml);
+								}	
+								
+								/* 대댓글 작성 버튼 클릭시 */
+								$('#commCommentBtn').on("click",  function(){
+									$.ajax({
+										url : "<%=request.getContextPath()%>/note/insertNoteCommComm.json",
+									    type : "get",
+									    data : {    	
+									    	"commContent": $('#userCommComm').val(),
+									    	"noteNum":${note.noteNum},
+									    	"noteCommNum":noteCommNum,
+									    	"noteCommPos":noteCommPos
+									    },
+									    success : function(data){
+									    	commCommClickNum=0;
+									    	noteCommNum="";
+									    	noteCommPos="";
+									    	makeNoteCommList(${note.noteNum})
+									    	
+									    },
+									    error : function(){
+									        	console.log("대댓글 작성 실패");
+									    }
+									});	
+								});
+							}); 
+							/* 대댓글 */
 						
 							/* 댓글삭제*/
 							$('.noteCommTrashBtn').click(function() {
@@ -557,7 +555,76 @@ $(document).ready(function(){
 							}); 
 							/* 댓글삭제 */
 						
-						
+							
+							//신고 모달 클릭시 db 댓글 조회
+							$('#noteCommReportForm').click(function() {
+								commWriter=$(this).find('#commWriter').val();
+								commContent=$(this).find('#commContent').val();
+								var noteNum= $(this).find('#noteNum').val();
+								var noteCommNum =$(this).find('#noteCommNum').val()
+ 								var commReportText = '<form><p><strong>댓글 작성자</strong> <span id="commWriterOut">'+commWriter+'</span></p>'+
+						 		'<p><strong>댓글 내용</strong> <span id="commContentOut">'+commContent+'</span></p>'+
+						 		'<input type="hidden" value=${note.userEmail}/>'+
+								'</p><p style="padding-top: 10px;">'+
+								'<strong>신고 사유</strong>&ensp; <select name="causeCategory"'+
+								'	id="causeCategory">'+
+								'	<option>신고 사유를 선택하세요</option>'+
+								'	<option>저작권 위반</option>'+
+								'	<option>음란성</option>'+
+								'	<option>명예훼손</option>'+
+								'	<option>개인정보 유출</option>'+
+								'	<option>부적절한 홍보</option>'+
+								'	<option>기타</option>'+
+								'</select></p> <p style="padding-top: 10px;"><strong>신고 사유 상세</strong>'+
+								'</p><textarea rows="5" id="causeText"class="form-control textarea noresize"'+
+								'placeholder="신고 사유를 입력하세요"></textarea><br>'+
+								'<p align="center"><strong>위와 같은 내용으로 <br/>해당 댓글을 신고하시겠습니까?</strong>'+
+								'</p></div></form>'
+							
+								
+								swal({
+									  title:'<span class="title">노트 댓글 신고</span>',
+									  text: commReportText,
+									  html: true,
+									  inputAttributes: { autocapitalize: 'off' },
+									  showCancelButton: true,
+									  confirmButtonText : "OK",
+									  confirmButtonClass : "btn-danger btn-sm",
+									  cancelButtonClass : "btn btn-sm"
+								},
+								function(){
+									$.ajax ({
+										url : '${pageContext.request.contextPath}/etc/insertReport.json',
+										type: "POST",
+										data : {
+											"userEmail" : userEmail,
+											"noteNum": noteNum,
+											"noteCommNum" : noteCommNum,
+											"noteOrCommCode" : 'NC01',//노트댓글신고코드
+											"reportCauseCode" : $("#causeCategory option:selected").val(),
+											"reportContent" : $('#causeText').val()  
+											},
+									}).done(function(result) {
+										swal({type: "success",
+											  title: '성공적으로 신고되었습니다.',
+											  text:'관리자가 확인 후 해당 건을 블라인드 처리합니다.',
+								              confirmButtonClass : "btn-danger",
+											  closeOnConfirm: true
+										})
+									})
+									.fail(function(jqXhr, testStatus, errorText){
+										alert("에러발생 :" + errorText);
+									});
+								});
+							return false;
+						});
+							
+							
+							
+							
+							
+							
+							
 						
 						
 				

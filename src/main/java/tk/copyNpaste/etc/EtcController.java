@@ -85,8 +85,9 @@ public class EtcController {
 	};
 
 	// 신고 하기
-	public void insertReport(int noteNum) throws Exception {
-		etcService.insertReport(noteNum);
+	@RequestMapping("insertReport.json")
+	public @ResponseBody int insertReport(ReportVO report) throws Exception {
+		return etcService.insertReport(report);
 	};
 
 	// 신고 처리 하기
