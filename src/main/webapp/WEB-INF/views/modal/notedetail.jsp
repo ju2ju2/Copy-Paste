@@ -225,11 +225,15 @@
 						},
 				}).done(function(result) {
 					swal({type: "success",
-						  title: '성공적으로 신고되었습니다.',
-						  text:'관리자가 확인 후 해당 건을 블라인드 처리합니다.',
-			              confirmButtonClass : "btn-danger",
+						  title: '관리자 확인 후 블라인드 처리됩니다.',
+			              confirmButtonClass : "btn-danger btn-sm",
 						  closeOnConfirm: true
+					},
+					function(){
+					
 					})
+					
+				
 				})
 				.fail(function(jqXhr, testStatus, errorText){
 					alert("에러발생 :" + errorText);
@@ -606,11 +610,15 @@ $(document).ready(function(){
 											},
 									}).done(function(result) {
 										swal({type: "success",
-											  title: '성공적으로 신고되었습니다.',
-											  text:'관리자가 확인 후 해당 건을 블라인드 처리합니다.',
-								              confirmButtonClass : "btn-danger",
+											  title: '관리자 확인 후 블라인드 처리됩니다.',
+								              confirmButtonClass : "btn-danger btn-sm",
 											  closeOnConfirm: true
+										},
+										function(){
+										
 										})
+										
+									
 									})
 									.fail(function(jqXhr, testStatus, errorText){
 										alert("에러발생 :" + errorText);
