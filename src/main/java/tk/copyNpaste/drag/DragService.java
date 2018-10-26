@@ -55,9 +55,10 @@ public class DragService {
 	}
 
 	//드래그 달력 검색
-	public List<DragVO> selectByCalDrag(Date period) throws Exception {
+	public List<DragVO> selectByCalDrag(HashMap<String, Object> map) throws Exception {
+		System.out.println("2번 서비스");
 		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
-		List<DragVO> dragList = dragdao.selectByCalDrag(period);
+		List<DragVO> dragList = dragdao.selectByCalDrag(map);
 		return  dragList;
 	}
 	

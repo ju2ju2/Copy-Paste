@@ -1,4 +1,4 @@
-/*
+﻿/*
 * @Class : NoteController
 * @ Date : 2018.10.05
 * @ Author : 우나연
@@ -153,26 +153,14 @@ public class NoteController {
 		map.put("userEmail", principal.getName());
 		return noteService.selectOrderbyNote(map);
 	}
-	
 
-	// 노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws
-/*	public List<NoteVO> selectByCalNote(Date period) throws Exception {
-		return noteService.selectByCalNote(period);}*/
-
-	// 노트 달력 검색 public List<NoteVO> noteByDate(HashMap<String, Object> map) throws
-	// Exception;
 	// 노트 날짜별 검색
 	@RequestMapping(value="selectByCalNote.json")
 	public @ResponseBody List<NoteVO> selectByCalNote(String fromDate, String toDate, Principal principal) throws Exception {
-		System.out.println("안들어오니? 왜니?");
 		HashMap<String, Object> map = new HashMap<String, Object>();
-/*		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");*/
-		System.out.println("from : " + fromDate);
-		System.out.println("to : " + toDate);
 		map.put("fromDate", fromDate);
 		map.put("toDate", toDate);
 		map.put("userEmail", principal.getName());
-		
 		return noteService.selectByCalNote(map);
 	}
 
