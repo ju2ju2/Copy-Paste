@@ -16,7 +16,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!-- 이걸 써줘야 datepicker가 투명함에서 벗어납니다. -->
 <link rel="stylesheet"
    href="${pageContext.request.contextPath}/resources/css/drag-jquery-ui.theme.css" />
 <nav>
@@ -396,102 +395,67 @@ $('#search').click(function(e) {
 
 
 /* 날짜 별 검색 */
-	var dateFormat = "yyyy-mm-dd", 
-
-    fromDate = $('#fromDate').datepicker({
-    	defaultDate : "today",
-    	changeMonth : true,
-    	numberOfMonths : 1
-    	});
-    $('#fromDate').datepicker("option", "maxDate", $("#toDate").val());
-     $('#fromDate').datepicker("option", "onClose", function (selectedDate){
-        $("#toDate").datepicker( "option", "minDate", selectedDate );
-        getDate(this);
-    });
-  
-    toDate = $('#toDate').datepicker({
-    	defaultDate : "+1D",
-    	changeMonth : true,
-    	numberOfMonths : 1
-    	});
-    $('#toDate').datepicker("option", "minDate", $("#fromDate").val());
-   $('#toDate').datepicker("option", "onClose", function (selectedDate){
-        $("#fromDate").datepicker( "option", "maxDate", selectedDate );
-        getDate(this);
-    });
-	 
-	
-	function getDate(element) {
-	var date;
-/* 	var fromDate = $("#fromDate").val();
-	var toDate = $("#toDate").val(); */
-	
-	$.ajax(
-			{
-			   url : "<%=request.getContextPath()%>/note/selectByCalNote.json",
-			   DataType :{},
-			   type : "post",
-			   data : {"fromDate": $("#fromDate").val(),
-					   "toDate" :  $("#toDate").val()
-			   },
-			   success : function(data){
-				    var notecal ="";
-				  	if(data != null) {
-				  		$.each(data, function(key, value){
-				  			
-				  			$('#noteList').empty();
-				  			notecal+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">';
-				  			notecal+='<div class="text-center noteDiv" id="'+value.noteNum+'">';
-				  			notecal+='	<!-- a HTML (to Trigger Modal) -->';
-				  			notecal+='<a data-toggle="modal"';
-				  			notecal+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&cmd=mynote"';
-				  			notecal+='data-target="#modal-testNew" role="button" data-backdrop="static">';
-				  			notecal+='<div class="item">';
-				  			notecal+='<img class="img-rounded"';
-				  			notecal+='src="'+value.noteThumnail+'"';
-				  			notecal+='alt="'+value.noteTitle+'" width="100%">';
-				  			notecal+='<div class="caption">';
-				  			notecal+='<i class="fa fa-plus" aria-hidden="true"></i>';
-				  			notecal+='</div>';
-				  			notecal+='</div>';
-				  			notecal+='<div>';
-				  			notecal+='<h4>'+value.noteTitle+'</h4>';
-				  			notecal+='<strong>'+value.userNick+'</strong><span>'+value.noteDate+'</span>';
-				  			notecal+='</div>';
-				  			notecal+='</a>';
-				  			notecal+='</div>';
-				  			notecal+='</div>';
-				  			
-				  			$("#noteList").html(notecal);
-				  		})
-				  	}
-				   
-			   		
-			 		  },
-			   error : function(){
-				  /*  swal({
-						  title: "해당 기간에 존재하는 게시물이 없습니다.",
-						  text: "",
-						  type: "info",
-						  confirmButtonClass: "btn-danger",
-						  confirmButtonText: "OK",
-						  showCancelButton: false
-						}) */
-						console.log("뭔가 이상한데");
-
-			   }
-									});	 
-	
-	try {
-		date = $.datepicker.parseDate(dateFormat, element.value);
-		
-	} catch (error) {
-		date = null;
+$("#toDate").change(function() {
+	if($("#fromDate").val()!="" && $("#toDate").val()!=""){
+		 $.ajax(
+		         {
+		            url : "<%=request.getContextPath()%>/note/selectByCalNote.json",
+		            type : "get",
+		            DataType :"json",
+		            data : {"fromDate": $("#fromDate").val(),
+		                 	"toDate" :  $("#toDate").val()
+		                 	},
+		            success : function(data){
+		                var notecal ="";
+		                 if(data != null) {
+		                    $.each(data, function(key, value){
+		                       $('#noteList').empty();
+		                       notecal+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">';
+		                       notecal+='<div class="text-center noteDiv" id="'+value.noteNum+'">';
+		                       notecal+='   <!-- a HTML (to Trigger Modal) -->';
+		                       notecal+='<a data-toggle="modal"';
+		                       notecal+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&cmd=mynote"';
+		                       notecal+='data-target="#modal-testNew" role="button" data-backdrop="static">';
+		                       notecal+='<div class="item">';
+		                       notecal+='<img class="img-rounded"';
+		                       notecal+='src="'+value.noteThumnail+'"';
+		                       notecal+='alt="'+value.noteTitle+'" width="100%">';
+		                       notecal+='<div class="caption">';
+		                       notecal+='<i class="fa fa-plus" aria-hidden="true"></i>';
+		                       notecal+='</div>';
+		                       notecal+='</div>';
+		                       notecal+='<div>';
+		                       notecal+='<h4>'+value.noteTitle+'</h4>';
+		                       notecal+='<strong>'+value.userNick+'</strong><span>'+value.noteDate+'</span>';
+		                       notecal+='</div>';
+		                       notecal+='</a>';
+		                       notecal+='</div>';
+		                       notecal+='</div>';
+		                       
+		                       $("#noteList").html(notecal);
+		                    })
+		                 }
+		               
+		                  
+		                  },
+		            error : function(){
+		            	console.log("안들어온다우");
+		              /*  swal({
+		                    title: "해당 기간에 존재하는 게시물이 없습니다.",
+		                    text: "",
+		                    type: "info",
+		                    confirmButtonClass: "btn-danger",
+		                    confirmButtonText: "OK",
+		                    showCancelButton: false
+		                  }) */
+		            }
+		      });  
+	}else{
+		alert("null뜨는데?");
 	}
-
-	return date;
-	} 
-
+	  
+ 	}) 
+	
 
 	$(document).ready(function() {
 		folderlist();
