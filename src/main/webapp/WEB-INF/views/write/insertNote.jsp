@@ -91,6 +91,36 @@ $(document).ready(function() {
 
 	
 	
+	
+	//문자추출 vision
+	$('#visionBtn').click(function(e) {
+		      var form = document.getElementById("visionform")
+		      var formData = new FormData(form);
+		$.ajax({
+		      url: "../note/visionAnalizeImg.json", // url_pettern 
+		      type : 'post',
+		      data: formData, 
+		      enctype: 'multipart/form-data',
+		      processData : false,
+		      contentType : false,
+		      success:function(result){
+		    	console.log(result)
+  
+		      },
+		      error:function(request,status,error){
+		    	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		    }
+	
+		     		 
+		    })
+
+	})
+	
+	
+	
+	
+	
+	
 })
 
 
@@ -114,7 +144,7 @@ $(document).ready(function() {
 					<div class="form-group">
 						<label class="control-label col-sm-2 noteLabels" id="noteLabel">공개<br/>설정</label>
 						<input type="radio" name="notePublic" value="1" checked="checked" id="noteRadio1"> 전체 공개 <br/>
-						<input type="radio" name="notePublic" value="0" > 비공개
+						<input type="radio" name="notePublic" value="0" >비공개
 					</div>
 				</div>
 				<div class="modal-footer">
@@ -131,11 +161,12 @@ $(document).ready(function() {
 		<div class="form-group">
 			<input id="noteTitle" name="noteTitle" type="text" size="158" required placeholder="제목을 입력해주세요">
 		</div>
-		<textarea id="noteContent" name="noteContent" rows="25" required></textarea>
+		<textarea id="noteContent" name="noteContent" rows="22" required></textarea>
 		<input name="image" type="file" id="upload" multiple class="hidden" onchange="">
 		<br>
 		<div class="col-sm-12 text-right">
-			<input type="button" class="btn btn-secondary" value="문자 인식">
+			<input type="button" class="btn btn-secondary" value="문자 인식" data-toggle="modal"
+				data-target="#visionModal">
 			<input type="button" class="btn btn-secondary" value="맞춤법 검사">
 		</div>
 		<br>
@@ -148,3 +179,18 @@ $(document).ready(function() {
 	</div>
 </form>
 
+<div id="visionModal" class="modal fade form-horizontal">
+	<div class="modal-dialog noteModalSize">
+		<form id="visionform" name="visionform" enctype="multipart/form-data">
+			<div class="modal-content">
+				<div class="modal-body">
+				<input type="file" name="visionImg" id="visionImg" aria-describedby="file_upload" accept="image/*">
+				<small> * .jpg, .gif, .png 파일만 업로드 가능하며, 500kb를 초과할 수 없습니다.</small>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger" id="visionBtn">문자 추출하기</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

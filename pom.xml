@@ -289,6 +289,20 @@
 		      <version>22.0</version>
 		</dependency>
 
+		<!-- vision -->
+		<dependency>
+            <groupId>com.google.cloud</groupId>
+            <artifactId>google-cloud-vision</artifactId>
+            <version>1.33.0</version>
+        </dependency>
+		
+		<!-- base64 디코더 -->
+		<dependency>
+		    <groupId>commons-codec</groupId>
+		    <artifactId>commons-codec</artifactId>
+		    <version>1.9</version>
+		</dependency>
+		
 		
 	</dependencies>
 	

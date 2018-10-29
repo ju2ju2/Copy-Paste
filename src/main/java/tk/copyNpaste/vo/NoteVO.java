@@ -8,6 +8,8 @@ package tk.copyNpaste.vo;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 /**
  * @author bit
  *
@@ -36,6 +38,7 @@ public class NoteVO {
 	private int newNoteNum;
 	private Date fromDate;
 	private Date toDate;
+	private String visionImg; 
 
 	public String getUserNick() {
 		return userNick;
@@ -148,6 +151,13 @@ public class NoteVO {
 	}
 	public void setNewNoteNum(int newNoteNum) {
 		this.newNoteNum = newNoteNum;
+	}
+	
+	public String getVisionImg() {
+		return visionImg;
+	}
+	public void setVisionImg(String visionImg) {
+		this.visionImg = visionImg;
 	}
 	@Override
 	public String toString() {
