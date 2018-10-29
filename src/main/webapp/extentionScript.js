@@ -8,8 +8,8 @@
 
   // 로그인
   document.querySelector("#loginBtn").onclick = function () {
-    var email = document.querySelector("#email").value;
-    var password = document.querySelector("#password").value;
+    var userEmail = document.querySelector("#userEmail").value;
+    var userPwd = document.querySelector("#userPwd").value;
 
     var xhr = new XMLHttpRequest();
 
@@ -20,10 +20,10 @@
           if(result.loginChk == 'true') {
             document.querySelector("#afterLogin").style.display = "block";
             document.querySelector("#loginForm").style.display = "none";
-            document.querySelector("#welcome").innerHTML = result.name +"님 환영합니다.";
-            localStorage.setItem("email", result.email);
-            localStorage.setItem("name", result.name);
-            localStorage.setItem("memberNo", result.memberNo);
+            document.querySelector("#welcome").innerHTML = result.userNick +"님 환영합니다.";
+            localStorage.setItem("userEmail", result.userEmail);
+            localStorage.setItem("userNick", result.userNick);
+            localStorage.setItem("userPhoto", result.userPhoto);
             allowDrag();
           } else {
             alert("로그인 정보를 확인해주세요");
@@ -32,7 +32,7 @@
         }
       }
     };
-    xhr.open("GET", "http://localhost:10030/login?email="+email+"&password="+password, true);
+    xhr.open("POST", "http://localhost:10030/login?userEmail="+userEmail+"&userPwd="+userPwd, true);
     xhr.send();
   }
 
@@ -65,10 +65,10 @@
        + '    selectedText = document.selection.createRange().htmlText.replace(/&/g, "amp;");'
        + '  }'
        + '}'
-       + 'var dragUrl = window.location.href.replace(/&/g, "amp;").replace(/=/g, "nun;");'
-       + 'var dragUrlTitle = document.getElementsByTagName("title")[0].innerHTML.replace(/&/g, "amp;");'
-       + 'console.log(selectedText + " / " + dragUrl);'
-       + 'var datatosend = "drag_content=" + selectedText + "&drag_url=" + dragUrl + "&drag_url_title=" + dragUrlTitle +"&member_no='+localStorage.getItem("memberNo")+'";'
+       + 'var dragOriginLink = window.location.href.replace(/&/g, "amp;").replace(/=/g, "nun;");'
+       + 'var dragOrigin = document.getElementsByTagName("title")[0].innerHTML.replace(/&/g, "amp;");'
+       + 'console.log(selectedText + " / " + dragOriginLink);'
+       + 'var datatosend = "dragText=" + selectedText + "&dragOriginLink=" + dragOriginLink + "&dragOrigin=" + dragOrigin +"&userEmail='+localStorage.getItem("userEmail")+'";'
        + 'var xhrr = new XMLHttpRequest();'
        + 'xhrr.onreadystatechange = function () {'
        + 'if (xhrr.readyState == 4) {'
