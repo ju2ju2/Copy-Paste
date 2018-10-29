@@ -36,11 +36,12 @@
 							<div class="col-xs-12">
 								<select name="sort-category" id="sort-category">
 									<option value="">- 정렬 분류 -</option>
-									<option value="1">최신순</option>
-									<option value="1">오래된 순</option>
-									<option value="1">중요표시 있는 순</option>
-									<option value="1">전체보기</option>
-								</select>
+									<option value="dragNumDesc">최신순</option>
+            						<option value="dragNumAsc">오래된 순</option>
+            						<option value="dragMark">중요표시 있는 순</option>
+           						  	<option value="binary(dragText)">가나다순</option>
+           							<option value="">전체보기</option>
+									</select>
 							</div>
 							<!-- 드래그검색 -->
 							<section id="subject-search" class="alt">
@@ -56,7 +57,7 @@
 					</div>
 					<section>
 						<br>
-						<header class="major">
+						<header class="major" id="droppable">
 							<h2>
 								드래그 목록<i class="fas fa-trash icon-size"></i>
 							</h2>
@@ -187,70 +188,7 @@
 		}
 	})
 	
-	<!-- 별 아이콘 토글 -->
-	$('.fa-star').click(function(){
-		if($(this).hasClass('far')){
-			$(this).removeClass('far').addClass('fas');
-		} else {
-			$(this).removeClass('fas').addClass('far');
-		}
-	})
 
-	<!--드래그목록-->
-	$.ajax({
-		      url: "${pageContext.request.contextPath}/drag/selectAllDrag.json", // url_pettern 
-		      type:"POST",
-		      dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
-		      success:function(data){
-		    	  var a = "";
-		        	if(data != null) {
-		        		$.each(data, function(key, value){
-		        			$('#dragList').empty();
-		                	a += '<div class="text-center dragDiv mt-10" id="dragDiv">';
-		                	a += '<blockquote class="grapefruit">';
-		                	a += '<div class="dragContent">';
-		                	a += '<!-- 별 아이콘 -->';
-		                	a += '<div class="icon-right starDiv">	<br>';
-		                	a += '<i class="far fa-star icon-size"></i>';
-		                	a += '</div>';
-		            		a += '<!-- 모달 창 -->';
-		                	a += '<div class="drag-a">';
-		                	a += '<p class="mt-10" class="dragText" id="dragText">'+value.dragText+'</p> <code>';
-		                	a += '&lt;출처 : <span class="Cgrapefruit">'+value.dragOrigin+'</span>&gt; ';
-		                	a += '<span>'+value.dragDate+'</span>';
-		                	a += '</code>';
-		                	a += '</div>';
-		                	a += '</blockquote>';
-		                	a += '</div>';		
-		        		})
-		        	}
-		        
-		        	if (data.length == 0) {
-						a += "<div class='text-center'>";
-						a += "<h6>등록된 드래그가 없습니다.</h6>";
-						a += "</div>";
-					}
-					$("#dragList").html(a);
-		        	
-		         	$('.dragDiv').draggable({
-		            	revert: true, 
-		            	 revertDuration: 200,
-		            	 snapMode: "inner",
-		            	 scroll: true,
-		            	 scrollSensitivity: 100 ,
-		            	 scrollSpeed: 100
-		            })
-		            
-		            <!-- 드래그 클릭시 텍스트 에디터기에 추가-->
-		        	$('.dragDiv').on("click",function(){
-		        		var editor = tinyMCE.activeEditor;
-		    			var dragText = $(this).find('#dragText').text();
-		    			editor.dom.add(editor.getBody(), 'p', {}, dragText+ "<br>");
-		    		})
-		      }
-		 })
-
-		 
 	//노트 드래그 가능, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
     $('.asideNoteDiv').draggable({
     	revert: true, 
@@ -295,7 +233,7 @@
     		      			aa+='<div class="text-center asideNoteDiv">'
     		      			aa+='<!-- a HTML (to Trigger Modal) -->'
     		      			aa+='<a data-toggle="modal"'
-    		      			aa+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&cmd=mynote"'
+    		      			aa+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&write=y"'
     		      			aa+='data-target="#modal-testNew" role="button" data-backdrop="static">'
     		      			aa+='<div class="item">'
     		      			aa+='<img class="img-rounded"'
@@ -321,7 +259,8 @@
     		    })
     	}) 
     	
-	}) 
+	})
+
 	
 	<!-- 폴더명 클릭시 노트 조회 -->
 

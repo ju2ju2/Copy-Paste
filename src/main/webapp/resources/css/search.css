@@ -469,6 +469,12 @@ select {
 	display: inline;
 	}
 	
+#searchinsite-text {
+	padding: 0 1rem;
+	width: 80%;
+	display: inline;
+	}
+	
 /* 아이콘 설정 */
 i:hover {
 	color:#f56a6a;

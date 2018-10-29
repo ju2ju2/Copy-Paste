@@ -7,6 +7,7 @@
 package tk.copyNpaste.drag;
 
 import java.security.Principal;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -74,24 +75,16 @@ public class DragController {
 	}
 	
 	//드래그 달력 검색
-	public void selectByCalDrag(Date period) throws Exception {
-		dragservice.selectByCalDrag(period);
-	}
-	
-	
-/*	//드래그 키워드 검색 dragSearch.json
-	@RequestMapping(value="selectByKeyDrag.json")
-	public  String  selectByKeyDrag(String keyword,Principal principal,Model model ) throws Exception {
+	@RequestMapping(value="selectByCalDrag.json")
+	public @ResponseBody List<DragVO> selectByCalDrag(String fromDate, String toDate, Principal principal) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		map.put("keyword", keyword);
+		map.put("fromDate", fromDate);
+		map.put("toDate", toDate);
 		map.put("userEmail", principal.getName());
-		List<DragVO> dragList= dragservice.selectByKeyDrag(map);	
-		model.addAttribute("dragList", dragList);
-		System.out.println("키워드 검색");
-		return "makeDragList";
+		return dragservice.selectByCalDrag(map);
 	}
-	*/
 	
+
 	//드래그 키워드 검색 dragSearch.json
 	@RequestMapping(value="selectByKeyDrag.json")
 	public @ResponseBody List<DragVO> selectByKeyDrag(String keyword,Principal principal,Model model ) throws Exception {

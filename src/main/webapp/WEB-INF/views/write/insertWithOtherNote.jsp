@@ -49,34 +49,48 @@ $(document).ready(function() {
 
 	//다른 노트이용해 새노트 작성
 	$('#insertNoteBtn').click(function() {
-	 	$.ajax({
-	      url: "${pageContext.request.contextPath}/note/insertNote.json", // url_pettern 
-	      type:"post",
-	      dataType:"json",
-	      data: {'noteTitle':$("#noteTitle").val(),
-	    	 	 'noteContent':tinymce.get('noteContent').getContent(),
-	    	 	 'folderName':$("#folderList").val(),
-	    	 	 'subjectCode':$("#subjectList").val(),
-	    	 	 'notePublic':$("input[name='notePublic']:checked").val()
-	     		 },	
-	      success:function(result){
-	    	  swal({type: "success",
-				  title: '성공적으로 등록되었습니다.',
-	              confirmButtonClass : "btn-danger",
-				  closeOnConfirm: false
-			},
-			function(){
-				location.href="${pageContext.request.contextPath}/note/note.htm";
-			});	
-	       },
-	      error:function(request,status,error){
-	    	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	    }
-
-	     		 
-	    })
+		if ($('#noteTitle').val()==''){
+			swal({type: "success",
+				  title: '제목을 입력해주세요',
+	              confirmButtonClass : "btn-danger btn-sm",
+				  closeOnConfirm: true
+			})
+		}else if (tinymce.get('noteContent').getContent()==''){
+			swal({type: "success",
+				  title: '내용을 입력해주세요',
+	              confirmButtonClass : "btn-danger btn-sm",
+				  closeOnConfirm: true
+			})
+		} 
+		else {
+		 	$.ajax({
+		      url: "${pageContext.request.contextPath}/note/insertNote.json", // url_pettern 
+		      type:"post",
+		      dataType:"json",
+		      data: {'noteTitle':$("#noteTitle").val(),
+		    	 	 'noteContent':tinymce.get('noteContent').getContent(),
+		    	 	 'folderName':$("#folderList").val(),
+		    	 	 'subjectCode':$("#subjectList").val(),
+		    	 	 'notePublic':$("input[name='notePublic']:checked").val()
+		     		 },	
+		      success:function(result){
+		    	  swal({type: "success",
+					  title: '성공적으로 등록되었습니다.',
+		              confirmButtonClass : "btn-danger",
+					  closeOnConfirm: false
+				},
+				function(){
+					location.href="${pageContext.request.contextPath}/note/note.htm";
+				});	
+		       },
+		      error:function(request,status,error){
+		    	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		    }
+	
+		     		 
+		    })
+		}
 	})
-
 	
 	
 })

@@ -1,4 +1,4 @@
-/*
+﻿/*
 * @Class : NoteController
 * @ Date : 2018.10.05
 * @ Author : 우나연
@@ -81,7 +81,7 @@ public class NoteController {
 	
 	// 노트 작성페이지로 이동
 	@RequestMapping(value="write.htm", method = RequestMethod.GET)
-	public String writeNotePage() throws Exception {
+	public String writeNotePage(Model model) throws Exception {
 		return "write.insertNote";
 	}
 	
@@ -150,26 +150,14 @@ public class NoteController {
 		map.put("userEmail", principal.getName());
 		return noteService.selectOrderbyNote(map);
 	}
-	
 
-	// 노트 달력 검색 //public List<NoteVO> noteByDate(HashMap<String, Object> map) throws
-/*	public List<NoteVO> selectByCalNote(Date period) throws Exception {
-		return noteService.selectByCalNote(period);}*/
-
-	// 노트 달력 검색 public List<NoteVO> noteByDate(HashMap<String, Object> map) throws
-	// Exception;
 	// 노트 날짜별 검색
 	@RequestMapping(value="selectByCalNote.json")
-	public @ResponseBody List<NoteVO> selectByCalNote(Date fromDate, Date toDate, Principal principal) throws Exception {
+	public @ResponseBody List<NoteVO> selectByCalNote(String fromDate, String toDate, Principal principal) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		
-		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-		System.out.println("from : " + date.format(fromDate));
-		System.out.println("to : " + date.format(toDate));
-		map.put("fromDate", date.format(fromDate));
-		map.put("toDate", date.format(toDate));
+		map.put("fromDate", fromDate);
+		map.put("toDate", toDate);
 		map.put("userEmail", principal.getName());
-		
 		return noteService.selectByCalNote(map);
 	}
 
@@ -186,6 +174,7 @@ public class NoteController {
 	@RequestMapping(value="scrapNote.json")
 	public @ResponseBody int scrapNote(NoteVO note, Principal principal) throws Exception {
 		note.setUserEmail(principal.getName());
+		System.out.println(note.getNoteContent());
 		return noteService.scrapNote(note);
 	}
 

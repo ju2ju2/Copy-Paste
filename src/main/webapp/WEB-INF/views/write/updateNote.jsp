@@ -47,7 +47,22 @@ $(document).ready(function() {
 
 	//노트 수정 실행
 	$('#updateNoteBtn').click(function() {
-	 	$.ajax({
+		if ($('#noteTitle').val()==''){
+			swal({type: "success",
+				  title: '제목을 입력해주세요',
+	              confirmButtonClass : "btn-danger btn-sm",
+				  closeOnConfirm: true
+			})
+		}else if (tinymce.get('noteContent').getContent()==''){
+			swal({type: "success",
+				  title: '내용을 입력해주세요',
+	              confirmButtonClass : "btn-danger btn-sm",
+				  closeOnConfirm: true
+			})
+		} 
+		else {
+		
+		$.ajax({
 	      url: "${pageContext.request.contextPath}/note/updateNote.json", // url_pettern 
 	      type:"POST",
 	      dataType:"json",
@@ -74,6 +89,7 @@ $(document).ready(function() {
 
 	     		 
 	    })
+		}
 	})
 
 	

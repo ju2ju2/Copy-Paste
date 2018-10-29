@@ -7,17 +7,28 @@
 
 package tk.copyNpaste.etc;
 
+import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.SqlSession;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import tk.copyNpaste.mapper.EtcMapper;
 import tk.copyNpaste.mapper.MemberMapper;
+import tk.copyNpaste.mapper.NoteMapper;
 import tk.copyNpaste.vo.EtcVO;
 import tk.copyNpaste.vo.MemberVO;
+import tk.copyNpaste.vo.NoteVO;
 import tk.copyNpaste.vo.ReportVO;
 
 @Service
@@ -38,9 +49,9 @@ public class EtcService {
 	}
 	
 	// 신고 하기
-	public int insertReport(int noteNum) throws Exception {
+	public int insertReport(ReportVO report) throws Exception {
 		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
-		return etcdao.insertReport(noteNum);
+		return etcdao.insertReport(report);
 	}
 
 	// 신고 목록 보기
@@ -127,4 +138,51 @@ public class EtcService {
 		return etcdao.stateNoteSubject();
 	}
 
+
+	// 셀레니움
+	public void naver() {
+		System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
+		// 2번째 파라미터가 경로
+		WebDriver driver = new ChromeDriver();
+		driver.get("http://naver.com");
+		driver.quit();
+	}
+	
+	public void google(HttpServletRequest request) {
+/*		String driverpath = request.getSession().getServletContext().getRealPath("resources/driver/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", driverpath);
+		System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
+		// 2번째 파라미터가 경로
+		WebDriver driver = new ChromeDriver();
+		
+		driver.get("http://naver.com");
+	*/
+/*		driver.get("http://google.com");
+		WebElement element = driver.findElement(By.name("q"));
+		element.sendKeys("Cheese!");
+		// Now submit the form. WebDriver will find the form for us from the element
+	    element.submit();
+	    // Check the title of the page
+	    System.out.println("Page title is: " + driver.getTitle());
+	    // Google's search is rendered dynamically with JavaScript.
+	   // Wait for the page to load, timeout after 10 seconds
+	   (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
+	     public Boolean apply(WebDriver d) {
+	     return d.getTitle().toLowerCase().startsWith("cheese!");
+	      }
+	     });
+	 // Should see: "cheese! - Google Search"
+	 
+	      //Close the browser
+	        //driver.quit();
+*/
+		
+	}
+	
+	public List<NoteVO> selectSearchSite(HashMap map) throws Exception {
+		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
+		return etcdao.selectSearchSite(map);
+	}
+	
+	
 }
