@@ -35,8 +35,11 @@
 					<h3 class="mg-top-6 text-center login-title">SNS LOGIN</h3>
 					<div class="text-center">
 						<hr>
+						<!-- 네이버 -->
 						&nbsp;<a href="#"><img src="./resources/image/naver.png" class="inline">&ensp;</a> 
-						<a href="#"><img src="./resources/image/kakao.png" class="inline"> &ensp;</a>
+						<!-- 카카오 -->
+						<a id="custom-login-btn" href="javascript:loginWithKakao()"><img src="./resources/image/kakao.png" class="inline"> &ensp;</a>
+						<!-- 구글 -->
 						<a href="#"><img src="./resources/image/google.png" class="inline"></a>
 					</div>
 

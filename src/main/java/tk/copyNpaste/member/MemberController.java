@@ -84,8 +84,10 @@ public class MemberController {
 	};
 	
 	//카카오로그인
+	@RequestMapping(value="kakaoLogin.do")
 	public void kakaoLogin(String userEmail) throws Exception{
-		
+		System.out.println(userEmail);
+		loginService.kakaoLogin(userEmail);
 	};
 		
 	//네이버로그인

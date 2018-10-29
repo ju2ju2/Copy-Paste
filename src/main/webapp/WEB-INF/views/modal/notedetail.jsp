@@ -140,8 +140,7 @@
 							function(){
 							
 							})
-							
-						
+											
 						})
 						.fail(function(jqXhr, testStatus, errorText){
 							alert("에러발생 :" + errorText);
@@ -247,15 +246,30 @@
 		return false;
 	});
 		
-		
-		
-	
-		
-		
-		
-		
+	/* 비회원인 경우 마우스 down 시 로그인 팝업 */
+	var session = ('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal}');
+
+	$('#noteContent').mousedown(function(){	
+		if(session == '') {
+			$('#loginModal').show();	
+				swal({
+				  title: "٩(இ ⌓ இ๑)۶",
+				  text: '로그인 후 이용 가능한 기능입니다.\n로그인 페이지로 이동 하시겠습니까?',
+				  type: "warning",
+				  showCancelButton: true,
+				  confirmButtonClass: "btn-danger",
+				  confirmButtonText : "OK",
+				  closeOnConfirm: false,
+				}
+			, function () {
+				location.href = "${pageContext.request.contextPath}/login.htm"
+					
+		}) 
+		}
 	});
 
+	
+	});
 </script>
 <!-- modal-header -->
 <div class="modal-header">
@@ -287,35 +301,42 @@
 					<div class="col-sm-9"></div>
 					<div class="col-sm-3">
 						<strong>
+						<se:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"> <!-- 회원인 경우 아이콘 노출 -->
 						<c:choose>
-							<c:when test="${note.noteScrap eq 1 and note.userEmail==loginuser}"><!-- 스크랩한 글일때 수정버튼>>새노트작성  -->
-								<a href="${pageContext.request.contextPath}/note/insertWithOtherNote.htm?noteNum=${note.noteNum}"><i class="far fa-edit 3x notewrite"></i> &nbsp;</a> 
-								 <a id="emailNoteBtn"><i class="far fa-envelope"></i> &nbsp;</a> 
-								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down"></i> &nbsp;</a> 
-								 <a id="deleteNoteBtn"><i class="fas fa-trash"></i> &nbsp;</a> <!-- 스크랩글 삭제 -->
-							</c:when>
 							<c:when test="${note.noteScrap eq 0 and note.userEmail==loginuser}">
-								 <a href="${pageContext.request.contextPath}/note/updateNote.htm?noteNum=${note.noteNum}"><i class="far fa-edit 3x notewrite"></i> &nbsp;</a> 
-								 <a id="emailNoteBtn"><i class="far fa-envelope"></i> &nbsp;</a> 
-								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down"></i> &nbsp;</a> 
-								 <a id="deleteNoteBtn"><i class="fas fa-trash"></i> &nbsp;</a> 
+								 <a href="${pageContext.request.contextPath}/note/updateNote.htm?noteNum=${note.noteNum}">
+								 	<i class="far fa-edit 3x notewrite" alt="노트 수정" title="노트 수정"></i> &nbsp;</a> 
+								 <a id="emailNoteBtn"><i class="far fa-envelope" alt="노트 이메일로 발송" title="노트 이메일로 발송"></i> &nbsp;</a> 
+								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down" alt="노트 다운로드" title="노트 다운로드"></i> &nbsp;</a> 
+								 <a id="deleteNoteBtn"><i class="fas fa-trash" alt="노트 삭제" title="노트 삭제"></i> &nbsp;</a> 
+							</c:when>
+							<c:when test="${note.noteScrap eq 1 and note.userEmail==loginuser}"><!-- 스크랩한 글일때 수정버튼>>새노트작성  -->
+								<a href="${pageContext.request.contextPath}/note/insertWithOtherNote.htm?noteNum=${note.noteNum}">
+									<i class="far fa-edit 3x notewrite" alt="이 노트를 이용해 새 노트 작성" title="이 노트를 이용해 새 노트 작성"></i> &nbsp;</a> 
+								 <a id="emailNoteBtn"><i class="far fa-envelope" alt="노트 이메일로 발송" title="노트 이메일로 발송"></i> &nbsp;</a> 
+								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down" alt="노트 다운로드" title="노트 다운로드"></i> &nbsp;</a> 
+								 <a id="deleteNoteBtn"><i class="fas fa-trash" alt="노트 삭제" title="노트 삭제"></i> &nbsp;</a> <!-- 스크랩글 삭제 -->
 							</c:when>
 							<c:when test="${role=='[ROLE_ADMIN]'}">
-							 	 <a href="${pageContext.request.contextPath}/note/insertWithOtherNote.htm?noteNum=${note.noteNum}"><i class="far fa-edit 3x notewrite"></i> &nbsp;</a> 
-								 <a id="emailNoteBtn"><i class="far fa-envelope"></i> &nbsp;</a> 
-								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down"></i> &nbsp;</a> 
-								 <a id="scrapNoteBtn"><i class="fas fa-archive"></i>&nbsp;</a>
-								 <a id="deleteNoteBtn"><i class="fas fa-trash"></i> &nbsp;</a> 
+							 	 <a href="${pageContext.request.contextPath}/note/insertWithOtherNote.htm?noteNum=${note.noteNum}">
+							 	 	<i class="far fa-edit 3x notewrite"  alt="이 노트를 이용해 새 노트 작성" title="이 노트를 이용해 새 노트 작성"></i> &nbsp;</a> 
+								 <a id="emailNoteBtn"><i class="far fa-envelope" alt="노트 이메일로 발송" title="노트 이메일로 발송"></i> &nbsp;</a> 
+								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down" alt="노트 다운로드" title="노트 다운로드"></i> &nbsp;</a> 
+								 <a id="scrapNoteBtn"><i class="fas fa-archive" alt="노트 스크랩" title="노트 스크랩"></i>&nbsp;</a>
+								 <a id="deleteNoteBtn"><i class="fas fa-trash" alt="노트 삭제" title="노트 삭제"></i> &nbsp;</a> 
 							</c:when>
 							<c:otherwise>
-							 	 <a href="${pageContext.request.contextPath}/note/insertWithOtherNote.htm?noteNum=${note.noteNum}"><i class="far fa-edit 3x notewrite"></i> &nbsp;</a> 
-								 <a id="emailNoteBtn"><i class="far fa-envelope"></i> &nbsp;</a> 
-								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down"></i> &nbsp;</a> 
-								 <a id="scrapNoteBtn"><i class="fas fa-archive"></i>&nbsp;</a>
-								 <a id="noteReportForm"> <i class="fas fa-flag"></i></a>
-							</c:otherwise>
+							 	 <a href="${pageContext.request.contextPath}/note/insertWithOtherNote.htm?noteNum=${note.noteNum}">
+							 	 	<i class="far fa-edit 3x notewrite" alt="이 노트를 이용해 새 노트 작성" title="이 노트를 이용해 새 노트 작성"></i> &nbsp;</a> 
+								 <a id="emailNoteBtn"><i class="far fa-envelope" alt="노트 이메일로 발송"  title="노트 이메일로 발송"></i> &nbsp;</a> 
+								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down" alt="노트 다운로드" title="노트 다운로드"></i> &nbsp;</a> 
+								 <a id="scrapNoteBtn"><i class="fas fa-archive" alt="노트 스크랩" title="노트 스크랩"></i></a>
+							</c:otherwise>	
 						</c:choose> 
 						<c:if test="${param.write eq 'y'}"> <a id="addToNoteBtn"><i class="far fa-hand-point-up"></i> &nbsp;</a> </c:if>
+						</se:authorize>
+						<se:authorize access="!hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"> <!-- 비회원인 경우 아이콘 노출 안 함 -->
+						</se:authorize>
 						</strong>
 					</div>
 				</div>

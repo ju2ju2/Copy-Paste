@@ -92,6 +92,18 @@
 		select noteNum from notecomm where noteNum =#{reportNum}
 	</select>
 
+
+	<!-- 사이트 내 검색 -->
+	<select id="selectSearchSite" parameterType="hashmap" resultType="NoteVO">
+		select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+	n.subjectCode,s.subjectName, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail
+	from note n join subject s on s.subjectCode=n.subjectCode 
+	where
+		 (n.noteTitle like CONCAT('%',#{keyword},'%') or 
+		  n.noteContent like CONCAT('%',#{keyword},'%') or 
+		  s.subjectName like CONCAT('%',#{keyword},'%'))
+	order by noteNum desc;
+	</select>
 </mapper>
 
 

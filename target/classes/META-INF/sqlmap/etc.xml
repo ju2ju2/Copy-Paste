@@ -6,16 +6,6 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="tk.copyNpaste.mapper.EtcMapper">
-
-	<!-- 신고 처리 -->
-	<insert id="insertReport" parameterType="ReportVO">
-		<selectKey keyProperty="reportNum" order="BEFORE" resultType="int">
-			select max(reportNum)+1 from report
-		</selectKey>
-		insert into report(reportNum, userEmail, noteNum, reportCauseCode, reportContent, noteOrCommCode, reportmemo)
-		values(#{reportNum}, #{userEmail}, #{noteNum}, #{reportCauseCode}, #{reportContent}, #{noteOrCommCode}," " )
-	</insert>
-
 	<!-- 주제에 맞게 노트 개수 가지고 온다 -->
 	<select id="stateNoteSubject" resultType="EtcVO">
 		select c.subjectName
@@ -88,8 +78,8 @@
 		update notecomm set noteCommBlind = 0 where noteCommNum = #{noteNum}
 	</update>
 	
-	<select id="selectHasReportComm" resultType="int">
-		select noteNum from notecomm where noteNum =#{reportNum}
+	<select id="selectHasReportComm" resultType="Integer">
+		select noteNum from notecomm where noteCommNum =#{reportNum}
 	</select>
 
 </mapper>

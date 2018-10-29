@@ -13,10 +13,10 @@
 	<div class="col-xs-2">
 	<select name="subject-category" id="subject-category">
 		<option value="">- 주제 선택 -</option>
-		<option value="1">뭔가</option>
-		<option value="1">있을</option>
-		<option value="1">것</option>
-		<option value="1">이다</option>
+		<option value="SJ00">기타</option>
+		<option value="SJ01">회사</option>
+		<option value="SJ02">생활</option>
+		<option value="SJ03">교육</option>
 	</select>
 	</div>
 
@@ -24,8 +24,8 @@
 	<div class="col-sm-10  no-margin">
 	<section id="subject-search" class="alt">
 		<form method="post" action="#">
-			<input type="text" name="query" id="search-text" placeholder="검색어를 입력해 주세요." />
-			<a href="#"><i id="search" class="fas fa-search icon-size"  style="padding-top:15px"></i></a>
+			<input type="text" name="query" id="searchinsite-text" placeholder="검색어를 입력해 주세요." />
+			<a href="#"><i id="searchinsite" class="fas fa-search icon-size"  style="padding-top:15px"></i></a>
 		</form>		
 	</section>
 	</div>
@@ -49,65 +49,17 @@
 		<header class="major">				
 		<h3>검색 결과</h3>
 		</header>
-	<div class="row">
-	<div class="blog">
-		<div class="card text-center">
-			<img class="card-img-top"
-				src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-				alt="" width="100%">
-			<div class="card-block">
-				<h4>가을에 쓴 편지</h4>
-				<span>음담패썰</span> <span>2018.08.30</span>
-			</div>
-		</div>
-	</div>
-	<div class="blog">
-		<div class="card text-center">
-			<img class="card-img-top"
-				src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-				alt="" width="100%">
-			<div class="card-block">
-				<h4>가을에 쓴 편지</h4>
-				<span>음담패썰</span> <span>2018.08.30</span>
-			</div>
-		</div>
-	</div>
-	<div class="blog">
-		<div class="card text-center">
-			<img class="card-img-top"
-				src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-				alt="" width="100%">
-			<div class="card-block">
-				<h4>가을에 쓴 편지</h4>
-				<span>음담패썰</span> <span>2018.08.30</span>
-			</div>
-		</div>
-	</div>
-	<div class="blog">
-		<div class="card text-center">
-			<img class="card-img-top"
-				src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-				alt="" width="100%">
-			<div class="card-block">
-				<h4>가을에 쓴 편지</h4>
-				<span>음담패썰</span> <span>2018.08.30</span>
-			</div>
-		</div>
-	</div>
-	<div class="blog">
-		<div class="card text-center">
-			<img class="card-img-top"
-				src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-				alt="" width="100%">
-			<div class="card-block">
-				<h4>가을에 쓴 편지</h4>
-				<span>음담패썰</span> <span>2018.08.30</span>
-			</div>
-		</div>
-	</div>	
+	<div class="searchList" id="searchList">
+		<!-- 검색 결과가 뿌려질 공간 -->
+
+	
+	
+	
 	</div>
 	</section>
 
 <br>
 </div>
 </div>
+
+

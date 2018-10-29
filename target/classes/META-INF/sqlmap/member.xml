@@ -17,6 +17,11 @@
                 values(#{userEmail}, #{userNick}, #{userPwd}, #{userPhoto})
     </insert>
     
+    <!-- 카카오 회원가입 -->
+    <insert id="kakaoLogin" parameterType="String">
+        insert into users(userEmail) values(#{userEmail})
+    </insert>
+    
 	<!-- 회원가입 시 권한 생성 -->
 	<insert id="insertMemberRole" parameterType="String">
         insert into rolls (userEmail) values (#{userEmail});
