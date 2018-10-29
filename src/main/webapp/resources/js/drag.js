@@ -46,48 +46,46 @@
 						   data : {"fromDate": $("#fromDate").val(),
 								   "toDate" :  $("#toDate").val()
 						   },
-						   success:function(data){
-							   console.log("성공?");
-					    	    var dragList ="";   	 
-					        	if(data != null) {
-					        		$.each(data, function(key, value){
-					        			
-					        			$('#dragList').empty();
-					        			dragList+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">';
-					        			dragList+='<div class="text-center dragDiv mt-10" id="'+value.dragNum+'">';
-					        			dragList+='<blockquote class="grapefruit">';
-					        			dragList+='<!-- 별 아이콘 -->';
-					        			dragList+='<div class="icon-right starDiv" id="starMark">';
-					          			if(value.dragMark==1){   
-					          				dragList += '<br> <i class="fas fa-star icon-size" id="starDrag" onclick=removeDragMark("'+value.dragNum+'");></i>';
-					          			}else{	setDragMark
-					          				dragList += '<br> <i class="far fa-star icon-size" id="starDrag" onclick=setDragMark("'+value.dragNum+'");></i>';
-					          			}
-					        			dragList+='</div>';
-					        			dragList+='<div class="dragContent">';
-					        			dragList+='<!-- 모달 창 -->';
-					        			dragList+='<div class="drag-a">';
-					        			dragList+='<a data-toggle="modal"';
-					        			dragList+='href="../drag/dragDetail.htm?dragNum='+value.dragNum+'"';
-					        			dragList+='data-target="#modal-drag" role="button"';
-					        			dragList+='data-backdrop="static">';
-					        			dragList+='<p>'+value.dragText+'</p><code>';
-					        			dragList+='&lt;출처 : <span class="Cgrapefruit">"'+value.dragOrigin+'"</span>&gt;';
-					        			dragList+='<span>"'+value.dragDate+'"</span>';
-					        			dragList+='</code> <input type="hidden" id="dragNum" class="dragNum"';
-					        			dragList+='value="'+value.dragNum+'">';
-					        			dragList+='<input type="hidden" id="dragMark" class="dragMark" value="'+value.dragMark+'">';
-					        			dragList+='</a>';
-					        			dragList+='</div>';
-					        			dragList+='</div>';
-					        			dragList+='</blockquote>';
-					        			dragList+='</div>';
-					        			dragList+='</div>';
-					        			
-					        			$("#dragList").html(dragList);
-					        		})
-					        	}
-					        }
+						      success:function(data){
+						    	    var dragList ="";   	    
+						        	if(data != null) {
+						        		$.each(data, function(key, value){
+						        			$('#dragList').empty();
+						        			dragList+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">';
+						        			dragList+='<div class="text-center dragDiv mt-10" id="'+value.dragNum+'">';
+						        			dragList+='<blockquote class="grapefruit">';
+						        			dragList+='<!-- 별 아이콘 -->';
+						        			dragList+='<div class="icon-right starDiv" id="starMark">';
+						          			if(value.dragMark==1){   
+						          				dragList += '<br> <i class="fas fa-star icon-size" id="starDrag" onclick=removeDragMark("'+value.dragNum+'");></i>';
+						          			}else{	setDragMark
+						          				dragList += '<br> <i class="far fa-star icon-size" id="starDrag" onclick=setDragMark("'+value.dragNum+'");></i>';
+						          			}
+						        			dragList+='</div>';
+						        			dragList+='<div class="dragContent">';
+						        			dragList+='<!-- 모달 창 -->';
+						        			dragList+='<div class="drag-a">';
+						        			dragList+='<a data-toggle="modal"';
+						        			dragList+='href="../drag/dragDetail.htm?dragNum='+value.dragNum+'"';
+						        			dragList+='data-target="#modal-drag" role="button"';
+						        			dragList+='data-backdrop="static">';
+						        			dragList+='<div id="dragContent">'+value.dragText+'</div><code>';
+						        			dragList+='<span id="dragOrigin" class="Cgrapefruit">출처 : '+value.dragOrigin+'</span>';
+						        			dragList+='<span id="dragDate">'+value.dragDate+'</span>';
+						        			dragList+='</code> <input type="hidden" id="dragNum" class="dragNum"';
+						        			dragList+='value="'+value.dragNum+'">';
+						        			dragList+='<input type="hidden" id="dragMark" class="dragMark" value="'+value.dragMark+'">';
+						        			dragList+='</a>';
+						        			dragList+='</div>';
+						        			dragList+='</div>';
+						        			dragList+='</blockquote>';
+						        			dragList+='</div>';
+						        			dragList+='</div>';
+						        			
+						        			$("#dragList").html(dragList);
+						        		})
+						        	}
+						        }
 						}).done(function (result){
 							  // dragDiv들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
 					     	    $('.dragDiv').draggable({
@@ -177,8 +175,6 @@
       dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
       success:function(data){
     	    var dragList ="";   	    
-        	
-
         	if(data != null) {
         		$.each(data, function(key, value){
         			$('#dragList').empty();
@@ -200,9 +196,9 @@
         			dragList+='href="../drag/dragDetail.htm?dragNum='+value.dragNum+'"';
         			dragList+='data-target="#modal-drag" role="button"';
         			dragList+='data-backdrop="static">';
-        			dragList+='<p>'+value.dragText+'</p><code>';
-        			dragList+='&lt;출처 : <span class="Cgrapefruit">"'+value.dragOrigin+'"</span>&gt;';
-        			dragList+='<span>"'+value.dragDate+'"</span>';
+        			dragList+='<div id="dragContent">'+value.dragText+'</div><code>';
+        			dragList+='<span id="dragOrigin" class="Cgrapefruit">출처 : '+value.dragOrigin+'</span>';
+        			dragList+='<span id="dragDate">'+value.dragDate+'</span>';
         			dragList+='</code> <input type="hidden" id="dragNum" class="dragNum"';
         			dragList+='value="'+value.dragNum+'">';
         			dragList+='<input type="hidden" id="dragMark" class="dragMark" value="'+value.dragMark+'">';
@@ -255,8 +251,6 @@ $('#search').click(function(e) {
  */   dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
  success:function(data){
 	    var dragList ="";   	    
- 	var Mark ="";
-
  	if(data != null) {
  		$.each(data, function(key, value){
  			$('#dragList').empty();
@@ -278,9 +272,9 @@ $('#search').click(function(e) {
  			dragList+='href="../drag/dragDetail.htm?dragNum='+value.dragNum+'"';
  			dragList+='data-target="#modal-drag" role="button"';
  			dragList+='data-backdrop="static">';
- 			dragList+='<p>'+value.dragText+'</p><code>';
- 			dragList+='&lt;출처 : <span class="Cgrapefruit">"'+value.dragOrigin+'"</span>&gt;';
- 			dragList+='<span>"'+value.dragDate+'"</span>';
+ 			dragList+='<div id="dragContent">'+value.dragText+'</div><code>';
+ 			dragList+='<span id="dragOrigin" class="Cgrapefruit">출처 : '+value.dragOrigin+'</span>';
+ 			dragList+='<span id="dragDate">'+value.dragDate+'</span>';
  			dragList+='</code> <input type="hidden" id="dragNum" class="dragNum"';
  			dragList+='value="'+value.dragNum+'">';
  			dragList+='<input type="hidden" id="dragMark" class="dragMark" value="'+value.dragMark+'">';
@@ -295,7 +289,6 @@ $('#search').click(function(e) {
  		})
  	}
  }
-       
        }).done(function (result){
  		  // dragDiv들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
       	    $('.dragDiv').draggable({
@@ -328,8 +321,6 @@ $('#sort-category').on("change",function(e) {
        dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
        success:function(data){
    	    var dragList ="";   	    
-       	var Mark ="";
-
        	if(data != null) {
        		$.each(data, function(key, value){
        			$('#dragList').empty();
@@ -351,9 +342,9 @@ $('#sort-category').on("change",function(e) {
        			dragList+='href="../drag/dragDetail.htm?dragNum='+value.dragNum+'"';
        			dragList+='data-target="#modal-drag" role="button"';
        			dragList+='data-backdrop="static">';
-       			dragList+='<p>'+value.dragText+'</p><code>';
-       			dragList+='&lt;출처 : <span class="Cgrapefruit">"'+value.dragOrigin+'"</span>&gt;';
-       			dragList+='<span>"'+value.dragDate+'"</span>';
+       			dragList+='<div id="dragContent">'+value.dragText+'</div><code>';
+       			dragList+='<span id="dragOrigin" class="Cgrapefruit">출처 : '+value.dragOrigin+'</span>';
+       			dragList+='<span id="dragDate">'+value.dragDate+'</span>';
        			dragList+='</code> <input type="hidden" id="dragNum" class="dragNum"';
        			dragList+='value="'+value.dragNum+'">';
        			dragList+='<input type="hidden" id="dragMark" class="dragMark" value="'+value.dragMark+'">';
@@ -365,8 +356,8 @@ $('#sort-category').on("change",function(e) {
        			dragList+='</div>';
        			
        			$("#dragList").html(dragList);
-       			})
-       		}
+       		})
+       	}
        }
        }).done(function (result){
  		  // dragDiv들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
