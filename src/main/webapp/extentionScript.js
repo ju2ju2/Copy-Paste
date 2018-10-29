@@ -38,10 +38,10 @@
 
   // 팝업킬때 준비동작
   window.onload = function () {
-    if(localStorage.getItem("memberNo") != null) {
+    if(localStorage.getItem("userEmail") != null) {
     document.querySelector("#afterLogin").style.display = "block";
     document.querySelector("#loginForm").style.display = "none";
-    document.querySelector("#welcome").innerHTML = localStorage.getItem("name") +"님 환영합니다.";
+    document.querySelector("#welcome").innerHTML = localStorage.getItem("userNick") +"님 환영합니다.";
     allowDrag();
     }
   }
