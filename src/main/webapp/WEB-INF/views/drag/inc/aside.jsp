@@ -29,7 +29,7 @@
             <option value="dragNumDesc">최신순</option>
             <option value="dragNumAsc">오래된 순</option>
             <option value="dragMark">중요표시 있는 순</option>
-            <option value="dragText">가나다순</option>
+            <option value="binary(dragText)">가나다순</option>
             <option value="">전체보기</option>
          </select>
          </div>
