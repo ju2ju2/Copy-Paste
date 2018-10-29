@@ -58,15 +58,15 @@
        + '    for (var i = 0, len = sel.rangeCount; i < len; ++i) {'
        + '      container.appendChild(sel.getRangeAt(i).cloneContents());'
        + '    }'
-       + '    selectedText = container.innerHTML.replace(/&/g, "amp;");'
+       + '    selectedText = container.innerHTML;'/*.replace(/&/g, "amp;")*/
        + '  }'
        + '} else if (typeof document.selection != "undefined") {'
        + '  if (document.selection.type == "Text") {'
-       + '    selectedText = document.selection.createRange().htmlText.replace(/&/g, "amp;");'
+       + '    selectedText = document.selection.createRange().htmlText;'/*.replace(/&/g, "amp;")*/
        + '  }'
        + '}'
-       + 'var dragOriginLink = window.location.href.replace(/&/g, "amp;").replace(/=/g, "nun;");'
-       + 'var dragOrigin = document.getElementsByTagName("title")[0].innerHTML.replace(/&/g, "amp;");'
+       + 'var dragOriginLink = window.location.href;'/*.replace(/&/g, "amp;").replace(/=/g, "nun;")*/
+       + 'var dragOrigin = document.getElementsByTagName("title")[0].innerHTML;'/*.replace(/&/g, "amp;")*/
        + 'console.log(selectedText + " / " + dragOriginLink);'
        + 'var datatosend = "dragText=" + selectedText + "&dragOriginLink=" + dragOriginLink + "&dragOrigin=" + dragOrigin +"&userEmail='+localStorage.getItem("userEmail")+'";'
        + 'var xhrr = new XMLHttpRequest();'
