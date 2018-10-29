@@ -47,15 +47,18 @@ function drag(request, response) {
 	});
 	request.on("end", function () {
 		var param = qs.parse(pData);
-		console.log(param);
-		console.log(param.dragText);
-		console.log(param.userEmail);
+/*		console.log(param);
+		console.log(param.dragText);*/
+		var userEmail = param.userEmail;
+		var dragText = param.dragText;
+		var dragOrigin = param.dragOrigin;
+		var dragOriginLink = param.dragOriginLink;
 		
 		var sql = "insert into drag (dragNum, userEmail, dragText, dragOrigin, dragOriginLink) " +
-				  "values( (select max(dragNum)+1 from drag), ?, ?, ? ,?) ";
+				  "select max(dragNum)+1, ?, ?, ? ,? from drag ";
 		con.query(
 				sql, 
-				[param.drag_content.replace(/amp;/g, "&"), param.drag_url.replace(/amp;/g, "&").replace(/nun;/g, "="), param.drag_url_title.replace(/amp;/g, "&"), param.member_no], 
+				[userEmail, dragText, dragOrigin, dragOriginLink],  
 				function (err, result) {
 					if (err) {
 						console.log("등록 중 오류 발생");

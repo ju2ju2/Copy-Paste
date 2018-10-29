@@ -79,7 +79,7 @@
        + '}	}	};'
        + 'if(selectedText !="" && selectedText.length > 0 && selectedText.trim().length != 0 && prevText != selectedText){'
        + 'if (confirm("드래그를 저장하시겠어요?")) {'
-       + 'xhrr.open("POST", "localhost:10020/drag", true);'
+       + 'xhrr.open("POST", "http://localhost:10020/drag", true);'
        + 'xhrr.setRequestHeader("Content-type","application/x-www-form-urlencoded");'
        + 'xhrr.send(datatosend);}}'
        + '}'
