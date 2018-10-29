@@ -7,6 +7,7 @@
 
 package tk.copyNpaste.etc;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,8 +25,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import tk.copyNpaste.mapper.EtcMapper;
 import tk.copyNpaste.mapper.MemberMapper;
+import tk.copyNpaste.mapper.NoteMapper;
 import tk.copyNpaste.vo.EtcVO;
 import tk.copyNpaste.vo.MemberVO;
+import tk.copyNpaste.vo.NoteVO;
 import tk.copyNpaste.vo.ReportVO;
 
 @Service
@@ -174,6 +177,11 @@ public class EtcService {
 	        //driver.quit();
 */
 		
+	}
+	
+	public List<NoteVO> selectSearchSite(HashMap map) throws Exception {
+		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
+		return etcdao.selectSearchSite(map);
 	}
 	
 	

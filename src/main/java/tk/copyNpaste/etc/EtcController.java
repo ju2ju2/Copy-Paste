@@ -7,6 +7,8 @@
 
 package tk.copyNpaste.etc;
 
+import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,11 +16,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import tk.copyNpaste.vo.EtcVO;
 import tk.copyNpaste.vo.MemberVO;
+import tk.copyNpaste.vo.NoteVO;
 import tk.copyNpaste.vo.ReportVO;
 
 @RequestMapping("/etc/")
@@ -142,6 +146,15 @@ public class EtcController {
 	public String selectSearchSite() {
 		return "search.selectSearchSite";
 	}
+	
+		// * 사이트 내 검색	- 10.29 이주원
+	@RequestMapping(value="selectSearchSite.json", method = RequestMethod.GET)
+	public @ResponseBody List<NoteVO> selectSearchSite(String keyword) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("keyword", keyword);
+		return etcService.selectSearchSite(map);
+	}
+	
 
 	// 네이버 검색
 	@RequestMapping("/selectSearchNaver.htm")
