@@ -27,6 +27,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/writeNoteNavSize.js"></script>
 	<script type="text/javascript"	src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/writenote.js"></script> 
 	<body>
 		<!-- Header  영역 (공통 inc) -->
 		<header id="header"><tiles:insertAttribute name="header" /></header>

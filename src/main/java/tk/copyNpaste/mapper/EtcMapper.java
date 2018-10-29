@@ -6,10 +6,12 @@
 */
 package tk.copyNpaste.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
 import tk.copyNpaste.vo.EtcVO;
 import tk.copyNpaste.vo.ReportVO;
+import tk.copyNpaste.vo.NoteVO;
 
 public interface EtcMapper {
 	
@@ -64,5 +66,8 @@ public interface EtcMapper {
 	//노트 주제 선택 수
 	public List<EtcVO> stateNoteSubject() throws Exception;
 
+	
+	//사이트 내 검색
+	public List<NoteVO> selectSearchSite(HashMap map) throws Exception;
 	
 }

@@ -11,6 +11,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -38,10 +39,26 @@ public class LoginService {
 	}
 	
 	//카카오로그인
-	public MemberVO kakaoLogin(String userEmail) throws Exception{
+/*	public void kakaoLogin(String userEmail) throws Exception{
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
-		return memberdao.kakaoLogin(userEmail);
-	}
+		memberdao.kakaoLogin(userEmail);
+	}*/
+	
+	//카카오 회원가입
+	@Transactional
+	public void kakaoLogin(String userEmail) throws Exception{
+			MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
+			FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
+			try {
+				memberdao.kakaoLogin(userEmail);
+				memberdao.insertMemberRole(userEmail); // 권한 설정
+				folderdao.insertFolderUserDefault(userEmail); //기본폴더 생성
+				folderdao.insertFolderUserScrap(userEmail); //스크랩 폴더 생성
+			} catch (Exception e) {
+				System.out.println("에러" + e.getMessage());		
+				throw e; // 예외 발생 시기면 : 자동 rollback
+			}
+		}
 		
 	//네이버로그인
 	public MemberVO naverLogin(String userEmail) throws Exception{

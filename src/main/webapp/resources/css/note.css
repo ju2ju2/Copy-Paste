@@ -712,7 +712,6 @@ td .t-icon {
 .icon-right {
    text-align: right;
    vertical-align: top;
-   width: 80%;
    margin-bottom: 0.5rem;
 }
 
@@ -775,7 +774,10 @@ blockquote.grapefruit{
 }
 
 code{
-  position:absolute; right:10px; bottom:5px;
+  position:absolute; 
+  right:10px; 
+  bottom:5px;
+  width:270px;
 
 }
 span{
@@ -849,3 +851,40 @@ span.Cgrapefruit{
   box-shadow: 0 0 10px black;
 }
 
+#dragDate{
+	color:#c0c0c0;
+}
+
+
+#dragOrigin{
+overflow: hidden;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 1; /* 라인수 */
+-webkit-box-orient: vertical;
+word-wrap:break-word; 
+line-height: 1.2em;
+height: 1.2em;
+}
+
+
+.dragDiv blockquote #dragText {
+
+	margin-top:0.5em !important;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 4; /* 라인수 */
+	-webkit-box-orient: vertical;
+	word-wrap:break-word; 
+	line-height: 1.2em;
+	height: 6em;
+		
+	
+}
+
+.starDiv {
+  
+   margin-top: 1em !important;
+   text-align: right;
+}

@@ -34,11 +34,6 @@
 	</delete>
 
 	<!-- 드래그 달력 검색 selectByCalDrag-->
-	<select id="selectByCalDrag" parameterType="hashmap" resultType="DragVO">
-	select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate
-		from drag where dragDate between #{fromDate} and #{toDate} and userEmail=#{userEmail}
-	order by dragDate desc;
-	</select>
 	
 	<!-- 드래그 키워드 검색 selectByKeyDrag -->
 	<select id="selectByKeyDrag"  parameterType="hashmap" resultType="DragVO">

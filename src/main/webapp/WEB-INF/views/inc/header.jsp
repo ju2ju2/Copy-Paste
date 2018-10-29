@@ -11,6 +11,10 @@
 <%@ taglib prefix="se"
 	uri="http://www.springframework.org/security/tags"%>
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+<!-- 카카오 로그인 -->
+ <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+ <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
 		<div class="navbar-header">
