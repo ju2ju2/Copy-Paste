@@ -11,12 +11,13 @@ var cors = require('cors');
 
 var loginResult = []; 
 
+
 var con = mysql.createConnection({
-	host: "localhost",
+	host: "192.168.0.141",
 	port: 3306,
-	user: "bit",
+	user: "copyNpaste",
 	password: "1004",
-	database: "2team"
+	database: "copynpaste"
 });
 /*
 http.createServer(function(request, response) {
@@ -33,12 +34,12 @@ http.createServer(function(request, response) {
 	console.log("10030 서버 구동중");
 });*/
 
-function login(email, password) {
+function login(userEmail, userPwd) {
 	
-	var sql = "select member_no, name, email from tb_member where email = ? and password = ?";
+	var sql = "select userEmail, userNick, userPhoto from users where userEmail = ? and userPwd = ?";
 	con.query(
 			sql, 
-			[email, password], 
+			[userEmail, userPwd], 
 			function (err, rows, result) {
 				if (err) {
 					console.log("등록 중 오류 발생");
@@ -47,10 +48,10 @@ function login(email, password) {
 				}
 				loginResult = [];
 				if (rows[0] != null){
-					console.log(rows[0].name);
-					console.log(rows[0].member_no);
-					console.log(rows[0].email);
-					loginResult = {"loginChk":"true","name":rows[0].name, "memberNo": rows[0].member_no, "email": rows[0].email};
+					console.log(rows[0].userEmail);
+					console.log(rows[0].userNick);
+					console.log(rows[0].userPhoto);
+					loginResult = {"loginChk":"true","userEmail":rows[0].userEmail, "userNick": rows[0].userNick, "userPhoto": rows[0].userPhoto};
 				}else {
 					loginResult = {"loginChk":"false"};
 				}
@@ -60,12 +61,12 @@ function login(email, password) {
 
 app.use(cors());
 
-app.get('/login', function(req, res){
+app.post('/login', function(req, res){
 	console.log("로그인");
 	var param = req.query;
-	var email = param.email;
-	var password = param.password;
-	login(email, password);
+	var userEmail = param.userEmail;
+	var userPwd = param.userPwd;
+	login(userEmail, userPwd);
 	setTimeout(function() { 
 	console.log(loginResult);
 	res.send(loginResult);

@@ -38,9 +38,9 @@ public class EtcService {
 	}
 	
 	// 신고 하기
-	public int insertReport(int noteNum) throws Exception {
+	public int insertReport(ReportVO report) throws Exception {
 		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
-		return etcdao.insertReport(noteNum);
+		return etcdao.insertReport(report);
 	}
 
 	// 신고 목록 보기
