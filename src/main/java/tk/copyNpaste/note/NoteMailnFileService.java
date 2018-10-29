@@ -3,7 +3,8 @@
 * @ Date : 2018.10.05
 * @ Author : 이주원
 * @ Desc : 노트메일 파일다운로드
-*/
+* */
+
 package tk.copyNpaste.note;
 
 import java.io.FileInputStream;
@@ -30,6 +31,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -56,12 +62,12 @@ import tk.copyNpaste.mapper.NoteMapper;
 import tk.copyNpaste.vo.NoteVO;
 
 @Service
+@Aspect
 public class NoteMailnFileService {
 	
 	 @Autowired
 	 private SqlSession sqlsession;
 	 
-
 	//노트 메일 전송
 	public NoteVO emailNote(NoteVO note, String noteEmailTo) throws Exception {
 		 	//노트 조회
@@ -113,6 +119,8 @@ public class NoteMailnFileService {
 	        message.setContent(mp);
 	         
 	        Transport.send(message);
+	 	   // 노트 메일 전송시 노트 참조수 +1
+		    notedao.updateNoteCount(note.getNoteNum()); 
 	        
 		return null;
 	}
@@ -193,6 +201,8 @@ public class NoteMailnFileService {
         xmlParser.parse(new StringReader(sHtml));
 	    document.close();
 	    writer.close();
+	   // 노트 다운로드시 노트 참조수 +1
+	    notedao.updateNoteCount(note.getNoteNum());
 		return null;
 	}
 	
@@ -207,4 +217,11 @@ public class NoteMailnFileService {
 	}
 
 	
+/*	@AfterReturning(pointcut = "execution(public * tk.copyNpaste.note.NoteMailnFileService.pdfDownNote(..))") */
+/*	public void updateNoteCount(int noteNum) { 
+		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
+		note = 	    notedao.updateNoteCount(note.getNoteNum());
+	}
+	*/
+
 }

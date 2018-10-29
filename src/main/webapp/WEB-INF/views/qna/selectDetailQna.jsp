@@ -252,13 +252,14 @@
 		var commCommClickNum = 0;
 		var qnaCommNum;
 		var qnaCommPos;
-		var commBoxHtml="<div class='qnaComm-inputBox input-group'>"
-			+" <input type='text' id='userCommComm' class='form-control input-sm chat-input' placeholder='답댓글을 입력하세요' />"
+		var commBoxHtml="<div class='qnaComm-inputBox input-group qnaCommCommBox'>"
+			+" <div class='qnaCommCommExit' align='right'><i class='fas fa-times'></i></div>" 
+			+" <div class='display-Table'><input type='text' id='userCommComm' class='form-control input-sm chat-input' placeholder='답댓글을 입력하세요' />"
 			+" <span class='input-group-btn' id='commCommbtn'>"
 			+" <div>"
 			+" <a href='#' class='btn main-btn center-block' id='commCommAtag'>"
 			+" <i class='fas fa-check'></i> Add Comment"
-			+" </a></div></span></div>";
+			+" </a></div></span></div></div>";
 		/* 댓글 작성 버튼 클릭시 */
 		$('.commentBtn').click(function(){
 			if($('#userComment').val()==""){
@@ -287,9 +288,19 @@
 				qnaCommPos=$(this).children('#qnaCommPos').val();
 				commCommClickNum=1;
 				$(this).parents('.comment').append(commBoxHtml);
-				
-			}		
+			}else if(commCommClickNum==1){
+				$('.qnaCommCommBox').remove();
+				qnaCommNum=$(this).children('#qnaCommNum').val();
+				qnaCommPos=$(this).children('#qnaCommPos').val();
+				$(this).parents('.comment').append(commBoxHtml);
+			}
+			/* 대댓글 화면 닫기 */
+			$('.qnaCommCommExit').click(function(){
+				$('.qnaCommCommBox').remove();
+				commCommClickNum=0;
+			});
 		});
+		
 		/* 대댓글 작성 버튼 클릭시 */
 		$(document).on("click", "#commCommbtn", function(){
 			console.log(${qna.qnaNum});

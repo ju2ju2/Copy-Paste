@@ -295,7 +295,7 @@
     		      			aa+='<div class="text-center asideNoteDiv">'
     		      			aa+='<!-- a HTML (to Trigger Modal) -->'
     		      			aa+='<a data-toggle="modal"'
-    		      			aa+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&cmd=mynote"'
+    		      			aa+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&write=y"'
     		      			aa+='data-target="#modal-testNew" role="button" data-backdrop="static">'
     		      			aa+='<div class="item">'
     		      			aa+='<img class="img-rounded"'
