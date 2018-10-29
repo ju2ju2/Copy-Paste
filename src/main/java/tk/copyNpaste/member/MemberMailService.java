@@ -89,7 +89,7 @@ public class MemberMailService {
 			VelocityContext velocityContext = new VelocityContext();
 			velocityContext.put("userEmail", mailto);
 			velocityContext.put("company", "copyNpaste");
-			velocityContext.put("mailFrom", "copyNpaste");
+			velocityContext.put("mailFrom", "admin@copynpaste.tk");
 			velocityContext.put("randomNum", randomNum);
 			velocityContext.put("randomPwd", randomPwd);
 			

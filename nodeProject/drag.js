@@ -29,9 +29,9 @@ var cors = require('cors');
 var con = mysql.createConnection({
 	host: "localhost",
 	port: 3306,
-	user: "bit",
+	user: "copyNpaste",
 	password: "1004",
-	database: "2team"
+	database: "copynpaste"
 });
 //app.get('/drag', function(req, res){
 //	console.log("들어옴");
@@ -48,9 +48,11 @@ function drag(request, response) {
 	request.on("end", function () {
 		var param = qs.parse(pData);
 		console.log(param);
-		console.log(param.drag_content);
-		console.log(param.member_no);
-		var sql = "insert into tb_drag (drag_content, drag_url, drag_url_title, member_no) values(?, ?, ?, ?) ";
+		console.log(param.dragText);
+		console.log(param.userEmail);
+		
+		var sql = "insert into drag (dragNum, userEmail, dragText, dragOrigin, dragOriginLink) " +
+				  "values( (select max(dragNum)+1 from drag), ?, ?, ? ,?) ";
 		con.query(
 				sql, 
 				[param.drag_content.replace(/amp;/g, "&"), param.drag_url.replace(/amp;/g, "&").replace(/nun;/g, "="), param.drag_url_title.replace(/amp;/g, "&"), param.member_no], 
