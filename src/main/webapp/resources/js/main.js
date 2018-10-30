@@ -194,9 +194,11 @@ $(document).mouseup(function(event){
 	 if (text !='' && text.length > 1 && $.trim(text).length != 0 && prevText != text) {
 		 // 드래그 저장
 		var dragfd = new FormData();
-		
+		var dragOriginLink = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname;
+		dragfd.append("dragOriginLink",dragOriginLink);
 		dragfd.append("dragOrigin","copyNpaste");
 		dragfd.append("dragText", text);
+
 		$.ajax({
 			url : "drag/insertDrag.json",
 			type:"POST",

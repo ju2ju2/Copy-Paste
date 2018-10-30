@@ -8,13 +8,13 @@
 <mapper namespace="tk.copyNpaste.mapper.DragMapper">
 	<!--전체보기 -->
 	<select id="selectAllDrag" resultType="DragVO">
-		select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate
+		select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate,dragOriginLink
 		from drag where userEmail= #{userEmail} order by dragNum desc
 	</select>
 
 	<!--상세보기 -->
 	<select id="selectDetail" resultType="DragVO">
-		select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate
+		select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate,dragOriginLink
 		from drag where dragNum= #{dragNum}
 	</select>
 
@@ -23,8 +23,8 @@
         <selectKey order="BEFORE" keyProperty="dragNum" resultType="int">
             select max(dragNum)+1 from drag
         </selectKey>
-        insert into drag(dragNum, userEmail, dragText, dragOrigin)
-        values(#{dragNum}, #{userEmail}, #{dragText}, #{dragOrigin})
+        insert into drag(dragNum, userEmail, dragText, dragOrigin, dragOriginLink )
+        values(#{dragNum}, #{userEmail}, #{dragText}, #{dragOrigin}, #{dragOriginLink})
     </insert>
     
 

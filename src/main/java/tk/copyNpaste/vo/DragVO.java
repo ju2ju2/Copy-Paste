@@ -17,7 +17,15 @@ public class DragVO {
 	private String dragText;
 	private String dragOrigin;
 	private Date dragDate;
-
+	private String dragOriginLink;
+	
+	
+	public String getDragOriginLink() {
+		return dragOriginLink;
+	}
+	public void setDragOriginLink(String dragOriginLink) {
+		this.dragOriginLink = dragOriginLink;
+	}
 	
 	public String getUserEmail() {
 		return userEmail;

@@ -181,9 +181,12 @@ public class EtcController {
 	
 		// * 사이트 내 검색	- 10.29 이주원
 	@RequestMapping(value="selectSearchSite.json", method = RequestMethod.GET)
-	public @ResponseBody List<NoteVO> selectSearchSite(String keyword) throws Exception {
-		HashMap<String, Object> map = new HashMap<String, Object>();
+	public @ResponseBody List<NoteVO> selectSearchSite(String boundary, String subjectCategory,String keyword) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();	
+		map.put("boundary", boundary);
+		map.put("subjectCategory", subjectCategory);
 		map.put("keyword", keyword);
+		/*return etcService.selectSearchSite(map);*/
 		return etcService.selectSearchSite(map);
 	}
 	

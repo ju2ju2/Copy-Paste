@@ -21,7 +21,7 @@
 @import url("https://use.fontawesome.com/releases/v5.3.1/css/all.css");
 
 .starDiv {
-   margin: 1.5em  !important;
+  
    margin-top: 1em !important;
    text-align: right;
 }
@@ -468,7 +468,7 @@ i:hover {
 .icon-right {
    text-align: right;
    vertical-align: top;
-   width: 80%;
+   
    margin-bottom: 0.5rem;
 }
 
@@ -621,10 +621,13 @@ blockquote.grapefruit{
   border-right-color: #da4453;
 }
 
-code{
-  position:absolute; right:10px; bottom:5px;
+
+span.Cgrapefruit{
+  color:#da4453;
+ 
 
 }
+
 span{
   font-weight:bolder;
   
@@ -636,22 +639,43 @@ h1#mydrag{
   font-family: 'Francois One', sans-serif;
 } 
 
-span.Cgrapefruit{
-  color:#da4453;
-}
+
 
 /* 드래그 목록 사이즈 설정 */
 .dragDiv blockquote {
 	border-top: solid 1px rgba(210, 215, 217, 0.75);
 	margin-top: 2rem;
 	padding-top: 2rem;
+
+
+
+
 }
 
 .dragDiv blockquote .dragContent {
 	margin: 0 0 1.5rem 0;
 	width: 80%;
 	display: inline;
+
 }
+
+
+.dragDiv blockquote #dragContent {
+
+	margin-top:0.5em !important;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 5; /* 라인수 */
+	-webkit-box-orient: vertical;
+	word-wrap:break-word; 
+	line-height: 1.2em;
+	height: 6em;
+		
+	
+}
+
+
 
 .dragDiv blockquote:first-child {
 	border-top: 2em;
@@ -659,4 +683,34 @@ span.Cgrapefruit{
 	padding-top: 0;
 }
 
+#dragDate{
+	color:#c0c0c0;
+}
 
+code{
+  position:absolute; 
+  right:5px; 
+  bottom:5px;
+  width:270px;
+}
+#dragOrigin{
+overflow: hidden;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 1; /* 라인수 */
+-webkit-box-orient: vertical;
+word-wrap:break-word; 
+line-height: 1.2em;
+height: 1.2em;
+}
+
+#dragModal{
+overflow: hidden;
+text-overflow: ellipsis;
+display: -webkit-box;
+-webkit-line-clamp: 1; /* 라인수 */
+-webkit-box-orient: vertical;
+word-wrap:break-word; 
+line-height: 1.2em;
+height: 1.2em;
+}

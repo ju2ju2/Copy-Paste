@@ -126,9 +126,9 @@ function setDragMark(dragNum){
 			            		a += '<!-- 모달 창 -->';
 			            		a += '<div class="dragContent">';
 			                	a += '<div class="drag-a">';
-			                	a += '<p class="mt-10" class="dragText" id="dragText">'+value.dragText+'</p> <code>';
-			                	a += '&lt;출처 : <span class="Cgrapefruit">'+value.dragOrigin+'</span>&gt; ';
-			                	a += '<span>'+value.dragDate+'</span>';
+			                	a += '<div class="mt-10" class="dragText" id="dragText">'+value.dragText+'</div> <code>';
+			                	a += ' <span class="Cgrapefruit" id="dragOrigin">출처 : '+value.dragOrigin+'</span> ';
+			                	a += '<span id="dragDate">'+value.dragDate+'</span>';
 			                	a += '</code>';
 			                	a += '</div>';
 			                	a += '</blockquote>';

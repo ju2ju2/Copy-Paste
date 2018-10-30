@@ -1,6 +1,10 @@
 package tk.copyNpaste.etc;
 
 import java.util.List;
+import java.util.Locale;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -9,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.LocaleResolver;
 
 import tk.copyNpaste.note.NoteService;
 import tk.copyNpaste.vo.NoteVO;
@@ -17,6 +23,8 @@ import tk.copyNpaste.vo.NoteVO;
 public class IndexController {
 		@Autowired
 		NoteService noteService;
+		@Autowired
+		private LocaleResolver localeResolver;
 
 		//인덱스-주제별 노트 상위목록
 		@RequestMapping("/index.htm")
@@ -45,6 +53,16 @@ public class IndexController {
 			//return "about.jsp";
 			return "index.about";
 		}
+		//소개페이지 로케일 적용
+		@RequestMapping("/aboutChangeLanguage.htm")
+		public String aboutChangeLanguage(@RequestParam("lang") String language,
+				HttpServletRequest request, HttpServletResponse response) {
+			Locale locale = new Locale(language);
+			localeResolver.setLocale(request, response, locale);
+			//return "about.jsp";
+			return "redirect:/about.htm";
+		}
+		
 		//로그인 페이지
 		@RequestMapping(value ="/login.htm")
 		public String login() {

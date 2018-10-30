@@ -17,8 +17,10 @@
    <div class="row">
       <div class="col-xs-6"></div>
    
-      <div class="col-xs-6">
-          <strong>출처 : ${dragList.dragOrigin}&nbsp;&nbsp;저장일자 : ${dragList.dragDate}</strong></div>
+      <div class="col-xs-6" >
+          <a href="${dragList.dragOriginLink}"><strong id="dragModal">출처 : ${dragList.dragOrigin}&nbsp;&nbsp;</strong></a>
+          <strong>저장일자 : ${dragList.dragDate}</strong>
+          </div>
       </div>
    </div>
    <div class="row">
