@@ -94,7 +94,7 @@
 </div>
 </section>
 
-<!-- 노트 모달 -->
+<!-- 노트보기 모달 -->
 <div id="modal-testNew" class="modal fade text-center overlay"
 	 role="dialog">
 	<div class="modal-dialog">
@@ -109,7 +109,7 @@
 		<div class="modal-content">
 			<form>
 				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<button type="button" class="close modal-deleteNoteEmail-close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 					<h4 class="modal-title">이메일별 노트삭제</h4>
@@ -129,7 +129,7 @@
 				</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">close</button>
+					<button type="button" class="btn btn-danger modal-deleteNoteEmail-close" data-dismiss="modal">close</button>
 				</div>
 			</form>
 		</div>
@@ -196,6 +196,13 @@ $('.deleteMemNoteBtn').click(function(){
 		}
 	)	
 	
+})
+
+//일괄삭제 모달 창 닫으면 작성한 데이터 초기화
+$('.modal-deleteNoteEmail-close').click(function(){
+	$('#noteCountResult').text('');
+	$('#userEmail').val('');
+	$('.noteCountEmail').hide();
 })
 
 
