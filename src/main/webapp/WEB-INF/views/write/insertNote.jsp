@@ -102,10 +102,14 @@ $(document).ready(function() {
 		      data: formData, 
 		      enctype: 'multipart/form-data',
 		      processData : false,
-		      contentType : false,
+		      contentType : false, 
+		      dataType: 'text',
 		      success:function(result){
 		    	console.log(result)
-  
+				$(".modal").modal("hide");
+				var editor = tinyMCE.activeEditor;
+    			var noteContent = $('#noteContent').html();
+    			editor.dom.add(editor.getBody(), 'p', {}, result+ "<br>");
 		      },
 		      error:function(request,status,error){
 		    	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -181,7 +185,7 @@ $(document).ready(function() {
 
 <div id="visionModal" class="modal fade form-horizontal">
 	<div class="modal-dialog noteModalSize">
-		<form id="visionform" name="visionform" enctype="multipart/form-data">
+		<form id="visionform" name="visionform" enctype="multipart/form-data" accept-charset="utf-8">
 			<div class="modal-content">
 				<div class="modal-body">
 				<input type="file" name="visionImg" id="visionImg" aria-describedby="file_upload" accept="image/*">

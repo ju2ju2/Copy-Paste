@@ -253,7 +253,8 @@ public class NoteController {
 	@RequestMapping(value="visionAnalizeImg.json")
 	public @ResponseBody String visionAnalizeImg(Principal principal, MultipartHttpServletRequest req) throws Exception {
 		String userEmail=principal.getName();
-		return noteVisionSpellService.vision(userEmail, req);
+		String text=noteVisionSpellService.vision(userEmail, req);
+		return text;
 	}
 	
 }
