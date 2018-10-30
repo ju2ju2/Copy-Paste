@@ -228,16 +228,6 @@ public class NoteController {
 		return null;
 	}
 	
-	// 회원별 노트 검색-관리자-노트관리
-	public List<NoteVO> selectByMemNote(String userEmail) throws Exception {
-		return noteService.selectByMemNote(userEmail);
-	}
-
-	// 회원별 노트 일괄 삭제-관리자-노트관리
-	public int deleteMemNote(String userEmail) throws Exception {
-		return noteService.deleteMemNote(userEmail);
-	}	
-	
 	// 노트 블라인드 처리-관리자
 	public int blindNote(int noteNum) throws Exception{	
 		return noteService.blindNote(noteNum);

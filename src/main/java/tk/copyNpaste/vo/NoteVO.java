@@ -16,8 +16,8 @@ public class NoteVO {
 	//NoteVO
 	
 	//노트
-	//노트번호,폴더명,회원이메일,노트제목,노트내용,작성일,주제코드,참조카운트,
-	//글공개여부,스크랩,부모노트번호,신고카운트
+	//노트번호,폴더명,회원이메일,회원닉네임,노트제목,노트내용,작성일,주제코드,코드명,참조카운트,
+	//글공개여부,스크랩,부모노트번호,노트썸네일, 신고카운트, 사용자 상태, row 번호(관리자 노트관리에서 사용)
 	private int noteNum;
 	private String folderName;
 	private String userEmail;
@@ -36,7 +36,21 @@ public class NoteVO {
 	private int newNoteNum;
 	private Date fromDate;
 	private Date toDate;
+	private String userEnabled;
+	private int rnum;
 
+	public int getRnum() {
+		return rnum;
+	}
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
+	}
+	public String getUserEnabled() {
+		return userEnabled;
+	}
+	public void setUserEnabled(String userSEnabled) {
+		this.userEnabled = userSEnabled;
+	}
 	public String getUserNick() {
 		return userNick;
 	}

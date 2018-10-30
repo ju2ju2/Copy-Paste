@@ -7,7 +7,6 @@
 
 package tk.copyNpaste.etc;
 
-import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -20,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import tk.copyNpaste.note.NoteService;
 import tk.copyNpaste.vo.EtcVO;
 import tk.copyNpaste.vo.MemberVO;
 import tk.copyNpaste.vo.NoteVO;
@@ -30,6 +30,8 @@ import tk.copyNpaste.vo.ReportVO;
 public class EtcController {
 	@Autowired
 	EtcService etcService;
+	@Autowired
+	NoteService noteService;
 
 	@RequestMapping("admin.htm")
 	// 관리자 페이지 (회원관리)
@@ -48,11 +50,41 @@ public class EtcController {
 	};
 
 	@RequestMapping("adminNote.htm")
-	// 관리자 페이지 (노트관리)
-	public String adminNotePage() throws Exception {
-		return "admin.manageNote";
+	// 관리자 페이지 (노트목록)
+	public ModelAndView adminNotePage() throws Exception {
+		List<NoteVO> noteList = noteService.selectAllNoteAdmin();
+		ModelAndView adminmav = new ModelAndView();
+		adminmav.setViewName("admin.manageNote");
+		adminmav.addObject("NoteVo", noteList);
+		return adminmav;
 	};
+	
+/*	// 회원별 노트 검색-관리자-노트관리
+	public List<NoteVO> selectByMemNote(String userEmail) throws Exception {
+		return noteService.selectByMemNote(userEmail);
+	}*/
 
+	// 노트 개별 삭제-관리자-노트관리
+	@RequestMapping(value="deleteNoteNumAdmin.do")
+	public @ResponseBody int deleteNoteNumAdmin(int noteNum) throws Exception {
+		int result = noteService.deleteNoteNumAdmin(noteNum);
+		return result;
+		}	
+	
+	// 회원별 작성 노트 개수-관리자-노트관리
+	@RequestMapping(value="selectNoteCount.do")
+	public @ResponseBody int selectNoteCount(String userEmail) throws Exception {
+		int result = noteService.selectNoteCount(userEmail);
+		return result;
+	}	
+	
+	// 회원별 노트 일괄 삭제-관리자-노트관리
+	@RequestMapping(value="deleteMemNote.do")
+	public @ResponseBody int deleteMemNote(String userEmail) throws Exception {
+		int result = noteService.deleteMemNote(userEmail);
+		return result;
+	}	
+	
 	@RequestMapping("adminReport.htm")
 	// 관리자 페이지 (신고관리)
 	public ModelAndView adminReportPage() throws Exception {

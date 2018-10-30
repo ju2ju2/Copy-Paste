@@ -13,6 +13,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import tk.copyNpaste.mapper.NoteMapper;
 import tk.copyNpaste.vo.NoteCommVO;
@@ -126,15 +127,37 @@ public class NoteService {
 		return notedao.scrapNote(note);
 	}
 
+	//노트 전체보기 - 관리자
+	public List<NoteVO> selectAllNoteAdmin() throws Exception{
+		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
+		return notedao.selectAllNoteAdmin();
+	}
+	
 	//회원별 노트 검색-관리자
 	public List<NoteVO> selectByMemNote(String userEmail) throws Exception{
 		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
 		return notedao.selectByMemNote(userEmail);
 	}
+	
+	// 노트 개별 삭제-관리자-노트관리
+	public int deleteNoteNumAdmin(int noteNum) throws Exception {
+		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
+		int result = notedao.deleteNoteNumAdmin(noteNum);
+		return result;
+		}	
+	
+	//회원별 작성 노트 개수-관리자
+	public int selectNoteCount(String userEmail) throws Exception{
+		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
+		int result = notedao.selectNoteCount(userEmail);
+		return result;
+	}
+	
 	//회원별 노트 일괄 삭제-관리자
 	public int deleteMemNote(String userEmail) throws Exception{
 		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
-		return notedao.deleteMemNote(userEmail);
+		int result = notedao.deleteMemNote(userEmail);
+		return result;
 	}
 	//회원별 노트 일괄 삭제-관리자
 	public int blindNote(int noteNum) throws Exception{	
