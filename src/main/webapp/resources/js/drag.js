@@ -8,9 +8,7 @@
 
 	 //드래그 마크 중요표시 선택
 	
-	
-		$("document").ready(function(){
-			function setDragMark(dragNum){
+	function setDragMark(dragNum){
 			      $.ajax({
 				  
 				    url : "../drag/setDragMark.json",
@@ -218,6 +216,16 @@
 		}
 			
 			
+			
+		
+		
+		
+		
+		
+		
+		
+		//페이지 로딩시 요청
+		$("document").ready(function(){
 			
 			makeDragList(event);
 			
