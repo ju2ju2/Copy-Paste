@@ -35,11 +35,19 @@ public class DragService {
 	}
 
 	//드래그 목록 보기
-	public List<DragVO> selectAllDrag(String userEmail) throws Exception {
+	public List<DragVO> selectAllDrag(DragVO drag) throws Exception {
 		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
-		List<DragVO> dragList = dragdao.selectAllDrag(userEmail);
+		List<DragVO> dragList = dragdao.selectAllDrag(drag);
 		return dragList;
 	}
+	
+	//드래그 스크롤 목록 더 보기
+		public List<DragVO> infiniteScrollDrag(DragVO drag) throws Exception {
+			DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
+			List<DragVO> dragList = dragdao.infiniteScrollDrag(drag);
+			return dragList;
+		}
+	
 	
 	//드래그 상세 보기(+노트 작성)
 	public DragVO selectDetail(int dragNum) throws Exception {
@@ -56,7 +64,6 @@ public class DragService {
 
 	//드래그 달력 검색
 	public List<DragVO> selectByCalDrag(HashMap<String, Object> map) throws Exception {
-		System.out.println("2번 서비스");
 		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
 		List<DragVO> dragList = dragdao.selectByCalDrag(map);
 		return  dragList;

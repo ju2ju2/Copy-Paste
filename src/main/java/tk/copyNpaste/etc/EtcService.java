@@ -31,12 +31,25 @@ import tk.copyNpaste.vo.EtcVO;
 import tk.copyNpaste.vo.MemberVO;
 import tk.copyNpaste.vo.NoteVO;
 import tk.copyNpaste.vo.ReportVO;
+import tk.copyNpaste.vo.noticeVO;
 
 @Service
 public class EtcService {
 	@Autowired
 	private SqlSession sqlsession;
 
+	// 알림 체크 바꾸기
+	public int notifyReadCheck(String userEmail, String notifyCode, int notifyTarget) throws Exception {
+		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
+		return etcdao.notifyReadCheck(userEmail, notifyCode, notifyTarget);
+	}
+	
+	// 알림 사항 리스트 가져오기
+	public List<noticeVO> noticeList(String userEmail) throws Exception {
+		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
+		return etcdao.noticeList(userEmail);
+	}
+	
 	// 회원 보기
 	public List<MemberVO> showMember() throws Exception {
 		MemberMapper memberdao = sqlsession.getMapper(MemberMapper.class);

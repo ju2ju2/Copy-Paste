@@ -177,13 +177,14 @@ $('#search').click(function(e) {
        type:"get",
        data:{"keyword":$('#search-text').val()},
        dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
-	      success:function(data){
+       success:function(data){
 	    	  var a = "";
 	        	if(data != null) {
 	        		$.each(data, function(key, value){
 	        			$('#dragList').empty();
 	                	a += '<div class="text-center dragDiv mt-10 dragDiv" id="'+value.dragNum+'">';
 	                	a += '<blockquote class="grapefruit">';
+	                	
 	                	a += '<!-- 별 아이콘 -->';
 	                	a += '<div class="icon-right starDiv">	<br>';
 	                	if(value.dragMark==1){   
@@ -195,9 +196,9 @@ $('#search').click(function(e) {
 	            		a += '<!-- 모달 창 -->';
 	            		a += '<div class="dragContent">';
 	                	a += '<div class="drag-a">';
-	                	a += '<p class="mt-10" class="dragText" id="dragText">'+value.dragText+'</p> <code>';
-	                	a += '&lt;출처 : <span class="Cgrapefruit">'+value.dragOrigin+'</span>&gt; ';
-	                	a += '<span>'+value.dragDate+'</span>';
+	                	a += '<div class="mt-10" class="dragText" id="dragText">'+value.dragText+'</div> <code>';
+	                	a += ' <span class="Cgrapefruit" id="dragOrigin">출처 : '+value.dragOrigin+'</span> ';
+	                	a += '<span id="dragDate">'+value.dragDate+'</span>';
 	                	a += '</code>';
 	                	a += '</div>';
 	                	a += '</blockquote>';
@@ -235,8 +236,7 @@ $('#search').click(function(e) {
 	    			editor.dom.add(editor.getBody(), 'p', {}, dragText+ "<br>");
 	    		})
 	      }
-       
-       })
+	 })
 })
 
 //드래그 정렬 
@@ -254,6 +254,7 @@ $('#sort-category').on("change",function(e) {
 	        			$('#dragList').empty();
 	                	a += '<div class="text-center dragDiv mt-10 dragDiv" id="'+value.dragNum+'">';
 	                	a += '<blockquote class="grapefruit">';
+	                	
 	                	a += '<!-- 별 아이콘 -->';
 	                	a += '<div class="icon-right starDiv">	<br>';
 	                	if(value.dragMark==1){   
@@ -265,9 +266,9 @@ $('#sort-category').on("change",function(e) {
 	            		a += '<!-- 모달 창 -->';
 	            		a += '<div class="dragContent">';
 	                	a += '<div class="drag-a">';
-	                	a += '<p class="mt-10" class="dragText" id="dragText">'+value.dragText+'</p> <code>';
-	                	a += '&lt;출처 : <span class="Cgrapefruit">'+value.dragOrigin+'</span>&gt; ';
-	                	a += '<span>'+value.dragDate+'</span>';
+	                	a += '<div class="mt-10" class="dragText" id="dragText">'+value.dragText+'</div> <code>';
+	                	a += ' <span class="Cgrapefruit" id="dragOrigin">출처 : '+value.dragOrigin+'</span> ';
+	                	a += '<span id="dragDate">'+value.dragDate+'</span>';
 	                	a += '</code>';
 	                	a += '</div>';
 	                	a += '</blockquote>';
@@ -305,7 +306,7 @@ $('#sort-category').on("change",function(e) {
 	    			editor.dom.add(editor.getBody(), 'p', {}, dragText+ "<br>");
 	    		})
 	      }
-       })
+	 })
 })
 
 //끝

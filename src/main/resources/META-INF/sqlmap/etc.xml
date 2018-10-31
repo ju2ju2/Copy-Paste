@@ -6,6 +6,25 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="tk.copyNpaste.mapper.EtcMapper">
+	
+	<!-- 알림 체크  -->
+	<update id="notifyReadCheck">
+		update notify set readCheck=0
+		where userEmail = #{param1} and notifyCode = #{param2} and notifyTarget = #{param3}
+	</update>
+	
+	<!-- 알림 리스트 가지고 오기 -->
+	<select id="noticeList" resultType="noticeVO">
+		select notifyCode, notifyTarget, readCheck
+		from notify
+		where userEmail = #{userEmail} 
+		order by readCheck desc, notifyDate desc limit 0, 5
+	</select>
+	
+	<!-- 알림 개수 가지고 오기 -->
+	<select id="countNotify" resultType="int">
+		select count(*) from notify where userEmail=#{userEmail} and readCheck=1
+	</select>
 
 	<!-- 신고 처리 -->
 	<insert id="insertReport" parameterType="ReportVO">

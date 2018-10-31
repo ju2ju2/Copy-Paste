@@ -18,7 +18,23 @@ public class DragVO {
 	private String dragOrigin;
 	private Date dragDate;
 	private String dragOriginLink;
-	
+	private int page;
+	private int endpage;
+	private int minNum;
+
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public int getEndpage() {
+		return endpage;
+	}
+	public void setEndpage(int endpage) {
+		this.endpage = endpage;
+	}
+
 	
 	public String getDragOriginLink() {
 		return dragOriginLink;
@@ -63,6 +79,19 @@ public class DragVO {
 	public void setDragMark(int dragMark) {
 		this.dragMark = dragMark;
 	}
+	public int getMinNum() {
+		return minNum;
+	}
+	public void setMinNum(int minNum) {
+		this.minNum = minNum;
+	}
+	@Override
+	public String toString() {
+		return "DragVO [dragNum=" + dragNum + ", dragMark=" + dragMark + ", userEmail=" + userEmail + ", dragText="
+				+ dragText + ", dragOrigin=" + dragOrigin + ", dragDate=" + dragDate + ", dragOriginLink="
+				+ dragOriginLink + ", page=" + page + ", endpage=" + endpage + ", minNum=" + minNum + "]";
+	}
 
+	
 
 }

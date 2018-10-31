@@ -10,7 +10,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se"
 	uri="http://www.springframework.org/security/tags"%>
-<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 <nav class="navbar navbar-default">
 	<div class="container">
 		<div class="navbar-header">
@@ -59,7 +58,7 @@
 					<se:authentication property="name" var="loginuser" />
 					<li class="dropdown inline"><a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><img
 							src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png"
-							class="img-circle " alt="user"> <span>${loginuser}</span><span class="caret"></span></a>
+							class="img-circle" > <span>${loginuser}</span><span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a
 								href="${pageContext.request.contextPath}/member/myinfo.htm"><i class="far fa-user"></i><span>PROFILE</span></a></li>

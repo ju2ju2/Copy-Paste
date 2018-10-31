@@ -11,10 +11,19 @@ import java.util.List;
 
 import tk.copyNpaste.vo.EtcVO;
 import tk.copyNpaste.vo.ReportVO;
+import tk.copyNpaste.vo.noticeVO;
 import tk.copyNpaste.vo.NoteVO;
 
 public interface EtcMapper {
 	
+	//알림 읽음 체크
+	public int notifyReadCheck(String userEmail, String notifyCode, int notifyTarget) throws Exception;
+	
+	//알림 리스트 가지고 오기
+	public List<noticeVO> noticeList(String userEmail) throws Exception;
+	
+	//알림 개수 가지고 오기
+	public int countNotify(String userEmail) throws Exception;
 	
 	//신고 하기
 	public int insertReport(ReportVO report) throws Exception;
