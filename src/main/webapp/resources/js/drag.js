@@ -136,16 +136,14 @@
      		    
      		    // 스크롤이벤트 발생시 추가 12개 
      		    var lastScrollTop = 0;
-     		    var minNum=0;
      	    	page += 12; //2회차
-    
-     	    	
      			$(window).scroll(function(event){ 
      				event.stopPropagation(); 
      				
      				// ① 스크롤 이벤트 최초 발생
      		        var currentScrollTop = $(window).scrollTop();
-     		   
+     		      
+     		        
      		        if( currentScrollTop - lastScrollTop > 0 ){
      		            if ($(window).scrollTop() >= ($(document).height() - $(window).height()) ){ 
      		      
@@ -159,13 +157,11 @@
      			                    	console.log(i + "회차: " + page); 
      			                    },
 	     		                    success : function(data){
-	     		                    	
-	     		     
+	     		                   
 	     		                   console.log(data)
      		                        var dragList = "";
      		                        var dragList2 = "";
-     		                   
-     		                        if(data!=null) {
+     		                        if(data != null) {
      		                    		$.each(data, function(key, value){
      		                    		dragList2="";
      		                    		dragList2+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">';
@@ -200,22 +196,17 @@
      		                			dragList2+='</div>';
      		                			dragList2+='</div>';
      					                 
-     		                			$('#dragList').append(dragList2);
-     		                			
+     		                			   $('#dragList').append(dragList2);
      		                        })
      							    page += 12;
      		                    	i += 1;
      		                    	console.log(i + "회차: " + page);
      		 
      		                    }
-     		                   },
-     		    		      error:function(request,status,error){
-     		 		    	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-     		 		    }
+     		                   }
      			            });
      		            } 
      		          }
-     		  
      		      })    	
     
      	  

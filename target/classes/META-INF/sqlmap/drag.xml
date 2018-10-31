@@ -8,13 +8,18 @@
 <mapper namespace="tk.copyNpaste.mapper.DragMapper">
 	<!--전체보기 -->
 	<select id="selectAllDrag" resultType="DragVO">
-		select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate
-		from drag where userEmail= #{userEmail}
+		select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate,dragOriginLink
+		from drag where userEmail= #{userEmail} order by dragNum desc limit 0,12 
+	</select>
+	
+	<select id="infiniteScrollDrag" resultType="DragVO" >
+		select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate,dragOriginLink
+		from drag where userEmail= #{userEmail} order by dragNum desc limit #{page},12
 	</select>
 
 	<!--상세보기 -->
 	<select id="selectDetail" resultType="DragVO">
-		select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate
+		select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate,dragOriginLink
 		from drag where dragNum= #{dragNum}
 	</select>
 
@@ -23,8 +28,8 @@
         <selectKey order="BEFORE" keyProperty="dragNum" resultType="int">
             select max(dragNum)+1 from drag
         </selectKey>
-        insert into drag(dragNum, userEmail, dragText, dragOrigin)
-        values(#{dragNum}, #{userEmail}, #{dragText}, #{dragOrigin})
+        insert into drag(dragNum, userEmail, dragText, dragOrigin, dragOriginLink )
+        values(#{dragNum}, #{userEmail}, #{dragText}, #{dragOrigin}, #{dragOriginLink})
     </insert>
     
 
@@ -34,6 +39,11 @@
 	</delete>
 
 	<!-- 드래그 달력 검색 selectByCalDrag-->
+	<select id="selectByCalDrag" parameterType="hashmap" resultType="DragVO">
+	select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate
+		from drag where dragDate between #{fromDate} and #{toDate} and userEmail=#{userEmail}
+	order by dragDate desc;
+	</select>
 	
 	<!-- 드래그 키워드 검색 selectByKeyDrag -->
 	<select id="selectByKeyDrag"  parameterType="hashmap" resultType="DragVO">
@@ -48,12 +58,12 @@
 		<!-- 드래그 정렬-->
 	<select id="selectOrderbyDrag" parameterType="hashmap"  resultType="DragVO" >
 	   select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate
-      from drag where userEmail = #{userEmail}
+      from drag where userEmail = #{userEmail} 
       order by 
           Case when #{sortCategory}='dragNumDesc' then dragNum End desc,
           Case when #{sortCategory}='dragNumAsc' then dragNum End asc,
           Case when #{sortCategory}='dragMark' then dragMark End desc,
-          Case when #{sortCategory}='dragText' then dragText End desc;
+          Case when #{sortCategory}='binary(dragText)' then binary(dragText) End asc
 	</select>
 
 	<!-- 드래그 중요표시 등록 setDragMark-->
