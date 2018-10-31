@@ -77,10 +77,14 @@ public class NoteVisionSpellService {
 
 	}
 
-	public File multipartToFile(MultipartFile multipart) throws IllegalStateException, IOException 
+	public File multipartToFile(MultipartFile multipart) 
 	{
 	        File convFile = new File( multipart.getOriginalFilename());
-	        multipart.transferTo(convFile);
+	        try {
+				multipart.transferTo(convFile);
+			} catch (IllegalStateException e) {
+			} catch (IOException e) {
+			}
 	        return convFile;
 	}
 	 

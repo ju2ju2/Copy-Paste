@@ -7,12 +7,10 @@
 
 package tk.copyNpaste.note;
 
-import java.io.PrintStream;
 import java.security.Principal;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,7 +27,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import tk.copyNpaste.folder.FolderService;
-import tk.copyNpaste.mapper.NoteMapper;
 import tk.copyNpaste.vo.FolderVO;
 import tk.copyNpaste.vo.NoteCommVO;
 import tk.copyNpaste.vo.NoteVO;
@@ -251,10 +248,12 @@ public class NoteController {
 	
 	// 비젼 api 문자인식
 	@RequestMapping(value="visionAnalizeImg.json")
-	public @ResponseBody String visionAnalizeImg(Principal principal, MultipartHttpServletRequest req) throws Exception {
+	public @ResponseBody Map<String, String> visionAnalizeImg(Principal principal, MultipartHttpServletRequest req) throws Exception {
 		String userEmail=principal.getName();
 		String text=noteVisionSpellService.vision(userEmail, req);
-		return text;
+		Map<String, String> map = new HashMap<String, String> ();
+		map.put("text", text);
+		return map;
 	}
 	
 }

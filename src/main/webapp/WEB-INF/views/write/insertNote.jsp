@@ -100,23 +100,18 @@ $(document).ready(function() {
 		      url: "../note/visionAnalizeImg.json", // url_pettern 
 		      type : 'post',
 		      data: formData, 
-		      enctype: 'multipart/form-data',
+		      enctype: 'multipart/form-data; charset=UTF-8',
 		      processData : false,
-		      contentType : false, 
-		      dataType: 'text',
-		      success:function(result){
-		    	console.log(result)
-				$(".modal").modal("hide");
-				var editor = tinyMCE.activeEditor;
-    			var noteContent = $('#noteContent').html();
-    			editor.dom.add(editor.getBody(), 'p', {}, result+ "<br>");
-		      },
-		      error:function(request,status,error){
-		    	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		    }
-	
-		     		 
-		    })
+		      contentType: false,
+		      dataType: 'json'
+		    }).done(function(data){
+					$(".modal").modal("hide");
+					var editor = tinyMCE.activeEditor;
+	    			var noteContent = $('#noteContent').html();
+	    			editor.dom.add(editor.getBody(), 'p', {}, data.text+ "<br>");
+			}).fail(function(request,status,error){
+	    	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			});
 
 	})
 	
