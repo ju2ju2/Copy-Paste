@@ -7,8 +7,6 @@
 package tk.copyNpaste.drag;
 
 import java.security.Principal;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import tk.copyNpaste.vo.DragVO;
-import tk.copyNpaste.vo.NoteVO;
 
 
  //동기 컨트롤러. retrun>> ModelAndView or String.
@@ -33,20 +30,33 @@ public class DragController {
 
 	//드래그 전체목록 보기 (비동기/글작성페이지)
 	@RequestMapping(value ="selectAllDrag.json")
-	public @ResponseBody List<DragVO> selectAllDrag(Model model,Principal principal) throws Exception {
-		 String userEmail= principal.getName();
-	/*	 List<DragVO> dragList =  dragservice.selectAllDrag(userEmail);
-		 model.addAttribute("dragList", dragList);*/
-		return dragservice.selectAllDrag(userEmail);
+	public @ResponseBody List<DragVO> selectAllDrag(Model model,Principal principal,DragVO drag) throws Exception {
+			drag.setUserEmail(principal.getName());	
+			List<DragVO> dragList = dragservice.selectAllDrag(drag);
+			model.addAttribute("dragList", dragList);
+			model.addAttribute("page", dragList.size());
+		return dragList;
 	}
+	
+	
+	//드래그 무한스크롤 보기 (비동기)
+		@RequestMapping(value ="infiniteScrollDrag.json")
+		public @ResponseBody List<DragVO> infiniteScrollDrag( Principal principal, DragVO drag, Model model) throws Exception {
+			drag.setUserEmail(principal.getName());
+			List<DragVO> dragList = dragservice.infiniteScrollDrag(drag);
+			model.addAttribute("dragList", dragList);
+			model.addAttribute("page", dragList.size());
+			return dragList;
+		}
 	
 	
 	//드래그 페이지
 	@RequestMapping(value ="drag.htm")
-	public String dragpage(Model model ,Principal principal) throws Exception {
-	  String userEmail= principal.getName();
-		List<DragVO> dragList =  dragservice.selectAllDrag(userEmail);
+	public String dragpage(Model model ,Principal principal,DragVO drag) throws Exception {
+		drag.setUserEmail(principal.getName());
+		List<DragVO> dragList =  dragservice.selectAllDrag(drag);
 		model.addAttribute("dragList", dragList);
+		model.addAttribute("page", dragList.size());
 		return "drag.list";
      }
 
@@ -83,7 +93,6 @@ public class DragController {
 		map.put("userEmail", principal.getName());
 		return dragservice.selectByCalDrag(map);
 	}
-	
 
 	//드래그 키워드 검색 dragSearch.json
 	@RequestMapping(value="selectByKeyDrag.json")
@@ -91,7 +100,6 @@ public class DragController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("keyword", keyword);
 		map.put("userEmail", principal.getName());
-	
 		return dragservice.selectByKeyDrag(map);	
 	}
 	
