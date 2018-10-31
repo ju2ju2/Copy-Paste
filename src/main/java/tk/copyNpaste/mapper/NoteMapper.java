@@ -50,7 +50,10 @@ public interface NoteMapper {
 
 	//회원별 노트 검색
 	public List<NoteVO> selectByMemNote(String userEmail) throws Exception;
-
+	
+	//회원별 작성 노트 개수
+	public int selectNoteCount(String userEmail) throws Exception;
+	
 	//회원별 노트 일괄 삭제
 	public int deleteMemNote(String userEmail) throws Exception;
 
@@ -87,7 +90,11 @@ public interface NoteMapper {
 /*	//노트의 폴더 이동 드래그 가능하면 구현
 	public int moveNoteFolder(NoteVO note) throws Exception;*/
 	
+	//노트 전체보기 - 관리자
+	public List<NoteVO> selectAllNoteAdmin() throws Exception;
 
+	//노트 개별 삭제 - 관리자
+	public int deleteNoteNumAdmin(int noteNum) throws Exception;
 
 		
 }

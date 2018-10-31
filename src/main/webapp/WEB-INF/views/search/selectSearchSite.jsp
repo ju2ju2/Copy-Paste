@@ -12,11 +12,11 @@
 	<div class="row no-margin">
 	<div class="col-xs-2">
 	<select name="subject-category" id="subject-category">
-		<option value="">- 주제 선택 -</option>
-		<option value="SJ00">기타</option>
-		<option value="SJ01">회사</option>
-		<option value="SJ02">생활</option>
-		<option value="SJ03">교육</option>
+		<option value="all">- 주제 선택 -</option>
+		<option value="기타">기타</option>
+		<option value="회사">회사</option>
+		<option value="생활">생활</option>
+		<option value="교육">교육</option>
 	</select>
 	</div>
 
@@ -34,11 +34,11 @@
 	<!-- Radio -->
 	<div class="radio">
 		<form method="post" action="#">
-				<input type="radio" id="radio-sub" name="demo-priority" checked>
+				<input type="radio" id="radio-sub" name="demo-priority" value="제목" checked>
 				<label for="radio-sub">제목</label>
-				<input type="radio" id="radio-content" name="demo-priority">
+				<input type="radio" id="radio-content"  value="내용" name="demo-priority">
 				<label for="radio-content">내용</label>
-				<input type="radio" id="radio-sub-content" name="demo-priority">
+				<input type="radio" id="radio-sub-content" value="제목+내용"  name="demo-priority">
 				<label for="radio-sub-content">제목+내용</label>
 		</form>	
 	</div>		
@@ -51,10 +51,6 @@
 		</header>
 	<div class="searchList" id="searchList">
 		<!-- 검색 결과가 뿌려질 공간 -->
-
-	
-	
-	
 	</div>
 	</section>
 
@@ -62,4 +58,11 @@
 </div>
 </div>
 
+<!-- Modal HTML -->
+<div id="modal-testNew" class="modal fade text-center overlay" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">Content will be loaded here from
+			"note/noteDetail.htm" file</div>
+	</div>
+</div>
 

@@ -179,6 +179,7 @@ public class EtcService {
 		
 	}
 	
+	/*public List<NoteVO> selectSearchSite(HashMap map) throws Exception {*/
 	public List<NoteVO> selectSearchSite(HashMap map) throws Exception {
 		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
 		return etcdao.selectSearchSite(map);

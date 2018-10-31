@@ -19,6 +19,7 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/search.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/note.css" />
 		<!-- Scripts -->
 		<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

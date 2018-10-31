@@ -10,6 +10,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"	
 	xmlns:tx="http://www.springframework.org/schema/tx"	 
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -18,6 +19,7 @@
     	http://www.springframework.org/schema/tx/spring-tx.xsd"  >
 	
 	<context:component-scan base-package="tk.copyNpaste" />
+	<mvc:annotation-driven />
 	<context:annotation-config /> 
 	<annotation-driven />
 		<!-- component-scan:빈객체 생성 
@@ -61,5 +63,24 @@
 	</beans:bean>
 	<!--클래스에 @Transactional 이 적용되어있다면 트랜잭션 처리	-->
 	<tx:annotation-driven transaction-manager="transactionManager" />
+	
+	<!-- locale 처리 -->
+	<beans:bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<beans:property name="basenames">
+			<beans:list>
+				<beans:value>message.label</beans:value>
+			</beans:list>
+		</beans:property>
+		<beans:property name="defaultEncoding" value="UTF-8" />
+	</beans:bean>
+	<beans:bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+	<mvc:interceptors>
+		<beans:bean
+			class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<beans:property name="paramName" value="language" />
+		</beans:bean>
+	</mvc:interceptors>
 
 </beans:beans>
