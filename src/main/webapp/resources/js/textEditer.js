@@ -1,11 +1,13 @@
 var demoBaseConfig = {
-		  selector: "textarea",
+		  selector : "textarea",
+		 /*forced_root_block : "",//루트태그 삭제*/
 		  branding: false,
 		  theme: "modern",
 		  resize: false,
 		  automatic_uploads: false,
 		  autosave_ask_before_unload: false,
 		  paste_data_images: true,
+		  content_style: ".wrong {color:red;}",
 		  relative_urls : false,//이미지 상대경로 해제
 		  remove_script_host : false,//이미지 상대경로 해제
 		  powerpaste_allow_local_images:!0,
