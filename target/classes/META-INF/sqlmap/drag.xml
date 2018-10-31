@@ -9,12 +9,7 @@
 	<!--전체보기 -->
 	<select id="selectAllDrag" resultType="DragVO">
 		select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate,dragOriginLink
-		from drag where userEmail= #{userEmail} order by dragNum desc limit 0,12 
-	</select>
-	
-	<select id="infiniteScrollDrag" resultType="DragVO" >
-		select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate,dragOriginLink
-		from drag where userEmail= #{userEmail} order by dragNum desc limit #{page},12
+		from drag where userEmail= #{userEmail} order by dragNum desc
 	</select>
 
 	<!--상세보기 -->

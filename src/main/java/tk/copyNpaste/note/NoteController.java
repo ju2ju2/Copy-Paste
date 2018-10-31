@@ -8,10 +8,9 @@
 package tk.copyNpaste.note;
 
 import java.security.Principal;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,9 +24,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import tk.copyNpaste.folder.FolderService;
-import tk.copyNpaste.mapper.NoteMapper;
 import tk.copyNpaste.vo.FolderVO;
 import tk.copyNpaste.vo.NoteCommVO;
 import tk.copyNpaste.vo.NoteVO;
@@ -37,7 +36,10 @@ import tk.copyNpaste.vo.NoteVO;
 public class NoteController {
 	@Autowired
 	NoteMailnFileService noteMailnFileService;
-
+	
+	@Autowired
+	NoteVisionSpellService noteVisionSpellService;
+	
 	@Autowired
 	NoteService noteService;
 	
@@ -228,21 +230,21 @@ public class NoteController {
 		return null;
 	}
 	
-	// 회원별 노트 검색-관리자-노트관리
-	public List<NoteVO> selectByMemNote(String userEmail) throws Exception {
-		return noteService.selectByMemNote(userEmail);
-	}
-
-	// 회원별 노트 일괄 삭제-관리자-노트관리
-	public int deleteMemNote(String userEmail) throws Exception {
-		return noteService.deleteMemNote(userEmail);
-	}	
-	
 	// 노트 블라인드 처리-관리자
 	public int blindNote(int noteNum) throws Exception{	
 		return noteService.blindNote(noteNum);
 	}
 	
+	
+	// 비젼 api 문자인식
+	@RequestMapping(value="visionAnalizeImg.json")
+	public @ResponseBody Map<String, String> visionAnalizeImg(Principal principal, MultipartHttpServletRequest req) throws Exception {
+		String userEmail=principal.getName();
+		String text=noteVisionSpellService.vision(userEmail, req);
+		Map<String, String> map = new HashMap<String, String> ();
+		map.put("text", text);
+		return map;
+	}
 	
 }
 

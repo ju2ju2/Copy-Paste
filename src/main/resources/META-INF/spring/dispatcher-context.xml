@@ -7,6 +7,7 @@
 @Desc : 디스패처 설정 (클래스 생성 및 매핑, 타일 객체-파일 설정, 리소스 설정 )
 -->		
 <beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -16,7 +17,9 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/tx
-    	http://www.springframework.org/schema/tx/spring-tx.xsd"  >
+    	http://www.springframework.org/schema/tx/spring-tx.xsd
+    	http://www.springframework.org/schema/websocket
+		http://www.springframework.org/schema/websocket/spring-websocket-4.1.xsd"  >
 	
 	<context:component-scan base-package="tk.copyNpaste" />
 	<mvc:annotation-driven />
@@ -82,5 +85,12 @@
 			<beans:property name="paramName" value="language" />
 		</beans:bean>
 	</mvc:interceptors>
+	
+	<!-- 웹소켓 -->
+	<websocket:handlers>
+		<websocket:mapping path="/notify.do" handler="notifyHandler" />
+	</websocket:handlers>
+	
+	<beans:bean id="notifyHandler" class="tk.copyNpaste.etc.NotifyHandler"/>
 
 </beans:beans>

@@ -13,6 +13,14 @@ public class EtcVO {
 	private int subjectyAxis;
 	private String memberxAxis;
 	private int memberyAxis;
+	private String boundary;
+	
+	public String getBoundary() {
+		return boundary;
+	}
+	public void setBoundary(String boundary) {
+		this.boundary = boundary;
+	}
 	public String getSubjectxAxis() {
 		return subjectxAxis;
 	}
