@@ -24,6 +24,7 @@ import tk.copyNpaste.vo.EtcVO;
 import tk.copyNpaste.vo.MemberVO;
 import tk.copyNpaste.vo.NoteVO;
 import tk.copyNpaste.vo.ReportVO;
+import tk.copyNpaste.vo.noticeVO;
 
 @RequestMapping("/etc/")
 @Controller // 동기 컨트롤러. retrun>> ModelAndView or String.
@@ -33,6 +34,20 @@ public class EtcController {
 	@Autowired
 	NoteService noteService;
 
+	@RequestMapping("notifyList.json")
+	// 알림 리스트 보내기
+	public @ResponseBody List<noticeVO> noticeList(String userEmail) throws Exception {
+		System.out.println(etcService.noticeList(userEmail));
+		return etcService.noticeList(userEmail);
+	}
+	
+	@RequestMapping("notifyReadCheck.json")
+	// 알림 읽음 처리 하기
+	public @ResponseBody int notifyReadCheck(String userEmail, String notifyCode, int notifyTarget) throws Exception {
+		return etcService.notifyReadCheck(userEmail, notifyCode, notifyTarget);
+		
+	}
+	
 	@RequestMapping("admin.htm")
 	// 관리자 페이지 (회원관리)
 	public ModelAndView adminMemberPage() throws Exception {
