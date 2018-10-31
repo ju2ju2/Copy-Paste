@@ -21,7 +21,9 @@
 		<!-- Sweet Alert cdn -->
 		<link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
 		<script type="text/javascript"	src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
+	    <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 		<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		
 		<!-- title 영역 -->
 		<title><tiles:insertAttribute name="title" /></title>
 	</head>

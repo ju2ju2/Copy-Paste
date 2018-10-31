@@ -33,8 +33,6 @@ public class DragController {
 	public @ResponseBody List<DragVO> selectAllDrag(Model model,Principal principal,DragVO drag) throws Exception {
 			drag.setUserEmail(principal.getName());	
 			List<DragVO> dragList = dragservice.selectAllDrag(drag);
-			model.addAttribute("dragList", dragList);
-			model.addAttribute("page", dragList.size());
 		return dragList;
 	}
 	
@@ -44,8 +42,6 @@ public class DragController {
 		public @ResponseBody List<DragVO> infiniteScrollDrag( Principal principal, DragVO drag, Model model) throws Exception {
 			drag.setUserEmail(principal.getName());
 			List<DragVO> dragList = dragservice.infiniteScrollDrag(drag);
-			model.addAttribute("dragList", dragList);
-			model.addAttribute("page", dragList.size());
 			return dragList;
 		}
 	

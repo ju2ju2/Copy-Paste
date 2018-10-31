@@ -18,7 +18,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="${pageContext.request.contextPath}/resources/js/drag.js"></script>
 
 <div class="d-container">
 	<div class="d-inner">
@@ -85,12 +84,7 @@
 	</div>
 </div>
 
-<p class="row">
-<div id="toolbar-options" class="hidden">
-	<a href="#" id="insertDrag"><i class="fa fa-copyright"></i></a> <a
-		href="#"><i class="fa fa-star"></i></a> <a href="#"><i
-		class="fa fa-sticky-note"></i></a>
-</div>
+<p class="row"></p>
 
 
 

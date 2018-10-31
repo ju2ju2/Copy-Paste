@@ -5,10 +5,6 @@
 @Desc : 메인 텍스트 슬라이드, 스크립트 관련 파일
  */
 
-/*// 파일 다운로드 후 창닫기.
- $("#formID").submit(function() {
- $("#dialog_div_ID").dialog("close");
- });*/
 //활성화 된 링크 active 클래스주기
 //모달 내용 초기화
 $('body').on('hidden.bs.modal', '.modal', function() {
