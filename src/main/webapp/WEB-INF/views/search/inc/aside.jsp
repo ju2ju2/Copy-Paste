@@ -20,7 +20,7 @@
 						<div class="form-group">
 							<!-- 드래그정렬 -->
 							<div class="col-xs-12">
-								<select name="sort-category" id="sort-category">
+								<select name="sort-category" id="sort-category" class="text" >
 									<option value="">- 정렬 분류 -</option>
 									<option value="dragNumDesc">최신순</option>
             						<option value="dragNumAsc">오래된 순</option>
@@ -33,7 +33,7 @@
 							<section id="subject-search" class="alt">
 								<div class="col-xs-12">
 									<form method="post" action="#">
-										<input type="text" id="search-text" placeholder="검색" /> <a
+										<input type="text" id="search-text" placeholder="검색" class="text" /> <a
 											href="#"><i id="searchdrag" class="fas fa-search icon-size"
 											style="padding-top: 15px"></i></a>
 									</form>
