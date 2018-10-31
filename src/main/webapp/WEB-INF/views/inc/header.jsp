@@ -194,7 +194,7 @@
 					<!--프로필사진-->
 					<se:authentication property="name" var="loginuser" />
 					<li class="dropdown inline"><a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-						<img class="img-circle" alt="user" id="headerUserPhoto"><span>${loginuser}</span><span class="caret"></span></a>
+						<img class="img-circle" id="headerUserPhoto"><span>${loginuser}</span><span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a
 								href="${pageContext.request.contextPath}/member/myinfo.htm"><i class="far fa-user"></i><span>PROFILE</span></a></li>

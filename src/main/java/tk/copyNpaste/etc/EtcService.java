@@ -7,6 +7,7 @@
 
 package tk.copyNpaste.etc;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import tk.copyNpaste.mapper.EtcMapper;
 import tk.copyNpaste.mapper.MemberMapper;
-import tk.copyNpaste.mapper.NoteMapper;
 import tk.copyNpaste.vo.EtcVO;
 import tk.copyNpaste.vo.MemberVO;
 import tk.copyNpaste.vo.NoteVO;
@@ -54,13 +55,13 @@ public class EtcService {
 		MemberMapper memberdao = sqlsession.getMapper(MemberMapper.class);
 		return memberdao.selectAllMember();
 	}
-	
+
 	// 회원 탈퇴 시키기
 	public int deleteMember(String userEmail) throws Exception {
 		MemberMapper memberdao = sqlsession.getMapper(MemberMapper.class);
 		return memberdao.deleteMember(userEmail);
 	}
-	
+
 	// 신고 하기
 	public int insertReport(ReportVO report) throws Exception {
 		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
@@ -84,7 +85,7 @@ public class EtcService {
 		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
 		return etcdao.selectCommReport();
 	}
-	
+
 	// 신고된 댓글을 가진 노트 num 구하기
 	public int selectHasReportComm(int reportNum) throws Exception {
 		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
@@ -93,9 +94,9 @@ public class EtcService {
 
 	// 신고 처리 하기
 	@Transactional
-	public int updateReport(int reportNum, String reportmemo, String checkCode,
-			String noteOrCommCode, int noteNum) throws Exception {
-		
+	public int updateReport(int reportNum, String reportmemo, String checkCode, String noteOrCommCode, int noteNum)
+			throws Exception {
+
 		try {
 			EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
 			int reportInt = etcdao.updateReport(reportNum, reportmemo, checkCode);
@@ -113,13 +114,13 @@ public class EtcService {
 					noteOrCommInt = etcdao.updateReportNoteCommDontBlind(noteNum);
 				}
 			}
-			
-			return reportInt+noteOrCommInt;
-			
-		}catch (Exception e) {
+
+			return reportInt + noteOrCommInt;
+
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return 0;
 	}
 
@@ -151,52 +152,38 @@ public class EtcService {
 		return etcdao.stateNoteSubject();
 	}
 
-
 	// 셀레니움
-	public void naver() {
-		System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
-		// 2번째 파라미터가 경로
+	public void naver(HttpServletRequest request) throws InterruptedException {
+	
+		String driverpath = request.getSession().getServletContext().getRealPath("resources/driver/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver", driverpath);
+		
+
+		// chormeOption
+		ChromeOptions options = new ChromeOptions();
+/*		options.addArguments("--headless"); // 창 없는 옵션*/	
+		options.addArguments("--hide-scrollbars"); // 스크롤바 없애는 옵션
+		options.addArguments("window-size=1080x1080"); // 화면 크기 옵션
+		options.addArguments("disable-gpu"); // 성능
+		
 		WebDriver driver = new ChromeDriver();
 		driver.get("http://naver.com");
+		driver.getWindowHandle();
+		ArrayList<String> newTab= new ArrayList<String>(driver.getWindowHandles());
+		driver.switchTo().window(newTab.get(0));
+		Thread.sleep(2000);
 		driver.quit();
-	}
 	
-	public void google(HttpServletRequest request) {
-/*		String driverpath = request.getSession().getServletContext().getRealPath("resources/driver/chromedriver.exe");
-        System.setProperty("webdriver.chrome.driver", driverpath);
-		System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
-		// 2번째 파라미터가 경로
-		WebDriver driver = new ChromeDriver();
-		
-		driver.get("http://naver.com");
-	*/
-/*		driver.get("http://google.com");
-		WebElement element = driver.findElement(By.name("q"));
-		element.sendKeys("Cheese!");
-		// Now submit the form. WebDriver will find the form for us from the element
-	    element.submit();
-	    // Check the title of the page
-	    System.out.println("Page title is: " + driver.getTitle());
-	    // Google's search is rendered dynamically with JavaScript.
-	   // Wait for the page to load, timeout after 10 seconds
-	   (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
-	     public Boolean apply(WebDriver d) {
-	     return d.getTitle().toLowerCase().startsWith("cheese!");
-	      }
-	     });
-	 // Should see: "cheese! - Google Search"
-	 
-	      //Close the browser
-	        //driver.quit();
-*/
-		
 	}
-	
-	/*public List<NoteVO> selectSearchSite(HashMap map) throws Exception {*/
+
+	public void google(HttpServletRequest request) throws InterruptedException {
+		
+
+	}
+
 	public List<NoteVO> selectSearchSite(HashMap map) throws Exception {
 		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
 		return etcdao.selectSearchSite(map);
 	}
-	
-	
+
 }

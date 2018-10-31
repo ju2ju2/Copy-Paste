@@ -208,14 +208,15 @@ public class EtcController {
 
 	// 네이버 검색
 	@RequestMapping("/selectSearchNaver.htm")
-	public String selectSearchNaver() {
+	public String selectSearchNaver(HttpServletRequest request) throws InterruptedException {
+		etcService.naver(request);
 		return "search.selectSearchNaver";
 	}
 
 	// 구글 검색
 	@RequestMapping("/selectSearchGoogle.htm")
-	public String selectSearchGoogle(HttpServletRequest request) {
-		//etcService.google(request);
+	public String selectSearchGoogle(HttpServletRequest request) throws InterruptedException {
+		etcService.google(request);
 		return "search.selectSearchGoogle";
 	}
 
