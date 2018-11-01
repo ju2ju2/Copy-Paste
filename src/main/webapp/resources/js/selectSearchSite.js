@@ -28,6 +28,8 @@
 
 	
 $(function() {
+	
+	
 	// 드래그 삭제
 	function deleteDrag(dragNum) {
 		var dragNum = dragNum;
@@ -334,8 +336,9 @@ $(function() {
 		
 	});
 
-	
-	
+//이전 드래그 텍스트
+var prevText;
+
 // 드래그 저장
 $(document).mouseup(function(event){
 	event.preventDefault(); 
