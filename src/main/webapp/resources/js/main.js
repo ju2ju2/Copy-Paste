@@ -5,10 +5,7 @@
 @Desc : 메인 텍스트 슬라이드, 스크립트 관련 파일
  */
 
-/*// 파일 다운로드 후 창닫기.
- $("#formID").submit(function() {
- $("#dialog_div_ID").dialog("close");
- });*/
+
 //활성화 된 링크 active 클래스주기
 //모달 내용 초기화
 $('body').on('hidden.bs.modal', '.modal', function() {
@@ -81,8 +78,7 @@ window.onload = function() {
 
 	var apiURI = "http://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=786c99bd6467a4ab58300feffccd96d2";
 
-	$
-			.ajax({
+	$.ajax({
 				url : apiURI,
 				dataType : "json",
 				type : "GET",
@@ -174,8 +170,52 @@ window.onload = function() {
 				document.querySelector('.img-responsive').src = reader.result;
 			};
 		};
-	}
-	;
+	};
+	//크롤링
+	$.ajax({
+		url : "jsoupMelon.json",
+		type : "GET",
+		dataType:"json",
+		success : function(data) {
+			var tag= "<div class='music-player'>"
+		   +" <ul class='player-list'>";
+		   $.each(data, function(key, value){
+			   if(key<5){
+			   tag=tag+"  <li>"
+				   +"     <div class='music-rank'>"+value.rank+"위</div>"
+				   +"   <img class='list-cover' src='"+value.imgT+"' />"
+				   +"   <div class='list-info'>"
+				   +"     <div class='info-title'>"+value.song+"</div>"
+				   +"     <div class='info-artist'>"+value.artist+"</div>"
+				   +" </div> </li>";
+			   }
+			});
+		   tag=tag+"</ul></div>";
+			$('.melon').append(tag);
+			var tag2= "<div class='music-player'>"
+				   +" <ul class='player-list'>";
+			var textIntro = '';
+				   $.each(data, function(key, value){
+					   if(key>=5){
+					   tag2=tag2+"  <li>"
+						   +"     <div class='music-rank'>"+value.rank+"위</div>"
+						   +"   <img class='list-cover' src='"+value.imgT+"' />"
+						   +"   <div class='list-info'>"
+						   +"     <div class='info-title'>"+value.song+"</div>"
+						   +"     <div class='info-artist'>"+value.artist+"</div>"
+						   +" </div> </li>";
+					   }
+					   textIntro = value.textIntro; 
+					});
+				   tag2=tag2+"</ul></div>";
+					$('.melon2').append(tag2);
+					
+					$('.textIntro').append(textIntro);
+		},
+		error:function(request,status,error){
+		    console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		   }
+	});
 
 };
 //이전 드래그 텍스트

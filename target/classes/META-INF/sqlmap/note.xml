@@ -184,12 +184,17 @@
 		SELECT #{newNoteNum},
 			   Replace('스크랩','\r\n', ''), 
 		       #{userEmail}, 
-		       noteTitle,noteContent,noteDate,subjectCode,0,1,#{noteNum},noteThumnail
+		       noteTitle,#{noteContent},noteDate,subjectCode,0,1,#{noteNum},noteThumnail
 		FROM   note 
 		WHERE  noteNum = #{noteNum};
      </insert> 
 
-
+	<!-- 참조수 증가 -->
+		<update id="updateNoteCount" >
+		 update note 
+			SET noteCount = (select max(noteCount)+1 from note where noteNum =#{noteNum})
+		  WHERE noteNum = #{noteNum}
+		</update>
 	
 	<!-- 노트의 폴더 이동-노트수정시 -->
 
