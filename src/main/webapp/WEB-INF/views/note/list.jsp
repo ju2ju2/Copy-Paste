@@ -12,20 +12,19 @@
 		<!-- Section -->
 		<section id="droppable">
 			<header class="major">
-			
 				<h3 id="fName">
 					My Note <i class="fas fa-trash icon-size"></i> 
 				</h3>
-				
 			</header>
 		</section>
 		
 		<!-- 노트리스트 출력 -->
 		<div class="row" id="noteList"></div>
 	</div>
-	<br>
-
-
+</div>
+<br>
+<!-- top버튼 -->
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
 <!-- Modal HTML -->
 <div id="modal-testNew" class="modal fade text-center overlay" role="dialog">
@@ -34,8 +33,3 @@
 			"note/noteDetail.htm" file</div>
 	</div>
 </div>
-<!-- top버튼 -->
-<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-<script>
-
-</script>

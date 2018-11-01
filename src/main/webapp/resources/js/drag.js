@@ -4,34 +4,15 @@
 @Author : 문지은
 @Desc : list 경로 makeDragList.jsp 로 스크립트 수정 
 */
-					
-				//params json 객체 파라미터 넘기는 값. VO역할
-				var params = {"fromDate": "",
-								   "toDate" :  "",
-								   "keyword": "",
-								   "dragNum" : "",
-								   "sortCategory" : ""
-									}
-
-			 // dragDiv들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
-	 	    $('.dragDiv').draggable({
-	 	    	revert: true, 
-	 	    	 revertDuration: 200,
-	 	    	 snapMode: "inner",
-	 	    	 scroll: true,
-	 	    	 scrollSensitivity: 100 ,
-	 	    	 scrollSpeed: 100
-	 	    	});
-	 	     // 드래그를 드랍하여 삭제 메소드 
-	 	    $("#droppable").droppable({
-	 	        activeClass:"ui-state-active",
-	 	        accept:".dragDiv",
-	 	        drop: function(event,ui) {
-	 	        	var dragNum = ui.draggable.prop("id")
-	 	        	deleteDrag(dragNum)
-	 	         }     
-	 	      });  
-		
+			
+			//params json 객체 파라미터 넘기는 값. VO역할
+			var params = {"fromDate": "",
+							   "toDate" :  "",
+							   "keyword": "",
+							   "dragNum" : "",
+							   "sortCategory" : ""
+								}
+	
 			//드래그 마크 중요표시 
 		    function setDragMark(dragNum){
 				url ="../drag/setDragMark.json"
@@ -44,7 +25,7 @@
 				params.dragNum =dragNum
 				makeDragList(url, params); 
 		   };
-		   	// 노트  드래그로 삭제
+		   	// 드래그  드래그로 삭제
 			function deleteDrag(dragNum) {
 				var dragNum = dragNum;
 				swal({
@@ -75,8 +56,8 @@
 											makeDragList(url); 
 									})
 							});
-					      }
-					   }
+					}
+						}
 					);
 				}	
 	
@@ -104,7 +85,7 @@
 				var i=1;
 				$.ajax({
 			      url: url, // url_pettern 
-			      type:"POST",
+			      type:"get",
 			      dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
 			      data : params,
 			      success:function(data){
@@ -160,7 +141,7 @@
 			     	    	 snapMode: "inner",
 			     	    	 scroll: true,
 			     	    	 scrollSensitivity: 100 ,
-			     	    	 scrollSpeed: 100
+			     	    	 scrollSpeed: 100,
 			     	    	});
 			     	     // 드래그를 드랍하여 삭제 메소드 
 			     	    $("#droppable").droppable({
@@ -179,11 +160,13 @@
 			     				event.stopPropagation(); 
 			     				// ① 스크롤 이벤트 최초 발생
 			     		        var currentScrollTop = $(window).scrollTop();
+			     
 			     		        if( currentScrollTop - lastScrollTop > 0 ){
 			     		            if ($(window).scrollTop() >= ($(document).height() - $(window).height()) ){ 
+			     		      
 			     			            	$.ajax({
-			     			                    type : 'post',  
-			     			                    url :url,
+			     			                    type : 'get',  
+			     			                    url :'../drag/infiniteScrollDrag.json',
 			     			       		        async: false,
 			     			                    data : { page: page },
 			     			                    beforeSend: function(){
@@ -191,7 +174,8 @@
 			     			                    	console.log(i + "회차: " + page); 
 			     			                    },
 				     		                    success : function(data){
-				     		                    console.log(data)
+				     		                   
+				     		                   console.log(data)
 			     		                        var dragList = "";
 			     		                        var dragList2 = "";
 			     		                        if(data != null) {
@@ -260,13 +244,16 @@
 			     		          }
 			     		      }
 			     			})
-			      
+			    
+			     	  
 			      })
 				}
 					
 			
-		//페이지 로딩시 요청
-		$("document").ready(function(){
+//페이지 로딩시 요청
+$("document").ready(function(){
+
+			
 			var url="";
 			url ="../drag/selectAllDrag.json";
 			makeDragList(url);

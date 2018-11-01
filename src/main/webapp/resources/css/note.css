@@ -50,19 +50,12 @@
 
 
 /* mynote 단에서 footer 크기 잡기 위해 임의 지정 */
-
-/* #footer {
-	width: 100%;
-	padding: 0px !important;
-
-}
- */
- 
-/*footer*/
 #footer {
+   width: 100%;
+   padding: 0px !important;
    clear: both;
 }
- 
+
 /* 일자별 검색 */
 #fromDate, #toDate {
    padding: 0 1.5rem;
@@ -79,7 +72,6 @@
   flex-direction: row;
   padding-left: 0;
   padding-right: 0;
-  overflow:hidden;
 }
 
 .col-xs-2, .col-xs-6, .col-xs-12 {
@@ -126,11 +118,9 @@
 }
 
 #sidebar>.inner {
-
-/* 	position: relative; */
-	height: 100%;
-	width: inherit;
-
+   /*    position: relative; */
+   height: 100%;
+   width: inherit;
 }
 
 #sidebar>.inner>* {
@@ -236,77 +226,7 @@
    .n-inner {
       -webkit-overflow-scrolling: touch;
         height: 100%;
-        overflow: scroll;
-		padding: 1.6666666667rem 3rem 1.3333333333rem 1.6666666667rem;
-	}	
-	
-	#sidebar>.inner>.alt {
-		margin: -1.6666666667em 0 3.3333333333em -1.6666666667em;
-		padding: 1.6666666667em;
-		width: calc(100% + 3.3333333333em);
-	}
-	#sidebar .toggle {
-		height: 6.25em;
-		left: 24em;
-		line-height: 6.25em;
-		text-indent: 5em;
-		width: 5em;
-	}
-	#sidebar .toggle:before {
-		font-size: 1.5rem;
-	}
-	#sidebar.inactive {
-		margin-left: -24em;
-	}
-}
-
-@media screen and (min-width: 1680px) {
-	#sidebar {
-		box-shadow: 0 0 5em 0 rgba(0, 0, 0, 0);
-		height: 100%;
-		left: 0;
-		top: 0;
-		z-index: 10000;
-	}
-	#sidebar.inactive {
-		box-shadow: none;
-	}
-	
-	#sidebar>.inner {
-   		 -webkit-overflow-scrolling: touch;
-   		 overflow-x: hidden;
-   		 overflow-y: scroll;
-   		 height: 100%;
-   		 padding: 1.6666666667rem 3rem 1.3333333333rem 1.6666666667rem;
-	}
-	
-	#sidebar>.inner:after {
-		content: '';
-		display: block;
-		height: 4em;
-		width: 100%;
-	}
-	
-	.n-inner {/*footer 밑으로 이동*/
-		-webkit-overflow-scrolling: touch;
-        height: 100%;
-		padding: 1.6666666667rem 3rem 1.3333333333rem 1.6666666667rem;
-		/*overflow: hidden;*/
-	}	
-
-	#sidebar .toggle {
-		text-indent: 6em;
-		width: 6em;
-	}
-	#sidebar .toggle:before {
-		font-size: 1.5rem;
-		margin-left: -0.4375em;
-	}
-	body.is-preload #sidebar {
-		display: none;
-	}
-=======
-        overflow: hidden;
+ /*        overflow: hidden; */
       padding: 1.6666666667rem 3rem 1.3333333333rem 1.6666666667rem;
    }   
    
@@ -360,8 +280,8 @@
    .n-inner {
       -webkit-overflow-scrolling: touch;
         height: 100%;
+   /*    overflow: hidden; */
       padding: 1.6666666667rem 3rem 1.3333333333rem 1.6666666667rem;
-      overflow: hidden;
    }   
 
    #sidebar .toggle {
@@ -375,7 +295,6 @@
    body.is-preload #sidebar {
       display: none;
    }
->>>>>>> master
 }
 
 @media screen and (max-width: 767px) { /* 736을 767로 바꿔야 함 */
@@ -416,20 +335,12 @@
 }
 
 .n-container {
-
-/* 	padding: 0 4rem 3rem 4rem; 
-	width: 100%;
-	margin: auto;
-	margin-top: 0; */
-
    padding: 0 4rem 3rem 4rem; 
    width: 100%;
    margin: auto;
    margin-top: 0;
    z-index: 0;
    margin-bottom: 0px;
-   
-
 }
 
 #breadscrumb {
@@ -451,11 +362,6 @@
    text-align: right;
 }
 
-
-/*footer*/
-#footer {
-   clear: both;
-}
 
 /* 드래그 목록 사이즈 설정 */
 .mini-posts article {
@@ -779,24 +685,22 @@ td .t-icon {
 }
 
 .blog {
-
-	display: inline-block;
-	width: 300px;
-}	
-
+   display: inline-block;
+   width: 300px;
+}   
 .mce-ico{
-	padding-top:2px!important; 
-	height:18px !important; }
-	
-	
-	
+   padding-top:2px!important; 
+   height:18px !important; }
+   
+   
+   
 /* 드래그 목록 form */
 .icon-right {
    text-align: right;
    vertical-align: top;
    margin-bottom: 0.5rem;
 }
-
+ 
 blockquote{
   position:relative;
   height:190px;
@@ -811,7 +715,7 @@ blockquote{
   font-size: 15px;
   line-height: 1.3;
 }
-
+ 
 blockquote::before{
   content: "\201C"; /*Unicode for Left Double Quote*/
   
@@ -827,85 +731,84 @@ blockquote::before{
   top:5px;
   
 }
-
+ 
 blockquote::after{
   /*Reset to make sure*/
   content: "";
 }
-
+ 
 .drag-a{ margin-left:-40px;}
-
+ 
 blockquote a{
   margin-left:-20px;
   text-decoration: none;
   cursor: pointer;
   color: #999;
 }
-
+ 
 blockquote a:hover{
  color: #666;
  }
-
+ 
 blockquote.grapefruit{
   border-left-color: #ed5565;
   border-right-color: #da4453;
 }
-
+ 
 code{
   position:absolute; 
   right:10px; 
   bottom:-10px;
   width:100%;
-
+ 
 }
 /* span{
   font-weight:bolder;
   
 } */
-
+ 
 h1#mydrag{
   text-align:left;
   font-size:15px;
   font-family: 'Francois One', sans-serif;
 } 
-
+ 
 span.Cgrapefruit{
   color:#da4453;
 }
-
+ 
 /* 드래그 목록 사이즈 설정 */
 .dragDiv blockquote {
-	  border-left:none
-
+     border-left:none
+ 
 }
-
+ 
 .dragDiv{
-	overflow: hidden;
+   overflow: hidden;
     margin-top: -50px;
     padding-top: -100px;
     border-radius: 17px;
     background-color:white ;
-    top:0px;
     margin-top: 25px;
     color:#333;
     width: 325px;
     box-shadow: 2px 2px 2px 2px #E0E0E0;
-	
+   
 }
-
-
+ 
+ 
 .dragDiv blockquote .dragContent {
-	margin: 0 0 1rem 0;
-	width: 80%;
-	display: inline;
+   margin: 0 0 1rem 0;
+   width: 80%;
+   display: inline;
 }
-
+ 
 .dragDiv blockquote:first-child {
-	border-top: 2em;
-	margin-top: 0;
-	padding-top: 0;
+   border-top: 2em;
+   margin-top: 0;
+   padding-top: 0;
 }
-
+ 
 .dragtooltip:hover:after{
   background: #333;
   background: rgba(0,0,0,.9);
@@ -928,7 +831,7 @@ span.Cgrapefruit{
     position: absolute;
     z-index: 99;
 }
-
+ 
 .dragtooltip {
   radius: 4px !important;
   background-color: black;
@@ -942,12 +845,12 @@ span.Cgrapefruit{
   text-decoration: none;
   box-shadow: 0 0 10px black;
 }
-
+ 
 #dragDate{
-	color:#c0c0c0;
+   color:#c0c0c0;
 }
-
-
+ 
+ 
 #dragOrigin{
 overflow: hidden;
 text-overflow: ellipsis;
@@ -958,29 +861,29 @@ word-wrap:break-word;
 line-height: 1.2em;
 height: 1.2em;
 }
-
-
+ 
+ 
 .dragDiv blockquote #dragText {
+ 
+   margin-top:0.5em !important;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 4; /* 라인수 */
+   -webkit-box-orient: vertical;
+   word-wrap:break-word; 
+   line-height: 1.2em;
+   height: 6em;
+      
    
-	margin-top:0.5em !important;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 4; /* 라인수 */
-	-webkit-box-orient: vertical;
-	word-wrap:break-word; 
-	line-height: 1.2em;
-	height: 6em;
-		
-	
 }
-
+ 
 .starDiv {
    margin-top: 1em !important;
    text-align: right;
 }
-
-
+ 
+ 
 /* 드래그 top버튼 */
 #myBtn {
   display: none;
@@ -997,19 +900,13 @@ height: 1.2em;
   padding: 15px;
   border-radius: 4px;
 }
-
+ 
 #myBtn:hover {
   background-color: #555;
 }
-
-=======
-   display: inline-block;
-   width: 300px;
-}   
 /* 검색 시 확장되는 버튼을 감싼 span */
 #writeNoteNavSizeBtnSpanSeachInSite,#writeNoteNavSizeBtnSpanSeachPortal {
    position: absolute !important;
    top: 460px !important;
    right: 20px !important;
 }
->>>>>>> master
