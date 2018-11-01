@@ -42,7 +42,7 @@
 					}
 				);
 			}	
-
+         
 		// dragDiv들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
    	    $('.dragDiv').draggable({
    	    	revert: true, 
@@ -63,10 +63,9 @@
 	      });  
 
 
-	    	
-	function setDragMark(dragNum){
+		//드래그 마크 중요표시 
+	    function setDragMark(dragNum){
 			      $.ajax({
-				  
 				    url : "../drag/setDragMark.json",
 				    DataType :"json",
 				    type : "post",
@@ -89,12 +88,11 @@
 				      makeDragList();
 					     }	
 					 });
-			};
+			     };
 			
 
 			// 스크롤 내렸을때 top보이고 안내리면 안보임
 			window.onscroll = function() {scrollFunction()};
-
 			function scrollFunction() {
 			    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
 			        document.getElementById("myBtn").style.display = "block";
@@ -122,9 +120,6 @@
 	      type:"POST",
 	 /*     async: true,*/
 	      dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
-	      beforeSend:function(request){ 
-
-	      },
 	      success:function(data){
 	    	  console.log(data)
 	    	    var dragList ="";   	    
@@ -190,7 +185,6 @@
 	     	         }     
 	     	      });  
 
-	     		    
 	     		    // 스크롤이벤트 발생시 추가 12개 
 	     		    var lastScrollTop = 0;
 	     	    	page += 12; //2회차
@@ -261,10 +255,29 @@
 	     		 
 	     		                    }
 	     		                   }
-	     			            });
-	     		            } 
+	     			            }).done(function (result){
+	     			 			  // dragDiv들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
+	     				     	    $('.dragDiv').draggable({
+	     				     	    	revert: true, 
+	     				     	    	 revertDuration: 200,
+	     				     	    	 snapMode: "inner",
+	     				     	    	 scroll: true,
+	     				     	    	 scrollSensitivity: 100 ,
+	     				     	    	 scrollSpeed: 100
+	     				     	    	});
+	     				     	     // 드래그를 드랍하여 삭제 메소드 
+	     				     	    $("#droppable").droppable({
+	     				     	        activeClass:"ui-state-active",
+	     				     	        accept:".dragDiv",
+	     				     	        drop: function(event,ui) {
+	     				     	        	var dragNum = ui.draggable.prop("id")
+	     				     	        	deleteDrag(dragNum)
+	     				     	         }     
+	     				     	      });  
+	     		            }) 
 	     		          }
-	     		      })    	
+	     		      }
+	     			})
 	    
 	     	  
 	      })
@@ -272,8 +285,7 @@
 			
 			
 			
-		
-		
+
 		
 		
 		
