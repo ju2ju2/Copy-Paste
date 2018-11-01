@@ -45,7 +45,7 @@
    </div>
 </div>
 <script>
-//노트삭제
+//드래그 버튼으로 삭제
 $('#deleteDragBtn').click(function(e) {
 	swal({
 		  title: "정말 삭제하시겠습니까?",
@@ -73,7 +73,6 @@ $('#deleteDragBtn').click(function(e) {
 					location.reload();
 				})
 				
-			
 			})
 			.fail(function(jqXhr, testStatus, errorText){
 				alert("에러발생 :" + errorText);

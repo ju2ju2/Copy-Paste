@@ -34,7 +34,8 @@
 			"note/noteDetail.htm" file</div>
 	</div>
 </div>
-
+<!-- top버튼 -->
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 <script>
 
 </script>

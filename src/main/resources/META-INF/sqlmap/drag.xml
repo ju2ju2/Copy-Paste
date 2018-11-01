@@ -63,7 +63,8 @@
           Case when #{sortCategory}='dragNumDesc' then dragNum End desc,
           Case when #{sortCategory}='dragNumAsc' then dragNum End asc,
           Case when #{sortCategory}='dragMark' then dragMark End desc,
-          Case when #{sortCategory}='binary(dragText)' then binary(dragText) End asc limit 0,12 
+          Case when #{sortCategory}='binary(dragText)' then binary(dragText)  End asc 
+ 
 	</select>
 
 	<!-- 드래그 중요표시 등록 setDragMark-->

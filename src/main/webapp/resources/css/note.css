@@ -60,11 +60,17 @@
 }
 
 /* mynote 단에서 footer 크기 잡기 위해 임의 지정 */
-#footer {
+/* #footer {
 	width: 100%;
 	padding: 0px !important;
 }
-
+ */
+ 
+/*footer*/
+#footer {
+   clear: both;
+}
+ 
 /* 일자별 검색 */
 #fromDate, #toDate {
 	padding: 0 1.5rem;
@@ -81,6 +87,7 @@
   flex-direction: row;
   padding-left: 0;
   padding-right: 0;
+  overflow:hidden;
 }
 
 .no-margin {
@@ -126,7 +133,7 @@
 }
 
 #sidebar>.inner {
-	position: relative;
+/* 	position: relative; */
 	height: 100%;
 	width: inherit;
 }
@@ -285,11 +292,11 @@
 		width: 100%;
 	}
 	
-	.n-inner {
+	.n-inner {/*footer 밑으로 이동*/
 		-webkit-overflow-scrolling: touch;
         height: 100%;
 		padding: 1.6666666667rem 3rem 1.3333333333rem 1.6666666667rem;
-		overflow: hidden;
+		/*overflow: hidden;*/
 	}	
 
 	#sidebar .toggle {
@@ -343,10 +350,18 @@
 }
 
 .n-container {
-	padding: 0 4rem 3rem 4rem; 
+/* 	padding: 0 4rem 3rem 4rem; 
 	width: 100%;
 	margin: auto;
-	margin-top: 0;
+	margin-top: 0; */
+   padding: 0 4rem 3rem 4rem; 
+   width: 100%;
+   margin: auto;
+   margin-top: 0;
+   z-index: 0;
+   margin-bottom: 0px;
+   
+
 }
 
 #breadscrumb {
@@ -897,5 +912,27 @@ height: 1.2em;
 .starDiv {
    margin-top: 1em !important;
    text-align: right;
+}
+
+
+/* 드래그 top버튼 */
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 3px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
 }
 

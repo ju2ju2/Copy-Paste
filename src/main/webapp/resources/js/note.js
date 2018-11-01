@@ -3,6 +3,21 @@
 
 
 
+		// 스크롤 내렸을때 top보이고 안내리면 안보임
+			window.onscroll = function() {scrollFunction()};
+			function scrollFunction() {
+			    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+			        document.getElementById("myBtn").style.display = "block";
+			    } else {
+			        document.getElementById("myBtn").style.display = "none";
+			    }
+			}
+
+			// top버튼 눌렀을때 실행
+			function topFunction() {
+			    document.body.scrollTop = 0;
+			    document.documentElement.scrollTop = 0;
+			}
 
 
 
@@ -18,7 +33,6 @@ $(function() {
 	// 노트  드래그로 삭제
 	function deleteNote(noteNum) {
 		var noteNum = noteNum;
-	
 		swal({
 			 title: "정말 삭제하시겠습니까?",
 			  text: "삭제 후에는 다시 복구 할 수 없습니다.",
@@ -47,13 +61,11 @@ $(function() {
 				});
 			}
 		);
-		
 	}	
 
 
 
-//노트목록
-
+    //노트목록
 	var page=0;
 	var i=1;	
 $.ajax({
@@ -113,7 +125,7 @@ $.ajax({
 	        	deleteNote(noteNum)
 	         }     
 	      });  
-  
+   
 	    // 스크롤이벤트 발생시 추가 12개 
 	    var lastScrollTop = 0;
     	page += 12; //2회차
@@ -177,7 +189,7 @@ $.ajax({
 	                   }
 		            });
 	            } 
-	          }
+	         }
 		})
   })
 
