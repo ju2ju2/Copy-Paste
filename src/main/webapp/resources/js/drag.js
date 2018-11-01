@@ -166,7 +166,7 @@
 			     		      
 			     			            	$.ajax({
 			     			                    type : 'get',  
-			     			                    url :'../drag/infiniteScrollDrag.json',
+			     			                    url :url,
 			     			       		        async: false,
 			     			                    data : { page: page },
 			     			                    beforeSend: function(){
