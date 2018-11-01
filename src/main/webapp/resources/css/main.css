@@ -277,8 +277,8 @@ blockquote {
 }
 
 .container-fluid {
-	padding-top: 70px;
-	padding-bottom: 70px;
+	padding-top: 35px;
+	padding-bottom: 30px;
 }
 
 .logo, #loginlogo {

@@ -23,15 +23,15 @@
 								<div class="imgfile" style="width:92.5px;height:92.5px;"><img style="height: 100%;width: 100%" class="img-responsive user-photo img-rounded" 
               						id="beforUserPhoto" ></div>				
            					</div>
-           				<input type="file" class="userPhoto" name="userPhotoFile" id="userPhoto" 
+           				<input type="file" class="userPhoto socialUser" name="userPhotoFile" id="userPhoto" 
 								aria-describedby="file_upload" accept="image/*">
-								<small> * .jpg, .gif, .png 파일만 업로드 가능하며, 500kb를 초과할 수 없습니다.</small>
+								<small class="socialUser"> * .jpg, .gif, .png 파일만 업로드 가능하며, 500kb를 초과할 수 없습니다.</small>
 						</div>
 					</div>
             	</div>
 				
 				
-				<div class="form-group">
+				<div class="form-group socialUser">
 					<label class="control-label col-sm-5">Email ID <span class="text-danger"></span></label>
 					<div class="col-lg-3 col-sm-4">
 						<span><!-- class="input-group" -->
@@ -49,11 +49,11 @@
 							</div>
 						</div>
 						<div class="col-sm-4"></div>
-					 <div class="col-sm-12 text-center"><div id="userNickMessage" class="mt-10"></div></div>
+					 <div class="col-sm-12 text-center"><div id="userNickMessage" class="mt-10 socialUser"></div></div>
 				</div>
 				
 				
-				<div class="form-group">
+				<div class="form-group socialUser">
 					<label class="control-label col-sm-5">비밀번호<span class="text-danger"></span></label>
 						<div class="col-lg-3 col-sm-4">
 							<div>
@@ -65,7 +65,7 @@
 				</div>
 				
 				
-				<div class="form-group">
+				<div class="form-group socialUser">
 					<label class="control-label col-sm-5">비밀번호 확인<span class="text-danger"></span></label>
 						<div class="col-lg-3 col-sm-4">
 							<div>
@@ -78,7 +78,7 @@
 				</div>
 			
 				<div class="social-btn text-center">
-				&nbsp;<input name ="infoUpdate" type="button" class="btn btn-primary" id="infoUpdate" value="정보수정">
+				&nbsp;<input name ="infoUpdate" type="button" class="btn btn-primary socialUser" id="infoUpdate" value="정보수정">
 				&nbsp;<input name ="deleteMember" type="button" class="btn btn-danger" id="deleteMember" value="회원탈퇴">
 		  		</div>
 			<br>
@@ -105,10 +105,15 @@ $.ajax({
 		userPhoto = data.userPhoto; 
 		userNick = data.userNick;
 		userEmail = data.userEmail;
-		userPwd = data.userPwd;		
+		userPwd = data.userPwd;	
 		$('#userEmail').val(data.userEmail);
 		$('#userNick').val(userNick);
-		$('#beforUserPhoto').attr("src", "${pageContext.request.contextPath}/resources/image/userPhoto/" + userPhoto);	
+		if(data.userSocialStatus != 0){
+			$('.socialUser').hide();
+			$('#beforUserPhoto').attr("src", userPhoto);	
+		} else {
+			$('#beforUserPhoto').attr("src", "${pageContext.request.contextPath}/resources/image/userPhoto/" + userPhoto);
+		}
 	}	
 	,
 	error : function(error) {

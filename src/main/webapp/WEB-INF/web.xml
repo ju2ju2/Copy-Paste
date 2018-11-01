@@ -62,8 +62,7 @@
 	<servlet-mapping>
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>*.htm</url-pattern>
-	</servlet-mapping>
-	
+	</servlet-mapping>	
 	<!-- 인코딩필터 -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>

@@ -9,14 +9,25 @@
 package tk.copyNpaste.member;
 
 import java.security.Principal;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import tk.copyNpaste.folder.FolderService;
 import tk.copyNpaste.vo.MemberVO;
@@ -65,7 +76,7 @@ public class MemberController {
 	};
 	
 
-	//회원가입 + 회원가입시 미분류,스크랩 폴더 부여
+	//일반 회원가입 + 회원가입시 미분류,스크랩 폴더 부여
 	@RequestMapping(value="signup.do", method = RequestMethod.POST)
     public @ResponseBody void insertMember(MemberVO member, MultipartHttpServletRequest request) 
           throws Exception{
@@ -83,16 +94,29 @@ public class MemberController {
 		
 	};
 	
-	//카카오로그인
-	@RequestMapping(value="kakaoLogin.do")
-	public void kakaoLogin(String userEmail) throws Exception{
-		System.out.println(userEmail);
-		loginService.kakaoLogin(userEmail);
+	//카카오 회원가입 1/2 (회원정보 얻기)
+	@RequestMapping(value = "kakaoOauth.do", produces="application/json", method= {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView kakaoSingUp(@RequestParam("code") String code, HttpServletRequest request, HttpServletResponse response) 
+			throws Exception{
+		
+		MemberVO member = loginService.kakaoSingUp(code, request, response);
+		ModelAndView kakaoMav = new ModelAndView();
+		kakaoMav.setViewName("index.signupSocial");
+		kakaoMav.addObject("memberVo", member);
+		return kakaoMav;
 	};
-		
+	
+	//카카오 회원가입 2/2 (DB 저장)
+	@RequestMapping(value = "kakaoOauth2.do", produces="application/json", method= {RequestMethod.GET, RequestMethod.POST})
+	public @ResponseBody void kakaoSingUp2(MemberVO member) throws Exception{
+		 loginService.kakaoSingUp2(member);
+	};
+
+	
 	//네이버로그인
-	public void naverLogin(String userEmail) throws Exception{
-		
+	public String naverLogin(String userEmail) throws Exception{
+		System.out.println("네이버 로그인");
+		return "https://kapi.kakao.com/v1/user/signup";
 	};
 		
 	//전회원 정보 보기

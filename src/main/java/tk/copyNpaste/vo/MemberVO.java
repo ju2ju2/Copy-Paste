@@ -10,7 +10,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class MemberVO {
 	//회원VO
-	//이메일, 닉네임, 패스워드, 프로필사진파일명, 가입일자, 회원활성여부
+	//이메일, 닉네임, 패스워드, 프로필사진파일명, 가입일자, 회원활성여부, 멀티파일업로드, 소셜회원여부
 	private String userEmail;
 	private String userNick;
 	private String userPwd;
@@ -18,6 +18,7 @@ public class MemberVO {
 	private String userDate;
 	private String userEnabled;
 	private CommonsMultipartFile userPhotoFile; 
+	private int userSocialStatus;
 	
 	public String getUserEmail() {
 		return userEmail;
@@ -60,5 +61,11 @@ public class MemberVO {
 	}
 	public void setUserPhotoFile(CommonsMultipartFile userPhotoFile) {
 		this.userPhotoFile = userPhotoFile;
+	}
+	public int getUserSocialStatus() {
+		return userSocialStatus;
+	}
+	public void setUserSocialStatus(int userSocialStatus) {
+		this.userSocialStatus = userSocialStatus;
 	}
 }
