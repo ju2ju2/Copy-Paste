@@ -9,13 +9,13 @@
 	<!--전체보기 -->
 	<select id="selectAllDrag" resultType="DragVO">
 		select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate,dragOriginLink
-		from drag where userEmail= #{userEmail} order by dragNum desc limit 0,12 
+		from drag where userEmail= #{userEmail} order by dragNum desc limit #{page},12 
 	</select>
-	
+<!-- 	
 	<select id="infiniteScrollDrag" resultType="DragVO" >
 		select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate,dragOriginLink
 		from drag where userEmail= #{userEmail} order by dragNum desc limit #{page},12
-	</select>
+	</select> -->
 
 	<!--상세보기 -->
 	<select id="selectDetail" resultType="DragVO">
@@ -63,8 +63,7 @@
           Case when #{sortCategory}='dragNumDesc' then dragNum End desc,
           Case when #{sortCategory}='dragNumAsc' then dragNum End asc,
           Case when #{sortCategory}='dragMark' then dragMark End desc,
-          Case when #{sortCategory}='binary(dragText)' then binary(dragText)  End asc 
- 
+          Case when #{sortCategory}='binary(dragText)' then binary(dragText) End asc
 	</select>
 
 	<!-- 드래그 중요표시 등록 setDragMark-->

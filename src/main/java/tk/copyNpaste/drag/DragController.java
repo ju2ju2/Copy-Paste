@@ -37,13 +37,13 @@ public class DragController {
 	}
 	
 	
-	//드래그 무한스크롤 보기 (비동기)
+/*	//드래그 무한스크롤 보기 (비동기)
 		@RequestMapping(value ="infiniteScrollDrag.json")
 		public @ResponseBody List<DragVO> infiniteScrollDrag( Principal principal, DragVO drag, Model model) throws Exception {
 			drag.setUserEmail(principal.getName());
 			List<DragVO> dragList = dragservice.infiniteScrollDrag(drag);
 			return dragList;
-		}
+		}*/
 	
 	
 	//드래그 페이지
@@ -96,6 +96,7 @@ public class DragController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("keyword", keyword);
 		map.put("userEmail", principal.getName());
+		
 		return dragservice.selectByKeyDrag(map);	
 	}
 	

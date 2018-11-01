@@ -50,15 +50,11 @@
 
 
 /* mynote 단에서 footer 크기 잡기 위해 임의 지정 */
-<<<<<<< HEAD
+
 /* #footer {
 	width: 100%;
 	padding: 0px !important;
-=======
-#footer {
-   width: 100%;
-   padding: 0px !important;
->>>>>>> master
+
 }
  */
  
@@ -130,15 +126,11 @@
 }
 
 #sidebar>.inner {
-<<<<<<< HEAD
+
 /* 	position: relative; */
 	height: 100%;
 	width: inherit;
-=======
-   position: relative;
-   height: 100%;
-   width: inherit;
->>>>>>> master
+
 }
 
 #sidebar>.inner>* {
@@ -244,7 +236,6 @@
    .n-inner {
       -webkit-overflow-scrolling: touch;
         height: 100%;
-<<<<<<< HEAD
         overflow: scroll;
 		padding: 1.6666666667rem 3rem 1.3333333333rem 1.6666666667rem;
 	}	
@@ -425,24 +416,20 @@
 }
 
 .n-container {
-<<<<<<< HEAD
+
 /* 	padding: 0 4rem 3rem 4rem; 
 	width: 100%;
 	margin: auto;
 	margin-top: 0; */
-=======
->>>>>>> master
+
    padding: 0 4rem 3rem 4rem; 
    width: 100%;
    margin: auto;
    margin-top: 0;
-<<<<<<< HEAD
    z-index: 0;
    margin-bottom: 0px;
    
 
-=======
->>>>>>> master
 }
 
 #breadscrumb {
@@ -792,7 +779,7 @@ td .t-icon {
 }
 
 .blog {
-<<<<<<< HEAD
+
 	display: inline-block;
 	width: 300px;
 }	
@@ -898,6 +885,7 @@ span.Cgrapefruit{
     padding-top: -100px;
     border-radius: 17px;
     background-color:white ;
+    top:0px;
     margin-top: 25px;
     color:#333;
     width: 325px;
@@ -973,7 +961,7 @@ height: 1.2em;
 
 
 .dragDiv blockquote #dragText {
-
+   
 	margin-top:0.5em !important;
 	overflow: hidden;
 	text-overflow: ellipsis;
