@@ -37,8 +37,7 @@
 							</a>
 						    </c:when>
 						    <c:otherwise> 
-						    <a href="${pageContext.request.contextPath}/login.htm"
-								onclick="document.getElementById('subscribe').style.display='block'"
+						    <a onclick="document.getElementById('subscribe').style.display='block'"
 								 class="typewrite" data-period="2000"
 								data-type='[ "당신의 글을 기다립니다, COPY&PASTE. ", "드래그를 작성해보세요 :)   ", "Click Click !   " ]'>
 								<span class="wrap"></span>

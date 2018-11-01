@@ -12,109 +12,6 @@
 <script src="${pageContext.request.contextPath}/resources/js/textEditer.js"></script>
 <script>
 $(document).ready(function() {
-
-	
-	//회원의 폴더목록  조회 및 옵션추가 
-	$.ajax({
-      url: "${pageContext.request.contextPath}/folder/selectAllFolder.json", // url_pettern 
-      type:"POST",
-      dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
-      success:function(data){  	
-      	$.each(data, function(key,value){
-      			$("#folderList").append($("<option />")
-      				.val(value.folderName)
-      				.text(value.folderName) );
-      	});
-       }
-    }); 
-	
-	//노트 주제 조회 및 옵션추가 
-	$.ajax({
-      url: "${pageContext.request.contextPath}/note/selectSubjectCode.json", // url_pettern 
-      type:"POST",
-      dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
-      success:function(data){
-      	$("#folderList").prepend("<option value='주제 선택'/>");
-      	$.each(data, function(key,value){
-      			$("#subjectList").append($("<option />")
-      				.val(value.subjectCode)
-      				.text(value.subjectName) );
-      	});
-       }
-    }); 
-	
-
-	//노트 등록	
-	$('#insertNoteBtn').click(function() {
-		if ($('#noteTitle').val()==''){
-			swal({type: "success",
-				  title: '제목을 입력해주세요',
-	              confirmButtonClass : "btn-danger btn-sm",
-				  closeOnConfirm: true
-			})
-		}else if (tinymce.get('noteContent').getContent()==''){
-			swal({type: "success",
-				  title: '내용을 입력해주세요',
-	              confirmButtonClass : "btn-danger btn-sm",
-				  closeOnConfirm: true
-			})
-		} 
-		else {
-		 	$.ajax({
-		      url: "${pageContext.request.contextPath}/note/insertNote.json", // url_pettern 
-		      type:"post",
-		      dataType:"json",
-		      data: {'noteTitle':$("#noteTitle").val(),
-		    	 	 'noteContent':tinymce.get('noteContent').getContent(),
-		    	 	 'folderName':$("#folderList").val(),
-		    	 	 'subjectCode':$("#subjectList").val(),
-		    	 	 'notePublic':$("input[name='notePublic']:checked").val()
-		     		 },	
-		      success:function(result){
-		    	  swal({type: "success",
-					  title: '성공적으로 등록되었습니다.',
-		              confirmButtonClass : "btn-danger",
-					  closeOnConfirm: false
-				},
-				function(){
-					location.href="${pageContext.request.contextPath}/note/note.htm";
-				});	
-		       },
-		      error:function(request,status,error){
-		    	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		    }
-	
-		     		 
-		    })
-		}
-	})
-
-	
-	
-	
-	//문자추출 vision
-	$('#visionBtn').click(function(e) {
-		      var form = document.getElementById("visionform")
-		      var formData = new FormData(form);
-		$.ajax({
-		      url: "../note/visionAnalizeImg.json", // url_pettern 
-		      type : 'post',
-		      data: formData, 
-		      enctype: 'multipart/form-data; charset=UTF-8',
-		      processData : false,
-		      contentType: false,
-		      dataType: 'json'
-		    }).done(function(data){
-					$(".modal").modal("hide");
-					var editor = tinyMCE.activeEditor;
-	    			var noteContent = $('#noteContent').html();
-	    			editor.dom.add(editor.getBody(), 'p', {}, data.text+ "<br>");
-			}).fail(function(request,status,error){
-	    	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			});
-
-	})
-	
 	
 	//맞춤법 검사기
 	// 맞춤법 검사기 클래스
@@ -199,7 +96,7 @@ $(document).ready(function() {
         
         // 맞춤법 검사
         run(origin_text, function(result_html, error_count) {
-		    /* $('#check-result').html(result_html); */
+		   
 
             if (0 < error_count) {
                 $check_result_label.removeClass("bg-secondary bg-success bg-danger").addClass("bg-danger");
@@ -221,7 +118,7 @@ $(document).ready(function() {
    	 if (e.keyCode == 13) {//enter key
             $("#checkSpellbtn").click();
         }
-    });
+    }); 
     
 	
 })
