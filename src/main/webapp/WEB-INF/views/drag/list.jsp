@@ -30,46 +30,53 @@
 					</h3>
 				</div>
 			</header>
-			</section>
+		</section>
 		<!--드래그 리스트 영역 -->
-		<div class="row"  id="dragList"></div>
-		
-		<!--추가 리스트 영역 -->
-		<div class="row"  id="appendbox"></div>
-		<input type="hidden"  id="page" value="${page}">
-	
- <%--  <c:forEach items="${dragList}" var="dragList">
+		<div class="row" id="dragList">
 
-					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-						<div class="text-center dragDiv mt-10">
+	<%-- 		<c:forEach items="${dragList}" var="dragList">
+				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+					<div class="text-center dragDiv mt-10" id="'+value.dragNum+'">
+						<blockquote class="grapefruit">
+							<!-- 별 아이콘 -->
+							<div class="icon-right starDiv" id="starMark">
 
-							<blockquote class="grapefruit">
-								<!-- 별 아이콘 -->
-								<div class="icon-right starDiv">
-									<br> <i class="far fa-star icon-size"></i>
+								<c:choose>
+									<c:when test="${dragList.dragMark==1}">
+
+										<br>
+										<i class="fas fa-star icon-size" id="starDrag"
+											onclick=removeDragMark(${dragList.dragNum})></i>
+									</c:when>
+									<c:otherwise>
+
+										<br>
+										<i class="far fa-star icon-size" id="starDrag"
+											onclick=setDragMark(${dragList.dragNum})></i>
+									</c:otherwise>
+								</c:choose>
+							</div>
+
+							<div class="dragContent">
+								<!-- 모달 창 -->
+								<div class="drag-a">
+									<a data-toggle="modal"
+										href="../drag/dragDetail.htm?dragNum=${dragList.dragNum}'"
+										data-target="#modal-drag" role="button" data-backdrop="static">
+										<div id="dragContent">${dragList.dragText}</div> <code>
+											<span id="dragOrigin" class="Cgrapefruit">출처 :
+												${dragList.dragOrigin}</span> <span id="dragDate">${dragList.dragDate}</span>
+										</code> <input type="hidden" id="dragNum" class="dragNum"
+										value="${dragList.dragNum}"> <input type="hidden"
+										id="dragMark" class="dragMark" value="${dragList.dragMark}">
+									</a>
 								</div>
-								<div class="dragContent">
-
-									<!-- 모달 창 -->
-									<div class="drag-a">
-										<a data-toggle="modal"
-											href="${pageContext.request.contextPath}/drag/dragDetail.htm?dragNum=${dragList.dragNum}"
-											data-target="#modal-drag" role="button"
-											data-backdrop="static">
-											<p>${dragList.dragText}</p> <code>
-												&lt;출처 : <span class="Cgrapefruit">${dragList.dragOrigin}</span>&gt;
-												<span>${dragList.dragDate}</span>
-											</code> <input type="hidden" id="dragNum" class="dragNum"
-											value="${dragList.dragNum}">
-										</a>
-									</div>
-								</div>
-							</blockquote>
-						</div>
+							</div>
+						</blockquote>
 					</div>
-				</c:forEach> 
-	 --%>
- 		</div>
+				</div>
+			</c:forEach> --%>
+		</div>
 	</div>
 </div>
 <br>

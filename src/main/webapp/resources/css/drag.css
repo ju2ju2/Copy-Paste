@@ -42,9 +42,6 @@
   overflow:hidden;
 }
 
-/* .col-xs-2, .col-xs-6, .col-xs-12 {
-   padding: 0 !important;
-} */
 
 .no-margin {
    margin-bottom: 0;
@@ -297,7 +294,7 @@
    margin: auto;
    margin-top: 0;
    z-index: 0;
-       margin-bottom: 0px;
+   margin-bottom: 0px;
   
 }
 
@@ -616,12 +613,11 @@ h1#mydrag{
 
 
 .dragDiv{
-	 overflow: hidden;
+	overflow: hidden;
     margin-top: -50px;
     padding-top: -100px;
     border-radius: 17px;
     background-color:white ;
-    
     margin-top: 25px;
     color:#333;
     width: 325px;
@@ -630,21 +626,16 @@ h1#mydrag{
 }
 
 
-.quote-badge{
-    background-color: rgba(0, 0, 0, 0.2);   
-}
 
 
 .dragDiv blockquote .dragContent {
 	margin: 0 0 1rem 0;
 	width: 80%;
 	display: inline;
-
 }
 
 
 .dragDiv blockquote #dragContent {
-
 	margin-top:0.5em !important;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -654,8 +645,6 @@ h1#mydrag{
 	word-wrap:break-word; 
 	line-height: 1.2em;
 	height: 6em;
-		
-	
 }
 
 

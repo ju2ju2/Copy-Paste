@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import tk.copyNpaste.folder.FolderService;
+import tk.copyNpaste.vo.DragVO;
 import tk.copyNpaste.vo.FolderVO;
 import tk.copyNpaste.vo.NoteCommVO;
 import tk.copyNpaste.vo.NoteVO;
@@ -53,6 +54,15 @@ public class NoteController {
 		List<NoteVO> noteList = noteService.selectAllNote(principal.getName());
 		return noteList;
 	}
+	
+	//드래그 무한스크롤 보기 (비동기)
+	@RequestMapping(value ="infiniteScrollNote.json")
+	public @ResponseBody List<NoteVO> infiniteScrollNote( Principal principal, NoteVO note, Model model) throws Exception {
+	System.out.println("페이지"+note.getPage());
+	note.setUserEmail(principal.getName());
+	List<NoteVO> noteList = noteService.infiniteScrollNote(note);
+	return noteList;
+		}
 	
 	// 회원의 노트 목록 보기+폴더 목록 조회
 	@RequestMapping(value = "note.htm")
