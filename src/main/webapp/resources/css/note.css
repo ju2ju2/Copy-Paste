@@ -50,21 +50,10 @@
 
 
 /* mynote 단에서 footer 크기 잡기 위해 임의 지정 */
-<<<<<<< HEAD
-/* #footer {
-	width: 100%;
-	padding: 0px !important;
-=======
+/*footer*/
 #footer {
    width: 100%;
    padding: 0px !important;
->>>>>>> master
-}
- */
- 
-/*footer*/
-#footer {
-   clear: both;
 }
  
 /* 일자별 검색 */
