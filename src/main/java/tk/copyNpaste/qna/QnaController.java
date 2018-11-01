@@ -106,7 +106,6 @@ public class QnaController {
 		qnaComm.setUserEmail(principal.getName());
 		qnaCommList = qnaService.insertQnaComm(qnaComm);
 
-
 		return qnaCommList;
 	};
 	//QNA대댓글 작성

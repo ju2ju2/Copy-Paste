@@ -1,5 +1,7 @@
 package tk.copyNpaste.etc;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -8,15 +10,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.LocaleResolver;
 
 import tk.copyNpaste.note.NoteService;
+import tk.copyNpaste.vo.MelonVO;
 import tk.copyNpaste.vo.NoteVO;
 
 @Controller
@@ -98,7 +103,30 @@ public class IndexController {
 			return "index.main";
 		}
 		
-		
-		
+		//멜론 차트
+		@RequestMapping("/jsoupMelon.json")
+		public @ResponseBody List<MelonVO>  jsoupMelon() throws Exception {
+			  String url = "https://www.melon.com/";
+		      Document doc = null;
+		      doc = Jsoup.connect(url).get();
+		      List<MelonVO> melonList = new ArrayList<MelonVO>();
+		      
+		      // 태그를 찾아서 가져오도록 한다.
+		      Elements element = doc.select("div.typeRealtime");
+
+		      for(Element el : element.select("li.rank_item")) {    // 하위 순위들 for문 돌면서 출력
+		    	 
+		    	  MelonVO mVO= new MelonVO();
+		    	  mVO.setSongNo(el.select(".rank_info>.song").attr("data-song-no"));
+		    	  mVO.setTextIntro( element.select(".txt_intro").html());
+		    	  mVO.setImgT(el.select(".rank_cntt>.thumb>a>img").attr("src"));
+		    	  mVO.setRank(el.select(".rank_number>.rank").text());
+		    	  mVO.setSong(el.select(".rank_info>.song>a").text());
+		    	  mVO.setArtist(el.select(".rank_info>.artist>.ellipsis>a").text());
+		    	  melonList.add(mVO);
+		      }
+
+			return melonList;
+		}
 		
 }

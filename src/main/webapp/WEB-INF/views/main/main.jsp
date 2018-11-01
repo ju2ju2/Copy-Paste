@@ -9,6 +9,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+<script>
+</script>
 <!-- banner start -->
 <!-- ================ -->
 <div id="banner" class="banner">
@@ -40,16 +43,33 @@
 <!-- banner end -->
 
 <div class="jumbotron">
-	<div class="container text-center">
-		<div>
-			<div class="weatherApi">
-				<div class="circle"></div>
-				<!-- 날씨 API 영역 -->
-				<div class="temper"></div>
+	<div class="container ">
+		<div class="row">
+			<div class="col-sm-3 text-center">
+				<div class="weatherApiTitle">
+					오늘의 날씨
+				</div>
+				<div class="weatherApi">
+					<div class="circle"></div>
+					<!-- 날씨 API 영역 -->
+					<div class="temper"></div>
+				</div>
 			</div>
+			<div class="col-sm-8">
+				<div class="row">
+					<div class="melonTitle">Melon TOP10</div>
+				</div>
+				<div class="row">
+					<div class="melon"></div>
+					<div class="melon2"></div>
+				</div>
+				<div class="row text-right textIntro">
+				</div>
+			</div>	
 		</div>
 	</div>
 </div>
+
 
 <div class="container">
 	<div>
