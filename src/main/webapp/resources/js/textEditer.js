@@ -1,3 +1,10 @@
+/*
+@JS : textEditer.js
+@Date : 2018.10.24
+@Author : 고은아, 우나연
+@Desc : textEditer.js 스크립트
+*/
+
 var demoBaseConfig = {
 		  selector : "textarea",
 		 /*forced_root_block : "",//루트태그 삭제*/
