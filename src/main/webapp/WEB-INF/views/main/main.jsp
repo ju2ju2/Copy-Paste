@@ -9,9 +9,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
-<script>
-</script>
+<se:authentication property="name" var="loginuser" />
 <!-- banner start -->
 <!-- ================ -->
 <div id="banner" class="banner">
@@ -27,13 +27,25 @@
 						COPY & <span>PASTE</span>
 					</h1>
 					<p class="lead text-center ">
-						<!-- data-toggle="modal" data-target="#myModal"  -->
-						<a href="${pageContext.request.contextPath}/login.htm"
-							onclick="document.getElementById('subscribe').style.display='block'"
-							class="typewrite" data-period="2000"
-							data-type='[ "드래그가 글이 되는 공간, COPY&PASTE. ", "로그인을 해주세요 :)   ", "Click Click !   " ]'>
-							<span class="wrap"></span>
-						</a>
+						<c:choose>
+							<c:when test="${loginuser eq null}">
+							<a href="${pageContext.request.contextPath}/login.htm"
+								onclick="document.getElementById('subscribe').style.display='block'"
+								 class="typewrite" data-period="2000"
+								data-type='[ "당신의 글을 기다립니다, COPY&PASTE. ", "로그인을 해주세요 :)   ", "Click Click !   " ]'>
+								<span class="wrap"></span>
+							</a>
+						    </c:when>
+						    <c:otherwise> 
+						    <a href="${pageContext.request.contextPath}/login.htm"
+								onclick="document.getElementById('subscribe').style.display='block'"
+								 class="typewrite" data-period="2000"
+								data-type='[ "당신의 글을 기다립니다, COPY&PASTE. ", "드래그를 작성해보세요 :)   ", "Click Click !   " ]'>
+								<span class="wrap"></span>
+							</a>
+						    </c:otherwise>
+						</c:choose>
+						
 					</p>
 				</div>
 			</div>
