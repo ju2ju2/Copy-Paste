@@ -10,7 +10,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se"
 	uri="http://www.springframework.org/security/tags"%>
-<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 <!-- 카카오 로그인 -->
  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>

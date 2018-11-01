@@ -298,8 +298,7 @@
    margin-top: 0;
    z-index: 0;
        margin-bottom: 0px;
-  overflow-y:scroll; 
-	     /* 무한 스크롤을 위해 설정한 css  overflow:scroll; */
+  
 }
 
 
@@ -464,6 +463,7 @@ i:hover {
    margin-left: 2rem;
    font-size: 2rem;
    cursor: pointer;
+   color:#999;
 }
 
 .icon-top {
@@ -529,36 +529,6 @@ header.main > :last-child {
    margin: 0px;
    padding: 0px;
 }   
-   
-/* #fromDate, #toDate, #dragText {
-   text-align: center;
-   margin: 0px;
-   padding: 0px;
-}
-
-
-#fromToPTag {
-   text-align: center;
-}
-
-#wave {
-   display: inline-block;
-}
- */
- 
- /* 카드 미리보기(검색결과, 노트 미리보기) */
-/* .grapefruit {
-    margin-bottom: 2.5em;
-   padding: 0;
-   border: solid 1px rgba(210, 215, 217, 0.75);
-}
-   
-.grapefruit:hover{
-   border-width: 2px;
-    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
- */
 
 
 /* 드래그 목록 form */
@@ -572,21 +542,11 @@ blockquote{
   margin: 0 0 20px;
   position: relative ;
   cursor: pointer;
-
+  
   /*Font*/
   font-size: 15px;
   line-height: 1.3;
 
-  /*Box Shadow - (Optional)*/
-/*   -moz-box-shadow: 2px 2px 15px #ccc;
-  -webkit-box-shadow: 2px 2px 15px #ccc;
-  box-shadow: 2px 2px 15px #ccc; */
-
-  /*Borders - (Optional)*/
-  border-left-style: solid;
-  border-left-width: 15px;
-  border-right-style: solid;
-  border-right-width: 2px;    
 }
 
 blockquote::before{
@@ -596,7 +556,7 @@ blockquote::before{
   font-family: Georgia, serif;
   font-size: 60px;
   font-weight: bold;
-  color: #999;
+   color:#f56a6a;
   
   /*Positioning*/
   position: absolute;
@@ -624,8 +584,8 @@ blockquote a:hover{
  }
 
 blockquote.grapefruit{
-  border-left-color: #ed5565;
-  border-right-color: #da4453;
+/*   border-left-color: #ed5565;
+  border-right-color: #da4453; */
 }
 
 
@@ -650,17 +610,33 @@ h1#mydrag{
 
 /* 드래그 목록 사이즈 설정 */
 .dragDiv blockquote {
-	border-top: solid 1px rgba(210, 215, 217, 0.75);
-	margin-top: 2rem;
-	padding-top: 2rem;
-
-
-
+  border-left:none
 
 }
 
+
+.dragDiv{
+	 overflow: hidden;
+    margin-top: -50px;
+    padding-top: -100px;
+    border-radius: 17px;
+    background-color:white ;
+    
+    margin-top: 25px;
+    color:#333;
+    width: 325px;
+    box-shadow: 2px 2px 2px 2px #E0E0E0;
+	
+}
+
+
+.quote-badge{
+    background-color: rgba(0, 0, 0, 0.2);   
+}
+
+
 .dragDiv blockquote .dragContent {
-	margin: 0 0 1.5rem 0;
+	margin: 0 0 1rem 0;
 	width: 80%;
 	display: inline;
 
@@ -697,7 +673,7 @@ h1#mydrag{
 code{
   position:absolute; 
   right:5px; 
-  bottom:5px;
+  bottom:-10px;
   width:100%;
 }
 #dragOrigin{
