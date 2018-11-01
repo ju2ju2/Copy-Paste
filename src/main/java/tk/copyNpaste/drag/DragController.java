@@ -105,23 +105,25 @@ public class DragController {
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("sortCategory", sortCategory);
 			map.put("userEmail", principal.getName());
-		
 			List<DragVO> dragList = dragservice.selectOrderbyDrag(map);   
-		
 			return dragList;
 		}
 			
 
 	//드래그 중요표시 등록
 	@RequestMapping(value="setDragMark.json")
-	public  @ResponseBody int setDragMark(int dragNum) throws Exception {
-		return dragservice.setDragMark(dragNum);
+	public  @ResponseBody List<DragVO>  setDragMark(DragVO drag,Principal principal) throws Exception {
+		dragservice.setDragMark(drag.getDragNum());
+		drag.setUserEmail(principal.getName());	
+		return dragservice.selectAllDrag(drag);
 	}
 	
 	//드래그 중요표시 삭제
 	@RequestMapping(value="removeDragMark.json")
-	public @ResponseBody int removeDragMark(int dragNum) throws Exception {
-		return  dragservice.removeDragMark(dragNum);
+	public @ResponseBody List<DragVO>  removeDragMark(DragVO drag,Principal principal) throws Exception {
+		dragservice.removeDragMark(drag.getDragNum());
+		drag.setUserEmail(principal.getName());	
+		return  dragservice.selectAllDrag(drag);
 	}
 
 }

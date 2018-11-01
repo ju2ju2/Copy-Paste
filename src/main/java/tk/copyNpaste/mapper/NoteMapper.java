@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import tk.copyNpaste.vo.DragVO;
 import tk.copyNpaste.vo.NoteCommVO;
 import tk.copyNpaste.vo.NoteVO;
 
@@ -95,6 +96,10 @@ public interface NoteMapper {
 
 	//노트 개별 삭제 - 관리자
 	public int deleteNoteNumAdmin(int noteNum) throws Exception;
+   
+	//노트 무한 스크롤
+	public List<NoteVO> infiniteScrollNote(NoteVO note) throws Exception;
+
 
 		
 }

@@ -83,6 +83,6 @@ public class QnaCommVO {
 		public void setQnaCommPNum(int qnaCommPNum) {
 			this.qnaCommPNum = qnaCommPNum;
 		}
-
+	
 
 }

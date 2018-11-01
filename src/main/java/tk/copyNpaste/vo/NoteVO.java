@@ -41,7 +41,10 @@ public class NoteVO {
 	private String visionImg; 
 	private String userEnabled;
 	private int rnum; 
-
+	private int page; //노트페이지
+	
+	
+	
 	public int getRnum() {
 		return rnum;
 	}
@@ -169,6 +172,12 @@ public class NoteVO {
 	}
 	public void setVisionImg(String visionImg) {
 		this.visionImg = visionImg;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
 	}
 	@Override
 	public String toString() {

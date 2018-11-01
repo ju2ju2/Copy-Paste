@@ -15,7 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import tk.copyNpaste.mapper.DragMapper;
 import tk.copyNpaste.mapper.NoteMapper;
+import tk.copyNpaste.vo.DragVO;
 import tk.copyNpaste.vo.NoteCommVO;
 import tk.copyNpaste.vo.NoteVO;
 
@@ -164,8 +166,17 @@ public class NoteService {
 		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
 		return notedao.blindNote(noteNum);
 	}
+	//회원 목록 전체보기 무한스크롤
+	public List<NoteVO> infiniteScrollNote(NoteVO note) throws Exception  {
+		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
+		List<NoteVO>  noteList = notedao.infiniteScrollNote(note);
+		return noteList;
+	}
 
 
+	
+	
+	
 	/*	for (NoteVO note: notelist ) {
 		System.out.println(note.getUserNick());
 		}
