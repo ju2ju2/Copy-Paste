@@ -49,11 +49,11 @@
 				dataType: "json",
 				data: {'userEmail' : "${userEmail}"},
 				success:function(data) {
-					$.each(data, function(key, value) {
+					if(data.length != 0) {
 						
-						$('#notifyUl').empty();
-						
-						if(value.length != 0) {
+						$.each(data, function(key, value) {
+
+							$('#notifyUl').empty();
 						
 							if(value.notifyCode === "NC" || value.notifyCode === "NCC" || value.notifyCode === "RC") {
 								notifyList+='<li><a href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.notifyTarget
@@ -110,12 +110,14 @@
 								
 								notifyList+='당신의 노트 하나가 블라인드 처리되었습니다. 자세한 사항은 관리자에게 문의하세요<li>';
 							}
-						} else {
-							console.log("도달 여부 확인");
-							notifyList+='<li><a href="#" class="more">알림이 없습니다.</a></li>';
-						}
 						
-					})
+						
+						})
+					
+					} else {
+						console.log("도달 여부 확인");
+						notifyList+='<li><a href="#" class="more">알림이 없습니다.</a></li>';
+					}
 					
 					$('#notifyUl').append(notifyList);
 					
