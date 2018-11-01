@@ -46,6 +46,9 @@
 	<div class="container ">
 		<div class="row">
 			<div class="col-sm-3 text-center">
+				<div class="weatherApiTitle">
+					오늘의 날씨
+				</div>
 				<div class="weatherApi">
 					<div class="circle"></div>
 					<!-- 날씨 API 영역 -->

@@ -602,13 +602,25 @@ img .user-photo{
 }
 
 /* main API(날씨) */
+.weatherApiTitle{
+	color: #f56a6a;
+    font-size: 15px;
+    margin: 5px 0;
+    font-weight: bold;
+    border: 2px solid;
+    border-radius: 10px;
+    display: inline-block;
+    padding: 3px 10px;
+}
 .weatherApi {
-	padding-top: 20px;
-	padding-bottom: 20px;
-	width: 200px;
-	background-color: #f56a6a;
-	border-radius: 10px;
-	margin-top: 60px;
+	padding-top: 40px;
+    padding-bottom: 40px;
+    width: 200px;
+    background-color: #f56a6a;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .circle {

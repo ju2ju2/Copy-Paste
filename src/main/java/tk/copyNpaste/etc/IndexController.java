@@ -113,9 +113,7 @@ public class IndexController {
 		      
 		      // 태그를 찾아서 가져오도록 한다.
 		      Elements element = doc.select("div.typeRealtime");
-		      /*String chart=element.html();*/
-		      
-		      System.out.println("들어왔다");
+
 		      for(Element el : element.select("li.rank_item")) {    // 하위 순위들 for문 돌면서 출력
 		    	 
 		    	  MelonVO mVO= new MelonVO();
@@ -126,10 +124,8 @@ public class IndexController {
 		    	  mVO.setSong(el.select(".rank_info>.song>a").text());
 		    	  mVO.setArtist(el.select(".rank_info>.artist>.ellipsis>a").text());
 		    	  melonList.add(mVO);
-		    	  System.out.println(el.select(".rank_cntt>.thumb>a>img").attr("src"));
 		      }
 
-		         
 			return melonList;
 		}
 		
