@@ -13,74 +13,47 @@
 <nav>
 <div id="sidebar">
 <div class="inner">
-	<div class="row">
-	<div class="form-group">
-		<!-- Sort -->
-			<div class="col-xs-12">
-			<select name="sort-category" id="sort-category">  
-				<option value="">- 정렬 분류 -</option>
-				<option value="1">최신순</option>
-				<option value="1">오래된 순</option>
-				<option value="1">중요표시 있는 순</option>
-				<option value="1">전체보기</option>
-			</select>
-			</div>
-		<!-- Search -->
-		<section id="subject-search" class="alt">
-			<div class="col-xs-12">
-					<form method="post" action="#">
-						<input type="text" id="search-text" placeholder="검색"/>
-						<a href="#"><i id="search" class="fas fa-search icon-size"  style="padding-top:15px"></i></a>
-					</form>
-			</div>
-		</section>
-	</div>
-	</div>		
-		<!-- Section -->
-		<section>
-		<br>
-			<header class="major">
-				<h2>드래그 목록<i class="fas fa-trash icon-size"></i></h2>
-			</header>
-			<div class="mini-posts">
-				<article>
-					<a href="#" class="image img-rounded"><img
-						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-						alt="" /></a><i class="far fa-star icon-top icon-size"></i>
-				</article>
-				<article>
-					<a href="#" class="image img-rounded"><img
-						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-						alt="" /></a><i class="far fa-star icon-top icon-size"></i>
-				</article>
-				<article>
-					<a href="#" class="image img-rounded"><img
-						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-						alt="" /></a><i class="far fa-star icon-top icon-size"></i>
-				</article>
-				<article>
-					<a href="#" class="image img-rounded"><img
-						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-						alt="" /></a><i class="far fa-star icon-top icon-size"></i>
-				</article>
-				<article>
-					<a href="#" class="image img-rounded"><img
-						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-						alt="" /></a><i class="far fa-star icon-top icon-size"></i>
-				</article>
-				
-				<article>
-					<a href="#" class="image img-rounded"><img
-						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-						alt="" /></a><i class="far fa-star icon-top icon-size"></i>
-				</article>
-				<article>
-					<a href="#" class="image img-rounded"><img
-						src="https://images.pexels.com/photos/39811/pexels-photo-39811.jpeg?h=350&auto=compress&cs=tinysrgb"
-						alt="" /></a><i class="far fa-star icon-top icon-size"></i>
-				</article>
-			</div>
-		</section>
+			<div class="tab-content">
+				<!-- 1. 드래그 목록 -->
+				<div id="drag" class="tab-pane fade in active">
+					<div class="row">
+						<div class="form-group">
+							<!-- 드래그정렬 -->
+							<div class="col-xs-12">
+								<select name="sort-category" id="sort-category" class="text" >
+									<option value="">- 정렬 분류 -</option>
+									<option value="dragNumDesc">최신순</option>
+            						<option value="dragNumAsc">오래된 순</option>
+            						<option value="dragMark">중요표시 있는 순</option>
+           						  	<option value="binary(dragText)">가나다순</option>
+           							<option value="">전체보기</option>
+									</select>
+							</div>
+							<!-- 드래그검색 -->
+							<section id="subject-search" class="alt">
+								<div class="col-xs-12">
+									<form method="post" action="#">
+										<input type="text" id="search-text" placeholder="검색" class="text" /> <a
+											href="#"><i id="searchdrag" class="fas fa-search icon-size"
+											style="padding-top: 15px"></i></a>
+									</form>
+								</div>
+							</section>
+						</div>
+					</div>
+					<section>
+						<br>
+						<header class="major" id="droppable">
+							<h2>
+								드래그 목록<i class="fas fa-trash icon-size"></i>
+							</h2>
+						</header>
+						<!-- 드래그목록 -->
+						<div class="mini-posts" id="dragList"></div>
+					</section>
+				</div>
+
+
 </div>
 </div>
 </nav>

@@ -10,5 +10,19 @@
 <script>
 </script>
 <body>
-<div id="googleBrowser"></div>
+
+
+<div id="googleBrowser"><script>
+  (function() {
+    var cx = '008735657841569968312:-xk9eqqghzs';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search>
+</div>
 </body>

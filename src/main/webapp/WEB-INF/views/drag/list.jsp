@@ -18,7 +18,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="${pageContext.request.contextPath}/resources/js/drag.js"></script>
 
 <div class="d-container">
 	<div class="d-inner">
@@ -35,6 +34,10 @@
 		<!--드래그 리스트 영역 -->
 		<div class="row"  id="dragList"></div>
 		
+		<!--추가 리스트 영역 -->
+		<div class="row"  id="appendbox"></div>
+		<input type="hidden"  id="page" value="${page}">
+	
  <%--  <c:forEach items="${dragList}" var="dragList">
 
 					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
@@ -70,7 +73,8 @@
 	</div>
 </div>
 <br>
-
+<!-- top버튼 -->
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 <!-- Modal HTML -->
 <div id="modal-drag" class="modal fade text-center overlay"
 	role="dialog">
@@ -80,26 +84,7 @@
 	</div>
 </div>
 
-<p class="row">
-<div id="toolbar-options" class="hidden">
-	<a href="#" id="insertDrag"><i class="fa fa-copyright"></i></a> <a
-		href="#"><i class="fa fa-star"></i></a> <a href="#"><i
-		class="fa fa-sticky-note"></i></a>
-</div>
-<script>
-
-
-/* //별 클릭하면 토글되는 이벤트
-$('.fa-star').click(function(){
-	if($(this).hasClass('far')){
-		$(this).removeClass('far').addClass('fas');
-	} else {
-		$(this).removeClass('fas').addClass('far');
-	}
-}); 
- */
-</script>
-
+<p class="row"></p>
 
 
 

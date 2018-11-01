@@ -6,12 +6,11 @@
 */
 package tk.copyNpaste.mapper;
 
-import java.util.Date;
+
 import java.util.HashMap;
 import java.util.List;
-
 import tk.copyNpaste.vo.DragVO;
-import tk.copyNpaste.vo.NoteVO;
+
 
 public interface DragMapper {
 
@@ -20,7 +19,7 @@ public interface DragMapper {
 	public int insertDrag(DragVO drag) throws Exception;
 	
 	//드래그 목록 보기
-	public List<DragVO> selectAllDrag(String userEmail) throws Exception;
+	public List<DragVO> selectAllDrag(DragVO drag) throws Exception;
 	
 	//드래그 상세 보기(+노트 작성)
 	public DragVO selectDetail(int dragNum) throws Exception;
@@ -42,6 +41,9 @@ public interface DragMapper {
 	
 	//드래그 중요표시 삭제
 	public int removeDragMark(int dragNum) throws Exception;
+
+	//드래그 무한 스크롤 
+	public List<DragVO> infiniteScrollDrag(DragVO drag) throws Exception;
 
 
 

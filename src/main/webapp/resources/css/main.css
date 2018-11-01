@@ -52,6 +52,8 @@ body {
 	color: #333333;
 	background-color: #ffffff;
 	position: relative;
+	overflow-x: hidden;/*   가로스크롤을 막기위해 설정
+	overflow-y: hidden; */ 
 }
 
 h1, h2, h3, h4, h5, h6 {

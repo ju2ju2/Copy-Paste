@@ -28,7 +28,6 @@
 				$(".modal").modal("hide");
 				var editor = tinyMCE.activeEditor;
     			var noteContent = $('#noteContent').html();
-    			console.log(noteContent)
     			editor.dom.add(editor.getBody(), 'p', {}, noteContent+ "<br>");
     	
 			});

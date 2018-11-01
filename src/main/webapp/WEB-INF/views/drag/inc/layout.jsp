@@ -27,6 +27,7 @@
 		<script src="${pageContext.request.contextPath}/resources/js/datepicker.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/drag.js"></script>
 
+
 				<!-- Sweet Alert cdn -->
 		<link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
 		<script type="text/javascript"	src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>

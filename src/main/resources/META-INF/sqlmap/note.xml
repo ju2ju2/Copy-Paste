@@ -198,13 +198,33 @@
 	
 	<!-- 노트의 폴더 이동-노트수정시 -->
 
-	<!-- 회원별 노트 검색 -관리자-->
+	<!-- 회원 노트 전체 목록 -관리자-->
+		<select id="selectAllNoteAdmin" resultType="NoteVo">
+			select cast(@rownum:=@rownum+1 as signed integer) as rnum, n.noteNum, n.noteTitle, n.notePublic, n.noteDate, u.userEmail, u.userEnabled 
+				from note n left join users u on n.userEmail = u.userEmail 
+				where (@rownum:=0)=0 order by rnum desc;		
+		</select>
+
+	<!-- 노트 개별 삭제 - 관리자 -->
+	<delete id="deleteNoteNumAdmin">
+		delete from note where noteNum=#{noteNum};
+	</delete>
+
+	<!-- 회원별 노트 검색 -관리자. 데이터 테이블이 다 해주고 있읍니다-->
+	
+	<!-- 회원별 작성 노트 개수 - 관리자 -->
+	<select id="selectNoteCount" parameterType="String" resultType="Integer">
+		select count(noteNum) from note where userEmail=#{userEmail};
+	</select>
 	
 	<!-- 회원별 노트 일괄 삭제 -관리자-->
+	<delete id="deleteMemNote">
+		delete from note where userEmail=#{userEmail};
+	</delete>
 	
 	<!-- 노트 블라인드 처리 -관리자 -->
 	<update id="blindNote">
-	 update Note set noteBlind=1 where noteNum = #{noteNum}
+	 	update Note set noteBlind=1 where noteNum = #{noteNum}
 	</update> 
 	
 	<!-- 	

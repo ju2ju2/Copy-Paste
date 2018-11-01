@@ -7,7 +7,6 @@
 
 package tk.copyNpaste.etc;
 
-import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,22 +14,41 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import tk.copyNpaste.note.NoteService;
 import tk.copyNpaste.vo.EtcVO;
 import tk.copyNpaste.vo.MemberVO;
 import tk.copyNpaste.vo.NoteVO;
 import tk.copyNpaste.vo.ReportVO;
+import tk.copyNpaste.vo.noticeVO;
 
 @RequestMapping("/etc/")
 @Controller // 동기 컨트롤러. retrun>> ModelAndView or String.
 public class EtcController {
 	@Autowired
 	EtcService etcService;
+	@Autowired
+	NoteService noteService;
 
+	@RequestMapping("notifyList.json")
+	// 알림 리스트 보내기
+	public @ResponseBody List<noticeVO> noticeList(String userEmail) throws Exception {
+		System.out.println(etcService.noticeList(userEmail));
+		return etcService.noticeList(userEmail);
+	}
+	
+	@RequestMapping("notifyReadCheck.json")
+	// 알림 읽음 처리 하기
+	public @ResponseBody int notifyReadCheck(String userEmail, String notifyCode, int notifyTarget) throws Exception {
+		return etcService.notifyReadCheck(userEmail, notifyCode, notifyTarget);
+		
+	}
+	
 	@RequestMapping("admin.htm")
 	// 관리자 페이지 (회원관리)
 	public ModelAndView adminMemberPage() throws Exception {
@@ -48,11 +66,41 @@ public class EtcController {
 	};
 
 	@RequestMapping("adminNote.htm")
-	// 관리자 페이지 (노트관리)
-	public String adminNotePage() throws Exception {
-		return "admin.manageNote";
+	// 관리자 페이지 (노트목록)
+	public ModelAndView adminNotePage() throws Exception {
+		List<NoteVO> noteList = noteService.selectAllNoteAdmin();
+		ModelAndView adminmav = new ModelAndView();
+		adminmav.setViewName("admin.manageNote");
+		adminmav.addObject("NoteVo", noteList);
+		return adminmav;
 	};
+	
+/*	// 회원별 노트 검색-관리자-노트관리
+	public List<NoteVO> selectByMemNote(String userEmail) throws Exception {
+		return noteService.selectByMemNote(userEmail);
+	}*/
 
+	// 노트 개별 삭제-관리자-노트관리
+	@RequestMapping(value="deleteNoteNumAdmin.do")
+	public @ResponseBody int deleteNoteNumAdmin(int noteNum) throws Exception {
+		int result = noteService.deleteNoteNumAdmin(noteNum);
+		return result;
+		}	
+	
+	// 회원별 작성 노트 개수-관리자-노트관리
+	@RequestMapping(value="selectNoteCount.do")
+	public @ResponseBody int selectNoteCount(String userEmail) throws Exception {
+		int result = noteService.selectNoteCount(userEmail);
+		return result;
+	}	
+	
+	// 회원별 노트 일괄 삭제-관리자-노트관리
+	@RequestMapping(value="deleteMemNote.do")
+	public @ResponseBody int deleteMemNote(String userEmail) throws Exception {
+		int result = noteService.deleteMemNote(userEmail);
+		return result;
+	}	
+	
 	@RequestMapping("adminReport.htm")
 	// 관리자 페이지 (신고관리)
 	public ModelAndView adminReportPage() throws Exception {
@@ -141,31 +189,49 @@ public class EtcController {
 		return etcService.stateNoteSubject();
 	};
 
-	// 사이트내 검색
+	// 사이트내 검색 + 인기글 목록 뿌려주기
 	@RequestMapping("/selectSearchSite.htm")
-	public String selectSearchSite() {
+	public String selectSearchSite(Model model) throws Exception {
+		List<NoteVO> notelist = noteService.selectSubjectCode();
+		String[] subjectNames = new String[notelist.size()];
+		int i = 0;
+		for (NoteVO note: notelist ) {
+			subjectNames[i] = note.getSubjectName();
+			i++;
+		}
+		List<NoteVO> etcNoteList = noteService.selectTopNote(subjectNames[0]);
+		model.addAttribute("etcNoteList", etcNoteList);
+		List<NoteVO> bizNoteList = noteService.selectTopNote(subjectNames[1]);
+		model.addAttribute("bizNoteList", bizNoteList);
+		List<NoteVO> lifeNoteList = noteService.selectTopNote(subjectNames[2]);
+		model.addAttribute("lifeNoteList", lifeNoteList);
+		List<NoteVO> eduNoteList = noteService.selectTopNote(subjectNames[3]);
+		model.addAttribute("eduNoteList", eduNoteList);
 		return "search.selectSearchSite";
 	}
 	
 		// * 사이트 내 검색	- 10.29 이주원
 	@RequestMapping(value="selectSearchSite.json", method = RequestMethod.GET)
-	public @ResponseBody List<NoteVO> selectSearchSite(String keyword) throws Exception {
-		HashMap<String, Object> map = new HashMap<String, Object>();
+	public @ResponseBody List<NoteVO> selectSearchSite(String boundary, String subjectCategory,String keyword) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();	
+		map.put("boundary", boundary);
+		map.put("subjectCategory", subjectCategory);
 		map.put("keyword", keyword);
+		/*return etcService.selectSearchSite(map);*/
 		return etcService.selectSearchSite(map);
 	}
-	
 
 	// 네이버 검색
 	@RequestMapping("/selectSearchNaver.htm")
-	public String selectSearchNaver() {
+	public String selectSearchNaver(HttpServletRequest request) throws InterruptedException {
+		etcService.naver(request);
 		return "search.selectSearchNaver";
 	}
 
 	// 구글 검색
 	@RequestMapping("/selectSearchGoogle.htm")
-	public String selectSearchGoogle(HttpServletRequest request) {
-		//etcService.google(request);
+	public String selectSearchGoogle(HttpServletRequest request) throws InterruptedException {
+		etcService.google(request);
 		return "search.selectSearchGoogle";
 	}
 

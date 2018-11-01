@@ -10,10 +10,143 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se"
 	uri="http://www.springframework.org/security/tags"%>
-<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
 <!-- 카카오 로그인 -->
  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<!-- 웹소켓 -->
+<se:authorize access="isAuthenticated()">
+<se:authentication property="principal.username" var="userEmail"/>
+<script type="text/javascript">
+	var notifyUri = "ws://localhost:8090${pageContext.request.contextPath}/notify.do";
+	function send_message() {
+		websocket = new WebSocket(notifyUri);
+		websocket.onopen = function(evt) {
+			onOpen(evt);
+		};
+		websocket.onmessage = function(evt) {
+			onMessage(evt);
+		};
+		websocket.onerror = function(evt) {
+			onError(evt);
+		};
+	}
+	function onOpen(evt) {
+		websocket.send("${userEmail}");
+	}
+	function onMessage(evt) {
+		$('#notifyBadge').text(evt.data);
+	}
+	function onError(evt) {
+	}
+	
+	$(document).ready(function() {
+		send_message();
+		
+		$('#notifyALink').click(function() {
+			var notifyList = "";
+			$.ajax({
+				url: "${pageContext.request.contextPath}/etc/notifyList.json",
+				dataType: "json",
+				data: {'userEmail' : "${userEmail}"},
+				success:function(data) {
+					if(data.length != 0) {
+						
+						$.each(data, function(key, value) {
+
+							$('#notifyUl').empty();
+						
+							if(value.notifyCode === "NC" || value.notifyCode === "NCC" || value.notifyCode === "RC") {
+								notifyList+='<li><a href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.notifyTarget
+											+'" class="notification-item" data-target="#noteModal" data-toggle="modal" role="button" data-backdrop="static">';
+								notifyList+='<input type="hidden" class="notifyCode" value="'+value.notifyCode
+											+'"><input type="hidden" class="notifyTarget" value="'
+											+value.notifyTarget+'">';
+											
+								if (value.readCheck == 1) {
+									notifyList+='<span class="dot bg-danger"></span>';
+								} else {
+									notifyList+='<span class="dot bg-success"></span>';
+								}
+								
+								if (value.notifyCode == 'NC') {
+									notifyList+='당신의 노트에 댓글이 달렸습니다.</a></li>';
+								} else if (value.notifyCode == 'NCC') {
+									notifyList+='당신의 댓글에 대댓글이 달렸습니다.</a></li>';
+								} else {
+									notifyList+='당신의 댓글이 블라인드 처리되었습니다.</a></li>';
+								}
+								
+							} else if (value.notifyCode == 'QA' || value.notifyCode == 'QC' || value.notifyCode == 'QCC') {
+								notifyList+='<li><a href="${pageContext.request.contextPath}/qna/selectDetailQna.htm?qnaNum='
+											+value.notifyTarget+'" class="notification-item">';
+								notifyList+='<input type="hidden" class="notifyCode" value="'+value.notifyCode
+											+'"><input type="hidden" class="notifyTarget" value="'
+											+value.notifyTarget+'">';
+	
+								if (value.readCheck == 1) {
+									notifyList+='<span class="dot bg-danger"></span>';
+								} else {
+									notifyList+='<span class="dot bg-success"></span>';
+								}
+								
+								if (value.notifyCode == 'QA') {
+									notifyList+='당신의 질문에 답변이 달렸습니다.</a></li>';
+								} else if (value.notifyCode == 'QC') {
+									notifyList+='당신의 질문에 댓글이 달렸습니다.</a></li>';
+								} else {
+									notifyList+='당신의 질문 댓글에 대댓글이 달렸습니다.</a></li>';
+								}
+								
+							} else {
+								
+								console.log(value.notifyCode);
+								notifyList+='<li>';
+								
+								if (value.readCheck == 1) {
+									notifyList+='<span class="dot bg-danger"></span>';
+								} else {
+									notifyList+='<span class="dot bg-success"></span>';
+								}
+								
+								notifyList+='당신의 노트 하나가 블라인드 처리되었습니다. 자세한 사항은 관리자에게 문의하세요<li>';
+							}
+						
+						
+						})
+					
+					} else {
+						console.log("도달 여부 확인");
+						notifyList+='<li><a href="#" class="more">알림이 없습니다.</a></li>';
+					}
+					
+					$('#notifyUl').append(notifyList);
+					
+					$('.notification-item').click(function() {
+						$.ajax({
+							url: "${pageContext.request.contextPath}/etc/notifyReadCheck.json",
+							data: {'userEmail' : "${userEmail}",
+									'notifyCode' : $(this).children('.notifyCode').val(),
+									'notifyTarget' : $(this).children('.notifyTarget').val()},
+							success:function(data) {console.log("성공");}
+						})
+					})
+				}
+				
+			})
+		})
+		
+	});
+	
+</script>
+</se:authorize>
+
+<!-- 노트 모달창 -->
+<div id="noteModal" class="modal fade text-center overlay"
+	 role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content"></div>
+	</div>
+</div>
 
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container">
@@ -62,7 +195,7 @@
 					<!--프로필사진-->
 					<se:authentication property="name" var="loginuser" />
 					<li class="dropdown inline"><a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-						<img class="img-circle" alt="user" id="headerUserPhoto"><span>${loginuser}</span><span class="caret"></span></a>
+						<img class="img-circle" id="headerUserPhoto"><span>${loginuser}</span><span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a
 								href="${pageContext.request.contextPath}/member/myinfo.htm"><i class="far fa-user"></i><span>PROFILE</span></a></li>
@@ -88,23 +221,14 @@
 					</li>
 					
 					<!-- 알람 -->
-					<li class="dropdown"><a href="#"
-						class="dropdown-toggle icon-menu" data-toggle="dropdown"> <i
-							class="far fa-bell"></i> <span class="badge bg-danger">5</span>
-					</a>
-						<ul class="dropdown-menu notifications">
-							<li><a href="#" class="notification-item"><span
-									class="dot bg-warning"></span> '가을에 쓴 편지'에 댓글이 달렸습니다.</a></li>
-							<li><a href="#" class="notification-item"><span
-									class="dot bg-danger"></span> '가을에 쓴 편지'에 댓글이 달렸습니다.</a></li>
-							<li><a href="#" class="notification-item"><span
-									class="dot bg-success"></span> '가을에 쓴 편지'에 댓글이 달렸습니다.</a></li>
-							<li><a href="#" class="notification-item"><span
-									class="dot bg-warning"></span> '가을에 쓴 편지'에 댓글이 달렸습니다.</a></li>
-							<li><a href="#" class="notification-item"><span
-									class="dot bg-success"></span> '가을에 쓴 편지'에 댓글이 달렸습니다.</a></li>
-							<li><a href="#" class="more">See all notifications</a></li>
-						</ul></li>	
+					<li class="dropdown">
+						<a href="#" id="notifyALink"
+							class="dropdown-toggle icon-menu" data-toggle="dropdown"> <i
+							class="far fa-bell"></i> <span class="badge bg-danger" id="notifyBadge"></span>
+						</a>
+						<ul class="dropdown-menu notifications" id="notifyUl">
+						</ul>
+					</li>	
 			</se:authorize>
 
 							
