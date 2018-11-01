@@ -6,6 +6,7 @@
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="s-container">
 <div class="s-inner">
 	<!-- 정렬 -->
@@ -50,7 +51,128 @@
 		<h3>검색 결과</h3>
 		</header>
 	<div class="searchList" id="searchList">
-		<!-- 검색 결과가 뿌려질 공간 -->
+		<!-- 인기글 목록 뿌려주기 -->
+		<div>
+		<h3>회사</h3>
+	</div>
+	<br>
+	<div class="row">
+		<c:forEach var="noteList" items="${bizNoteList}">
+			<div class="col-xs-6 col-md-3">
+				<div class="text-center">
+					<!-- a HTML (to Trigger Modal) -->
+					<a data-toggle="modal"
+						href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum=${noteList.noteNum}"
+						data-target="#modal-testNew" role="button" data-backdrop="static">
+						<div class="item">
+							<img class="img-rounded thumnail" id="thumnail"
+								src="${noteList.noteThumnail}"
+								alt="${noteList.noteTitle}" width="100%">
+							<div class="caption">
+								<i class="fa fa-plus" aria-hidden="true"></i>
+							</div>
+						</div>
+						<div>
+							<h4>${noteList.noteTitle}</h4>
+							<strong>${noteList.userNick}</strong> <span>${noteList.noteDate}</span>
+						</div>
+					</a>
+				</div>
+			</div>
+		</c:forEach>
+	</div>
+	<br>
+	<div>
+		<h3>생활</h3>
+	</div>
+	<br>
+	<div class="row">
+		<c:forEach var="noteList" items="${lifeNoteList}">
+			<div class="col-xs-6 col-md-3">
+				<div class="text-center">
+					<!-- a HTML (to Trigger Modal) -->
+					<a data-toggle="modal"
+						href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum=${noteList.noteNum}"
+						data-target="#modal-testNew" role="button" data-backdrop="static">
+						<div class="item">
+						<input class="noteNum" type="hidden" value="${noteList.noteNum}">
+							<img class="img-rounded"
+								src="${noteList.noteThumnail}"
+								alt="${noteList.noteTitle}" width="100%">
+							<div class="caption">
+								<i class="fa fa-plus" aria-hidden="true"></i>
+							</div>
+						</div>
+						<div>
+							<h4>${noteList.noteTitle}</h4>
+							<strong>${noteList.userNick}</strong> <span>${noteList.noteDate}</span>
+						</div>
+					</a>
+				</div>
+			</div>
+		</c:forEach>
+	</div>
+	<br>
+	<div>
+		<h3>교육</h3>
+	</div>
+	<br>
+	<div class="row">
+		<c:forEach var="noteList" items="${eduNoteList}">
+			<div class="col-xs-6 col-md-3">
+				<div class="text-center">
+					<!-- a HTML (to Trigger Modal) -->
+					<a data-toggle="modal"
+						href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum=${noteList.noteNum}"
+						data-target="#modal-testNew" role="button" data-backdrop="static">
+						<div class="item">
+							<img class="img-rounded"
+								src="${noteList.noteThumnail}"
+								alt="${noteList.noteTitle}" width="100%">
+							<div class="caption">
+								<i class="fa fa-plus" aria-hidden="true"></i>
+							</div>
+						</div>
+						<div>
+							<h4>${noteList.noteTitle}</h4>
+							<strong>${noteList.userNick}</strong> <span>${noteList.noteDate}</span>
+						</div>
+					</a>
+				</div>
+			</div>
+		</c:forEach>
+	</div>
+	<br>
+	<div>
+		<h3>기타</h3>
+	</div>
+	<br>
+	<div class="row">
+		<c:forEach var="noteList" items="${etcNoteList}">
+			<div class="col-xs-6 col-md-3">
+				<div class="text-center">
+					<!-- a HTML (to Trigger Modal) -->
+					<a data-toggle="modal"
+						href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum=${noteList.noteNum}"
+						data-target="#modal-testNew" role="button" data-backdrop="static">
+						<div class="item">
+							<img class="img-rounded"
+								src="${noteList.noteThumnail}"
+								alt="${noteList.noteTitle}" width="100%">
+							<div class="caption">
+								<i class="fa fa-plus" aria-hidden="true"></i>
+							</div>
+						</div>
+						<div>
+							<h4>${noteList.noteTitle}</h4>
+							<strong>${noteList.userNick}</strong> <span>${noteList.noteDate}</span>
+						</div>
+					</a>
+				</div>
+			</div>
+		</c:forEach>
+	</div>
+	
 	</div>
 	</section>
 
