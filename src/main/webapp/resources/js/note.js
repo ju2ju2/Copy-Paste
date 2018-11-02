@@ -231,6 +231,7 @@ $("document").ready(function(){
 			url ="../note/selectByCalNote.json"
 			params.fromDate = $("#fromDate").val()
 			params.toDate =$("#toDate").val()
+			params.page=0
 			makeNoteList(url, params);
 			$(window).scroll(function(e) { moreNoteList(e,url, params)})
 		});
@@ -239,7 +240,7 @@ $("document").ready(function(){
 		 $('#search').click(function(e) {
 			url ="../note/selectByKeyNote.json"
 			params.keyword = $('#search-text').val()
-			console.log(params.keyword)
+			params.page=0
 			makeNoteList(url, params);
 			$(window).scroll(function(e) { moreNoteList(e,url, params)})
 		 })
@@ -248,6 +249,7 @@ $("document").ready(function(){
 		 $('#sort-category').on("change",function(e) {
 			url ="../note/selectOrderbyNote.json"
 			params.sortCategory = $('#sort-category option:selected').val()
+			params.page=0
 			makeNoteList(url, params);
 		    $(window).scroll(function(e) {moreNoteList(e,url, params)})
 

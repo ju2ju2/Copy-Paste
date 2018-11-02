@@ -61,9 +61,9 @@
 							
 						
 						})
-						.fail(function(jqXhr, testStatus, errorText){
-							alert("에러발생 :" + errorText);
-						});
+						.fail(function(request,status,error){
+				     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				     	  });
 					});
 				return false;
 			});
@@ -101,9 +101,9 @@
 					
 				
 				})
-				.fail(function(jqXhr, testStatus, errorText){
-					alert("에러발생 :" + errorText);
-				});
+				.fail(function(request,status,error){
+		     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		     	  });
 			});
 		return false;
 	});
@@ -141,9 +141,9 @@
 							})
 											
 						})
-						.fail(function(jqXhr, testStatus, errorText){
-							alert("에러발생 :" + errorText);
-						});
+						.fail(function(request,status,error){
+				     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				     	  });
 					});
 				return false;
 			});
@@ -179,9 +179,9 @@
 						
 					
 					})
-					.fail(function(jqXhr, testStatus, errorText){
-						alert("에러발생 :" + errorText);
-					});
+					.fail(function(request,status,error){
+			     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			     	  });
 				});
 			return false;
 		});
@@ -238,9 +238,9 @@
 					
 				
 				})
-				.fail(function(jqXhr, testStatus, errorText){
-					alert("에러발생 :" + errorText);
-				});
+				.fail(function(request,status,error){
+		     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		     	  });
 			});
 		return false;
 	});
@@ -644,9 +644,9 @@ $(document).ready(function(){
 										
 									
 									})
-									.fail(function(jqXhr, testStatus, errorText){
-										console.log("에러발생 :" + errorText);
-									});
+									.fail(function(request,status,error){
+							     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+							     	  });
 								});
 							return false;
 						});

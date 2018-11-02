@@ -281,7 +281,7 @@ $('#search').click(function(e) {
   		})
   	}
   },error : function(){
-	 console.log("키워드 검색 실패");
+	  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
   }
     
        
@@ -353,19 +353,17 @@ $("#toDate").change(function() {
 		                  
 		                  },
 		            error : function(){
-		            	console.log("안들어온다우");
-		              /*  swal({
+		            	
+		              swal({
 		                    title: "해당 기간에 존재하는 게시물이 없습니다.",
 		                    text: "",
 		                    type: "info",
 		                    confirmButtonClass: "btn-danger",
 		                    confirmButtonText: "OK",
 		                    showCancelButton: false
-		                  }) */
+		                  }) 
 		            }
 		      });  
-	}else{
-		alert("null뜨는데?");
 	}
 	  
  	}) 
@@ -435,7 +433,6 @@ $("#toDate").change(function() {
 								$('#unclassified').append(unclassified);
 								
 								if(value.defaultFolder==1){
-	/* 								console.log(">>폴더명<<"+value.folderName+">>폴더 상태<<"+value.defaultFolder+">>삭제 가능 여부<<"+value.candelete); */
 									unclassified = "";
 									unclassified += "<div class='col-xs-2 icon'><i class='fas fa-bookmark icon-size' id='bookmarkO' onclick=setDefaultFolder(this,'"+value.folderName+"');>";
 									unclassified += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></div>";

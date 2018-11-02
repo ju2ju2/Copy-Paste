@@ -446,7 +446,6 @@ $(document).ready(function() {
 
           var origin_text = tinymce.get('noteContent').getContent({format: 'text'});
           var $check_result_label = $('#checkResultLabel');
-          console.log(origin_text)
           // 입력 값이 공백일 경우 처리
           if ("" == $.trim(origin_text)) {
               $('#check-result').text("");
@@ -458,7 +457,6 @@ $(document).ready(function() {
           // 맞춤법 검사
           run(origin_text, function(result_html, error_count) {
   		   
-        	  console.log(result_html)
               if (0 < error_count) {
                   $check_result_label.removeClass("bg-secondary bg-success bg-danger").addClass("bg-danger");
                   $check_result_label.text("오류(" + error_count + ")");
@@ -563,7 +561,6 @@ $(document).ready(function() {
 	        accept:".dragDiv",
 	        drop: function(event,ui) {
 	        	var dragNum = $(this).find('#dragNum').text();
-	        	alert($(this).find('#dragNum').text());
 	         }     
 	      });  
 

@@ -7,7 +7,6 @@
 		    type : "post",
 		    data : { "dragNum" : dragNum},
 		    success : function(data){
-	      console.log("데이터 가지고 오는건지");
 		  	location.reload();
 		     }	
 		 });
@@ -20,7 +19,6 @@
 			    type : "post",
 			    data : { "dragNum" : dragNum},
 			    success : function(data){
-		      console.log("데이터 가지고 오는건지");
 			  	location.reload();
 			     }	
 			 });
@@ -52,7 +50,6 @@ $(function() {
 					data: {"dragNum":dragNum},
 					type: "POST"
 					}).done(function (result){
-							console.log("드래그가 성공적으로 삭제됨");
 							swal({type: "success",
 								  title: '성공적으로 삭제되었습니다.',
 					              confirmButtonClass : "btn-danger",
@@ -68,7 +65,6 @@ $(function() {
 	
 	//드래그 키워드 검색
 	$('#searchdrag').click(function(e) {
-	   alert("끼요옹");
 	 	$.ajax({
 	       url: "../drag/selectByKeyDrag.json", // url_pettern 
 	       type:"get",

@@ -82,7 +82,7 @@
 			    //드래그목록
 				function makeDragList(url, params){
 				var page=0;
-				var i=1;
+				
 				$.ajax({
 			      url: url, // url_pettern 
 			      type:"get",
@@ -128,7 +128,6 @@
 			        			
 			        			$("#dragList").html(dragList);
 			        		})
-			        		console.log(i + "회차: " + page);
 			        	}
 			    	
 			        }
@@ -216,8 +215,8 @@
 			     		                			   $('#dragList').append(dragList2);
 			     		                        })
 			     							    page += 12;
-			     		                    	i += 1;
-			     		                    	console.log(i + "회차: " + page);
+			     		             
+			     		                    	console.log(page);
 			     		 
 			     		                    }
 			     		                   }
