@@ -17,7 +17,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 <!-- Sweet Alert cdn -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
+	href="${pageContext.request.contextPath}/resources/css/api/alert/sweetalert.css" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/api/sweetalert.min.js"></script>
 
 <se:authentication property="name" var="loginuser" />

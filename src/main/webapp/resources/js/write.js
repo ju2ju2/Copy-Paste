@@ -266,7 +266,7 @@ $(document).ready(function() {
 	    				  closeOnConfirm: false
 	    			},
 	    			function(){
-	    				location.href="../note.htm";
+	    				location.href="../note/note.htm";
 	    			});	
 	    	       },
 	       error:function(request,status,error){
