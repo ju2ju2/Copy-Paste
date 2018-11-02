@@ -232,7 +232,7 @@ $(document).ready(function() {
 	
 	
 	//등록 수정 버튼 클릭시
-	function insertOrUpdateNote(url){
+	function insertOrUpdateNote(url,msg){
 		if ($('#noteTitle').val()==''){
 			swal({type: "success",
 				  title: '제목을 입력해주세요',
@@ -261,12 +261,12 @@ $(document).ready(function() {
 	     		 },	
 	      success:function(result){
 	    	    	  swal({type: "success",
-	    				  title: '성공적으로 수정되었습니다.',
+	    				  title: '성공적으로 '+msg+'되었습니다.',
 	    	              confirmButtonClass : "btn-danger",
 	    				  closeOnConfirm: false
 	    			},
 	    			function(){
-	    				location.href="${pageContext.request.contextPath}/note/note.htm";
+	    				location.href="../note.htm";
 	    			});	
 	    	       },
 	       error:function(request,status,error){
@@ -291,13 +291,15 @@ $(document).ready(function() {
 	//노트 수정 실행
 	$('#updateNoteBtn').click(function() {
 		var url = "../note/updateNote.json"
-		insertOrUpdateNote(url);
+		var msg = "수정";
+		insertOrUpdateNote(url,msg);
 	})
 
 	//노트 작성 & 다른 노트이용해 새노트 작성
 	$('#insertNoteBtn').click(function() {
 		var url = "../note/insertNote.json"
-		insertOrUpdateNote(url);
+		var msg = "등록";
+		insertOrUpdateNote(url,msg);
 	})
 	
 	

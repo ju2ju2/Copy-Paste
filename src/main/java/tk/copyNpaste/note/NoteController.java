@@ -50,8 +50,11 @@ public class NoteController {
 	
 	// 회원의 노트 목록 보기
 	@RequestMapping(value = "selectAllNote.json")
-	public @ResponseBody List<NoteVO> selectAllNote(Model model, NoteVO note, Principal principal) throws Exception {
+	public @ResponseBody List<NoteVO> selectAllNote(Model model, String page, Principal principal) throws Exception {
+		NoteVO note = new NoteVO();
 		note.setUserEmail(principal.getName());
+		//note.setPage(Integer.parseInt(page));
+		System.out.println(page);
 		List<NoteVO> noteList = noteService.selectAllNote(note);
 		return noteList;
 	}
@@ -169,7 +172,7 @@ public class NoteController {
 	}
 
 	// 노트 키워드 검색
-	@RequestMapping(value="selectByKeyNote.json", method = RequestMethod.GET)
+	@RequestMapping(value="selectByKeyNote.json")
 	public @ResponseBody List<NoteVO> selectByKeyNote(String keyword,String page,Principal principal) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("keyword", keyword);

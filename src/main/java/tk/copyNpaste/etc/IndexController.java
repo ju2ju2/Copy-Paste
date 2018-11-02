@@ -129,4 +129,14 @@ public class IndexController {
 			return melonList;
 		}
 		
+		
+		
+		//에러페이지
+		@RequestMapping("/error.htm") 
+		public String errorpage(HttpServletRequest request, Model model) throws Exception { 
+			
+			return "index.error"; 
+		} 
+		
+
 }

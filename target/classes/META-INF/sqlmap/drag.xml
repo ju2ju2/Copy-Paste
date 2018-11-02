@@ -9,13 +9,13 @@
 	<!--전체보기 -->
 	<select id="selectAllDrag" resultType="DragVO">
 		select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate,dragOriginLink
-		from drag where userEmail= #{userEmail} order by dragNum desc limit 0,12 
+		from drag where userEmail= #{userEmail} order by dragNum desc limit #{page},12 
 	</select>
-	
+<!-- 	
 	<select id="infiniteScrollDrag" resultType="DragVO" >
 		select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate,dragOriginLink
 		from drag where userEmail= #{userEmail} order by dragNum desc limit #{page},12
-	</select>
+	</select> -->
 
 	<!--상세보기 -->
 	<select id="selectDetail" resultType="DragVO">
@@ -42,7 +42,7 @@
 	<select id="selectByCalDrag" parameterType="hashmap" resultType="DragVO">
 	select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate
 		from drag where dragDate between #{fromDate} and #{toDate} and userEmail=#{userEmail}
-	order by dragDate desc;
+	order by dragDate desc 
 	</select>
 	
 	<!-- 드래그 키워드 검색 selectByKeyDrag -->
