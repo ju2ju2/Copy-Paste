@@ -18,6 +18,7 @@ public class MemberVO {
 	private String userDate;
 	private String userEnabled;
 	private CommonsMultipartFile userPhotoFile; 
+	private int userSocialStatus;
 	
 	public String getUserEmail() {
 		return userEmail;
@@ -60,5 +61,11 @@ public class MemberVO {
 	}
 	public void setUserPhotoFile(CommonsMultipartFile userPhotoFile) {
 		this.userPhotoFile = userPhotoFile;
+	}
+	public int getUserSocialStatus() {
+		return userSocialStatus;
+	}
+	public void setUserSocialStatus(int userSocialStatus) {
+		this.userSocialStatus = userSocialStatus;
 	}
 }

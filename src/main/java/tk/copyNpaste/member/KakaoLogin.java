@@ -28,12 +28,13 @@ import tk.copyNpaste.vo.MemberVO;
 public class KakaoLogin {
 	//로그인
 	public static JsonNode getAccessToken(String autorize_code) {
+		System.out.println("3 카톡 로그인");
 		final String RequestUrl = "https://kauth.kakao.com/oauth/token";
 
 		final List<NameValuePair> postParams = new ArrayList<NameValuePair>();
 		postParams.add(new BasicNameValuePair("grant_type", "authorization_code"));
-		postParams.add(new BasicNameValuePair("client_id", "REST API 앱키")); // REST API KEY
-		postParams.add(new BasicNameValuePair("redirect_uri", "REDIRECT_PATH")); // 리다이렉트 URI
+		postParams.add(new BasicNameValuePair("client_id", "495904a0b4023192de3119bfde795283")); // REST API KEY
+		postParams.add(new BasicNameValuePair("redirect_uri", "http://localhost:8090/copyNpaste/member/kakaoOauth.do")); // 리다이렉트 URI
 		postParams.add(new BasicNameValuePair("code", autorize_code)); // 로그인 과정중 얻은 code 값
 
 		final HttpClient client = HttpClientBuilder.create().build();
@@ -67,7 +68,7 @@ public class KakaoLogin {
 	}
 	//앱 연결
 	public static JsonNode connectKakao(String autorize_code) {
-
+		System.out.println("4 카톡 연결");
 		final String RequestUrl = "https://kapi.kakao.com/v1/user/signup";
 
 		final HttpClient client = HttpClientBuilder.create().build();
@@ -104,7 +105,7 @@ public class KakaoLogin {
 	
 	//정보 얻기
 	public static JsonNode getKakaoUserInfo(String autorize_code) {
-
+		System.out.println("5 정보 얻기");
 		final String RequestUrl = "https://kapi.kakao.com/v2/user/me";
 
 		final HttpClient client = HttpClientBuilder.create().build();
@@ -143,7 +144,7 @@ public class KakaoLogin {
 		MemberVO member = new MemberVO();
 
 		member.setUserEmail("k" + profile.get("id").asText());
-		member.setUserSocialStatus(1);
+	
 /*		if (userInfo.path("kaccount_email_verified").asText().equals("true")) { // 이메일 받기 허용 한 경우
 			member.setUser_email(userInfo.path("kaccount_email").asText()); // email -> vo 넣기
 		} else { // 이메일 거부 할 경우 코드 추후 개발

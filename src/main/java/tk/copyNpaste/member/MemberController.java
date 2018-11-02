@@ -11,12 +11,17 @@ package tk.copyNpaste.member;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import tk.copyNpaste.folder.FolderService;
 import tk.copyNpaste.vo.MemberVO;
@@ -84,21 +89,23 @@ public class MemberController {
 	};
 	
 	//카카오 회원가입 1/2 (회원정보 얻기)
-		@RequestMapping(value = "kakaoOauth.do", produces="application/json", method= {RequestMethod.GET, RequestMethod.POST})
-		public ModelAndView kakaoSingUp(@RequestParam("code") String code, HttpServletRequest request, HttpServletResponse response) 
-				throws Exception{
-			
-			MemberVO member = loginService.kakaoSingUp(code, request, response);
-			ModelAndView kakaoMav = new ModelAndView();
-			kakaoMav.setViewName("index.signupSocial");
-			kakaoMav.addObject("memberVo", member);
-			return kakaoMav;
-		};
+	@RequestMapping(value = "kakaoOauth.do", produces="application/json", method= {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView kakaoSingUp(@RequestParam("code") String code, HttpServletRequest request, HttpServletResponse response) 
+			throws Exception{
+		System.out.println("1 컨트롤러");
+		MemberVO member = loginService.kakaoSingUp(code, request, response);
+		ModelAndView kakaoMav = new ModelAndView();
+		kakaoMav.setViewName("index.signupSocial");
+		kakaoMav.addObject("memberVo", member);
+		System.out.println("6 이제 뷰단 감");
+		return kakaoMav;
+	};
 		
-		//카카오 회원가입 2/2 (DB 저장)
-		@RequestMapping(value = "kakaoOauth2.do", produces="application/json", method= {RequestMethod.GET, RequestMethod.POST})
-		public @ResponseBody void kakaoSingUp2(MemberVO member) throws Exception{
-			 loginService.kakaoSingUp2(member);
+	//카카오 회원가입 2/2 (DB 저장)
+	@RequestMapping(value = "kakaoOauth2.do")
+	public String kakaoSingUp2(MemberVO member) throws Exception{
+		 loginService.kakaoSingUp2(member);
+		 return "index.login";
 		};
 		
 	//네이버로그인

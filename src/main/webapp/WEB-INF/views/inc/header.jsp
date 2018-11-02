@@ -272,8 +272,11 @@ var userPhoto; //사용자 프로필 이미지 명
 				type : 'post',
 				url : '${pageContext.request.contextPath}/member/myinfo.do',
 				success : function(data) {
-							userPhoto = data.userPhoto; 
-							$('#headerUserPhoto').attr("src", "${pageContext.request.contextPath}/resources/image/userPhoto/" + userPhoto);
+							userPhoto = data.userPhoto; 	
+							if (data.userSocialStatus != 0){
+								$('#headerUserPhoto').attr("src", userPhoto);
+							} else {$('#headerUserPhoto').attr("src", "${pageContext.request.contextPath}/resources/image/userPhoto/" + userPhoto);	
+								}
 			     	   },
 				error : function(error) {
 							console.log(error);

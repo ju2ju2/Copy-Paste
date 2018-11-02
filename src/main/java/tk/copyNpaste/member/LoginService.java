@@ -6,32 +6,25 @@
 */
 package tk.copyNpaste.member;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.fasterxml.jackson.databind.JsonNode;
 
 import tk.copyNpaste.mapper.FolderMapper;
 import tk.copyNpaste.mapper.MemberMapper;
 import tk.copyNpaste.vo.MemberVO;
 
 @Controller
-/*@RequestMapping(value = "/member")*/
 public class LoginService {
 	 @Autowired
 	 private SqlSession sqlsession;
 	 
-	//로그인
-	 @RequestMapping(value = "/login", method = RequestMethod.POST)
-	public MemberVO login(MemberVO member) throws Exception{
-		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
-		return memberdao.login(member);
-	}
-	
 	//구글로그인
 	public MemberVO googleLogin(String userEmail) throws Exception{
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
@@ -44,21 +37,41 @@ public class LoginService {
 		memberdao.kakaoLogin(userEmail);
 	}*/
 	
-	//카카오 회원가입
-	@Transactional
-	public void kakaoLogin(String userEmail) throws Exception{
-			MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
-			FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
-			try {
-				memberdao.kakaoLogin(userEmail);
-				memberdao.insertMemberRole(userEmail); // 권한 설정
-				folderdao.insertFolderUserDefault(userEmail); //기본폴더 생성
-				folderdao.insertFolderUserScrap(userEmail); //스크랩 폴더 생성
-			} catch (Exception e) {
-				System.out.println("에러" + e.getMessage());		
-				throw e; // 예외 발생 시기면 : 자동 rollback
-			}
-		}
+	 //카카오 회원가입 1/2 (회원정보 얻기)
+    public MemberVO kakaoSingUp(String code, HttpServletRequest request, HttpServletResponse response) throws Exception{
+    	System.out.println("2 서비스");
+        JsonNode token = KakaoLogin.getAccessToken(code);
+        System.out.println("3.5 token: " + token);
+        KakaoLogin.connectKakao(token.path("access_token").toString());
+        
+        JsonNode profile = KakaoLogin.getKakaoUserInfo(token.path("access_token").toString());
+        System.out.println("profile: " +profile);
+        
+        MemberVO member = KakaoLogin.changeData(profile);
+
+        return member;
+        }
+    
+    //카카오 회원가입 2/2 (DB 저장)
+    @Transactional
+    public void kakaoSingUp2(MemberVO member) throws Exception{
+        
+        MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
+        FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
+        String userEmail = member.getUserEmail();
+        
+        member.setUserSocialStatus(1); //일반회원:0, 카카오:1, 네이버:2, 구글:3
+        
+        try {
+            memberdao.insertMember(member); //DB에 회원정보 입력
+            memberdao.insertMemberRole(userEmail); // 권한 설정
+            folderdao.insertFolderUserDefault(userEmail); //기본폴더 생성
+            folderdao.insertFolderUserScrap(userEmail); //스크랩 폴더 생성
+        } catch (Exception e) {
+            System.out.println("에러" + e.getMessage());        
+            throw e; // 예외 발생 시기면 : 자동 rollback
+        }
+    }
 		
 	//네이버로그인
 	public MemberVO naverLogin(String userEmail) throws Exception{
