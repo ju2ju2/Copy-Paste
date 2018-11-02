@@ -10,13 +10,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-<script>
-$(document).ready(function() {
-    $('#table_id').DataTable({
-    	"order": false
-    });
-} );
-</script>
+<!-- js 영역  -->
+<script type="text/javascript"	src="${pageContext.request.contextPath}/resources/js/qnaBoard.js"></script>
 <section id="content">
 	<div class="container">
 	<%-- ${qnaList} --%>

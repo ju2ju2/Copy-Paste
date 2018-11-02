@@ -22,7 +22,9 @@ import org.springframework.web.servlet.LocaleResolver;
 
 import tk.copyNpaste.note.NoteService;
 import tk.copyNpaste.vo.MelonVO;
+import tk.copyNpaste.vo.NoteCommVO;
 import tk.copyNpaste.vo.NoteVO;
+import tk.copyNpaste.vo.QnaVO;
 
 @Controller
 public class IndexController {
@@ -127,6 +129,20 @@ public class IndexController {
 		      }
 
 			return melonList;
+		}
+		// 가사보기
+		@RequestMapping(value = "melonLyrics.json")
+		public String selectDetailNote(String songNo, Model model) throws Exception {
+			String url = "https://www.melon.com/song/detail.htm?songId="+songNo;
+		    Document doc = null;
+		    doc = Jsoup.connect(url).get();
+		    
+		    // 태그를 찾아서 가져오도록 한다.
+		    Elements element = doc.select(".lyric");
+		    String lyric = element.html();
+
+			model.addAttribute("lyric", lyric);
+			return "melonLyric";//(modal/melonLyric.jsp)
 		}
 		
 		

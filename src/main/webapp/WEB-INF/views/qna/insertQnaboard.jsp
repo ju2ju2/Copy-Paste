@@ -11,6 +11,10 @@
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=yaps0ah95j72p1podkonpizywofdvarpwuuzjrfbjm1ysadp"></script>
 <script src="${pageContext.request.contextPath}/resources/js/textEditer.js"></script>
+<!-- Sweet Alert cdn -->
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
 <se:authentication property="name" var="loginuser" />
 <se:authentication property="authorities" var="role" />
 <section id="content">
@@ -48,14 +52,21 @@
 			</div>
 			<div class="col-md-12">
 				<div class="qnaSecret"><input type="checkbox" value="1" name="qnaSecret" class="qnaSecret">&nbsp;비공개
-				<button type="submit" class="btn btn-danger center-block"
+				<button type="button" class="btn btn-danger center-block"
 					id="qnainsertbtn">등록</button></div>
 			</div>
 		</form>
 	</div>
 </section>
 <script type="text/javascript">
-$(function(){
-	
+$(document).ready(function() {
+	$('#qnainsertbtn').click(function(){
+		if($('#qnatitle').val()=="" || tinymce.get('qnacontent').getContent()==""){
+			swal("", "내용을 입력해주세요", "warning");
+		}else{
+			$('#insertQnaform').submit(); 
+		}
+	});
 });
 </script>
+
