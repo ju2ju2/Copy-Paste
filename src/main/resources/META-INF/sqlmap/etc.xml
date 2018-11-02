@@ -188,7 +188,16 @@
 		order by noteNum desc;
 	</select>
 	
-
+	<!-- write에서 사이트 내 검색 -->
+	<select id="selectSearchSiteWrite" parameterType="hashmap" resultType="NoteVO">
+		select noteNum, folderName, userEmail, noteTitle,
+		noteContent, noteDate,
+		subjectCode, noteCount,
+		notePublic, notescrap, notePNum, noteThumnail
+		from note
+		where noteTitle like CONCAT('%',#{keyword},'%') or noteContent like CONCAT('%',#{keyword},'%')
+		order by noteNum desc;
+	</select>
 
 
 </mapper>

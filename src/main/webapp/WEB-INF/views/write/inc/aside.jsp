@@ -117,17 +117,26 @@
             </div>
             <!-- 3. 사이트 검색 -->
             <div id="inSiteSearch" class="tab-pane fade searchDiv">
+        
                <div class="row">
                   <div class="form-group">
                      <!-- Search -->
-                     <section id="subject-search" class="alt">
+                     <section id="subject-search" class="alt">           
                         <div class="col-xs-12">
                            <form method="post" action="#">
-                              <input type="text" id="search-text" placeholder="검색" /> <a
-                                 href="#"><i id="search" class="fas fa-search icon-size"
+                              <input type="text" id="search-text-write" placeholder="검색" required /> <a
+                                 href="#"><i id="searchWriteSite" class="fas fa-search icon-size"
                                  style="padding-top: 15px"></i></a>
                            </form>
                         </div>
+                        <!-- 사이트 내 검색결과 보기 리스트 -->
+                        <div class="mini-posts" id="searchList"></div>
+						<!-- 노트상세보기 모달 -->
+               			<div id="modal-testNew1" class="modal fade text-center overlay" role="dialog">
+		                  	<div class="modal-dialog">
+		                    <div class="modal-content">Content will be loaded here from "note/noteDetail.htm" file</div>
+	                  	</div>
+               		</div>
                      </section>
                   </div>
                </div>
@@ -165,6 +174,7 @@
       </div>
    </div>
 </nav>
+
 
 <script>
 
@@ -233,7 +243,7 @@
                       var aa = "";
                       $.each(data, function(key, value){
                          $('#asideNoteList').empty();   
-                         aa+='<div class="col-xs-12 asideNoteDiv">'
+                         aa+='<div class="col-xs-11 asideNoteDiv">'
                          aa+='<div class="text-center asideNoteDiv">'
                          aa+='<!-- a HTML (to Trigger Modal) -->'
                          aa+='<a data-toggle="modal"'
@@ -266,5 +276,71 @@
    });
 
 
+   // 사이트 내 검색 탭
+			$("#searchWriteSite").click(function(){
+				if($("#search-text-write").val()==''){
+					swal({
+						  title: "검색어를 입력해주세요",
+						  text: "",
+						  type: "warning",
+						  confirmButtonClass: "btn-danger",
+						  confirmButtonText: "OK",
+						  showCancelButton: false
+						})
+				}else{
+					 $.ajax(
+								{
+						    url : "../etc/selectSearchSiteWrite.json",
+						    type : "get",
+						    data : {"keyword":$("#search-text-write").val(),
+						    },
+						    dataType : 'json',
+						    success : function(data){
+						    		 var aa = "";
+							          	if(data!=null) {
+							          		$.each(data, function(key, value){
+							          			 $('#searchList').empty();   
+						                         aa+='<div class="col-xs-11 searchNoteDiv">'
+						                         aa+='<div class="text-center searchNoteDiv">'
+						                         aa+='<!-- a HTML (to Trigger Modal) -->'
+						                         aa+='<a data-toggle="modal"'
+						                         aa+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&write=y"'
+						                         aa+='data-target="#modal-testNew" role="button" data-backdrop="static">'
+						                         aa+='<div class="item">'
+						                         aa+='<img class="img-rounded"'
+						                         aa+='src="'+value.noteThumnail+'"'
+						                         aa+='alt="'+value.noteTitle+'" width="100%">'
+						                         aa+='<div class="caption">'
+						                         aa+='<i class="fa fa-plus" aria-hidden="true"></i>'
+						                         aa+='</div>'
+						                         aa+='</div>'
+						                         aa+='<div>'
+						                         aa+='<h4>'+value.noteTitle+'</h4>'
+						                         aa+='<strong>'+value.userEmail+'</strong><span>'+value.noteDate+'</span>'
+						                         aa+='</div>'
+						                         aa+='</a>'
+						                         aa+='</div>'
+						                         aa+='</div>'
+						                         $("div[alt='"+value.folderName+"']").find("#asideNoteList").html(aa);
+							          		})
+							          	}
+							          	
+							          	if(data.length == 0){
+							          		$("#searchList").empty();
+							          		aa += "<div class='text-center noteDiv'>";
+							          		aa += "<h5>검색된 결과가 없습니다.</h5>";
+							          		aa += "</div>";
+										}
+							          	
+							          	$("#searchList").html(aa);	
+						    	
+						          	
+						    },
+						    error : function(request,status,error){
+						        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+						    }
+								})
+				}
+			})
 
 </script>

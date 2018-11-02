@@ -82,5 +82,7 @@ public interface EtcMapper {
 	/*public List<NoteVO> selectSearchSite(HashMap map) throws Exception;*/
 	public List<NoteVO> selectSearchSite(HashMap map) throws Exception;
 	
+	// write 사이트 내 검색
+	public List<NoteVO> selectSearchSiteWrite(HashMap map) throws Exception;
 	
 }
