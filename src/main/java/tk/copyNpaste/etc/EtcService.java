@@ -25,6 +25,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.gargoylesoftware.htmlunit.javascript.host.Console;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
 import tk.copyNpaste.mapper.EtcMapper;
 import tk.copyNpaste.mapper.MemberMapper;
 import tk.copyNpaste.vo.EtcVO;
@@ -150,6 +156,23 @@ public class EtcService {
 	public List<EtcVO> stateNoteSubject() throws Exception {
 		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
 		return etcdao.stateNoteSubject();
+	}
+	
+	// 워드 클라우드
+	public List<String> wordchart() throws Exception{
+		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
+		List<String> wordList = etcdao.wordchart();
+		String[] wordArrays = wordList.toArray(new String[wordList.size()]);
+		List<String> wordchart = new ArrayList<>();	
+		for(String s : wordArrays) {
+			Document document = Jsoup.parse(s);
+			String word = document.text();
+			String[] wordparsing = word.split(" ");
+			for(int i=0; i<wordparsing.length; i++) {
+				wordchart.add(wordparsing[i]);
+			}
+		}
+		return wordchart;
 	}
 
 	// 셀레니움

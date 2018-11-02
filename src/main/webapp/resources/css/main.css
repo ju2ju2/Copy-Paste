@@ -859,3 +859,11 @@ img .user-photo{
 .textIntro{
 	font-size:10px;
 }
+
+/* ====================================== */
+#wordchart {
+	min-width: 310px;
+	max-width: 1000px;
+	margin: 0 auto;
+	text-align:center;
+}
