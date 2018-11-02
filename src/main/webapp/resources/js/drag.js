@@ -169,8 +169,7 @@
 			     			       		        async: false,
 			     			                    data : { page: page },
 			     			                    beforeSend: function(){
-			     			                    	i++
-			     			                    	console.log(i + "회차: " + page); 
+			     			            
 			     			                    },
 				     		                    success : function(data){
 				     		                   

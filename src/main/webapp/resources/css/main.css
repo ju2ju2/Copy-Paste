@@ -435,8 +435,8 @@ footer a, footer a:hover, footer a:active, footer a:link {
 }
 
 /* 상세보기 댓글 */
-#commentbtn {
-	margin-left: 10px;
+#commentBtn {
+	margin-left: 10px !important;
 }
 
 .main-btn {

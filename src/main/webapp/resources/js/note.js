@@ -190,8 +190,7 @@
 							
 							}
 						}).done(function (result){
-							
-							/*console.log(params.page);*/
+						
 							// noteDiv들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
 							$('.noteDiv').draggable({
 								revert: true, 
