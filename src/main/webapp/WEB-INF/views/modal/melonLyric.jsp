@@ -13,8 +13,6 @@
 		<div class="col-xs-2">
 			가사
 		</div>
-
-		<div class="col-xs-8"></div>
 	</div>
 </div>
 <div class="row">
@@ -27,7 +25,7 @@
 		<div class="panel-body">
 			<div class="row">
 				<!-- 본문 -->
-				<div class="text-left col-sm-10">${lyric}</div>
+				<div class="text-left col-sm-10 lyric">${lyric}</div>
 			</div>
 		</div>
 	</div>
