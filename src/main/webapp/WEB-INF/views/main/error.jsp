@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
 <%	response.setStatus(200); %>
-<div class="container">
+
 	<div class="row">
 		<div class="error">
 			<div class="error-code m-b-10 m-t-20">
@@ -37,5 +37,3 @@
 			</div>
 		</div>
 	</div>
-
-</div>

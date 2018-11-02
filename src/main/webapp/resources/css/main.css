@@ -870,8 +870,9 @@ img .user-photo{
 
 /* 에러메세지 */
 .error {
-  margin: auto;
+  margin: 0 auto;
   text-align: center;
+  max-height: 1000px;
 }
 .error-code {
   bottom: 60%;

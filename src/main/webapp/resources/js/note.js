@@ -66,7 +66,6 @@
 		
 		    //노트목록
 			function makeNoteList(url, params){
-			var i=1;	
 			$.ajax({
 			  type:"get",
 			  url: url, // url_pettern
@@ -224,7 +223,7 @@ $("document").ready(function(){
 	   
 		var url="";
 		url ="../note/selectAllNote.json";
-		makeNoteList(url);
+		makeNoteList(url,params);
 		$(window).scroll(function(e) { moreNoteList(e,url, params)})
 			
 		/* 날짜 별 검색 */

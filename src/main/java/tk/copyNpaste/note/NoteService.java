@@ -6,18 +6,14 @@
 */
 package tk.copyNpaste.note;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
 
-import tk.copyNpaste.mapper.DragMapper;
 import tk.copyNpaste.mapper.NoteMapper;
-import tk.copyNpaste.vo.DragVO;
 import tk.copyNpaste.vo.NoteCommVO;
 import tk.copyNpaste.vo.NoteVO;
 
@@ -34,9 +30,9 @@ public class NoteService {
 		return notelist;
 	} 
 	//노트 목록 보기
-	public List<NoteVO> selectAllNote(NoteVO note) throws Exception{		
+	public List<NoteVO> selectAllNote(HashMap map) throws Exception{		
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
-		List<NoteVO> notelist = notedao.selectAllNote(note);
+		List<NoteVO> notelist = notedao.selectAllNote(map);
 		return notelist;
 	}
 	//노트 상세 보기(+노트 작성)

@@ -27,8 +27,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import tk.copyNpaste.folder.FolderService;
-import tk.copyNpaste.vo.DragVO;
-import tk.copyNpaste.vo.FolderVO;
 import tk.copyNpaste.vo.NoteCommVO;
 import tk.copyNpaste.vo.NoteVO;
 
@@ -51,11 +49,11 @@ public class NoteController {
 	// 회원의 노트 목록 보기
 	@RequestMapping(value = "selectAllNote.json")
 	public @ResponseBody List<NoteVO> selectAllNote(Model model, String page, Principal principal) throws Exception {
-		NoteVO note = new NoteVO();
-		note.setUserEmail(principal.getName());
-		//note.setPage(Integer.parseInt(page));
 		System.out.println(page);
-		List<NoteVO> noteList = noteService.selectAllNote(note);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("page", page);
+		map.put("userEmail", principal.getName());
+		List<NoteVO> noteList = noteService.selectAllNote(map);
 		return noteList;
 	}
 	
