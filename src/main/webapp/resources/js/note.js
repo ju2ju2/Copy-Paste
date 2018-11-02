@@ -145,13 +145,13 @@
 					if ($(window).scrollTop() >= ($(document).height() - $(window).height()) ){ 
 						params.page += 12;
 						console.log(params.page+" 번부터")
-						
 						$.ajax({
 							type : 'get',  
 							url :url,
 							data : {"page" : params.page},
 							async: false,
 							beforeSend: function(){
+							
 							
 							},
 							success : function(data){

@@ -51,8 +51,8 @@ public class NoteController {
 	// 회원의 노트 목록 보기
 	@RequestMapping(value = "selectAllNote.json")
 	public @ResponseBody List<NoteVO> selectAllNote(Model model, NoteVO note, Principal principal) throws Exception {
-		
 		note.setUserEmail(principal.getName());
+		System.out.println(note.getPage());
 		List<NoteVO> noteList = noteService.selectAllNote(note);
 		return noteList;
 	}
@@ -61,8 +61,8 @@ public class NoteController {
 	//mynote 페이지
 	@RequestMapping(value = "note.htm")
 	public String notepage(Model model, Principal principal) throws Exception {
-		List<FolderVO> folderList = folderService.selectAllFolder(principal.getName());
-		model.addAttribute("folderList", folderList);
+	/*	List<FolderVO> folderList = folderService.selectAllFolder(principal.getName());
+		model.addAttribute("folderList", folderList);*/
 		return "note.list";
 	}
 
