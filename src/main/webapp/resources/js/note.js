@@ -11,7 +11,8 @@
 							   "toDate" :  "",
 							   "keyword": "",
 							   "noteNum" : "",
-							   "sortCategory" : ""
+							   "sortCategory" : "",
+							   "page": 0
 								}
 		
 			// 노트  드래그로 삭제
@@ -65,12 +66,11 @@
 		
 		    //노트목록
 			function makeNoteList(url, params){
-			var page=0;
 			var i=1;	
 			$.ajax({
+			  type:"get",
 			  url: url, // url_pettern
 			  data: params,
-			  type:"get",
 			  dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
 			  success:function(data){
 				  console.log(data)
@@ -94,7 +94,7 @@
 			    			noteList+='			</div>';
 			    			noteList+='			<div>';
 			    			noteList+='			<input type="hidden" id="noteNum" class="noteNum" value="'+value.noteNum+'">';
-			    			noteList+='				<h4>'+value.noteTitle+'</h4>';
+			    			noteList+='				<h4>'+value.noteTitle+value.noteNum+'</h4>';
 			    			noteList+='			<strong>'+value.userNick+'</strong> <span> '+value.noteDate+'</span>';
 			    			noteList+='		</div>';
 			    			noteList+='		</a>';
@@ -104,7 +104,7 @@
 					
 			    			$("#noteList").html(noteList);
 			    		})
-			    		console.log(i + "노트회차: " + page);
+			    		
 			    	}
 			    }
 			  }).done(function (result){
@@ -127,100 +127,105 @@
 				         }     
 				      });  
 			   
-				    // 스크롤이벤트 발생시 추가 12개 
-				    var lastScrollTop = 0;
-			    	page += 12; //2회차
-					$(window).scroll(function(event){ 
-						event.stopPropagation(); 
+					
+			  })
+			}
+			
+			
+			// 스크롤이벤트 위치지정
+			var lastScrollTop = 0;
+			//스크롤 발생시 추가적인 리스트 생성
+			function moreNoteList(e,url,params){
+				e.stopPropagation() 
+
+				// ① 스크롤 이벤트 최초 발생
+				var currentScrollTop = $(window).scrollTop();
+
+				if( currentScrollTop - lastScrollTop > 0 ){
+					if ($(window).scrollTop() >= ($(document).height() - $(window).height()) ){ 
+						params.page += 12;
+						console.log(params.page+" 번부터")
 						
-						// ① 스크롤 이벤트 최초 발생
-				        var currentScrollTop = $(window).scrollTop();
-				      
-				        
-				        if( currentScrollTop - lastScrollTop > 0 ){
-				            if ($(window).scrollTop() >= ($(document).height() - $(window).height()) ){ 
-				      
-					            	$.ajax({
-					                    type : 'get',  
-					                    url :'../note/infiniteScrollNote.json',
-					       		        async: false,
-					                    data : { page: page },
-					                    beforeSend: function(){
-					                    	i++
-					                    	console.log(i + "회차: " + page); 
-					                    },
-					                    success : function(data){
-					                   
-					                   console.log(data)
-				                        var noteList = "";
-				                        var noteList2 = "";
-				                        if(data != null) {
-				                    		$.each(data, function(key, value){
-				                    			noteList2="";
-				                    			noteList2+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 ">';
-				                    			noteList2+='<div class="text-center noteDiv" id="'+value.noteNum+'">';
-				                    			noteList2+='	<!-- a HTML (to Trigger Modal) -->';
-				                    			noteList2+='	<a data-toggle="modal"';
-				                    			noteList2+='		href="../note/noteDetail.htm?noteNum='+value.noteNum+'&cmd=mynote"';
-				                    			noteList2+='		data-target="#modal-testNew" role="button" data-backdrop="static">';
-				                    			noteList2+='		<div class="item">';
-				                    			noteList2+='			<img class="img-rounded"';
-				                    			noteList2+='				src="'+value.noteThumnail+'"';
-				                    			noteList2+='					alt="${noteList.noteTitle}" width="100%">';
-				                    			noteList2+='			 <div class="caption">';
-				                    			noteList2+='				<i class="fa fa-plus" aria-hidden="true"></i>';
-				                    			noteList2+='			</div> ';
-				                    			noteList2+='		</div>';
-				                    			noteList2+='		<div>';
-				                    			noteList2+='		<input type="hidden" id="noteNum" class="noteNum" value="'+value.noteNum+'">';
-				                    			noteList2+='			<h4>'+value.noteTitle+'</h4>';
-				                    			noteList2+='			<strong>'+value.userNick+'</strong> <span> '+value.noteDate+'</span>';
-				                    			noteList2+='	</div>';
-				                    			noteList2+='	</a>';
-				                    			noteList2+='	</div>';
-				                    			noteList2+='</div>';
-				            			
-				                    			$("#noteList").append(noteList2);
-				                        })
-									    page += 12;
-				                    	i += 1;
-				                    	console.log(i + "노트회차: " + page);
-				 
-				                    }
-				                   }
-					            }).done(function (result){
-					          	  // noteDiv들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
-					        	    $('.noteDiv').draggable({
-					        	    	revert: true, 
-					        	    	 revertDuration: 200,
-					        	    	 snapMode: "inner",
-					        	    	 scroll: true,
-					        	    	 scrollSensitivity: 100 ,
-					        	    	 scrollSpeed: 100
-					        	    	});
-					        	     // 노트를 드랍하여 삭제 메소드 
-					        	    $("#droppable").droppable({
-					        	        activeClass:"ui-state-active",
-					        	        accept:".noteDiv",
-					        	        drop: function(event,ui) {
-					        	        	var noteNum = ui.draggable.prop("id")
-					        	        	deleteNote(noteNum)
-					        	         }     
-					        	      });  
-					            })
-				            } 
-				         }
-				})
-		  })
-		}
-	
+						$.ajax({
+							type : 'get',  
+							url :url,
+							data : {"page" : params.page},
+							async: false,
+							beforeSend: function(){
+							
+							},
+							success : function(data){
+								console.log(data)
+								var noteList = "";
+								var noteList2 = "";
+								if(data != null) {
+									$.each(data, function(key, value){
+										noteList2="";
+										noteList2+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 ">';
+										noteList2+='<div class="text-center noteDiv" id="'+value.noteNum+'">';
+										noteList2+='	<!-- a HTML (to Trigger Modal) -->';
+										noteList2+='	<a data-toggle="modal"';
+										noteList2+='		href="../note/noteDetail.htm?noteNum='+value.noteNum+'&cmd=mynote"';
+										noteList2+='		data-target="#modal-testNew" role="button" data-backdrop="static">';
+										noteList2+='		<div class="item">';
+										noteList2+='			<img class="img-rounded"';
+										noteList2+='				src="'+value.noteThumnail+'"';
+										noteList2+='					alt="${noteList.noteTitle}" width="100%">';
+										noteList2+='			 <div class="caption">';
+										noteList2+='				<i class="fa fa-plus" aria-hidden="true"></i>';
+										noteList2+='			</div> ';
+										noteList2+='		</div>';
+										noteList2+='		<div>';
+										noteList2+='		<input type="hidden" id="noteNum" class="noteNum" value="'+value.noteNum+'">';
+										noteList2+='			<h4>'+value.noteTitle+value.noteNum+'</h4>';
+										noteList2+='			<strong>'+value.userNick+'</strong> <span> '+value.noteDate+'</span>';
+										noteList2+='	</div>';
+										noteList2+='	</a>';
+										noteList2+='	</div>';
+										noteList2+='</div>';
+
+										$("#noteList").append(noteList2);
+									})
+									
+								}	
+							
+							}
+						}).done(function (result){
+							
+							/*console.log(params.page);*/
+							// noteDiv들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
+							$('.noteDiv').draggable({
+								revert: true, 
+								revertDuration: 200,
+								snapMode: "inner",
+								scroll: true,
+								scrollSensitivity: 100 ,
+								scrollSpeed: 100
+							});
+							// 노트를 드랍하여 삭제 메소드 
+							$("#droppable").droppable({
+								activeClass:"ui-state-active",
+								accept:".noteDiv",
+								drop: function(event,ui) {
+									var noteNum = ui.draggable.prop("id")
+									deleteNote(noteNum)
+								}     
+							});  
+						})
+
+					}
+				}
+			}
+		
+
 //페이지 로딩시 요청
 $("document").ready(function(){
 
-		
+	   
 		var url="";
 		url ="../note/selectAllNote.json";
 		makeNoteList(url);
+		$(window).scroll(function(e) { moreNoteList(e,url, params)})
 			
 		/* 날짜 별 검색 */
 		$("#toDate").change(function(){
@@ -228,6 +233,7 @@ $("document").ready(function(){
 			params.fromDate = $("#fromDate").val()
 			params.toDate =$("#toDate").val()
 			makeNoteList(url, params);
+			$(window).scroll(function(e) { moreNoteList(e,url, params)})
 		});
 		
 	    //노트 키워드 검색
@@ -236,6 +242,7 @@ $("document").ready(function(){
 			params.keyword = $('#search-text').val()
 			console.log(params.keyword)
 			makeNoteList(url, params);
+			$(window).scroll(function(e) { moreNoteList(e,url, params)})
 		 })
 
 	    //노트 정렬 
@@ -243,9 +250,13 @@ $("document").ready(function(){
 			url ="../note/selectOrderbyNote.json"
 			params.sortCategory = $('#sort-category option:selected').val()
 			makeNoteList(url, params);
-		
+		    $(window).scroll(function(e) {moreNoteList(e,url, params)})
+
 		 })
 		 
+
+
+
 		 
 //끝	
 }) 

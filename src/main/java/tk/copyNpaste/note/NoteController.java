@@ -50,26 +50,18 @@ public class NoteController {
 	
 	// 회원의 노트 목록 보기
 	@RequestMapping(value = "selectAllNote.json")
-	public @ResponseBody List<NoteVO> selectAllNote(Model model, Principal principal) throws Exception {
-		List<NoteVO> noteList = noteService.selectAllNote(principal.getName());
+	public @ResponseBody List<NoteVO> selectAllNote(Model model, NoteVO note, Principal principal) throws Exception {
+		
+		note.setUserEmail(principal.getName());
+		List<NoteVO> noteList = noteService.selectAllNote(note);
 		return noteList;
 	}
 	
-	//드래그 무한스크롤 보기 (비동기)
-	@RequestMapping(value ="infiniteScrollNote.json")
-	public @ResponseBody List<NoteVO> infiniteScrollNote( Principal principal, NoteVO note, Model model) throws Exception {
-	System.out.println("페이지"+note.getPage());
-	note.setUserEmail(principal.getName());
-	List<NoteVO> noteList = noteService.infiniteScrollNote(note);
-	return noteList;
-		}
 	
-	// 회원의 노트 목록 보기+폴더 목록 조회
+	//mynote 페이지
 	@RequestMapping(value = "note.htm")
 	public String notepage(Model model, Principal principal) throws Exception {
-		List<NoteVO> noteList = noteService.selectAllNote(principal.getName());
 		List<FolderVO> folderList = folderService.selectAllFolder(principal.getName());
-		model.addAttribute("noteList", noteList);
 		model.addAttribute("folderList", folderList);
 		return "note.list";
 	}
@@ -156,28 +148,31 @@ public class NoteController {
 
 	// 노트 정렬
 	@RequestMapping(value="selectOrderbyNote.json")
-	public @ResponseBody List<NoteVO> selectOrderbyNote(String sortCategory,Principal principal) throws Exception {
+	public @ResponseBody List<NoteVO> selectOrderbyNote(String sortCategory,String page,Principal principal) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("sortCategory", sortCategory);
+		map.put("page", page);
 		map.put("userEmail", principal.getName());
 		return noteService.selectOrderbyNote(map);
 	}
 
 	// 노트 날짜별 검색
 	@RequestMapping(value="selectByCalNote.json")
-	public @ResponseBody List<NoteVO> selectByCalNote(String fromDate, String toDate, Principal principal) throws Exception {
+	public @ResponseBody List<NoteVO> selectByCalNote(String fromDate, String toDate,String page, Principal principal) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("fromDate", fromDate);
 		map.put("toDate", toDate);
+		map.put("page", page);
 		map.put("userEmail", principal.getName());
 		return noteService.selectByCalNote(map);
 	}
 
 	// 노트 키워드 검색
 	@RequestMapping(value="selectByKeyNote.json", method = RequestMethod.GET)
-	public @ResponseBody List<NoteVO> selectByKeyNote(String keyword,Principal principal) throws Exception {
+	public @ResponseBody List<NoteVO> selectByKeyNote(String keyword,String page,Principal principal) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("keyword", keyword);
+		map.put("page", page);
 		map.put("userEmail", principal.getName());
 		return noteService.selectByKeyNote(map);
 	}
