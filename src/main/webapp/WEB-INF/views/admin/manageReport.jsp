@@ -15,10 +15,10 @@
 <%@ taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-		<!-- Sweet Alert cdn -->
-		<link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
-		<script type="text/javascript"	src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
-<script type="text/javascript"	src="${pageContext.request.contextPath}/resources/js/report.js"></script>
+<!-- Sweet Alert cdn -->
+<link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/api/sweetalert.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/report.js"></script>
 
 
 <!-- 노트 모달창 -->

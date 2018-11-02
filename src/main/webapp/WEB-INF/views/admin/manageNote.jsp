@@ -16,8 +16,10 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
 <!-- Sweet Alert cdn -->
-		<link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
-		<script type="text/javascript"	src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
+<link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
+<script type="text/javascript"	src="${pageContext.request.contextPath}/resources/js/api/sweetalert.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/admin/manageNote.js"></script>
+
 <section>
 	<div class="container">
 	<div>
@@ -135,117 +137,3 @@
 		</div>
 	</div>
 </div>
-
-<script>
-
-$('#table_id').DataTable({
-    	"order": false
-    });
-
-//회원별 작성 노트개수
-var userEmail;
-$('.noteCountEmail').hide();
-$('.noteCountEmailBtn').click(function(){
-	userEmail = $('#userEmail').val();
-		$.ajax({
-			dataType: "json",
-			data : {userEmail:userEmail},
-			url : "${pageContext.request.contextPath}/etc/selectNoteCount.do",
-			success : function(data) { 
-						$('.noteCountEmail').show();
-						$('#noteCountResult').text(data + " 개");
-					}
-			})
-})
-
-//이메일별 노트 일괄삭제
-$('.deleteMemNoteBtn').click(function(){
-	
-	swal(
-			{type:"warning",
-			title: "해당 사용자의 노트를 전부 삭제하시겠습니까?",
-			text: "되돌릴 수 없으므로 신중히 선택하세요.",
-			showCancelButton: true,
-			confirmButtonClass: "btn-danger",
-			confirmButtonText: "확인",
-			cancelButtonText: "취소",
-			closeOnConfirm: false},
-			function(isConfirm) {
-				if(!isConfirm) {
-					return false;
-				} else {
-					$.ajax({
-						dataType: "json",
-						data : {userEmail:userEmail},
-						url : "${pageContext.request.contextPath}/etc/deleteMemNote.do",
-						success : function() { 
-								swal({
-							 		 title: "୧༼ ヘ ᗜ ヘ ༽୨",
-							 		 text: "노트가 삭제되었습니다.",
-							 		 type: "success",
-							 		 showCancelButton: false,
-							 		 confirmButtonClass: "btn-danger",
-							 		 confirmButtonText: "확인",
-							 		 closeOnConfirm: false
-										}, function () {
-											location.reload();
-											});
-									}
-							})
-				}
-		}
-	)	
-	
-})
-
-//일괄삭제 모달 창 닫으면 작성한 데이터 초기화
-$('.modal-deleteNoteEmail-close').click(function(){
-	$('#noteCountResult').text('');
-	$('#userEmail').val('');
-	$('.noteCountEmail').hide();
-})
-
-
-//노트 개별삭제
-$('.deleteNoteBtn').click(function(){
-	var noteNumv = $(this).parent().siblings('#noteNum').text();
-	var noteTitlev = $(this).parent().siblings('#noteTitle').text();
-	
-	swal(
-			{type:"warning",
-			title: noteTitlev + "해당 노트를 삭제하시겠습니까?",
-			text: "되돌릴 수 없으므로 신중히 선택하세요.",
-			showCancelButton: true,
-			confirmButtonClass: "btn-danger",
-			confirmButtonText: "확인",
-			cancelButtonText: "취소",
-			closeOnConfirm: false},
-			
-			function(isConfirm) {
-				if(!isConfirm) {
-					return false;
-				} else {
-					$.ajax({
-						dataType: "json",
-						data : {noteNum:noteNumv},
-						url : "${pageContext.request.contextPath}/etc/deleteNoteNumAdmin.do",
-						success : function() { 
-								swal({
-							 		 title: "୧༼ ヘ ᗜ ヘ ༽୨",
-							 		 text: "노트가 삭제되었습니다.",
-							 		 type: "success",
-							 		 showCancelButton: false,
-							 		 confirmButtonClass: "btn-danger",
-							 		 confirmButtonText: "확인",
-							 		 closeOnConfirm: false
-										}, function () {
-											location.reload();
-											});
-									}
-							})
-				}
-		}
-	)
-})
-
-</script>

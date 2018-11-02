@@ -10,11 +10,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=yaps0ah95j72p1podkonpizywofdvarpwuuzjrfbjm1ysadp"></script>
-<script src="${pageContext.request.contextPath}/resources/js/textEditer.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/api/textEditer.js"></script>
 <!-- Sweet Alert cdn -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/api/sweetalert.min.js"></script>
 <se:authentication property="name" var="loginuser" />
 <se:authentication property="authorities" var="role" />
 <section id="content">

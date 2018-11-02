@@ -5,7 +5,7 @@
 <link rel="stylesheet"
    href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
 <script type="text/javascript"
-   src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
+   src="${pageContext.request.contextPath}/resources/js/api/sweetalert.min.js"></script>
 <!-- 신고 모달창에서 ok버튼 눌렀을 때 스윗알럳 띄우기 -->
 
 <!-- modal-header -->

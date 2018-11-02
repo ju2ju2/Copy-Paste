@@ -18,7 +18,7 @@
 <!-- Sweet Alert cdn -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/api/sweetalert.min.js"></script>
 
 <se:authentication property="name" var="loginuser" />
 <se:authentication property="authorities" var="role" />

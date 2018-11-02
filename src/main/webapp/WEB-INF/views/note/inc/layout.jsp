@@ -24,12 +24,12 @@
 		<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
-	 	<script src="${pageContext.request.contextPath}/resources/js/datepicker.js"></script>
+	 	<script src="${pageContext.request.contextPath}/resources/js/api/datepicker.js"></script>
 	 	<script src="${pageContext.request.contextPath}/resources/js/note.js"></script>	
 	 	<script src="${pageContext.request.contextPath}/resources/js/folder.js"></script>	
 	 	<!-- Sweet Alert cdn -->
 		<link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
-		<script type="text/javascript"	src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/api/sweetalert.min.js"></script>
 	</head>
 	<body>
 		<!-- Header  영역 (공통 inc) -->
