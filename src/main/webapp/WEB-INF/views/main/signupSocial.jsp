@@ -89,13 +89,10 @@
 	        	        data: {userEmail:userEmail, userPwd:userPwd},
 	        	        success: function(){ 
 	        	        		location.href="${pageContext.request.contextPath}/" },
-	        	        error: function (){
-	        	        	
+	        	        error: function (){	        	        	
 	        	        }
-	           		})  
-	           		
+	           		})  	           		
 	         	 } else {
-	           		
 	            	}
 	        },
 	          error : function(error) {
