@@ -27,9 +27,7 @@ public interface MemberMapper {
 	//회원가입 시 권한 부여
 	public int insertMemberRole(String userEmail) 
 			throws ClassNotFoundException, SQLException;
-	
-	//로그인
-	public MemberVO login(MemberVO member) throws Exception;
+
 
 	//구글로그인
 	public MemberVO googleLogin(String userEmail) throws Exception;

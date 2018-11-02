@@ -8,8 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="se"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
 <!-- 카카오 로그인 -->
  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
  <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
@@ -272,8 +271,11 @@ var userPhoto; //사용자 프로필 이미지 명
 				type : 'post',
 				url : '${pageContext.request.contextPath}/member/myinfo.do',
 				success : function(data) {
-							userPhoto = data.userPhoto; 
-							$('#headerUserPhoto').attr("src", "${pageContext.request.contextPath}/resources/image/userPhoto/" + userPhoto);
+							userPhoto = data.userPhoto; 	
+							if (data.userSocialStatus != 0){
+								$('#headerUserPhoto').attr("src", userPhoto);
+							} else {$('#headerUserPhoto').attr("src", "${pageContext.request.contextPath}/resources/image/userPhoto/" + userPhoto);	
+								}
 			     	   },
 				error : function(error) {
 							console.log(error);

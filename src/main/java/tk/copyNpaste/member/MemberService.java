@@ -32,17 +32,6 @@ public class MemberService {
 	 @Autowired
 	 private SqlSession sqlsession;
 	
-	//회원가입 인증메일
-/*	public void sendSingupEmail(String userEmail) throws Exception {
-	};*/
-	 
-	//임시비밀번호
-/*	public int updateUserPwd(String userEmail) throws Exception{
-		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
-			//임시비밀번호 벨로시티발송.
-			return memberdao.updateUserPwd(userEmail);
-		}*/
-	
 	//이메일 중복체크
 	public int checkUserEmail(String userEmail) throws Exception {
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
