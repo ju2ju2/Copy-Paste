@@ -26,6 +26,7 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/api/datepicker.js"></script>
 		<script src="${pageContext.request.contextPath}/resources/js/drag.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/js/inc.js"></script>
 
 
 				<!-- Sweet Alert cdn -->
