@@ -148,7 +148,7 @@
 						$.ajax({
 							type : 'get',  
 							url :url,
-							data : {"page" : params.page},
+							data : params,/*{"page" : params.page},*/
 							async: false,
 							beforeSend: function(){
 							

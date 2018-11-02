@@ -52,7 +52,6 @@ public class NoteController {
 	@RequestMapping(value = "selectAllNote.json")
 	public @ResponseBody List<NoteVO> selectAllNote(Model model, NoteVO note, Principal principal) throws Exception {
 		note.setUserEmail(principal.getName());
-		System.out.println(note.getPage());
 		List<NoteVO> noteList = noteService.selectAllNote(note);
 		return noteList;
 	}
@@ -151,7 +150,9 @@ public class NoteController {
 	public @ResponseBody List<NoteVO> selectOrderbyNote(String sortCategory,String page,Principal principal) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("sortCategory", sortCategory);
+		System.out.println("sortCategory"+sortCategory);
 		map.put("page", page);
+		System.out.println("page"+page);
 		map.put("userEmail", principal.getName());
 		return noteService.selectOrderbyNote(map);
 	}
