@@ -28,7 +28,6 @@ import tk.copyNpaste.vo.MemberVO;
 public class KakaoLogin {
 	//로그인
 	public static JsonNode getAccessToken(String autorize_code) {
-		System.out.println("3 카톡 로그인");
 		final String RequestUrl = "https://kauth.kakao.com/oauth/token";
 
 		final List<NameValuePair> postParams = new ArrayList<NameValuePair>();
@@ -68,7 +67,6 @@ public class KakaoLogin {
 	}
 	//앱 연결
 	public static JsonNode connectKakao(String autorize_code) {
-		System.out.println("4 카톡 연결");
 		final String RequestUrl = "https://kapi.kakao.com/v1/user/signup";
 
 		final HttpClient client = HttpClientBuilder.create().build();
@@ -105,7 +103,6 @@ public class KakaoLogin {
 	
 	//정보 얻기
 	public static JsonNode getKakaoUserInfo(String autorize_code) {
-		System.out.println("5 정보 얻기");
 		final String RequestUrl = "https://kapi.kakao.com/v2/user/me";
 
 		final HttpClient client = HttpClientBuilder.create().build();

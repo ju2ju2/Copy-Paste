@@ -13,9 +13,11 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -92,12 +94,11 @@ public class MemberController {
 	@RequestMapping(value = "kakaoOauth.do", produces="application/json", method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView kakaoSingUp(@RequestParam("code") String code, HttpServletRequest request, HttpServletResponse response) 
 			throws Exception{
-		System.out.println("1 컨트롤러");
+		
 		MemberVO member = loginService.kakaoSingUp(code, request, response);
 		ModelAndView kakaoMav = new ModelAndView();
 		kakaoMav.setViewName("index.signupSocial");
 		kakaoMav.addObject("memberVo", member);
-		System.out.println("6 이제 뷰단 감");
 		return kakaoMav;
 	};
 		
@@ -107,6 +108,13 @@ public class MemberController {
 		 loginService.kakaoSingUp2(member);
 		 return "index.login";
 		};
+	
+/*	@RequestMapping(value = "getSession.do")
+	public String getSession(MemberVO member, HttpSession session) throws Exception{
+		session.setAttribute(session, ; 
+		
+		 return "index.index";
+			};	*/
 		
 	//네이버로그인
 	public void naverLogin(String userEmail) throws Exception{

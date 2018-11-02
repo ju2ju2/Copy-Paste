@@ -39,9 +39,7 @@ public class LoginService {
 	
 	 //카카오 회원가입 1/2 (회원정보 얻기)
     public MemberVO kakaoSingUp(String code, HttpServletRequest request, HttpServletResponse response) throws Exception{
-    	System.out.println("2 서비스");
         JsonNode token = KakaoLogin.getAccessToken(code);
-        System.out.println("3.5 token: " + token);
         KakaoLogin.connectKakao(token.path("access_token").toString());
         
         JsonNode profile = KakaoLogin.getKakaoUserInfo(token.path("access_token").toString());
