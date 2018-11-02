@@ -66,7 +66,7 @@
 					<div class="temper"></div>
 				</div>
 			</div>
-			<div class="col-sm-8">
+			<div class="col-sm-6">
 				<div class="row">
 					<div class="melonTitle">Melon TOP10</div>
 				</div>
@@ -218,3 +218,12 @@
 			"note/noteDetail.htm" file</div>
 	</div>
 </div>
+
+<!-- Melon Modal HTML -->
+<div id="MelonModal" class="modal fade text-center overlay"  role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content modal-lyrics">Content will be loaded here from
+			"note/noteDetail.htm" file</div>
+	</div>
+</div>
+

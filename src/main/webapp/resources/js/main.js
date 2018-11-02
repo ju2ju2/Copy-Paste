@@ -181,13 +181,13 @@ window.onload = function() {
 		   +" <ul class='player-list'>";
 		   $.each(data, function(key, value){
 			   if(key<5){
-			   tag=tag+"  <li>"
+			   tag=tag+"  <li><a data-toggle='modal' href='melonLyrics.json?songNo="+value.songNo+"' data-target='#MelonModal' role='button' data-backdrop='static'>"
 				   +"     <div class='music-rank'>"+value.rank+"위</div>"
 				   +"   <img class='list-cover' src='"+value.imgT+"' />"
 				   +"   <div class='list-info'>"
 				   +"     <div class='info-title'>"+value.song+"</div>"
 				   +"     <div class='info-artist'>"+value.artist+"</div>"
-				   +" </div> </li>";
+				   +" </div></a></li>";
 			   }
 			});
 		   tag=tag+"</ul></div>";
@@ -195,22 +195,21 @@ window.onload = function() {
 			var tag2= "<div class='music-player'>"
 				   +" <ul class='player-list'>";
 			var textIntro = '';
-				   $.each(data, function(key, value){
-					   if(key>=5){
-					   tag2=tag2+"  <li>"
+			$.each(data, function(key, value){
+			   if(key>=5){
+				   tag2=tag2+"  <li><a data-toggle='modal' href='melonLyrics.json?songNo="+value.songNo+"' data-target='#MelonModal' role='button' data-backdrop='static'>"
 						   +"     <div class='music-rank'>"+value.rank+"위</div>"
 						   +"   <img class='list-cover' src='"+value.imgT+"' />"
 						   +"   <div class='list-info'>"
 						   +"     <div class='info-title'>"+value.song+"</div>"
 						   +"     <div class='info-artist'>"+value.artist+"</div>"
-						   +" </div> </li>";
-					   }
-					   textIntro = value.textIntro; 
-					});
-				   tag2=tag2+"</ul></div>";
-					$('.melon2').append(tag2);
-					
-					$('.textIntro').append(textIntro);
+						   +" </div></a></li>";
+			   	}
+				   textIntro = value.textIntro; 
+			});
+			tag2=tag2+"</ul></div>";
+			$('.melon2').append(tag2);
+			$('.textIntro').append(textIntro);
 		},
 		error:function(request,status,error){
 		    console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);

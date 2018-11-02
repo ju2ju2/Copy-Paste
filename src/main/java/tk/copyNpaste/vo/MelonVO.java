@@ -13,8 +13,15 @@ public class MelonVO {
 	private String imgT;
 	private String textIntro; 
 	private String songNo;
+	private String lyric;
 	
 
+	public String getLyric() {
+		return lyric;
+	}
+	public void setLyric(String lyric) {
+		this.lyric = lyric;
+	}
 	public String getSongNo() {
 		return songNo;
 	}
