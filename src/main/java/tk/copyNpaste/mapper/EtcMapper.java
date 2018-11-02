@@ -75,6 +75,8 @@ public interface EtcMapper {
 	//노트 주제 선택 수
 	public List<EtcVO> stateNoteSubject() throws Exception;
 
+	//가장 많이 쓰인 단어
+	public List<String> wordchart() throws Exception;
 	
 	//사이트 내 검색
 	/*public List<NoteVO> selectSearchSite(HashMap map) throws Exception;*/

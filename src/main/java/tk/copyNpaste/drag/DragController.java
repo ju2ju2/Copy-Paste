@@ -15,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import tk.copyNpaste.vo.DragVO;
 
 
@@ -37,13 +36,13 @@ public class DragController {
 	}
 	
 	
-	//드래그 무한스크롤 보기 (비동기)
+/*	//드래그 무한스크롤 보기 (비동기)
 		@RequestMapping(value ="infiniteScrollDrag.json")
 		public @ResponseBody List<DragVO> infiniteScrollDrag( Principal principal, DragVO drag, Model model) throws Exception {
 			drag.setUserEmail(principal.getName());
 			List<DragVO> dragList = dragservice.infiniteScrollDrag(drag);
 			return dragList;
-		}
+		}*/
 	
 	
 	//드래그 페이지
@@ -70,6 +69,7 @@ public class DragController {
 	public String selectDetail(int dragNum , Model model) throws Exception {
 		DragVO dragList = dragservice.selectDetail(dragNum);
 		model.addAttribute("dragList", dragList);
+		
 		return "dragdetail";//(modal/dragdetail.jsp)
 	}
 		
@@ -96,6 +96,7 @@ public class DragController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("keyword", keyword);
 		map.put("userEmail", principal.getName());
+		
 		return dragservice.selectByKeyDrag(map);	
 	}
 	

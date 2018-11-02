@@ -145,4 +145,14 @@ public class IndexController {
 			return "melonLyric";//(modal/melonLyric.jsp)
 		}
 		
+		
+		
+		//에러페이지
+		@RequestMapping("/error.htm") 
+		public String errorpage(HttpServletRequest request, Model model) throws Exception { 
+			
+			return "index.error"; 
+		} 
+		
+
 }

@@ -7,6 +7,8 @@
 
 package tk.copyNpaste.etc;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 
 import tk.copyNpaste.note.NoteService;
 import tk.copyNpaste.vo.EtcVO;
@@ -27,9 +30,15 @@ import tk.copyNpaste.vo.NoteVO;
 import tk.copyNpaste.vo.ReportVO;
 import tk.copyNpaste.vo.noticeVO;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 @RequestMapping("/etc/")
 @Controller // 동기 컨트롤러. retrun>> ModelAndView or String.
 public class EtcController {
+	
+	@Autowired
+    private View jsonview;
 	@Autowired
 	EtcService etcService;
 	@Autowired
@@ -189,6 +198,15 @@ public class EtcController {
 		return etcService.stateNoteSubject();
 	};
 
+	// 많이 사용된 단어 가져오기
+	@RequestMapping("wordchart.json")
+	public @ResponseBody View wordchart(Model model) throws Exception {
+		List<String> wordChartList = etcService.wordchart();
+		model.addAttribute("wordChartList",wordChartList);
+		return jsonview;
+	};
+	
+	
 	// 사이트내 검색 + 인기글 목록 뿌려주기
 	@RequestMapping("/selectSearchSite.htm")
 	public String selectSearchSite(Model model) throws Exception {
@@ -235,4 +253,7 @@ public class EtcController {
 		return "search.selectSearchGoogle";
 	}
 
+	
+	
+	
 }

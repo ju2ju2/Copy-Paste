@@ -60,6 +60,13 @@
 		date_format(userDate, '%Y-%m')
 	</select>
 
+	<!-- 가장 많이 쓰인 단어수를 가지고 온다 -->
+	<select id="wordchart" resultType="String">
+		select noteContent 
+		from note
+		where noteDate > (NOW() - INTERVAL 7 DAY);
+	</select>
+
 	<!-- 신고한 것들을 데리고 온다 -->
 	<select id="selectAllReport" resultType="ReportVO">
 		select reportNum,
@@ -180,6 +187,10 @@
 		</where>
 		order by noteNum desc;
 	</select>
+	
+
+
+
 </mapper>
 
 

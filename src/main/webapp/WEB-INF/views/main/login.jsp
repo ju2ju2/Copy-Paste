@@ -36,11 +36,12 @@
 					<div class="text-center">
 						<hr>
 						<!-- 네이버 -->
-						&nbsp;<a href="#"><img src="./resources/image/naver.png" class="inline">&ensp;</a> 
+						&nbsp;<a href="#"><img src="${pageContext.request.contextPath}/resources/image/naver.png" class="inline">&ensp;</a> 
 						<!-- 카카오 -->
-						<a id="custom-login-btn" href="javascript:loginWithKakao()"><img src="./resources/image/kakao.png" class="inline"> &ensp;</a>
+						<a id="custom-login-btn" href="https://kauth.kakao.com/oauth/authorize?client_id=495904a0b4023192de3119bfde795283&redirect_uri=http://localhost:8090/copyNpaste/member/kakaoOauth.do&response_type=code">
+							<img src="${pageContext.request.contextPath}/resources/image/kakao.png" class="inline"> &ensp;</a>
 						<!-- 구글 -->
-						<a href="#"><img src="./resources/image/google.png" class="inline"></a>
+						<a href="#"><img src="${pageContext.request.contextPath}/resources/image/google.png" class="inline"></a>
 					</div>
 
 				<form class="form-signin" name="f2" method="POST"

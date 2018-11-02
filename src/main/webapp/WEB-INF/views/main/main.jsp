@@ -2,7 +2,7 @@
 @JSP : main.jsp
 @Date : 2018.10.09
 @Author : 우나연, 임지현, 이주원
-@Desc : 메인 인덱스 페이지 
+@Desc : 메인 인덱스 페이지
 		+ 날씨 API (임지현, 이주원 - 10월 12일)
 --%>
 
@@ -10,7 +10,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
-<script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
 <se:authentication property="name" var="loginuser" />
 <!-- banner start -->
 <!-- ================ -->
@@ -36,7 +36,7 @@
 								<span class="wrap"></span>
 							</a>
 						    </c:when>
-						    <c:otherwise> 
+						    <c:otherwise>
 						    <a onclick="document.getElementById('subscribe').style.display='block'"
 								 class="typewrite" data-period="2000"
 								data-type='[ "당신의 글을 기다립니다, COPY&PASTE. ", "드래그를 작성해보세요 :)   ", "Click Click !   " ]'>
@@ -44,7 +44,7 @@
 							</a>
 						    </c:otherwise>
 						</c:choose>
-						
+
 					</p>
 				</div>
 			</div>
@@ -55,6 +55,13 @@
 
 <div class="jumbotron">
 	<div class="container ">
+		<div class="row">
+              <div class="ml-auto mr-auto text-center">
+
+                     <div id="wordchart"></div>
+              </div>
+		</div>
+		 <hr>
 		<div class="row">
 			<div class="col-sm-3 text-center">
 				<div class="weatherApiTitle">
@@ -76,7 +83,7 @@
 				</div>
 				<div class="row text-right textIntro">
 				</div>
-			</div>	
+			</div>
 		</div>
 	</div>
 </div>
@@ -226,4 +233,9 @@
 			"note/noteDetail.htm" file</div>
 	</div>
 </div>
+
+
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/highcharts-more.src.js"></script>
+<script src="http://code.highcharts.com/modules/wordcloud.js"></script>
 

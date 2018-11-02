@@ -34,9 +34,9 @@ public class NoteService {
 		return notelist;
 	} 
 	//노트 목록 보기
-	public List<NoteVO> selectAllNote(String userEmail) throws Exception{		
+	public List<NoteVO> selectAllNote(NoteVO note) throws Exception{		
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
-		List<NoteVO> notelist = notedao.selectAllNote(userEmail);
+		List<NoteVO> notelist = notedao.selectAllNote(note);
 		return notelist;
 	}
 	//노트 상세 보기(+노트 작성)

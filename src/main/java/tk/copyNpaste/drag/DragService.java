@@ -41,12 +41,12 @@ public class DragService {
 		return dragList;
 	}
 	
-	//드래그 스크롤 목록 더 보기
+/*	//드래그 스크롤 목록 더 보기
 		public List<DragVO> infiniteScrollDrag(DragVO drag) throws Exception {
 			DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
 			List<DragVO> dragList = dragdao.infiniteScrollDrag(drag);
 			return dragList;
-		}
+		}*/
 	
 	
 	//드래그 상세 보기(+노트 작성)
