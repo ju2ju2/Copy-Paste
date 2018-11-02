@@ -534,9 +534,9 @@ $(document).ready(function(){
 									    	makeNoteCommList(${note.noteNum})
 									    	
 									    },
-									    error : function(){
-									        	console.log("대댓글 작성 실패");
-									    }
+									    error:function(request,status,error){
+								     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+								     	  }
 									});	
 								});
 							}); 
@@ -645,7 +645,7 @@ $(document).ready(function(){
 									
 									})
 									.fail(function(jqXhr, testStatus, errorText){
-										alert("에러발생 :" + errorText);
+										console.log("에러발생 :" + errorText);
 									});
 								});
 							return false;

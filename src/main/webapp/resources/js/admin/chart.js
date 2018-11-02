@@ -48,7 +48,7 @@ $(function() {
 					
 					Highcharts.chart('chartDiv', {
 						title : {
-							text : '달별 가입한 회원 수',
+							text : '월별 가입한 회원 수',
 						},
 						xAxis : {
 							categories : memberxAxis

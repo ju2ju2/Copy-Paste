@@ -74,9 +74,11 @@ $('#deleteDragBtn').click(function(e) {
 				})
 				
 			})
-			.fail(function(jqXhr, testStatus, errorText){
-				alert("에러발생 :" + errorText);
-			});
+			.fail(function(request,status,error){
+		     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		     	  }
+		
+			);
 		});
 	return false;
 });

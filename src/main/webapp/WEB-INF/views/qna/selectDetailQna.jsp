@@ -275,9 +275,9 @@
 				    success : function(data){
 				    	location.reload();
 				    },
-				    error : function(){
-				        	console.log("실패");
-				    }
+				    error:function(request,status,error){
+			     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			     	  }
 				});	
 			}	
 		});
@@ -319,9 +319,9 @@
 			    	qnaCommPos="";
 			    	location.reload();
 			    },
-			    error : function(){
-			        	console.log("실패");
-			    }
+			    error:function(request,status,error){
+		     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		     	  }
 			});	
 		});
 		
