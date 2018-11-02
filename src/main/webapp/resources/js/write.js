@@ -4,7 +4,8 @@
 @Author : 우나연
 @Desc : note.js 스크립트
 */
-		
+
+
 
 //회원의 폴더목록  조회 및 옵션추가 
 	function selectSubject(){
@@ -13,7 +14,6 @@
 	      type:"POST",
 	      dataType:"json",
 	      success:function(data){
-	 
 	      	$.each(data, function(key,value){
 	      			$("#folderList").append($("<option />")
 	      				.val(value.folderName)
@@ -208,6 +208,14 @@
 	
 //시작	
 $(document).ready(function() {
+	$('body').on('hidden.bs.modal', '.modal', function() {
+		$(this).removeData('bs.modal');
+	});
+	$('#modal-testNew').on('shown.bs.modal', function() {
+		$(document).off('focusin.modal');
+	});
+
+	
 	selectSubject()
 	selectFolder()
 	
@@ -266,7 +274,7 @@ $(document).ready(function() {
 	    				  closeOnConfirm: false
 	    			},
 	    			function(){
-	    				location.href="../note.htm";
+	    				location.href="../note/note.htm";
 	    			});	
 	    	       },
 	       error:function(request,status,error){
@@ -314,7 +322,7 @@ $(document).ready(function() {
 	
 	
 	
-	//검색택 확장 버튼 클릭시
+	//검색탭 확장 버튼 클릭시
     $('.searchBtn').click(
             function() {
                if ($('#sidebar').css('width') == '400px') {
@@ -766,14 +774,6 @@ $(document).ready(function() {
 				      }
 				 })
 			})
-
-
-
-
-
-
-
-
 
 
 

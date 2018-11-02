@@ -277,10 +277,9 @@ var userPhoto; //사용자 프로필 이미지 명
 							} else {$('#headerUserPhoto').attr("src", "${pageContext.request.contextPath}/resources/image/userPhoto/" + userPhoto);	
 								}
 			     	   },
-				error : function(error) {
-							console.log(error);
-							console.log(error.status);
-			       	  }
+			     	  error:function(request,status,error){
+			     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			     	  }
 			     })
 	}
 </script>

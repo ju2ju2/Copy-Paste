@@ -316,7 +316,7 @@ $.ajax({
 		});  
 	},
 	  error: function(){
-	   	  console.log("천천히!!");
+		  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 	  }
 })
 

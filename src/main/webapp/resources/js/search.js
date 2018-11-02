@@ -329,7 +329,7 @@ $(function() {
 				          	
 				    },
 				    error : function(){
-				    	alert("검색 실패");
+				    	alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				    }
 						})
 		}

@@ -20,12 +20,12 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/note.css" />
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/api/alert/sweetalert.css" />
 	<!-- Scripts -->
 	<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script type="text/javascript"	src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
+	<script type="text/javascript"	src="${pageContext.request.contextPath}/resources/js/api/sweetalert.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/write.js"></script>
 	
 	<body>

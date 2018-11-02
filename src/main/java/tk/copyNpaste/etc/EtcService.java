@@ -208,5 +208,10 @@ public class EtcService {
 		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
 		return etcdao.selectSearchSite(map);
 	}
+	
+	public List<NoteVO> selectSearchSiteWrite(HashMap map) throws Exception {
+		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
+		return etcdao.selectSearchSiteWrite(map);
+	}
 
 }

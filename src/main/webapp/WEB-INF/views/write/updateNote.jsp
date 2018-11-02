@@ -9,7 +9,7 @@
 	pageEncoding="utf-8"%>
 
 <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=yaps0ah95j72p1podkonpizywofdvarpwuuzjrfbjm1ysadp"></script>
-<script src="${pageContext.request.contextPath}/resources/js/textEditer.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/api/textEditer.js"></script>
 <script>
 
 
