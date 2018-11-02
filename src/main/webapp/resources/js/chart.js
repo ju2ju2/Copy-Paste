@@ -37,7 +37,7 @@ $(function() {
 	
 		function makeChart() {
 			$.ajax({
-				url:"../etc/stateMember.json",
+				url:"../copyNpaste/etc/stateMember.json",
 				dataType:"json",
 				success:function(responsedata){
 					$.each(responsedata, function(index, obj) {

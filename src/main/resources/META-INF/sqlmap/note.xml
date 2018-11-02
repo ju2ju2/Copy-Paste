@@ -29,18 +29,10 @@
 	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick, n.noteBlind
 	from note n join users u on u.userEmail=n.userEmail 
 	where u.userEmail = #{userEmail} <!-- 공개1 블라인드0 -->
-	order by noteNum desc limit 0,12 
+	order by noteNum desc limit ${page},12 
 	</select>
 	
-	<!--회원의 MY노트 무한 스크롤 목록 보기 -->
-	<select id="infiniteScrollNote" resultType="NoteVO">
-	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate, n.noteScrap,
-	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick, n.noteBlind
-	from note n join users u on u.userEmail=n.userEmail 
-	where u.userEmail = #{userEmail} <!-- 공개1 블라인드0 -->
-	order by noteNum desc limit #{page},12
-	</select>
-	
+
 	<!-- 노트 상세 보기(+노트 작성) -->
 	<select id="selectDetailNote" resultType="NoteVO">
 	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
@@ -130,7 +122,7 @@
 	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
 	from note n join users u on u.userEmail=n.userEmail 
 	where u.userEmail = #{userEmail} and n.folderName =#{folderName}
-	order by noteNum desc;
+	order by noteNum desc limit ${page},12 
 	</select>
 	
 	<!-- 노트 정렬 -->
@@ -143,7 +135,8 @@
           Case when #{sortCategory}='n.noteDate desc' then n.noteDate End desc,
           Case when #{sortCategory}='n.noteDate asc' then n.noteDate End asc,
           Case when #{sortCategory}='binary(n.noteTitle)' then binary(n.noteTitle) End asc,
-          Case when #{sortCategory}='n.noteNum' then n.noteNum End desc;
+          Case when #{sortCategory}='n.noteNum' then n.noteNum End desc
+      limit ${page},12     
        </select>
 
  
@@ -155,7 +148,7 @@
 	from note n join users u on u.userEmail=n.userEmail 
 	join subject s on s.subjectCode=n.subjectCode 
 	where n.noteDate between #{fromDate} and #{toDate} and n.userEmail=#{userEmail}
-	order by n.noteDate desc;
+	order by n.noteDate limit ${page},12 
 	</select>
 	
 	<!-- my노트 키워드 검색 -->
@@ -169,7 +162,7 @@
 		  n.noteContent like CONCAT('%',#{keyword},'%') or 
 		  n.folderName like CONCAT('%',#{keyword},'%') or 
 		  s.subjectName like CONCAT('%',#{keyword},'%'))
-	order by noteNum desc;
+	order by noteNum desc limit ${page},12 
 	</select>
 
 

@@ -266,6 +266,58 @@ $(document).mouseup(function(event){
  });
 
 
-
-
+/// 워드 클라우드
+$.ajax({
+  url : "etc/wordchart.json",
+  dataType : "json",
+  success : function(data){
+	  $('#wordchart').empty();
+	  var text = data.wordChartList;
+	  var data = Highcharts.reduce(text, function(arr, word) {
+			var obj = Highcharts.find(arr,
+					function(obj) {
+						return obj.name === word;
+					});
+			if (obj) {
+				obj.weight += 1;
+			} else {
+				obj = {
+					name : word,
+					weight : 1
+				};
+				arr.push(obj);
+			}
+			return arr;
+		}, 
+	[]);
+	Highcharts.chart('wordchart', {
+		 credits: {
+	            enabled: false
+	        },
+			plotOptions: {
+		        series: {
+		            cursor: 'pointer',
+		            point: {
+		                events: {
+		                    click: function () {
+		                    	location.href="#";
+		                    }
+		                }
+		            }
+		        }
+		    },
+			series : [ {
+				type : 'wordcloud',
+				data : data,
+				name : '단어'
+			} ],
+			title : {
+				text : ""
+			}
+		});  
+	},
+	  error: function(){
+	   	  alert("천천히!!");
+	  }
+})
 

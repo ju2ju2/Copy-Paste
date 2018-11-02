@@ -15,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import tk.copyNpaste.vo.DragVO;
 
 
@@ -70,6 +69,7 @@ public class DragController {
 	public String selectDetail(int dragNum , Model model) throws Exception {
 		DragVO dragList = dragservice.selectDetail(dragNum);
 		model.addAttribute("dragList", dragList);
+		
 		return "dragdetail";//(modal/dragdetail.jsp)
 	}
 		

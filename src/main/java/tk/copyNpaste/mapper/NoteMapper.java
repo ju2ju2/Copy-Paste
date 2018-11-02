@@ -20,7 +20,7 @@ public interface NoteMapper {
 	public List<NoteVO> selectTopNote(String subjectName) throws Exception;
 	
 	//노트 목록 보기
-	public List<NoteVO> selectAllNote(String userEmail) throws Exception;
+	public List<NoteVO> selectAllNote(NoteVO note) throws Exception;
 
 	//노트 상세 보기(+노트 작성)
 	public NoteVO selectDetailNote(int noteNum) throws Exception;
