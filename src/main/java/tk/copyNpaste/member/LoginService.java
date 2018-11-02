@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,6 +25,9 @@ import tk.copyNpaste.vo.MemberVO;
 public class LoginService {
 	 @Autowired
 	 private SqlSession sqlsession;
+	 
+	 @Autowired
+	 private BCryptPasswordEncoder bCryptPasswordEncoder;
 	 
 	//구글로그인
 	public MemberVO googleLogin(String userEmail) throws Exception{
@@ -58,6 +62,7 @@ public class LoginService {
         FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
         String userEmail = member.getUserEmail();
         
+        member.setUserPwd(bCryptPasswordEncoder.encode(member.getUserPwd()));
         member.setUserSocialStatus(1); //일반회원:0, 카카오:1, 네이버:2, 구글:3
         
         try {

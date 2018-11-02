@@ -13,11 +13,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,6 +38,8 @@ public class MemberController {
 	 FolderService folderService;
 	 @Autowired
 	 MemberMailService mailer;
+	 @Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	//회원가입 인증메일
 	 @RequestMapping(value="singupEmail.do", method = RequestMethod.POST)
@@ -145,6 +146,17 @@ public class MemberController {
 		String userEmail = principal.getName();
 		MemberVO member = memberService.selectSearchMemberByEmail(userEmail);
 		return member;
+	};
+	
+	//내 정보 수정 시 비밀번호 비교
+	@RequestMapping(value="matchPwd.do", method = RequestMethod.POST)
+	public @ResponseBody boolean matchPwd(Principal principal, String rawpassword) throws Exception{
+		String userEmail = principal.getName();
+		String rawPassword = rawpassword;
+		String encodePassword = memberService.matchPwd(userEmail);
+		
+		boolean result = bCryptPasswordEncoder.matches(rawPassword, encodePassword);
+		return result;
 	};
 	
 	//내 정보 수정
