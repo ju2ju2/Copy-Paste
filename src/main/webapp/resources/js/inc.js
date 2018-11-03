@@ -5,25 +5,11 @@
 @Desc : 페이지 전체에 들어가는 js (드래그 저장,로딩, 모달 초기화)
  */
 
-
-var contextUrl= "http://" + location.host + "/copyNpaste/";
-
 //모달 내용 초기화
-/*$('documnet').on('hidden.bs.modal', '.modal', function() {
+$('body').on('hidden.bs.modal', '.modal', function() {
 	$(this).removeData('bs.modal');
 });
-
-*/
-$(document).on('hidden.bs.modal', '.modal', function (e) {
-	  var modalData = $(this).data('bs.modal');
-	  if (modalData && modalData.options.remote) {
-	    $(this).removeData('bs.modal');
-	    $(this).find(".modal-content").empty();
-	    $(e.target).removeData("bs.modal").find(".modal-content").empty();
-	  }
-});
-
-$('#noteDetailModal').on('shown.bs.modal', function() {
+$('#modal-testNew').on('shown.bs.modal', function() {
 	$(document).off('focusin.modal');
 });
 
@@ -48,7 +34,7 @@ $(document).mouseup(function(event){
 		dragfd.append("dragText", text);
 
 		$.ajax({
-			url : contextUrl+"/drag/insertDrag.json",
+			url : "../drag/insertDrag.json",
 			type:"POST",
 			data :dragfd,
 			dataType : "json",
@@ -79,8 +65,8 @@ $.ajaxSetup({
 	    var height = 0;
 	    var left = 0;
 	    var top = 0;
-	    width = 80;
-	    height = 80;
+	    width = 50;
+	    height = 50;
 	    top = ( $(window).height() - height ) / 2 + $(window).scrollTop();
 	    left = ( $(window).width() - width ) / 2 + $(window).scrollLeft();
 	
@@ -112,8 +98,8 @@ $.ajaxSetup({
 		        		   +'<div id="div_ajax_load_image" style="position:absolute; top:' 
 		        		   + top + 'px; left:' + left + 'px; width:' + width 
 		        		   + 'px; height:' + height + 'px; z-index:9999; background:#fff;'
-		        		   +' filter:alpha(opacity=50); opacity:alpha*0.5; margin:auto; padding:0; border-radius: 50%;">'
-		        		   +'<img src="'+contextUrl+'/resources/image/loading.gif" style="width:80px; height:80px;"></div>'
+		        		   +' filter:alpha(opacity=50); opacity:alpha*0.5; margin:auto; padding:0; ">'
+		        		   +'<img src="../resources/image/loading.gif" style="width:50px; height:50px;"></div>'
 		        	   +'</div>'   
 	           );
 	    }
