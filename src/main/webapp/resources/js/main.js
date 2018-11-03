@@ -5,7 +5,14 @@
 @Desc : 메인 텍스트 슬라이드, 스크립트 관련 파일
  */
 
-
+//모달 내용 초기화
+$(document).on('hidden.bs.modal', '.modal', function () {
+	  var modalData = $(this).data('bs.modal');
+	  if (modalData && modalData.options.remote) {
+	    $(this).removeData('bs.modal');
+	    $(this).find(".modal-content").empty();
+	  }
+});
 
 // 메인 텍스트 슬라이드
 var TxtType = function(el, toRotate, period) {

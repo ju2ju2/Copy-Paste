@@ -82,7 +82,7 @@
 			    			noteList+='	<!-- a HTML (to Trigger Modal) -->';
 			    			noteList+='	<a data-toggle="modal"';
 			    			noteList+='		href="../note/noteDetail.htm?noteNum='+value.noteNum+'&cmd=mynote"';
-			    			noteList+='		data-target="#modal-testNew" role="button" data-backdrop="static">';
+			    			noteList+='		data-target="#noteDetailModal" role="button" data-backdrop="static">';
 			    			noteList+='		<div class="item">';
 			    			noteList+='			<img class="img-rounded"';
 			    			noteList+='				src="'+value.noteThumnail+'"';
@@ -165,7 +165,7 @@
 										noteList2+='	<!-- a HTML (to Trigger Modal) -->';
 										noteList2+='	<a data-toggle="modal"';
 										noteList2+='		href="../note/noteDetail.htm?noteNum='+value.noteNum+'&cmd=mynote"';
-										noteList2+='		data-target="#modal-testNew" role="button" data-backdrop="static">';
+										noteList2+='		data-target="#noteDetailModal" role="button" data-backdrop="static">';
 										noteList2+='		<div class="item">';
 										noteList2+='			<img class="img-rounded"';
 										noteList2+='				src="'+value.noteThumnail+'"';

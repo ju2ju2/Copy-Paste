@@ -63,7 +63,7 @@
 				<td>
 					<a href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum=${NoteVo.noteNum}"
 								class="btn btn-sm drop-btn reportViewBtn" data-toggle="modal"
-								data-target="#modal-testNew" role="button"
+								data-target="#noteDetailModal" role="button"
 								data-backdrop="static">노트보기</a>
 				</td>
 				<td>
@@ -97,7 +97,7 @@
 </section>
 
 <!-- 노트보기 모달 -->
-<div id="modal-testNew" class="modal fade text-center overlay"
+<div id="noteDetailModal" class="modal fade text-center overlay"
 	 role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">Content will be loaded here from

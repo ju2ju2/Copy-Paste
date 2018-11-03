@@ -105,7 +105,7 @@
                   <div id="asideFolderList"></div>
    
                <!-- 노트상세보기 모달 -->
-               <div id="modal-testNew" class="modal fade text-center overlay"
+               <div id="noteDetailModal" class="modal fade text-center overlay"
                    role="dialog">
                   <div class="modal-dialog">
                      <div class="modal-content">Content will be loaded here from
@@ -131,11 +131,6 @@
                         </div>
                         <!-- 사이트 내 검색결과 보기 리스트 -->
                         <div class="mini-posts" id="searchList"></div>
-						<!-- 노트상세보기 모달 -->
-               			<div id="modal-testNew1" class="modal fade text-center overlay" role="dialog">
-		                  	<div class="modal-dialog">
-		                    <div class="modal-content">Content will be loaded here from "note/noteDetail.htm" file</div>
-	                  	</div>
                		</div>
                      </section>
                   </div>
@@ -248,7 +243,7 @@
                          aa+='<!-- a HTML (to Trigger Modal) -->'
                          aa+='<a data-toggle="modal"'
                          aa+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&write=y"'
-                         aa+='data-target="#modal-testNew" role="button" data-backdrop="static">'
+                         aa+='data-target="#noteDetailModal" role="button" data-backdrop="static">'
                          aa+='<div class="item">'
                          aa+='<img class="img-rounded"'
                          aa+='src="'+value.noteThumnail+'"'
@@ -305,7 +300,7 @@
 						                         aa+='<!-- a HTML (to Trigger Modal) -->'
 						                         aa+='<a data-toggle="modal"'
 						                         aa+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&write=y"'
-						                         aa+='data-target="#modal-testNew" role="button" data-backdrop="static">'
+						                         aa+='data-target="#noteDetailModal" role="button" data-backdrop="static">'
 						                         aa+='<div class="item">'
 						                         aa+='<img class="img-rounded"'
 						                         aa+='src="'+value.noteThumnail+'"'

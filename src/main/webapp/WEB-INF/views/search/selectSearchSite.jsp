@@ -63,7 +63,7 @@
 					<!-- a HTML (to Trigger Modal) -->
 					<a data-toggle="modal"
 						href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum=${noteList.noteNum}"
-						data-target="#modal-testNew" role="button" data-backdrop="static">
+						data-target="#noteDetailModal" role="button" data-backdrop="static">
 						<div class="item">
 							<img class="img-rounded thumnail" id="thumnail"
 								src="${noteList.noteThumnail}"
@@ -93,7 +93,7 @@
 					<!-- a HTML (to Trigger Modal) -->
 					<a data-toggle="modal"
 						href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum=${noteList.noteNum}"
-						data-target="#modal-testNew" role="button" data-backdrop="static">
+						data-target="#noteDetailModal" role="button" data-backdrop="static">
 						<div class="item">
 						<input class="noteNum" type="hidden" value="${noteList.noteNum}">
 							<img class="img-rounded"
@@ -124,7 +124,7 @@
 					<!-- a HTML (to Trigger Modal) -->
 					<a data-toggle="modal"
 						href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum=${noteList.noteNum}"
-						data-target="#modal-testNew" role="button" data-backdrop="static">
+						data-target="#noteDetailModal" role="button" data-backdrop="static">
 						<div class="item">
 							<img class="img-rounded"
 								src="${noteList.noteThumnail}"
@@ -154,7 +154,7 @@
 					<!-- a HTML (to Trigger Modal) -->
 					<a data-toggle="modal"
 						href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum=${noteList.noteNum}"
-						data-target="#modal-testNew" role="button" data-backdrop="static">
+						data-target="#noteDetailModal" role="button" data-backdrop="static">
 						<div class="item">
 							<img class="img-rounded"
 								src="${noteList.noteThumnail}"
@@ -181,7 +181,7 @@
 </div>
 
 <!-- Modal HTML -->
-<div id="modal-testNew" class="modal fade text-center overlay" role="dialog">
+<div id="noteDetailModal" class="modal fade text-center overlay" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">Content will be loaded here from
 			"note/noteDetail.htm" file</div>

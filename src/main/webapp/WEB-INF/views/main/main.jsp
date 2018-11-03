@@ -39,7 +39,7 @@
 						    <c:otherwise>
 						    <a onclick="document.getElementById('subscribe').style.display='block'"
 								 class="typewrite" data-period="2000"
-								data-type='[ "당신의 글을 기다립니다, COPY&PASTE. ", "드래그를 작성해보세요 :)   ", "Click Click !   " ]'>
+								data-type='[ "당신의 글을 기다립니다, COPY&PASTE. ", "노트를 작성해보세요 :)   ", "Click Click !   " ]'>
 								<span class="wrap"></span>
 							</a>
 						    </c:otherwise>
@@ -101,7 +101,7 @@
 					<!-- a HTML (to Trigger Modal) -->
 					<a data-toggle="modal"
 						href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum=${noteList.noteNum}"
-						data-target="#modal-testNew" role="button" data-backdrop="static">
+						data-target="#noteDetailModal" role="button" data-backdrop="static">
 						<div class="item">
 							<img class="img-rounded thumnail" id="thumnail"
 								src="${noteList.noteThumnail}"
@@ -132,7 +132,7 @@
 					<!-- a HTML (to Trigger Modal) -->
 					<a data-toggle="modal"
 						href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum=${noteList.noteNum}"
-						data-target="#modal-testNew" role="button" data-backdrop="static">
+						data-target="#noteDetailModal" role="button" data-backdrop="static">
 						<div class="item">
 						<input class="noteNum" type="hidden" value="${noteList.noteNum}">
 							<img class="img-rounded"
@@ -165,7 +165,7 @@
 					<!-- a HTML (to Trigger Modal) -->
 					<a data-toggle="modal"
 						href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum=${noteList.noteNum}"
-						data-target="#modal-testNew" role="button" data-backdrop="static">
+						data-target="#noteDetailModal" role="button" data-backdrop="static">
 						<div class="item">
 							<img class="img-rounded"
 								src="${noteList.noteThumnail}"
@@ -196,7 +196,7 @@
 					<!-- a HTML (to Trigger Modal) -->
 					<a data-toggle="modal"
 						href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum=${noteList.noteNum}"
-						data-target="#modal-testNew" role="button" data-backdrop="static">
+						data-target="#noteDetailModal" role="button" data-backdrop="static">
 						<div class="item">
 							<img class="img-rounded"
 								src="${noteList.noteThumnail}"
@@ -218,7 +218,7 @@
 <br><br><br>
 
 <!-- Modal HTML -->
-<div id="modal-testNew" class="modal fade text-center overlay"
+<div id="noteDetailModal" class="modal fade text-center overlay"
 	 role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">Content will be loaded here from
