@@ -14,11 +14,18 @@
 
 <se:authentication property="name" var="loginuser" />
 <se:authentication property="authorities" var="role" />
-<!-- 신고 모달창에서 ok버튼 눌렀을 때 스윗알럳 띄우기 -->
+
 <script>
-
-
 	$(document).ready(function() {
+		$(document).on('hidden.bs.modal', '.modal', function (e) {
+			  var modalData = $(this).data('bs.modal');
+			  if (modalData && modalData.options.remote) {
+			    $(this).removeData('bs.modal');
+			    $(this).find(".modal-content").empty();
+			    $(e.target).removeData("bs.modal").find(".modal-content").empty();
+			  }
+		});
+		
 		var userEmail = '${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}';
 		var role='${sessionScope.SPRING_SECURITY_CONTEXT.authentication.authorities}';
 	

@@ -208,14 +208,6 @@
 	
 //시작	
 $(document).ready(function() {
-	$('body').on('hidden.bs.modal', '.modal', function() {
-		$(this).removeData('bs.modal');
-	});
-	$('#modal-testNew').on('shown.bs.modal', function() {
-		$(document).off('focusin.modal');
-	});
-
-	
 	selectSubject()
 	selectFolder()
 	
