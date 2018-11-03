@@ -10,8 +10,9 @@
 							   "toDate" :  "",
 							   "keyword": "",
 							   "dragNum" : "",
-							   "sortCategory" : ""
-								}
+							   "sortCategory" : "",
+							   "page": 0
+			                      }
 	
 			//드래그 마크 중요표시 
 		    function setDragMark(dragNum){
@@ -21,7 +22,7 @@
 			};	
 			//드래그 마크 중요표시 삭제
 			function removeDragMark(dragNum) {
-				url ="../drag/removeDragMark.json",
+				url ="../drag/removeDragMark.json"
 				params.dragNum =dragNum
 				makeDragList(url, params); 
 		   };
@@ -52,11 +53,10 @@
 							              confirmButtonClass : "btn-danger",
 										  closeOnConfirm: true
 									},function(){
-										    url ="../drag/selectAllDrag.json";
-											makeDragList(url); 
+										location.reload()
 									})
-							});
-					}
+								});
+							}
 						}
 					);
 				}	
@@ -81,8 +81,7 @@
 			
 			    //드래그목록
 				function makeDragList(url, params){
-				var page=0;
-				
+		  
 				$.ajax({
 			      url: url, // url_pettern 
 			      type:"get",
@@ -129,7 +128,6 @@
 			        			$("#dragList").html(dragList);
 			        		})
 			        	}
-			    	
 			        }
 				  
 			      }).done(function (result){
@@ -151,6 +149,7 @@
 			     	        	deleteDrag(dragNum)
 			     	         }     
 			     	      });  
+<<<<<<< Updated upstream
 		
 			     		    // 스크롤이벤트 발생시 추가 12개 
 			     		    var lastScrollTop = 0;
@@ -245,39 +244,138 @@
 			     			})
 			    
 			     	  
+=======
+			  
+			     		
+>>>>>>> Stashed changes
 			      })
 				}
 					
+			    // 스크롤이벤트 발생시 추가 12개 
+     		    var lastScrollTop = 0;
+     	   	//스크롤 발생시 추가적인 리스트 생성
+     	    	function moreDragList(e,url,params){
+     				event.stopPropagation(); 
+     				
+     				// ① 스크롤 이벤트 최초 발생
+     		        var currentScrollTop = $(window).scrollTop();
+     
+     		        if( currentScrollTop - lastScrollTop > 0 ){
+     		            if ($(window).scrollTop() >= ($(document).height() - $(window).height()) ){ 
+     		           	params.page += 12;
+     		           console.log(params.page+" 번부터")
+     			            	$.ajax({
+     			                    type : 'get',  
+     			                    url :url,
+     			       		        async: false,
+     			                    data : params,
+     			                    beforeSend: function(){
+     			            
+     			                    },
+	     		                    success : function(data){
+	     		                   
+	     		                   console.log(data)
+     		                        var dragList = "";
+     		                        var dragList2 = "";
+     		                        if(data != null) {
+     		                    		$.each(data, function(key, value){
+     		                    		dragList2="";
+     		                    		dragList2+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">';
+     		                    		dragList2+='<div class="text-center dragDiv mt-10" id="'+value.dragNum+'">';
+     		                    		dragList2+='<blockquote class="grapefruit">';
+     		                    		dragList2+='<!-- 별 아이콘 -->';
+     		                    		dragList2+='<div class="icon-right starDiv" id="starMark">'+value.dragNum+'';
+     		                  			if(value.dragMark==1){   
+     		                  				dragList2 += '<br> <i class="fas fa-star icon-size" id="starDrag" onclick=removeDragMark("'+value.dragNum+'");></i>';
+     		                  			}else{	setDragMark
+     		                  				dragList2 += '<br> <i class="far fa-star icon-size" id="starDrag" onclick=setDragMark("'+value.dragNum+'");></i>';
+     		                  			}
+     		                  			dragList2+='</div>';
+     		                  			dragList2+='<div class="dragContent">';
+     		                  			dragList2+='<!-- 모달 창 -->';
+     		                  			dragList2+='<div class="drag-a">';
+     		                  			dragList2+='<a data-toggle="modal"';
+     		                  			dragList2+='href="../drag/dragDetail.htm?dragNum='+value.dragNum+'"';
+     		                			dragList2+='data-target="#modal-drag" role="button"';
+     		                			dragList2+='data-backdrop="static">';
+     		                			dragList2+='<div id="dragContent">'+value.dragText+'</div><code>';
+     		                			dragList2+='<span id="dragOrigin" class="Cgrapefruit">출처 : '+value.dragOrigin+'</span>';
+     		                			dragList2+='<span id="dragDate">'+value.dragDate+'</span>';
+     		                			dragList2+='</code> <input type="hidden" id="dragNum" class="dragNum"';
+     		                			dragList2+='value="'+value.dragNum+'">';
+     		                			dragList2+='<input type="hidden" id="dragMark" class="dragMark" value="'+value.dragMark+'">';
+     		                			dragList2+='</a>';
+     		                			dragList2+='</div>';
+     		                			dragList2+='</div>';
+     		                			dragList2+='</blockquote>';
+     		                			dragList2+='</div>';
+     		                			dragList2+='</div>';
+     					                 
+     		                			   $('#dragList').append(dragList2);
+     		                        })
+     		                    }
+     		                   }
+     			            }).done(function (result){
+     			 			  // dragDiv들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
+     				     	    $('.dragDiv').draggable({
+     				     	    	revert: true, 
+     				     	    	 revertDuration: 200,
+     				     	    	 snapMode: "inner",
+     				     	    	 scroll: true,
+     				     	    	 scrollSensitivity: 100 ,
+     				     	    	 scrollSpeed: 100
+     				     	    	});
+     				     	     // 드래그를 드랍하여 삭제 메소드 
+     				     	    $("#droppable").droppable({
+     				     	        activeClass:"ui-state-active",
+     				     	        accept:".dragDiv",
+     				     	        drop: function(event,ui) {
+     				     	        	var dragNum = ui.draggable.prop("id")
+     				     	        	deleteDrag(dragNum)
+     				     	         }     
+     				     	   });  
+     		            }) 
+     		          }
+     		      }
+     			}
+				
+				
+				
 			
 //페이지 로딩시 요청
 $("document").ready(function(){
-
 			
 			var url="";
 			url ="../drag/selectAllDrag.json";
-			makeDragList(url);
-					
+			makeDragList(url, params);
+			$(window).scroll(function(e) { moreDragList(e,url, params)})		
 			
 			/* 날짜 별 검색 */
 			$("#toDate").change(function(){
 				url ="../drag/selectByCalDrag.json"
 				params.fromDate = $("#fromDate").val()
 				params.toDate =$("#toDate").val()
+				params.page=0
 				makeDragList(url, params);
+				$(window).scroll(function(e) { moreDragList(e,url, params)})		
 			});
 	  
 			//드래그 키워드 검색
 			$('#search').click(function(e) {
 				url ="../drag/selectByKeyDrag.json"
 				params.keyword = $('#search-Text').val()
+				params.page=0
 				makeDragList(url, params);
+				$(window).scroll(function(e) { moreDragList(e,url, params)})		
 			})
 
 			//드래그 정렬 
 			$('#sort-category').change(function(e) {
 				url ="../drag/selectOrderbyDrag.json"
 				params.sortCategory = $('#sort-category option:selected').val()
+				params.page=0
 				makeDragList(url, params);
+				$(window).scroll(function(e) { moreDragList(e,url, params)})		
 			})
 
 

@@ -7,15 +7,10 @@
 
 <mapper namespace="tk.copyNpaste.mapper.DragMapper">
 	<!--전체보기 -->
-	<select id="selectAllDrag" resultType="DragVO">
+	<select id="selectAllDrag" parameterType="hashmap" resultType="DragVO">
 		select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate,dragOriginLink
-		from drag where userEmail= #{userEmail} order by dragNum desc limit #{page},12 
+		from drag where userEmail= #{userEmail} order by dragNum desc limit ${page},12; 
 	</select>
-<!-- 	
-	<select id="infiniteScrollDrag" resultType="DragVO" >
-		select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate,dragOriginLink
-		from drag where userEmail= #{userEmail} order by dragNum desc limit #{page},12
-	</select> -->
 
 	<!--상세보기 -->
 	<select id="selectDetail" resultType="DragVO">
@@ -42,7 +37,7 @@
 	<select id="selectByCalDrag" parameterType="hashmap" resultType="DragVO">
 	select dragNum,dragMark,userEmail,dragText,dragOrigin,dragDate
 		from drag where dragDate between #{fromDate} and #{toDate} and userEmail=#{userEmail}
-	order by dragDate desc 
+	order by dragDate desc limit ${page},12 
 	</select>
 	
 	<!-- 드래그 키워드 검색 selectByKeyDrag -->
@@ -52,7 +47,7 @@
 		  (dragText like CONCAT('%',#{keyword},'%') or 
 		  dragOrigin like CONCAT('%',#{keyword},'%') or 
 		  dragDate like CONCAT('%',#{keyword},'%'))
-			order by dragNum desc;
+			order by dragNum desc limitㄴ ${page},12 
 	</select>
 	
 		<!-- 드래그 정렬-->
@@ -64,16 +59,17 @@
           Case when #{sortCategory}='dragNumAsc' then dragNum End asc,
           Case when #{sortCategory}='dragMark' then dragMark End desc,
           Case when #{sortCategory}='binary(dragText)' then binary(dragText) End asc
+          limit ${page},12 
 	</select>
 
 	<!-- 드래그 중요표시 등록 setDragMark-->
-	<update id="setDragMark">
-	   UPDATE drag set dragMark=1 where dragNum = #{dragNum} 
+	<update id="setDragMark" parameterType="hashmap" >
+	   UPDATE drag set dragMark=1 where dragNum = ${dragNum} 
 	</update>
 
 	<!-- 드래그 중요표시 삭제 removeDragMark-->
-	 <update id="removeDragMark">
-	   UPDATE drag set dragMark=0 where dragNum = #{dragNum} 	   
+	 <update id="removeDragMark" parameterType="hashmap" >
+	   UPDATE drag set dragMark=0 where dragNum = ${dragNum} 	   
 	</update>
 	 
 </mapper>

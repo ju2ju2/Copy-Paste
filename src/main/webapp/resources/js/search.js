@@ -11,13 +11,17 @@
 	      		    function setDragMark(dragNum){
 	      				url ="../drag/setDragMark.json"
 	      				params.dragNum =dragNum
+
 	      				makeAsideDragList(url, params); 
+
 	      			};	
 	      			//드래그 마크 중요표시 삭제
 	      			function removeDragMark(dragNum) {
 	      				url ="../drag/removeDragMark.json",
 	      				params.dragNum =dragNum
+
 	      				makeAsideDragList(url, params); 
+
 	      		   };
 	      		   	// 드래그  드래그로 삭제
 	      			function deleteDrag(dragNum) {
@@ -54,6 +58,7 @@
 	      					);
 	      				}	
 	      	
+
 	      			// 스크롤 내렸을때 top보이고 안내리면 안보임
 					window.onscroll = function() {scrollFunction()};
 					function scrollFunction() {
@@ -75,6 +80,7 @@
 	      				function makeAsideDragList(url, params){
 	      					var page =0;
 	      					
+
 	      					$.ajax({
 	      						url : url, // url_pettern
 	      						type : "get",
@@ -117,8 +123,10 @@
 	      											a += '</div>';
 	      											a += '</blockquote>';
 	      											a += '</div>';
+
 	      											
 	      											$("#dragList").html(a);
+
 	      										})
 	      							}
 
@@ -127,6 +135,7 @@
 	      								a += "<h6>등록된 드래그가 없습니다.</h6>";
 	      								a += "</div>";
 	      							}
+
 	      						}
 	      					}).done(function (result){
 	      							
@@ -137,8 +146,10 @@
 	      								scroll : true,
 	      								scrollSensitivity : 100,
 	      								scrollSpeed : 100,
+
 	      					        });
 	      					        
+
 	      							$("#droppable").droppable({
 	      								activeClass : "ui-state-active",
 	      								accept : ".dragDiv",
@@ -147,8 +158,7 @@
 	      							 	deleteDrag(dragNum)
 	      								}
 	      							});
-	      			     		
-	      			
+
 	      					
 	      					 // 스크롤이벤트 발생시 추가 12개 
 			     		    var lastScrollTop = 0;
@@ -251,18 +261,23 @@
 	      					
 	      					
 	      					
+
+	      			      }
+
 	      				})
 	      				
 	      				}
 	      				
-	      			
+
 	      
 	      				
 	      				
 	      				
 	      				
 	      				
-	      				//페이지 로딩시 요청
+
+	      //페이지 로딩시 요청
+
 	      $("document").ready(function(){
 	      			
 	    	    var url = "";

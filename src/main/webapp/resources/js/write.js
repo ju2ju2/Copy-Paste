@@ -60,7 +60,8 @@
 
 	// 드래그 마크 중요표시 삭제
 	function removeDragMark(dragNum) {
-		url = "../drag/removeDragMark.json", params.dragNum = dragNum
+		url = "../drag/removeDragMark.json", 
+		params.dragNum = dragNum
 		makeAsideDragList(url, params);
 	};
 
@@ -169,15 +170,17 @@
 						 $( ".dragDiv" ).css("top","-140px");
 		            }
 		        })
-
-			
-
 				$("#droppable").droppable({
 					activeClass : "ui-state-active",
 					accept : ".dragDiv",
 					drop : function(event, ui) {
+<<<<<<< Updated upstream
 						var dragNum = ui.draggable.prop("id")
 						deleteDrag(dragNum)
+=======
+				   var dragNum = ui.draggable.prop("id")
+				 	deleteDrag(dragNum)
+>>>>>>> Stashed changes
 					}
 				});
 

@@ -19,7 +19,7 @@ public interface DragMapper {
 	public int insertDrag(DragVO drag) throws Exception;
 	
 	//드래그 목록 보기
-	public List<DragVO> selectAllDrag(DragVO drag) throws Exception;
+	public List<DragVO> selectAllDrag(HashMap<String, Object> map) throws Exception;
 	
 	//드래그 상세 보기(+노트 작성)
 	public DragVO selectDetail(int dragNum) throws Exception;
@@ -37,10 +37,10 @@ public interface DragMapper {
 	public List<DragVO> selectOrderbyDrag(HashMap<String, Object> map) throws Exception;
 
 	//드래그 중요표시 등록
-	public int setDragMark(int dragNum) throws Exception;
+	public int setDragMark(HashMap<String, Object> map) throws Exception;
 	
 	//드래그 중요표시 삭제
-	public int removeDragMark(int dragNum) throws Exception;
+	public int removeDragMark(HashMap<String, Object> map) throws Exception;
 
 	//드래그 무한 스크롤 
 	public List<DragVO> infiniteScrollDrag(DragVO drag) throws Exception;

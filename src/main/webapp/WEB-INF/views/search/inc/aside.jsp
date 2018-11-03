@@ -8,11 +8,11 @@
  <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
-	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+		integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 <!-- Sidebar -->
 <nav>
 <div id="sidebar">
-<div class="inner">
+	<div class="inner">
 			<div class="tab-content">
 				<!-- 1. 드래그 목록 -->
 				<div id="drag" class="tab-pane fade in active">
@@ -52,21 +52,8 @@
 						<div class="mini-posts" id="dragList"></div>
 					</section>
 				</div>
-
-<!-- top버튼 -->
-<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
-</div>
-</div>
+			</div>
+		</div>
+	</div>
 </nav>
 
-
-<script>
-<!-- 별 아이콘 토글 -->
-$('.fa-star').click(function(){
-	if($(this).hasClass('far')){
-		$(this).removeClass('far').addClass('fas');
-	} else {
-		$(this).removeClass('fas').addClass('far');
-	}
-})
-</script>
