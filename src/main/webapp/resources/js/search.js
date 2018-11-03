@@ -308,7 +308,7 @@ $("#searchinsite").click(function(){
 					          			search+='	<!-- a HTML (to Trigger Modal) -->';
 					          			search+='<a data-toggle="modal"';
 					          			search+='href="../note/noteDetail.htm?noteNum='+value.noteNum+'"';
-					          			search+='data-target="#noteDetailModal" role="button" data-backdrop="static">';
+					          			search+='data-target="#modal-testNew" role="button" data-backdrop="static">';
 					          			search+='<div class="item">';
 					          			search+='<img class="img-rounded"';
 					          			search+='src="'+value.noteThumnail+'"';

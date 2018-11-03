@@ -23,7 +23,7 @@ $(document).on('hidden.bs.modal', '.modal', function (e) {
 	  }
 });
 
-$('#noteDetailModal').on('shown.bs.modal', function() {
+$('#modal-testNew').on('shown.bs.modal', function() {
 	$(document).off('focusin.modal');
 });
 
