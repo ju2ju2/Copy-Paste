@@ -96,7 +96,7 @@ public class DragController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("keyword", keyword);
 		map.put("userEmail", principal.getName());
-		
+		System.out.println("타는거니"+keyword);
 		return dragservice.selectByKeyDrag(map);	
 	}
 	

@@ -33,7 +33,7 @@
 							<section id="subject-search" class="alt">
 								<div class="col-xs-12">
 									<form method="post" action="#">
-										<input type="text" id="search-text" placeholder="검색" class="text" /> <a
+										<input type="text" id="search-dragtext" placeholder="검색" class="text" /> <a
 											href="#"><i id="searchdrag" class="fas fa-search icon-size"
 											style="padding-top: 15px"></i></a>
 									</form>
@@ -53,7 +53,8 @@
 					</section>
 				</div>
 
-
+<!-- top버튼 -->
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 </div>
 </div>
 </nav>

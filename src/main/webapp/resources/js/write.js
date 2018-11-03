@@ -176,7 +176,6 @@
 					activeClass : "ui-state-active",
 					accept : ".dragDiv",
 					drop : function(event, ui) {
-						console.log("드랍이세끼;")
 						var dragNum = ui.draggable.prop("id")
 						deleteDrag(dragNum)
 					}
