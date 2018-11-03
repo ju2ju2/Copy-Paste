@@ -48,7 +48,8 @@
 	var params = {
 		"keyword" : "",
 		"dragNum" : "",
-		"sortCategory" : ""
+		"sortCategory" : "",
+		 "page": 0
 	}
 
 	// 드래그 마크 중요표시
@@ -94,12 +95,12 @@
 						confirmButtonClass : "btn-danger",
 						closeOnConfirm : true
 					}, function() {
-						url = "../drag/selectAllDrag.json";
-						makeAsideDragList(url);
+						location.reload()
 					})
 				});
 			}
-		});
+		}
+	  );
 	}
 
 	// 드래그목록
@@ -112,15 +113,11 @@
 			success : function(data) {
 				var a = "";
 				if (data != null) {
-					$
-					.each(
-							data,
-							function(key, value) {
+					$.each(data,	function(key, value) {
 								$('#dragList').empty();
 								a += '<div class="text-center dragDiv mt-10 dragDiv" id="'
 									+ value.dragNum + '">';
 								a += '<blockquote class="grapefruit">';
-
 								a += '<!-- 별 아이콘 -->';
 								a += '<div class="icon-right starDiv">	<br>';
 								if (value.dragMark == 1) {
@@ -128,7 +125,6 @@
 										+ value.dragNum
 										+ '");></i>';
 								} else {
-									setDragMark
 									a += '<br> <i class="far fa-star icon-size" id="starDrag" onclick=setDragMark("'
 										+ value.dragNum
 										+ '");></i>';
@@ -150,6 +146,8 @@
 								a += '</div>';
 								a += '</blockquote>';
 								a += '</div>';
+								
+								$("#dragList").html(a);
 							})
 				}
 
@@ -158,7 +156,8 @@
 					a += "<h6>등록된 드래그가 없습니다.</h6>";
 					a += "</div>";
 				}
-				$("#dragList").html(a);
+			}	
+		}).done(function (result){	
 				$('.dragDiv').draggable({
 					revert : true,
 					revertDuration : 200,
@@ -174,7 +173,6 @@
 					activeClass : "ui-state-active",
 					accept : ".dragDiv",
 					drop : function(event, ui) {
-
 						var dragNum = ui.draggable.prop("id")
 						deleteDrag(dragNum)
 
@@ -182,10 +180,7 @@
 				});
 
 				// 드래그 클릭시 텍스트 에디터기에 추가
-				$('.dragDiv')
-				.on(
-						"click",
-						function() {
+				$('.dragDiv').on("click",	function() {
 							var editor = tinyMCE.activeEditor;
 							var dragText = $(this)
 							.find('#dragText').text();
@@ -193,9 +188,9 @@
 									{}, dragText + "<br>");
 						})
 
-			}
-		})
-	}
+			})
+		}
+	
 
 	
 	
@@ -212,7 +207,7 @@ $(document).ready(function() {
 	
 	var url = "";
 	url = "../drag/selectAllDrag.json";
-	makeAsideDragList(url);
+	makeAsideDragList(url, params);
 
 	// 드래그 키워드 검색
 	$('#search').click(function(e) {

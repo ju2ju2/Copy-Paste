@@ -163,7 +163,7 @@
 			     			                    type : 'get',  
 			     			                    url :url,
 			     			       		        async: false,
-			     			                    data : { page: page },
+			     			                    data :params, 
 			     			                    success : function(data) {
 			     			               		console.log(data);
 			     			               		var a="";
@@ -256,9 +256,10 @@
 	    		$(window).scroll(function(e) { moreAsideDragList(e,url, params)})		
 
 	    		// 드래그 키워드 검색
-	    		$('#search').click(function(e) {
-	    			url = "../drag/selectByKeyDrag.json"
+	    		$('#searchdrag').click(function(e) {
 	    			console.log(params.keyword)	
+	    			url = "../drag/selectByKeyDrag.json"
+	    			
 	    			params.keyword = $('#search-text').val()
 	    			makeAsideDragList(url, params);
 	    			$(window).scroll(function(e) { moreAsideDragList(e,url, params)})		
@@ -277,7 +278,7 @@
 
 
 
-//
+//검색어 입력
 $("#searchinsite").click(function(){
 		if($("#searchinsite-text").val()==''){
 			swal({
