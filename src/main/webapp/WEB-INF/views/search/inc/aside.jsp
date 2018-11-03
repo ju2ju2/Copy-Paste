@@ -32,8 +32,8 @@
 							<!-- 드래그검색 -->
 							<section id="subject-search" class="alt">
 								<div class="col-xs-12">
-									<form method="post" action="#">
-										<input type="text" id="search-dragtext" placeholder="검색" class="text" /> <a
+									<form method="get" action="#">
+										<input type="text" id="search-text" placeholder="검색" class="text" /> <a
 											href="#"><i id="searchdrag" class="fas fa-search icon-size"
 											style="padding-top: 15px"></i></a>
 									</form>

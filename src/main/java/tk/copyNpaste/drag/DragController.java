@@ -87,7 +87,6 @@ public class DragController {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("keyword", keyword);
 		map.put("userEmail", principal.getName());
-
 		map.put("page", page);
 
 		return dragservice.selectByKeyDrag(map);	

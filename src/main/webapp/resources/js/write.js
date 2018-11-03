@@ -174,13 +174,10 @@
 					activeClass : "ui-state-active",
 					accept : ".dragDiv",
 					drop : function(event, ui) {
-<<<<<<< Updated upstream
+
 						var dragNum = ui.draggable.prop("id")
 						deleteDrag(dragNum)
-=======
-				   var dragNum = ui.draggable.prop("id")
-				 	deleteDrag(dragNum)
->>>>>>> Stashed changes
+
 					}
 				});
 

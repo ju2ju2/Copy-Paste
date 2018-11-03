@@ -59,26 +59,11 @@
 	      				}	
 	      	
 
-	      			// 스크롤 내렸을때 top보이고 안내리면 안보임
-					window.onscroll = function() {scrollFunction()};
-					function scrollFunction() {
-					    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-					        document.getElementById("myBtn").style.display = "block";
-					    } else {
-					        document.getElementById("myBtn").style.display = "none";
-					    }
-					}
-		
-					// top버튼 눌렀을때 실행
-					function topFunction() {
-					    document.body.scrollTop = 0;
-					    document.documentElement.scrollTop = 0;
-					}
 	      			
 	      			
 	      			    //드래그목록
 	      				function makeAsideDragList(url, params){
-	      					var page =0;
+	      			
 	      					
 
 	      					$.ajax({
@@ -101,7 +86,6 @@
 	      													+ value.dragNum
 	      													+ '");></i>';
 	      											} else {
-	      												setDragMark
 	      												a += '<br> <i class="far fa-star icon-size" id="starDrag" onclick=setDragMark("'
 	      													+ value.dragNum
 	      													+ '");></i>';
@@ -158,18 +142,22 @@
 	      							 	deleteDrag(dragNum)
 	      								}
 	      							});
-
+	      					})
+	      				}
 	      					
 	      					 // 스크롤이벤트 발생시 추가 12개 
 			     		    var lastScrollTop = 0;
-			     	    	page += 12; //2회차
-			     			$(window).scroll(function(event){
-			     				event.stopPropagation(); 
+			     		  	//스크롤 발생시 추가적인 리스트 생성
+			     	    	function moreAsideDragList(e,url,params){
+			     	    		e.stopPropagation() 
+			     				
 			     				// ① 스크롤 이벤트 최초 발생
 			     		        var currentScrollTop = $(window).scrollTop();
 			     
 			     		        if( currentScrollTop - lastScrollTop > 0 ){
 			     		            if ($(window).scrollTop() >= ($(document).height() - $(window).height()) ){ 
+			         		           	params.page += 12;
+			         		           console.log(params.page+" 번부터")
 			     		      
 			     			            	$.ajax({
 			     			                    type : 'get',  
@@ -218,9 +206,7 @@
 				      											
 				      											 $('#dragList').append(a1);
 				      										})
-				      										 page += 12;
-							     		             
-				     		                    	console.log(page);
+				      									
 				      							}
 			     			               
 			     			            	
@@ -251,29 +237,13 @@
 			     				     	        	deleteDrag(dragNum)
 			     				     	         }     
 			     				     	      });  
-			     		            }) 
-			     		            
+			     		              
+			     			            }) 
 			     		          }
 			     		      }
-			     			})
+			     			}
 	      					
 	      					
-	      					
-	      					
-	      					
-
-	      			      }
-
-	      				})
-	      				
-	      				}
-	      				
-
-	      
-	      				
-	      				
-	      				
-	      				
 	      				
 
 	      //페이지 로딩시 요청
@@ -282,14 +252,16 @@
 	      			
 	    	    var url = "";
 	    		url = "../drag/selectAllDrag.json";
-	    		makeAsideDragList(url);
+	    		makeAsideDragList(url,params);
+	    		$(window).scroll(function(e) { moreAsideDragList(e,url, params)})		
 
 	    		// 드래그 키워드 검색
 	    		$('#search').click(function(e) {
 	    			url = "../drag/selectByKeyDrag.json"
 	    			console.log(params.keyword)	
-	    			params.keyword = $('#search-dragtext').val()
+	    			params.keyword = $('#search-text').val()
 	    			makeAsideDragList(url, params);
+	    			$(window).scroll(function(e) { moreAsideDragList(e,url, params)})		
 	    		})
 
 	    		// 드래그 정렬
@@ -297,12 +269,9 @@
 	    			url = "../drag/selectOrderbyDrag.json"
 	    			params.sortCategory = $('#sort-category option:selected').val()
 	    			makeAsideDragList(url, params);
+	    			$(window).scroll(function(e) { moreAsideDragList(e,url, params)})		
 	    		})
 	    		
-
-	      			
-	      			
-	      			
 	      //끝
 	      });
 
