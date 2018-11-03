@@ -215,8 +215,8 @@
    }
    #sidebar>.inner {
         -webkit-overflow-scrolling: touch;
-  /*       overflow-x: hidden;
-      overflow-y: scroll;  스크롤을 nav에 달기 위해*/
+        overflow-x: hidden;
+      overflow-y: scroll;
         height: 100%;
       padding: 1.6666666667rem 3rem 1.3333333333rem 1.6666666667rem;
    }
@@ -262,8 +262,8 @@
    
    #sidebar>.inner {
           -webkit-overflow-scrolling: touch;
-      /*       overflow-x: hidden;
-      overflow-y: scroll;  스크롤을 nav에 달기 위해*/
+          overflow-x: hidden;
+          overflow-y: scroll;
           height: 100%;
           padding: 1.6666666667rem 3rem 1.3333333333rem 1.6666666667rem;
    }

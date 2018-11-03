@@ -1,6 +1,5 @@
    			//params json 객체 파라미터 넘기는 값. VO역할
-	      			var params = {"fromDate": "",
-	      							   "toDate" :  "",
+	      			var params = {
 	      							   "keyword": "",
 	      							   "dragNum" : "",
 	      							   "sortCategory" : "",
@@ -11,7 +10,6 @@
 	      		    function setDragMark(dragNum){
 	      				url ="../drag/setDragMark.json"
 	      				params.dragNum =dragNum
-
 	      				makeAsideDragList(url, params); 
 
 	      			};	
@@ -19,7 +17,6 @@
 	      			function removeDragMark(dragNum) {
 	      				url ="../drag/removeDragMark.json",
 	      				params.dragNum =dragNum
-
 	      				makeAsideDragList(url, params); 
 
 	      		   };
@@ -247,7 +244,6 @@
 	      				
 
 	      //페이지 로딩시 요청
-
 	      $("document").ready(function(){
 	      			
 	    	    var url = "";
