@@ -303,7 +303,6 @@
 		
 		/* 대댓글 작성 버튼 클릭시 */
 		$(document).on("click", "#commCommbtn", function(){
-			console.log(${qna.qnaNum});
 			$.ajax({
 				url : "<%=request.getContextPath()%>/qna/insertQnaCommComm.json",
 			    type : "get",

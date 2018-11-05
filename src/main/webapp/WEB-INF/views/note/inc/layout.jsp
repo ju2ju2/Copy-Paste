@@ -27,6 +27,7 @@
 	 	<script src="${pageContext.request.contextPath}/resources/js/api/datepicker.js"></script>
 	 	<script src="${pageContext.request.contextPath}/resources/js/note.js"></script>	
 	 	<script src="${pageContext.request.contextPath}/resources/js/folder.js"></script>	
+	 	<script src="${pageContext.request.contextPath}/resources/js/inc.js"></script>
 	 	<!-- Sweet Alert cdn -->
 		<link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/api/alert/sweetalert.css" />
 		<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/api/sweetalert.min.js"></script>

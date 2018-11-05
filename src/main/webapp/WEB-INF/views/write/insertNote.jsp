@@ -68,8 +68,10 @@
 		<form id="visionform" name="visionform" enctype="multipart/form-data" accept-charset="utf-8">
 			<div class="modal-content">
 				<div class="modal-body">
-				<input type="file" name="visionImg" id="visionImg" aria-describedby="file_upload" accept="image/*">
-				<small> * .jpg, .gif, .png 파일만 업로드 가능하며, 500kb를 초과할 수 없습니다.</small>
+					<div class="visionImg">
+					<input type="file" name="visionImg" id="visionImg" aria-describedby="file_upload" accept="image/*">
+					<br><small> * .jpg, .gif, .png 파일만 업로드 가능하며, 500kb를 초과할 수 없습니다.</small>
+					</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" id="visionBtn">맞춤법 검사</button>

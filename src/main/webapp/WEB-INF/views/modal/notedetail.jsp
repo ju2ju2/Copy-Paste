@@ -14,17 +14,24 @@
 
 <se:authentication property="name" var="loginuser" />
 <se:authentication property="authorities" var="role" />
-<!-- 신고 모달창에서 ok버튼 눌렀을 때 스윗알럳 띄우기 -->
+
 <script>
-
-
 	$(document).ready(function() {
+		$(document).on('hidden.bs.modal', '.modal', function (e) {
+			  var modalData = $(this).data('bs.modal');
+			  if (modalData && modalData.options.remote) {
+			    $(this).removeData('bs.modal');
+			    $(this).find(".modal-content").empty();
+			    $(e.target).removeData("bs.modal").find(".modal-content").empty();
+			  }
+		});
+		
 		var userEmail = '${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}';
 		var role='${sessionScope.SPRING_SECURITY_CONTEXT.authentication.authorities}';
 	
 		
 		///* 작성,수정페이지에서 에디터기에 추가 */
-		$('#addToNoteBtn').click(function(e) {
+		$('#addToNoteBtn').click(function addToNote(e) {
 				$(".modal").modal("hide");
 				var editor = tinyMCE.activeEditor;
     			var noteContent = $('#noteContent').html();
@@ -33,7 +40,7 @@
 			});
 		
 		//노트 pdf 파일 다운로드
-		$('#downloadPdfBtn').click(function(e) {
+		$('#downloadPdfBtn').click(function downloadPdf(e) {
 			swal({
 				  title: "파일을 다운로드 하시겠습니까?",
 				  type: 'warning',
@@ -61,15 +68,15 @@
 							
 						
 						})
-						.fail(function(jqXhr, testStatus, errorText){
-							alert("에러발생 :" + errorText);
-						});
+						.fail(function(request,status,error){
+				     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				     	  });
 					});
 				return false;
 			});
 		
 		//노트 이메일 전송
-		$('#emailNoteBtn').click(function() {
+		$('#emailNoteBtn').click(function emailNote() {
 			swal({
 				  title:'<span class="title">이메일전송</span>',
 				  text: '<form id="email">'+
@@ -93,7 +100,7 @@
 					swal({type: "success",
 						  title: '성공적으로 전송되었습니다.',
 			              confirmButtonClass : "btn-danger btn-sm",
-						  closeOnConfirm: ture
+						  closeOnConfirm: true
 					},
 					function(){
 						
@@ -101,15 +108,15 @@
 					
 				
 				})
-				.fail(function(jqXhr, testStatus, errorText){
-					alert("에러발생 :" + errorText);
-				});
+				.fail(function(request,status,error){
+		     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		     	  });
 			});
 		return false;
 	});
 		
 		//노트 스크랩 등록
-		$('#scrapNoteBtn').click(function(e) {
+		$('#scrapNoteBtn').click(function scrapNote(e) {
 			var path = "${pageContext.request.contextPath}/note/noteDetail.htm?noteNum="+${note.noteNum}
 			var noteContent = $('#noteContent').html();
 			var noteOrgin ='<br/><br/> 출처:'+ path+ "["+${note.userNick}+ "]";
@@ -141,16 +148,16 @@
 							})
 											
 						})
-						.fail(function(jqXhr, testStatus, errorText){
-							alert("에러발생 :" + errorText);
-						});
+						.fail(function(request,status,error){
+				     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				     	  });
 					});
 				return false;
 			});
 
 		
 		//노트삭제
-		$('#deleteNoteBtn').click(function(e) {
+		$('#deleteNoteBtn').click(function deleteNote(e) {
 			swal({
 				  title: "정말 삭제하시겠습니까?",
 				  text: "삭제 후에는 다시 복구 할 수 없습니다.",
@@ -170,27 +177,27 @@
 					}).done(function(result) {
 						swal({type: "success",
 							  title: '성공적으로 삭제되었습니다.',
-				              confirmButtonClass : "btn-danger",
-							  closeOnConfirm: false
+				              confirmButtonClass : "btn-danger btn-sm",
+							  closeOnConfirm: true
 						},
 						function(){
-							location.href="${pageContext.request.contextPath}/index.htm";
+							location.reload();
 						})
 						
 					
 					})
-					.fail(function(jqXhr, testStatus, errorText){
-						alert("에러발생 :" + errorText);
-					});
+					.fail(function(request,status,error){
+			     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			     	  });
 				});
 			return false;
 		});
 
 		//노트 신고
-		$('#noteReportForm').click(function() {
+		$('#noteReportForm').click(function noteReport() {
 			swal({
 				  title:'<span class="title">노트신고</span>',
-				  text: '<form><p><strong>작성자</strong> <span id="noteWriter">${note.userNick}</span></p>'+
+				  text: '<form style="font-size:15px;"><br><p><strong>작성자</strong> <span id="noteWriter">${note.userNick}</span></p>'+
 						'<input type="hidden" value=${note.userEmail}/>'+
 						'</p><p style="padding-top: 10px;">'+
 						'<strong>신고 사유</strong>&ensp; <select name="causeCategory"'+
@@ -238,9 +245,9 @@
 					
 				
 				})
-				.fail(function(jqXhr, testStatus, errorText){
-					alert("에러발생 :" + errorText);
-				});
+				.fail(function(request,status,error){
+		     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		     	  });
 			});
 		return false;
 	});
@@ -253,11 +260,12 @@
 			$('#loginModal').show();	
 				swal({
 				  title: "٩(இ ⌓ இ๑)۶",
-				  text: '로그인 후 이용 가능한 기능입니다.\n로그인 페이지로 이동 하시겠습니까?',
+				  text: '로그인 후 다양한 기능을 이용할 수 있습니다. \n로그인 페이지로 이동 하시겠습니까?',
 				  type: "warning",
 				  showCancelButton: true,
-				  confirmButtonClass: "btn-danger",
+				  confirmButtonClass: "btn-danger btn-sm",
 				  confirmButtonText : "OK",
+				  cancelButtonClass: "btn btn-sm",
 				  closeOnConfirm: false,
 				}
 			, function () {
@@ -267,8 +275,8 @@
 		}
 	});
 
-	
-	});
+//끝	
+});
 </script>
 <!-- modal-header -->
 <div class="modal-header">
@@ -304,35 +312,37 @@
 						<c:choose>
 							<c:when test="${note.noteScrap eq 0 and note.userEmail==loginuser}">
 								 <a href="${pageContext.request.contextPath}/note/updateNote.htm?noteNum=${note.noteNum}">
-								 	<i class="far fa-edit 3x notewrite" alt="노트 수정" title="노트 수정"></i> &nbsp;</a> 
-								 <a id="emailNoteBtn"><i class="far fa-envelope" alt="노트 이메일로 발송" title="노트 이메일로 발송"></i> &nbsp;</a> 
-								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down" alt="노트 다운로드" title="노트 다운로드"></i> &nbsp;</a> 
-								 <a id="deleteNoteBtn"><i class="fas fa-trash" alt="노트 삭제" title="노트 삭제"></i> &nbsp;</a> 
+								 	<i class="far fa-edit notewrite" alt="노트 수정" title="노트 수정"></i> &nbsp;</a> 
+								 <a id="emailNoteBtn"><i class="far fa-envelope notewrite" alt="노트 이메일로 발송" title="노트 이메일로 발송"></i> &nbsp;</a> 
+								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down notewrite" alt="노트 다운로드" title="노트 다운로드"></i> &nbsp;</a> 
+								 <a id="deleteNoteBtn"><i class="fas fa-trash notewrite" alt="노트 삭제" title="노트 삭제"></i> &nbsp;</a> 
 							</c:when>
 							<c:when test="${note.noteScrap eq 1 and note.userEmail==loginuser}"><!-- 스크랩한 글일때 수정버튼>>새노트작성  -->
 								<a href="${pageContext.request.contextPath}/note/insertWithOtherNote.htm?noteNum=${note.noteNum}">
-									<i class="far fa-edit 3x notewrite" alt="이 노트를 이용해 새 노트 작성" title="이 노트를 이용해 새 노트 작성"></i> &nbsp;</a> 
-								 <a id="emailNoteBtn"><i class="far fa-envelope" alt="노트 이메일로 발송" title="노트 이메일로 발송"></i> &nbsp;</a> 
-								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down" alt="노트 다운로드" title="노트 다운로드"></i> &nbsp;</a> 
-								 <a id="deleteNoteBtn"><i class="fas fa-trash" alt="노트 삭제" title="노트 삭제"></i> &nbsp;</a> <!-- 스크랩글 삭제 -->
+									<i class="far fa-edit notewrite" alt="이 노트를 이용해 새 노트 작성" title="이 노트를 이용해 새 노트 작성"></i> &nbsp;</a> 
+								 <a id="emailNoteBtn"><i class="far fa-envelope notewrite" alt="노트 이메일로 발송" title="노트 이메일로 발송"></i> &nbsp;</a> 
+								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down notewrite" alt="노트 다운로드" title="노트 다운로드"></i> &nbsp;</a> 
+								 <a id="deleteNoteBtn"><i class="fas fa-trash notewrite" alt="노트 삭제" title="노트 삭제"></i> &nbsp;</a> <!-- 스크랩글 삭제 -->
+								 <a id="noteReportForm"><i class="fas fa-flag notewrite" alt="노트 신고" title="노트 신고"></i> &nbsp;</a> 
 							</c:when>
 							<c:when test="${role=='[ROLE_ADMIN]'}">
 							 	 <a href="${pageContext.request.contextPath}/note/insertWithOtherNote.htm?noteNum=${note.noteNum}">
-							 	 	<i class="far fa-edit 3x notewrite"  alt="이 노트를 이용해 새 노트 작성" title="이 노트를 이용해 새 노트 작성"></i> &nbsp;</a> 
-								 <a id="emailNoteBtn"><i class="far fa-envelope" alt="노트 이메일로 발송" title="노트 이메일로 발송"></i> &nbsp;</a> 
-								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down" alt="노트 다운로드" title="노트 다운로드"></i> &nbsp;</a> 
-								 <a id="scrapNoteBtn"><i class="fas fa-archive" alt="노트 스크랩" title="노트 스크랩"></i>&nbsp;</a>
-								 <a id="deleteNoteBtn"><i class="fas fa-trash" alt="노트 삭제" title="노트 삭제"></i> &nbsp;</a> 
+							 	 	<i class="far fa-edit notewrite"  alt="이 노트를 이용해 새 노트 작성" title="이 노트를 이용해 새 노트 작성"></i> &nbsp;</a> 
+								 <a id="emailNoteBtn"><i class="far fa-envelope notewrite" alt="노트 이메일로 발송" title="노트 이메일로 발송"></i> &nbsp;</a> 
+								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down notewrite" alt="노트 다운로드" title="노트 다운로드"></i> &nbsp;</a> 
+								 <a id="scrapNoteBtn"><i class="fas fa-archive notewrite" alt="노트 스크랩" title="노트 스크랩"></i>&nbsp;</a>
+								 <a id="deleteNoteBtn"><i class="fas fa-trash notewrite" alt="노트 삭제" title="노트 삭제"></i> &nbsp;</a> 
 							</c:when>
 							<c:otherwise>
 							 	 <a href="${pageContext.request.contextPath}/note/insertWithOtherNote.htm?noteNum=${note.noteNum}">
-							 	 	<i class="far fa-edit 3x notewrite" alt="이 노트를 이용해 새 노트 작성" title="이 노트를 이용해 새 노트 작성"></i> &nbsp;</a> 
-								 <a id="emailNoteBtn"><i class="far fa-envelope" alt="노트 이메일로 발송"  title="노트 이메일로 발송"></i> &nbsp;</a> 
-								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down" alt="노트 다운로드" title="노트 다운로드"></i> &nbsp;</a> 
-								 <a id="scrapNoteBtn"><i class="fas fa-archive" alt="노트 스크랩" title="노트 스크랩"></i></a>
+							 	 	<i class="far fa-edit 3x notewrite notewrite" alt="이 노트를 이용해 새 노트 작성" title="이 노트를 이용해 새 노트 작성"></i> &nbsp;</a> 
+								 <a id="emailNoteBtn"><i class="far fa-envelope notewrite" alt="노트 이메일로 발송"  title="노트 이메일로 발송"></i> &nbsp;</a> 
+								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down notewrite" alt="노트 다운로드" title="노트 다운로드"></i> &nbsp;</a> 
+								 <a id="scrapNoteBtn"><i class="fas fa-archive notewrite" alt="노트 스크랩" title="노트 스크랩"></i> &nbsp;</a> 
+							 	 <a id="noteReportForm"><i class="fas fa-flag notewrite" alt="노트 신고" title="노트 신고"></i> &nbsp;</a> 
 							</c:otherwise>	
 						</c:choose> 
-						<c:if test="${param.write eq 'y'}"> <a id="addToNoteBtn"><i class="far fa-hand-point-up"></i> &nbsp;</a> </c:if>
+						<c:if test="${param.write eq 'y'}"> <a id="addToNoteBtn"><i class="far fa-hand-point-up notewrite"></i> &nbsp;</a> </c:if>
 						</se:authorize>
 						<se:authorize access="!hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"> <!-- 비회원인 경우 아이콘 노출 안 함 -->
 						</se:authorize>
@@ -357,7 +367,7 @@
 									class="form-control input-sm chat-input" placeholder="댓글을 입력하세요" />
 								<span class="input-group-btn commentBtn">
 									<a href="#" class="btn main-btn center-block commentBtn" id="commentBtn">
-										<i class="fas fa-check"></i> Add Comment
+										<i class="fas fa-check notewrite"></i> Add Comment
 									</a>
 								</span>
 							</div>
@@ -365,8 +375,7 @@
 							<!-- 비회원일때 댓글창 -->
 							<se:authorize access="!hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
 								<div class="noteComm-inputBox input-group">
-									<input type="text" id="userComment" disabled 
-										class="form-control input-sm chat-input" placeholder="로그인 후 이용해주세요" />
+									로그인 후 이용해주세요
 								</div>
 							</se:authorize>
 							</div>
@@ -390,7 +399,7 @@ $(document).ready(function(){
 	makeNoteCommList(${note.noteNum})	
 	  /* 댓글등록 */
 
-  	$('.commentBtn').click(function(event){
+  	$('.commentBtn').click(function insertNoteComm(event){
   		event.stopPropagation();
   		$.ajax({
   			url : "<%=request.getContextPath()%>/note/insertNoteComm.json",
@@ -442,14 +451,14 @@ $(document).ready(function(){
 			          		noteCommList += '			          		<small class="pull-right text-muted"> ';
 			          		/*  본인이거나 삭제버튼  */
 			          		if(value.userEmail==userEmail){
-			          			noteCommList += '							 <a id="noteCommDelete"><i class="fas fa-trash noteCommTrashBtn">';
+			          			noteCommList += '							 <a id="noteCommDelete"><i class="fas fa-trash noteCommTrashBtn notewrite">';
 				          		noteCommList += '								<input id="noteCommNum" type="hidden" value="'+value.noteCommNum+'" />';
 				          		noteCommList += '							</i></a>&ensp;&ensp;';
 				          	
 			          		}  
 			          		/* 댓글하나일때 노트작성자 대댓글버튼생성 */ 
 			          		if(value.commDept==0 && '${note.userEmail}'==userEmail){
-			          			noteCommList += '					 <a id="noteCommCommBtn"> <i class="fas fa-comment noteCommCommBtn">';
+			          			noteCommList += '					 <a id="noteCommCommBtn"> <i class="fas fa-comment noteCommCommBtn notewrite">';
 				          		noteCommList += '						<input id="noteCommNum" type="hidden" value="'+value.noteCommNum+'" />';
 				          		noteCommList += '						<input id="noteCommPos" type="hidden" value="'+value.noteCommPos+'" />';							
 								noteCommList += '					</i></a>&ensp;&ensp;';
@@ -457,7 +466,7 @@ $(document).ready(function(){
 			          		
 			          		/* 타인의 글일때 신고 버튼 생성*/ 
 			          		if(value.userEmail!=userEmail){
-			          			noteCommList += '      		 <a id="noteCommReportForm" class="noteCommReportForm"> <i class="fas fa-flag">';
+			          			noteCommList += '      		 <a id="noteCommReportForm" class="noteCommReportForm"> <i class="fas fa-flag notewrite">';
 			          			noteCommList += '						<input id="commWriter" type="hidden" value="'+value.userEmail+'" />';
 			          			noteCommList += '						<input id="commContent" type="hidden" value="'+value.commContent+'" />';	
 				          		noteCommList += '						<input id="noteCommNum" type="hidden" value="'+value.noteCommNum+'" />';
@@ -499,22 +508,41 @@ $(document).ready(function(){
 							var commWriter;
 							var commContent;
 							
-							var commBoxHtml="<div class='noteComm-inputBox input-group'>"
+							var commBoxHtml="<div class='noteComm-inputBox input-group noteCommCommBox'>"
 								+" <input type='text' id='userCommComm' class='form-control input-sm chat-input' style='margin-top:17px;' placeholder='답댓글을 입력하세요' />"
 								+" <span class='input-group-btn' id='commCommbtn'>"
 								+" <div>"
 								+' <button href="#" class="btn main-btn center-block" id="commCommentBtn">'
 								+' <i class="fas fa-check"></i> Add Comment'
-								+" </button></div></span></div>";
+								+" </button></div>"
+								+" </span></div></div>";
+							
 								
 						 		/* 대댓글아이콘 클릭시 */
 								$('.noteCommCommBtn').on("click",function() {
 								if(commCommClickNum==0){
-									noteCommNum=$(this).children('#noteCommNum').val();
-									noteCommPos=$(this).children('#noteCommPos').val();
+									noteCommNum=$(this).find('#noteCommNum').val();
+									noteCommPos=$(this).find('#noteCommPos').val();
 									commCommClickNum=1;
 									$(this).parents('.comment').append(commBoxHtml);
-								}	
+								}else if(commCommClickNum==1){
+									$('.noteCommCommBox').remove();
+									noteCommNum=$(this).find('#noteCommNum').val();
+									noteCommPos=$(this).find('#noteCommPos').val();
+									$(this).parents('.comment').append(commBoxHtml);
+								}
+								/* 대댓글 화면 닫기 */
+									$('.noteCommCommExit').click(function(){
+										$('.noteCommCommBox').remove();
+										commCommClickNum=0;
+									});
+								});
+								
+								
+								
+								
+								
+								
 								
 								/* 대댓글 작성 버튼 클릭시 */
 								$('#commCommentBtn').on("click",  function(){
@@ -539,11 +567,11 @@ $(document).ready(function(){
 								     	  }
 									});	
 								});
-							}); 
+						
 							/* 대댓글 */
 						
 							/* 댓글삭제*/
-							$('.noteCommTrashBtn').click(function() {
+							$('.noteCommTrashBtn').click(function deleteNoteComm() {
 								noteCommNum=$(this).children('#noteCommNum').val();
 								noteCommPos=$(this).children('#noteCommPos').val();
 								swal({
@@ -585,12 +613,12 @@ $(document).ready(function(){
 						
 							
 							//신고 모달 클릭시 db 댓글 조회
-							$('#noteCommReportForm').click(function() {
+							$('.noteCommReportForm').click(function noteCommReport() {
 								commWriter=$(this).find('#commWriter').val();
 								commContent=$(this).find('#commContent').val();
 								var noteNum= $(this).find('#noteNum').val();
 								var noteCommNum =$(this).find('#noteCommNum').val()
- 								var commReportText = '<form><p><strong>댓글 작성자</strong> <span id="commWriterOut">'+commWriter+'</span></p>'+
+ 								var commReportText = '<form style="font-size:15px;"><br><p><strong>댓글 작성자</strong> <span id="commWriterOut">'+commWriter+'</span></p>'+
 						 		'<p><strong>댓글 내용</strong> <span id="commContentOut">'+commContent+'</span></p>'+
 						 		'<input type="hidden" value=${note.userEmail}/>'+
 								'</p><p style="padding-top: 10px;">'+
@@ -644,23 +672,13 @@ $(document).ready(function(){
 										
 									
 									})
-									.fail(function(jqXhr, testStatus, errorText){
-										console.log("에러발생 :" + errorText);
-									});
+									.fail(function(request,status,error){
+							     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+							     	  });
 								});
 							return false;
 						});
-							
-							
-							
-							
-							
-							
-							
-						
-						
 				
-						
 				}
 		
 			}).done(function (result){

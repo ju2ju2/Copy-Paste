@@ -18,6 +18,7 @@
 		<!-- css 영역 -->
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/qna.css" />
+		<script src="${pageContext.request.contextPath}/resources/js/inc.js"></script>
 		<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script> 
 		
 	</head>
