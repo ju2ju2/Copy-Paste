@@ -42,7 +42,7 @@
 					<label class="control-label col-sm-4">이메일 </label>
 					<div class="col-sm-4 pr-0">
 						<div>
-							<input type="text" class="form-control" name="userEmail2"
+							<input type="text" class="form-control" 
 								id="userEmail" value="${memberVo.userEmail}">
 						</div>
 					</div>

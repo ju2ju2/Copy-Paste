@@ -10,8 +10,9 @@
 							   "toDate" :  "",
 							   "keyword": "",
 							   "dragNum" : "",
-							   "sortCategory" : ""
-								}
+							   "sortCategory" : "",
+							   "page": 0
+			                      }
 	
 			//드래그 마크 중요표시 
 		    function setDragMark(dragNum){
@@ -21,7 +22,7 @@
 			};	
 			//드래그 마크 중요표시 삭제
 			function removeDragMark(dragNum) {
-				url ="../drag/removeDragMark.json",
+				url ="../drag/removeDragMark.json"
 				params.dragNum =dragNum
 				makeDragList(url, params); 
 		   };
@@ -52,11 +53,10 @@
 							              confirmButtonClass : "btn-danger",
 										  closeOnConfirm: true
 									},function(){
-										    url ="../drag/selectAllDrag.json";
-											makeDragList(url); 
+										location.reload()
 									})
-							});
-					}
+								});
+							}
 						}
 					);
 				}	
@@ -81,8 +81,7 @@
 			
 			    //드래그목록
 				function makeDragList(url, params){
-				var page=0;
-				
+		  
 				$.ajax({
 			      url: url, // url_pettern 
 			      type:"get",
@@ -129,7 +128,6 @@
 			        			$("#dragList").html(dragList);
 			        		})
 			        	}
-			    	
 			        }
 				  
 			      }).done(function (result){
@@ -151,23 +149,29 @@
 			     	        	deleteDrag(dragNum)
 			     	         }     
 			     	      });  
+			      })
+				}
 		
 			     		    // 스크롤이벤트 발생시 추가 12개 
 			     		    var lastScrollTop = 0;
-			     	    	page += 12; //2회차
-			     			$(window).scroll(function(event){
+			     	    	
+			     		 //스크롤 발생시 추가적인 리스트 생성
+			    			function moreDragList(e,url,params){
+			    				e.stopPropagation() 
 			     				event.stopPropagation(); 
 			     				// ① 스크롤 이벤트 최초 발생
 			     		        var currentScrollTop = $(window).scrollTop();
 			     
-			     		        if( currentScrollTop - lastScrollTop > 0 ){
-			     		            if ($(window).scrollTop() >= ($(document).height() - $(window).height()) ){ 
-			     		      
+			     		       if( currentScrollTop - lastScrollTop > 0 ){
+			   					if ($(window).scrollTop() >= ($(document).height() - $(window).height()) ){ 
+			   						params.page += 12;
+			   						console.log(params.page+" 번부터")
+			   						
 			     			            	$.ajax({
 			     			                    type : 'get',  
 			     			                    url :url,
 			     			       		        async: false,
-			     			                    data : { page: page },
+			     			                    data : params,
 			     			                    beforeSend: function(){
 			     			            
 			     			                    },
@@ -186,7 +190,7 @@
 			     		                    		dragList2+='<div class="icon-right starDiv" id="starMark">'+value.dragNum+'';
 			     		                  			if(value.dragMark==1){   
 			     		                  				dragList2 += '<br> <i class="fas fa-star icon-size" id="starDrag" onclick=removeDragMark("'+value.dragNum+'");></i>';
-			     		                  			}else{	setDragMark
+			     		                  			}else{	
 			     		                  				dragList2 += '<br> <i class="far fa-star icon-size" id="starDrag" onclick=setDragMark("'+value.dragNum+'");></i>';
 			     		                  			}
 			     		                  			dragList2+='</div>';
@@ -213,10 +217,7 @@
 			     					                 
 			     		                			   $('#dragList').append(dragList2);
 			     		                        })
-			     							    page += 12;
-			     		             
-			     		                    	console.log(page);
-			     		 
+			     						
 			     		                    }
 			     		                   }
 			     			            }).done(function (result){
@@ -239,44 +240,50 @@
 			     				     	         }     
 			     				     	      });  
 			     		            }) 
+			     		            
 			     		          }
 			     		      }
-			     			})
+			     			}
 			    
-			     	  
-			      })
-				}
-					
+
+		
+				
+				
 			
 //페이지 로딩시 요청
 $("document").ready(function(){
-
 			
 			var url="";
 			url ="../drag/selectAllDrag.json";
-			makeDragList(url);
-					
+			makeDragList(url, params);
+			$(window).scroll(function(e) { moreDragList(e,url, params)})		
 			
 			/* 날짜 별 검색 */
 			$("#toDate").change(function(){
 				url ="../drag/selectByCalDrag.json"
 				params.fromDate = $("#fromDate").val()
 				params.toDate =$("#toDate").val()
+				params.page=0
 				makeDragList(url, params);
+				$(window).scroll(function(e) { moreDragList(e,url, params)})		
 			});
 	  
 			//드래그 키워드 검색
 			$('#search').click(function(e) {
 				url ="../drag/selectByKeyDrag.json"
 				params.keyword = $('#search-Text').val()
+				params.page=0
 				makeDragList(url, params);
+				$(window).scroll(function(e) { moreDragList(e,url, params)})		
 			})
 
 			//드래그 정렬 
 			$('#sort-category').change(function(e) {
 				url ="../drag/selectOrderbyDrag.json"
 				params.sortCategory = $('#sort-category option:selected').val()
+				params.page=0
 				makeDragList(url, params);
+				$(window).scroll(function(e) { moreDragList(e,url, params)})		
 			})
 
 

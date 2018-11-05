@@ -29,20 +29,12 @@ import tk.copyNpaste.vo.MemberVO;
 public class LoginService {
 	 @Autowired
 	 private SqlSession sqlsession;
-	 
-
 
 	//구글로그인
 	public MemberVO googleLogin(String userEmail) throws Exception{
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
 		return memberdao.googleLogin(userEmail);
 	}
-	
-	//카카오로그인
-/*	public void kakaoLogin(String userEmail) throws Exception{
-		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
-		memberdao.kakaoLogin(userEmail);
-	}*/
 	
 	 //카카오 회원가입 1/2 (회원정보 얻기)
     public MemberVO kakaoSingUp(String code, HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -57,7 +49,7 @@ public class LoginService {
         return member;
         }
     
-    //카카오 회원가입 2/2 (DB 저장)
+    //소셜 회원가입 2/2 (DB 저장)
     @Transactional
     public void kakaoSingUp2(MemberVO member) throws Exception{
         
