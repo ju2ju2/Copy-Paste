@@ -163,7 +163,7 @@ window.onload = function() {
 			};
 		};
 	};
-	//크롤링
+	//멜론 실시간 차트 크롤링
 	$.ajax({
 		url : "jsoupMelon.json",
 		type : "GET",
@@ -173,13 +173,13 @@ window.onload = function() {
 		   +" <ul class='player-list'>";
 		   $.each(data, function(key, value){
 			   if(key<5){
-			   tag=tag+"  <li><a data-toggle='modal' href='melonLyrics.json?songNo="+value.songNo+"' data-target='#MelonModal' role='button' data-backdrop='static'>"
+			   tag=tag+"  <li class='songList'><input class='songNo' type='hidden' value='"+value.songNo+"'/>"
 				   +"     <div class='music-rank'>"+value.rank+"위</div>"
 				   +"   <img class='list-cover' src='"+value.imgT+"' />"
 				   +"   <div class='list-info'>"
 				   +"     <div class='info-title'>"+value.song+"</div>"
 				   +"     <div class='info-artist'>"+value.artist+"</div>"
-				   +" </div></a></li>";
+				   +" </div></li>";
 			   }
 			});
 		   tag=tag+"</ul></div>";
@@ -189,19 +189,44 @@ window.onload = function() {
 			var textIntro = '';
 			$.each(data, function(key, value){
 			   if(key>=5){
-				   tag2=tag2+"  <li><a data-toggle='modal' href='melonLyrics.json?songNo="+value.songNo+"' data-target='#MelonModal' role='button' data-backdrop='static'>"
+				   tag2=tag2+"  <li class='songList'><input class='songNo' type='hidden' value='"+value.songNo+"'/>"
 						   +"     <div class='music-rank'>"+value.rank+"위</div>"
 						   +"   <img class='list-cover' src='"+value.imgT+"' />"
 						   +"   <div class='list-info'>"
 						   +"     <div class='info-title'>"+value.song+"</div>"
 						   +"     <div class='info-artist'>"+value.artist+"</div>"
-						   +" </div></a></li>";
+						   +" </div></li>";
 			   	}
 				   textIntro = value.textIntro; 
 			});
 			tag2=tag2+"</ul></div>";
 			$('.melon2').append(tag2);
 			$('.textIntro').append(textIntro);
+			//차트 목록 클릭하면 옆에 가사창 띄우기
+			$('.songList').click(function() {
+				var songNo = $(this).children('.songNo').val();
+				var song = $(this).children('.list-info').children('.info-title').text();
+				var artist = $(this).children('.list-info').children('.info-artist').text();
+				console.log(songNo);
+				console.log(song);
+				console.log(artist);
+				$.ajax({
+					url : "melonLyrics.json",
+					type : "GET",
+					dataType:"json",
+					data:{songNo:songNo},
+					success : function(data) {
+						console.log(data);
+						$('.lyricsBox').empty();
+						$('.lyricsBox').html('<div class="lyrics"></div>');
+						$('.lyrics').append("<strong>"+song+"</strong>-"+artist+"<br/><br/>");
+						$('.lyrics').append(data.lyric);
+					},
+					error:function(request,status,error){
+					    console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					   }
+				});
+			});
 		},
 		error:function(request,status,error){
 		    console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
