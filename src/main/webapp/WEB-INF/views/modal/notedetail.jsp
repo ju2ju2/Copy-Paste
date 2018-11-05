@@ -119,7 +119,7 @@
 		$('#scrapNoteBtn').click(function scrapNote(e) {
 			var path = "${pageContext.request.contextPath}/note/noteDetail.htm?noteNum="+${note.noteNum}
 			var noteContent = $('#noteContent').html();
-			var noteOrgin ='<br/><br/> 출처:'+ path+ "["+${note.userNick}+ "]";
+			var noteOrgin ='<br/><br/> 출처:'+ path+ "["+'${note.userNick}'+ "]";
 			swal({
 				  title: "노트를 스크랩 하시겠습니까?",
 				  type: 'warning',
