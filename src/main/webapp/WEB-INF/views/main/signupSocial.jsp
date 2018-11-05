@@ -89,7 +89,6 @@
 	var userEmail = $('#mailto').val();
 	var userPwd = $('#userPwd').val();
 
-
 	//페이지 열리면 kakao id값이 db에 있는지 확인하고 있으면 세션 주고 메인 화면으로 보냄
 	$.ajax({
 	        type : 'post',

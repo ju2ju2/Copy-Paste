@@ -60,6 +60,8 @@ public class LoginService {
         FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
         String userEmail = member.getUserEmail();
         
+        System.out.println(userEmail);
+        
         member.setUserPwd(bCryptPasswordEncoder.encode(member.getUserPwd()));
         member.setUserSocialStatus(1); //일반회원:0, 카카오:1, 네이버:2, 구글:3
         
