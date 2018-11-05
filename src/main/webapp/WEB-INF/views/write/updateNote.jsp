@@ -22,17 +22,20 @@
 				<div class="modal-body">
 					<div class="form-group">
 					<br/>
+						<input type="hidden" id="selFolderName" value="${note.folderName}">
 						<label class="control-label col-sm-2 noteLabels">폴더 </label>
 						<select id="folderList" name="folderName" class="form-control notePublish" ></select>
 					</div>
 					<div class="form-group">
+						<input type="hidden" id="selSubjectCode" value="${note.subjectCode}">
 						<label class="control-label col-sm-2 noteLabels">주제 </label> 
 						<select	id="subjectList" name="subjectCode" class="form-control notePublish"></select>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-2 noteLabels" id="noteLabel">공개<br/>설정</label>
+						<input type="hidden" id="selNotePublic" value="${note.notePublic}">
 						<input type="radio" name="notePublic" value="1"
-							checked="checked" id="noteRadio1"> 전체 공개 <br/>
+							id="noteRadio1"> 전체 공개 <br/>
 						<input type="radio" name="notePublic" value="0" > 비공개
 					</div>
 				</div>
@@ -67,4 +70,5 @@
 	</div>
 	</div>
 </form>
+
 

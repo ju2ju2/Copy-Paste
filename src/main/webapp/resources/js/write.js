@@ -14,12 +14,21 @@
 	      type:"POST",
 	      dataType:"json",
 	      success:function(data){
+	    		console.log(data)
 	      	$.each(data, function(key,value){
 	      			$("#folderList").append($("<option />")
-	      				.val(value.folderName)
-	      				.text(value.folderName));
-	      			/*  <option value="tochi" <c:if test="${Name eq 'tochi'}">selected</c:if>>또치</option> */
-	   	//$('select[val=${note.subjectCode}]').prop("selected", true);		
+				      				.val(value.folderName)
+				      				.text(value.folderName) );
+			      	//노트 작성시 폴더 기본폴더로 지정
+			    	if(value.defaultFolder==1){
+			      		$("#folderList > option[value="+value.defaultFolder+"]").attr("selected", "selected");
+			      	}
+	
+			      	//수정시 note의  db폴더값 선택된 것으로 표시
+			      	var selFolderName=$('#selfolderName').val();
+				    if (selFolderName!=''){
+				      	$("#folderList > option[value="+selFolderName+"]").attr("selected", "selected");
+				    }
 	      	
 	      	})
 	       }
@@ -37,11 +46,27 @@
 	      			$("#subjectList").append($("<option />")
 	      				.val(value.subjectCode)
 	      				.text(value.subjectName) );
+	      			//노트 작성시 회사를 기본 주제로 지정
+	      			$("#subjectList > option[value='SJ01']").attr("selected", "selected");
+	      		 	//수정시 note의  db폴더값 선택된 것으로 표시
+			      	var selSubjectCode=$('#selSubjectCode').val();
+				    if (selSubjectCode!=''){
+				      	$("#subjectList > option[value="+selSubjectCode+"]").attr("selected", "selected");
+				    }
 	      	});
 	       }
 	    })
 	}
 	
+
+	function selectNotePublic(){
+		$('input:radio[name=notePublic]:input[value=0]').attr("checked", true);
+		
+		var selNotePublic=$('#selNotePublic').val();
+	    if (selNotePublic!=''){
+	      	$('input:radio[name=notePublic]:input[value=' + selNotePublic + ']').attr("checked", true);
+	    }
+	}
 	
 	
 	//드래그,note vo
@@ -57,7 +82,7 @@
 $(document).ready(function() {
 	selectSubject()
 	selectFolder()
-	
+ 	selectNotePublic()
 	
 	//등록 수정 버튼 클릭시
 	function insertOrUpdateNote(url,msg){

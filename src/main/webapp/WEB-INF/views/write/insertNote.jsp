@@ -29,8 +29,7 @@
 					<div class="form-group">
 						<label class="control-label col-sm-2 noteLabels" id="noteLabel">공개<br/>설정</label>
 						<input type="radio" name="notePublic" value="1" checked="checked" id="noteRadio1"> 전체 공개 <br/>
-						<input type="radio" name="notePublic" value="0" >비공개
-					</div>
+						<input type="radio" name="notePublic" value="0" > 비공개</div>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-danger" id="insertNoteBtn">발행하기</button>

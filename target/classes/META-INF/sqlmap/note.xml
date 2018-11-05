@@ -36,8 +36,10 @@
 	<!-- 노트 상세 보기(+노트 작성) -->
 	<select id="selectDetailNote" resultType="NoteVO">
 	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
-	n.subjectCode, n.noteCount, n.notePublic, n.noteScrap, n.notePNum, u.userNick, n.noteBlind
-	from note n join users u on u.userEmail=n.userEmail where noteNum = #{noteNum};
+	n.subjectCode, s.subjectName, n.noteCount, n.notePublic, n.noteScrap, n.notePNum, u.userNick, n.noteBlind
+	from note n join users u on u.userEmail=n.userEmail 
+				join subject s on s.subjectCode=n.subjectCode 
+				where noteNum = #{noteNum};
 	</select>
 	
 	<!-- 노트 댓글 보기 -->
