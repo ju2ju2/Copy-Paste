@@ -37,7 +37,7 @@
 
 		<!-- Radio -->
 		<div class="radio">
-			<form method="post" action="#">
+			<form method="post" action="#" id="radiotag">
 				<input type="radio" id="radio-sub" name="boundary" value="제목"
 					checked> <label for="radio-sub">제목</label> <input
 					type="radio" id="radio-content" value="내용" name="boundary">
