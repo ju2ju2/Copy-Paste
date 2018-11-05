@@ -36,7 +36,7 @@
 					<div class="text-center">
 						<hr>
 						<!-- 네이버 -->
-						&nbsp;<a href="#"><img src="${pageContext.request.contextPath}/resources/image/naver.png" class="inline">&ensp;</a> 
+						&nbsp;<a href="${naverAuthUrl}"><img src="${pageContext.request.contextPath}/resources/image/naver.png" class="inline">&ensp;</a> 
 						<!-- 카카오 -->
 						<a id="custom-login-btn" href="https://kauth.kakao.com/oauth/authorize?client_id=495904a0b4023192de3119bfde795283&redirect_uri=http://localhost:8090/copyNpaste/member/kakaoOauth.do&response_type=code">
 							<img src="${pageContext.request.contextPath}/resources/image/kakao.png" class="inline"> &ensp;</a>

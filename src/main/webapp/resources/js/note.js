@@ -76,7 +76,7 @@
 				  var noteList = "";
 			    	if(data != null) {
 			    		$.each(data, function(key, value){
-			    			$('#noteList').empty();
+			    			noteList="";
 			    			noteList+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 ">';
 			    			noteList+='<div class="text-center noteDiv" id="'+value.noteNum+'">';
 			    			noteList+='	<!-- a HTML (to Trigger Modal) -->';
@@ -101,7 +101,7 @@
 			    			noteList+='	</div>';
 					
 					
-			    			$("#noteList").html(noteList);
+			    			$("#noteList").append(noteList);
 			    		})
 			    		
 			    	}
@@ -144,73 +144,9 @@
 					if ($(window).scrollTop() >= ($(document).height() - $(window).height()) ){ 
 						params.page += 12;
 						console.log(params.page+" 번부터")
-						$.ajax({
-							type : 'get',  
-							url :url,
-							data : params,/*{"page" : params.page},*/
-							async: false,
-							beforeSend: function(){
-							
-							
-							},
-							success : function(data){
-								console.log(data)
-								var noteList = "";
-								var noteList2 = "";
-								if(data != null) {
-									$.each(data, function(key, value){
-										noteList2="";
-										noteList2+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 ">';
-										noteList2+='<div class="text-center noteDiv" id="'+value.noteNum+'">';
-										noteList2+='	<!-- a HTML (to Trigger Modal) -->';
-										noteList2+='	<a data-toggle="modal"';
-										noteList2+='		href="../note/noteDetail.htm?noteNum='+value.noteNum+'&cmd=mynote"';
-										noteList2+='		data-target="#modal-testNew" role="button" data-backdrop="static">';
-										noteList2+='		<div class="item">';
-										noteList2+='			<img class="img-rounded"';
-										noteList2+='				src="'+value.noteThumnail+'"';
-										noteList2+='					alt="${noteList.noteTitle}" width="100%">';
-										noteList2+='			 <div class="caption">';
-										noteList2+='				<i class="fa fa-plus" aria-hidden="true"></i>';
-										noteList2+='			</div> ';
-										noteList2+='		</div>';
-										noteList2+='		<div>';
-										noteList2+='		<input type="hidden" id="noteNum" class="noteNum" value="'+value.noteNum+'">';
-										noteList2+='			<h4>'+value.noteTitle+value.noteNum+'</h4>';
-										noteList2+='			<strong>'+value.userNick+'</strong> <span> '+value.noteDate+'</span>';
-										noteList2+='	</div>';
-										noteList2+='	</a>';
-										noteList2+='	</div>';
-										noteList2+='</div>';
-
-										$("#noteList").append(noteList2);
-									})
-									
-								}	
-							
-							}
-						}).done(function (result){
+					
+						makeNoteList(url,params)
 						
-							// noteDiv들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
-							$('.noteDiv').draggable({
-								revert: true, 
-								revertDuration: 200,
-								snapMode: "inner",
-								scroll: true,
-								scrollSensitivity: 100 ,
-								scrollSpeed: 100
-							});
-							// 노트를 드랍하여 삭제 메소드 
-							$("#droppable").droppable({
-								activeClass:"ui-state-active",
-								accept:".noteDiv",
-								drop: function(event,ui) {
-									var noteNum = ui.draggable.prop("id")
-									deleteNote(noteNum)
-								}     
-							});  
-						})
-
 					}
 				}
 			}
@@ -231,6 +167,7 @@ $("document").ready(function(){
 			params.fromDate = $("#fromDate").val()
 			params.toDate =$("#toDate").val()
 			params.page=0
+			$('#noteList').empty();
 			makeNoteList(url, params);
 			$(window).scroll(function(e) { moreNoteList(e,url, params)})
 		});
@@ -240,6 +177,7 @@ $("document").ready(function(){
 			url ="../note/selectByKeyNote.json"
 			params.keyword = $('#search-text').val()
 			params.page=0
+			$('#noteList').empty();
 			makeNoteList(url, params);
 			$(window).scroll(function(e) { moreNoteList(e,url, params)})
 		 })
@@ -249,9 +187,9 @@ $("document").ready(function(){
 			url ="../note/selectOrderbyNote.json"
 			params.sortCategory = $('#sort-category option:selected').val()
 			params.page=0
+			$('#noteList').empty();
 			makeNoteList(url, params);
 		    $(window).scroll(function(e) {moreNoteList(e,url, params)})
-
 		 })
 		 
 

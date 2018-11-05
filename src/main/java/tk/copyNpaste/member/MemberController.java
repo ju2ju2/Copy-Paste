@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.github.scribejava.core.model.OAuth2AccessToken;
+
 import tk.copyNpaste.folder.FolderService;
 import tk.copyNpaste.vo.MemberVO;
 
@@ -96,10 +98,10 @@ public class MemberController {
 			throws Exception{
 		
 		MemberVO member = loginService.kakaoSingUp(code, request, response);
-		ModelAndView kakaoMav = new ModelAndView();
-		kakaoMav.setViewName("index.signupSocial");
-		kakaoMav.addObject("memberVo", member);
-		return kakaoMav;
+		ModelAndView soscialMav = new ModelAndView();
+		soscialMav.setViewName("index.signupSocial");
+		soscialMav.addObject("memberVo", member);
+		return soscialMav;
 	};
 		
 	//카카오 회원가입 2/2 (DB 저장)
@@ -109,17 +111,25 @@ public class MemberController {
 		 return "index.login";
 		};
 	
-/*	@RequestMapping(value = "getSession.do")
-	public String getSession(MemberVO member, HttpSession session) throws Exception{
-		session.setAttribute(session, ; 
-		
-		 return "index.index";
-			};	*/
-		
-	//네이버로그인
-	public void naverLogin(String userEmail) throws Exception{
-		
+	//네이버 회원가입 1/2 (회원정보 얻기) //네이버 로그인 성공시 callback호출 메소드
+    @RequestMapping(value = "naverOauth.do", method= RequestMethod.GET)
+    public String naverSignup(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws Exception {
+        OAuth2AccessToken oauthToken= NaverLogin.getAccessToken(session, code, state);
+        //로그인 사용자 정보를 읽어온다.
+        String profile = NaverLogin.getUserProfile(oauthToken);
+    	MemberVO member = NaverLogin.changeData(profile);
+    	System.out.println(member.toString());
+        model.addAttribute("memberVo", member);
+        /* 네이버 로그인 성공 페이지 View 호출 */
+        return "index.signupSocial";
+    }
+	
+	//네이버 회원가입 2/2 (DB 저장)
+	@RequestMapping(value = "naverOauth.do", method= RequestMethod.POST)
+	public String naverSignup2(MemberVO member) throws Exception{
+		 return "index.login";
 	};
+	
 		
 	//전회원 정보 보기
 	public @ResponseBody List<MemberVO> selectAllMember() throws Exception{
