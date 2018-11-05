@@ -360,9 +360,8 @@
    text-align: right;
 }
 
-
-/* 드래그 목록 사이즈 설정 */
-.mini-posts article {
+ /* 드래그 목록 사이즈 설정 */
+/* .mini-posts article {
    border-top: solid 1px rgba(210, 215, 217, 0.75);
    margin-top: 2rem;
    padding-top: 2rem;
@@ -381,7 +380,7 @@
    border-top: 0;
    margin-top: 0;
    padding-top: 0;
-}
+}  */
 
 
 /* 검색 */
@@ -773,8 +772,8 @@ blockquote a:hover{
  }
  
 blockquote.grapefruit{
-  border-left-color: #ed5565;
-  border-right-color: #da4453;
+/*   border-left-color: #ed5565;
+  border-right-color: #da4453; */
 }
  
 code{
@@ -784,10 +783,7 @@ code{
   width:100%;
  
 }
-/* span{
-  font-weight:bolder;
-  
-} */
+
  
 h1#mydrag{
   text-align:left;
@@ -802,16 +798,16 @@ span.Cgrapefruit{
 /* 드래그 목록 사이즈 설정 */
 .dragDiv blockquote {
      border-left:none
- 
+     
 }
  
 .dragDiv{
-   overflow: hidden;
+    overflow: hidden;
     margin-top: -50px;
-    padding-top: -100px;
+    padding-top: -100px; 
     border-radius: 17px;
     background-color:white ;
-    margin-top: 25px;
+/*     margin-top: 25px; */
     color:#333;
     width: 325px;
     box-shadow: 2px 2px 2px 2px #E0E0E0;
@@ -831,7 +827,7 @@ span.Cgrapefruit{
    padding-top: 0;
 }
  
-.dragtooltip:hover:after{
+/* .dragtooltip:hover:after{
   background: #333;
   background: rgba(0,0,0,.9);
   border-radius: 5px;
@@ -867,12 +863,12 @@ span.Cgrapefruit{
   text-decoration: none;
   box-shadow: 0 0 10px black;
 }
- 
+  */
 #dragDate{
    color:#c0c0c0;
 }
  
- 
+
 #dragOrigin{
 overflow: hidden;
 text-overflow: ellipsis;
@@ -904,7 +900,13 @@ height: 1.2em;
    margin-top: 1em !important;
    text-align: right;
 }
- 
+
+.icon-size {
+   margin-left: 2rem;
+   font-size: 2rem;
+   cursor: pointer;
+   color:#999;
+} 
  
 /* 드래그 top버튼 */
 #myBtn {

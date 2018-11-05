@@ -592,10 +592,7 @@ span.Cgrapefruit{
 
 }
 
-span{
-  
-  
-}
+
 
 h1#mydrag{
   text-align:left;
@@ -618,7 +615,7 @@ h1#mydrag{
     padding-top: -100px;
     border-radius: 17px;
     background-color:white ;
-    margin-top: 25px;
+  /*   margin-top: 25px; */
     color:#333;
     width: 325px;
     box-shadow: 2px 2px 2px 2px #E0E0E0;

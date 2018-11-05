@@ -65,7 +65,7 @@
 				window.onscroll = function() {scrollFunction()};
 				function scrollFunction() {
 				    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-				        document.getElementById("myBtn").style.display = "block";
+				    	document.getElementById("myBtn").style.display = "block";
 				    } else {
 				        document.getElementById("myBtn").style.display = "none";
 				    }
@@ -95,7 +95,7 @@
 			        			$('#dragList').empty();
 			        			dragList+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">';
 			        			dragList+='<div class="text-center dragDiv mt-10" id="'+value.dragNum+'">';
-			        			dragList+='<blockquote class="grapefruit">';
+			        			dragList+='<blockquote class="grapefruit" >';
 			        			dragList+='<!-- 별 아이콘 -->';
 			        			dragList+='<div class="icon-right starDiv" id="starMark">'+value.dragNum+'';
 			          			if(value.dragMark==1){   
