@@ -27,7 +27,7 @@
 <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 
 <!-- Modal HTML -->
-<div id="noteDetailModal" class="modal fade text-center overlay" role="dialog">
+<div id="modal-testNew" class="modal fade text-center overlay" role="dialog">
 	<div class="modal-dialog">
 		<div class="modal-content">Content will be loaded here from
 			"note/noteDetail.htm" file</div>

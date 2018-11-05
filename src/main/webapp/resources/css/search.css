@@ -19,6 +19,7 @@
   flex-direction: row;
   padding-left: 0;
   padding-right: 0;
+  overflow:hidden;
 }
 
 .col-xs-2, .col-xs-12 {
@@ -160,8 +161,8 @@
 	
 	.s-inner {
 		-webkit-overflow-scrolling: touch;
-        height: 100%;
-        overflow: hidden;
+       /*  height: 100%; */
+   /*      overflow: hidden; */
 		padding: 1.6666666667rem 3rem 1.3333333333rem 1.6666666667rem;
 	}
 	
@@ -216,13 +217,7 @@
 		width: 100%;
 	}
 
-	.s-inner {
-		-webkit-overflow-scrolling: touch;
-        height: 100%;
-		padding: 1.6666666667rem 3rem 1.3333333333rem 1.6666666667rem;
-		overflow: hidden;
-	}
-
+	
 	#sidebar .toggle {
 		text-indent: 6em;
 		width: 6em;
@@ -843,4 +838,25 @@ svg {
 
 #gSearchText{
 	margin-top:10px !important;
+}
+
+/* 드래그 top버튼 */
+#myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 3px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+#myBtn:hover {
+  background-color: #555;
 }
