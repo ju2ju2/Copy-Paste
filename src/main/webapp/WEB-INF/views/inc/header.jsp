@@ -181,7 +181,7 @@
 						<ul class="dropdown-menu">
 
 							<li><a
-								href="${pageContext.request.contextPath}/etc/selectSearchSite.htm">사이트
+								href="${pageContext.request.contextPath}/etc/selectSearchSite.htm?subjectName=회사">사이트
 									검색</a></li>
 							<li><a
 								href="${pageContext.request.contextPath}/etc/selectSearchNaver.htm">네이버

@@ -112,7 +112,7 @@ public class MemberController {
 	public String socialSingUp(MemberVO member) throws Exception{
 		 loginService.socialSingUp(member);
 		 return "index.login";
-		};
+	};
 	
 	//네이버 회원가입 1/2 (회원정보 얻기) //네이버 로그인 성공시 callback호출 메소드
     @RequestMapping(value = "naverOauth.do", method= RequestMethod.GET)
@@ -121,7 +121,6 @@ public class MemberController {
         //로그인 사용자 정보를 읽어온다.
         String profile = NaverLogin.getUserProfile(oauthToken);
     	MemberVO member = NaverLogin.changeData(profile);
-    	System.out.println(member.toString());
         model.addAttribute("memberVo", member);
         /* 네이버 로그인 성공 페이지 View 호출 */
         return "index.signupSocial";

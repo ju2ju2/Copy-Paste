@@ -22,9 +22,9 @@
   overflow:hidden;
 }
 
-.col-xs-2, .col-xs-12 {
+/* .col-xs-2, .col-xs-12 {
 	padding: 0 !important;
-}
+} */
 
 .no-margin {
 	margin-bottom: 0;

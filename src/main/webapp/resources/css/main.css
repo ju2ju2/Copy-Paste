@@ -558,6 +558,22 @@ img .user-photo{
 	margin-top: 10px !important;
 }
 
+.mb-0 {
+	margin-bottom: 0px !important;
+}
+
+.ml-0 {
+	margin-left: 0px !important;
+}
+
+.mr-0 {
+	margin-right: 0px !important;
+}
+
+.mt-0 {
+	margin-top: 0px !important;
+}
+
 .inline {
 	display: inline-block;
 }
@@ -915,4 +931,8 @@ img .user-photo{
     background: rgba(0,0,0,0.2); 
     filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr='#20000000', endColorstr='#20000000');    /* ie */
 
+}
+
+.more{
+	bottom: -30px;
 }
