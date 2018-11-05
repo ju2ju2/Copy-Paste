@@ -321,7 +321,7 @@
 						                         aa+='</a>'
 						                         aa+='</div>'
 						                         aa+='</div>'
-						                         $("div[alt='"+value.folderName+"']").find("#asideNoteList").html(aa);
+						                         $("div[alt='"+value.folderName+"']").find("#searchList").html(aa);
 							          		})
 							          	}
 							          	
