@@ -185,7 +185,7 @@
 				</otherwise>
 			</choose>
 		</where>
-		order by noteNum desc;
+		order by noteNum desc limit ${page},12
 	</select>
 	
 	<!-- write에서 사이트 내 검색 -->

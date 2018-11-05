@@ -184,9 +184,6 @@
 								href="${pageContext.request.contextPath}/etc/selectSearchSite.htm?subjectName=회사">사이트
 									검색</a></li>
 							<li><a
-								href="${pageContext.request.contextPath}/etc/selectSearchNaver.htm">네이버
-									검색</a></li>
-							<li><a
 								href="${pageContext.request.contextPath}/etc/selectSearchGoogle.htm">
 									구 &ensp;글 검색</a></li>
 						</ul></li>
@@ -240,10 +237,7 @@
 						data-toggle="dropdown"> SEARCH<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a
-								href="${pageContext.request.contextPath}/etc/selectSearchSite.htm">사이트
-									검색</a></li>
-							<li><a
-								href="${pageContext.request.contextPath}/etc/selectSearchNaver.htm">네이버
+								href="${pageContext.request.contextPath}/etc/selectSearchSite.htm?subjectName=회사"">사이트
 									검색</a></li>
 							<li><a
 								href="${pageContext.request.contextPath}/etc/selectSearchGoogle.htm">

@@ -65,7 +65,7 @@ public class NoteController {
 
 	// 노트 상세 보기(+노트 작성)
 	@RequestMapping(value = "noteDetail.htm")
-	public String selectDetailNote(int noteNum,String cmd, Model model) throws Exception {
+	public String selectDetailNote(int noteNum, Model model) throws Exception {
 		NoteVO note = noteService.selectDetailNote(noteNum);
 		List<NoteCommVO> noteCommList = noteService.selectAllNoteComm(noteNum);
 		model.addAttribute("note", note);
@@ -204,7 +204,7 @@ public class NoteController {
 
 	// 댓글  삭제 
 	@RequestMapping(value="deleteNoteComm.json")
-	public @ResponseBody int deleteNoteComm(int noteCommNum, String cmd) throws Exception {
+	public @ResponseBody int deleteNoteComm(int noteCommNum) throws Exception {
 		return noteService.deleteNoteComm(noteCommNum);
 	}
 	

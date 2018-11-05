@@ -188,7 +188,7 @@ function folderContents(folder,folderName){
 		      			b+='<div class="text-center noteDiv" id="'+value.noteNum+'">';
 		      			b+='	<!-- a HTML (to Trigger Modal) -->';
 		      			b+='<a data-toggle="modal"';
-		      			b+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'"';
+		      			b+='href="../note/noteDetail.htm?noteNum='+value.noteNum+'"';
 		      			b+='data-target="#modal-testNew" role="button" data-backdrop="static">';
 		      			b+='<div class="item">';
 		      			b+='<img class="img-rounded"';
@@ -260,7 +260,7 @@ $('#search').click(function(e) {
   			noteList+='<div class="text-center noteDiv" id="'+value.noteNum+'">';
   			noteList+='	<!-- a HTML (to Trigger Modal) -->';
   			noteList+='<a data-toggle="modal"';
-  			noteList+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&cmd=mynote"';
+  			noteList+='href="../note/noteDetail.htm?noteNum='+value.noteNum+'"';
   			noteList+='data-target="#modal-testNew" role="button" data-backdrop="static">';
   			noteList+='<div class="item">';
   			noteList+='<img class="img-rounded"';
@@ -328,7 +328,7 @@ $("#toDate").change(function() {
 		                       notecal+='<div class="text-center noteDiv" id="'+value.noteNum+'">';
 		                       notecal+='   <!-- a HTML (to Trigger Modal) -->';
 		                       notecal+='<a data-toggle="modal"';
-		                       notecal+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&cmd=mynote"';
+		                       notecal+='href="../note/noteDetail.htm?noteNum='+value.noteNum+'"';
 		                       notecal+='data-target="#modal-testNew" role="button" data-backdrop="static">';
 		                       notecal+='<div class="item">';
 		                       notecal+='<img class="img-rounded"';

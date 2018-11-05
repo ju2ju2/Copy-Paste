@@ -7,6 +7,11 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+<%@ taglib prefix="se"
+	uri="http://www.springframework.org/security/tags"%>
+<se:authentication property="name" var="loginuser" />
+<se:authentication property="authorities" var="role" />
+
 <!-- Sidebar -->
 <nav class="sidebarfixed">
    <div id="sidebar">
@@ -59,10 +64,11 @@
                   <br>
                   <header class="major" id="droppable">
                      <h2>
-                        드래그 목록<i class="fas fa-trash icon-size"></i>
+                        	드래그 목록<i class="fas fa-trash icon-size"></i>
                      </h2>
                   </header>
                   <!-- 드래그목록 -->
+                  <input type="hidden" id="loginUser" value="${loginuser}">
                   <div class="mini-posts" id="dragList"></div>
                </section>
             </div>

@@ -27,7 +27,7 @@
 				<section id="subject-search" class="alt">
 					<form method="post" action="#">
 						<input type="text" name="keyword" id="searchinsite-text"
-							placeholder="검색어를 입력해 주세요." /> <a href="#"><i
+							placeholder="검색어를 입력해 주세요." /> <a><i
 							id="searchinsite" class="fas fa-search icon-size"
 							style="padding-top: 15px"></i></a>
 					</form>
