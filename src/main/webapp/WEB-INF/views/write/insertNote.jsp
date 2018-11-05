@@ -46,7 +46,7 @@
 		<div class="form-group">
 			<input id="noteTitle" name="noteTitle" type="text" size="158" required placeholder="제목을 입력해주세요">
 		</div>
-		<textarea id="noteContent" name="noteContent" rows="22" required></textarea>
+		<textarea id="noteContent" name="noteContent" rows="20" required></textarea>
 		<input name="image" type="file" id="upload" multiple class="hidden" onchange="">
 		<br>
 		<div class="col-sm-12 text-right">

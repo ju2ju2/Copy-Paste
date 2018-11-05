@@ -37,7 +37,7 @@
 					<input type="hidden" class="form-control" name="session"
 								id="session" value="${session}">		
 					<input type="hidden" class="form-control" name="userSocialStatus"
-								id="session" value="${userSocialStatus}">				
+								id="userSocialStatus" value="${memberVo.userSocialStatus}">				
 				</div>
 						
 				<div class="form-group" id="userEmailDiv">

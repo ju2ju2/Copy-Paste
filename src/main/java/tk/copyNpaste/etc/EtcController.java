@@ -209,26 +209,12 @@ public class EtcController {
 	
 	// 사이트내 검색 + 인기글 목록 뿌려주기
 	@RequestMapping("/selectSearchSite.htm")
-	public String selectSearchSite(Model model) throws Exception {
-		List<NoteVO> notelist = noteService.selectSubjectCode();
-		String[] subjectNames = new String[notelist.size()];
-		int i = 0;
-		for (NoteVO note: notelist ) {
-			subjectNames[i] = note.getSubjectName();
-			i++;
-		}
-		List<NoteVO> etcNoteList = noteService.selectTopNote(subjectNames[0]);
-		model.addAttribute("etcNoteList", etcNoteList);
-		List<NoteVO> bizNoteList = noteService.selectTopNote(subjectNames[1]);
-		model.addAttribute("bizNoteList", bizNoteList);
-		List<NoteVO> lifeNoteList = noteService.selectTopNote(subjectNames[2]);
-		model.addAttribute("lifeNoteList", lifeNoteList);
-		List<NoteVO> eduNoteList = noteService.selectTopNote(subjectNames[3]);
-		model.addAttribute("eduNoteList", eduNoteList);
+	public String selectSearchSite(Model model, String subjectName) throws Exception {
+		model.addAttribute("subjectName", subjectName);
 		return "search.selectSearchSite";
 	}
 	
-		// * 사이트 내 검색	- 10.29 이주원
+	// * 사이트 내 검색	- 10.29 이주원
 	@RequestMapping(value="selectSearchSite.json", method = RequestMethod.GET)
 	public @ResponseBody List<NoteVO> selectSearchSite(String boundary, String subjectCategory,String keyword) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();	

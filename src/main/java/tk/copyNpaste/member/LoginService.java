@@ -59,11 +59,8 @@ public class LoginService {
         MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
         FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
         String userEmail = member.getUserEmail();
-        
-        System.out.println(userEmail);
-        
         member.setUserPwd(bCryptPasswordEncoder.encode(member.getUserPwd()));
-        member.setUserSocialStatus(1); //일반회원:0, 카카오:1, 네이버:2, 구글:3
+        //일반회원:0, 카카오:1, 네이버:2, 구글:3
         
         try {
             memberdao.insertMember(member); //DB에 회원정보 입력
