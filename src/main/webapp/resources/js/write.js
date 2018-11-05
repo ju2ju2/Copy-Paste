@@ -209,8 +209,9 @@ $(document).ready(function() {
   		    }).done(function(data){
   					$(".modal").modal("hide");
   					var editor = tinyMCE.activeEditor;
-  	    			var noteContent = $('#noteContent').html();
-  	    			editor.dom.add(editor.getBody(), 'p', {}, data.text+ "<br>");
+  					var nString= data.text.replace(/\n/g, "<br>");
+  	    			editor.dom.add(editor.getBody(), 'p', {}, nString + "<br>");
+  	    	
   			}).fail(function(request,status,error){
   	    	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
   			});

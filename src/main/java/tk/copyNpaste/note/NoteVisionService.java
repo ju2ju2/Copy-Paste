@@ -70,6 +70,7 @@ public class NoteVisionService {
 				for (EntityAnnotation annotation : res.getTextAnnotationsList()) {
 					/*System.out.printf("Text: %s\n", annotation.getDescription());*/
 					text = annotation.getDescription();
+					System.out.println(text);
 					return text;
 				}
 			}
