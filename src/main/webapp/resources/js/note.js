@@ -81,7 +81,7 @@
 			    			noteList+='<div class="text-center noteDiv" id="'+value.noteNum+'">';
 			    			noteList+='	<!-- a HTML (to Trigger Modal) -->';
 			    			noteList+='	<a data-toggle="modal"';
-			    			noteList+='		href="../note/noteDetail.htm?noteNum='+value.noteNum+'&cmd=mynote"';
+			    			noteList+='		href="../note/noteDetail.htm?noteNum='+value.noteNum+'"';
 			    			noteList+='		data-target="#modal-testNew" role="button" data-backdrop="static">';
 			    			noteList+='		<div class="item">';
 			    			noteList+='			<img class="img-rounded"';
