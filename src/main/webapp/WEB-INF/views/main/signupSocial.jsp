@@ -8,8 +8,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page contentType="text/html; charset=UTF-8" session="true"%>
-<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
-
 <div class="container">
 	<div class="row">
 		<div class="center-block ">	<h2 class="text-center signup-title">소셜 회원가입</h2>
