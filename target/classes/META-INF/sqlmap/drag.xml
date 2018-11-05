@@ -47,7 +47,7 @@
 		  (dragText like CONCAT('%',#{keyword},'%') or 
 		  dragOrigin like CONCAT('%',#{keyword},'%') or 
 		  dragDate like CONCAT('%',#{keyword},'%'))
-			order by dragNum desc limitㄴ ${page},12 
+			order by dragNum desc limit ${page},12 
 	</select>
 	
 		<!-- 드래그 정렬-->

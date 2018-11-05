@@ -55,15 +55,10 @@
 											where u.userEmail=?" />
          
 			<!-- 패스워드 인코더  -->
-			<!-- <security:password-encoder ref="bCryptPasswordEncoder"/> -->
+			<security:password-encoder ref="bCryptPasswordEncoder"/>
 		</security:authentication-provider>
 </security:authentication-manager>
 
-<!-- 비밀번호 암호화(Security) -->
-<!-- 	<bean id="bCryptPasswordEncoder"
-		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
-		<constructor-arg name="strength" value="20"></constructor-arg>
-	</bean> -->
 	<bean name="jsonview" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
 	
 

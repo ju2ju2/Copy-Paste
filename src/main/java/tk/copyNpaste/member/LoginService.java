@@ -8,14 +8,19 @@ package tk.copyNpaste.member;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import tk.copyNpaste.mapper.FolderMapper;
 import tk.copyNpaste.mapper.MemberMapper;
@@ -25,7 +30,6 @@ import tk.copyNpaste.vo.MemberVO;
 public class LoginService {
 	 @Autowired
 	 private SqlSession sqlsession;
-	 
 	 @Autowired
 	 private BCryptPasswordEncoder bCryptPasswordEncoder;
 	 
@@ -34,12 +38,6 @@ public class LoginService {
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
 		return memberdao.googleLogin(userEmail);
 	}
-	
-	//카카오로그인
-/*	public void kakaoLogin(String userEmail) throws Exception{
-		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
-		memberdao.kakaoLogin(userEmail);
-	}*/
 	
 	 //카카오 회원가입 1/2 (회원정보 얻기)
     public MemberVO kakaoSingUp(String code, HttpServletRequest request, HttpServletResponse response) throws Exception{
@@ -54,7 +52,7 @@ public class LoginService {
         return member;
         }
     
-    //카카오 회원가입 2/2 (DB 저장)
+    //소셜 회원가입 2/2 (DB 저장)
     @Transactional
     public void kakaoSingUp2(MemberVO member) throws Exception{
         
@@ -82,6 +80,6 @@ public class LoginService {
 		return memberdao.naverLogin(userEmail);
 	}
 	
-	
+
 	
 }

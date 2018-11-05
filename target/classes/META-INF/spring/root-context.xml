@@ -23,5 +23,9 @@
 		<!-- <property name="contentType" value="application/json;charset=UTF-8"/> -->
 		<property name="contentType" value="text/html; charset=UTF-8" />
 	</bean>
+	
+	<bean id="bCryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
+		<!-- <constructor-arg name="strength" value="20"></constructor-arg> -->
+	</bean>
 
 </beans>

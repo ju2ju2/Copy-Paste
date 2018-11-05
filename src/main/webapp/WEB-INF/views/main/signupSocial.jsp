@@ -12,9 +12,9 @@
 
 <div class="container">
 	<div class="row">
-		<div class="center-block ">정보 확인</h2>
+		<div class="center-block ">	<h2 class="text-center signup-title">소셜 회원가입</h2>
 			<hr>
-				<form class="form-horizontal" method="post" name="signup" id="signup" action="${pageContext.request.contextPath}/member/kakaoOauth2.do">
+				<form class="form-horizontal" method="post" name="signup" id="signup" action="${pageContext.request.contextPath}/member/kakaoOauth2.do"><!-- 소셜 회원가입 -->
 				<div class="form-group">
 					<label class="control-label col-sm-4">프로필 이미지</label>
 					<div class="col-sm-4">				
@@ -36,8 +36,20 @@
 								id="userPhoto" value="${memberVo.userPhoto}">	
 					<input type="hidden" class="form-control" name="session"
 								id="session" value="${session}">		
-					
 				</div>
+						
+				<div class="form-group" id="userEmailDiv">
+					<label class="control-label col-sm-4">이메일 </label>
+					<div class="col-sm-4 pr-0">
+						<div>
+							<input type="text" class="form-control" 
+								id="userEmail" value="${memberVo.userEmail}">
+						</div>
+					</div>
+					<div class="col-sm-12 text-center">
+					<div id="userEmailMessage" class="mt-10"></div></div>
+				</div>		
+						
 								
 				<div class="form-group">
 					<label class="control-label col-sm-4">닉네임 </label>
@@ -74,7 +86,7 @@
 	var writtenNick; //회원이 입력한 닉네임
 	var userEmail = $('#mailto').val();
 	var userPwd = $('#userPwd').val();
-	console.log($('#mailto').val());
+
 
 	//페이지 열리면 kakao id값이 db에 있는지 확인하고 있으면 세션 주고 메인 화면으로 보냄
 	$.ajax({
