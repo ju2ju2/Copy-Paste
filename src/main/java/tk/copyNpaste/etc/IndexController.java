@@ -1,8 +1,10 @@
 package tk.copyNpaste.etc;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -116,19 +118,21 @@ public class IndexController {
 
 			return melonList;
 		}
-		// 가사보기
-		@RequestMapping(value = "melonLyrics.json")
-		public String selectDetailNote(String songNo, Model model) throws Exception {
+		// 선택한 곡 가사보기
+		@RequestMapping(value = "/melonLyrics.json")
+		public @ResponseBody Map<String,String> selectDetailNote(String songNo) throws Exception {
 			String url = "https://www.melon.com/song/detail.htm?songId="+songNo;
 		    Document doc = null;
 		    doc = Jsoup.connect(url).get();
-		    
+		    System.out.println("들어는왂니?");
+		    Map<String, String> map = new HashMap<String, String> ();
+		  
 		    // 태그를 찾아서 가져오도록 한다.
 		    Elements element = doc.select(".lyric");
 		    String lyric = element.html();
-
-			model.addAttribute("lyric", lyric);
-			return "melonLyric";//(modal/melonLyric.jsp)
+		    map.put("lyric", lyric);
+		    System.out.println(lyric);
+			return map;
 		}
 		
 		
