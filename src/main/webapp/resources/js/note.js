@@ -183,7 +183,7 @@ $("document").ready(function(){
 		 })
 
 	    //노트 정렬 
-		 $('#sort-category').on("change",function(e) {
+		 $('#sort-category').change(function(e) {
 			url ="../note/selectOrderbyNote.json"
 			params.sortCategory = $('#sort-category option:selected').val()
 			params.page=0

@@ -215,15 +215,25 @@ public class EtcController {
 	
 	// * 사이트 내 검색	- 10.29 이주원
 	@RequestMapping(value="selectSearchSite.json", method = RequestMethod.GET)
-	public @ResponseBody List<NoteVO> selectSearchSite(String boundary, String subjectCategory,String keyword) throws Exception {
+	public @ResponseBody List<NoteVO> selectSearchSite(String boundary, String subjectCategory,String keyword,String page) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();	
 		map.put("boundary", boundary);
 		map.put("subjectCategory", subjectCategory);
 		map.put("keyword", keyword);
-		/*return etcService.selectSearchSite(map);*/
-		return etcService.selectSearchSite(map);
+		map.put("page", page);
+		List<NoteVO> noteList=etcService.selectSearchSite(map);
+		return noteList;
 	}
 
+	// * write 사이트 내 검색
+	@RequestMapping(value="selectSearchSiteWrite.json", method = RequestMethod.GET)
+	public @ResponseBody List<NoteVO> selectSearchSiteWrite(String keyword) throws Exception {
+	HashMap<String, Object> map = new HashMap<String, Object>();	
+	map.put("keyword", keyword);
+	/*return etcService.selectSearchSite(map);*/
+	return etcService.selectSearchSiteWrite(map);
+}
+	
 	// 네이버 검색
 	@RequestMapping("/selectSearchNaver.htm")
 	public String selectSearchNaver(HttpServletRequest request) throws InterruptedException {
@@ -238,13 +248,5 @@ public class EtcController {
 		return "search.selectSearchGoogle";
 	}
 
-	// * write 사이트 내 검색
-	@RequestMapping(value="selectSearchSiteWrite.json", method = RequestMethod.GET)
-	public @ResponseBody List<NoteVO> selectSearchSiteWrite(String keyword) throws Exception {
-	HashMap<String, Object> map = new HashMap<String, Object>();	
-	map.put("keyword", keyword);
-	/*return etcService.selectSearchSite(map);*/
-	return etcService.selectSearchSiteWrite(map);
-}
 	
 }

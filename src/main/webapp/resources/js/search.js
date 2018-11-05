@@ -23,24 +23,6 @@ function topFunction() {
 	document.documentElement.scrollTop = 0;
 }
 
-//검색어 입력
-$("#searchinsite").click(function(){
-	if($("#searchinsite-text").val()==''){
-		swal({
-			title: "검색어를 입력해주세요",
-			text: "",
-			type: "warning",
-			confirmButtonClass: "btn-danger",
-			confirmButtonText: "OK",
-			showCancelButton: false
-		})
-	}else{
-
-	}
-
-});
-
-
 //노트목록
 function makeNoteList(url, params){
 $.ajax({
@@ -81,6 +63,10 @@ $.ajax({
     			$("#noteList").append(noteList);
     		})
     		
+    	}else{
+    		noteList="";
+			noteList+='<div class="col-xs-12 text-center"><h4>검색된 결과가 없습니다.</h4></div>';
+    		$("#noteList").html(noteList);
     	}
     }
   })
@@ -112,18 +98,56 @@ $("document").ready(function(){
 
 		//더보기 클릭시 주제 선택된것으로 표시
 	    var subjectName=$('#subjectName').val();
-	    $("#subject-category > option[value="+subjectName+"]").attr("selected", "true");
+		$("#subject-category > option[value="+subjectName+"]").attr("selected", "selected");
 	    
 		var url="";
 		url ="../etc/selectSearchSite.json";
-	 
-		
 		params.keyword=$("#searchinsite-text").val()
 		params.subjectCategory=$('#subject-category option:selected').val()
 		params.boundary=$('input[name="boundary"]:checked').val()
 		makeNoteList(url,params);
 		$(window).scroll(function(e) { moreNoteList(e,url, params)})
 		
+		
+		//검색어 입력
+		$("#searchinsite").click(function(){
+			if($("#searchinsite-text").val()==''){
+				swal({
+					title: "검색어를 입력해주세요",
+					text: "",
+					type: "warning",
+					confirmButtonClass: "btn-danger",
+					confirmButtonText: "OK",
+					showCancelButton: false
+				})
+			}else{
+				var url="";
+				url ="../etc/selectSearchSite.json";
+				params.page=0
+				params.keyword=$("#searchinsite-text").val()
+				params.subjectCategory=$('#subject-category option:selected').val()
+				params.boundary=$('input[name="boundary"]:checked').val()
+				$('#noteList').empty();
+				makeNoteList(url,params);
+				$(window).scroll(function(e) { moreNoteList(e,url, params)})
+
+			}
+
+		});
+
+	    //주제별 검색
+
+		 $('#subject-category').on("change",function(e) {
+			url ="../etc/selectSearchSite.json";
+			params.keyword=$("#searchinsite-text").val()
+			params.subjectCategory = $('#subject-category option:selected').val()
+			params.boundary=$('input[name="boundary"]:checked').val()
+			params.page=0
+			$('#noteList').empty();
+			makeNoteList(url, params);
+		    $(window).scroll(function(e) {moreNoteList(e,url, params)})
+		 })
+		 
 		
 		
 //끝		
