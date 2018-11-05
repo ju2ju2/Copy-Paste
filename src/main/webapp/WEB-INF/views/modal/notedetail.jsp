@@ -34,9 +34,11 @@
 		$('#addToNoteBtn').click(function addToNote(e) {
 				$(".modal").modal("hide");
 				var editor = tinyMCE.activeEditor;
+				var path = "${pageContext.request.contextPath}/note/noteDetail.htm?noteNum="+${note.noteNum}
     			var noteContent = $('#noteContent').html();
     			editor.dom.add(editor.getBody(), 'p', {}, noteContent+ "<br>");
-    	
+    			var noteOrigin ='<br/><br/> 출처:'+ path+" ["+'${note.userNick}'+ "]";
+    			editor.dom.add(editor.getBody(), 'p', {}, noteOrigin + "<br>");
 			});
 		
 		//노트 pdf 파일 다운로드
@@ -119,7 +121,7 @@
 		$('#scrapNoteBtn').click(function scrapNote(e) {
 			var path = "${pageContext.request.contextPath}/note/noteDetail.htm?noteNum="+${note.noteNum}
 			var noteContent = $('#noteContent').html();
-			var noteOrgin ='<br/><br/> 출처:'+ path+ "["+'${note.userNick}'+ "]";
+			var noteOrgin ='<br/><br/> 출처:'+ path+"["+'${note.userNick}'+ "]";
 			swal({
 				  title: "노트를 스크랩 하시겠습니까?",
 				  type: 'warning',
@@ -497,9 +499,6 @@ $(document).ready(function(){
 						}
 			          $('#noteCommList').html(noteCommList);
 						
-						
-			     
-			        
 						
 							/* 대댓글 */
 							var commCommClickNum = 0;
