@@ -37,7 +37,9 @@ body {
 nav {
 	font-family: "Montserrat", sans-serif;
 }
-
+nav .al {
+   font-size: 2rem;
+}
 
 html, body {
 	height: 100%;

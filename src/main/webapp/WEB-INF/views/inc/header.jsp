@@ -220,7 +220,7 @@
 					<li class="dropdown">
 						<a href="#" id="notifyALink"
 							class="dropdown-toggle icon-menu" data-toggle="dropdown"> <i
-							class="far fa-bell"></i> <span class="badge bg-danger" id="notifyBadge"></span>
+							class="far fa-bell al"></i> <span class="badge bg-danger" id="notifyBadge"></span>
 						</a>
 						<ul class="dropdown-menu notifications" id="notifyUl">
 						</ul>
