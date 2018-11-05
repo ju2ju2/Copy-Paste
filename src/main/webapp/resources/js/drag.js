@@ -97,7 +97,7 @@
 			        			dragList+='<div class="text-center dragDiv mt-10" id="'+value.dragNum+'">';
 			        			dragList+='<blockquote class="grapefruit" >';
 			        			dragList+='<!-- 별 아이콘 -->';
-			        			dragList+='<div class="icon-right starDiv" id="starMark">'+value.dragNum+'';
+			        			dragList+='<div class="icon-right starDiv" id="starMark">';
 			          			if(value.dragMark==1){   
 			          				dragList += '<br> <i class="fas fa-star icon-size" id="starDrag" onclick=removeDragMark('+value.dragNum+');></i>';
 			          			}else{	
@@ -187,7 +187,7 @@
 			     		                    		dragList2+='<div class="text-center dragDiv mt-10" id="'+value.dragNum+'">';
 			     		                    		dragList2+='<blockquote class="grapefruit">';
 			     		                    		dragList2+='<!-- 별 아이콘 -->';
-			     		                    		dragList2+='<div class="icon-right starDiv" id="starMark">'+value.dragNum+'';
+			     		                    		dragList2+='<div class="icon-right starDiv" id="starMark">';
 			     		                  			if(value.dragMark==1){   
 			     		                  				dragList2 += '<br> <i class="fas fa-star icon-size" id="starDrag" onclick=removeDragMark("'+value.dragNum+'");></i>';
 			     		                  			}else{	
