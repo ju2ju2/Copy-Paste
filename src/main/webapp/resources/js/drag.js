@@ -65,7 +65,7 @@
 				window.onscroll = function() {scrollFunction()};
 				function scrollFunction() {
 				    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-				        document.getElementById("myBtn").style.display = "block";
+				    	document.getElementById("myBtn").style.display = "block";
 				    } else {
 				        document.getElementById("myBtn").style.display = "none";
 				    }
@@ -95,9 +95,9 @@
 			        			$('#dragList').empty();
 			        			dragList+='<div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">';
 			        			dragList+='<div class="text-center dragDiv mt-10" id="'+value.dragNum+'">';
-			        			dragList+='<blockquote class="grapefruit">';
+			        			dragList+='<blockquote class="grapefruit" >';
 			        			dragList+='<!-- 별 아이콘 -->';
-			        			dragList+='<div class="icon-right starDiv" id="starMark">'+value.dragNum+'';
+			        			dragList+='<div class="icon-right starDiv" id="starMark">';
 			          			if(value.dragMark==1){   
 			          				dragList += '<br> <i class="fas fa-star icon-size" id="starDrag" onclick=removeDragMark('+value.dragNum+');></i>';
 			          			}else{	
@@ -187,7 +187,7 @@
 			     		                    		dragList2+='<div class="text-center dragDiv mt-10" id="'+value.dragNum+'">';
 			     		                    		dragList2+='<blockquote class="grapefruit">';
 			     		                    		dragList2+='<!-- 별 아이콘 -->';
-			     		                    		dragList2+='<div class="icon-right starDiv" id="starMark">'+value.dragNum+'';
+			     		                    		dragList2+='<div class="icon-right starDiv" id="starMark">';
 			     		                  			if(value.dragMark==1){   
 			     		                  				dragList2 += '<br> <i class="fas fa-star icon-size" id="starDrag" onclick=removeDragMark("'+value.dragNum+'");></i>';
 			     		                  			}else{	

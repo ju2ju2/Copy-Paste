@@ -35,11 +35,12 @@
 					<h3 class="mg-top-6 text-center login-title">SNS LOGIN</h3>
 					<div class="text-center">
 						<hr>
+
 						<!-- 카카오 -->
 						<a id="custom-login-btn" href="https://kauth.kakao.com/oauth/authorize?client_id=495904a0b4023192de3119bfde795283&redirect_uri=http://localhost:8090/copyNpaste/member/kakaoOauth.do&response_type=code">
 							<img src="${pageContext.request.contextPath}/resources/image/kakao.png" class="inline"> &ensp;</a>
 						<!-- 네이버 -->
-						&nbsp;<a href="#"><img src="${pageContext.request.contextPath}/resources/image/naver.png" class="inline">&ensp;</a> 
+						&nbsp;<a href="${naverAuthUrl}"><img src="${pageContext.request.contextPath}/resources/image/naver.png" class="inline">&ensp;</a> 
 						<!-- 구글 -->
 						&nbsp;<a href="http://localhost:10040/auth/google.do"><img src="${pageContext.request.contextPath}/resources/image/google.png" class="inline"></a>
 					</div>

@@ -84,6 +84,9 @@
 				<div class="row text-right textIntro">
 				</div>
 			</div>
+			<div class="col-sm-3">
+				<div class="lyricsBox"></div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -215,6 +218,7 @@
 		</c:forEach>
 	</div>
 </div>
+
 <br><br><br>
 
 <!-- Modal HTML -->
@@ -226,13 +230,6 @@
 	</div>
 </div>
 
-<!-- Melon Modal HTML -->
-<div id="MelonModal" class="modal fade text-center overlay"  role="dialog">
-	<div class="modal-dialog">
-		<div class="modal-content modal-lyrics">Content will be loaded here from
-			"note/noteDetail.htm" file</div>
-	</div>
-</div>
 
 
 <script src="http://code.highcharts.com/highcharts.js"></script>

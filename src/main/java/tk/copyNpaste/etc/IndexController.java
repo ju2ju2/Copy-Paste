@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -20,11 +22,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.LocaleResolver;
 
+import tk.copyNpaste.member.NaverLogin;
 import tk.copyNpaste.note.NoteService;
 import tk.copyNpaste.vo.MelonVO;
-import tk.copyNpaste.vo.NoteCommVO;
 import tk.copyNpaste.vo.NoteVO;
-import tk.copyNpaste.vo.QnaVO;
 
 @Controller
 public class IndexController {
@@ -72,38 +73,25 @@ public class IndexController {
 		
 		//로그인 페이지
 		@RequestMapping(value ="/login.htm")
-		public String login() {
+		public String login(Model model, HttpSession session) {
+			//return "login.jsp";
+			/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
+	        String naverAuthUrl = NaverLogin.getAuthorizationUrl(session);
+	        model.addAttribute("naverAuthUrl", naverAuthUrl);
 			//return "login.jsp";
 			return "index.login";
 		}
 		
 		//회원가입 페이지
 		@RequestMapping("/signup.htm")
-		public String signup() {
+		public String signup(Model model, HttpSession session) {
 			//return "login.jsp";
+			/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
+	        String naverAuthUrl = NaverLogin.getAuthorizationUrl(session);
+	        model.addAttribute("naverAuthUrl", naverAuthUrl);
 			return "index.signup";
 		}
 	
-		//썸네일 비동기
-		@RequestMapping("/thumnail.json")
-		public String jsouptest() throws Exception {
-			int noteNum=19;
-			NoteVO note = noteService.selectDetailNote(noteNum);
-			String NoteContent = note.getNoteContent();
-			Document doc = Jsoup.parseBodyFragment(NoteContent);
-			Elements imgs = doc.getElementsByTag("img");
-			if(imgs.size() > 0) { 
-				String src = imgs.get(0).attr("src"); 
-				System.out.println(src);
-			}
-			//첫번째 소스
-			/*Element img = doc.getElementByTag("img").first();
-			if(img != null) {
-			    String src = img.attr("src");
-			}
-			배열 소스 */
-			return "index.main";
-		}
 		
 		//멜론 차트
 		@RequestMapping("/jsoupMelon.json")
@@ -130,19 +118,21 @@ public class IndexController {
 
 			return melonList;
 		}
-		// 가사보기
-		@RequestMapping(value = "melonLyrics.json")
-		public String selectDetailNote(String songNo, Model model) throws Exception {
+		// 선택한 곡 가사보기
+		@RequestMapping(value = "/melonLyrics.json")
+		public @ResponseBody Map<String,String> selectDetailNote(String songNo) throws Exception {
 			String url = "https://www.melon.com/song/detail.htm?songId="+songNo;
 		    Document doc = null;
 		    doc = Jsoup.connect(url).get();
-		    
+		    System.out.println("들어는왂니?");
+		    Map<String, String> map = new HashMap<String, String> ();
+		  
 		    // 태그를 찾아서 가져오도록 한다.
 		    Elements element = doc.select(".lyric");
 		    String lyric = element.html();
-
-			model.addAttribute("lyric", lyric);
-			return "melonLyric";//(modal/melonLyric.jsp)
+		    map.put("lyric", lyric);
+		    System.out.println(lyric);
+			return map;
 		}
 		
 		

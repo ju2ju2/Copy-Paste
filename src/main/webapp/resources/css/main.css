@@ -878,6 +878,19 @@ img .user-photo{
 .textIntro{
 	font-size:10px;
 }
+.lyrics{
+	overflow: auto;
+    border-radius: 17px;
+    background-color:white ;
+    margin-top: 25px;
+    color:#333;
+    font-size:12px;
+    padding: 15px 10px;
+    width: 350px;
+    height:315px;
+    box-shadow: 2px 2px 2px 2px #E0E0E0;
+}
+	
 
 /* ====================================== */
 #wordchart {
