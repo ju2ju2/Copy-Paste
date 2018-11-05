@@ -124,15 +124,13 @@ public class IndexController {
 			String url = "https://www.melon.com/song/detail.htm?songId="+songNo;
 		    Document doc = null;
 		    doc = Jsoup.connect(url).get();
-		    System.out.println("들어는왂니?");
 		    Map<String, String> map = new HashMap<String, String> ();
 		  
 		    // 태그를 찾아서 가져오도록 한다.
 		    Elements element = doc.select(".lyric");
 		    String lyric = element.html();
 		    map.put("lyric", lyric);
-		    System.out.println(lyric);
-			return map;
+		    return map;
 		}
 		
 		
