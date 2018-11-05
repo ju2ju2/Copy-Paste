@@ -116,6 +116,7 @@ public class NaverLogin {
 		JsonNode properties = mapper.readTree(profile);
 		JsonNode response = properties.get("response");
 		if (response.has("id"))
+			member.setUserSocialStatus(2); //일반회원:0, 카카오:1, 네이버:2, 구글:3
 			member.setUserEmail(response.get("email").asText());
 			member.setUserNick(response.get("nickname").asText());
 			member.setUserPhoto(response.get("profile_image").asText());

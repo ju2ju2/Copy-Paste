@@ -105,9 +105,9 @@ public class MemberController {
 	};
 		
 	//카카오 회원가입 2/2 (DB 저장)
-	@RequestMapping(value = "kakaoOauth2.do")
-	public String kakaoSingUp2(MemberVO member) throws Exception{
-		 loginService.kakaoSingUp2(member);
+	@RequestMapping(value = "socialSingUp.do")
+	public String socialSingUp(MemberVO member) throws Exception{
+		 loginService.socialSingUp(member);
 		 return "index.login";
 		};
 	

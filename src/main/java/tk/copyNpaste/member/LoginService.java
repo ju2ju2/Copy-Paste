@@ -51,13 +51,13 @@ public class LoginService {
     
     //소셜 회원가입 2/2 (DB 저장)
     @Transactional
-    public void kakaoSingUp2(MemberVO member) throws Exception{
+    public void socialSingUp(MemberVO member) throws Exception{
         
         MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
         FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
         String userEmail = member.getUserEmail();
         
-        member.setUserSocialStatus(1); //일반회원:0, 카카오:1, 네이버:2, 구글:3
+        //member.setUserSocialStatus(1); //일반회원:0, 카카오:1, 네이버:2, 구글:3
         
         try {
             memberdao.insertMember(member); //DB에 회원정보 입력
