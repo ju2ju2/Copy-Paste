@@ -14,7 +14,7 @@
 	<div class="row">
 		<div class="center-block ">	<h2 class="text-center signup-title">소셜 회원가입</h2>
 			<hr>
-				<form class="form-horizontal" method="post" name="signup" id="signup" action="${pageContext.request.contextPath}/member/kakaoOauth2.do"><!-- 소셜 회원가입 -->
+				<form class="form-horizontal" method="post" name="signup" id="signup" action="${pageContext.request.contextPath}/member/socialSingUp.do"><!-- 소셜 회원가입 -->
 				<div class="form-group">
 					<label class="control-label col-sm-4">프로필 이미지</label>
 					<div class="col-sm-4">				
@@ -36,6 +36,8 @@
 								id="userPhoto" value="${memberVo.userPhoto}">	
 					<input type="hidden" class="form-control" name="session"
 								id="session" value="${session}">		
+					<input type="hidden" class="form-control" name="userSocialStatus"
+								id="session" value="${userSocialStatus}">				
 				</div>
 						
 				<div class="form-group" id="userEmailDiv">

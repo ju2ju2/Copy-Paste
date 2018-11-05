@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -29,7 +30,9 @@ import tk.copyNpaste.vo.MemberVO;
 public class LoginService {
 	 @Autowired
 	 private SqlSession sqlsession;
-
+	 @Autowired
+	 private BCryptPasswordEncoder bCryptPasswordEncoder;
+	 
 	//구글로그인
 	public MemberVO googleLogin(String userEmail) throws Exception{
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
@@ -51,12 +54,13 @@ public class LoginService {
     
     //소셜 회원가입 2/2 (DB 저장)
     @Transactional
-    public void kakaoSingUp2(MemberVO member) throws Exception{
+    public void socialSingUp(MemberVO member) throws Exception{
         
         MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
         FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
         String userEmail = member.getUserEmail();
         
+        member.setUserPwd(bCryptPasswordEncoder.encode(member.getUserPwd()));
         member.setUserSocialStatus(1); //일반회원:0, 카카오:1, 네이버:2, 구글:3
         
         try {

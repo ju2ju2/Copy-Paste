@@ -16,6 +16,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -31,6 +32,9 @@ import tk.copyNpaste.vo.MemberVO;
 public class MemberService {
 	 @Autowired
 	 private SqlSession sqlsession;
+	 
+	 @Autowired
+	 private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	//이메일 중복체크
 	public int checkUserEmail(String userEmail) throws Exception {
@@ -71,6 +75,7 @@ public class MemberService {
     		userPhotoName = userPhoto;
     	}
        
+    	member.setUserPwd(bCryptPasswordEncoder.encode(member.getUserPwd()));
     	member.setUserPhoto(userPhotoName); // DB에 들어갈 파일명 지정
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
 		FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
@@ -113,9 +118,17 @@ public class MemberService {
 	//내 정보 보기
 	public MemberVO selectSearchMemberByEmail (String userEmail) throws Exception{
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
-		return memberdao.selectSearchMemberByEmail(userEmail);
+		MemberVO member = memberdao.selectSearchMemberByEmail(userEmail);
+		return member;
 	}
-
+	
+	//내 정보 수정 시 비밀번호 비교
+	public String matchPwd(String userEmail) throws Exception{
+		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
+		String encodepassword = memberdao.matchPwd(userEmail);
+		return encodepassword;
+	}
+	
 	//내 정보 수정
 	public void updateMember(MemberVO member, MultipartHttpServletRequest request) 
 			throws Exception{
@@ -140,7 +153,9 @@ public class MemberService {
     	if (pwdSize == 0) {
     			userPwd=null;
     			member.setUserPwd(userPwd);
-    	}  	
+    	} else {
+    		member.setUserPwd(bCryptPasswordEncoder.encode(member.getUserPwd()));
+    	}	
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);			
 		memberdao.updateMember(member); //회원정보 수정	
 	}

@@ -92,7 +92,6 @@
 var userPhoto; //회원 프로필 사진
 var userNick; //회원 닉네임
 var userEmail; //회원 이메일
-var userPwd; //회원 비밀번호
 var nickDupCheck ='ok'; //닉네임 중복 진행했는지 확인하는 변수
 var rightPwd; //비밀번호 유효성 체크 변수
 var pwdDupCheck; //비밀번호 중복 진행했는지 확인하는 변수
@@ -104,8 +103,7 @@ $.ajax({
 	success : function(data) {
 		userPhoto = data.userPhoto; 
 		userNick = data.userNick;
-		userEmail = data.userEmail;
-		userPwd = data.userPwd;		
+		userEmail = data.userEmail;	
 		$('#userEmail').val(data.userEmail);
 		$('#userNick').val(userNick); 
 		if (data.userSocialStatus != 0){
@@ -191,7 +189,7 @@ $("#userPwd").keyup(function (event) {
 		}
 })
 		
-//회원 정보 수정
+//회원 정보 수정 버튼 클릭 시 유효성(정보수정 1/3)
 $('#infoUpdate').click(function(){
  	if ($('#userPwd').val() == '' && $('#cuserPwd').val() == '') { 
 		if ( nickDupCheck != 'ok' && $('#userNick').val() != userNick ){
@@ -211,7 +209,7 @@ $('#infoUpdate').click(function(){
 	} 
 })
 
-//정보 수정 함수
+//정보 수정 유효성 시 입력한 비밀번호 확인(정보수정 2/3)
 function updateMember(){	       
 		swal({
 			  title: "୧༼ ヘ ᗜ ヘ ༽୨",
@@ -220,48 +218,63 @@ function updateMember(){
 			  showCancelButton: true,
 			  closeOnConfirm: false,
 			}, function (inputValue) {
-			  if (inputValue === "") {
-			    swal.showInputError("비밀번호를 입력해 주세요.");
-			  }
-			  if (inputValue != userPwd) {
-				    swal.showInputError("비밀번호를 정확히 입력해 주세요.");
-				    console.log(userPwd);
-				    console.log($('#userPwd').val());
-				  } else {
-					  var form = $('form')[1];
-						//FormData parameter에 담아줌
-						var formData = new FormData(form);	
-					    console.log(form);
-					    console.log(formData);
-					 
-					    $.ajax({
-					   		type : 'post',
-					        data: formData, 
-					        enctype: 'multipart/form-data',
-					        processData : false,
-					        contentType : false,
-					    	url : '${pageContext.request.contextPath}/member/updateMember.do',
-					    	success : function() {
-									 swal({type: "success",
-											 title: "୧༼ ヘ ᗜ ヘ ༽୨",
-											 text: "회원수정이 완료되었습니다.",
-					             	 		confirmButtonClass : "btn-danger",
-								 	 		closeOnConfirm: false
-										},
-									 function(){
+					//비밀번호 비교
+					var rawpassword = inputValue;
+					$.ajax({
+						type: "post",
+						data: {rawpassword:rawpassword},
+						url: '${pageContext.request.contextPath}/member/matchPwd.do',
+						success: function(data){
+							if( data == true){
+								//비밀번호 확인 후 정보 수정
+								console.log("data: " + data);
+								infoUpdateAjax();
+							} else{
+								console.log("data: " + data);
+								swal.showInputError("비밀번호를 정확히 입력해 주세요.");
+							}
+						},
+						error: function (){
+								swal.showInputError("잠시 후 다시 시도해 주세요.");
+						}
+					})				
+				  }
+			)
+	};
+
+//DB로 가는 정보수정(정보수정 3/3)
+		function infoUpdateAjax(){
+		var form = $('form')[1];
+			//FormData parameter에 담아줌
+			var formData = new FormData(form);	
+
+			$.ajax({
+				type : 'post',
+				data: formData, 
+				enctype: 'multipart/form-data',
+				processData : false,
+				contentType : false,
+				url : '${pageContext.request.contextPath}/member/updateMember.do',
+				success : function() {
+						 swal({type: "success",
+						 title: "୧༼ ヘ ᗜ ヘ ༽୨",
+						 text: "회원수정이 완료되었습니다.",
+						 confirmButtonClass : "btn-danger",
+						 closeOnConfirm: false
+									},
+									function(){
 										location.href="${pageContext.request.contextPath}/member/myinfo.htm";
 										});	
-					       			},
-							error : function(error) {
-					      			 swal("٩(இ ⌓ இ๑)۶", "에러가 발생했습니다.", "error");
-					       	  	 	console.log(error);
-					       		 	console.log(error.status);
-					   				}
-							})
-						
-				  }});
-}
-
+						},
+				error : function(error) {
+						swal("٩(இ ⌓ இ๑)۶", "에러가 발생했습니다.", "error");
+						console.log(error);
+						console.log(error.status);
+						}
+			})
+		}		
+		
+		
 //회원탈퇴
  $('#deleteMember').click(function(){
 	  swal({
@@ -303,6 +316,5 @@ function updateMember(){
 		  			}
 		});
 })
-
 
 </script>

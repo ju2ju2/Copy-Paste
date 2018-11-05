@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,6 +42,8 @@ public class MemberController {
 	 FolderService folderService;
 	 @Autowired
 	 MemberMailService mailer;
+	 @Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	//회원가입 인증메일
 	 @RequestMapping(value="singupEmail.do", method = RequestMethod.POST)
@@ -105,9 +108,9 @@ public class MemberController {
 	};
 		
 	//카카오 회원가입 2/2 (DB 저장)
-	@RequestMapping(value = "kakaoOauth2.do")
-	public String kakaoSingUp2(MemberVO member) throws Exception{
-		 loginService.kakaoSingUp2(member);
+	@RequestMapping(value = "socialSingUp.do")
+	public String socialSingUp(MemberVO member) throws Exception{
+		 loginService.socialSingUp(member);
 		 return "index.login";
 		};
 	
@@ -155,6 +158,17 @@ public class MemberController {
 		String userEmail = principal.getName();
 		MemberVO member = memberService.selectSearchMemberByEmail(userEmail);
 		return member;
+	};
+	
+	//내 정보 수정 시 비밀번호 비교
+	@RequestMapping(value="matchPwd.do", method = RequestMethod.POST)
+	public @ResponseBody boolean matchPwd(Principal principal, String rawpassword) throws Exception{
+		String userEmail = principal.getName();
+		String rawPassword = rawpassword;
+		String encodePassword = memberService.matchPwd(userEmail);
+		
+		boolean result = bCryptPasswordEncoder.matches(rawPassword, encodePassword);
+		return result;
 	};
 	
 	//내 정보 수정
