@@ -386,7 +386,7 @@
 	
 input, select, textarea {
 	-moz-appearance: none;
-	-webkit-appearance: radio;
+/* 	-webkit-appearance: radio; */
 	-ms-appearance: none;
 	appearance: none;
 	} 
