@@ -20,6 +20,7 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/search.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/note.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/api/google/googlesearch.css" />
 		<!-- Scripts -->
 		<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

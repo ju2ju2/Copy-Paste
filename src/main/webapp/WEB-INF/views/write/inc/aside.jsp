@@ -124,11 +124,12 @@
                      <section id="subject-search" class="alt">           
                         <div class="col-xs-12">
                            <form method="post" action="#">
-                              <input type="text" id="search-text-write" placeholder="검색" required /> <a
+                              <input type="text" id="search-text-write" placeholder="검색어를 입력해주세요" required /> <a
                                  href="#"><i id="searchWriteSite" class="fas fa-search icon-size"
                                  style="padding-top: 15px"></i></a>
                            </form>
                         </div>
+                        
                         <!-- 사이트 내 검색결과 보기 리스트 -->
                         <div class="mini-posts" id="searchList"></div>
 						<!-- 노트상세보기 모달 -->
@@ -141,7 +142,7 @@
                   </div>
                </div>
                <span id="writeNoteNavSizeBtnSpanSeachInSite">
-                  <button type="button" class="btn btn-secondary searchBtn">
+                  <button type="button" class="btn btn-danger searchBtn">
                      <i class="fas fa-angle-double-right writeNoteNavSizeBtn"></i>
                   </button>
                </span>
@@ -155,20 +156,17 @@
                      <section id="subject-search" class="alt">
                         <div class="col-xs-12">
                          <script>
-
-  (function() {
-    var cx = '008735657841569968312:-xk9eqqghzs';
-    var gcse = document.createElement('script');
-    gcse.type = 'text/javascript';
-    gcse.async = true;
-    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-    var s = document.getElementsByTagName('script')[0];
-    s.parentNode.insertBefore(gcse, s);
-
- 
-  })();
-
-</script>
+                                           /* 구글검색 스크립트 */
+                           (function() {
+								    var cx = '008735657841569968312:-xk9eqqghzs';
+								    var gcse = document.createElement('script');
+								    gcse.type = 'text/javascript';
+								    gcse.async = true;
+								    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+								    var s = document.getElementsByTagName('script')[0];
+								    s.parentNode.insertBefore(gcse, s);
+ 							     })();
+						</script>
 <gcse:search></gcse:search>
                          
                          <!--   <form method="post" action="#">
@@ -182,7 +180,7 @@
                   </div>
                </div>
                <span id="writeNoteNavSizeBtnSpanSeachPortal">
-                  <button type="button" class="btn btn-secondary searchBtn">
+                  <button type="button" class="btn btn-danger searchBtn">
                      <i class="fas fa-angle-double-right writeNoteNavSizeBtn"></i>
                   </button>
                </span>
@@ -317,8 +315,8 @@
 							          	if(data!=null) {
 							          		$.each(data, function(key, value){
 							          			 $('#searchList').empty();   
-						                         aa+='<div class="col-xs-11 searchNoteDiv">'
-						                         aa+='<div class="text-center searchNoteDiv">'
+						                         aa+='<div class="col-xs-12 searchNoteDiv">'
+						                         aa+='<div class="text-center">'
 						                         aa+='<!-- a HTML (to Trigger Modal) -->'
 						                         aa+='<a data-toggle="modal"'
 						                         aa+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&write=y"'
