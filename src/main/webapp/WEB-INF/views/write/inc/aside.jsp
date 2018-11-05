@@ -154,11 +154,28 @@
                      <!-- Search -->
                      <section id="subject-search" class="alt">
                         <div class="col-xs-12">
-                           <form method="post" action="#">
+                         <script>
+
+  (function() {
+    var cx = '008735657841569968312:-xk9eqqghzs';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+
+ 
+  })();
+
+</script>
+<gcse:search></gcse:search>
+                         
+                         <!--   <form method="post" action="#">
                               <input type="text" id="search-text" placeholder="검색" /> <a
                                  href="#"><i id="search" class="fas fa-search icon-size"
                                  style="padding-top: 15px"></i></a>
-                           </form>
+                           </form> -->
                         </div>
                      </section>
 

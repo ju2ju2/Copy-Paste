@@ -45,8 +45,7 @@ public class LoginService {
         KakaoLogin.connectKakao(token.path("access_token").toString());
         
         JsonNode profile = KakaoLogin.getKakaoUserInfo(token.path("access_token").toString());
-        System.out.println("profile: " +profile);
-        
+ 
         MemberVO member = KakaoLogin.changeData(profile);
 
         return member;

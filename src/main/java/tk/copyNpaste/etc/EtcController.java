@@ -47,7 +47,6 @@ public class EtcController {
 	@RequestMapping("notifyList.json")
 	// 알림 리스트 보내기
 	public @ResponseBody List<noticeVO> noticeList(String userEmail) throws Exception {
-		System.out.println(etcService.noticeList(userEmail));
 		return etcService.noticeList(userEmail);
 	}
 	
