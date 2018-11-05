@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.api.client.http.HttpRequest;
+
 import tk.copyNpaste.folder.FolderService;
 import tk.copyNpaste.vo.MemberVO;
 
@@ -86,8 +88,10 @@ public class MemberController {
 	};
 	
 	//구글로그인
-	public void googleLogin(String userEmail) throws Exception{
-		
+	@RequestMapping(value = "googleOauth.do", method= {RequestMethod.GET, RequestMethod.POST})
+	public void googleLogin(HttpServletRequest request) throws Exception{
+		System.out.println("왔는데 뭐 어쩌라구");
+		System.out.println(request);
 	};
 	
 	//카카오 회원가입 1/2 (회원정보 얻기)

@@ -41,7 +41,7 @@
 						<!-- 네이버 -->
 						&nbsp;<a href="#"><img src="${pageContext.request.contextPath}/resources/image/naver.png" class="inline">&ensp;</a> 
 						<!-- 구글 -->
-						&nbsp;<a href="http://localhost:10040/auth/google"><img src="${pageContext.request.contextPath}/resources/image/google.png" class="inline"></a>
+						&nbsp;<a href="http://localhost:10040/auth/google.do"><img src="${pageContext.request.contextPath}/resources/image/google.png" class="inline"></a>
 					</div>
 
 				<form class="form-signin" name="f2" method="POST"

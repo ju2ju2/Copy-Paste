@@ -34,6 +34,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="nodeProject/config/google.template.json"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
