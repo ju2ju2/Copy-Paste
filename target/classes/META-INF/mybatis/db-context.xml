@@ -25,6 +25,20 @@
     
     <!-- aspectj 사용 -->
 	<aop:aspectj-autoproxy />
+
+
+<!-- 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+	    <tx:attributes>
+		    <tx:method name="*" rollback-for="Exception" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+		<aop:pointcut id="tranMethod"
+		              expression="execution(public * kr.co.mlec..*ServiceImpl.*(..)) "/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="tranMethod" />
+	</aop:config> -->
+	
 	
 	<!-- DB 아이디 정보 -->
 	<context:property-placeholder 

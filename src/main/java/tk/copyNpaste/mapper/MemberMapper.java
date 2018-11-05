@@ -41,6 +41,9 @@ public interface MemberMapper {
 	//회원 정보 보기
 	public List<MemberVO> selectAllMember() throws Exception;
 	
+	//내 정보 수정 시 비밀번호 비교
+	public String matchPwd(String userEmail) throws Exception;
+	
 	//회원 검색
 	public List<MemberVO> selectSearchMember (String userEmail) throws Exception;
 		

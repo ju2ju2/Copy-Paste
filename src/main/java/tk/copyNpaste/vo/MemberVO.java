@@ -68,4 +68,11 @@ public class MemberVO {
 	public void setUserSocialStatus(int userSocialStatus) {
 		this.userSocialStatus = userSocialStatus;
 	}
+	@Override
+	public String toString() {
+		return "MemberVO [userEmail=" + userEmail + ", userNick=" + userNick + ", userPwd=" + userPwd + ", userPhoto="
+				+ userPhoto + ", userDate=" + userDate + ", userEnabled=" + userEnabled + ", userPhotoFile="
+				+ userPhotoFile + ", userSocialStatus=" + userSocialStatus + "]";
+	}
+	
 }

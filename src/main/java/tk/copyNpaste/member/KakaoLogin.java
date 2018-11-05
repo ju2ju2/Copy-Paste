@@ -149,6 +149,7 @@ public class KakaoLogin {
 
 		JsonNode properties = profile.path("properties"); // 추가정보 받아오기
 		if (properties.has("nickname"))
+			member.setUserSocialStatus(1); //일반회원:0, 카카오:1, 네이버:2, 구글:3
 			member.setUserNick(properties.path("nickname").asText());
 			member.setUserPhoto(properties.path("profile_image").asText());
 		return member;
