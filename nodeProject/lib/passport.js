@@ -1,6 +1,5 @@
-var db = require('../lib/db');
 var bcrypt = require('bcrypt');
-var shortid = require('shortid');
+/*var shortid = require('shortid');*/
 
 module.exports = function (app) {
 
@@ -11,20 +10,20 @@ module.exports = function (app) {
     app.use(passport.initialize());
     app.use(passport.session());
 
-    passport.serializeUser(function (user, done) {
+/*    passport.serializeUser(function (user, done) {  //아이디값 색출
         console.log('serializeUser', user);
         done(null, user.id);
     });
 
-    passport.deserializeUser(function (id, done) {
+    passport.deserializeUser(function (id, done) { //아이디값 기반으로 유저를 가져와 request.user 정보를 셋팅
         var user = db.get('users').find({
             id: id
         }).value();
         console.log('deserializeUser', id, user);
         done(null, user);
-    });
+    });*/
 
-    passport.use(new LocalStrategy({
+/*    passport.use(new LocalStrategy({
             usernameField: 'email',
             passwordField: 'pwd'
         },
@@ -51,7 +50,7 @@ module.exports = function (app) {
                 });
             }
         }
-    ));
+    ));*/
 
     var googleCredentials = require('../config/google.json');
     passport.use(new GoogleStrategy({
@@ -63,31 +62,38 @@ module.exports = function (app) {
         function (accessToken, refreshToken, profile, done) {
             console.log('GoogleStrategy', accessToken, refreshToken, profile);
             var email = profile.emails[0].value;
-            var user = db.get('users').find({email:email}).value();
-            if(user){
+            /*var user = db.get('users').find({email:email}).value();
+            if(user){  //디비에 이미 사용자가 있는 경우
                 user.googleId = profile.id;
                 db.get('users').find({id:user.id}).assign(user).write();
-            } else {
+                redirect('http://localhost:8090/copyNpaste/login.htm');
+            } else { //디비에 사용자 없는 경우
                 user = {
                     id:shortid.generate(),
-                    email:email,
-                    displayName:profile.displayName,
+                    userEmail:email,
+                    userNick:profile.displayName,
                     googleId:profile.id
                 }
                 db.get('users').push(user).write();
             }
-            done(null, user);
+            done(null, user);*/
         }
     ));
     //Authenticate Requests 인증 요청
     app.get('/auth/google',
         passport.authenticate('google', {
             scope: ['https://www.googleapis.com/auth/plus.login', 'email']
-        }));
+        
+        /*var email = profile.emails[0].value();*/
+        /*var user = db.get('users').find({email:email}).value();
+        users.googleId = profile.id; //구글 아이디값이 추가된 객체 생성
+        db.get('users').find({id:user.id}).assign(user).write(); //디비에 아이디 넣음
+        done(null, user); //유저값 줘서 로그인 끝냄
+*/        	}));
 
     app.get('/auth/google/callback', //여기로 접속하면 
         passport.authenticate('google', { //이 미들웨어 리턴
-            failureRedirect: '/auth/login' //로그인에 실패한 경우 여기로 보냄
+            failureRedirect: 'http://localhost:8090/copyNpaste/' //로그인에 실패한 경우 여기로 보냄
         }),
         function (req, res) {
             res.redirect('http://localhost:8090/copyNpaste/login.htm');  //로그인 성공하면 여기로 이동시켜라
