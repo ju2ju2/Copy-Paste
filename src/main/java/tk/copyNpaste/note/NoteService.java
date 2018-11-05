@@ -179,8 +179,8 @@ public class NoteService {
 			returning="returnValue")
 	public int updateNoteCount(JoinPoint joinPoint, int returnValue) throws Exception { 
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
-		System.out.println( "노트 다운로드시 노트 참조수 +1");
-		return notedao.updateNoteCount(returnValue);
+		/*System.out.println( "노트 다운로드시 노트 참조수 +1");
+		*/return notedao.updateNoteCount(returnValue);
 	}
 
 	
