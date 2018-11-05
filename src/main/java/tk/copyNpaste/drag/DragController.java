@@ -26,32 +26,22 @@ public class DragController {
 	@Autowired
 	DragService dragservice;
 
-
 	//드래그 전체목록 보기 (비동기/글작성페이지)
 	@RequestMapping(value ="selectAllDrag.json")
-	public @ResponseBody List<DragVO> selectAllDrag(Model model,Principal principal,DragVO drag) throws Exception {
-			drag.setUserEmail(principal.getName());	
-			List<DragVO> dragList = dragservice.selectAllDrag(drag);
+	public @ResponseBody List<DragVO> selectAllDrag(Model model, String page,Principal principal) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("page", page);
+		map.put("userEmail", principal.getName());	
+		List<DragVO> dragList = dragservice.selectAllDrag(map);
 		return dragList;
 	}
-	
-	
-/*	//드래그 무한스크롤 보기 (비동기)
-		@RequestMapping(value ="infiniteScrollDrag.json")
-		public @ResponseBody List<DragVO> infiniteScrollDrag( Principal principal, DragVO drag, Model model) throws Exception {
-			drag.setUserEmail(principal.getName());
-			List<DragVO> dragList = dragservice.infiniteScrollDrag(drag);
-			return dragList;
-		}*/
-	
+
 	
 	//드래그 페이지
 	@RequestMapping(value ="drag.htm")
 	public String dragpage(Model model ,Principal principal,DragVO drag) throws Exception {
 		drag.setUserEmail(principal.getName());
-		List<DragVO> dragList =  dragservice.selectAllDrag(drag);
-		model.addAttribute("dragList", dragList);
-		model.addAttribute("page", dragList.size());
+		
 		return "drag.list";
      }
 
@@ -82,29 +72,32 @@ public class DragController {
 	
 	//드래그 달력 검색
 	@RequestMapping(value="selectByCalDrag.json")
-	public @ResponseBody List<DragVO> selectByCalDrag(String fromDate, String toDate, Principal principal) throws Exception {
+	public @ResponseBody List<DragVO> selectByCalDrag(String fromDate, String page,String toDate, Principal principal) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("fromDate", fromDate);
 		map.put("toDate", toDate);
+		map.put("page", page);
 		map.put("userEmail", principal.getName());
 		return dragservice.selectByCalDrag(map);
 	}
 
 	//드래그 키워드 검색 dragSearch.json
 	@RequestMapping(value="selectByKeyDrag.json")
-	public @ResponseBody List<DragVO> selectByKeyDrag(String keyword,Principal principal,Model model ) throws Exception {
+	public @ResponseBody List<DragVO> selectByKeyDrag(String keyword,String page,Principal principal,Model model ) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("keyword", keyword);
 		map.put("userEmail", principal.getName());
-		
+		map.put("page", page);
+
 		return dragservice.selectByKeyDrag(map);	
 	}
 	
 	// 드래그 정렬
 		@RequestMapping(value="selectOrderbyDrag.json")
-		public @ResponseBody List<DragVO> selectOrderbyNote(String sortCategory,Principal principal,Model model ) throws Exception {
+		public @ResponseBody List<DragVO> selectOrderbyNote(String sortCategory,String page,Principal principal,Model model ) throws Exception {
 			HashMap<String, Object> map = new HashMap<String, Object>();
 			map.put("sortCategory", sortCategory);
+			map.put("page", page);
 			map.put("userEmail", principal.getName());
 			List<DragVO> dragList = dragservice.selectOrderbyDrag(map);   
 			return dragList;
@@ -113,18 +106,24 @@ public class DragController {
 
 	//드래그 중요표시 등록
 	@RequestMapping(value="setDragMark.json")
-	public  @ResponseBody List<DragVO>  setDragMark(DragVO drag,Principal principal) throws Exception {
-		dragservice.setDragMark(drag.getDragNum());
-		drag.setUserEmail(principal.getName());	
-		return dragservice.selectAllDrag(drag);
+	public  @ResponseBody List<DragVO>  setDragMark(DragVO drag,String page,Principal principal) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("dragNum", drag.getDragNum());
+		map.put("userEmail", principal.getName());	
+		map.put("page", page);
+		dragservice.setDragMark(map);
+		return dragservice.selectAllDrag(map);
 	}
 	
 	//드래그 중요표시 삭제
 	@RequestMapping(value="removeDragMark.json")
-	public @ResponseBody List<DragVO>  removeDragMark(DragVO drag,Principal principal) throws Exception {
-		dragservice.removeDragMark(drag.getDragNum());
-		drag.setUserEmail(principal.getName());	
-		return  dragservice.selectAllDrag(drag);
+	public @ResponseBody List<DragVO>  removeDragMark(DragVO drag,String page,Principal principal) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("dragNum", drag.getDragNum());
+		map.put("userEmail", principal.getName());	
+		map.put("page", page);
+		dragservice.removeDragMark(map);
+		return  dragservice.selectAllDrag(map);
 	}
 
 }

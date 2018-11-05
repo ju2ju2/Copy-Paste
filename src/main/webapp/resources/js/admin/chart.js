@@ -37,7 +37,7 @@ $(function() {
 	
 		function makeChart() {
 			$.ajax({
-				url:"../copyNpaste/etc/stateMember.json",
+				url:"../etc/stateMember.json",
 				dataType:"json",
 				success:function(responsedata){
 					$.each(responsedata, function(index, obj) {
@@ -48,7 +48,7 @@ $(function() {
 					
 					Highcharts.chart('chartDiv', {
 						title : {
-							text : '달별 가입한 회원 수',
+							text : '월별 가입한 회원 수',
 						},
 						xAxis : {
 							categories : memberxAxis

@@ -17,8 +17,8 @@
 	uri="http://www.springframework.org/security/tags"%>
 <!-- Sweet Alert cdn -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
+	href="${pageContext.request.contextPath}/resources/css/api/alert/sweetalert.css" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/api/sweetalert.min.js"></script>
 
 <se:authentication property="name" var="loginuser" />
 <se:authentication property="authorities" var="role" />
@@ -275,9 +275,9 @@
 				    success : function(data){
 				    	location.reload();
 				    },
-				    error : function(){
-				        	console.log("실패");
-				    }
+				    error:function(request,status,error){
+			     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			     	  }
 				});	
 			}	
 		});
@@ -303,7 +303,6 @@
 		
 		/* 대댓글 작성 버튼 클릭시 */
 		$(document).on("click", "#commCommbtn", function(){
-			console.log(${qna.qnaNum});
 			$.ajax({
 				url : "<%=request.getContextPath()%>/qna/insertQnaCommComm.json",
 			    type : "get",
@@ -319,9 +318,9 @@
 			    	qnaCommPos="";
 			    	location.reload();
 			    },
-			    error : function(){
-			        	console.log("실패");
-			    }
+			    error:function(request,status,error){
+		     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		     	  }
 			});	
 		});
 		

@@ -31,13 +31,13 @@ import tk.copyNpaste.vo.NoteVO;
 
 @Service
 
-public class NoteVisionSpellService {
+public class NoteVisionService {
 
 	// 노트 비젼api 문자인식
 	public String vision(String userEmail, MultipartHttpServletRequest req)
 			throws Exception, IOException {
 		String text="";
-		//파일 가져오기
+		//request 영역에서 파일 가져오기
 		MultipartFile multipartFile = req.getFile("visionImg");
 		//멀티파트 파일>>파일로 변환
 		File file= multipartToFile(multipartFile);
@@ -55,6 +55,7 @@ public class NoteVisionSpellService {
 		AnnotateImageRequest request = AnnotateImageRequest.newBuilder().addFeatures(feat).setImage(img).build();
 		requests.add(request);
 
+		//vision api 요청
 		try (ImageAnnotatorClient client = ImageAnnotatorClient.create()) {
 			BatchAnnotateImagesResponse response = client.batchAnnotateImages(requests);
 			List<AnnotateImageResponse> responses = response.getResponsesList();
@@ -67,7 +68,7 @@ public class NoteVisionSpellService {
 
 				// For full list of available annotations, see http://g.co/cloud/vision/docs
 				for (EntityAnnotation annotation : res.getTextAnnotationsList()) {
-					System.out.printf("Text: %s\n", annotation.getDescription());
+					/*System.out.printf("Text: %s\n", annotation.getDescription());*/
 					text = annotation.getDescription();
 					return text;
 				}
@@ -76,7 +77,7 @@ public class NoteVisionSpellService {
 		return text;
 
 	}
-
+	// multipartFile>>File convert 함수 (for vision api inputstream)
 	public File multipartToFile(MultipartFile multipart) 
 	{
 	        File convFile = new File( multipart.getOriginalFilename());
@@ -88,11 +89,5 @@ public class NoteVisionSpellService {
 	        return convFile;
 	}
 	 
-	
-	
-	// 노트맞춤법검사
-	public NoteVO spell(NoteVO note) throws Exception {
-		return null;
-	}
 
 }

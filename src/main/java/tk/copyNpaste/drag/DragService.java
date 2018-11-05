@@ -35,19 +35,11 @@ public class DragService {
 	}
 
 	//드래그 목록 보기
-	public List<DragVO> selectAllDrag(DragVO drag) throws Exception {
+	public List<DragVO> selectAllDrag(HashMap<String, Object> map) throws Exception {
 		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
-		List<DragVO> dragList = dragdao.selectAllDrag(drag);
+		List<DragVO> dragList = dragdao.selectAllDrag(map);
 		return dragList;
 	}
-	
-/*	//드래그 스크롤 목록 더 보기
-		public List<DragVO> infiniteScrollDrag(DragVO drag) throws Exception {
-			DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
-			List<DragVO> dragList = dragdao.infiniteScrollDrag(drag);
-			return dragList;
-		}*/
-	
 	
 	//드래그 상세 보기(+노트 작성)
 	public DragVO selectDetail(int dragNum) throws Exception {
@@ -82,15 +74,15 @@ public class DragService {
 		return dragdao.selectOrderbyDrag(map);
 		}
 	//드래그 중요표시 등록
-	public int setDragMark(int dragNum) throws Exception {
+	public int setDragMark(HashMap<String, Object> map) throws Exception {
 		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
-		return dragdao.setDragMark(dragNum);
+		return dragdao.setDragMark(map);
 	}
 	
 	//드래그 중요표시 삭제
-	public int removeDragMark(int dragNum) throws Exception {
+	public int removeDragMark(HashMap<String, Object> map) throws Exception {
 		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
-		return dragdao.removeDragMark(dragNum);
+		return dragdao.removeDragMark(map);
 	}
 
 

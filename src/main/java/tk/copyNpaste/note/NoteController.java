@@ -27,8 +27,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import tk.copyNpaste.folder.FolderService;
-import tk.copyNpaste.vo.DragVO;
-import tk.copyNpaste.vo.FolderVO;
 import tk.copyNpaste.vo.NoteCommVO;
 import tk.copyNpaste.vo.NoteVO;
 
@@ -39,7 +37,7 @@ public class NoteController {
 	NoteMailnFileService noteMailnFileService;
 	
 	@Autowired
-	NoteVisionSpellService noteVisionSpellService;
+	NoteVisionService noteVisionSpellService;
 	
 	@Autowired
 	NoteService noteService;
@@ -51,11 +49,10 @@ public class NoteController {
 	// 회원의 노트 목록 보기
 	@RequestMapping(value = "selectAllNote.json")
 	public @ResponseBody List<NoteVO> selectAllNote(Model model, String page, Principal principal) throws Exception {
-		NoteVO note = new NoteVO();
-		note.setUserEmail(principal.getName());
-		//note.setPage(Integer.parseInt(page));
-		System.out.println(page);
-		List<NoteVO> noteList = noteService.selectAllNote(note);
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("page", page);
+		map.put("userEmail", principal.getName());
+		List<NoteVO> noteList = noteService.selectAllNote(map);
 		return noteList;
 	}
 	
@@ -63,8 +60,6 @@ public class NoteController {
 	//mynote 페이지
 	@RequestMapping(value = "note.htm")
 	public String notepage(Model model, Principal principal) throws Exception {
-	/*	List<FolderVO> folderList = folderService.selectAllFolder(principal.getName());
-		model.addAttribute("folderList", folderList);*/
 		return "note.list";
 	}
 
@@ -153,9 +148,7 @@ public class NoteController {
 	public @ResponseBody List<NoteVO> selectOrderbyNote(String sortCategory,String page,Principal principal) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("sortCategory", sortCategory);
-		System.out.println("sortCategory"+sortCategory);
 		map.put("page", page);
-		System.out.println("page"+page);
 		map.put("userEmail", principal.getName());
 		return noteService.selectOrderbyNote(map);
 	}
@@ -185,7 +178,6 @@ public class NoteController {
 	@RequestMapping(value="scrapNote.json")
 	public @ResponseBody int scrapNote(NoteVO note, Principal principal) throws Exception {
 		note.setUserEmail(principal.getName());
-		System.out.println(note.getNoteContent());
 		return noteService.scrapNote(note);
 	}
 
@@ -197,7 +189,7 @@ public class NoteController {
 
 	// 노트 댓글 작성-비동기
 	@RequestMapping(value="insertNoteComm.json")
-	public @ResponseBody int /*List<NoteCommVO> */insertNoteComm(NoteCommVO note, int noteNum, Principal principal) throws Exception {
+	public @ResponseBody int insertNoteComm(NoteCommVO note, int noteNum, Principal principal) throws Exception {
 		note.setUserEmail(principal.getName());//로그인한 사용자 ID
 		return noteService.insertNoteComm(note);
 		/*return noteService.selectAllNoteComm(noteNum);*/

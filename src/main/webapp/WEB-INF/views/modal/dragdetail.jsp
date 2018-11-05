@@ -3,9 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- Sweet Alert cdn -->
 <link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/css/alert/sweetalert.css" />
+   href="${pageContext.request.contextPath}/resources/css/api/alert/sweetalert.css" />
 <script type="text/javascript"
-   src="${pageContext.request.contextPath}/resources/js/sweetalert.min.js"></script>
+   src="${pageContext.request.contextPath}/resources/js/api/sweetalert.min.js"></script>
 <!-- 신고 모달창에서 ok버튼 눌렀을 때 스윗알럳 띄우기 -->
 
 <!-- modal-header -->
@@ -74,9 +74,11 @@ $('#deleteDragBtn').click(function(e) {
 				})
 				
 			})
-			.fail(function(jqXhr, testStatus, errorText){
-				alert("에러발생 :" + errorText);
-			});
+			.fail(function(request,status,error){
+		     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		     	  }
+		
+			);
 		});
 	return false;
 });

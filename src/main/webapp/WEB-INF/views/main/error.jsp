@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
 <%	response.setStatus(200); %>
-<div class="container">
+
 	<div class="row">
 		<div class="error">
 			<div class="error-code m-b-10 m-t-20">
@@ -19,9 +19,9 @@
 			<h3 class="font-bold">죄송합니다. 현재 에러가 발생했습니다.</h3>
 
 			<div class="error-desc">
-				존재하지 않는 주소를 입력하셨거나,<br>
-				 요청하신 페이지의 주소가 변경, 삭제되어 찾을 수 없습니다.<br>
-				 궁금한 점이 있으시면 언제든 고객센터를 통해 문의해 주시기 바랍니다.<br><br>
+				 존재하지 않는 주소를 입력하셨거나,<br>
+				 요청하신 페이지에 에러가 발생되어 찾을 수 없습니다.<br>
+				 궁금한 점이 있으시면 언제든 Q&A 게시판을 통해 문의해 주시기 바랍니다.<br><br>
 				 감사합니다.<br><br>
 				
 				<div>
@@ -37,5 +37,3 @@
 			</div>
 		</div>
 	</div>
-
-</div>

@@ -420,19 +420,27 @@
 }
 
  body, input, select, textarea {
-   color: #7f888f;
-   font-family: "Open Sans", sans-serif;
+   color: #333333;
+   font-family: 'Nanum Gothic', sans-serif;
    font-size: 15px;
    font-weight: 400;
-   line-height: 1.65;
+   line-height: 1.50;
    } 
    
-input, select, textarea {
+ /* top:140px;
+	font-size: 15px;
+	line-height: 1.50;
+	color: #333333;
+	background-color: #ffffff;
+	position: relative;
+	overflow-x: hidden;/*   가로스크롤을 막기위해 설정 */  
+   
+/* input, select, textarea {
    -moz-appearance: none;
-   -webkit-appearance: radio;
+   -webkit-appearance: radio; 노트작성에서 파일 깨짐
    -ms-appearance: none;
    appearance: none;
-   } 
+   }  */
 
 input[type="text"],
 select,
@@ -471,7 +479,7 @@ input[type="text"]:focus,
 select:focus,
 textarea:focus {
    border-color: #f56a6a;
-   box-shadow: 0 0 0 1px #f56a6a;
+   /* box-shadow: 0 0 0 1px #f56a6a; */
    }
 
 select {
@@ -501,6 +509,13 @@ input[type="text"],
 select {
    height: 5rem;
    }  
+#userComment, #userCommComm {
+    height: 30px;
+}  
+#commentBtn, #commCommentBtn {
+	
+}
+  
    
 #search-text {
    padding: 0 1rem;
@@ -508,7 +523,16 @@ select {
    display: inline;
    }
    
+#search-text-write {
+   padding: 0 1rem;
+   width: 90%;
+   display: inline;
+   }
 /* 아이콘 설정 */
+#searchWriteSite{
+	margin-left: 7px;
+}
+
 i:hover {
    color:#f56a6a;
 }
@@ -544,7 +568,7 @@ section.special, article.special {
    }
 
 header p {
-   font-family: "Roboto Slab", serif;
+  /*  font-family: "Roboto Slab", serif; */
    font-size: 1em;
    font-weight: 400;
    letter-spacing: 0.075em;
@@ -718,7 +742,7 @@ blockquote::before{
   content: "\201C"; /*Unicode for Left Double Quote*/
   
   /*Font*/
-  font-family: Georgia, serif;
+ /*  font-family: Georgia, serif; */
   font-size: 60px;
   font-weight: bold;
   color: #f56a6a;
@@ -768,7 +792,7 @@ code{
 h1#mydrag{
   text-align:left;
   font-size:15px;
-  font-family: 'Francois One', sans-serif;
+  /* font-family: 'Francois One', sans-serif; */
 } 
  
 span.Cgrapefruit{
@@ -909,3 +933,20 @@ height: 1.2em;
    right: 20px !important;
 }
 
+
+
+ .searchNoteDiv{
+    margin-top: -30px;
+    padding-top: 4px;
+    padding-bottom: 4px; 
+    border-radius: 0.375em;
+    background-color:white; 
+    margin-top: 10px;
+    color:#777;
+    width: 325px; 
+} 
+
+.notewrite{
+	margin-left: 0.7rem;
+	font-size: 1.6rem;
+}

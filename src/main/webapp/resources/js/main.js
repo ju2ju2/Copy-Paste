@@ -6,14 +6,6 @@
  */
 
 
-//활성화 된 링크 active 클래스주기
-//모달 내용 초기화
-$('body').on('hidden.bs.modal', '.modal', function() {
-	$(this).removeData('bs.modal');
-});
-$('#modal-testNew').on('shown.bs.modal', function() {
-	$(document).off('focusin.modal');
-});
 
 // 메인 텍스트 슬라이드
 var TxtType = function(el, toRotate, period) {
@@ -221,48 +213,6 @@ window.onload = function() {
 var prevText;
 
 
-// 드래그 저장
-$(document).mouseup(function(event){
-	event.preventDefault(); 
-	event.stopPropagation(); 
-	
-     var selection = window.getSelection();
-	 var text = selection.toString();
-	 
-	 // 드래그 텍스트 공백인지 앞의 드래그와 중복되는지 체크
-	 if (text !='' && text.length > 1 && $.trim(text).length != 0 && prevText != text) {
-		 // 드래그 저장
-		var dragfd = new FormData();
-		var dragOriginLink = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname;
-		dragfd.append("dragOriginLink",dragOriginLink);
-		dragfd.append("dragOrigin","copyNpaste");
-		dragfd.append("dragText", text);
-
-		$.ajax({
-			url : "drag/insertDrag.json",
-			type:"POST",
-			data :dragfd,
-			dataType : "json",
-			processData: false,
-			contentType:false
-		})
-		.done(function (result) {
-			swal({
-				type : "success",
-				title : '드래그가 저장되었습니다.',
-				confirmButtonClass : "btn-danger",
-				closeOnConfirm : false
-			}, function() {
-				location.reload();
-				
-			});
-			
-			prevText = text;
-		})
-		
-		return false;
-	 }	
- });
 
 
 /// 워드 클라우드
@@ -316,7 +266,7 @@ $.ajax({
 		});  
 	},
 	  error: function(){
-	   	  console.log("천천히!!");
+		  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 	  }
 })
 
