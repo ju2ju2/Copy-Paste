@@ -1006,3 +1006,22 @@ img .user-photo{
 .noteRankContainer{
 	margin-top: 30px;
 }
+
+ #ui-id-1{
+	position: relative;
+	/* 	top: -1151px !important; */
+	/* left: 693px !important; */
+	list-style: none !important;
+	width: 917px !important;
+	background-color: rgb(255, 255, 255);
+	display: none;
+	border : 1px solid #f56a6a;
+}
+#ui-id-1>li{
+	margin: 5px 0;
+	left :-20px;
+}
+ #ui-id-1>li:hover{
+	color:#f56a6a;
+	
+}

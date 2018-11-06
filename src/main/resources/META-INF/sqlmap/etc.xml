@@ -200,6 +200,15 @@
 				
 	</select>
 
+	<!-- write에서 사이트 내 검색 -->
+	<select id="collectSearchKeywords" resultType="NoteVO">
+		select n.noteTitle,s.subjectName
+		from note n join subject s on s.subjectCode=n.subjectCode
+		where s.subjectName= #{subjectName}
+		order by binary(n.noteTitle)
+	</select>
+
+
 
 </mapper>
 
