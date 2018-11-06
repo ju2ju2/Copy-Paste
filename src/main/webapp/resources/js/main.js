@@ -174,7 +174,9 @@ window.onload = function() {
 		   $.each(data, function(key, value){
 			   if(key<5){
 			   tag=tag+"  <li class='songList'><input class='songNo' type='hidden' value='"+value.songNo+"'/>"
-				   +"     <div class='music-rank'>"+value.rank+"위</div>"
+				   +"     <div class='music-rank'>";
+			   if(value.rank.length==1){tag2=tag2+"&nbsp;&nbsp;"}
+			   tag=tag+value.rank+"위</div>"
 				   +"   <img class='list-cover' src='"+value.imgT+"' />"
 				   +"   <div class='list-info'>"
 				   +"     <div class='info-title'>"+value.song+"</div>"
@@ -190,7 +192,9 @@ window.onload = function() {
 			$.each(data, function(key, value){
 			   if(key>=5){
 				   tag2=tag2+"  <li class='songList'><input class='songNo' type='hidden' value='"+value.songNo+"'/>"
-						   +"     <div class='music-rank'>"+value.rank+"위</div>"
+						   +"     <div class='music-rank'>";
+				   if(value.rank.length==1){tag2=tag2+"&nbsp;"}
+				   tag2=tag2+value.rank+"위</div>"
 						   +"   <img class='list-cover' src='"+value.imgT+"' />"
 						   +"   <div class='list-info'>"
 						   +"     <div class='info-title'>"+value.song+"</div>"
