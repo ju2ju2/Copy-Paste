@@ -30,6 +30,7 @@
 	<script src="${pageContext.request.contextPath}/resources/js/write.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/inc.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/dragaside.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/writeaside.js"></script>
 	<body>
 		<!-- Header  영역 (공통 inc) -->
 		<header id="header"><tiles:insertAttribute name="header" /></header>

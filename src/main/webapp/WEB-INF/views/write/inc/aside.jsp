@@ -55,11 +55,6 @@
                      </section>
                   </div>
                </div>
-                <span id="dragTopBtn">
-               <button type="button" class="btn topBtn" >
-                    <i class="fas fa-caret-up"  title="Go to top" ></i>
-                  </button>
-                  </span>
                <section>
                   <br>
                   <header class="major" id="droppable">
@@ -74,9 +69,9 @@
 
             <!-- 2. 마이노트 -->
             <div id="myNote" class="tab-pane fade">
-             <!--   <div class="row">
+               <div class="row">
                   <div class="form-group">
-                     노트정렬
+                     <!-- 노트정렬 -->
                      <div class="col-xs-12">
                         <select name="sort-category" id="sort-category" class="w-90">
                            <option value="">- 정렬 분류 -</option>
@@ -86,7 +81,7 @@
                            <option value="1">전체보기</option>
                         </select>
                      </div>
-                     노트검색
+                     <!-- 노트검색 -->
                      <section id="subject-search" class="alt">
                         <div class="col-xs-12">
                            <form method="get" action="#">
@@ -97,7 +92,7 @@
                         </div>
                      </section>
                   </div>
-               </div> -->
+               </div>
                <section>
                   <br>
                   <header class="major">
@@ -150,7 +145,7 @@
                      <i class="fas fa-angle-double-right writeNoteNavSizeBtn "></i>
                   </button>
                   <br>
-                   <button type="button" class="btn topBtn" >
+                   <button type="button" class="btn " id="topBtn" >
                     <i class="fas fa-caret-up"  title="Go to top" ></i>
                   </button>
                </span>
@@ -175,13 +170,9 @@
 								    s.parentNode.insertBefore(gcse, s);
  							     })();
 						</script>
-<gcse:search></gcse:search>
+						<gcse:search></gcse:search>
                          
-                         <!--   <form method="post" action="#">
-                              <input type="text" id="search-text" placeholder="검색" /> <a
-                                 href="#"><i id="search" class="fas fa-search icon-size"
-                                 style="padding-top: 15px"></i></a>
-                           </form> -->
+                   
                         </div>
                      </section>
 
@@ -198,220 +189,3 @@
    </div>
 </nav>
 
-
-<script>
-
-   /* 폴더 아코디언 */
-   var acc = document.getElementsByClassName("accordion");
-   var i;
-
-   for (i = 0; i < acc.length; i++) {
-      acc[i].addEventListener("click", function() {
-         this.classList.toggle("a-active");
-         var panel = this.nextElementSibling;
-         if (panel.style.maxHeight) {
-            panel.style.maxHeight = null;
-         } else {
-            panel.style.maxHeight = panel.scrollHeight + "px";
-         }
-      });
-   }
-
-   /* 스크랩 아이콘 토글  */
-   $('.fa-bookmark').click(function() {
-      if ($(this).hasClass("far")) {
-         $('.fa-bookmark').removeClass("fas").addClass("far");
-         $(this).removeClass("far").addClass("fas");
-      }
-   })
-   
-
-   //노트 드래그 가능, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
-    $('.asideNoteDiv').draggable({
-       revert: true, 
-        revertDuration: 200,
-        snapMode: "inner",
-        scroll: true,
-        scrollSensitivity: 100 ,
-        scrollSpeed: 100
-       });
-   
-       
-   //노트 탭 폴더목록 추가 //노트 리스트 
-   $.ajax({
-      url: "${pageContext.request.contextPath}/folder/selectAllFolder.json", // url_pettern 
-      type:"POST",
-      dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
-      success:function(data){
-        var a = "";
-          if(data != null) {
-            $.each(data, function(key, value){
-               $('#asideFolderList').empty();   
-               a += '<div class="row" class="accordion" alt="'+value.folderName.trim()+'"><div class="col-xs-10 pt"> <h5 class="accordion asideFolderName" id="asideFolderName">'+value.folderName+'</h5>'
-               a += '</div><div class="col-xs-2 panel-margin">   <i class="far fa-bookmark icon-size"></i>'
-               a += '</div><div class="row"><div id="asideNoteList"></div></div></div>';
-            });
-         }
-         $("#asideFolderList").html(a);
-       }
-    }).done(function (result) {
-       $('.asideFolderName').click(function(){
-          $.ajax({
-                url: "${pageContext.request.contextPath}/note/selectByFolderNote.json", // url_pettern 
-                type:"POST",
-                data: {'folderName':$(this).text()},
-                dataType:"json",
-                success:function(data){
-                    if(data != null) {
-                      var aa = "";
-                      $.each(data, function(key, value){
-                         $('#asideNoteList').empty();   
-                         aa+='<div class="col-xs-11 asideNoteDiv">'
-                         aa+='<div class="text-center asideNoteDiv">'
-                         aa+='<!-- a HTML (to Trigger Modal) -->'
-                         aa+='<a data-toggle="modal"'
-                         aa+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&write=y"'
-                         aa+='data-target="#modal-testNew" role="button" data-backdrop="static">'
-                         aa+='<div class="item">'
-                         aa+='<img class="img-rounded"'
-                         aa+='src="'+value.noteThumnail+'"'
-                         aa+='alt="'+value.noteTitle+'" width="100%">'
-                         aa+='<div class="caption">'
-                         aa+='<i class="fa fa-plus" aria-hidden="true"></i>'
-                         aa+='</div>'
-                         aa+='</div>'
-                         aa+='<div>'
-                         aa+='<h4 class="noteTitle" >'+value.noteTitle+'</h4>'
-                         aa+='<strong>'+value.userNick+'</strong><span>'+value.noteDate+'</span>'
-                         aa+='</div>'
-                         aa+='</a>'
-                         aa+='</div>'
-                         aa+='</div>'
-                         $("div[alt='"+value.folderName+"']").find("#asideNoteList").html(aa);
-                      });
-
-                   }
-                
-                 }
-              })
-       }) 
-       
-   });
-
-
-   // 사이트 내 검색 탭
-			$("#searchWriteSite").click(function(){
-				if($("#search-text-write").val()==''){
-					swal({
-						  title: "검색어를 입력해주세요",
-						  text: "",
-						  type: "warning",
-						  confirmButtonClass: "btn-danger",
-						  confirmButtonText: "OK",
-						  showCancelButton: false
-						})
-				}else{
-					 $.ajax(
-								{
-						    url : "../etc/selectSearchSiteWrite.json",
-						    type : "get",
-						    data : {"keyword":$("#search-text-write").val(),
-						    },
-						    dataType : 'json',
-						    success : function(data){
-						    	      console.log(data);
-						    		 var aa = "";
-							          	if(data!=null) {
-							          		$.each(data, function(key, value){
-							          			 $('#searchList').empty();   
-						                         aa+='<div class="col-xs-12 searchNoteDiv">'
-						                         aa+='<div class="text-center">'
-						                         aa+='<!-- a HTML (to Trigger Modal) -->'
-						                         aa+='<a data-toggle="modal"'
-						                         aa+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&write=y"'
-						                         aa+='data-target="#modal-testNew1" role="button" data-backdrop="static">'
-						                         aa+='<div class="item">'
-						                         aa+='<img class="img-rounded"'
-						                         aa+='src="'+value.noteThumnail+'"'
-						                         aa+='alt="'+value.noteTitle+'" width="100%">'
-						                         aa+='<div class="caption">'
-						                         aa+='<i class="fa fa-plus" aria-hidden="true"></i>'
-						                         aa+='</div>'
-						                         aa+='</div>'
-						                         aa+='<div>'
-						                         aa+='<h4  class="noteTitle">'+value.noteTitle+'</h4>'
-						                         aa+='<strong>'+value.userNick+'</strong><span>'+value.noteDate+'</span>'
-						                         aa+='</div>'
-						                         aa+='</a>'
-						                         aa+='</div>'
-						                         aa+='</div>'
-						                         $("div[alt='"+value.folderName+"']").find("#searchList").html(aa);
-							          		})
-							          	}
-							          	
-							          	if(data.length == 0){
-							          		$("#searchList").empty();
-							          		aa += "<div class='text-center noteDiv'>";
-							          		aa += "<h5>검색된 결과가 없습니다.</h5>";
-							          		aa += "</div>";
-										}
-							          	
-							          	$("#searchList").html(aa);	
-						    	
-						          	
-						    },
-						    error : function(request,status,error){
-						        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-						    }
-								})
-				}
-			})
-			
-/* 		// 스크롤 내렸을때 top보이고 안내리면 안보임
-		window.onscroll = function() {scrollFunction()};
-		var inner = $(".inner")
-		function scrollFunction() {
-		    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20 || inner.scrollTop > 20) {
-		    	document.getElementById("topBtn").style.display = "block";
-		    } else {
-		        document.getElementById("topBtn").style.display = "none";
-		    }
-		}  */
-		
-		
-	
-		  var inner = $(".inner")
-		  $(inner).scroll(function() {
-		    if (inner.scrollTop() > 50 || inner.scrollTop() > 50) {
-		    	 $(".topBtn").css('display', 'block');
-		    } else {
-		   	      $(".topBtn").css('display', 'none');
-		    
-		    }
-		  });
-
-		
-		$('.topBtn').click(function(){
-			document.body.scrollTop = 0;
-			document.documentElement.scrollTop = 0; 
-			
-			var scrollTop = $(this).scrollTop();
-			var inner = $(".inner")
-			
-			inner.animate({
-				"scrollTop":0
-			}, 0);
-		})
-            
-		
-		
-/* 		// top버튼 눌렀을때 실행
-		$('#topBtn').click(function(e) {
-	        document.body.scrollTop = 0;
-		    document.documentElement.scrollTop = 0; 
-		});
- */
-			
-				
-
-</script>
