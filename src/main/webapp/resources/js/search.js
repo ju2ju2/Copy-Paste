@@ -24,7 +24,6 @@ function topFunction() {
 }
 
 //사이트내 검색어 자동완성
-
 function autoComplete(subjectName){
 	var allkeywords =[];
 	var uniquekeywords = [];

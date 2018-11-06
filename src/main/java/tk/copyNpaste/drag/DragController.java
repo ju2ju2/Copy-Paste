@@ -14,8 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import tk.copyNpaste.vo.DragVO;
+import tk.copyNpaste.vo.NoteVO;
 
 
  //동기 컨트롤러. retrun>> ModelAndView or String.
@@ -126,4 +128,11 @@ public class DragController {
 		return  dragservice.selectAllDrag(map);
 	}
 
+	
+	// 드래그 검색 자동완성
+	@RequestMapping(value="collectSearchKeywords.json", method = RequestMethod.GET)
+	public @ResponseBody List<DragVO> dragCollectSearchKeywords(String subjectName) throws Exception {
+	return dragservice.dragCollectSearchKeywords(subjectName);
+	}	
+	
 }

@@ -252,6 +252,31 @@ function moreAsideDragList(e,url,params){
 	}
 }
 
+//사이트내 검색어 자동완성
+function autoComplete(subjectName){
+	var allkeywords =[];
+	var uniquekeywords = [];
+	$.ajax({
+		type:"get",
+		url: "../drag/dragCollectSearchKeywords.json", 
+		data: params,
+		dataType:"json",
+		success:function(data){
+			
+    	    $.each(data, function(index,obj){
+    		   	allkeywords.push(obj.dragText);
+    		});	
+    	    //배열 중복제거 후 담기
+			$.each(allkeywords, function(i, el){
+				if($.inArray(el, uniquekeywords) === -1) uniquekeywords.push(el); 
+			});
+		}
+	})
+	
+	$( "#search-text" ).autocomplete({
+	      source: uniquekeywords
+	});
+}
 
 
 
@@ -271,11 +296,22 @@ $("document").ready(function(){
 
 		// 드래그 키워드 검색
 		$('#searchdrag').click(function(e) {
+			if($("#search-text").val()==''){
+				swal({
+					title: "검색어를 입력해주세요",
+					text: "",
+					type: "warning",
+					confirmButtonClass: "btn-danger",
+					confirmButtonText: "OK",
+					showCancelButton: false
+				})
+			}else{    
+				var url="";
 			console.log(params.keyword)	
-			url = "../drag/selectByKeyDrag.json"
-
+			    url = "../drag/selectByKeyDrag.json"
 				params.keyword = $('#search-text').val()
 				makeAsideDragList(url, params);
+			    autoComplete(params.keyword);
 			$(window).scroll(function(e) { moreAsideDragList(e,url, params)})		
 		})
 

@@ -55,6 +55,11 @@
                      </section>
                   </div>
                </div>
+                <span id="dragTopBtn">
+               <button type="button" class="btn topBtn" >
+                    <i class="fas fa-caret-up"  title="Go to top" ></i>
+                  </button>
+                  </span>
                <section>
                   <br>
                   <header class="major" id="droppable">
@@ -69,9 +74,9 @@
 
             <!-- 2. 마이노트 -->
             <div id="myNote" class="tab-pane fade">
-               <div class="row">
+             <!--   <div class="row">
                   <div class="form-group">
-                     <!-- 노트정렬 -->
+                     노트정렬
                      <div class="col-xs-12">
                         <select name="sort-category" id="sort-category" class="w-90">
                            <option value="">- 정렬 분류 -</option>
@@ -81,7 +86,7 @@
                            <option value="1">전체보기</option>
                         </select>
                      </div>
-                     <!-- 노트검색 -->
+                     노트검색
                      <section id="subject-search" class="alt">
                         <div class="col-xs-12">
                            <form method="get" action="#">
@@ -92,7 +97,7 @@
                         </div>
                      </section>
                   </div>
-               </div>
+               </div> -->
                <section>
                   <br>
                   <header class="major">
@@ -145,7 +150,7 @@
                      <i class="fas fa-angle-double-right writeNoteNavSizeBtn "></i>
                   </button>
                   <br>
-                   <button type="button" class="btn " id="topBtn" >
+                   <button type="button" class="btn topBtn" >
                     <i class="fas fa-caret-up"  title="Go to top" ></i>
                   </button>
                </span>
@@ -378,14 +383,15 @@
 		  var inner = $(".inner")
 		  $(inner).scroll(function() {
 		    if (inner.scrollTop() > 50 || inner.scrollTop() > 50) {
-		    	 document.getElementById("topBtn").style.display = "block";
+		    	 $(".topBtn").css('display', 'block');
 		    } else {
-		    	 document.getElementById("topBtn").style.display = "none";
+		   	      $(".topBtn").css('display', 'none');
+		    
 		    }
 		  });
 
 		
-		$('#topBtn').click(function(){
+		$('.topBtn').click(function(){
 			document.body.scrollTop = 0;
 			document.documentElement.scrollTop = 0; 
 			

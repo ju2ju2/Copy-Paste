@@ -44,6 +44,9 @@ public interface DragMapper {
 
 	//드래그 무한 스크롤 
 	public List<DragVO> infiniteScrollDrag(DragVO drag) throws Exception;
+    
+	//드래그 자동완성
+	public List<DragVO> dragCollectSearchKeywords(String subjectName) throws Exception;
 
 
 

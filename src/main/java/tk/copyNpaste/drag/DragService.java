@@ -20,7 +20,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.copyNpaste.mapper.DragMapper;
+import tk.copyNpaste.mapper.EtcMapper;
 import tk.copyNpaste.vo.DragVO;
+import tk.copyNpaste.vo.NoteVO;
 
 
 @Service
@@ -83,6 +85,11 @@ public class DragService {
 	public int removeDragMark(HashMap<String, Object> map) throws Exception {
 		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
 		return dragdao.removeDragMark(map);
+	}
+   //드래그 자동완성
+	public List<DragVO> dragCollectSearchKeywords(String subjectName) throws Exception {
+		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
+		return dragdao.dragCollectSearchKeywords(subjectName);
 	}
 
 

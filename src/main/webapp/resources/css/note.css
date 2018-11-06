@@ -962,15 +962,27 @@ height: 1.2em;
 }
 
 /* 검색확장버튼 고정 */
-#topBtn {
+.topBtn {
 	 background-color: #f56a6a;
 	  color: #fff;
 	position: fixed;
 	padding: 3px 5px !important;
 	margin-top:5px;
 	display: none;
-
 }
+
+.topBtn:hover {
+   color: #f56a6a;
+   background-color: #fff;
+}
+
+#dragTopBtn{
+	
+	position: absolute !important;
+    top: 460px !important;
+	right: 22px !important;
+}
+
 /* 구글 서치 검색 창 길이 */
 #gsc-iw-id1{
     position: relative;
