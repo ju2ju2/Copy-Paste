@@ -516,6 +516,31 @@ $(document).ready(function(){
 								+" </button></div>"
 								+" </span></div></div>";
 							
+							//대댓글등록
+							function insertCommComm(){
+								$.ajax({
+									url : "<%=request.getContextPath()%>/note/insertNoteCommComm.json",
+								    type : "get",
+								    data : {    	
+								    	"commContent": $('#userCommComm').val(),
+								    	"noteNum":${note.noteNum},
+								    	"noteCommNum":noteCommNum,
+								    	"noteCommPos":noteCommPos
+								    },
+								    success : function(data){
+								    	commCommClickNum=0;
+								    	noteCommNum="";
+								    	noteCommPos="";
+								    	makeNoteCommList(${note.noteNum})
+								    	
+								    },
+								    error:function(request,status,error){
+							     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+							     	  }
+								});	
+								
+								
+							}
 								
 						 		/* 대댓글아이콘 클릭시 */
 								$('.noteCommCommBtn').on("click",function() {
@@ -524,11 +549,19 @@ $(document).ready(function(){
 									noteCommPos=$(this).find('#noteCommPos').val();
 									commCommClickNum=1;
 									$(this).parents('.comment').append(commBoxHtml);
+									/* 대댓글 작성 버튼 클릭시 */
+									$('#commCommentBtn').click(function(){
+										insertCommComm()
+									});
 								}else if(commCommClickNum==1){
 									$('.noteCommCommBox').remove();
 									noteCommNum=$(this).find('#noteCommNum').val();
 									noteCommPos=$(this).find('#noteCommPos').val();
 									$(this).parents('.comment').append(commBoxHtml);
+									/* 대댓글 작성 버튼 클릭시 */
+									$('#commCommentBtn').click(function(){
+										insertCommComm()
+									});
 								}
 								/* 대댓글 화면 닫기 */
 									$('.noteCommCommExit').click(function(){
@@ -540,32 +573,10 @@ $(document).ready(function(){
 								
 								
 								
+
 								
-								
-								
-								/* 대댓글 작성 버튼 클릭시 */
-								$('#commCommentBtn').on("click",  function(){
-									$.ajax({
-										url : "<%=request.getContextPath()%>/note/insertNoteCommComm.json",
-									    type : "get",
-									    data : {    	
-									    	"commContent": $('#userCommComm').val(),
-									    	"noteNum":${note.noteNum},
-									    	"noteCommNum":noteCommNum,
-									    	"noteCommPos":noteCommPos
-									    },
-									    success : function(data){
-									    	commCommClickNum=0;
-									    	noteCommNum="";
-									    	noteCommPos="";
-									    	makeNoteCommList(${note.noteNum})
-									    	
-									    },
-									    error:function(request,status,error){
-								     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-								     	  }
-									});	
-								});
+
+							
 						
 							/* 대댓글 */
 						

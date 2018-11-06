@@ -20,7 +20,8 @@ function deleteMember(thisBtn) {
 					success : function(data) {
 							  swal({
 								  type: "success",
-								  title: "삭제했습니다.", 
+								  title: "강제탈퇴가 처리되었습니다.", 
+								  confirmButtonClass: "btn-danger",
 								  closeOnConfirm: false
 									},
 									function() {location.href="../etc/admin.htm";});

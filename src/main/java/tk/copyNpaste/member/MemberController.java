@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
+
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
@@ -183,6 +190,23 @@ public class MemberController {
 		memberService.deleteMember(userEmail);
 	};
 	
-	
+	//노드 된건가
+	@RequestMapping(value="login.json", method = RequestMethod.POST)
+	public @ResponseBody MemberVO loginnode(String userEmail,String userPwd) throws Exception{
+		System.out.println("node 요청들어옴");
+		MemberVO member = new MemberVO();
+		System.out.println("userPwd/"+userPwd);
+		userPwd= bCryptPasswordEncoder.encode(userPwd);
+
+		member =loginService.login(userEmail,userPwd);
+		JSONObject memberjson = new JSONObject();
+        memberjson.put("userEmail",member.getUserEmail());
+        memberjson.put("userPhoto",member.getUserPhoto());
+        memberjson.put("userNick",member.getUserNick());
+
+        URLConn conn = new URLConn("http://127.0.0.1",10030);
+        conn.urlPost(memberjson);
+		return member;
+	};
 	
 }
