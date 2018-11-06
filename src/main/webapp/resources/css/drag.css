@@ -517,7 +517,7 @@ header.main > :last-child {
 /* 일자별 검색 */
 #fromDate, #toDate {
    padding: 0 1.5rem;
-   width: 80%;
+   width: 90%;
    display: inline;
    }
    

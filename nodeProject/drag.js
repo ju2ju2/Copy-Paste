@@ -1,25 +1,17 @@
+/*@Project : copyNpaste
+ *@File name : drag.js
+ *@Date : 2018.10.26
+ *@Author : 우나연
+ *@Desc : 웹 확장프로그램>> 드래그 저장*/
 /*
 	// 사용할 모듈 정리
-	1. http (웹 서버 기능) 
-	2. fs (파일 내용 읽기)
+	1. request (파라미터값과 헤더설정을 추가하여 웹서버에 요청을 )
+	2. express (웹 서버 기능) 
 	3. mysql (데이터베이스 접근)
 	4. querystring (파라미터 처리)
-	
-	게시판 기능중에서 등록폼, 등록, 목록 
-	
-	/writeForm.do 일 경우 writeForm.html 파일의 내용을 읽어서 
-	사용자에게 전송
-	
-	/write.do 일 경우 넘어온 파라미터 값을 얻어온 다음 데이터베이스에
-	입력
-	
-	등록된 다음 자동으로 /list.do 경로를 호출
-	: response.writeHead(302, {"Location": "list.do"}); 
-	
-	/list.do 일 경우 데이터베이스의 게시물 내용을 조회한 다음 
-	사용자 화면으로 결과를 넘겨준다.
+	5. cors(Access-Control-Allow-Origin 헤더를 설정)>>맞춤법검사에 적용필요
  */
-var http = require("http");
+
 var request = require("request");
 var express = require('express');
 var mysql = require("mysql");
@@ -33,12 +25,6 @@ var con = mysql.createConnection({
 	password: "1004",
 	database: "copynpaste"
 });
-//app.get('/drag', function(req, res){
-//	console.log("들어옴");
-//	drag(req, res);
-//});
-//
-//app.listen(10020);
 
 function drag(request, response) {
 	var pData = "";
@@ -75,27 +61,14 @@ function drag(request, response) {
 app.use(cors());
 
 app.post('/drag', function(req, res){
-	console.log("드래그");
+	console.log("드래그 요청");
 	drag(req, res);
 });
 
-app.listen(10020);
+app.listen(10020,function() {
+	console.log("10020 드래그 서버 구동중");
+});
 
-
-//
-//http.createServer(function(request, response) {
-//	console.log(request.url);
-//	switch (request.url) {
-//	case "/drag":
-//		drag(request, response);	
-//		break;
-//	default:
-//		response.end();
-//	}
-//})
-//.listen(10020, function() {
-//	console.log("10020 서버 구동중");
-//});
 
 
 

@@ -13,7 +13,8 @@
     margin-top: 10px;
 }
 .comment{
-	margin-top: 5px;
+	margin-top: 15px;
+    padding: 0;
 }
 .qnaCommTrashBtn, .qnaCommCommBtn,.titleLink,.qnaCommCommExit{
 	cursor: pointer;
@@ -81,4 +82,32 @@
 .display-Table{
 	display: table;
 	clear: both;
+}
+
+.comment-box {
+	margin-top: 30px !important;
+}
+
+/* .comment-box .media-left {
+	 padding-right: 10px; 
+	 width: 500px;
+} */
+
+.qnaCommentBox{
+	padding: 4px;
+	padding-top: 12px;
+}
+
+.qnaCommentBox img {
+	height: 45px;
+	width: 45px;
+	border-radius: 50%;
+	background-size: contain;
+}
+
+.user-photo{
+	display: inline-block;
+	width:45px !important;
+	height:45px !important;
+	margin-left: 15px;
 }

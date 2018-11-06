@@ -41,6 +41,7 @@ $(function() {
 		    	 'noteNum':$("#noteNum").val()
 		    	 },
 		   	success:function(result){
+		   		console.log(result);
 		   				if (result >= 2) { 
 				   	    	  swal({type: "success",
 								 	title: '성공적으로 반영했습니다.',

@@ -16,8 +16,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/css/api/jquery/drag-jquery-ui.theme.css" />
 <nav>
 <div id="sidebar">
 <div class="inner">

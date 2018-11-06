@@ -43,9 +43,12 @@
   		values (#{userEmail}, replace('스크랩','\r\n', ''), 0, 1);
 	</insert>
 	
-	<!-- 폴더 삭제 -->
+	<!-- 폴더 삭제 → 노트 삭제 → 댓글 삭제 → 대댓글 삭제 -->
 	<delete id="deleteFolder" parameterType="FolderVO">
-		delete from folder where userEmail = #{userEmail} and folderName=#{folderName};
+		delete f, n, c
+		from note n join folder f on n.foldername=f.foldername
+			        join notecomm c on n.noteNum=c.noteNum
+		where f.userEmail = #{userEmail} and n.folderName=#{folderName};
 	</delete>
 	
 	<!-- 폴더 수정 : 컨텐츠 有 -->

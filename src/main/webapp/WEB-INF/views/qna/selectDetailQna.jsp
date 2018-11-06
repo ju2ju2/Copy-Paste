@@ -70,6 +70,7 @@
 			<div class="col-lg-12 col-sm-12 text-left">
 				<div class="commentBox">
 					<c:forEach var="qnaComm" items="${qnaCommList}">
+						
 						<div class="comment">
 							<strong class="pull-left primary-font"> 
 								<c:if test="${qnaComm.qnaCommDept==1}">
@@ -183,9 +184,12 @@
 			</form>
 			<!-- QnA 댓글 -->
 			<div class="col-lg-12 col-sm-12 text-left">
-				<div class="commentBox">
 					<c:forEach var="qnaComm" items="${qnaCommList}">
-						<div class="comment">
+					<div class="row">
+						<div class="media-left qnaCommentBox col-sm-1">
+							<img class="user-photo" src="../resources/image/userPhoto/${qnaComm.userPhoto}">
+						</div>
+						<div class="comment col-sm-11">
 							<strong class="pull-left primary-font"> 
 								<c:if test="${qnaComm.qnaCommDept==1}">
 								ㄴ
@@ -223,8 +227,9 @@
 								${qnaComm.qnaCommContent}
 							</div>
 						</div>
+						</div>
 					</c:forEach>
-				</div>
+
 				<!-- 로그인한 회원,어드민들 댓글창 -->
 				<se:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
 					<div class="qnaComm-inputBox input-group">
