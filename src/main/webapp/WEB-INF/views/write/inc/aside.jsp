@@ -316,6 +316,7 @@
 						    },
 						    dataType : 'json',
 						    success : function(data){
+						    	      console.log(data);
 						    		 var aa = "";
 							          	if(data!=null) {
 							          		$.each(data, function(key, value){
@@ -336,7 +337,7 @@
 						                         aa+='</div>'
 						                         aa+='<div>'
 						                         aa+='<h4  class="noteTitle">'+value.noteTitle+'</h4>'
-						                         aa+='<strong>'+value.userEmail+'</strong><span>'+value.noteDate+'</span>'
+						                         aa+='<strong>'+value.userNick+'</strong><span>'+value.noteDate+'</span>'
 						                         aa+='</div>'
 						                         aa+='</a>'
 						                         aa+='</div>'
@@ -363,22 +364,49 @@
 				}
 			})
 			
-				// 스크롤 내렸을때 top보이고 안내리면 안보임
+/* 		// 스크롤 내렸을때 top보이고 안내리면 안보임
 		window.onscroll = function() {scrollFunction()};
+		var inner = $(".inner")
 		function scrollFunction() {
-		    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+		    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20 || inner.scrollTop > 20) {
 		    	document.getElementById("topBtn").style.display = "block";
 		    } else {
 		        document.getElementById("topBtn").style.display = "none";
 		    }
-		}
+		}  */
+		
+		
+	
+		  var inner = $(".inner")
+		  $(inner).scroll(function() {
+		    if (inner.scrollTop() > 50 || inner.scrollTop() > 50) {
+		    	 document.getElementById("topBtn").style.display = "block";
+		    } else {
+		    	 document.getElementById("topBtn").style.display = "none";
+		    }
+		  });
 
-		// top버튼 눌렀을때 실행
+		
+		$('#topBtn').click(function(){
+			document.body.scrollTop = 0;
+			document.documentElement.scrollTop = 0; 
+			
+			var scrollTop = $(this).scrollTop();
+			var inner = $(".inner")
+			
+			inner.animate({
+				"scrollTop":0
+			}, 0);
+		})
+            
+		
+		
+/* 		// top버튼 눌렀을때 실행
 		$('#topBtn').click(function(e) {
 	        document.body.scrollTop = 0;
 		    document.documentElement.scrollTop = 0; 
 		});
-
+ */
 			
 				
 

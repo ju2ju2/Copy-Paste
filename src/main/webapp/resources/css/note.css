@@ -961,6 +961,8 @@ height: 1.2em;
 	position: fixed;
 	padding: 5px !important;
 	margin-top:5px;
+	display: none;
+
 }
 /* 구글 서치 검색 창 길이 */
 #gsc-iw-id1{
