@@ -308,6 +308,9 @@
 		
 		/* 대댓글 작성 버튼 클릭시 */
 		$(document).on("click", "#commCommbtn", function(){
+			if($('#userCommComm').val()==""){
+				swal("", "내용을 입력해주세요", "warning");
+			}else{
 			$.ajax({
 				url : "<%=request.getContextPath()%>/qna/insertQnaCommComm.json",
 			    type : "get",
@@ -327,6 +330,7 @@
 		     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		     	  }
 			});	
+			}
 		});
 		
 		/* 댓글삭제아이콘 클릭시 */

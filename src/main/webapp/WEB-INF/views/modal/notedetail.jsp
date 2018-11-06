@@ -402,6 +402,9 @@ $(document).ready(function(){
 	  /* 댓글등록 */
 
   	$('.commentBtn').click(function insertNoteComm(event){
+  		if($('#userComment').val()==""){
+			swal("", "내용을 입력해주세요", "warning");
+		}else{
   		event.stopPropagation();
   		$.ajax({
   			url : "<%=request.getContextPath()%>/note/insertNoteComm.json",
@@ -416,7 +419,7 @@ $(document).ready(function(){
   				makeNoteCommList(${note.noteNum});
   				
   		    }
-  		})
+  		})}
   		    
   	}) 
 	 
@@ -551,7 +554,11 @@ $(document).ready(function(){
 									$(this).parents('.comment').append(commBoxHtml);
 									/* 대댓글 작성 버튼 클릭시 */
 									$('#commCommentBtn').click(function(){
+										if($('#userCommComm').val()==""){
+											swal("", "내용을 입력해주세요", "warning");
+										}else{
 										insertCommComm()
+										}
 									});
 								}else if(commCommClickNum==1){
 									$('.noteCommCommBox').remove();
@@ -560,7 +567,11 @@ $(document).ready(function(){
 									$(this).parents('.comment').append(commBoxHtml);
 									/* 대댓글 작성 버튼 클릭시 */
 									$('#commCommentBtn').click(function(){
+										if($('#userCommComm').val()==""){
+											swal("", "내용을 입력해주세요", "warning");
+										}else{
 										insertCommComm()
+										}
 									});
 								}
 								/* 대댓글 화면 닫기 */

@@ -24,7 +24,7 @@
 </div>
 <br>
 <!-- top버튼 -->
-<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+<div><i class="fas fa-caret-up"  onclick="topFunction()" id="myBtn" title="Go to top"></i></div>
 
 <!-- Modal HTML -->
 <div id="modal-testNew" class="modal fade text-center overlay" role="dialog">
