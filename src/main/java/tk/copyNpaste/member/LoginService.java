@@ -79,9 +79,9 @@ public class LoginService {
 		return memberdao.naverLogin(userEmail);
 	}
 
-	public MemberVO login(String userEmail, String userPwd) throws Exception {
+	public MemberVO login(MemberVO member) throws Exception {
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
-		return memberdao.login(userEmail,userPwd);
+		return memberdao.login(member);
 	}
 	
 

@@ -60,7 +60,7 @@ public interface MemberMapper {
 	public int deleteMember(String userEmail) throws Exception;
 
 	//node 로그인 
-	public MemberVO login(String userEmail, String userPwd) throws Exception;
+	public MemberVO login(MemberVO member) throws Exception;
 	
 	
 
