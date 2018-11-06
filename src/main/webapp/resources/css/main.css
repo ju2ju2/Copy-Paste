@@ -1020,6 +1020,13 @@ img .user-photo{
 #ui-id-1>li{
 	margin: 5px 0;
 	left :-20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+   
 }
  #ui-id-1>li:hover{
 	color:#f56a6a;

@@ -163,9 +163,9 @@ $(document).ready(function() {
                   $('#sidebar').css('width', '1120px');
                   $('#search-text-write').css('width', '90%');
                   $('#sidebar').addClass('col-sm-10');
-                  $('.fa-angle-double-left').css('color','#fff');
                   $('.writeNoteNavSizeBtn').removeClass('fa-angle-double-right').addClass(
                               'fa-angle-double-left');
+                  $('.fa-angle-double-left').css('color','#fff');
                } else {
                   $('#sidebar').css('width', '400px');
                   $('#sidebar').removeClass('col-sm-10');
