@@ -68,7 +68,8 @@ function folderNoteList(folderName){
             if(data != null) {
               var folderNoteList = "";
               $.each(data, function(key, value){
-                 $('#asideNoteList').empty();   
+                 $('#asideNoteList').empty();  
+                 folderNoteList="";
                  folderNoteList+='<div class="col-xs-11 asideNoteDiv">'
                  folderNoteList+='<div class="text-center asideNoteDiv">'
                  folderNoteList+='<!-- a HTML (to Trigger Modal) -->'
