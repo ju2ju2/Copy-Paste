@@ -13,13 +13,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="se"
-	uri="http://www.springframework.org/security/tags"%>
-<!-- Sweet Alert cdn -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/api/alert/sweetalert.css" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/api/sweetalert.min.js"></script>
-
+<%@ taglib prefix="se"	uri="http://www.springframework.org/security/tags"%>
 <se:authentication property="name" var="loginuser" />
 <se:authentication property="authorities" var="role" />
 

@@ -5,8 +5,7 @@
 @Desc : footer 파일
 --%>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <!-- Footer -->
 <footer class="container-fluid bg-4 text-center">  
   <a href="${pageContext.request.contextPath}/about.htm">사이트 소개</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

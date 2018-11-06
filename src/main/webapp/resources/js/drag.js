@@ -286,13 +286,7 @@ $("document").ready(function(){
 				$(window).scroll(function(e) { moreDragList(e,url, params)})		
 			})
 
-
-
-
-
-			
-			
-			
+	
 //끝
 });
 	

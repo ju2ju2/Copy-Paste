@@ -57,7 +57,7 @@ public class EtcController {
 		
 	}
 	
-	@RequestMapping("admin.htm")
+	@RequestMapping("adminMember.htm")
 	// 관리자 페이지 (회원관리)
 	public ModelAndView adminMemberPage() throws Exception {
 		List<MemberVO> memberlist = etcService.showMember();
