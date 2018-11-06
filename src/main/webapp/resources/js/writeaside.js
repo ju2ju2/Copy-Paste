@@ -68,12 +68,13 @@ function folderNoteList(folderName){
             if(data != null) {
               var folderNoteList = "";
               $.each(data, function(key, value){
-                 $('#asideNoteList').empty();   
+                 $('#asideNoteList').empty();  
+                 folderNoteList="";
                  folderNoteList+='<div class="col-xs-11 asideNoteDiv">'
                  folderNoteList+='<div class="text-center asideNoteDiv">'
                  folderNoteList+='<!-- a HTML (to Trigger Modal) -->'
                	 folderNoteList+='<a data-toggle="modal"'
-             	 folderNoteList+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&write=y"'
+             	 folderNoteList+='href="../note/noteDetail.htm?noteNum='+value.noteNum+'&write=y"'
                  folderNoteList+='data-target="#modal-testNew" role="button" data-backdrop="static">'
                  folderNoteList+='<div class="item">'
                  folderNoteList+='<img class="img-rounded"'
@@ -124,7 +125,7 @@ function searchNoteList(){
 		                         aa+='<div class="text-center">'
 		                         aa+='<!-- a HTML (to Trigger Modal) -->'
 		                         aa+='<a data-toggle="modal"'
-		                         aa+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&write=y"'
+		                         aa+='href="../note/noteDetail.htm?noteNum='+value.noteNum+'&write=y"'
 		                         aa+='data-target="#modal-testNew1" role="button" data-backdrop="static">'
 		                         aa+='<div class="item">'
 		                         aa+='<img class="img-rounded"'
