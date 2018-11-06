@@ -104,6 +104,7 @@
       padding: 0 1rem;
       margin: 0 0 0 16;
       text-decoration: none;
+      border-radius: 10px;
 }
 
 #sidebar>.inner>*>:last-child {
@@ -685,21 +686,21 @@ height: 1.2em;
 
 /* 드래그 top버튼 */
 #myBtn {
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  right: 3px;
-  z-index: 99;
-  font-size: 18px;
-  border: none;
-  outline: none;
-  background-color: red;
-  color: white;
-  cursor: pointer;
-  padding: 15px;
-  border-radius: 4px;
+      display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 3px;
+    z-index: 99;
+    font-size: 30px;
+    border: none;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 5px 10px;
+    background-color: #f56a6a;
 }
-
+ 
 #myBtn:hover {
-  background-color: #555;
+   color: #f56a6a;
+    background-color: #fff;
 }

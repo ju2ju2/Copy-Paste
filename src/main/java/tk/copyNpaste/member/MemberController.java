@@ -191,29 +191,20 @@ public class MemberController {
 	//확장 프로그램 로그인 (암호화 매칭)
 	@RequestMapping(value="loginExtention.json", method = RequestMethod.POST)
 	public @ResponseBody MemberVO loginnode(@RequestBody String dataString/*@RequestBody String userEmail, @RequestBody String userPwd*/) throws Exception{
-		// JSON 형태 반환값
 		// JSON 형태 반환값 처리
-
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode datas = mapper.readTree(dataString);
 		String userEmail = datas.get("userEmail").asText();
 		String rawPassword = datas.get("userPwd").asText();
-		
-		System.out.println("userEmail"+userEmail);
-		System.out.println("userPwd"+rawPassword);
-		
 		String encodePassword = memberService.matchPwd(userEmail);//db 비밀번호 조회
 		boolean result = bCryptPasswordEncoder.matches(rawPassword, encodePassword);
-		System.out.println(result);
 		MemberVO member = new MemberVO();
-		if (result) {//db 로그인
-			member.setUserEmail(userEmail);
-			member.setUserPwd(encodePassword);
-			member = loginService.login(member);
-		return member;
-		
-		}
-
+			if (result) {//db 로그인
+				member.setUserEmail(userEmail);
+				member.setUserPwd(encodePassword);
+				member = loginService.login(member);
+				return member;
+			}
 		return null;
 	};
 	

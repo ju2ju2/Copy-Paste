@@ -37,8 +37,11 @@
 				var path = "${pageContext.request.contextPath}/note/noteDetail.htm?noteNum="+${note.noteNum}
     			var noteContent = $('#noteContent').html();
     			editor.dom.add(editor.getBody(), 'p', {}, noteContent+ "<br>");
-    			var noteOrigin ='<br/><br/> 출처:'+ path+" ["+'${note.userNick}'+ "]";
-    			editor.dom.add(editor.getBody(), 'p', {}, noteOrigin + "<br>");
+    			var userEmail = '${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}';
+    			if ('${note.userEmail}'!=userEmail){
+    				var noteOrigin ='<br/><br/> 출처:'+ path+" ["+'${note.userNick}'+ "]";
+    				editor.dom.add(editor.getBody(), 'p', {}, noteOrigin + "<br>");
+    			}
 			});
 		
 		//노트 pdf 파일 다운로드
@@ -261,7 +264,7 @@
 		if(session == '') {
 			$('#loginModal').show();	
 				swal({
-				  title: "٩(இ ⌓ இ๑)۶",
+				  title: "",
 				  text: '로그인 후 다양한 기능을 이용할 수 있습니다. \n로그인 페이지로 이동 하시겠습니까?',
 				  type: "warning",
 				  showCancelButton: true,
@@ -402,6 +405,9 @@ $(document).ready(function(){
 	  /* 댓글등록 */
 
   	$('.commentBtn').click(function insertNoteComm(event){
+  		if($('#userComment').val()==""){
+			swal("", "내용을 입력해주세요", "warning");
+		}else{
   		event.stopPropagation();
   		$.ajax({
   			url : "<%=request.getContextPath()%>/note/insertNoteComm.json",
@@ -416,7 +422,7 @@ $(document).ready(function(){
   				makeNoteCommList(${note.noteNum});
   				
   		    }
-  		})
+  		})}
   		    
   	}) 
 	 
@@ -551,7 +557,11 @@ $(document).ready(function(){
 									$(this).parents('.comment').append(commBoxHtml);
 									/* 대댓글 작성 버튼 클릭시 */
 									$('#commCommentBtn').click(function(){
+										if($('#userCommComm').val()==""){
+											swal("", "내용을 입력해주세요", "warning");
+										}else{
 										insertCommComm()
+										}
 									});
 								}else if(commCommClickNum==1){
 									$('.noteCommCommBox').remove();
@@ -560,7 +570,11 @@ $(document).ready(function(){
 									$(this).parents('.comment').append(commBoxHtml);
 									/* 대댓글 작성 버튼 클릭시 */
 									$('#commCommentBtn').click(function(){
+										if($('#userCommComm').val()==""){
+											swal("", "내용을 입력해주세요", "warning");
+										}else{
 										insertCommComm()
+										}
 									});
 								}
 								/* 대댓글 화면 닫기 */
