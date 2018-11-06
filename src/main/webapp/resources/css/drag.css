@@ -698,6 +698,7 @@ height: 1.2em;
     cursor: pointer;
     padding: 5px 10px;
     background-color: #f56a6a;
+    border-radius: 10px;
 }
  
 #myBtn:hover {

@@ -141,15 +141,13 @@
                   </div>
                </div>
                <span id="writeNoteNavSizeBtnSpanSeachInSite">
-                  <button type="button" class="btn btn-danger searchBtn">
-                     <i class="fas fa-angle-double-right writeNoteNavSizeBtn"></i>
+                  <button type="button" class="btn searchBtn">
+                     <i class="fas fa-angle-double-right writeNoteNavSizeBtn "></i>
                   </button>
                   <br>
-                   <button type="button" class="btn btn-danger" id="topBtn" >
-                    <i class="fas fa-angle-double-up" ></i>
+                   <button type="button" class="btn " id="topBtn" >
+                    <i class="fas fa-caret-up"  title="Go to top" ></i>
                   </button>
-                  
-                
                </span>
             </div>
 

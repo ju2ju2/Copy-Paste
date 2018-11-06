@@ -163,12 +163,14 @@ $(document).ready(function() {
                   $('#sidebar').css('width', '1120px');
                   $('#search-text-write').css('width', '90%');
                   $('#sidebar').addClass('col-sm-10');
+                  $('.fa-angle-double-left').css('color','#fff');
                   $('.writeNoteNavSizeBtn').removeClass('fa-angle-double-right').addClass(
                               'fa-angle-double-left');
                } else {
                   $('#sidebar').css('width', '400px');
                   $('#sidebar').removeClass('col-sm-10');
                   $('#search-text-write').css('width', '80%');
+                  $('.fa-angle-double-left').css('color','#fff');
                   $('.writeNoteNavSizeBtn').removeClass('fa-angle-double-left')
                         .addClass('fa-angle-double-right');
                }
@@ -178,6 +180,7 @@ $(document).ready(function() {
             function() {
                $('#sidebar').css('width', '400px');
                $('#sidebar').removeClass('col-sm-10');
+               $('.fa-angle-double-left').css('color','#fff');
                $('.writeNoteNavSizeBtn').removeClass('fa-angle-double-left')
                         .addClass('fa-angle-double-right');
             });

@@ -910,7 +910,7 @@ height: 1.2em;
 /* 드래그 top버튼 */
 
 #myBtn {
-      display: none;
+    display: none;
     position: fixed;
     bottom: 20px;
     right: 3px;
@@ -934,6 +934,7 @@ height: 1.2em;
    position: absolute !important;
    top: 460px !important;
    right: 5px !important;
+ 
 }
 
   .searchNoteDiv{
@@ -954,14 +955,18 @@ height: 1.2em;
 
 /* 검색확장버튼 고정 */
 .searchBtn {
+	background-color: #f56a6a;
+	color: #fff;
 	position: fixed;
 	padding: 3px !important;
 }
 
 /* 검색확장버튼 고정 */
 #topBtn {
+	 background-color: #f56a6a;
+	  color: #fff;
 	position: fixed;
-	padding: 5px !important;
+	padding: 3px 5px !important;
 	margin-top:5px;
 	display: none;
 
