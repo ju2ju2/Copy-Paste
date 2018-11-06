@@ -41,7 +41,7 @@ $(document).ready(function() {
 							url : "../etc/deleteMemNote.do",
 							success : function() { 
 									swal({
-								 		 title: "୧༼ ヘ ᗜ ヘ ༽୨",
+								 		/* title: "୧༼ ヘ ᗜ ヘ ༽୨",*/
 								 		 text: "노트가 삭제되었습니다.",
 								 		 type: "success",
 								 		 showCancelButton: false,

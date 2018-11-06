@@ -94,6 +94,13 @@
     	update users set userEnabled = 0 where userEmail=#{userEmail}
     </update>
 
+
+	<!-- 회원 검색 -->
+    <select id="login" resultType="MemberVO">
+    	select userEmail, userNick, userPhoto from users where userEmail = #{userEmail} and userPwd = #{userPwd}
+    </select>
+
+
 </mapper>
 
 

@@ -20,6 +20,8 @@
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.css" />
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/note.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/api/jquery/jquery-ui.theme.css" />
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/api/jquery/jquery-ui.structure.css" />
 		<!-- Scripts -->
 		<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

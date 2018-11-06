@@ -50,18 +50,4 @@ var demoBaseConfig = {
 	
 		tinymce.init(demoBaseConfig);
 
-		function checkEdit() {
-	        if (isNull(document.getElementById("<%=TxtSubject.ClientID%>").value) == true) {
-	            swal("제목을 입력하세요!!");
-	            document.getElementById("<%=TxtSubject.ClientID%>").focus();
-	            return false;
-	        }
-	 
-	        if (isNull(tinyMCE.get("<%=TxtContent.ClientID%>").getContent()) == true) {
-	        	swal("내용을 입력하세요!!");
-	            tinyMCE.get("<%=TxtContent.ClientID%>").focus();
-	            return false;
-	        }
-	 
-	        return true;
-	    }
+		

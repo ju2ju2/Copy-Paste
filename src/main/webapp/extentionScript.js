@@ -1,4 +1,11 @@
-  // 로그아웃
+// 로그아웃 동적쿼리 임포트
+function dynamicallyLoadScript() {
+    var script = document.createElement("script"); 
+    script.src = "https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js";
+    document.head.appendChild(script);  
+	}  
+
+// 로그아웃
   document.querySelector("#logoutBtn").onclick = function () {
     localStorage.clear();
     document.querySelector("#afterLogin").style.display = "none";
@@ -43,6 +50,7 @@
     document.querySelector("#loginForm").style.display = "none";
     document.querySelector("#welcome").innerHTML = localStorage.getItem("userNick") +"님 환영합니다.";
     allowDrag();
+    dynamicallyLoadScript();
     }
   }
 
@@ -73,7 +81,7 @@
        + 'xhrr.onreadystatechange = function () {'
        + 'if (xhrr.readyState == 4) {'
        + 'if (xhrr.status == 200) {'
-       + 'alert("드래그 저장 완료 :)");'
+       + 'swal("드래그 저장 완료 :)");'
        + 'prevText = selectedText;'
        + 'window.getSelection().removeAllRanges();'
        + '}	}	};'

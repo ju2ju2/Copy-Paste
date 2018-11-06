@@ -58,6 +58,9 @@ public interface MemberMapper {
 	
 	//회원 비활성하기>>update
 	public int deleteMember(String userEmail) throws Exception;
+
+	//node 로그인 
+	public MemberVO login(String userEmail, String userPwd) throws Exception;
 	
 	
 

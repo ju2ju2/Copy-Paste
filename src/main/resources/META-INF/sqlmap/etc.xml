@@ -64,7 +64,7 @@
 	<select id="wordchart" resultType="String">
 		select noteContent 
 		from note
-		where noteDate > (NOW() - INTERVAL 7 DAY);
+		where (noteNum between 30 and 60) <!-- and noteDate > (NOW() - INTERVAL 7 DAY); -->
 	</select>
 
 	<!-- 신고한 것들을 데리고 온다 -->
@@ -141,11 +141,11 @@
 	<!-- 사이트 내 검색 -->
 	<select id="selectSearchSite" parameterType="hashmap" resultType="NoteVO">
 		select n.noteNum, n.folderName, n.userEmail, n.noteTitle,
-		n.noteContent, n.noteDate,
+		n.noteContent, n.noteDate, u.userNick,
 		n.subjectCode,s.subjectName, n.noteCount,
 		n.notePublic, n.notescrap, n.notePNum, n.noteThumnail
-		from note n join
-		subject s on s.subjectCode=n.subjectCode
+		from note n join subject s on s.subjectCode=n.subjectCode
+					join users u on u.userEmail=n.userEmail
 		<where>
 			<choose>
 				<when test="boundary.equals('제목')">
@@ -185,7 +185,7 @@
 				</otherwise>
 			</choose>
 		</where>
-		order by noteNum desc;
+		order by noteNum desc limit ${page},12
 	</select>
 	
 	<!-- write에서 사이트 내 검색 -->

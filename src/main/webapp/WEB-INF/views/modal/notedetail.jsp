@@ -34,9 +34,11 @@
 		$('#addToNoteBtn').click(function addToNote(e) {
 				$(".modal").modal("hide");
 				var editor = tinyMCE.activeEditor;
+				var path = "${pageContext.request.contextPath}/note/noteDetail.htm?noteNum="+${note.noteNum}
     			var noteContent = $('#noteContent').html();
     			editor.dom.add(editor.getBody(), 'p', {}, noteContent+ "<br>");
-    	
+    			var noteOrigin ='<br/><br/> 출처:'+ path+" ["+'${note.userNick}'+ "]";
+    			editor.dom.add(editor.getBody(), 'p', {}, noteOrigin + "<br>");
 			});
 		
 		//노트 pdf 파일 다운로드
@@ -119,7 +121,7 @@
 		$('#scrapNoteBtn').click(function scrapNote(e) {
 			var path = "${pageContext.request.contextPath}/note/noteDetail.htm?noteNum="+${note.noteNum}
 			var noteContent = $('#noteContent').html();
-			var noteOrgin ='<br/><br/> 출처:'+ path+ "["+${note.userNick}+ "]";
+			var noteOrgin ='<br/><br/> 출처:'+ path+"["+'${note.userNick}'+ "]";
 			swal({
 				  title: "노트를 스크랩 하시겠습니까?",
 				  type: 'warning',
@@ -498,9 +500,6 @@ $(document).ready(function(){
 			          $('#noteCommList').html(noteCommList);
 						
 						
-			     
-			        
-						
 							/* 대댓글 */
 							var commCommClickNum = 0;
 							var noteCommNum;
@@ -517,6 +516,31 @@ $(document).ready(function(){
 								+" </button></div>"
 								+" </span></div></div>";
 							
+							//대댓글등록
+							function insertCommComm(){
+								$.ajax({
+									url : "<%=request.getContextPath()%>/note/insertNoteCommComm.json",
+								    type : "get",
+								    data : {    	
+								    	"commContent": $('#userCommComm').val(),
+								    	"noteNum":${note.noteNum},
+								    	"noteCommNum":noteCommNum,
+								    	"noteCommPos":noteCommPos
+								    },
+								    success : function(data){
+								    	commCommClickNum=0;
+								    	noteCommNum="";
+								    	noteCommPos="";
+								    	makeNoteCommList(${note.noteNum})
+								    	
+								    },
+								    error:function(request,status,error){
+							     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+							     	  }
+								});	
+								
+								
+							}
 								
 						 		/* 대댓글아이콘 클릭시 */
 								$('.noteCommCommBtn').on("click",function() {
@@ -525,11 +549,19 @@ $(document).ready(function(){
 									noteCommPos=$(this).find('#noteCommPos').val();
 									commCommClickNum=1;
 									$(this).parents('.comment').append(commBoxHtml);
+									/* 대댓글 작성 버튼 클릭시 */
+									$('#commCommentBtn').click(function(){
+										insertCommComm()
+									});
 								}else if(commCommClickNum==1){
 									$('.noteCommCommBox').remove();
 									noteCommNum=$(this).find('#noteCommNum').val();
 									noteCommPos=$(this).find('#noteCommPos').val();
 									$(this).parents('.comment').append(commBoxHtml);
+									/* 대댓글 작성 버튼 클릭시 */
+									$('#commCommentBtn').click(function(){
+										insertCommComm()
+									});
 								}
 								/* 대댓글 화면 닫기 */
 									$('.noteCommCommExit').click(function(){
@@ -541,32 +573,10 @@ $(document).ready(function(){
 								
 								
 								
+
 								
-								
-								
-								/* 대댓글 작성 버튼 클릭시 */
-								$('#commCommentBtn').on("click",  function(){
-									$.ajax({
-										url : "<%=request.getContextPath()%>/note/insertNoteCommComm.json",
-									    type : "get",
-									    data : {    	
-									    	"commContent": $('#userCommComm').val(),
-									    	"noteNum":${note.noteNum},
-									    	"noteCommNum":noteCommNum,
-									    	"noteCommPos":noteCommPos
-									    },
-									    success : function(data){
-									    	commCommClickNum=0;
-									    	noteCommNum="";
-									    	noteCommPos="";
-									    	makeNoteCommList(${note.noteNum})
-									    	
-									    },
-									    error:function(request,status,error){
-								     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-								     	  }
-									});	
-								});
+
+							
 						
 							/* 대댓글 */
 						
