@@ -97,7 +97,7 @@
 
 	<!-- 회원 검색 -->
     <select id="login" resultType="MemberVO">
-    	select userEmail, userNick, userPhoto from users where userEmail = #{userEmail} and userPwd = #{userPwd}
+    	select userEmail, userNick, userPwd, userPhoto from users where userEmail = #{userEmail} and userPwd = #{userPwd}
     </select>
 
 

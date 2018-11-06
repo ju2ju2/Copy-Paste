@@ -20,19 +20,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
-import java.io.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
 
-
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import tk.copyNpaste.folder.FolderService;
@@ -190,23 +187,34 @@ public class MemberController {
 		memberService.deleteMember(userEmail);
 	};
 	
-	//노드 된건가
-	@RequestMapping(value="login.json", method = RequestMethod.POST)
-	public @ResponseBody MemberVO loginnode(String userEmail,String userPwd) throws Exception{
-		System.out.println("node 요청들어옴");
+	
+	//확장 프로그램 로그인 (암호화 매칭)
+	@RequestMapping(value="loginExtention.json", method = RequestMethod.POST)
+	public @ResponseBody MemberVO loginnode(@RequestBody String dataString/*@RequestBody String userEmail, @RequestBody String userPwd*/) throws Exception{
+		// JSON 형태 반환값
+		// JSON 형태 반환값 처리
+
+		ObjectMapper mapper = new ObjectMapper();
+		JsonNode datas = mapper.readTree(dataString);
+		String userEmail = datas.get("userEmail").asText();
+		String rawPassword = datas.get("userPwd").asText();
+		
+		System.out.println("userEmail"+userEmail);
+		System.out.println("userPwd"+rawPassword);
+		
+		String encodePassword = memberService.matchPwd(userEmail);//db 비밀번호 조회
+		boolean result = bCryptPasswordEncoder.matches(rawPassword, encodePassword);
+		System.out.println(result);
 		MemberVO member = new MemberVO();
-		System.out.println("userPwd/"+userPwd);
-		userPwd= bCryptPasswordEncoder.encode(userPwd);
-
-		member =loginService.login(userEmail,userPwd);
-		JSONObject memberjson = new JSONObject();
-        memberjson.put("userEmail",member.getUserEmail());
-        memberjson.put("userPhoto",member.getUserPhoto());
-        memberjson.put("userNick",member.getUserNick());
-
-        URLConn conn = new URLConn("http://127.0.0.1",10030);
-        conn.urlPost(memberjson);
+		if (result) {//db 로그인
+			member.setUserEmail(userEmail);
+			member.setUserPwd(encodePassword);
+			member = loginService.login(member);
 		return member;
+		
+		}
+
+		return null;
 	};
 	
 }
