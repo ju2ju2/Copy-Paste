@@ -171,6 +171,7 @@ public class NoteController {
 		map.put("keyword", keyword);
 		map.put("page", page);
 		map.put("userEmail", principal.getName());
+
 		return noteService.selectByKeyNote(map);
 	}
 

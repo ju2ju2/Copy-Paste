@@ -649,7 +649,7 @@ blockquote::before{
   font-family: Georgia, serif;
   font-size: 60px;
   font-weight: bold;
-  color: #999;
+  color: #f56a6a;
   
   /*Positioning*/
   position: absolute;
@@ -683,11 +683,11 @@ blockquote.grapefruit{
 
 code{
   position:absolute; 
-  right:10px; 
-  bottom:5px;
-  width:270px;
-
+  right:5px; 
+  bottom:-10px;
+  width:100%;
 }
+ 
 /* span{
   font-weight:bolder;
   

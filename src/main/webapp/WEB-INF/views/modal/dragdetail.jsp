@@ -29,7 +29,7 @@
       <div class="col-xs-6" ></div>
       <div class="col-xs-6"></div>
    </div>
-</div>
+
 <!-- modal-body-->
 <div class="modal-body">
    <div class="panel panel-default">
@@ -43,6 +43,7 @@
          data-dismiss="modal" value="Close" id="empbutton" />
       <div class="col-xs-10" id="lblstatus"></div>
    </div>
+</div>
 </div>
 <script>
 //드래그 버튼으로 삭제
