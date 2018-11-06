@@ -204,8 +204,8 @@ public class MemberController {
         memberjson.put("userPhoto",member.getUserPhoto());
         memberjson.put("userNick",member.getUserNick());
 
-        URLConn conn = new URLConn("http://127.0.0.1",10030);
-        conn.urlPost(memberjson);
+        /*URLConn conn = new URLConn("http://127.0.0.1",10030);*/
+       /* conn.urlPost(memberjson);*/
 		return member;
 	};
 	
