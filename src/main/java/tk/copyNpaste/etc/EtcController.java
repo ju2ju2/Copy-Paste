@@ -234,6 +234,13 @@ public class EtcController {
 	return etcService.selectSearchSiteWrite(map);
 }
 	
+	
+	// 사이트 내 검색 자동완성(우나연 11.06)
+	@RequestMapping(value="collectSearchKeywords.json", method = RequestMethod.GET)
+	public @ResponseBody List<NoteVO> collectSearchKeywords(String subjectName) throws Exception {
+	return etcService.collectSearchKeywords(subjectName);
+}
+	
 	// 네이버 검색
 	@RequestMapping("/selectSearchNaver.htm")
 	public String selectSearchNaver(HttpServletRequest request) throws InterruptedException {
@@ -248,5 +255,5 @@ public class EtcController {
 		return "search.selectSearchGoogle";
 	}
 
-	
+
 }

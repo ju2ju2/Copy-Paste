@@ -23,6 +23,34 @@ function topFunction() {
 	document.documentElement.scrollTop = 0;
 }
 
+//사이트내 검색어 자동완성
+
+function autoComplete(subjectName){
+	var allkeywords =[];
+	var uniquekeywords = [];
+	$.ajax({
+		type:"get",
+		url: "../etc/collectSearchKeywords.json", 
+		data: {"subjectName":subjectName},
+		dataType:"json",
+		success:function(data){
+			
+    	    $.each(data, function(index,obj){
+    		   	allkeywords.push(obj.noteTitle);
+    		});	
+    	    //배열 중복제거 후 담기
+			$.each(allkeywords, function(i, el){
+				if($.inArray(el, uniquekeywords) === -1) uniquekeywords.push(el); 
+			});
+		}
+	})
+	
+	$( "#searchinsite-text" ).autocomplete({
+	      source: uniquekeywords
+	});
+}
+
+
 //노트목록
 function makeNoteList(url, params){
 $.ajax({
@@ -79,7 +107,7 @@ var lastScrollTop = 0;
 
 function moreNoteList(e,url,params){
 	e.stopPropagation() 
-
+ 
 	// ① 스크롤 이벤트 최초 발생
 	var currentScrollTop = $(window).scrollTop();
 
@@ -95,7 +123,6 @@ function moreNoteList(e,url,params){
 
 //페이지 로딩시 요청
 $("document").ready(function(){
-
 		//더보기 클릭시 주제 선택된것으로 표시
 	    var subjectName=$('#subjectName').val();
 		$("#subject-category > option[value="+subjectName+"]").attr("selected", "selected");
@@ -106,6 +133,7 @@ $("document").ready(function(){
 		params.subjectCategory=$('#subject-category option:selected').val()
 		params.boundary=$('input[name="boundary"]:checked').val()
 		makeNoteList(url,params);
+		autoComplete(params.subjectCategory);
 		$(window).scroll(function(e) { moreNoteList(e,url, params)})
 		
 		
@@ -129,6 +157,7 @@ $("document").ready(function(){
 				params.boundary=$('input[name="boundary"]:checked').val()
 				$('#noteList').empty();
 				makeNoteList(url,params);
+				autoComplete(params.subjectCategory);
 				$(window).scroll(function(e) { moreNoteList(e,url, params)})
 
 			}
@@ -145,10 +174,11 @@ $("document").ready(function(){
 			params.page=0
 			$('#noteList').empty();
 			makeNoteList(url, params);
+			autoComplete(params.subjectCategory);
 		    $(window).scroll(function(e) {moreNoteList(e,url, params)})
 		 })
 		 
-		
+	
 		
 //끝		
 })
