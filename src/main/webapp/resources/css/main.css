@@ -892,7 +892,7 @@ img .user-photo{
 .player-list li .list-cover.list-info .info-title,
 .player-list li .list-info.list-info .info-title {
     margin-bottom: 3px;
-    font-size: 12px;
+    font-size: 14px;
     color: #353535;
     white-space: nowrap;
     overflow: hidden;
@@ -904,7 +904,7 @@ img .user-photo{
 
 .player-list li .list-cover.list-info .info-artist,
 .player-list li .list-info.list-info .info-artist {
-  font-size: 10px;
+  font-size: 12px;
   color: #8C8C8C;
 }
 
@@ -921,7 +921,7 @@ img .user-photo{
     background-color:white ;
     margin-top: 25px;
     color:#333;
-    font-size:12px;
+    font-size:14px;
     padding: 15px 10px;
     width: 320px;
     height:315px;
@@ -983,6 +983,10 @@ img .user-photo{
 
 .more{
 	bottom: -30px;
+	width: 1000px;
+}
+.more>a{
+	border-bottom: 2px solid #f56a6a;
 }
 /* ============================== */
 
@@ -991,12 +995,13 @@ img .user-photo{
     font-weight: bold;
     border: 2px solid;
     width: 100px;
+    font-size: 18px;
     border-radius: 10px;
     display: inline-block;
     text-align: center;
     padding: 8px 10px;
-    margin-top: 10px;
-    margin-left: 10px;
+    margin-top: 15px;
+    margin-left: 15px;
 }
 .noteRankContainer{
 	margin-top: 30px;
