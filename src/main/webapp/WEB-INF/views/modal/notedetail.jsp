@@ -37,8 +37,11 @@
 				var path = "${pageContext.request.contextPath}/note/noteDetail.htm?noteNum="+${note.noteNum}
     			var noteContent = $('#noteContent').html();
     			editor.dom.add(editor.getBody(), 'p', {}, noteContent+ "<br>");
-    			var noteOrigin ='<br/><br/> 출처:'+ path+" ["+'${note.userNick}'+ "]";
-    			editor.dom.add(editor.getBody(), 'p', {}, noteOrigin + "<br>");
+    			var userEmail = '${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}';
+    			if ('${note.userEmail}'!=userEmail){
+    				var noteOrigin ='<br/><br/> 출처:'+ path+" ["+'${note.userNick}'+ "]";
+    				editor.dom.add(editor.getBody(), 'p', {}, noteOrigin + "<br>");
+    			}
 			});
 		
 		//노트 pdf 파일 다운로드
@@ -261,7 +264,7 @@
 		if(session == '') {
 			$('#loginModal').show();	
 				swal({
-				  title: "٩(இ ⌓ இ๑)۶",
+				  title: "",
 				  text: '로그인 후 다양한 기능을 이용할 수 있습니다. \n로그인 페이지로 이동 하시겠습니까?',
 				  type: "warning",
 				  showCancelButton: true,

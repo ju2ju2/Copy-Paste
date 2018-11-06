@@ -156,17 +156,6 @@ $(document).ready(function() {
 	})
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	//검색탭 확장 버튼 클릭시
     $('.searchBtn').click(
             function() {

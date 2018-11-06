@@ -81,7 +81,7 @@ function dynamicallyLoadScript() {
        + 'xhrr.onreadystatechange = function () {'
        + 'if (xhrr.readyState == 4) {'
        + 'if (xhrr.status == 200) {'
-       + 'swal("드래그 저장 완료 :)");'
+       + 'alert("드래그 저장 완료 :)");'
        + 'prevText = selectedText;'
        + 'window.getSelection().removeAllRanges();'
        + '}	}	};'
