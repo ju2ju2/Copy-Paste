@@ -7,11 +7,6 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-<%@ taglib prefix="se"
-	uri="http://www.springframework.org/security/tags"%>
-<se:authentication property="name" var="loginuser" />
-<se:authentication property="authorities" var="role" />
-
 <!-- Sidebar -->
 <nav class="sidebarfixed">
    <div id="sidebar">
@@ -64,11 +59,10 @@
                   <br>
                   <header class="major" id="droppable">
                      <h2>
-                        	드래그 목록<i class="fas fa-trash icon-size"></i>
+                        드래그 목록<i class="fas fa-trash icon-size"></i>
                      </h2>
                   </header>
                   <!-- 드래그목록 -->
-                  <input type="hidden" id="loginUser" value="${loginuser}">
                   <div class="mini-posts" id="dragList"></div>
                </section>
             </div>
@@ -90,7 +84,7 @@
                      <!-- 노트검색 -->
                      <section id="subject-search" class="alt">
                         <div class="col-xs-12">
-                           <form method="post" action="#">
+                           <form method="get" action="#">
                               <input type="text" id="search-text" placeholder="검색" /> <a
                                  href="#"><i id="search" class="fas fa-search icon-size"
                                  style="padding-top: 15px"></i></a>
@@ -111,8 +105,7 @@
                   <div id="asideFolderList"></div>
    
                <!-- 노트상세보기 모달 -->
-               <div id="modal-testNew" class="modal fade text-center overlay"
-                   role="dialog">
+               <div id="modal-testNew" class="modal fade text-center overlay" role="dialog">
                   <div class="modal-dialog">
                      <div class="modal-content">Content will be loaded here from
                         "note/noteDetail.htm" file</div>
@@ -129,7 +122,7 @@
                      <!-- Search -->
                      <section id="subject-search" class="alt">           
                         <div class="col-xs-12">
-                           <form method="post" action="#">
+                           <form method="get" action="#">
                               <input type="text" id="search-text-write" placeholder="검색어를 입력해주세요" required /> <a
                                  href="#"><i id="searchWriteSite" class="fas fa-search icon-size"
                                  style="padding-top: 15px"></i></a>
@@ -138,12 +131,12 @@
                         
                         <!-- 사이트 내 검색결과 보기 리스트 -->
                         <div class="mini-posts" id="searchList"></div>
-						<!-- 노트상세보기 모달 -->
+						 <!-- 노트상세보기 모달 -->
                			<div id="modal-testNew1" class="modal fade text-center overlay" role="dialog">
 		                  	<div class="modal-dialog">
 		                    <div class="modal-content">Content will be loaded here from "note/noteDetail.htm" file</div>
-	                  	</div>
-               		</div>
+	                  	   </div>
+               		</div> 
                      </section>
                   </div>
                </div>
@@ -151,6 +144,12 @@
                   <button type="button" class="btn btn-danger searchBtn">
                      <i class="fas fa-angle-double-right writeNoteNavSizeBtn"></i>
                   </button>
+                  <br>
+                   <button type="button" class="btn btn-danger" id="topBtn" >
+                    <i class="fas fa-angle-double-up" ></i>
+                  </button>
+                  
+                
                </span>
             </div>
 
@@ -279,7 +278,7 @@
                          aa+='</div>'
                          aa+='</div>'
                          aa+='<div>'
-                         aa+='<h4>'+value.noteTitle+'</h4>'
+                         aa+='<h4 class="noteTitle" >'+value.noteTitle+'</h4>'
                          aa+='<strong>'+value.userNick+'</strong><span>'+value.noteDate+'</span>'
                          aa+='</div>'
                          aa+='</a>'
@@ -326,7 +325,7 @@
 						                         aa+='<!-- a HTML (to Trigger Modal) -->'
 						                         aa+='<a data-toggle="modal"'
 						                         aa+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&write=y"'
-						                         aa+='data-target="#modal-testNew" role="button" data-backdrop="static">'
+						                         aa+='data-target="#modal-testNew1" role="button" data-backdrop="static">'
 						                         aa+='<div class="item">'
 						                         aa+='<img class="img-rounded"'
 						                         aa+='src="'+value.noteThumnail+'"'
@@ -336,7 +335,7 @@
 						                         aa+='</div>'
 						                         aa+='</div>'
 						                         aa+='<div>'
-						                         aa+='<h4>'+value.noteTitle+'</h4>'
+						                         aa+='<h4  class="noteTitle">'+value.noteTitle+'</h4>'
 						                         aa+='<strong>'+value.userEmail+'</strong><span>'+value.noteDate+'</span>'
 						                         aa+='</div>'
 						                         aa+='</a>'
@@ -363,5 +362,24 @@
 								})
 				}
 			})
+			
+				// 스크롤 내렸을때 top보이고 안내리면 안보임
+		window.onscroll = function() {scrollFunction()};
+		function scrollFunction() {
+		    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+		    	document.getElementById("topBtn").style.display = "block";
+		    } else {
+		        document.getElementById("topBtn").style.display = "none";
+		    }
+		}
+
+		// top버튼 눌렀을때 실행
+		$('#topBtn').click(function(e) {
+	        document.body.scrollTop = 0;
+		    document.documentElement.scrollTop = 0; 
+		});
+
+			
+				
 
 </script>

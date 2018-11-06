@@ -81,7 +81,7 @@
 </div>
 <br>
 <!-- top버튼 -->
-<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+<button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fas fa-angle-double-up" ></i></button>
 <!-- Modal HTML -->
 <div id="modal-drag" class="modal fade text-center overlay"
 	role="dialog">

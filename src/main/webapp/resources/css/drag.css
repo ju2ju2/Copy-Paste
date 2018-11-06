@@ -550,10 +550,10 @@ blockquote::before{
   content: "\201C"; /*Unicode for Left Double Quote*/
   
   /*Font*/
-  /* font-family: Georgia, serif; */
+  font-family: Georgia, serif;
   font-size: 60px;
   font-weight: bold;
-   color:#f56a6a;
+  color: #f56a6a;
   
   /*Positioning*/
   position: absolute;
@@ -561,7 +561,6 @@ blockquote::before{
   top:5px;
   
 }
-
 blockquote::after{
   /*Reset to make sure*/
   content: "";

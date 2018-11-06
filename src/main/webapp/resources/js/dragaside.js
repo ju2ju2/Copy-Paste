@@ -69,7 +69,7 @@ function makeAsideDragList(url, params){
 			if (data != null) {
 				$.each(data,	function(key, value) {
 					$('#dragList').empty();
-					a += '<div class="text-center dragDiv mt-10 dragDiv" id="'
+					a += '<div class="text-center dragDiv mt-10 " id="'
 						+ value.dragNum + '">';
 					a += '<blockquote class="grapefruit">';
 					a += '<!-- 별 아이콘 -->';
@@ -172,7 +172,7 @@ function moreAsideDragList(e,url,params){
 						$.each(data, function(key, value) {
 							a1="";  
 
-							a1 += '<div class="text-center dragDiv mt-10 dragDiv" id="'
+							a1 += '<div class="text-center dragDiv mt-10 " id="'
 								+ value.dragNum + '">';
 							a1 += '<blockquote class="grapefruit">';
 							a1 += '<!-- 별 아이콘 -->';
