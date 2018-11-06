@@ -73,7 +73,7 @@ function folderNoteList(folderName){
                  folderNoteList+='<div class="text-center asideNoteDiv">'
                  folderNoteList+='<!-- a HTML (to Trigger Modal) -->'
                	 folderNoteList+='<a data-toggle="modal"'
-             	 folderNoteList+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&write=y"'
+             	 folderNoteList+='href="../note/noteDetail.htm?noteNum='+value.noteNum+'&write=y"'
                  folderNoteList+='data-target="#modal-testNew" role="button" data-backdrop="static">'
                  folderNoteList+='<div class="item">'
                  folderNoteList+='<img class="img-rounded"'
@@ -124,7 +124,7 @@ function searchNoteList(){
 		                         aa+='<div class="text-center">'
 		                         aa+='<!-- a HTML (to Trigger Modal) -->'
 		                         aa+='<a data-toggle="modal"'
-		                         aa+='href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.noteNum+'&write=y"'
+		                         aa+='href="../note/noteDetail.htm?noteNum='+value.noteNum+'&write=y"'
 		                         aa+='data-target="#modal-testNew1" role="button" data-backdrop="static">'
 		                         aa+='<div class="item">'
 		                         aa+='<img class="img-rounded"'
@@ -189,14 +189,14 @@ $(document).ready(function() {
 		 var inner = $(".inner")
 		 $(inner).scroll(function() {
 		   if (inner.scrollTop() > 50 || inner.scrollTop() > 50) {
-		    	 document.getElementById("topBtn").style.display = "block";
+		    	 $(".topBtn").css("display", "block");
 		    } else {
-		    	 document.getElementById("topBtn").style.display = "none";
+		    	$(".topBtn").css("display", "none");
 		    }
 		 });
 
 		//위로가기 버튼 클릭시
-		$('#topBtn').click(function(){
+		$('.topBtn').click(function(){
 			document.body.scrollTop = 0;
 			document.documentElement.scrollTop = 0; 
 			

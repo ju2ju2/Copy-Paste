@@ -963,12 +963,19 @@ height: 1.2em;
 
 /* 검색확장버튼 고정 */
 .topBtn {
-	 background-color: #f56a6a;
-	  color: #fff;
+	background-color: #f56a6a;
+	color: #fff;
 	position: fixed;
 	padding: 3px 5px !important;
 	margin-top:5px;
 	display: none;
+	z-index:999;
+    left: 380px;
+    top: 600px;
+	
+/*    top: 460px !important;
+   right: 5px !important; */
+
 }
 
 .topBtn:hover {

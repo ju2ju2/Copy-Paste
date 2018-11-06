@@ -313,6 +313,7 @@ $("document").ready(function(){
 				makeAsideDragList(url, params);
 			    autoComplete(params.keyword);
 			$(window).scroll(function(e) { moreAsideDragList(e,url, params)})		
+		}
 		})
 
 		// 드래그 정렬

@@ -48,7 +48,7 @@
                         <div class="col-xs-12">
                            <form method="post" action="#">
                               <input type="text" id="search-text" placeholder="검색" /> <a
-                                 href="#"><i id="search" class="fas fa-search icon-size"
+                                 href="#"><i id="searchdrag" class="fas fa-search icon-size"
                                  style="padding-top: 15px"></i></a>
                            </form>
                         </div>
@@ -64,6 +64,9 @@
                   </header>
                   <!-- 드래그목록 -->
                   <div class="mini-posts" id="dragList"></div>
+                   <button type="button" class="btn topBtn" >
+                    <i class="fas fa-caret-up"  title="Go to top" ></i>
+                  </button>
                </section>
             </div>
 
@@ -145,7 +148,7 @@
                      <i class="fas fa-angle-double-right writeNoteNavSizeBtn "></i>
                   </button>
                   <br>
-                   <button type="button" class="btn " id="topBtn" >
+                   <button type="button" class="btn topBtn" >
                     <i class="fas fa-caret-up"  title="Go to top" ></i>
                   </button>
                </span>
