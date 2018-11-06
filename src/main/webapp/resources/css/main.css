@@ -30,6 +30,22 @@
 
 /* Typography
 ----------------------------------------------------------------------------- */
+/* 전체 스크롤 */
+body::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+body::-webkit-scrollbar-track {
+    /* -webkit-box-shadow: inset 0 0 6px rgba(245,106,106,1);  */
+
+    border-radius: 10px;
+}
+ 
+body::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background:#f56a6a;
+}
+/* ========= */
 body {
 	font-family: 'Nanum Gothic', sans-serif;
 }
@@ -815,13 +831,14 @@ img .user-photo{
 
 /* 크롤링 */
 .melonTitle{
-	font-size:15px;
-	color:#fff;
-	font-weight:bold;
-	padding:5px 15px;
-	display: inline-block;
-	background: #f56a6a;
-	border-radius: 10px;
+	color: #f56a6a;
+    font-size: 15px;
+    margin: 5px 0;
+    font-weight: bold;
+    border: 2px solid;
+    border-radius: 10px;
+    display: inline-block;
+    padding: 3px 10px;
 }
 .melon, .melon2{
 	display: inline-block;
@@ -875,7 +892,7 @@ img .user-photo{
 .player-list li .list-info.list-info .info-title {
     margin-bottom: 3px;
     font-size: 12px;
-    color: #8D8D8D;
+    color: #353535;
     white-space: nowrap;
     overflow: hidden;
     background-size: cover;
@@ -887,7 +904,7 @@ img .user-photo{
 .player-list li .list-cover.list-info .info-artist,
 .player-list li .list-info.list-info .info-artist {
   font-size: 10px;
-  color: #cdcdcd;
+  color: #8C8C8C;
 }
 
 .player-list li:last-child {
@@ -895,18 +912,33 @@ img .user-photo{
 }
 .textIntro{
 	font-size:10px;
+	margin-right: 60px;
 }
 .lyrics{
-	overflow: auto;
+	overflow-y: scroll;
     border-radius: 17px;
     background-color:white ;
     margin-top: 25px;
     color:#333;
     font-size:12px;
     padding: 15px 10px;
-    width: 350px;
+    width: 320px;
     height:315px;
-    box-shadow: 2px 2px 2px 2px #E0E0E0;
+    border:1px solid #f56a6a;
+}
+.lyrics::-webkit-scrollbar-button { display: block; height: 3px; }
+.lyrics::-webkit-scrollbar {
+	margin:5px 0;
+    width: 10px;
+}
+ 
+.lyrics::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+ 
+.lyrics::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background:#f56a6a;
 }
 	
 

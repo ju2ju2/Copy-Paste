@@ -11,17 +11,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="tk.copyNpaste.mapper.QnaMapper">
-<!-- 진행중 영역 -->
-	<!-- 	//QNA 게시글 수정 -->	
-	<update id="updateQna">
-		update qna set qnaTitle=#{qnaTitle},qnaContent=#{qnaContent}
-		where qnaNum=#{qnaNum}
-	</update>
 
-	
-<!-- /진행중 영역 -->
-
-<!-- 진행완료 -->
 	<!-- QNA 게시물 조회-->
 	<select id="selectAllQna" resultType="QnaVO" >
 		select qna.qnaNum, qna.userEmail, users.userNick, qna.qnaTitle, qna.qnaContent, qna.qnaDate, qna.qnaDept, qna.qnaPNum, qna.qnaNotice, qna.qnaSecret, qna.qnaPos
@@ -69,7 +59,7 @@
 	<!--//QNA 게시물 댓글 조회
 	 public List<QnaCommVO> selectQnaComm(int qnaNum) throws Exception; -->
 	 <select id="selectQnaComm" parameterType="Integer" resultType="QnaCommVO">
-	 	select users.userNick,comm.qnaCommNum,comm.qnaNum,comm.userEmail,comm.qnaCommContent,comm.qnaCommDate,comm.qnaCommDept,comm.qnaCommPNum,comm.qnaCommPos
+	 	select users.userPhoto, users.userNick,comm.qnaCommNum,comm.qnaNum,comm.userEmail,comm.qnaCommContent,comm.qnaCommDate,comm.qnaCommDept,comm.qnaCommPNum,comm.qnaCommPos
    		from qnacomm comm join users on comm.userEmail = users.userEmail where comm.qnaNum=#{qnaNum}  order by comm.qnaCommPNum , comm.qnaCommNum
 	 </select>
 	 
@@ -105,6 +95,11 @@
 		where qnaCommPNum = #{qnaCommNum}
 	</delete>
 	
+		<!-- 	//QNA 게시글 수정 -->	
+	<update id="updateQna">
+		update qna set qnaTitle=#{qnaTitle},qnaContent=#{qnaContent}
+		where qnaNum=#{qnaNum}
+	</update>
 
 
 
