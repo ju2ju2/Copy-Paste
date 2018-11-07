@@ -8,11 +8,6 @@
 
 var contextUrl= "http://" + location.host + "/copyNpaste/";
 
-//모달 내용 초기화
-/*$('documnet').on('hidden.bs.modal', '.modal', function() {
-	$(this).removeData('bs.modal');
-});
-
 */
 $(document).on('hidden.bs.modal', '.modal', function (e) {
 	  var modalData = $(this).data('bs.modal');
@@ -31,15 +26,9 @@ $('#modal-testNew').on('shown.bs.modal', function() {
 var prevText;
 
 // 드래그 저장
-/*var inputtag= $(":input")
-if()
-*/
 $(document).mouseup(function(event){
-    
+    //인풋태그제외
     if (!$(event.target).is(":input")) {
-        // code
-    
-	
 	
 	event.preventDefault(); 
 	event.stopPropagation(); 
