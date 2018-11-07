@@ -100,7 +100,6 @@ $(document).ready(function() {
 			})
 		} 
 		else {
-		
 		$.ajax({
 	      url: url, // url_pettern 
 	      type:"POST",
@@ -110,7 +109,7 @@ $(document).ready(function() {
 	    	 	 'noteContent':tinymce.get('noteContent').getContent(),
 	    	 	 'folderName':$("#folderList").val(),
 	    	 	 'subjectCode':$("#subjectList").val(),
-	    	 	 'notePublic':$("input[name='notePublic']:checked").val()
+	    	 	 'notePublic':$("input[name='notePublic']:checked").val(),
 	     		 },	
 	      success:function(result){
 	    	    	  swal({type: "success",
@@ -119,7 +118,7 @@ $(document).ready(function() {
 	    				  closeOnConfirm: false
 	    			},
 	    			function(){
-	    				location.href="../note/note.htm";
+	    				location.href="../note/note.htm?noteNum="+result;
 	    			});	
 	    	       },
 	       error:function(request,status,error){

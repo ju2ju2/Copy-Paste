@@ -44,25 +44,46 @@ public class FolderService {
 	//폴더 추가
 	public int insertFolder(FolderVO folder) throws Exception {
 		FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
-		return folderdao.insertFolder(folder);
+		try {
+			return folderdao.insertFolder(folder);
+		}catch (Exception e) {
+			System.out.println("에러" + e.getMessage());
+			throw e;
+		}
 	}
 	
 	//폴더 수정 : 컨텐츠 有
 	public int updateFolder(FolderVO folder) throws Exception {
 		FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
-		return folderdao.updateFolder(folder);
+		try {
+			return folderdao.updateFolder(folder);
+		}catch (Exception e) {
+			System.out.println("에러" + e.getMessage());
+			throw e;
+		}
 	}
 	
 	//폴더 수정 : 컨텐츠 無
 	public int updateFolder2(FolderVO folder) throws Exception {
 		FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
-		return folderdao.updateFolder2(folder);
+		try {
+			return folderdao.updateFolder2(folder);
+		}catch (Exception e) {
+			System.out.println("에러" + e.getMessage());
+			throw e;
+		}
 	}
 	
-	//폴더 삭제
+	//폴더 삭제 : 컨텐츠 有
 	public int deleteFolder(FolderVO folder) throws Exception {
 		FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
 		return folderdao.deleteFolder(folder);
+	}
+	
+	//폴더 삭제 : 컨텐츠 無
+	public int deleteFolder2(FolderVO folder) throws Exception {
+		FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
+		return folderdao.deleteFolder2(folder);
 	}
 	
 	//기본폴더 지정

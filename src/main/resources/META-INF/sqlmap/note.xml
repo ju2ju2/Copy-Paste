@@ -89,13 +89,13 @@
 	</delete>
 
 	<!-- 노트 등록 -->
-	 <update id="insertNote">
+	<insert id="insertNote" useGeneratedKeys="true" keyProperty="noteNum">
         <selectKey order="BEFORE" keyProperty="noteNum" resultType="int">
             select max(noteNum)+1 from note
         </selectKey>
         insert into note(noteNum, folderName, userEmail, noteTitle, noteContent, subjectCode, notePublic, noteThumnail)
         values(#{noteNum}, #{folderName}, #{userEmail}, #{noteTitle}, #{noteContent}, #{subjectCode}, #{notePublic}, #{noteThumnail})
-    </update>
+    </insert>
     
     <!-- 노트 주제 조회 -->
     <select id="selectSubjectCode" resultType="NoteVO">

@@ -64,7 +64,12 @@
 	<select id="wordchart" resultType="String">
 		select noteContent 
 		from note
-		where (noteNum between 30 and 60) <!-- and noteDate > (NOW() - INTERVAL 7 DAY); -->
+		where noteDate=curdate() and noteBlind=0 and notePublic=1;
+        <!-- 
+        0. noteDate=curdate()
+        1. where (noteNum between 30 and 60)
+        2. and noteDate > (NOW() - INTERVAL 7 DAY); -->
+
 	</select>
 
 	<!-- 신고한 것들을 데리고 온다 -->
