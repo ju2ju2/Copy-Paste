@@ -8,6 +8,10 @@
 @Date : 2018.10.09
 @Author : 임지현
 @Desc : Q&A 게시판 상세보기
+
+@Date : 2018.11.05
+@Author : 고은아
+@Desc : Q&A 댓글 알림 구현
 --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -42,7 +46,8 @@
 					</div>
 					<div class="col-md-12 qnaDetail">
 						<div class="form-group" align="right">
-							<strong>${qna.userNick}</strong>&nbsp;&nbsp;${qna.qnaDate}
+							<strong>${qna.userNick}</strong>
+							&nbsp;&nbsp;${qna.qnaDate}
 						</div>
 					</div>
 					<div class="col-md-12 qnaContent">
@@ -273,12 +278,14 @@
 				    	"qnaNum":${qna.qnaNum}
 				    },
 				    success : function(data){
-				    	location.reload();
+						ws.send("${qna.userEmail}", "QC", "${qna.qnaNum}");
+						location.reload();
 				    },
 				    error:function(request,status,error){
 			     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 			     	  }
 				});	
+
 			}	
 		});
 		/* 대댓글아이콘 클릭시 */

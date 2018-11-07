@@ -16,30 +16,27 @@
 <se:authorize access="isAuthenticated()">
 <se:authentication property="principal.username" var="userEmail"/>
 <script type="text/javascript">
-	var notifyUri = "ws://localhost:8090${pageContext.request.contextPath}/notify.do";
-	function send_message() {
-		websocket = new WebSocket(notifyUri);
-		websocket.onopen = function(evt) {
-			onOpen(evt);
-		};
-		websocket.onmessage = function(evt) {
-			onMessage(evt);
-		};
-		websocket.onerror = function(evt) {
-			onError(evt);
-		};
-	}
-	function onOpen(evt) {
-		websocket.send("${userEmail}");
-	}
-	function onMessage(evt) {
-		$('#notifyBadge').text(evt.data);
-	}
-	function onError(evt) {
-	}
+/* 192.168.0.141 */
+var ws = new WebSocket("ws://localhost:8090${pageContext.request.contextPath}/notify.do");
+
+ws.onopen = 	function() 		{	console.log("웹소켓 오픈");	}
+ws.onmessage = 	function(evt) 	{	console.log(evt); onMessage(evt.data);			}
+ws.onclose = 	function(evt) 	{ 	console.log("웹소켓 닫기");	}
+ws.onerror = 	function(evt) 	{	console.log("웹소켓 에러");	}
 	
+function onMessage(evt) {
+	$('#notifyBadge').text(evt);
+}
+	
+
 	$(document).ready(function() {
-		send_message();
+		
+		if (ws.readyState !== 1) return;
+		else {
+			console.log("readyState은 1이다.");
+			ws.open;
+			ws.send("${userEmail}");
+		}
 		
 		$('#notifyALink').click(function() {
 			var notifyList = "";
