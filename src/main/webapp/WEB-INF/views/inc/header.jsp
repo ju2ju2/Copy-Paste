@@ -5,13 +5,10 @@
 @Desc : header 파일
 --%>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
-<!-- 카카오 로그인 -->
- <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
- <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
 <!-- 웹소켓 -->
 <se:authorize access="isAuthenticated()">
 <se:authentication property="principal.username" var="userEmail"/>
@@ -199,7 +196,7 @@
 					<!-- 관리자권한일때 -->
 							<se:authorize access="hasRole('ROLE_ADMIN')">
 								<li><a
-									href="${pageContext.request.contextPath}/etc/admin.htm"><i class="fas fa-unlock-alt"></i> <span>ADMIN</span></a></li>
+									href="${pageContext.request.contextPath}/etc/adminStatistic.htm"><i class="fas fa-unlock-alt"></i> <span>ADMIN</span></a></li>
 							</se:authorize>		
 									
 									

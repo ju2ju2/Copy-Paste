@@ -38,7 +38,7 @@
 							}).done(function (result){
 									swal({type: "success",
 										  title: '성공적으로 삭제되었습니다.',
-							              confirmButtonClass : "btn-danger",
+							              confirmButtonClass : "btn-danger btn-sm",
 										  closeOnConfirm: false
 									},function(){
 										location.reload()

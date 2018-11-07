@@ -34,11 +34,14 @@
 				<div class="form-group socialUser">
 					<label class="control-label col-sm-5">Email ID <span class="text-danger"></span></label>
 					<div class="col-lg-3 col-sm-4">
-						<span><!-- class="input-group" -->
+						<div><!-- class="input-group" -->
 							<input type="email" class="form-control" name="userEmail"
 								id="userEmail" readonly>
-						   </span>
+						 </div>
+						 <div class="col-sm-4"></div>
+					 	<div class="col-sm-12 text-center"><div></div></div>  
 					</div>
+					
 				</div>
 				<div class="form-group">
 					<label class="control-label col-sm-5">닉네임 <span class="text-danger"></span></label>
@@ -149,7 +152,14 @@ $.ajax({
             		}
             	},
             error : function(error) {
-				swal("٩(இ ⌓ இ๑)۶", "잠시 후 다시 시도해 주세요.", "error");
+				/* swal("٩(இ ⌓ இ๑)۶", "잠시 후 다시 시도해 주세요.", "error"); */
+				swal({  title: "잠시 후 다시 시도해 주세요.",
+						text: "",
+						type: "warning",
+						confirmButtonClass: "btn-danger btn-sm",
+						confirmButtonText: "OK",
+						showCancelButton: false
+					})
 				console.log(error);
 				console.log(error.status);
             }
@@ -193,15 +203,37 @@ $("#userPwd").keyup(function (event) {
 $('#infoUpdate').click(function(){
  	if ($('#userPwd').val() == '' && $('#cuserPwd').val() == '') { 
 		if ( nickDupCheck != 'ok' && $('#userNick').val() != userNick ){
-			swal("٩(இ ⌓ இ๑)۶", "사용할 수 없는 닉네임입니다.", "error");
+			/* swal("٩(இ ⌓ இ๑)۶", "사용할 수 없는 닉네임입니다.", "error"); */
+						swal({
+			  				  title: "사용할 수 없는 닉네임입니다.",
+			  				  type: 'warning',
+			  				  confirmButtonClass : "btn-danger btn-sm",
+			  				  confirmButtonText: '확인',
+			  				  closeOnConfirm: true
+			  				})
 			} else { 
 				updateMember(); }
 	} else {
 		if ( rightPwd != 'ok' || pwdDupCheck != 'ok' ){
-			swal("٩(இ ⌓ இ๑)۶", "변경할 비밀번호를 제대로 입력해 주세요.", "error");
+			/* swal("٩(இ ⌓ இ๑)۶", "변경할 비밀번호를 제대로 입력해 주세요.", "error"); */
+					swal({
+			  				  title: "변경할 비밀번호를 제대로 입력해 주세요.",
+			  				  type: 'warning',
+			  				  confirmButtonClass : "btn-danger btn-sm",
+			  				  confirmButtonText: '확인',
+			  				  closeOnConfirm: true
+			  				})
+			
 		} else {
 			if ( nickDupCheck != 'ok' && $('#userNick').val() != userNick ){
-				swal("٩(இ ⌓ இ๑)۶", "사용할 수 없는 닉네임입니다.", "error");
+				/* swal("٩(இ ⌓ இ๑)۶", "사용할 수 없는 닉네임입니다.", "error"); */
+						swal({
+			  				  title: "사용할 수 없는 닉네임입니다.",
+			  				  type: 'warning',
+			  				  confirmButtonClass : "btn-danger btn-sm",
+			  				  confirmButtonText: '확인',
+			  				  closeOnConfirm: true
+			  				})
 				} else {
 				updateMember();
 				}
@@ -212,14 +244,19 @@ $('#infoUpdate').click(function(){
 //정보 수정 유효성 시 입력한 비밀번호 확인(정보수정 2/3)
 function updateMember(){	       
 		swal({
-			  title: "୧༼ ヘ ᗜ ヘ ༽୨",
-			  text: "현재 비밀번호를 입력해 주세요.",
-			  type: "input",
+			  title: "비밀번호 확인",
+			  text: "<form style='font-size:15px;'><br><input type='password' class='pw'"+
+			  		"id='rawpassword' size='40' placeholder='현재 비밀번호를 입력해주세요'/></form>",
+			  html: true,
+			  inputAttributes: { autocapitalize: 'off' },
 			  showCancelButton: true,
-			  closeOnConfirm: false,
-			}, function (inputValue) {
+			  confirmButtonText : "OK",
+			  confirmButtonClass : "btn-danger btn-sm",
+			  cancelButtonClass : "btn btn-sm",
+			  closeOnConfirm: false
+			}, function () {
 					//비밀번호 비교
-					var rawpassword = inputValue;
+					var rawpassword=$('#rawpassword').val();
 					$.ajax({
 						type: "post",
 						data: {rawpassword:rawpassword},
@@ -231,17 +268,23 @@ function updateMember(){
 								infoUpdateAjax();
 							} else{
 								console.log("data: " + data);
-								swal.showInputError("비밀번호를 정확히 입력해 주세요.");
+								$('#userPwd').val("");
+								$('#userPwd').attr("placeholder","비밀번호를 정확히 입력해 주세요.");
 							}
 						},
 						error: function (){
-								swal.showInputError("잠시 후 다시 시도해 주세요.");
+							$('#userPwd').val("");
+							$('#userPwd').attr("placeholder","잠시후 다시 시도해주세요.");
 						}
 					})				
 				  }
 			)
 	};
-
+	
+	
+	
+	
+	
 //DB로 가는 정보수정(정보수정 3/3)
 		function infoUpdateAjax(){
 		var form = $('form')[1];
@@ -258,16 +301,20 @@ function updateMember(){
 				success : function() {
 						 swal({type: "success",
 						 title: "୧༼ ヘ ᗜ ヘ ༽୨",
-						 text: "회원수정이 완료되었습니다.",
-						 confirmButtonClass : "btn-danger",
-						 closeOnConfirm: false
-									},
-									function(){
-										location.href="${pageContext.request.contextPath}/member/myinfo.htm";
-										});	
+						 text: "회원정보가 수정되었습니다.",
+						 confirmButtonClass : "btn-danger btn-sm",
+						 closeOnConfirm: false	},
+						 function(){	location.reload();	});	
 						},
 				error : function(error) {
-						swal("٩(இ ⌓ இ๑)۶", "에러가 발생했습니다.", "error");
+						/* swal("٩(இ ⌓ இ๑)۶", "에러가 발생했습니다.", "error"); */
+						swal({
+			  				  title: "에러가 발생했습니다.",
+			  				  type: 'warning',
+			  				  confirmButtonClass : "btn-danger btn-sm",
+			  				  confirmButtonText: '확인',
+			  				  closeOnConfirm: true
+			  				})
 						console.log(error);
 						console.log(error.status);
 						}
@@ -282,11 +329,10 @@ function updateMember(){
 		  text: "탈퇴해도 작성한 노트 및 드래그, 게시글, 댓글은 삭제되지 않으며 동일한 Email로는 재가입이 불가능합니다.",
 		  type: "warning",
 		  showCancelButton: true,
-		  confirmButtonClass: "btn-danger",
+		  confirmButtonClass: "btn-danger btn-sm",
 		  confirmButtonText: "회원탈퇴",
 		  cancelButtonText: "cancel",
 		  closeOnConfirm: false,
-		  closeOnCancel: true
 		},
 			function(isConfirm) {
 		 		 if (isConfirm) {
@@ -298,7 +344,7 @@ function updateMember(){
 								 swal({type: "success",
 								 title: "٩(இ ⌓ இ๑)۶",
 								 text: "회원 탈퇴가 완료되었습니다.",
-				             	 confirmButtonClass : "btn-danger",
+				             	 confirmButtonClass : "btn-danger btn-sm",
 							 	 closeOnConfirm: false
 									},
 								 function(){
@@ -306,7 +352,14 @@ function updateMember(){
 									});	
 				       			},
 						error : function(error) {
-			          			 swal("٩(இ ⌓ இ๑)۶", "에러가 발생했습니다.", "error");
+			          			 /* swal("٩(இ ⌓ இ๑)۶", "에러가 발생했습니다.", "error"); */
+			          			 swal({  title: "에러가 발생했습니다.",
+									text: "",
+									type: "warning",
+									confirmButtonClass: "btn-danger btn-sm",
+									confirmButtonText: "OK",
+									showCancelButton: false
+								})
 			           	  	 	console.log(error);
 			           		 	console.log(error.status);
 			       				}

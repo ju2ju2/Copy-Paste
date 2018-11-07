@@ -42,7 +42,5 @@ public interface DragMapper {
 	//드래그 중요표시 삭제
 	public int removeDragMark(HashMap<String, Object> map) throws Exception;
 
-
-
 	
 }

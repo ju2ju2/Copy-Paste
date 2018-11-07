@@ -86,7 +86,7 @@ public interface NoteMapper {
 	public int blindNote(int noteNum) throws Exception;
 
 	//노트 참조수 증가
-	public int updateNoteCount(int noteNum);
+	public int updateNoteCount(Object noteNum);
 
 /*	//노트의 폴더 이동 드래그 가능하면 구현
 	public int moveNoteFolder(NoteVO note) throws Exception;*/

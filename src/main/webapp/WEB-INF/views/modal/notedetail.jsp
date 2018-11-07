@@ -6,11 +6,9 @@
 		댓글 신고 클릭시 모달창 추가, OK버튼 누를 때 스위트알럳 뜸. 버튼색은 추후 수정 필요.(이주원, 10월 12일)
 		스위트 알럿 cdn방식이 아닌 js와 css를 임포트 하는 방식으로 변경. (이주원, 10월 15일)
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="se"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="se"	uri="http://www.springframework.org/security/tags"%>
 
 <se:authentication property="name" var="loginuser" />
 <se:authentication property="authorities" var="role" />
@@ -225,7 +223,8 @@
 				  showCancelButton: true,
 				  confirmButtonText : "OK",
 				  confirmButtonClass : "btn-danger btn-sm",
-				  cancelButtonClass : "btn btn-sm"
+				  cancelButtonClass : "btn btn-sm",
+				  closeOnConfirm: false
 			},
 			function(){
 				$.ajax ({
@@ -406,7 +405,7 @@ $(document).ready(function(){
 
   	$('.commentBtn').click(function insertNoteComm(event){
   		if($('#userComment').val()==""){
-			swal("", "내용을 입력해주세요", "warning");
+			/* swal("", "내용을 입력해주세요", "warning"); */
 		}else{
   		event.stopPropagation();
   		$.ajax({
@@ -571,7 +570,7 @@ $(document).ready(function(){
 									/* 대댓글 작성 버튼 클릭시 */
 									$('#commCommentBtn').click(function(){
 										if($('#userCommComm').val()==""){
-											swal("", "내용을 입력해주세요", "warning");
+										/* 	swal("", "내용을 입력해주세요", "warning"); */
 										}else{
 										insertCommComm()
 										}
@@ -624,9 +623,8 @@ $(document).ready(function(){
 														  title: "댓글 삭제에 실패하였습니다",
 														  text: "",
 														  type: "warning",
-														  confirmButtonClass: "btn-danger",
+														  confirmButtonClass: "btn-danger btn-sm",
 														  confirmButtonText: "OK",
-														  showCancelButton: true
 														});
 											    }
 										});
@@ -670,7 +668,8 @@ $(document).ready(function(){
 									  showCancelButton: true,
 									  confirmButtonText : "OK",
 									  confirmButtonClass : "btn-danger btn-sm",
-									  cancelButtonClass : "btn btn-sm"
+									  cancelButtonClass : "btn btn-sm",
+									  closeOnConfirm: false
 								},
 								function(){
 									$.ajax ({
