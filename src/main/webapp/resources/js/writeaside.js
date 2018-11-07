@@ -120,7 +120,7 @@ function searchNoteList(){
 	$.ajax({
 		  
 		    type : "get",
-		    url : url,
+		    url : "../etc/selectSearchSite.json",
 		    data : params, 
 		    dataType : 'json',
 		    success : function(data){
@@ -154,14 +154,14 @@ function searchNoteList(){
 			          		})
 			          	}
 			          	
-			          	if(data.length == 0){
-			          		$("#searchList").empty();
+			          	else{
+			          		aa ="";
 			          		aa += "<div class='text-center noteDiv'>";
 			          		aa += "<h5>검색된 결과가 없습니다.</h5>";
 			          		aa += "</div>";
 						}
 			          	
-			          	$("#searchList").html(aa);	
+			          	$("#searchList").append(aa);	
 		    	
 		          	
 		    }
@@ -169,12 +169,13 @@ function searchNoteList(){
 }
 
 
-// 노트 스크롤~ 스크롤이벤트 발생시 추가 12개 
+//스크롤이벤트 위치지정
 var lastScrollTop = 0;
 //스크롤 발생시 추가적인 리스트 생성
+
 function moreAsideNoteList(e,url,params){
 	e.stopPropagation() 
-
+ 
 	// ① 스크롤 이벤트 최초 발생
 	var currentScrollTop = $(window).scrollTop();
 
@@ -182,60 +183,11 @@ function moreAsideNoteList(e,url,params){
 		if ($(window).scrollTop() >= ($(document).height() - $(window).height()) ){ 
 			params.page += 12;
 			console.log(params.page+" 번부터")
-
-			$.ajax({
-				type : 'get',  
-				url :url,
-				async: false,
-				data :params, 
-			    success : function(data){
-					    	      console.log(data);
-					    		 var aa = "";
-					    		 var aa1 = "";
-						          	if(data!=null) {
-						          		$.each(data, function(key, value){
-						          			 $('#searchList').empty();   
-					                         aa1+='<div class="col-xs-12 searchNoteDiv">'
-					                         aa1+='<div class="text-center">'
-					                         aa1+='<!-- a HTML (to Trigger Modal) -->'
-					                         aa1+='<a data-toggle="modal"'
-					                         aa1+='href="../note/noteDetail.htm?noteNum='+value.noteNum+'&write=y"'
-					                         aa1+='data-target="#modal-testNew1" role="button" data-backdrop="static">'
-					                         aa1+='<div class="item">'
-					                         aa1+='<img class="img-rounded"'
-					                         aa1+='src="'+value.noteThumnail+'"'
-					                         aa1+='alt="'+value.noteTitle+'" width="100%">'
-					                         aa1+='<div class="caption">'
-					                         aa1+='<i class="fa fa-plus" aria-hidden="true"></i>'
-					                         aa1+='</div>'
-					                         aa1+='</div>'
-					                         aa1+='<div>'
-					                         aa1+='<h4  class="noteTitle">'+value.noteTitle+'</h4>'
-					                         aa1+='<strong>'+value.userNick+'</strong><span>'+value.noteDate+'</span>'
-					                         aa1+='</div>'
-					                         aa1+='</a>'
-					                         aa1+='</div>'
-					                         aa1+='</div>'
-					                         $("div[alt='"+value.folderName+"']").find("#searchList").html(aa1);
-						          		})
-						          	}
-						          	
-						          	if(data.length == 0){
-						          		$("#searchList").empty();
-						          		aa += "<div class='text-center noteDiv'>";
-						          		aa += "<h5>검색된 결과가 없습니다.</h5>";
-						          		aa += "</div>";
-									}
-						          	
-						          	$("#searchList").html(aa1);	
-					    	
-					          	
-					    }
-			})
+			searchNoteList(url,params)
+			
 		}
 	}
 }
-
 
 
 
