@@ -5,16 +5,20 @@
 @Desc : search aside부분 jsp
  -->
  
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" 
-		integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<%@ taglib prefix="se"
+	uri="http://www.springframework.org/security/tags"%>
+<se:authentication property="name" var="loginuser" />
+<se:authentication property="authorities" var="role" />
+
 <!-- Sidebar -->
 <nav id="navscroll">
 <div id="sidebar">
 	<div class="inner">
 			<div class="tab-content">
 				<!-- 1. 드래그 목록 -->
+				<input type="hidden" id="loginUser" value="${loginuser}">
 				<div id="drag" class="tab-pane fade in active">
 					<div class="row">
 						<div class="form-group">

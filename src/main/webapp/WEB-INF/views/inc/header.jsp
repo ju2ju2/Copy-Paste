@@ -5,13 +5,10 @@
 @Desc : header 파일
 --%>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
-<!-- 카카오 로그인 -->
- <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
- <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
 <!-- 웹소켓 -->
 <se:authorize access="isAuthenticated()">
 <se:authentication property="principal.username" var="userEmail"/>
@@ -181,9 +178,6 @@ function onMessage(evt) {
 								href="${pageContext.request.contextPath}/etc/selectSearchSite.htm?subjectName=회사">사이트
 									검색</a></li>
 							<li><a
-								href="${pageContext.request.contextPath}/etc/selectSearchNaver.htm">네이버
-									검색</a></li>
-							<li><a
 								href="${pageContext.request.contextPath}/etc/selectSearchGoogle.htm">
 									구 &ensp;글 검색</a></li>
 						</ul></li>
@@ -199,7 +193,7 @@ function onMessage(evt) {
 					<!-- 관리자권한일때 -->
 							<se:authorize access="hasRole('ROLE_ADMIN')">
 								<li><a
-									href="${pageContext.request.contextPath}/etc/admin.htm"><i class="fas fa-unlock-alt"></i> <span>ADMIN</span></a></li>
+									href="${pageContext.request.contextPath}/etc/adminStatistic.htm"><i class="fas fa-unlock-alt"></i> <span>ADMIN</span></a></li>
 							</se:authorize>		
 									
 									
@@ -220,7 +214,7 @@ function onMessage(evt) {
 					<li class="dropdown">
 						<a href="#" id="notifyALink"
 							class="dropdown-toggle icon-menu" data-toggle="dropdown"> <i
-							class="far fa-bell"></i> <span class="badge bg-danger" id="notifyBadge"></span>
+							class="far fa-bell al"></i> <span class="badge bg-danger" id="notifyBadge"></span>
 						</a>
 						<ul class="dropdown-menu notifications" id="notifyUl">
 						</ul>
@@ -237,10 +231,7 @@ function onMessage(evt) {
 						data-toggle="dropdown"> SEARCH<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a
-								href="${pageContext.request.contextPath}/etc/selectSearchSite.htm">사이트
-									검색</a></li>
-							<li><a
-								href="${pageContext.request.contextPath}/etc/selectSearchNaver.htm">네이버
+								href="${pageContext.request.contextPath}/etc/selectSearchSite.htm?subjectName=회사"">사이트
 									검색</a></li>
 							<li><a
 								href="${pageContext.request.contextPath}/etc/selectSearchGoogle.htm">

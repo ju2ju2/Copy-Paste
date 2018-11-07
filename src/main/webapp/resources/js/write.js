@@ -14,12 +14,21 @@
 	      type:"POST",
 	      dataType:"json",
 	      success:function(data){
+	    		console.log(data)
 	      	$.each(data, function(key,value){
 	      			$("#folderList").append($("<option />")
-	      				.val(value.folderName)
-	      				.text(value.folderName));
-	      			/*  <option value="tochi" <c:if test="${Name eq 'tochi'}">selected</c:if>>또치</option> */
-	   	//$('select[val=${note.subjectCode}]').prop("selected", true);		
+				      				.val(value.folderName)
+				      				.text(value.folderName) );
+			      	//노트 작성시 폴더 기본폴더로 지정
+			    	if(value.defaultFolder==1){
+			      		$("#folderList > option[value="+value.defaultFolder+"]").attr("selected", "selected");
+			      	}
+	
+			      	//수정시 note의  db폴더값 선택된 것으로 표시
+			      	var selFolderName=$('#selfolderName').val();
+				    if (selFolderName!=''){
+				      	$("#folderList > option[value="+selFolderName+"]").attr("selected", "selected");
+				    }
 	      	
 	      	})
 	       }
@@ -37,11 +46,27 @@
 	      			$("#subjectList").append($("<option />")
 	      				.val(value.subjectCode)
 	      				.text(value.subjectName) );
+	      			//노트 작성시 회사를 기본 주제로 지정
+	      			$("#subjectList > option[value='SJ01']").attr("selected", "selected");
+	      		 	//수정시 note의  db폴더값 선택된 것으로 표시
+			      	var selSubjectCode=$('#selSubjectCode').val();
+				    if (selSubjectCode!=''){
+				      	$("#subjectList > option[value="+selSubjectCode+"]").attr("selected", "selected");
+				    }
 	      	});
 	       }
 	    })
 	}
 	
+
+	function selectNotePublic(){
+		$('input:radio[name=notePublic]:input[value=0]').attr("checked", true);
+		
+		var selNotePublic=$('#selNotePublic').val();
+	    if (selNotePublic!=''){
+	      	$('input:radio[name=notePublic]:input[value=' + selNotePublic + ']').attr("checked", true);
+	    }
+	}
 	
 	
 	//드래그,note vo
@@ -57,7 +82,7 @@
 $(document).ready(function() {
 	selectSubject()
 	selectFolder()
-	
+ 	selectNotePublic()
 	
 	//등록 수정 버튼 클릭시
 	function insertOrUpdateNote(url,msg){
@@ -90,7 +115,7 @@ $(document).ready(function() {
 	      success:function(result){
 	    	    	  swal({type: "success",
 	    				  title: '성공적으로 '+msg+'되었습니다.',
-	    	              confirmButtonClass : "btn-danger",
+	    	              confirmButtonClass : "btn-danger btn-sm",
 	    				  closeOnConfirm: false
 	    			},
 	    			function(){
@@ -131,28 +156,23 @@ $(document).ready(function() {
 	})
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	//검색탭 확장 버튼 클릭시
     $('.searchBtn').click(
             function() {
                if ($('#sidebar').css('width') == '400px') {
+            	  $('#sidebar').css('z-index', '2');  
                   $('#sidebar').css('width', '1120px');
+                  $('#search-text-write').css('width', '90%');
                   $('#sidebar').addClass('col-sm-10');
                   $('.writeNoteNavSizeBtn').removeClass('fa-angle-double-right').addClass(
                               'fa-angle-double-left');
+                  $('.fa-angle-double-left').css('color','#fff');
+                 
                } else {
                   $('#sidebar').css('width', '400px');
                   $('#sidebar').removeClass('col-sm-10');
+                  $('#search-text-write').css('width', '80%');
+                  $('.fa-angle-double-left').css('color','#fff');
                   $('.writeNoteNavSizeBtn').removeClass('fa-angle-double-left')
                         .addClass('fa-angle-double-right');
                }
@@ -162,10 +182,15 @@ $(document).ready(function() {
             function() {
                $('#sidebar').css('width', '400px');
                $('#sidebar').removeClass('col-sm-10');
+               $('.fa-angle-double-left').css('color','#fff');
                $('.writeNoteNavSizeBtn').removeClass('fa-angle-double-left')
                         .addClass('fa-angle-double-right');
             });
       
+     
+  
+
+
       
       
       
@@ -184,8 +209,9 @@ $(document).ready(function() {
   		    }).done(function(data){
   					$(".modal").modal("hide");
   					var editor = tinyMCE.activeEditor;
-  	    			var noteContent = $('#noteContent').html();
-  	    			editor.dom.add(editor.getBody(), 'p', {}, data.text+ "<br>");
+  					var nString= data.text.replace(/\n/g, "<br>");
+  	    			editor.dom.add(editor.getBody(), 'p', {}, nString + "<br>");
+  	    	
   			}).fail(function(request,status,error){
   	    	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
   			});

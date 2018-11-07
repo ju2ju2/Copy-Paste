@@ -84,5 +84,8 @@ public interface EtcMapper {
 	
 	// write 사이트 내 검색
 	public List<NoteVO> selectSearchSiteWrite(HashMap map) throws Exception;
+
+	// 사이트 내 검색 검색키워드 
+	public List<NoteVO> collectSearchKeywords(String subjectName) throws Exception;
 	
 }

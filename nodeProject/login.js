@@ -1,68 +1,53 @@
-/**
- * http://usejsdoc.org/
+/*@Project : copyNpaste
+ *@File name : drag.js
+ *@Date : 2018.10.26
+ *@Author : 우나연
+ *@Desc : 웹 확장프로그램>> 로그인 */
+/*
+	// 사용할 모듈 정리
+	1. request (파라미터값과 헤더설정을 추가하여 웹서버에 요청을 )
+	2. express (웹 서버 기능) 
+	4. querystring (파라미터 처리)
+	5. cors(Access-Control-Allow-Origin 헤더를 설정)>>맞춤법검사에 적용필요
+	6. axios (요청/응답 객체)
  */
 var http = require("http");
 var request = require("request");
 var express = require('express');
-var mysql = require("mysql");
-var qs = require("querystring");
 var app = express();
+var axios = require('axios');
 var cors = require('cors');
-
 var loginResult = []; 
 
 
-var con = mysql.createConnection({
-	host: "192.168.0.141",
-	port: 3306,
-	user: "copyNpaste",
-	password: "1004",
-	database: "copynpaste"
-});
-/*
-http.createServer(function(request, response) {
-	console.log(request.url);
-	switch (request.url) {
-	case "/login":
-		login(request, response);	
-		break;
-	default:
-		response.end();
-	}
-})
-.listen(10030, function() {
-	console.log("10030 서버 구동중");
-});*/
-
 function login(userEmail, userPwd) {
-	
-	var sql = "select userEmail, userNick, userPhoto from users where userEmail = ? and userPwd = ?";
-	con.query(
-			sql, 
-			[userEmail, userPwd], 
-			function (err, rows, result) {
-				if (err) {
-					console.log("등록 중 오류 발생");
-					console.log(err);
-					return;
-				}
+	var params = { userEmail: userEmail, userPwd: userPwd}
+	 axios(	{
+		 	 method:'post',
+		 	 baseURL: 'http://localhost:8090/copyNpaste/',
+			 url:'member/loginExtention.json', 
+			 data: params,
+			 proxy:false
+					  })
+		  .then(function (response) {
 				loginResult = [];
-				if (rows[0] != null){
-					console.log(rows[0].userEmail);
-					console.log(rows[0].userNick);
-					console.log(rows[0].userPhoto);
-					loginResult = {"loginChk":"true","userEmail":rows[0].userEmail, "userNick": rows[0].userNick, "userPhoto": rows[0].userPhoto};
+				if (response.data.userEmail != null){
+					loginResult = {"loginChk":"true","userEmail":response.data.userEmail, "userNick": response.data.userNick, "userPhoto": response.data.userPhoto};
 				}else {
 					loginResult = {"loginChk":"false"};
 				}
-			}
-	);
+
+		  })
+		  .catch(function (error) {
+		    console.log(error);
+		  });
 }
+
 
 app.use(cors());
 
 app.post('/login', function(req, res){
-	console.log("로그인");
+	console.log("로그인 요청");
 	var param = req.query;
 	var userEmail = param.userEmail;
 	var userPwd = param.userPwd;
@@ -73,11 +58,9 @@ app.post('/login', function(req, res){
 	}, 1600)
 });
 
-app.listen(10030);
-
-
-
-
+app.listen(10030,function() {
+	console.log("10030 로그인 서버 구동중");
+});
 
 
 

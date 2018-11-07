@@ -38,7 +38,7 @@
 							}).done(function (result){
 									swal({type: "success",
 										  title: '성공적으로 삭제되었습니다.',
-							              confirmButtonClass : "btn-danger",
+							              confirmButtonClass : "btn-danger btn-sm",
 										  closeOnConfirm: false
 									},function(){
 										location.reload()
@@ -81,7 +81,7 @@
 			    			noteList+='<div class="text-center noteDiv" id="'+value.noteNum+'">';
 			    			noteList+='	<!-- a HTML (to Trigger Modal) -->';
 			    			noteList+='	<a data-toggle="modal"';
-			    			noteList+='		href="../note/noteDetail.htm?noteNum='+value.noteNum+'&cmd=mynote"';
+			    			noteList+='		href="../note/noteDetail.htm?noteNum='+value.noteNum+'"';
 			    			noteList+='		data-target="#modal-testNew" role="button" data-backdrop="static">';
 			    			noteList+='		<div class="item">';
 			    			noteList+='			<img class="img-rounded"';
@@ -93,7 +93,7 @@
 			    			noteList+='			</div>';
 			    			noteList+='			<div>';
 			    			noteList+='			<input type="hidden" id="noteNum" class="noteNum" value="'+value.noteNum+'">';
-			    			noteList+='				<h4>'+value.noteTitle+value.noteNum+'</h4>';
+			    			noteList+='				<h4 class="noteTitle">'+value.noteTitle+value.noteNum+'</h4>';
 			    			noteList+='			<strong>'+value.userNick+'</strong> <span> '+value.noteDate+'</span>';
 			    			noteList+='		</div>';
 			    			noteList+='		</a>';
@@ -183,7 +183,7 @@ $("document").ready(function(){
 		 })
 
 	    //노트 정렬 
-		 $('#sort-category').on("change",function(e) {
+		 $('#sort-category').change(function(e) {
 			url ="../note/selectOrderbyNote.json"
 			params.sortCategory = $('#sort-category option:selected').val()
 			params.page=0

@@ -63,7 +63,6 @@ public class FolderService {
 	public int deleteFolder(FolderVO folder) throws Exception {
 		FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
 		return folderdao.deleteFolder(folder);
-		
 	}
 	
 	//기본폴더 지정

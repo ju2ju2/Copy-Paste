@@ -27,7 +27,8 @@ $(document).ready(function() {
 				title: "해당 사용자의 노트를 전부 삭제하시겠습니까?",
 				text: "되돌릴 수 없으므로 신중히 선택하세요.",
 				showCancelButton: true,
-				confirmButtonClass: "btn-danger",
+				confirmButtonClass: "btn-danger btn-sm",
+				cancelButtonClass: "btn btn-sm",
 				confirmButtonText: "확인",
 				cancelButtonText: "취소",
 				closeOnConfirm: false},
@@ -41,11 +42,11 @@ $(document).ready(function() {
 							url : "../etc/deleteMemNote.do",
 							success : function() { 
 									swal({
-								 		 title: "୧༼ ヘ ᗜ ヘ ༽୨",
+								 		/* title: "୧༼ ヘ ᗜ ヘ ༽୨",*/
 								 		 text: "노트가 삭제되었습니다.",
 								 		 type: "success",
 								 		 showCancelButton: false,
-								 		 confirmButtonClass: "btn-danger",
+								 		 confirmButtonClass: "btn-danger  btn-sm",
 								 		 confirmButtonText: "확인",
 								 		 closeOnConfirm: false
 											}, function () {
@@ -76,7 +77,8 @@ $(document).ready(function() {
 				title: noteTitlev + "해당 노트를 삭제하시겠습니까?",
 				text: "되돌릴 수 없으므로 신중히 선택하세요.",
 				showCancelButton: true,
-				confirmButtonClass: "btn-danger",
+				confirmButtonClass: "btn-danger btn-sm",
+				cancelButtonClass: "btn btn-sm",
 				confirmButtonText: "확인",
 				cancelButtonText: "취소",
 				closeOnConfirm: false},
@@ -95,7 +97,7 @@ $(document).ready(function() {
 								 		 text: "노트가 삭제되었습니다.",
 								 		 type: "success",
 								 		 showCancelButton: false,
-								 		 confirmButtonClass: "btn-danger",
+								 		 confirmButtonClass: "btn-danger  btn-sm",
 								 		 confirmButtonText: "확인",
 								 		 closeOnConfirm: false
 											}, function () {

@@ -18,11 +18,18 @@ public class QnaCommVO {
 		private int qnaCommPNum;
 		private int qnaCommPos;
 		private String userNick;
-		
+
+		private String userPhoto;
 		private int num;
 		
 		
 		
+		public String getUserPhoto() {
+			return userPhoto;
+		}
+		public void setUserPhoto(String userPhoto) {
+			this.userPhoto = userPhoto;
+		}
 		public int getNum() {
 			return num;
 		}

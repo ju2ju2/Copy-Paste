@@ -27,7 +27,7 @@
 				<section id="subject-search" class="alt">
 					<form method="post" action="#">
 						<input type="text" name="keyword" id="searchinsite-text"
-							placeholder="검색어를 입력해 주세요." /> <a href="#"><i
+							placeholder="검색어를 입력해 주세요." /> <a><i
 							id="searchinsite" class="fas fa-search icon-size"
 							style="padding-top: 15px"></i></a>
 					</form>
@@ -61,7 +61,7 @@
 <br>
 
 <!-- top버튼 -->
-<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+<div><i class="fas fa-caret-up"  onclick="topFunction()" id="myBtn" title="Go to top"></i></div>
 
 <!-- Modal HTML -->
 <div id="modal-testNew" class="modal fade text-center overlay" role="dialog">

@@ -170,6 +170,7 @@ public class EtcService {
 			String[] wordparsing = word.split(" ");
 			for(int i=0; i<wordparsing.length; i++) {
 				wordchart.add(wordparsing[i]);
+				
 			}
 		}
 		return wordchart;
@@ -212,6 +213,11 @@ public class EtcService {
 	public List<NoteVO> selectSearchSiteWrite(HashMap map) throws Exception {
 		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
 		return etcdao.selectSearchSiteWrite(map);
+	}
+
+	public List<NoteVO> collectSearchKeywords(String subjectName) throws Exception {
+		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
+		return etcdao.collectSearchKeywords(subjectName);
 	}
 
 }
