@@ -1,7 +1,7 @@
 
 
 //params json 객체 파라미터 넘기는 값. VO역할
-		var params = {      "subjectCategory": "",
+		var params = {  "subjectCategory": "",
 							"boundary" :  "",
 							"keyword": "",
 							"page": 0
@@ -140,14 +140,14 @@ $("document").ready(function(){
 		//검색어 입력
 		$("#searchinsite").click(function(){
 			if($("#searchinsite-text").val()==''){
-				/*swal({
+				swal({
 					title: "검색어를 입력해주세요",
 					text: "",
 					type: "warning",
-					confirmButtonClass: "btn-danger btn-sm",
+					confirmButtonClass: "btn-danger",
 					confirmButtonText: "OK",
 					showCancelButton: false
-				})*/
+				})
 			}else{
 				var url="";
 				url ="../etc/selectSearchSite.json";

@@ -70,6 +70,13 @@ public class FolderController {
 	@RequestMapping(value="/deletefolder.json")
 	public @ResponseBody void deleteFolder(FolderVO folder, Principal principal) throws Exception {
 		folder.setUserEmail(principal.getName());
+		int count = folder.getCount();
+		if(count > 0) {
+			folderService.deleteFolder(folder);
+		}else{
+			folderService.deleteFolder2(folder);
+		}
+		
 		folderService.deleteFolder(folder);
 	};
 	

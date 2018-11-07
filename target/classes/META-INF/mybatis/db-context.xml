@@ -24,7 +24,7 @@
     http://www.springframework.org/schema/tx/spring-tx.xsd">
     
     <!-- aspectj »ç¿ë -->
-	<aop:aspectj-autoproxy />
+	<aop:aspectj-autoproxy proxy-target-class="true"/>
 
 
 <!-- 	<tx:advice id="txAdvice" transaction-manager="transactionManager">

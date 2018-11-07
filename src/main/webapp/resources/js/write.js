@@ -100,7 +100,6 @@ $(document).ready(function() {
 			})
 		} 
 		else {
-		
 		$.ajax({
 	      url: url, // url_pettern 
 	      type:"POST",
@@ -110,7 +109,7 @@ $(document).ready(function() {
 	    	 	 'noteContent':tinymce.get('noteContent').getContent(),
 	    	 	 'folderName':$("#folderList").val(),
 	    	 	 'subjectCode':$("#subjectList").val(),
-	    	 	 'notePublic':$("input[name='notePublic']:checked").val()
+	    	 	 'notePublic':$("input[name='notePublic']:checked").val(),
 	     		 },	
 	      success:function(result){
 	    	    	  swal({type: "success",
@@ -119,7 +118,7 @@ $(document).ready(function() {
 	    				  closeOnConfirm: false
 	    			},
 	    			function(){
-	    				location.href="../note/note.htm";
+	    				location.href="../note/note.htm?noteNum="+result;
 	    			});	
 	    	       },
 	       error:function(request,status,error){
@@ -162,17 +161,20 @@ $(document).ready(function() {
                if ($('#sidebar').css('width') == '400px') {
             	  $('#sidebar').css('z-index', '2');  
                   $('#sidebar').css('width', '1120px');
-                  $('#search-text-write').css('width', '90%');
+                  $('#search-text-write').css('width', '95%');
+                  $('.topBtn').css('left', '1100px');
                   $('#sidebar').addClass('col-sm-10');
+                  $('.fa-angle-double-left').css('color','#fff');
                   $('.writeNoteNavSizeBtn').removeClass('fa-angle-double-right').addClass(
                               'fa-angle-double-left');
-                  $('.fa-angle-double-left').css('color','#fff');
+                 
                  
                } else {
+            	  $('.fa-angle-double-left').css('color','#fff');
                   $('#sidebar').css('width', '400px');
                   $('#sidebar').removeClass('col-sm-10');
                   $('#search-text-write').css('width', '80%');
-                  $('.fa-angle-double-left').css('color','#fff');
+                  $('.topBtn').css('left', '365px');
                   $('.writeNoteNavSizeBtn').removeClass('fa-angle-double-left')
                         .addClass('fa-angle-double-right');
                }

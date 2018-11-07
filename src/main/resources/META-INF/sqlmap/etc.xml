@@ -26,17 +26,18 @@
 		select count(*) from notify where userEmail=#{userEmail} and readCheck=1
 	</select>
 
-	<!-- 신고 처리 -->
+	<!-- 신고하기 -->
 	<insert id="insertReport" parameterType="ReportVO">
 		<selectKey keyProperty="reportNum" order="BEFORE"
 			resultType="int">
 			select max(reportNum)+1 from report
 		</selectKey>
-		insert into report(reportNum, userEmail, noteNum, reportCauseCode,
+		insert into report
+		(reportNum, userEmail, noteNum, reportCauseCode,
 		reportContent, noteOrCommCode, reportmemo)
-		values(#{reportNum},
-		#{userEmail}, #{noteNum}, #{reportCauseCode}, #{reportContent},
-		#{noteOrCommCode}," " )
+		values
+		(#{reportNum},#{userEmail}, #{noteNum}, #{reportCauseCode}, 
+		#{reportContent},#{noteOrCommCode}," " )
 	</insert>
 
 	<!-- 주제에 맞게 노트 개수 가지고 온다 -->
@@ -64,79 +65,78 @@
 	<select id="wordchart" resultType="String">
 		select noteContent 
 		from note
-		where (noteNum between 30 and 60) <!-- and noteDate > (NOW() - INTERVAL 7 DAY); -->
+		where noteDate=curdate() and noteBlind=0 and notePublic=1;
+        <!-- 
+        0. noteDate=curdate()
+        1. where (noteNum between 30 and 60)
+        2. and noteDate > (NOW() - INTERVAL 7 DAY); -->
+
 	</select>
 
-	<!-- 신고한 것들을 데리고 온다 -->
+	<!-- 신고 목록 -->
 	<select id="selectAllReport" resultType="ReportVO">
-		select reportNum,
-		userEmail, noteNum, checkCode, reportInDate,
-		reportCauseCode,
+		select reportNum,userEmail, noteNum, checkCode, reportInDate,reportCauseCode,
 		reportContent, reportmemo, noteOrCommCode
 		from report
-		order by checkCode
-		desc, noteOrCommCode, noteNum, reportNum
+		order by checkCode desc, noteOrCommCode, noteNum, reportNum
 	</select>
 
-	<!-- 노트 신고한 것들을 데리고 온다 -->
+	<!-- 노트 신고목록 -->
 	<select id="selectNoteReport" resultType="ReportVO">
-		select reportNum,
-		userEmail, noteNum, checkCode, reportInDate,
-		reportCauseCode,
-		reportContent, reportmemo, noteOrCommCode
+		select reportNum,userEmail, noteNum, checkCode, reportInDate,
+		reportCauseCode,reportContent, reportmemo, noteOrCommCode
 		from report where
 		noteOrCommCode='NC00'
 		order by checkCode desc, noteNum, reportNum
 	</select>
 
-	<!-- 댓글 신고한 것들을 데리고 온다 -->
+	<!-- 댓글 신고목록 -->
 	<select id="selectCommReport" resultType="ReportVO">
-		select reportNum,
-		userEmail, noteNum, checkCode, reportInDate,
-		reportCauseCode,
-		reportContent, reportmemo, noteOrCommCode
+		select reportNum,userEmail, noteNum, checkCode, reportInDate,
+		reportCauseCode,reportContent, reportmemo, noteOrCommCode
 		from report where
 		noteOrCommCode='NC01'
 		order by checkCode desc, noteNum, reportNum
 	</select>
 
-	<!-- 신고를 관리자가 처리한다. -->
+	<!-- 신고 처리 -->
 	<update id="updateReport">
-		update report set reportmemo = #{param2,
-		jdbcType=VARCHAR}, checkCode =
-		#{param3}
-		where reportNum = #{param1}
+	
+		update report 
+			SET reportmemo=#{reportmemo},
+				checkCode=#{checkCode}
+		  WHERE reportNum=#{reportNum}
 	</update>
 
-	<!-- 신고 받은 노트를 블라인드 시킨다. -->
+	<!-- 노트 블라인드처리 -->
 	<update id="updateReportNoteBlind">
-		update note set noteBlind = 1 where noteNum =
-		#{noteNum}
+		update note 
+		   set noteBlind = 1
+		 where noteNum = #{noteNum}
 	</update>
 
-	<!-- 신고 받은 댓글을 블라인드 시킨다. -->
+	<!-- 노트댓글 블라인드처리 -->
 	<update id="updateReportNoteCommBlind">
 		update notecomm set noteCommBlind= 1 where
 		noteCommNum = #{noteNum}
 	</update>
 
-	<!-- 노트 블라인드를 해제한다. -->
+	<!-- 노트 블라인드 해제 -->
 	<update id="updateReportNoteDontBlind">
 		update note set noteBlind = 0 where noteNum =
 		#{noteNum}
 	</update>
 
-	<!-- 댓글 블라인드를 해제한다. -->
+	<!-- 댓글 블라인드 해제 -->
 	<update id="updateReportNoteCommDontBlind">
 		update notecomm set noteCommBlind = 0 where
 		noteCommNum = #{noteNum}
 	</update>
-
+	<!-- 신고댓글있는지 조회 -->
 	<select id="selectHasReportComm" resultType="int">
 		select noteNum from
 		notecomm where noteNum =#{reportNum}
 	</select>
-
 
 	<!-- 사이트 내 검색 -->
 	<select id="selectSearchSite" parameterType="hashmap" resultType="NoteVO">
@@ -184,27 +184,30 @@
 					</choose>
 				</otherwise>
 			</choose>
+			and n.notePublic=1 and n.noteBlind=0 and n.notescrap=0<!-- 공개1 블라인드0 스크랩글 아닌것0-->
 		</where>
 		order by noteNum desc limit ${page},12
 	</select>
 	
-	<!-- write에서 사이트 내 검색 -->
+	<!-- 노트 작성 페이지 >> 사이트 내 검색 -->
 	<select id="selectSearchSiteWrite" parameterType="hashmap" resultType="NoteVO">
-		select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
 	n.subjectCode,s.subjectName, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
 	from note n join users u on u.userEmail=n.userEmail 
-		join subject s on s.subjectCode=n.subjectCode 
-		where n.noteTitle like CONCAT('%',#{keyword},'%') or 
-		  n.noteContent like CONCAT('%',#{keyword},'%') 
+				join subject s on s.subjectCode=n.subjectCode 
+	where (n.noteTitle like CONCAT('%',#{keyword},'%') or 
+		   n.noteContent like CONCAT('%',#{keyword},'%') ) and 
+		   n.notePublic=1 and n.noteBlind=0 and n.notescrap=0<!-- 공개1 블라인드0 스크랩글 아닌것0-->
 				order by noteNum desc		
 				
 	</select>
 
-	<!-- write에서 사이트 내 검색 -->
+	<!-- 자동완성 키워드 검색 (노트제목)-->
 	<select id="collectSearchKeywords" resultType="NoteVO">
-		select n.noteTitle,s.subjectName
+		select n.noteTitle, s.subjectName
 		from note n join subject s on s.subjectCode=n.subjectCode
 		where s.subjectName= #{subjectName}
+		and n.notePublic=1 and n.noteBlind=0 and n.notescrap=0<!-- 공개1 블라인드0 스크랩글 아닌것0-->
 		order by binary(n.noteTitle)
 	</select>
 

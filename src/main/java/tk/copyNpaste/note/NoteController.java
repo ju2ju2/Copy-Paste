@@ -59,7 +59,10 @@ public class NoteController {
 	
 	//mynote 페이지
 	@RequestMapping(value = "note.htm")
-	public String notepage(Model model, Principal principal) throws Exception {
+	public String notepage(Model model, Principal principal, String noteNum) throws Exception {
+		if (noteNum!=null) {
+			model.addAttribute("noteNum", noteNum);
+		}
 		return "note.list";
 	}
 
@@ -98,8 +101,9 @@ public class NoteController {
 			note.setNoteThumnail(src);
 		} else { note.setNoteThumnail(
 				"https://d1u1amw606tzwl.cloudfront.net/assets/users/avatar-default-96007ee5610cdc5a9eed706ec0889aec2257a3937d0fbb747cf335f8915f09b2.png");
-		}
-		return noteService.insertNote(note);
+		}	
+		noteService.insertNote(note);			
+		return note.getNoteNum();
 	}
 	
 	// 노트 수정 페이지로 이동
@@ -127,7 +131,8 @@ public class NoteController {
 			note.setNoteThumnail(src);
 		} else {
 			note.setNoteThumnail("https://d1u1amw606tzwl.cloudfront.net/assets/users/avatar-default-96007ee5610cdc5a9eed706ec0889aec2257a3937d0fbb747cf335f8915f09b2.png");}// 수정시 이미지 없을때 기본이미지로.
-		return noteService.updateNote(note);
+		noteService.updateNote(note);
+		return note.getNoteNum();
 	}
 		
 	// 노트 삭제
@@ -179,7 +184,7 @@ public class NoteController {
 	@RequestMapping(value="scrapNote.json")
 	public @ResponseBody int scrapNote(NoteVO note, Principal principal) throws Exception {
 		note.setUserEmail(principal.getName());
-		return noteService.scrapNote(note);
+		return noteService.scrapNoteAspect(note);
 	}
 
 	// 노트 댓글 조회-비동기

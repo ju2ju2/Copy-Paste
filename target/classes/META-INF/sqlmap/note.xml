@@ -89,13 +89,13 @@
 	</delete>
 
 	<!-- 노트 등록 -->
-	 <update id="insertNote">
+	<insert id="insertNote" useGeneratedKeys="true" keyProperty="noteNum">
         <selectKey order="BEFORE" keyProperty="noteNum" resultType="int">
             select max(noteNum)+1 from note
         </selectKey>
         insert into note(noteNum, folderName, userEmail, noteTitle, noteContent, subjectCode, notePublic, noteThumnail)
         values(#{noteNum}, #{folderName}, #{userEmail}, #{noteTitle}, #{noteContent}, #{subjectCode}, #{notePublic}, #{noteThumnail})
-    </update>
+    </insert>
     
     <!-- 노트 주제 조회 -->
     <select id="selectSubjectCode" resultType="NoteVO">
@@ -118,7 +118,7 @@
 		DELETE FROM note WHERE noteNum = #{noteNum}
 	</delete>
 	
-	<!--노트 폴더별 조회 -->
+	<!--my노트 폴더별 조회 -->
 	<select id="selectByFolderNote" resultType="NoteVO">
 	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
 	n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
@@ -127,7 +127,7 @@
 	order by noteNum desc limit ${page},12 
 	</select>
 	
-	<!-- 노트 정렬 -->
+	<!-- my 노트 정렬 -->
 	  <select id="selectOrderbyNote" parameterType="hashmap" resultType="NoteVO">
 	  select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
       n.subjectCode, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
@@ -143,7 +143,7 @@
 
  
 	
-	<!-- 노트 달력 검색 -->
+	<!--my 노트 달력 검색 -->
 	<select id="selectByCalNote" parameterType="hashmap" resultType="NoteVO">
 	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
 	n.subjectCode,s.subjectName, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick

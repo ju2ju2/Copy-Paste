@@ -41,7 +41,7 @@ public interface EtcMapper {
 	public int selectHasReportComm(int reportNum) throws Exception;
 	
 	//신고 처리 하기
-	public int updateReport(int reportNum, String reportmemo, String checkCode) throws Exception;
+	public int updateReport(ReportVO report) throws Exception;
 
 	//노트 블라인드
 	public int updateReportNoteBlind(int noteNum) throws Exception;
@@ -82,9 +82,6 @@ public interface EtcMapper {
 	/*public List<NoteVO> selectSearchSite(HashMap map) throws Exception;*/
 	public List<NoteVO> selectSearchSite(HashMap map) throws Exception;
 	
-	// write 사이트 내 검색
-	public List<NoteVO> selectSearchSiteWrite(HashMap map) throws Exception;
-
 	// 사이트 내 검색 검색키워드 
 	public List<NoteVO> collectSearchKeywords(String subjectName) throws Exception;
 	

@@ -100,14 +100,15 @@ public class EtcService {
 
 	// 신고 처리 하기
 	@Transactional
-	public int updateReport(int reportNum, String reportmemo, String checkCode, String noteOrCommCode, int noteNum)
-			throws Exception {
-
+	public int updateReport(ReportVO report) throws Exception {
+			String checkCode= report.getCheckCode();
+			String noteOrCommCode= report.getNoteOrCommCode();
+			int noteNum= report.getNoteNum();
 		try {
 			EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
-			int reportInt = etcdao.updateReport(reportNum, reportmemo, checkCode);
+			int reportInt = etcdao.updateReport(report);
 			int noteOrCommInt = 0;
-			if (checkCode.equals("PS01")) {
+			if (checkCode.equals("PS01")) {//블라인드 처리 
 				if (noteOrCommCode.equals("노트")) {
 					noteOrCommInt = etcdao.updateReportNoteBlind(noteNum);
 				} else {
@@ -210,11 +211,7 @@ public class EtcService {
 		return etcdao.selectSearchSite(map);
 	}
 	
-	public List<NoteVO> selectSearchSiteWrite(HashMap map) throws Exception {
-		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
-		return etcdao.selectSearchSiteWrite(map);
-	}
-
+	
 	public List<NoteVO> collectSearchKeywords(String subjectName) throws Exception {
 		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
 		return etcdao.collectSearchKeywords(subjectName);

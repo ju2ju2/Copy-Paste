@@ -1,3 +1,11 @@
+//params json 객체 파라미터 넘기는 값. VO역할
+		var params = {  "subjectCategory": "",
+							"boundary" :  "",
+							"keyword": "",
+							"page": 0
+					  }
+
+
 
 //폴더 리스트
 function folderList(){
@@ -108,12 +116,12 @@ function folderNoteList(folderName){
 
 //노트검색
 function searchNoteList(){
-	 $.ajax(
-				{
-		    url : "../etc/selectSearchSiteWrite.json",
+
+	$.ajax({
+		  
 		    type : "get",
-		    data : {"keyword":$("#search-text-write").val(),
-		    },
+		    url : "../etc/selectSearchSite.json",
+		    data : params, 
 		    dataType : 'json',
 		    success : function(data){
 		    	      console.log(data);
@@ -146,14 +154,14 @@ function searchNoteList(){
 			          		})
 			          	}
 			          	
-			          	if(data.length == 0){
-			          		$("#searchList").empty();
+			          	else{
+			          		aa ="";
 			          		aa += "<div class='text-center noteDiv'>";
 			          		aa += "<h5>검색된 결과가 없습니다.</h5>";
 			          		aa += "</div>";
 						}
 			          	
-			          	$("#searchList").html(aa);	
+			          	$("#searchList").append(aa);	
 		    	
 		          	
 		    }
@@ -161,6 +169,53 @@ function searchNoteList(){
 }
 
 
+//스크롤이벤트 위치지정
+var lastScrollTop = 0;
+//스크롤 발생시 추가적인 리스트 생성
+
+function moreAsideNoteList(e,url,params){
+	e.stopPropagation() 
+ 
+	// ① 스크롤 이벤트 최초 발생
+	var currentScrollTop = $(window).scrollTop();
+
+	if( currentScrollTop - lastScrollTop > 0 ){
+		if ($(window).scrollTop() >= ($(document).height() - $(window).height()) ){ 
+			params.page += 12;
+			console.log(params.page+" 번부터")
+			searchNoteList(url,params)
+			
+		}
+	}
+}
+
+
+
+//사이트내 검색어 자동완성
+function autoComplete(subjectName){
+	var allkeywords =[];
+	var uniquekeywords = [];
+	$.ajax({
+		type:"get",
+		url: "../etc/collectSearchKeywords.json", 
+		data: {"subjectName":subjectName},
+		dataType:"json",
+		success:function(data){
+			
+    	    $.each(data, function(index,obj){
+    		   	allkeywords.push(obj.noteTitle);
+    		});	
+    	    //배열 중복제거 후 담기
+			$.each(allkeywords, function(i, el){
+				if($.inArray(el, uniquekeywords) === -1) uniquekeywords.push(el); 
+			});
+		}
+	})
+	
+	$( "#search-text-write" ).autocomplete({
+	      source: uniquekeywords
+	});
+}
 
 
 //로딩시 실행
@@ -170,34 +225,72 @@ $(document).ready(function() {
 		folderList()
 	
 
-  		 // 사이트 내 검색 탭
-			$("#searchWriteSite").click(function(){
-				if($("#search-text-write").val()==''){
-				/*	swal({
-						  title: "검색어를 입력해주세요",
-						  text: "",
-						  type: "warning",
-						  confirmButtonClass: "btn-danger btn-sm",
-						  confirmButtonText: "OK",
-						  showCancelButton: false
-						})*/
-				}else{
-					searchNoteList()
-				}
-			})
+		
+//사이트내 검색 탭 클릭시 
+	    $("#writeSearch").click(function(){
+		var url="";
+		url ="../etc/selectSearchSite.json";
+		params.keyword=$("#search-text-write").val()
+		params.subjectCategory=$('#subject-category option:selected').val()
+		params.boundary=$('input[name="boundary"]:checked').val()
+		params.page=0
+		searchNoteList(url,params);
+		autoComplete(params.subjectCategory);
+		$(window).scroll(function(e) { moreAsideNoteList(e,url, params)})
+		})
+		
+		//검색어 입력 사이트 내 검색 탭
+		$("#searchWriteSite").click(function(){
+			if($("#search-text-write").val()==''){
+				swal({
+					title: "검색어를 입력해주세요",
+					text: "",
+					type: "warning",
+					confirmButtonClass: "btn-danger",
+					confirmButtonText: "OK",
+					showCancelButton: false
+				})
+			}else{
+				var url="";
+				url ="../etc/selectSearchSite.json";
+				params.keyword=$("#search-text-write").val()
+				params.subjectCategory=$('#subject-category option:selected').val()
+				params.boundary=$('input[name="boundary"]:checked').val()
+				params.page=0
+				searchNoteList(url,params);
+				autoComplete(params.subjectCategory);
+				$(window).scroll(function(e) { moreAsideNoteList(e,url, params)})
+			}
+		});
+
+	    //주제별 검색
+
+		 $('#subject-category').on("change",function(e) {
+			url ="../etc/selectSearchSite.json";
+			params.keyword=$("#search-text-write").val()
+			params.subjectCategory = $('#subject-category option:selected').val()
+			params.boundary=$('input[name="boundary"]:checked').val()
+			params.page=0
+			searchNoteList(url, params);
+			autoComplete(params.subjectCategory);
+		    $(window).scroll(function(e) {moreAsideNoteList(e,url, params)})
+		 })
+		 
+			
+		
 			
 		 //스크롤에 따라 위로가기 버튼 표시 
 		 var inner = $(".inner")
 		 $(inner).scroll(function() {
 		   if (inner.scrollTop() > 50 || inner.scrollTop() > 50) {
-		    	 document.getElementById("topBtn").style.display = "block";
+		    	 $(".topBtn").css("display", "block");
 		    } else {
-		    	 document.getElementById("topBtn").style.display = "none";
+		    	$(".topBtn").css("display", "none");
 		    }
 		 });
 
 		//위로가기 버튼 클릭시
-		$('#topBtn').click(function(){
+		$('.topBtn').click(function(){
 			document.body.scrollTop = 0;
 			document.documentElement.scrollTop = 0; 
 			
