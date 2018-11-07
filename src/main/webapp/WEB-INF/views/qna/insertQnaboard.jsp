@@ -56,7 +56,13 @@
 $(document).ready(function() {
 	$('#qnainsertbtn').click(function(){
 		if($('#qnatitle').val()=="" || tinymce.get('qnacontent').getContent()==""){
-			swal("", "내용을 입력해주세요", "warning");
+			swal({  title: "내용을 입력해주세요.",
+				text: "",
+				type: "warning",
+				confirmButtonClass: "btn-danger btn-sm",
+				confirmButtonText: "OK",
+				showCancelButton: false
+			})
 		}else{
 			$('#insertQnaform').submit(); 
 		}

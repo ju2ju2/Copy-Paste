@@ -152,7 +152,14 @@ $.ajax({
             		}
             	},
             error : function(error) {
-				swal("٩(இ ⌓ இ๑)۶", "잠시 후 다시 시도해 주세요.", "error");
+				/* swal("٩(இ ⌓ இ๑)۶", "잠시 후 다시 시도해 주세요.", "error"); */
+				swal({  title: "잠시 후 다시 시도해 주세요.",
+						text: "",
+						type: "warning",
+						confirmButtonClass: "btn-danger btn-sm",
+						confirmButtonText: "OK",
+						showCancelButton: false
+					})
 				console.log(error);
 				console.log(error.status);
             }
@@ -322,11 +329,10 @@ function updateMember(){
 		  text: "탈퇴해도 작성한 노트 및 드래그, 게시글, 댓글은 삭제되지 않으며 동일한 Email로는 재가입이 불가능합니다.",
 		  type: "warning",
 		  showCancelButton: true,
-		  confirmButtonClass: "btn-danger",
+		  confirmButtonClass: "btn-danger btn-sm",
 		  confirmButtonText: "회원탈퇴",
 		  cancelButtonText: "cancel",
 		  closeOnConfirm: false,
-		  closeOnCancel: true
 		},
 			function(isConfirm) {
 		 		 if (isConfirm) {
@@ -338,7 +344,7 @@ function updateMember(){
 								 swal({type: "success",
 								 title: "٩(இ ⌓ இ๑)۶",
 								 text: "회원 탈퇴가 완료되었습니다.",
-				             	 confirmButtonClass : "btn-danger",
+				             	 confirmButtonClass : "btn-danger btn-sm",
 							 	 closeOnConfirm: false
 									},
 								 function(){
@@ -346,7 +352,14 @@ function updateMember(){
 									});	
 				       			},
 						error : function(error) {
-			          			 swal("٩(இ ⌓ இ๑)۶", "에러가 발생했습니다.", "error");
+			          			 /* swal("٩(இ ⌓ இ๑)۶", "에러가 발생했습니다.", "error"); */
+			          			 swal({  title: "에러가 발생했습니다.",
+									text: "",
+									type: "warning",
+									confirmButtonClass: "btn-danger btn-sm",
+									confirmButtonText: "OK",
+									showCancelButton: false
+								})
 			           	  	 	console.log(error);
 			           		 	console.log(error.status);
 			       				}

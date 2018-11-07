@@ -115,7 +115,7 @@ $(document).ready(function() {
 	      success:function(result){
 	    	    	  swal({type: "success",
 	    				  title: '성공적으로 '+msg+'되었습니다.',
-	    	              confirmButtonClass : "btn-danger",
+	    	              confirmButtonClass : "btn-danger btn-sm",
 	    				  closeOnConfirm: false
 	    			},
 	    			function(){

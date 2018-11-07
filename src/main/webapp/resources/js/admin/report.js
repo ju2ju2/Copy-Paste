@@ -45,7 +45,7 @@ $(function() {
 		   				if (result >= 2) { 
 				   	    	  swal({type: "success",
 								 	title: '성공적으로 반영했습니다.',
-					             	confirmButtonClass : "btn-danger",
+					             	confirmButtonClass : "btn-danger btn-sm",
 								  	closeOnConfirm: false
 									},
 						 			function(){
@@ -55,7 +55,7 @@ $(function() {
 		   			} else {
 			   			swal({type: "error",
 							  title: '처리에 실패했습니다.',
-				              confirmButtonClass : "btn-danger",
+				              confirmButtonClass : "btn-danger btn-sm",
 							  closeOnConfirm: false
 							});
 		   		 	}

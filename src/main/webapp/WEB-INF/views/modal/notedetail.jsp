@@ -223,7 +223,8 @@
 				  showCancelButton: true,
 				  confirmButtonText : "OK",
 				  confirmButtonClass : "btn-danger btn-sm",
-				  cancelButtonClass : "btn btn-sm"
+				  cancelButtonClass : "btn btn-sm",
+				  closeOnConfirm: false
 			},
 			function(){
 				$.ajax ({
@@ -622,9 +623,8 @@ $(document).ready(function(){
 														  title: "댓글 삭제에 실패하였습니다",
 														  text: "",
 														  type: "warning",
-														  confirmButtonClass: "btn-danger",
+														  confirmButtonClass: "btn-danger btn-sm",
 														  confirmButtonText: "OK",
-														  showCancelButton: true
 														});
 											    }
 										});
@@ -668,7 +668,8 @@ $(document).ready(function(){
 									  showCancelButton: true,
 									  confirmButtonText : "OK",
 									  confirmButtonClass : "btn-danger btn-sm",
-									  cancelButtonClass : "btn btn-sm"
+									  cancelButtonClass : "btn btn-sm",
+									  closeOnConfirm: false
 								},
 								function(){
 									$.ajax ({

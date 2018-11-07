@@ -303,7 +303,13 @@
 		/* 대댓글 작성 버튼 클릭시 */
 		$(document).on("click", "#commCommbtn", function(){
 			if($('#userCommComm').val()==""){
-				swal("", "내용을 입력해주세요", "warning");
+			/* 	swal({  title: "내용을 입력해주세요.",
+					text: "",
+					type: "warning",
+					confirmButtonClass: "btn-danger btn-sm",
+					confirmButtonText: "OK",
+					showCancelButton: false
+				}) */
 			}else{
 			$.ajax({
 				url : "<%=request.getContextPath()%>/qna/insertQnaCommComm.json",
@@ -335,9 +341,10 @@
 				  title: "댓글을 삭제하시겠습니까?",
 				  text: "답댓글이 달려있는 경우 함께 삭제됩니다.",
 				  type: "warning",
-				  confirmButtonClass: "btn-danger",
+				  confirmButtonClass: "btn-danger btn-sm",
 				  confirmButtonText: "OK",
-				  showCancelButton: true
+				  showCancelButton: true,
+				  closeOnConfirm: false 
 				},
 				function(isConfirm) {
 				  if (isConfirm) {
@@ -356,9 +363,8 @@
 									  title: "댓글 삭제에 실패하였습니다",
 									  text: "",
 									  type: "warning",
-									  confirmButtonClass: "btn-danger",
-									  confirmButtonText: "OK",
-									  showCancelButton: true
+									  confirmButtonClass: "btn-danger btn-sm",
+									  confirmButtonText: "OK"
 									});
 						    }
 					});

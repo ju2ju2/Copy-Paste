@@ -140,14 +140,14 @@ $("document").ready(function(){
 		//검색어 입력
 		$("#searchinsite").click(function(){
 			if($("#searchinsite-text").val()==''){
-				swal({
+				/*swal({
 					title: "검색어를 입력해주세요",
 					text: "",
 					type: "warning",
-					confirmButtonClass: "btn-danger",
+					confirmButtonClass: "btn-danger btn-sm",
 					confirmButtonText: "OK",
 					showCancelButton: false
-				})
+				})*/
 			}else{
 				var url="";
 				url ="../etc/selectSearchSite.json";

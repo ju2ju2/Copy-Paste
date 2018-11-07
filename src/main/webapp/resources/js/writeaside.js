@@ -173,14 +173,14 @@ $(document).ready(function() {
   		 // 사이트 내 검색 탭
 			$("#searchWriteSite").click(function(){
 				if($("#search-text-write").val()==''){
-					swal({
+				/*	swal({
 						  title: "검색어를 입력해주세요",
 						  text: "",
 						  type: "warning",
-						  confirmButtonClass: "btn-danger",
+						  confirmButtonClass: "btn-danger btn-sm",
 						  confirmButtonText: "OK",
 						  showCancelButton: false
-						})
+						})*/
 				}else{
 					searchNoteList()
 				}
