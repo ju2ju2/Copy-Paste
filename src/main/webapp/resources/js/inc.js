@@ -31,7 +31,16 @@ $('#modal-testNew').on('shown.bs.modal', function() {
 var prevText;
 
 // 드래그 저장
+/*var inputtag= $(":input")
+if()
+*/
 $(document).mouseup(function(event){
+    
+    if (!$(event.target).is(":input")) {
+        // code
+    
+	
+	
 	event.preventDefault(); 
 	event.stopPropagation(); 
 	
@@ -70,6 +79,9 @@ $(document).mouseup(function(event){
 		
 		return false;
 	 }	
+	 
+	 
+    }
  });
 
 //로딩
