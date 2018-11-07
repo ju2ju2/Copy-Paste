@@ -41,7 +41,7 @@ public interface EtcMapper {
 	public int selectHasReportComm(int reportNum) throws Exception;
 	
 	//신고 처리 하기
-	public int updateReport(int reportNum, String reportmemo, String checkCode) throws Exception;
+	public int updateReport(ReportVO report) throws Exception;
 
 	//노트 블라인드
 	public int updateReportNoteBlind(int noteNum) throws Exception;
