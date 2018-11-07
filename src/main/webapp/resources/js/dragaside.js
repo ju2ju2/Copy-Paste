@@ -255,9 +255,6 @@ function moreAsideDragList(e,url,params){
 
 
 
-
-
-
 //페이지 로딩시 요청
 $("document").ready(function(){
 	var loginUser= $('#loginUser').val();	
@@ -271,12 +268,22 @@ $("document").ready(function(){
 
 		// 드래그 키워드 검색
 		$('#searchdrag').click(function(e) {
-			console.log(params.keyword)	
-			url = "../drag/selectByKeyDrag.json"
-
+			if($("#search-text").val()==''){
+				swal({
+					title: "검색어를 입력해주세요",
+					text: "",
+					type: "warning",
+					confirmButtonClass: "btn-danger",
+					confirmButtonText: "OK",
+					showCancelButton: false
+				})
+			}else{    
+				var url="";
+			    url = "../drag/selectByKeyDrag.json"
 				params.keyword = $('#search-text').val()
 				makeAsideDragList(url, params);
 			$(window).scroll(function(e) { moreAsideDragList(e,url, params)})		
+		}
 		})
 
 		// 드래그 정렬

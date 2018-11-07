@@ -225,14 +225,6 @@ public class EtcController {
 		return noteList;
 	}
 
-	// * write 사이트 내 검색
-	@RequestMapping(value="selectSearchSiteWrite.json", method = RequestMethod.GET)
-	public @ResponseBody List<NoteVO> selectSearchSiteWrite(String keyword) throws Exception {
-	HashMap<String, Object> map = new HashMap<String, Object>();	
-	map.put("keyword", keyword);
-	/*return etcService.selectSearchSite(map);*/
-	return etcService.selectSearchSiteWrite(map);
-}
 	
 	
 	// 사이트 내 검색 자동완성(우나연 11.06)

@@ -20,7 +20,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.copyNpaste.mapper.DragMapper;
+import tk.copyNpaste.mapper.EtcMapper;
 import tk.copyNpaste.vo.DragVO;
+import tk.copyNpaste.vo.NoteVO;
 
 
 @Service

@@ -808,7 +808,7 @@ span.Cgrapefruit{
     background-color:white ;
 /*     margin-top: 25px; */
     color:#333;
-    width: 325px;
+    width: 307px;
     box-shadow: 2px 2px 2px 2px #E0E0E0;
    
 }
@@ -962,15 +962,33 @@ height: 1.2em;
 }
 
 /* 검색확장버튼 고정 */
-#topBtn {
-	 background-color: #f56a6a;
-	  color: #fff;
+.topBtn {
+	background-color: #f56a6a;
+	color: #fff;
 	position: fixed;
 	padding: 3px 5px !important;
 	margin-top:5px;
 	display: none;
 
+     left: 365px;
+    top: 707px;
+/*    top: 460px !important;
+   right: 5px !important; */
+
 }
+
+.topBtn:hover {
+   color: #f56a6a;
+   background-color: #fff;
+}
+
+#dragTopBtn{
+	
+	position: absolute !important;
+    top: 460px !important;
+	right: 22px !important;
+}
+
 /* 구글 서치 검색 창 길이 */
 #gsc-iw-id1{
     position: relative;
