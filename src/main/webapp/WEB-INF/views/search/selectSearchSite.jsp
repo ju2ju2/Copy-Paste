@@ -10,6 +10,7 @@
 <div class="s-container">
 	<div class="s-inner">
 		<!-- 정렬 -->
+		<br>
 		<div class="row no-margin">
 			<input type="hidden" id="subjectName" value="${subjectName}">
 			<div class="col-xs-2">
