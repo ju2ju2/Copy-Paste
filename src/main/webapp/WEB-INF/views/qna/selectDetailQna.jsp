@@ -13,13 +13,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="se"
-	uri="http://www.springframework.org/security/tags"%>
-<!-- Sweet Alert cdn -->
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/api/alert/sweetalert.css" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/api/sweetalert.min.js"></script>
-
+<%@ taglib prefix="se"	uri="http://www.springframework.org/security/tags"%>
 <se:authentication property="name" var="loginuser" />
 <se:authentication property="authorities" var="role" />
 
@@ -70,6 +64,7 @@
 			<div class="col-lg-12 col-sm-12 text-left">
 				<div class="commentBox">
 					<c:forEach var="qnaComm" items="${qnaCommList}">
+						
 						<div class="comment">
 							<strong class="pull-left primary-font"> 
 								<c:if test="${qnaComm.qnaCommDept==1}">
@@ -183,9 +178,12 @@
 			</form>
 			<!-- QnA 댓글 -->
 			<div class="col-lg-12 col-sm-12 text-left">
-				<div class="commentBox">
 					<c:forEach var="qnaComm" items="${qnaCommList}">
-						<div class="comment">
+					<div class="row">
+						<div class="media-left qnaCommentBox col-sm-1">
+							<img class="user-photo" src="../resources/image/userPhoto/${qnaComm.userPhoto}">
+						</div>
+						<div class="comment col-sm-11">
 							<strong class="pull-left primary-font"> 
 								<c:if test="${qnaComm.qnaCommDept==1}">
 								ㄴ
@@ -223,8 +221,9 @@
 								${qnaComm.qnaCommContent}
 							</div>
 						</div>
+						</div>
 					</c:forEach>
-				</div>
+
 				<!-- 로그인한 회원,어드민들 댓글창 -->
 				<se:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
 					<div class="qnaComm-inputBox input-group">
@@ -303,6 +302,15 @@
 		
 		/* 대댓글 작성 버튼 클릭시 */
 		$(document).on("click", "#commCommbtn", function(){
+			if($('#userCommComm').val()==""){
+			/* 	swal({  title: "내용을 입력해주세요.",
+					text: "",
+					type: "warning",
+					confirmButtonClass: "btn-danger btn-sm",
+					confirmButtonText: "OK",
+					showCancelButton: false
+				}) */
+			}else{
 			$.ajax({
 				url : "<%=request.getContextPath()%>/qna/insertQnaCommComm.json",
 			    type : "get",
@@ -322,6 +330,7 @@
 		     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 		     	  }
 			});	
+			}
 		});
 		
 		/* 댓글삭제아이콘 클릭시 */
@@ -332,9 +341,10 @@
 				  title: "댓글을 삭제하시겠습니까?",
 				  text: "답댓글이 달려있는 경우 함께 삭제됩니다.",
 				  type: "warning",
-				  confirmButtonClass: "btn-danger",
+				  confirmButtonClass: "btn-danger btn-sm",
 				  confirmButtonText: "OK",
-				  showCancelButton: true
+				  showCancelButton: true,
+				  closeOnConfirm: false 
 				},
 				function(isConfirm) {
 				  if (isConfirm) {
@@ -353,9 +363,8 @@
 									  title: "댓글 삭제에 실패하였습니다",
 									  text: "",
 									  type: "warning",
-									  confirmButtonClass: "btn-danger",
-									  confirmButtonText: "OK",
-									  showCancelButton: true
+									  confirmButtonClass: "btn-danger btn-sm",
+									  confirmButtonText: "OK"
 									});
 						    }
 					});

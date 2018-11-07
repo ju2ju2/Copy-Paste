@@ -8,8 +8,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page contentType="text/html; charset=UTF-8" session="true"%>
-<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
-
 <div class="container">
 	<div class="row">
 		<div class="center-block ">	<h2 class="text-center signup-title">소셜 회원가입</h2>
@@ -109,7 +107,13 @@
 	            	}
 	        },
 	          error : function(error) {
-					swal("٩(இ ⌓ இ๑)۶", "다시 로그인 해주세요.", "error");
+	        	  swal({
+	  				  title: "다시 로그인 해주세요",
+	  				  type: 'warning',
+	  				  confirmButtonClass : "btn-danger btn-sm",
+	  				  confirmButtonText: '확인',
+	  				  closeOnConfirm: true
+	  				})
 					console.log(error);
 					console.log(error.status);
 	        }
@@ -152,7 +156,13 @@ function checkNick(){
     			console.log(data+", "+nickDupCheck+", "+$('#userNick').val())
         }},
         error : function(error) {
-			swal("٩(இ ⌓ இ๑)۶", "잠시 후 다시 시도해 주세요.", "error");
+        	swal({
+				  title: "잠시후 다시 시도해주세요.",
+				  type: 'warning',
+				  confirmButtonClass : "btn-danger btn-sm",
+				  confirmButtonText: '확인',
+				  closeOnConfirm: true
+				})
 			console.log(error);
 			console.log(error.status);
         }
@@ -163,13 +173,25 @@ function checkNick(){
 //회원 가입 + 유효성 체크
  $('#join').click(function(){ 
   	if (nickDupCheck != 'ok' || writtenNick != $('#userNick').val()) {
-  		swal("٩(இ ⌓ இ๑)۶", "사용할 수 없는 닉네임입니다.", "error");
+  		swal({
+			  title: "사용할 수 없는 닉네임입니다.",
+			  type: 'warning',
+			  confirmButtonClass : "btn-danger btn-sm",
+			  confirmButtonText: '확인',
+			  closeOnConfirm: true
+			})
   		return false;
   	} else {
   			if ($('#userCheck').is(":checked")) {
   			
   			} else {
-  			swal("٩(இ ⌓ இ๑)۶", "이용약관에 동의해 주세요.", "error");
+  			/* swal("٩(இ ⌓ இ๑)۶", "이용약관에 동의해 주세요.", "error"); */
+  			swal({    title: "이용약관에 동의해 주세요.",
+				  	  type: 'warning',
+				  	  confirmButtonClass : "btn-danger btn-sm",
+				  	  confirmButtonText: '확인',
+				  	  closeOnConfirm: true
+				})
 			return false;
   					}
   				}

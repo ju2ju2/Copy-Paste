@@ -8,16 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/api/jquery/dataTables.css">
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-<!-- js 영역  -->
-<script>
-$(document).ready(function() {
-    $('#table_id').DataTable({
-    	"order": false
-    });
-} );
-</script>
+
 <section id="content">
 	<div class="container">
 	<%-- ${qnaList} --%>
@@ -54,3 +45,11 @@ $(document).ready(function() {
 	</div>
 </div>
 </section>
+<!-- DataTable -->
+<script>
+$(document).ready(function() {
+    $('#table_id').DataTable({
+    	"order": false
+    });
+} );
+</script>

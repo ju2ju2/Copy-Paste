@@ -45,8 +45,7 @@ public class LoginService {
         KakaoLogin.connectKakao(token.path("access_token").toString());
         
         JsonNode profile = KakaoLogin.getKakaoUserInfo(token.path("access_token").toString());
-        System.out.println("profile: " +profile);
-        
+ 
         MemberVO member = KakaoLogin.changeData(profile);
 
         return member;
@@ -77,6 +76,11 @@ public class LoginService {
 	public MemberVO naverLogin(String userEmail) throws Exception{
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
 		return memberdao.naverLogin(userEmail);
+	}
+
+	public MemberVO login(MemberVO member) throws Exception {
+		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
+		return memberdao.login(member);
 	}
 	
 

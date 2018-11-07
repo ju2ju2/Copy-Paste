@@ -112,12 +112,26 @@ $('#findUserPwdBtn').click(function(){
         	if (data > 0) {
         		updatePwd();
         	} else {
-        		swal("٩(இ ⌓ இ๑)۶", "가입된 이메일 주소가 아닙니다.", "error");
+        		/* swal("٩(இ ⌓ இ๑)۶", "가입된 이메일 주소가 아닙니다.", "error"); */
+        		swal({  title: "가입된 이메일 주소가 아닙니다.",
+						text: "",
+						type: "warning",
+						confirmButtonClass: "btn-danger btn-sm",
+						confirmButtonText: "OK",
+						showCancelButton: false
+					})
         		$('#userEmailForfindUserPwd').val("");				
         	}
         },
         error : function(error) {
-			swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 확인해 주세요.", "error");
+			/* swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 확인해 주세요.", "error"); */
+			swal({  title: "이메일 주소를 확인해 주세요",
+						text: "",
+						type: "warning",
+						confirmButtonClass: "btn-danger btn-sm",
+						confirmButtonText: "OK",
+						showCancelButton: false
+					})
 			$('#userEmailForfindUserPwd').val("");
 			console.log(error);
 			console.log(error.status);
@@ -133,11 +147,25 @@ function updatePwd(){
  		data : {mailto:$('#userEmailForfindUserPwd').val()},
 		success : function(data) {
 					console.log(data);
-					swal("୧༼ ヘ ᗜ ヘ ༽୨", "임시 비밀번호가 메일로 전송되었습니다.", "success");
+					/* swal("୧༼ ヘ ᗜ ヘ ༽୨", "임시 비밀번호가 메일로 전송되었습니다.", "success"); */
+					swal({  title: "임시 비밀번호가 메일로 전송되었습니다.",
+						text: "",
+						type: "warning",
+						confirmButtonClass: "btn-danger btn-sm",
+						confirmButtonText: "OK",
+						showCancelButton: false
+					})
 					$('#modal-tempPassword').hide();
          	   },
           	  error : function(error) {
-					swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 확인해 주세요.", "error");
+					/* swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 확인해 주세요.", "error"); */
+					swal({  title: "이메일 주소를 확인해 주세요.",
+						text: "",
+						type: "warning",
+						confirmButtonClass: "btn-danger btn-sm",
+						confirmButtonText: "OK",
+						showCancelButton: false
+					})
 					console.log(error);
 					console.log(error.status);
             }

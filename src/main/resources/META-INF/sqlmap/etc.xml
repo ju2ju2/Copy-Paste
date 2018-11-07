@@ -64,7 +64,7 @@
 	<select id="wordchart" resultType="String">
 		select noteContent 
 		from note
-		where noteDate > (NOW() - INTERVAL 7 DAY);
+		where (noteNum between 30 and 60) <!-- and noteDate > (NOW() - INTERVAL 7 DAY); -->
 	</select>
 
 	<!-- 신고한 것들을 데리고 온다 -->
@@ -185,19 +185,29 @@
 				</otherwise>
 			</choose>
 		</where>
-		order by noteNum desc;
+		order by noteNum desc limit ${page},12
 	</select>
 	
 	<!-- write에서 사이트 내 검색 -->
 	<select id="selectSearchSiteWrite" parameterType="hashmap" resultType="NoteVO">
-		select noteNum, folderName, userEmail, noteTitle,
-		noteContent, noteDate,
-		subjectCode, noteCount,
-		notePublic, notescrap, notePNum, noteThumnail
-		from note
-		where noteTitle like CONCAT('%',#{keyword},'%') or noteContent like CONCAT('%',#{keyword},'%')
-		order by noteNum desc;
+		select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+	n.subjectCode,s.subjectName, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
+	from note n join users u on u.userEmail=n.userEmail 
+		join subject s on s.subjectCode=n.subjectCode 
+		where n.noteTitle like CONCAT('%',#{keyword},'%') or 
+		  n.noteContent like CONCAT('%',#{keyword},'%') 
+				order by noteNum desc		
+				
 	</select>
+
+	<!-- write에서 사이트 내 검색 -->
+	<select id="collectSearchKeywords" resultType="NoteVO">
+		select n.noteTitle,s.subjectName
+		from note n join subject s on s.subjectCode=n.subjectCode
+		where s.subjectName= #{subjectName}
+		order by binary(n.noteTitle)
+	</select>
+
 
 
 </mapper>

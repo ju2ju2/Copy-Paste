@@ -10,7 +10,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="se" uri="http://www.springframework.org/security/tags"%>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" ></script>
 <se:authentication property="name" var="loginuser" />
 <!-- banner start -->
 <!-- ================ -->
@@ -92,12 +91,12 @@
 </div>
 
 
-<div class="container">
+<div class="container noteRankContainer">
 	<div class="row mb-0">
-		<h3 class="inline col-xs-6">회사</h3>
-		<h5 class="inline col-xs-6 text-right more"><a href="${pageContext.request.contextPath}/etc/selectSearchSite.htm?subjectName=회사">더보기</a></h5>
+		<h3 class="inline  note-rank-title">회사</h3>
+		<h5 class="inline  text-right more"><a href="${pageContext.request.contextPath}/etc/selectSearchSite.htm?subjectName=회사">더보기</a></h5>
 	</div>
-	<br>
+
 	<div class="row">
 		<c:forEach var="noteList" items="${bizNoteList}">
 			<div class="col-xs-6 col-md-3">
@@ -124,12 +123,12 @@
 		</c:forEach>
 	</div>
 </div>
-<div class="container">
+<div class="container noteRankContainer">
 	<div class="row mb-0">
-		<h3 class="inline col-xs-6">생활</h3>
-		<h5 class="inline col-xs-6 text-right more"><a href="${pageContext.request.contextPath}/etc/selectSearchSite.htm?subjectName=생활">더보기</a></h5>
+		<h3 class="inline  note-rank-title">생활</h3>
+		<h5 class="inline  text-right more"><a href="${pageContext.request.contextPath}/etc/selectSearchSite.htm?subjectName=생활">더보기</a></h5>
 	</div>
-	<br>
+
 	<div class="row">
 		<c:forEach var="noteList" items="${lifeNoteList}">
 			<div class="col-xs-6 col-md-3">
@@ -157,13 +156,13 @@
 		</c:forEach>
 	</div>
 </div>
-<br>
-<div class="container">
+
+<div class="container noteRankContainer">
 	<div class="row mb-0">
-		<h3 class="inline col-xs-6">교육</h3>
-		<h5 class="inline col-xs-6 text-right more"><a href="${pageContext.request.contextPath}/etc/selectSearchSite.htm?subjectName=교육">더보기</a></h5>
+		<h3 class="inline  note-rank-title">교육</h3>
+		<h5 class="inline  text-right more"><a href="${pageContext.request.contextPath}/etc/selectSearchSite.htm?subjectName=교육">더보기</a></h5>
 	</div>
-	<br>
+
 	<div class="row">
 		<c:forEach var="noteList" items="${eduNoteList}">
 			<div class="col-xs-6 col-md-3">
@@ -190,12 +189,12 @@
 		</c:forEach>
 	</div>
 </div>
-<div class="container">
+<div class="container noteRankContainer">
 	<div class="row mb-0">
-		<h3 class="inline col-xs-6">기타</h3>
-		<h5 class="inline col-xs-6 text-right more"><a href="${pageContext.request.contextPath}/etc/selectSearchSite.htm?subjectName=기타">더보기</a></h5>
+		<h3 class="inline  note-rank-title">기타</h3>
+		<h5 class="inline  text-right more"><a href="${pageContext.request.contextPath}/etc/selectSearchSite.htm?subjectName=기타">더보기</a></h5>
 	</div>
-	<br>
+
 	<div class="row">
 		<c:forEach var="noteList" items="${etcNoteList}">
 			<div class="col-xs-6 col-md-3">

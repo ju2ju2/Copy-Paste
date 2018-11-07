@@ -1087,8 +1087,8 @@ html {
 }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size: 15px;
   line-height: 1.42857143;
   color: #333;
   background-color: #fff;
@@ -2500,7 +2500,7 @@ input[type="search"] {
 }
 input[type="radio"],
 input[type="checkbox"] {
-  margin: 4px 0 0;
+  /* margin: 4px 0 0; */
   margin-top: 1px \9;
   line-height: normal;
 }
@@ -3725,7 +3725,7 @@ tbody.collapse.in {
 }
 .input-group .form-control {
   position: relative;
-  z-index: 2;
+/*   z-index: 2; */
   float: left;
   width: 100%;
   margin-bottom: 0;

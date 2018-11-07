@@ -16,8 +16,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet"
-   href="${pageContext.request.contextPath}/resources/css/api/jquery/drag-jquery-ui.theme.css" />
 <nav>
 <div id="sidebar">
 <div class="inner">
@@ -35,7 +33,6 @@
 			</div>
 		<!-- Search -->
 		<section id="subject-search" class="alt">
-
 				<div class="col-xs-12">
 				<label> &ensp;&ensp;키워드 검색</label>
 					<form method="get" action="#">
@@ -65,20 +62,14 @@
 				노트 폴더 목록<i class="fas fa-folder-plus icon-size" id="Addfolder"></i>
 			</h3>
 		</header>
-		<!-- 미분류가 들어갈 공간 -->
-		<div class="row" id="unclassified">
+		<!-- 미분류폴더 -->
+		<div class="row" id="unclassified"></div>
 
-		</div>
+		<!-- 폴더 목록 -->
+		<div class="row" id="folder"></div>
 
-		<!-- 폴더 목록 뿌려질 공간 -->
-		<div class="row" id="folder">
-
-		</div>
-
-		<!-- 스크랩이 들어갈 공간 -->
-		<div class="row" id="scrap">
-
-		</div>
+		<!-- 스크랩폴더 -->
+		<div class="row" id="scrap"></div>
 	</div>
 </div>
 </nav>

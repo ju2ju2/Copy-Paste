@@ -8,17 +8,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/api/jquery/dataTables.css">
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-<!-- Sweet Alert cdn -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/api/alert/sweetalert.css" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/api/sweetalert.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/admin/deleteMember.js"></script>
 
 <section>
 	<div class="container">
 	<div>
-		<h3>회원관리 </h3>
+		<h3 class="major">회원관리 </h3>
 	</div>
 	<table id="table_id" >
     <thead>

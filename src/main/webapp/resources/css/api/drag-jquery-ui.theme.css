@@ -12,7 +12,7 @@
 
 /* datepicker div */
 #ui-datepicker-div{
-	top:315px !important;
+	top:300px !important;
 	width: 15em;
 }
 
@@ -449,7 +449,7 @@ a.ui-button:active,
 
 /* Overlays */
 .ui-widget-overlay {
-	background: #a6a6a6 url("../image/ui-bg_dots-small_65_a6a6a6_2x2.png") 50% 50% repeat;
+	background: #a6a6a6 url("images/ui-bg_dots-small_65_a6a6a6_2x2.png") 50% 50% repeat;
 	opacity: .4;
 	filter: Alpha(Opacity=40); /* support: IE8 */
 }

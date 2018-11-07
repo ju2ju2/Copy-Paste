@@ -4,8 +4,7 @@
 @Author : 우나연, 임효진
 @Desc : note 목록 페이지.
  -->
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="n-container">
 	<div class="n-inner">
@@ -24,7 +23,7 @@
 </div>
 <br>
 <!-- top버튼 -->
-<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+<div><i class="fas fa-caret-up"  onclick="topFunction()" id="myBtn" title="Go to top"></i></div>
 
 <!-- Modal HTML -->
 <div id="modal-testNew" class="modal fade text-center overlay" role="dialog">

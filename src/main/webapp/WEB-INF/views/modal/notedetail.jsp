@@ -6,11 +6,9 @@
 		댓글 신고 클릭시 모달창 추가, OK버튼 누를 때 스위트알럳 뜸. 버튼색은 추후 수정 필요.(이주원, 10월 12일)
 		스위트 알럿 cdn방식이 아닌 js와 css를 임포트 하는 방식으로 변경. (이주원, 10월 15일)
 --%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="se"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="se"	uri="http://www.springframework.org/security/tags"%>
 
 <se:authentication property="name" var="loginuser" />
 <se:authentication property="authorities" var="role" />
@@ -34,9 +32,14 @@
 		$('#addToNoteBtn').click(function addToNote(e) {
 				$(".modal").modal("hide");
 				var editor = tinyMCE.activeEditor;
+				var path = "${pageContext.request.contextPath}/note/noteDetail.htm?noteNum="+${note.noteNum}
     			var noteContent = $('#noteContent').html();
     			editor.dom.add(editor.getBody(), 'p', {}, noteContent+ "<br>");
-    	
+    			var userEmail = '${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal.username}';
+    			if ('${note.userEmail}'!=userEmail){
+    				var noteOrigin ='<br/><br/> 출처:'+ path+" ["+'${note.userNick}'+ "]";
+    				editor.dom.add(editor.getBody(), 'p', {}, noteOrigin + "<br>");
+    			}
 			});
 		
 		//노트 pdf 파일 다운로드
@@ -119,7 +122,7 @@
 		$('#scrapNoteBtn').click(function scrapNote(e) {
 			var path = "${pageContext.request.contextPath}/note/noteDetail.htm?noteNum="+${note.noteNum}
 			var noteContent = $('#noteContent').html();
-			var noteOrgin ='<br/><br/> 출처:'+ path+ "["+${note.userNick}+ "]";
+			var noteOrgin ='<br/><br/> 출처:'+ path+"["+'${note.userNick}'+ "]";
 			swal({
 				  title: "노트를 스크랩 하시겠습니까?",
 				  type: 'warning',
@@ -220,7 +223,8 @@
 				  showCancelButton: true,
 				  confirmButtonText : "OK",
 				  confirmButtonClass : "btn-danger btn-sm",
-				  cancelButtonClass : "btn btn-sm"
+				  cancelButtonClass : "btn btn-sm",
+				  closeOnConfirm: false
 			},
 			function(){
 				$.ajax ({
@@ -259,7 +263,7 @@
 		if(session == '') {
 			$('#loginModal').show();	
 				swal({
-				  title: "٩(இ ⌓ இ๑)۶",
+				  title: "",
 				  text: '로그인 후 다양한 기능을 이용할 수 있습니다. \n로그인 페이지로 이동 하시겠습니까?',
 				  type: "warning",
 				  showCancelButton: true,
@@ -400,6 +404,9 @@ $(document).ready(function(){
 	  /* 댓글등록 */
 
   	$('.commentBtn').click(function insertNoteComm(event){
+  		if($('#userComment').val()==""){
+			/* swal("", "내용을 입력해주세요", "warning"); */
+		}else{
   		event.stopPropagation();
   		$.ajax({
   			url : "<%=request.getContextPath()%>/note/insertNoteComm.json",
@@ -414,7 +421,7 @@ $(document).ready(function(){
   				makeNoteCommList(${note.noteNum});
   				
   		    }
-  		})
+  		})}
   		    
   	}) 
 	 
@@ -498,9 +505,6 @@ $(document).ready(function(){
 			          $('#noteCommList').html(noteCommList);
 						
 						
-			     
-			        
-						
 							/* 대댓글 */
 							var commCommClickNum = 0;
 							var noteCommNum;
@@ -517,6 +521,31 @@ $(document).ready(function(){
 								+" </button></div>"
 								+" </span></div></div>";
 							
+							//대댓글등록
+							function insertCommComm(){
+								$.ajax({
+									url : "<%=request.getContextPath()%>/note/insertNoteCommComm.json",
+								    type : "get",
+								    data : {    	
+								    	"commContent": $('#userCommComm').val(),
+								    	"noteNum":${note.noteNum},
+								    	"noteCommNum":noteCommNum,
+								    	"noteCommPos":noteCommPos
+								    },
+								    success : function(data){
+								    	commCommClickNum=0;
+								    	noteCommNum="";
+								    	noteCommPos="";
+								    	makeNoteCommList(${note.noteNum})
+								    	
+								    },
+								    error:function(request,status,error){
+							     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+							     	  }
+								});	
+								
+								
+							}
 								
 						 		/* 대댓글아이콘 클릭시 */
 								$('.noteCommCommBtn').on("click",function() {
@@ -525,11 +554,27 @@ $(document).ready(function(){
 									noteCommPos=$(this).find('#noteCommPos').val();
 									commCommClickNum=1;
 									$(this).parents('.comment').append(commBoxHtml);
+									/* 대댓글 작성 버튼 클릭시 */
+									$('#commCommentBtn').click(function(){
+										if($('#userCommComm').val()==""){
+											swal("", "내용을 입력해주세요", "warning");
+										}else{
+										insertCommComm()
+										}
+									});
 								}else if(commCommClickNum==1){
 									$('.noteCommCommBox').remove();
 									noteCommNum=$(this).find('#noteCommNum').val();
 									noteCommPos=$(this).find('#noteCommPos').val();
 									$(this).parents('.comment').append(commBoxHtml);
+									/* 대댓글 작성 버튼 클릭시 */
+									$('#commCommentBtn').click(function(){
+										if($('#userCommComm').val()==""){
+										/* 	swal("", "내용을 입력해주세요", "warning"); */
+										}else{
+										insertCommComm()
+										}
+									});
 								}
 								/* 대댓글 화면 닫기 */
 									$('.noteCommCommExit').click(function(){
@@ -541,32 +586,10 @@ $(document).ready(function(){
 								
 								
 								
+
 								
-								
-								
-								/* 대댓글 작성 버튼 클릭시 */
-								$('#commCommentBtn').on("click",  function(){
-									$.ajax({
-										url : "<%=request.getContextPath()%>/note/insertNoteCommComm.json",
-									    type : "get",
-									    data : {    	
-									    	"commContent": $('#userCommComm').val(),
-									    	"noteNum":${note.noteNum},
-									    	"noteCommNum":noteCommNum,
-									    	"noteCommPos":noteCommPos
-									    },
-									    success : function(data){
-									    	commCommClickNum=0;
-									    	noteCommNum="";
-									    	noteCommPos="";
-									    	makeNoteCommList(${note.noteNum})
-									    	
-									    },
-									    error:function(request,status,error){
-								     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-								     	  }
-									});	
-								});
+
+							
 						
 							/* 대댓글 */
 						
@@ -600,9 +623,8 @@ $(document).ready(function(){
 														  title: "댓글 삭제에 실패하였습니다",
 														  text: "",
 														  type: "warning",
-														  confirmButtonClass: "btn-danger",
+														  confirmButtonClass: "btn-danger btn-sm",
 														  confirmButtonText: "OK",
-														  showCancelButton: true
 														});
 											    }
 										});
@@ -646,7 +668,8 @@ $(document).ready(function(){
 									  showCancelButton: true,
 									  confirmButtonText : "OK",
 									  confirmButtonClass : "btn-danger btn-sm",
-									  cancelButtonClass : "btn btn-sm"
+									  cancelButtonClass : "btn btn-sm",
+									  closeOnConfirm: false
 								},
 								function(){
 									$.ajax ({

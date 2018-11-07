@@ -23,22 +23,32 @@ function topFunction() {
 	document.documentElement.scrollTop = 0;
 }
 
-//검색어 입력
-$("#searchinsite").click(function(){
-	if($("#searchinsite-text").val()==''){
-		swal({
-			title: "검색어를 입력해주세요",
-			text: "",
-			type: "warning",
-			confirmButtonClass: "btn-danger",
-			confirmButtonText: "OK",
-			showCancelButton: false
-		})
-	}else{
+//사이트내 검색어 자동완성
 
-	}
-
-});
+function autoComplete(subjectName){
+	var allkeywords =[];
+	var uniquekeywords = [];
+	$.ajax({
+		type:"get",
+		url: "../etc/collectSearchKeywords.json", 
+		data: {"subjectName":subjectName},
+		dataType:"json",
+		success:function(data){
+			
+    	    $.each(data, function(index,obj){
+    		   	allkeywords.push(obj.noteTitle);
+    		});	
+    	    //배열 중복제거 후 담기
+			$.each(allkeywords, function(i, el){
+				if($.inArray(el, uniquekeywords) === -1) uniquekeywords.push(el); 
+			});
+		}
+	})
+	
+	$( "#searchinsite-text" ).autocomplete({
+	      source: uniquekeywords
+	});
+}
 
 
 //노트목록
@@ -58,7 +68,7 @@ $.ajax({
     			noteList+='<div class="text-center noteDiv" id="'+value.noteNum+'">';
     			noteList+='	<!-- a HTML (to Trigger Modal) -->';
     			noteList+='	<a data-toggle="modal"';
-    			noteList+='		href="../note/noteDetail.htm?noteNum='+value.noteNum+'&cmd=mynote"';
+    			noteList+='		href="../note/noteDetail.htm?noteNum='+value.noteNum+'"';
     			noteList+='		data-target="#modal-testNew" role="button" data-backdrop="static">';
     			noteList+='		<div class="item">';
     			noteList+='			<img class="img-rounded"';
@@ -70,7 +80,7 @@ $.ajax({
     			noteList+='			</div>';
     			noteList+='			<div>';
     			noteList+='			<input type="hidden" id="noteNum" class="noteNum" value="'+value.noteNum+'">';
-    			noteList+='				<h4>'+value.noteTitle+value.noteNum+'</h4>';
+    			noteList+='				<h4 class="noteTitle">'+value.noteTitle+value.noteNum+'</h4>';
     			noteList+='			<strong>'+value.userNick+'</strong> <span> '+value.noteDate+'</span>';
     			noteList+='		</div>';
     			noteList+='		</a>';
@@ -81,6 +91,10 @@ $.ajax({
     			$("#noteList").append(noteList);
     		})
     		
+    	}else{
+    		noteList="";
+			noteList+='<div class="col-xs-12 text-center"><h4>검색된 결과가 없습니다.</h4></div>';
+    		$("#noteList").html(noteList);
     	}
     }
   })
@@ -93,7 +107,7 @@ var lastScrollTop = 0;
 
 function moreNoteList(e,url,params){
 	e.stopPropagation() 
-
+ 
 	// ① 스크롤 이벤트 최초 발생
 	var currentScrollTop = $(window).scrollTop();
 
@@ -109,22 +123,62 @@ function moreNoteList(e,url,params){
 
 //페이지 로딩시 요청
 $("document").ready(function(){
-
 		//더보기 클릭시 주제 선택된것으로 표시
 	    var subjectName=$('#subjectName').val();
-	    $("#subject-category > option[value="+subjectName+"]").attr("selected", "true");
+		$("#subject-category > option[value="+subjectName+"]").attr("selected", "selected");
 	    
 		var url="";
 		url ="../etc/selectSearchSite.json";
-	 
-		
 		params.keyword=$("#searchinsite-text").val()
 		params.subjectCategory=$('#subject-category option:selected').val()
 		params.boundary=$('input[name="boundary"]:checked').val()
 		makeNoteList(url,params);
+		autoComplete(params.subjectCategory);
 		$(window).scroll(function(e) { moreNoteList(e,url, params)})
 		
 		
+		//검색어 입력
+		$("#searchinsite").click(function(){
+			if($("#searchinsite-text").val()==''){
+				/*swal({
+					title: "검색어를 입력해주세요",
+					text: "",
+					type: "warning",
+					confirmButtonClass: "btn-danger btn-sm",
+					confirmButtonText: "OK",
+					showCancelButton: false
+				})*/
+			}else{
+				var url="";
+				url ="../etc/selectSearchSite.json";
+				params.page=0
+				params.keyword=$("#searchinsite-text").val()
+				params.subjectCategory=$('#subject-category option:selected').val()
+				params.boundary=$('input[name="boundary"]:checked').val()
+				$('#noteList').empty();
+				makeNoteList(url,params);
+				autoComplete(params.subjectCategory);
+				$(window).scroll(function(e) { moreNoteList(e,url, params)})
+
+			}
+
+		});
+
+	    //주제별 검색
+
+		 $('#subject-category').on("change",function(e) {
+			url ="../etc/selectSearchSite.json";
+			params.keyword=$("#searchinsite-text").val()
+			params.subjectCategory = $('#subject-category option:selected').val()
+			params.boundary=$('input[name="boundary"]:checked').val()
+			params.page=0
+			$('#noteList').empty();
+			makeNoteList(url, params);
+			autoComplete(params.subjectCategory);
+		    $(window).scroll(function(e) {moreNoteList(e,url, params)})
+		 })
+		 
+	
 		
 //끝		
 })
