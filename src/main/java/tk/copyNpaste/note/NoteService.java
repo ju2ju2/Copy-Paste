@@ -21,7 +21,6 @@ import tk.copyNpaste.vo.NoteCommVO;
 import tk.copyNpaste.vo.NoteVO;
 
 @Service
-@Aspect
 public class NoteService {
 
 	 @Autowired
@@ -124,9 +123,10 @@ public class NoteService {
 	}
 
 	//노트 스크랩
-	public int scrapNote(NoteVO note) throws Exception{
+	public int scrapNoteAspect(NoteVO note) throws Exception{
 		NoteMapper notedao=  sqlsession.getMapper(NoteMapper.class);
-		return notedao.scrapNote(note);
+		notedao.scrapNote(note);
+		return note.getNoteNum();
 	}
 
 	//노트 전체보기 - 관리자
@@ -174,16 +174,7 @@ public class NoteService {
 	}
 
 
-	@AfterReturning(
-			pointcut="execution(* tk.copyNpaste.note.NoteMailnFileService.*(..))", 
-			returning="returnValue")
-	public int updateNoteCount(JoinPoint joinPoint, int returnValue) throws Exception { 
-		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
-		System.out.println( "노트 다운로드시 노트 참조수 +1");
-		return notedao.updateNoteCount(returnValue);
-	}
 
-	
 	
 	/*	for (NoteVO note: notelist ) {
 		System.out.println(note.getUserNick());

@@ -184,27 +184,30 @@
 					</choose>
 				</otherwise>
 			</choose>
+			and n.notePublic=1 and n.noteBlind=0 and n.notescrap=0<!-- 공개1 블라인드0 스크랩글 아닌것0-->
 		</where>
 		order by noteNum desc limit ${page},12
 	</select>
 	
 	<!-- write에서 사이트 내 검색 -->
 	<select id="selectSearchSiteWrite" parameterType="hashmap" resultType="NoteVO">
-		select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
+	select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
 	n.subjectCode,s.subjectName, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
 	from note n join users u on u.userEmail=n.userEmail 
-		join subject s on s.subjectCode=n.subjectCode 
-		where n.noteTitle like CONCAT('%',#{keyword},'%') or 
-		  n.noteContent like CONCAT('%',#{keyword},'%') 
+				join subject s on s.subjectCode=n.subjectCode 
+	where (n.noteTitle like CONCAT('%',#{keyword},'%') or 
+		   n.noteContent like CONCAT('%',#{keyword},'%') ) and 
+		   n.notePublic=1 and n.noteBlind=0 and n.notescrap=0<!-- 공개1 블라인드0 스크랩글 아닌것0-->
 				order by noteNum desc		
 				
 	</select>
 
-	<!-- write에서 사이트 내 검색 -->
+	<!-- 자동완성 키워드 검색 (노트제목)-->
 	<select id="collectSearchKeywords" resultType="NoteVO">
-		select n.noteTitle,s.subjectName
+		select n.noteTitle, s.subjectName
 		from note n join subject s on s.subjectCode=n.subjectCode
 		where s.subjectName= #{subjectName}
+		and n.notePublic=1 and n.noteBlind=0 and n.notescrap=0<!-- 공개1 블라인드0 스크랩글 아닌것0-->
 		order by binary(n.noteTitle)
 	</select>
 

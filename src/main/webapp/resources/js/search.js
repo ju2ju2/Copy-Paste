@@ -139,29 +139,16 @@ $("document").ready(function(){
 		
 		//검색어 입력
 		$("#searchinsite").click(function(){
-			if($("#searchinsite-text").val()==''){
-				/*swal({
-					title: "검색어를 입력해주세요",
-					text: "",
-					type: "warning",
-					confirmButtonClass: "btn-danger btn-sm",
-					confirmButtonText: "OK",
-					showCancelButton: false
-				})*/
-			}else{
-				var url="";
-				url ="../etc/selectSearchSite.json";
-				params.page=0
-				params.keyword=$("#searchinsite-text").val()
-				params.subjectCategory=$('#subject-category option:selected').val()
-				params.boundary=$('input[name="boundary"]:checked').val()
-				$('#noteList').empty();
-				makeNoteList(url,params);
-				autoComplete(params.subjectCategory);
-				$(window).scroll(function(e) { moreNoteList(e,url, params)})
-
-			}
-
+			var url="";
+			url ="../etc/selectSearchSite.json";
+			params.page=0
+			params.keyword=$("#searchinsite-text").val()
+			params.subjectCategory=$('#subject-category option:selected').val()
+			params.boundary=$('input[name="boundary"]:checked').val()
+			$('#noteList').empty();
+			makeNoteList(url,params);
+			autoComplete(params.subjectCategory);
+			$(window).scroll(function(e) { moreNoteList(e,url, params)})
 		});
 
 	    //주제별 검색

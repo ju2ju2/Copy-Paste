@@ -31,8 +31,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
-import org.aspectj.lang.annotation.AfterReturning;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Service;
 
 import com.itextpdf.text.Chunk;
@@ -64,8 +64,8 @@ public class NoteMailnFileService {
 	private SqlSession sqlsession;
 	 
 	//노트 메일 전송
-	@AfterReturning(pointcut="updateNoteCount()", returning="retVal") 
-	public NoteVO emailNote(NoteVO note, String noteEmailTo) throws Exception {
+/*	@AfterReturning(pointcut="updateNoteCount()", returning="retVal") */
+	public Object emailNote(NoteVO note, String noteEmailTo) throws Exception {
 		 	//노트 조회
 			NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
 			note = notedao.selectDetailNote(note.getNoteNum());
@@ -115,15 +115,13 @@ public class NoteMailnFileService {
 	        message.setContent(mp);
 	         
 	        Transport.send(message);
-	 	   // 노트 메일 전송시 노트 참조수 +1
-	/*	    notedao.updateNoteCount(note.getNoteNum()); 
-	        */
-		return null;
+	        
+		return note.getNoteNum();
 	}
 	
 	
 	//노트 pdf파일로 다운로드
-	public int pdfDownNote(NoteVO note, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public Object pdfDownNote(NoteVO note, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//노트 조회
 	 	NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
 		note = notedao.selectDetailNote(note.getNoteNum());

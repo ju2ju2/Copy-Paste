@@ -179,7 +179,7 @@ public class NoteController {
 	@RequestMapping(value="scrapNote.json")
 	public @ResponseBody int scrapNote(NoteVO note, Principal principal) throws Exception {
 		note.setUserEmail(principal.getName());
-		return noteService.scrapNote(note);
+		return noteService.scrapNoteAspect(note);
 	}
 
 	// 노트 댓글 조회-비동기
