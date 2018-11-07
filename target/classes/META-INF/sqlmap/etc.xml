@@ -40,7 +40,7 @@
 		#{reportContent},#{noteOrCommCode}," " )
 	</insert>
 
-	<!-- 주제에 맞게 노트 개수 가지고 온다 -->
+	<!-- 통계 : 노트주제 -->
 	<select id="stateNoteSubject" resultType="EtcVO">
 		select c.subjectName
 		subjectxAxis, count(n.subjectCode) subjectyAxis
@@ -50,7 +50,7 @@
 		group by c.subjectName
 	</select>
 
-	<!-- 회원 가입 수를 가지고 온다 -->
+	<!-- 통계 : 월별 회원가입수 -->
 	<select id="stateMember" resultType="EtcVO">
 		select date_format(userDate,
 		'%Y-%m') as memberxAxis, count(*) memberyAxis
@@ -61,7 +61,7 @@
 		date_format(userDate, '%Y-%m')
 	</select>
 
-	<!-- 가장 많이 쓰인 단어수를 가지고 온다 -->
+	<!-- 워드클라우드 -->
 	<select id="wordchart" resultType="String">
 		select noteContent 
 		from note
@@ -75,9 +75,9 @@
 
 	<!-- 신고 목록 -->
 	<select id="selectAllReport" resultType="ReportVO">
-		select reportNum,userEmail, noteNum, checkCode, reportInDate,reportCauseCode,
-		reportContent, reportmemo, noteOrCommCode
-		from report
+		select r.reportNum, r.userEmail, r.noteNum, r.checkCode, r.reportInDate, r.reportCauseCode,
+		r.reportContent, r.reportmemo, r.noteOrCommCode, nc.noteCommNum
+		from report r left outer join noteComm nc on r.noteNum=nc.noteNum
 		order by checkCode desc, noteOrCommCode, noteNum, reportNum
 	</select>
 

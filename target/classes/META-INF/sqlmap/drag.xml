@@ -72,6 +72,13 @@
 	   UPDATE drag set dragMark=0 where dragNum = ${dragNum} 	   
 	</update>
 	 
+	 	<!-- 드래그에서 자동완성 검색 -->
+	<select id="DragCollectSearchKeywords" resultType="DragVO">
+		select dragText from drag
+		where subjectName= #{subjectName}
+		order by binary(dragText)
+	</select>
+	
 </mapper>
 
 

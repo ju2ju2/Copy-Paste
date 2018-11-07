@@ -13,6 +13,7 @@ public class ReportVO {
 	private int reportNum;
 	private String userEmail;
 	private int noteNum;
+	private int noteCommNum;
 	private String checkCode;
 	private Date reportInDate;
 	private String reportCauseCode;
@@ -73,6 +74,19 @@ public class ReportVO {
 	}
 	public void setNoteOrCommCode(String noteOrCommCode) {
 		this.noteOrCommCode = noteOrCommCode;
+	}
+	public int getNoteCommNum() {
+		return noteCommNum;
+	}
+	public void setNoteCommNum(int noteCommNum) {
+		this.noteCommNum = noteCommNum;
+	}
+	@Override
+	public String toString() {
+		return "ReportVO [reportNum=" + reportNum + ", userEmail=" + userEmail + ", noteNum=" + noteNum
+				+ ", noteCommNum=" + noteCommNum + ", checkCode=" + checkCode + ", reportInDate=" + reportInDate
+				+ ", reportCauseCode=" + reportCauseCode + ", reportContent=" + reportContent + ", reportmemo="
+				+ reportmemo + ", noteOrCommCode=" + noteOrCommCode + "]";
 	}
 	
 	

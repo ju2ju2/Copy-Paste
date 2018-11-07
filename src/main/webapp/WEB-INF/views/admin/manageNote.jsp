@@ -43,9 +43,9 @@
     <tbody>
 		<c:forEach var="NoteVo" items="${NoteVo}">
 			<tr>
-				<td>${NoteVo.rnum}</td>
-				<td id="noteNum">${NoteVo.noteNum}</td>
-				<td id="noteTitle">
+				<td>&ensp;${NoteVo.rnum}</td>
+				<td id="noteNum">&ensp;${NoteVo.noteNum}</td>
+				<td id="noteTitle">&ensp;
 					 <c:choose>
            				<c:when test="${fn:length(NoteVo.noteTitle) gt 8}">
             				<c:out value="${fn:substring(NoteVo.noteTitle,0,7)}"/>...
@@ -55,13 +55,13 @@
           				</c:otherwise> 
         			</c:choose>
 				</td>
-				<td>
+				<td>&ensp;
 					<a href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum=${NoteVo.noteNum}"
 								class="btn btn-sm drop-btn reportViewBtn" data-toggle="modal"
 								data-target="#modal-testNew" role="button"
 								data-backdrop="static">노트보기</a>
 				</td>
-				<td>
+				<td>&ensp;
 					<c:choose>
 						<c:when test="${NoteVo.notePublic == '1'}" >
 							공개
@@ -71,19 +71,19 @@
 						</c:when>
 					</c:choose>
 				</td>
-				<td>${NoteVo.noteDate}</td>
-				<td>${NoteVo.userEmail}</td>
+				<td>&ensp;${NoteVo.noteDate}</td>
+				<td>&ensp;${NoteVo.userEmail}</td>
 				<td>
 					<c:choose>
 						<c:when test="${NoteVo.userEnabled == '1'}" >
-							정상
+							&ensp;정상
 						</c:when>
 						<c:when test="${NoteVo.userEnabled == '0'}" >
-							탈퇴
+							&ensp;탈퇴
 						</c:when>
 					</c:choose>				
 				</td>
-				<td><button type="button" class="btn btn-sm drop-btn deleteNoteBtn">노트 삭제</button></td>		
+				<td>&ensp;<button type="button" class="btn btn-sm btn-danger deleteNoteBtn">노트 삭제</button></td>		
 			</tr>
 		</c:forEach>
     </tbody>
