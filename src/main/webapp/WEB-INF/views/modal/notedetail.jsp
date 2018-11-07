@@ -234,7 +234,7 @@
 						"userEmail" : userEmail,
 						"noteNum" : ${note.noteNum},
 						"noteOrCommCode" : 'NC00',//노트신고코드
-						"reportCauseCode" : $("#causeCategory option:selected").val(),
+						"reportCauseCode" : $("#causeCategory option:selected").text(),
 						"reportContent" : $('#causeText').val()  
 						},
 				}).done(function(result) {
@@ -680,7 +680,7 @@ $(document).ready(function(){
 											"noteNum": noteNum,
 											"noteCommNum" : noteCommNum,
 											"noteOrCommCode" : 'NC01',//노트댓글신고코드
-											"reportCauseCode" : $("#causeCategory option:selected").val(),
+											"reportCauseCode" : $("#causeCategory option:selected").text(),
 											"reportContent" : $('#causeText').val()  
 											},
 									}).done(function(result) {

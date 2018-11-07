@@ -34,7 +34,8 @@ $(function() {
 			url: "../etc/reportCheck.json",
 			type:"POST",
 		    dataType:"json",
-		    data: {'reportNum':$("#reportNum").val(),
+		    data: {
+		    	 'reportNum':$("#reportNum").val(),
 		    	 'reportmemo':$("#reportmemo").val(), 
 		    	 'checkCode':$("#checkCode").val(),
 		    	 'noteOrCommCode':$("#noteOrCommCode").val(),
@@ -42,7 +43,7 @@ $(function() {
 		    	 },
 		   	success:function(result){
 		   		console.log(result);
-		   				if (result >= 2) { 
+		   				if (result > 0 ) { 
 				   	    	  swal({type: "success",
 								 	title: '성공적으로 반영했습니다.',
 					             	confirmButtonClass : "btn-danger btn-sm",
