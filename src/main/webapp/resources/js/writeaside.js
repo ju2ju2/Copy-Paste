@@ -1,3 +1,11 @@
+//params json 객체 파라미터 넘기는 값. VO역할
+		var params = {  "subjectCategory": "",
+							"boundary" :  "",
+							"keyword": "",
+							"page": 0
+					  }
+
+
 
 //폴더 리스트
 function folderList(){
@@ -108,12 +116,12 @@ function folderNoteList(folderName){
 
 //노트검색
 function searchNoteList(){
-	 $.ajax(
-				{
-		    url : "../etc/selectSearchSiteWrite.json",
+
+	$.ajax({
+		  
 		    type : "get",
-		    data : {"keyword":$("#search-text-write").val(),
-		    },
+		    url : url,
+		    data : params, 
 		    dataType : 'json',
 		    success : function(data){
 		    	      console.log(data);
@@ -161,6 +169,101 @@ function searchNoteList(){
 }
 
 
+// 노트 스크롤~ 스크롤이벤트 발생시 추가 12개 
+var lastScrollTop = 0;
+//스크롤 발생시 추가적인 리스트 생성
+function moreAsideNoteList(e,url,params){
+	e.stopPropagation() 
+
+	// ① 스크롤 이벤트 최초 발생
+	var currentScrollTop = $(window).scrollTop();
+
+	if( currentScrollTop - lastScrollTop > 0 ){
+		if ($(window).scrollTop() >= ($(document).height() - $(window).height()) ){ 
+			params.page += 12;
+			console.log(params.page+" 번부터")
+
+			$.ajax({
+				type : 'get',  
+				url :url,
+				async: false,
+				data :params, 
+			    success : function(data){
+					    	      console.log(data);
+					    		 var aa = "";
+					    		 var aa1 = "";
+						          	if(data!=null) {
+						          		$.each(data, function(key, value){
+						          			 $('#searchList').empty();   
+					                         aa1+='<div class="col-xs-12 searchNoteDiv">'
+					                         aa1+='<div class="text-center">'
+					                         aa1+='<!-- a HTML (to Trigger Modal) -->'
+					                         aa1+='<a data-toggle="modal"'
+					                         aa1+='href="../note/noteDetail.htm?noteNum='+value.noteNum+'&write=y"'
+					                         aa1+='data-target="#modal-testNew1" role="button" data-backdrop="static">'
+					                         aa1+='<div class="item">'
+					                         aa1+='<img class="img-rounded"'
+					                         aa1+='src="'+value.noteThumnail+'"'
+					                         aa1+='alt="'+value.noteTitle+'" width="100%">'
+					                         aa1+='<div class="caption">'
+					                         aa1+='<i class="fa fa-plus" aria-hidden="true"></i>'
+					                         aa1+='</div>'
+					                         aa1+='</div>'
+					                         aa1+='<div>'
+					                         aa1+='<h4  class="noteTitle">'+value.noteTitle+'</h4>'
+					                         aa1+='<strong>'+value.userNick+'</strong><span>'+value.noteDate+'</span>'
+					                         aa1+='</div>'
+					                         aa1+='</a>'
+					                         aa1+='</div>'
+					                         aa1+='</div>'
+					                         $("div[alt='"+value.folderName+"']").find("#searchList").html(aa1);
+						          		})
+						          	}
+						          	
+						          	if(data.length == 0){
+						          		$("#searchList").empty();
+						          		aa += "<div class='text-center noteDiv'>";
+						          		aa += "<h5>검색된 결과가 없습니다.</h5>";
+						          		aa += "</div>";
+									}
+						          	
+						          	$("#searchList").html(aa1);	
+					    	
+					          	
+					    }
+			})
+		}
+	}
+}
+
+
+
+
+//사이트내 검색어 자동완성
+function autoComplete(subjectName){
+	var allkeywords =[];
+	var uniquekeywords = [];
+	$.ajax({
+		type:"get",
+		url: "../etc/collectSearchKeywords.json", 
+		data: {"subjectName":subjectName},
+		dataType:"json",
+		success:function(data){
+			
+    	    $.each(data, function(index,obj){
+    		   	allkeywords.push(obj.noteTitle);
+    		});	
+    	    //배열 중복제거 후 담기
+			$.each(allkeywords, function(i, el){
+				if($.inArray(el, uniquekeywords) === -1) uniquekeywords.push(el); 
+			});
+		}
+	})
+	
+	$( "#search-text-write" ).autocomplete({
+	      source: uniquekeywords
+	});
+}
 
 
 //로딩시 실행
@@ -170,21 +273,59 @@ $(document).ready(function() {
 		folderList()
 	
 
-  		 // 사이트 내 검색 탭
-			$("#searchWriteSite").click(function(){
-				if($("#search-text-write").val()==''){
-					swal({
-						  title: "검색어를 입력해주세요",
-						  text: "",
-						  type: "warning",
-						  confirmButtonClass: "btn-danger",
-						  confirmButtonText: "OK",
-						  showCancelButton: false
-						})
-				}else{
-					searchNoteList()
-				}
-			})
+		
+//사이트내 검색 탭 클릭시 
+	    $("#writeSearch").click(function(){
+		var url="";
+		url ="../etc/selectSearchSite.json";
+		params.keyword=$("#search-text-write").val()
+		params.subjectCategory=$('#subject-category option:selected').val()
+		params.boundary=$('input[name="boundary"]:checked').val()
+		params.page=0
+		searchNoteList(url,params);
+		autoComplete(params.subjectCategory);
+		$(window).scroll(function(e) { moreAsideNoteList(e,url, params)})
+		})
+		
+		//검색어 입력 사이트 내 검색 탭
+		$("#searchWriteSite").click(function(){
+			if($("#search-text-write").val()==''){
+				swal({
+					title: "검색어를 입력해주세요",
+					text: "",
+					type: "warning",
+					confirmButtonClass: "btn-danger",
+					confirmButtonText: "OK",
+					showCancelButton: false
+				})
+			}else{
+				var url="";
+				url ="../etc/selectSearchSite.json";
+				params.keyword=$("#search-text-write").val()
+				params.subjectCategory=$('#subject-category option:selected').val()
+				params.boundary=$('input[name="boundary"]:checked').val()
+				params.page=0
+				searchNoteList(url,params);
+				autoComplete(params.subjectCategory);
+				$(window).scroll(function(e) { moreAsideNoteList(e,url, params)})
+			}
+		});
+
+	    //주제별 검색
+
+		 $('#subject-category').on("change",function(e) {
+			url ="../etc/selectSearchSite.json";
+			params.keyword=$("#search-text-write").val()
+			params.subjectCategory = $('#subject-category option:selected').val()
+			params.boundary=$('input[name="boundary"]:checked').val()
+			params.page=0
+			searchNoteList(url, params);
+			autoComplete(params.subjectCategory);
+		    $(window).scroll(function(e) {moreAsideNoteList(e,url, params)})
+		 })
+		 
+			
+		
 			
 		 //스크롤에 따라 위로가기 버튼 표시 
 		 var inner = $(".inner")

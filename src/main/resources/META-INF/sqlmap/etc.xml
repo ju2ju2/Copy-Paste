@@ -189,18 +189,6 @@
 	</select>
 	
 	<!-- write에서 사이트 내 검색 -->
-	<select id="selectSearchSiteWrite" parameterType="hashmap" resultType="NoteVO">
-		select n.noteNum, n.folderName, n.userEmail, n.noteTitle, n.noteContent, n.noteDate,
-	n.subjectCode,s.subjectName, n.noteCount, n.notePublic, n.notescrap, n.notePNum, n.noteThumnail, u.userNick
-	from note n join users u on u.userEmail=n.userEmail 
-		join subject s on s.subjectCode=n.subjectCode 
-		where n.noteTitle like CONCAT('%',#{keyword},'%') or 
-		  n.noteContent like CONCAT('%',#{keyword},'%') 
-				order by noteNum desc		
-				
-	</select>
-
-	<!-- write에서 사이트 내 검색 -->
 	<select id="collectSearchKeywords" resultType="NoteVO">
 		select n.noteTitle,s.subjectName
 		from note n join subject s on s.subjectCode=n.subjectCode

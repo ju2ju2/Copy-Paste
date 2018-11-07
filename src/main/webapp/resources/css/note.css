@@ -808,7 +808,7 @@ span.Cgrapefruit{
     background-color:white ;
 /*     margin-top: 25px; */
     color:#333;
-    width: 325px;
+    width: 307px;
     box-shadow: 2px 2px 2px 2px #E0E0E0;
    
 }
@@ -969,10 +969,9 @@ height: 1.2em;
 	padding: 3px 5px !important;
 	margin-top:5px;
 	display: none;
-	z-index:999;
-    left: 380px;
-    top: 600px;
-	
+
+     left: 365px;
+    top: 707px;
 /*    top: 460px !important;
    right: 5px !important; */
 

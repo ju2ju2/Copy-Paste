@@ -21,7 +21,7 @@
                   <i class="fas fa-sticky-note icon-li"></i>
             </a></li>
             <li><a data-toggle="tab" href="#inSiteSearch"
-               class="writeNoteNavBtn"> <i class="fas fa-search icon-li"></i></a></li>
+               class="writeNoteNavBtn"  id="writeSearch"> <i class="fas fa-search icon-li"></i></a></li>
             <li><a data-toggle="tab" href="#portalSearch"
                class="writeNoteNavBtn"> <i class="fab fa-google icon-li"></i></a></li>
          </ul>
@@ -122,16 +122,50 @@
         
                <div class="row">
                   <div class="form-group">
-                     <!-- Search -->
-                     <section id="subject-search" class="alt">           
+                    
+                    <input type="hidden" id="subjectName" value="${subjectName}">
+							<div class="col-xs-12">
+								<select name="subject-category" id="subject-category">
+									<option value="all">- 주제 선택 -</option>
+									<option value="기타">기타</option>
+									<option value="회사">회사</option>
+									<option value="생활">생활</option>
+									<option value="교육">교육</option>
+								</select>
+							</div>
+                   		  <!-- Search -->
                         <div class="col-xs-12">
+                           <section id="subject-search" class="alt">    
                            <form method="get" action="#">
                               <input type="text" id="search-text-write" placeholder="검색어를 입력해주세요" required /> <a
                                  href="#"><i id="searchWriteSite" class="fas fa-search icon-size"
                                  style="padding-top: 15px"></i></a>
                            </form>
+                           </section>
                         </div>
+                     
+                   </div>
+                </div>       
+                    
+                    	<!-- Radio -->
+							<div class="radio">
+								<form method="post" action="#" id="radiotag">
+									<input type="radio" id="radio-sub" name="boundary" value="제목"
+										checked> <label for="radio-sub">제목</label> <input
+										type="radio" id="radio-content" value="내용" name="boundary">
+									<label for="radio-content">내용</label> <input type="radio"
+										id="radio-sub-content" value="제목+내용" name="boundary">
+									<label for="radio-sub-content">제목+내용</label>
+								</form>
+							</div>
+					                    
                         
+                        <!-- Section -->
+						<section id="droppable">
+							<header class="major">
+								<h3>검색결과</h3>
+							</header>
+					
                         <!-- 사이트 내 검색결과 보기 리스트 -->
                         <div class="mini-posts" id="searchList"></div>
 						 <!-- 노트상세보기 모달 -->
@@ -139,21 +173,28 @@
 		                  	<div class="modal-dialog">
 		                    <div class="modal-content">Content will be loaded here from "note/noteDetail.htm" file</div>
 	                  	   </div>
-               		</div> 
-                     </section>
-                  </div>
-               </div>
-               <span id="writeNoteNavSizeBtnSpanSeachInSite">
-                  <button type="button" class="btn searchBtn">
-                     <i class="fas fa-angle-double-right writeNoteNavSizeBtn "></i>
-                  </button>
-                  <br>
-                   <button type="button" class="btn topBtn" >
-                    <i class="fas fa-caret-up"  title="Go to top" ></i>
-                  </button>
-               </span>
-            </div>
-
+               			</div> 
+               		
+               			</section>
+   			    
+                     
+                     <span id="writeNoteNavSizeBtnSpanSeachInSite">
+	                 	 <button type="button" class="btn searchBtn">
+	                     <i class="fas fa-angle-double-right writeNoteNavSizeBtn "></i>
+	               	   </button>
+	                 	 <br>
+	                   <button type="button" class="btn topBtn" >
+	                    <i class="fas fa-caret-up"  title="Go to top" ></i>
+	                  </button>
+              		 </span>
+ 
+   				</div>
+           
+           
+           
+           
+           
+           
             <!-- 4. 포털 검색 -->
             <div id="portalSearch" class="tab-pane fade searchDiv">
                <div class="row">
@@ -185,6 +226,9 @@
                   <button type="button" class="btn btn-danger searchBtn">
                      <i class="fas fa-angle-double-right writeNoteNavSizeBtn"></i>
                   </button>
+                   <button type="button" class="btn topBtn" >
+	                    <i class="fas fa-caret-up"  title="Go to top" ></i>
+	               </button>
                </span>
             </div>
          </div>

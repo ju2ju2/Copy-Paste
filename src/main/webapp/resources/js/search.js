@@ -1,7 +1,7 @@
 
 
 //params json 객체 파라미터 넘기는 값. VO역할
-		var params = {      "subjectCategory": "",
+		var params = {  "subjectCategory": "",
 							"boundary" :  "",
 							"keyword": "",
 							"page": 0
@@ -24,6 +24,7 @@ function topFunction() {
 }
 
 //사이트내 검색어 자동완성
+
 function autoComplete(subjectName){
 	var allkeywords =[];
 	var uniquekeywords = [];
