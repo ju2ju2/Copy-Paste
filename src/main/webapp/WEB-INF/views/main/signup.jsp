@@ -156,13 +156,25 @@
 							$('#userMailToMessage').text("이메일 인증을 위한 메일이 발송 되었습니다.");
 					},
 					error : function(error) {
-						swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 확인해 주세요.", "error");
+						swal({
+			  				  title: "이메일 주소를 확인해 주세요",
+			  				  type: 'warning',
+			  				  confirmButtonClass : "btn-danger btn-sm",
+			  				  confirmButtonText: '확인',
+			  				  closeOnConfirm: true
+			  				})
 						console.log(error);
 						console.log(error.status);
 	           		 }
 	         });
 		} else {
-			swal("٩(இ ⌓ இ๑)۶", "이미 사용 중인 이메일입니다.", "error");
+			swal({
+				  title: "이메일 주소를 확인해 주세요",
+				  type: 'warning',
+				  confirmButtonClass : "btn-danger btn-sm",
+				  confirmButtonText: '확인',
+				  closeOnConfirm: true
+				})
 		}
 		})
 	
@@ -238,7 +250,13 @@
 	        			console.log(mailDupCheck);}
 	            },
 	            error : function(error) {
-					swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 확인해 주세요.", "error");
+	            	swal({
+	    				  title: "잠시후 다시 시도해주세요",
+	    				  type: 'warning',
+	    				  confirmButtonClass : "btn-danger btn-sm",
+	    				  confirmButtonText: '확인',
+	    				  closeOnConfirm: true
+	    				})
 					console.log(error);
 					console.log(error.status);
 	            }
@@ -274,8 +292,13 @@
         			writtenNick = $('#userNick').val();	
             }},
             error : function(error) {
-				swal("٩(இ ⌓ இ๑)۶", "잠시 후 다시 시도해 주세요.", "error");
-				console.log(error);
+            	swal({
+  				  title: "잠시후 다시 시도해주세요",
+  				  type: 'warning',
+  				  confirmButtonClass : "btn-danger btn-sm",
+  				  confirmButtonText: '확인',
+  				  closeOnConfirm: true
+  				})
 				console.log(error.status);
             }
          });
@@ -285,28 +308,62 @@
 //회원 가입 + 유효성 체크
  $('#join').click(function(e){ 
   	if ($('#mailto').val() == ''){
-  			swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 입력해 주세요", "error");
+  			swal({
+			  title: "이메일 주소를 입력해 주세요",
+			  type: 'error',
+			  confirmButtonClass : "btn-danger btn-sm",
+			  confirmButtonText: '확인',
+			  closeOnConfirm: true
+			})
   	    	$('#mailto').focus();
   	    	return false;
   		} else {
   			if (mailCheck != 'ok' || writtenMail != $('#mailto').val() ) {
-  				swal("٩(இ ⌓ இ๑)۶", "이메일 인증을 진행해 주세요.", "error");
+  				/* swal("٩(இ ⌓ இ๑)۶", "이메일 인증을 진행해 주세요.", "error"); */
+  				swal({
+  				  title: "이메일 인증을 진행해주세요",
+  				  type: 'warning',
+  				  confirmButtonClass : "btn-danger btn-sm",
+  				  confirmButtonText: '확인',
+  				  closeOnConfirm: true
+  				})
 				$('#authnum').focus();
 				return false;
   			} else {
   				if (nickDupCheck != 'ok' || writtenNick != $('#userNick').val()) {
-  					swal("٩(இ ⌓ இ๑)۶", "사용할 수 없는 닉네임입니다.", "error");
+  					/* swal("٩(இ ⌓ இ๑)۶", "사용할 수 없는 닉네임입니다.", "error"); */
+	  				swal({
+	  				  title: "사용할 수 없는 닉네임입니다.",
+	  				  type: 'warning',
+	  				  confirmButtonClass : "btn-danger btn-sm",
+	  				  confirmButtonText: '확인',
+	  				  closeOnConfirm: true
+	  				})
   					return false;
   				} else {
   					if(rightPwd != 'ok' ){
-  						swal("٩(இ ⌓ இ๑)۶", "비밀번호를 형식에 맞게 입력해 주세요.", "error");
+  						/* swal("٩(இ ⌓ இ๑)۶", "비밀번호를 형식에 맞게 입력해 주세요.", "error"); */
+  							swal({
+			  				  title: "비밀번호를 확인해 주세요.",
+			  				  type: 'warning',
+			  				  confirmButtonClass : "btn-danger btn-sm",
+			  				  confirmButtonText: '확인',
+			  				  closeOnConfirm: true
+			  				})
 						$('#userPwd').val("");
 						$('#cuserPwd').val("");
 						$('#userPwd').focus();
 						return false;
   					} else {
   						if(pwdDupCheck != 'ok') {
-  							swal("٩(இ ⌓ இ๑)۶", "비밀번호를 정확히 확인해 주세요.", "error");
+  							/* swal("٩(இ ⌓ இ๑)۶", "비밀번호를 정확히 확인해 주세요.", "error"); */
+  							swal({
+			  				  title: "비밀번호를 정확히 확인해 주세요.",
+			  				  type: 'warning',
+			  				  confirmButtonClass : "btn-danger btn-sm",
+			  				  confirmButtonText: '확인',
+			  				  closeOnConfirm: true
+			  				})
 							$('#cuserPwd').val("");
 							$('#cuserPwd').focus();
 							return false;
@@ -314,7 +371,14 @@
   							if ($('#userCheck').is(":checked")) {
   								signupAjax();
   							} else {
-  								swal("٩(இ ⌓ இ๑)۶", "이용약관에 동의해 주세요.", "error");
+  								/* swal("٩(இ ⌓ இ๑)۶", "이용약관에 동의해 주세요.", "error"); */
+  								swal({
+				  				  title: "이용약관에 동의해 주세요.",
+				  				  type: 'warning',
+				  				  confirmButtonClass : "btn-danger btn-sm",
+				  				  confirmButtonText: '확인',
+				  				  closeOnConfirm: true
+				  				})
 								return false;
   							}
   						}
@@ -339,7 +403,7 @@
 				  swal({type: "success",
 				  title: "୧༼ ヘ ᗜ ヘ ༽୨",
 				  text: "회원가입이 완료되었습니다.",
-	              confirmButtonClass : "btn-danger",
+	              confirmButtonClass : "btn-danger btn-sm",
 				  closeOnConfirm: false
 					},
 				  function(){
@@ -347,7 +411,12 @@
 					});	
 	       			},
           error : function(error) {
-           	swal("٩(இ ⌓ இ๑)۶", "에러가 발생했습니다.", "error");
+        	swal({	  title: "에러가 발생했습니다.",
+	  				  type: 'error',
+	  				  confirmButtonClass : "btn-danger btn-sm",
+	  				  confirmButtonText: '확인',
+	  				  closeOnConfirm: true
+	  				})
            	console.log(error);
            	console.log(error.status);
        }
