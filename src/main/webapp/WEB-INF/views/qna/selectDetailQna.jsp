@@ -54,7 +54,7 @@
 						<c:choose>
 							<c:when test="${role=='[ROLE_ADMIN]'}">
 								<a href="updateQna.htm?qnaNum=${qna.qnaNum}&qnaDept=1" ><i class="fas fa-edit"></i></a>
-								<a href="insertQnaboard.htm?qnaNum=${qna.qnaNum}&qnaDept=1" class="qnaReply"><i class="fas fa-reply"></i></a>&nbsp;&nbsp;
+								<a href="insertQnaboard.htm?qnaNum=${qna.qnaNum}&userEmail=${qna.userEmail}&qnaDept=1" class="qnaReply"><i class="fas fa-reply"></i></a>&nbsp;&nbsp;
 								<a href="deleteQna.htm?qnaNum=${qna.qnaNum}" class="qnaDel"><i class="fas fa-trash"></i></a>
 							</c:when>
 							<c:when test="${qna.userEmail==loginuser}">
@@ -170,7 +170,7 @@
 						<c:choose>
 							<c:when test="${role=='[ROLE_ADMIN]'}">
 								<a href="updateQna.htm?qnaNum=${qna.qnaNum}&qnaDept=1" ><i class="fas fa-edit"></i></a>
-								<a href="insertQnaboard.htm?qnaNum=${qna.qnaNum}&qnaDept=1" class="qnaReply"><i class="fas fa-reply"></i></a>&nbsp;&nbsp;
+								<a href="insertQnaboard.htm?qnaNum=${qna.qnaNum}&userEmail=${qna.userEmail}&qnaDept=1" class="qnaReply"><i class="fas fa-reply"></i></a>&nbsp;&nbsp;
 								<a href="deleteQna.htm?qnaNum=${qna.qnaNum}" class="qnaDel"><i class="fas fa-trash"></i></a>
 							</c:when>
 							<c:when test="${qna.userEmail==loginuser}">
@@ -277,7 +277,7 @@
 				    	"qnaNum":${qna.qnaNum}
 				    },
 				    success : function(data){
-						ws.send("${qna.userEmail}", "QC", "${qna.qnaNum}");
+						ws.send("${qna.userEmail}");
 						location.reload();
 				    },
 				    error:function(request,status,error){

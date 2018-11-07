@@ -64,7 +64,8 @@ $(document).ready(function() {
 				showCancelButton: false
 			})
 		}else{
-			$('#insertQnaform').submit(); 
+			ws.send("${qna.userEmail}");
+			$('#insertQnaform').submit();
 		}
 	});
 });
