@@ -25,8 +25,11 @@ public interface FolderMapper {
 	//폴더 수정 : 컨텐츠 無
 	public int updateFolder2(FolderVO folder) throws Exception;
 	
-	//폴더 삭제
+	//폴더 삭제 : 컨텐츠 有
 	public int deleteFolder(FolderVO folder) throws Exception;
+	
+	//폴더 삭제 : 컨텐츠 無
+	public int deleteFolder2(FolderVO folder) throws Exception;
 	
 	//기본폴더 지정
 	public int setDefaultFolder(FolderVO folder) throws Exception;
