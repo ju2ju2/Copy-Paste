@@ -15,6 +15,10 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.social.google.connect.GoogleConnectionFactory;
+import org.springframework.social.oauth2.GrantType;
+import org.springframework.social.oauth2.OAuth2Operations;
+import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +37,11 @@ public class IndexController {
 		NoteService noteService;
 		@Autowired
 		private LocaleResolver localeResolver;
-
+		@Autowired
+		private GoogleConnectionFactory googleConnectionFactory;
+		@Autowired
+		private OAuth2Parameters googleOAuth2Parameters;
+		
 		//인덱스-주제별 노트 상위목록
 		@RequestMapping("/index.htm")
 		public String index(Model model) throws Exception {
@@ -85,11 +93,19 @@ public class IndexController {
 		//회원가입 페이지
 		@RequestMapping("/signup.htm")
 		public String signup(Model model, HttpSession session) {
-			//return "login.jsp";
+
+			/* 구글아이디로 인증 URL을 생성하기 위하여 dispatcher-servlet.xml 설정해준 
+			 * googleConnectionFactory클래스의 getOAuthOperations메소드 호출 */
+			OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
+			String googleAuthUrl = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
+			model.addAttribute("googleAuthUrl",googleAuthUrl);
+			
+			
+			
 			/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
 	        String naverAuthUrl = NaverLogin.getAuthorizationUrl(session);
 	        model.addAttribute("naverAuthUrl", naverAuthUrl);
-			return "index.signup";
+			return "index.signup"; //return "signup.jsp";
 		}
 	
 		

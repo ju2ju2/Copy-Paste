@@ -28,4 +28,20 @@
 		<!-- <constructor-arg name="strength" value="20"></constructor-arg> -->
 	</bean>
 
+	<!-- google Class Bean설정 추가 -->
+	<!-- 클라이언트ID와 보안비밀 세팅 -->
+	<bean id="googleConnectionFactory" class="org.springframework.social.google.connect.GoogleConnectionFactory">
+	  <constructor-arg value="635026494666-5j797llm394ldudhthrel4ooj9p2onpq.apps.googleusercontent.com" />
+	  <constructor-arg value="ofwm2oSO7CNVptHDktjUEUlN" />
+	</bean>
+	
+ 	<!-- 승인된 자바스크립트 원본과 승인된 리디렉션 URI -->
+	<bean id="googleOAuth2Parameters" class="org.springframework.social.oauth2.OAuth2Parameters">
+<!-- 	  <property name="scope" value="https://www.googleapis.com/auth/plus.login" /> -->
+		<!-- 이메일 필요시 추가정보 필요시 스코프에 추가 -->
+	  <property name="scope" value="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email" />
+	  <property name="redirectUri" value="http://localhost:8090/copyNpaste/member/googleOauth.do" />
+	</bean>
+
+
 </beans>

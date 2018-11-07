@@ -22,8 +22,9 @@
 		http://www.springframework.org/schema/websocket/spring-websocket-4.1.xsd"  >
 	
 	<context:component-scan base-package="tk.copyNpaste" />
-	<mvc:annotation-driven />
 	<context:annotation-config /> 
+	<mvc:annotation-driven />
+
 	<annotation-driven />
 		<!-- component-scan:빈객체 생성 
 			 @Component,@Repository,@Service,@Controller,@Autowired
@@ -91,5 +92,8 @@
 	</websocket:handlers>
 	
 	<beans:bean id="notifyHandler" class="tk.copyNpaste.etc.NotifyHandler"/>
+
+
+
 
 </beans:beans>
