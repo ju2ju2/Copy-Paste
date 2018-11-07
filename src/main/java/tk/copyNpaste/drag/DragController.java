@@ -129,10 +129,5 @@ public class DragController {
 	}
 
 	
-	// 드래그 검색 자동완성
-	@RequestMapping(value="collectSearchKeywords.json", method = RequestMethod.GET)
-	public @ResponseBody List<DragVO> dragCollectSearchKeywords(String subjectName) throws Exception {
-	return dragservice.dragCollectSearchKeywords(subjectName);
-	}	
-	
+
 }

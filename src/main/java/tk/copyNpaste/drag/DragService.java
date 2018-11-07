@@ -86,11 +86,6 @@ public class DragService {
 		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
 		return dragdao.removeDragMark(map);
 	}
-   //드래그 자동완성
-	public List<DragVO> dragCollectSearchKeywords(String subjectName) throws Exception {
-		DragMapper dragdao= sqlsession.getMapper(DragMapper.class);
-		return dragdao.dragCollectSearchKeywords(subjectName);
-	}
 
 
 }
