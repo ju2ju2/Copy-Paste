@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -92,14 +91,18 @@ public class MemberController {
     };
 
 	
-	//로그인
-	public void login(MemberVO member) throws Exception{
-		
+	//security 로그인>>구현안함
+	public void login(MemberVO member) throws Exception{	
 	};
 	
-	//구글로그인
-	public void googleLogin(String userEmail) throws Exception{
-		
+	//구글 회원가입 1/2 (회원정보 얻기)
+	@RequestMapping(value ="googleOauth.do"/*, produces="application/json", method= {RequestMethod.GET, RequestMethod.POST}*/)
+	public ModelAndView googleSignup(HttpServletRequest request) throws Exception{
+		MemberVO member = loginService.googleSignUp(request);
+		ModelAndView soscialMav = new ModelAndView();
+		soscialMav.setViewName("index.signupSocial");
+		soscialMav.addObject("memberVo", member);
+		return soscialMav;
 	};
 	
 	//카카오 회원가입 1/2 (회원정보 얻기)
@@ -114,13 +117,7 @@ public class MemberController {
 		return soscialMav;
 	};
 		
-	//카카오 회원가입 2/2 (DB 저장)
-	@RequestMapping(value = "socialSingUp.do")
-	public String socialSingUp(MemberVO member) throws Exception{
-		 loginService.socialSingUp(member);
-		 return "index.login";
-	};
-	
+
 	//네이버 회원가입 1/2 (회원정보 얻기) //네이버 로그인 성공시 callback호출 메소드
     @RequestMapping(value = "naverOauth.do", method= RequestMethod.GET)
     public String naverSignup(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws Exception {
@@ -133,13 +130,14 @@ public class MemberController {
         return "index.signupSocial";
     }
 	
-	//네이버 회원가입 2/2 (DB 저장)
-	@RequestMapping(value = "naverOauth.do", method= RequestMethod.POST)
-	public String naverSignup2(MemberVO member) throws Exception{
+	//소셜 회원가입 2/2 (DB 저장)
+	@RequestMapping(value = "socialSingUp.do")
+	public String socialSingUp(MemberVO member) throws Exception{
+		 loginService.socialSingUp(member);
 		 return "index.login";
 	};
 	
-		
+	
 	//전회원 정보 보기
 	public @ResponseBody List<MemberVO> selectAllMember() throws Exception{
 		List<MemberVO> memberList = memberService.selectAllMember();

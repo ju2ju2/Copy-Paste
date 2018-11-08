@@ -1,4 +1,4 @@
-/*package tk.copyNpaste.member;
+package tk.copyNpaste.member;
 
 import java.io.IOException;
 
@@ -15,7 +15,10 @@ import org.springframework.social.oauth2.AccessGrant;
 import org.springframework.social.oauth2.OAuth2Operations;
 import org.springframework.social.oauth2.OAuth2Parameters;
 import org.springframework.stereotype.Service;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.jackson2.JacksonFactory;
 
 import tk.copyNpaste.vo.MemberVO;
 
@@ -63,8 +66,9 @@ public class GoogleLogin {
 			member.setUserNick(profile.getDisplayName());		
 	        String getImageUrl  = profile.getImageUrl().replaceAll("sz=50", "");
 			member.setUserPhoto(getImageUrl);
+			
+			
 		return member;
 	}
 	
 }
-*/

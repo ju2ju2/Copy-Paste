@@ -8,19 +8,15 @@ package tk.copyNpaste.member;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.social.google.api.plus.Person;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.github.scribejava.core.model.OAuth2AccessToken;
 
 import tk.copyNpaste.mapper.FolderMapper;
 import tk.copyNpaste.mapper.MemberMapper;
@@ -32,22 +28,22 @@ public class LoginService {
 	 private SqlSession sqlsession;
 	 @Autowired
 	 private BCryptPasswordEncoder bCryptPasswordEncoder;
+	 @Autowired
+	 private GoogleLogin googleLogin;
 	 
-	//구글로그인
-	public MemberVO googleLogin(String userEmail) throws Exception{
-		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
-		return memberdao.googleLogin(userEmail);
+	 //구글 회원가입 1/2 (회원정보 얻기)
+	public MemberVO googleSignUp(HttpServletRequest request) throws Exception{
+		Person profile = googleLogin.getGoogleUserInfo(request);
+		MemberVO member = googleLogin.changeData(profile);
+		return member;
 	}
 	
 	 //카카오 회원가입 1/2 (회원정보 얻기)
     public MemberVO kakaoSingUp(String code, HttpServletRequest request, HttpServletResponse response) throws Exception{
         JsonNode token = KakaoLogin.getAccessToken(code);
-        KakaoLogin.connectKakao(token.path("access_token").toString());
-        
+        KakaoLogin.connectKakao(token.path("access_token").toString());   
         JsonNode profile = KakaoLogin.getKakaoUserInfo(token.path("access_token").toString());
- 
         MemberVO member = KakaoLogin.changeData(profile);
-
         return member;
         }
     
@@ -83,7 +79,8 @@ public class LoginService {
 		MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
 		return memberdao.login(member);
 	}
-	
+
+
 
 	
 }
