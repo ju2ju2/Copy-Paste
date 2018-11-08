@@ -24,14 +24,14 @@ function folderlist(){
 								folder += "<span class='f-name'><a href='#' onclick=folderContents(this,'"+value.folderName+"')>";
 								folder += value.folderName+"</a></span>";
 								folder += "<span class='f-modify' id='modify'>";
-								folder += "<i class='fas fa-edit icon-size' id='folderEdit' onclick=folderEdit(this,'"+value.folderName+"','"+value.count+"')>";
+								folder += "<i class='fas fa-edit icon-size' id='folderEdit' onclick=folderEdit(this,'"+value.folderName+"','"+value.count+"','"+value.defaultFolder+"')>";
 								folder += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i>";
 								folder += "<i class='fas fa-trash icon-size' id='folderdelete' onclick=folderDelete('"+value.folderName+"','"+value.defaultFolder+"');>";
 								folder += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></span></h5></div>";
 								$('#folder').append(folder);
 								if(value.defaultFolder==1){
 									folder = "";
-									folder += "<div class='col-xs-2 icon'><i class='fas fa-bookmark icon-size' id='bookmarkO' onclick=setDefaultFolder(this,'"+value.folderName+"');>";
+									folder += "<div class='col-xs-2 icon'><i class='fas fa-bookmark icon-size' id='bookmarkO' onclick=setDefaultFolder(this,'"+value.folderName+"','"+value.count+"');>";
 									folder += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></div>";
 									$('#folder').append(folder);
 								}else{
@@ -133,63 +133,123 @@ function folderlist(){
 		        
 		        
 	}
-		
-		
+	
 /*폴더 추가*/
 	$('#Addfolder').click(function(){
 			addfolder();
 	$("#folname").keypress(function(key){
 			if(key.keyCode == 13)
-			{enterfolder();}	
-										});
-								});
+			{
+			insertFolder();
+			}	
+		});
+	});
 
-	/* 엔터 → 폴더 생성 */
-	function enterfolder(){
+/*폴더 추가 데이터에 넣기*/
+function insertFolder(){
+	if($('#folname').val()==''){
+		swal({
+			  title: "폴더명을 입력해주십시오.",
+			  text: "",
+			  type: "info",
+			  confirmButtonClass: "btn-danger btn-sm",
+			  confirmButtonText: "확인",
+			  showCancelButton: false
+				})
+	}else{
 		$.ajax(
 				{
-			    url : "../folder/insertfolder.json",
-			    DataType :{},
-			    type : "post",
+				type : "post",
+			    url : "../folder/checkFolderName.json",
 			    data : {"folderName": $('#folname').val()},
 			    success : function(data){
-			    	$('#folname').remove();
-			    	var a = "";
-			        a += "<div class='row'>";
-			        a += "<div class='col-xs-10 n-folder'>";
-			        a += "<h5 class='ml-10 f-name' id='folname'>";
-			        a += "&ensp;&ensp;<span class='f-count' id='juwon' style='margin-left:-1px;'>0</span>";
-			        a += "<span class='f-name' id='fname'>";
-			        a += $('#folname').val();
-			        a += "</span>"
-			        a += "<span class='f-modify'>";
-			        a += "<i class='fas fa-edit icon-size'></i>" 
-			        a += "<i class='fas fa-trash icon-size'></i></span>"
-			        a += "</h5></div>";
-			        a += "<div class='col-xs-2 icon'>";
-			        a += "<i class='far fa-bookmark icon-size' style='margin-left:11px;'></i>";
-			        a += "</div></div>"; 
-			        $('#folder:last-child').append(a);
-			        
-			    	$('#folder').empty(); 
-		            folderlist();         
+			    	console.log(data);
+			    	if(data>0){
+			    		swal({
+							  title: "이미 존재하는 폴더명입니다.",
+							  text: "",
+			  				  type: "info",
+			  				  confirmButtonClass: "btn-danger btn-sm",
+			  				  confirmButtonText: "확인",
+				  			  showCancelButton: false
+								})
+			    	}else{
+			    		$.ajax(
+			    				{
+			    			    url : "../folder/insertfolder.json",
+			    			    DataType :{},
+			    			    type : "post",
+			    			    data : {"folderName": $('#folname').val()},
+			    			    success : function(data){
+			    			    	$('#folname').remove();
+			    			    	var a = "";
+			    			        a += "<div class='row'>";
+			    			        a += "<div class='col-xs-10 n-folder'>";
+			    			        a += "<h5 class='ml-10 f-name' id='folname'>";
+			    			        a += "&ensp;&ensp;<span class='f-count' id='juwon' style='margin-left:-1px;'>0</span>";
+			    			        a += "<span class='f-name' id='fname'>";
+			    			        a += $('#folname').val();
+			    			        a += "</span>"
+			    			        a += "<span class='f-modify'>";
+			    			        a += "<i class='fas fa-edit icon-size'></i>" 
+			    			        a += "<i class='fas fa-trash icon-size'></i></span>"
+			    			        a += "</h5></div>";
+			    			        a += "<div class='col-xs-2 icon'>";
+			    			        a += "<i class='far fa-bookmark icon-size' style='margin-left:11px;'></i>";
+			    			        a += "</div></div>"; 
+			    			        $('#folder:last-child').append(a);
+			    			        
+			    			    	$('#folder').empty(); 
+			    		            folderlist();  
+			    			    },
+			    			    error : function(e){
+			    			    	console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			    				    			}
+			    							});	
+			    	}
 			    },
 			    error : function(e){
-			    	swal({
-						  title: "이미 존재하는 폴더명입니다.",
-						  text: "",
-		  				  type: "info",
-		  				  confirmButtonClass: "btn-danger btn-sm",
-		  				  confirmButtonText: "확인",
-			  			  showCancelButton: false
-							})
+			    		console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				    			}
 							});	 
-					} 
+		
+		
+	}
 	
+	}
 
-});
 
+})
+	
+function updateFolder(folderName, count, defaultFolder){
+	$.ajax(
+ 			{
+ 	    url : "../folder/updatefolder.json",
+ 	    DataType :"text",
+ 	    type : "post",
+ 	    data : {"beforefolderName": folderName,
+ 	    		"folderName" : $('#folname').val(),
+ 	    		"count" : count},
+ 	    success : function(data){
+ 	    	var a = "";
+ 	        a += "<h5 class='ml-10 f-name' id='folname'>";
+ 	        a += "<span class='f-count' id='juwon' style='margin-left:-1px;'>"+count+"</span>";
+ 	        a += "<span class='f-name' id='fname'>";
+ 	        a += $('#folname').val();
+ 	        a += "</span>"
+ 	        a += "<span class='f-modify'>";
+ 	        a += "<i class='fas fa-edit icon-size' onclick=folderEdit(this,'"+$('#folname').val()+"','"+count+"')></i>" 
+ 	        a += "<i class='fas fa-trash icon-size' onclick=folderDelete('"+$('#folname').val()+"','"+defaultFolder+"')></i></span>"
+ 	        a += "</h5>";
+ 	        a += "<div class='col-xs-2 icon'>";
+ 	        a += "</div>"; 
+ 	    	$("#folname").closest('h5').replaceWith(a);
+ 	    },
+ 	    error : function(){
+ 	    	location.reload();
+ 	   		 }
+ 		});
+}
 
 
 /* 폴더 삭제 */
@@ -242,50 +302,8 @@ function folderDelete(folderName, defaultFolder){
 	
 }
 
-/* 폴더 수정 */
-function folderEdit(fedit, folderName, count){
-	var a = "";
-	a += "<h5 class='ml-10 f-name'>";
-	a += "<span class='f-count'>";
-	a += count;
-	a += "</span>";
-	a += "<input type='text' id='folname' required minlength='1' maxlength='8' style='width:200px;height:40px;margin-left:25px;margin-top:-25px;' placeholder=";
-	a += folderName;
-	a += " autofocus/ >";
-	a += "</h5>";
-	$(fedit).closest('h5').replaceWith(a);
 
-	/* 엔터키 → 폴더명 수정 */
-	$("#folname").keypress(function(key){
-		if(key.keyCode == 13){
-			 {
-				$.ajax(
-							{
-					    url : "../folder/updatefolder.json",
-					    DataType :"text",
-					    type : "post",
-					    data : {"beforefolderName": folderName,
-					    		"folderName" : $(this).val(),
-					    		"count" : count},
-					    success : function(data){
-					    	location.reload();
-					    },
-					    error : function(){
-					    	swal({
-					    		  title: "폴더 수정에 실패했습니다.",
-								  text: "",
-								  type: "info",
-								  confirmButtonClass: "btn-danger btn-sm",
-								  confirmButtonText: "확인",
-								  showCancelButton: false
-								});
-					   		 }
-						});
-				}
-					
-		}
-	 });
-}
+
 
 /* 디폴트폴더 설정 */
 function setDefaultFolder(bookmark, folderName){
@@ -568,6 +586,62 @@ function addfolder(){
 	a += "</div></div>";
 	$('#scrap:last-child').append(a);
 					}
+
+
+/* 폴더 수정 버튼 클릭 → 텍스트 박스 열림  */
+function folderEdit(fedit, folderName, count, defaultFolder){
+	var a = "";
+	a += "<h5 class='ml-10 f-name'>";
+	a += "<span class='f-count'>";
+	a += count;
+	a += "</span>";
+	a += "<input type='text' id='folname' required minlength='1' maxlength='8' style='width:200px;height:40px;margin-left:25px;margin-top:-25px;' placeholder=";
+	a += folderName;
+	a += " autofocus/ >";
+	a += "</h5>";
+	$(fedit).closest('h5').replaceWith(a);
+	$("#folname").keypress(function(key){
+		if(key.keyCode == 13){
+			 {
+				 if($('#folname').val()==''){
+						swal({
+							  title: "폴더명을 입력해주십시오.",
+							  text: "",
+							  type: "info",
+							  confirmButtonClass: "btn-danger btn-sm",
+							  confirmButtonText: "확인",
+							  showCancelButton: false
+								})
+					}else{ $.ajax(
+							{
+							type : "post",
+						    url : "../folder/checkFolderName.json",
+						    data : {"folderName": $('#folname').val()},
+						    success : function(data){
+						    	console.log(data);
+						    	if(data>0){
+						    		swal({
+										  title: "이미 존재하는 폴더명입니다.",
+										  text: "",
+						  				  type: "info",
+						  				  confirmButtonClass: "btn-danger btn-sm",
+						  				  confirmButtonText: "확인",
+							  			  showCancelButton: false
+											})
+						    	}else{
+						    		updateFolder(folderName, count, defaultFolder);
+						    	}
+						    },
+						    error : function(e){
+						    		console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+							    			}
+										});	 }
+				}
+					
+		}
+	 });
+}
+
 
 
 

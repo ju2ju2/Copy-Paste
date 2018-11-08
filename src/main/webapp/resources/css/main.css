@@ -1016,3 +1016,8 @@ img .user-photo{
 .noteRankContainer{
 	margin-top: 30px;
 }
+
+.reported {
+	text-decoration: underline;
+	color:red;
+}

@@ -43,8 +43,11 @@ $(document).ready(function(){
 	var noteNum = ${noteNum}+0;
 	if (noteNum!=0){
 		$("#notedetail").click();
-		noteNum=0;
+		$("#notedetail").removeAttr("href");
+		$("#notedetail").removeAttr("data-target");
+		$("#notedetail").removeAttr("role");
 	}
+
 })
 
 </script>

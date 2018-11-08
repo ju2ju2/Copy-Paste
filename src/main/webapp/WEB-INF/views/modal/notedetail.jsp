@@ -484,15 +484,24 @@ $(document).ready(function(){
 						
 							noteCommList += '      		</small>';
 							noteCommList += '   		<!-- 댓글일때 본인이거나 admin일때 대댓글버튼 -->';
-							noteCommList += '    		<div class="noteCommContent">';
+							/* 댓글내용 출력 */
+							noteCommList += '    		<div class="noteCommContent';
+							
+							/* 신고된 노트 댓글일때 표시 addclass...*/
+						     if('${param.noteCommNum}'==value.noteCommNum){
+									console.log(${param.noteCommNum})
+									noteCommList += ' reported ">';
+							 }else{noteCommList += ' ">';}
+							
 							if(value.commDept==1){
-								noteCommList += '				&ensp;&ensp;';
+											noteCommList += '&ensp;&ensp;';
 				          	}  
 							if(value.noteCommBlind==1){
-								noteCommList += '			삭제되거나 블라인드 처리된 댓글입니다. </div>';
+											noteCommList += '삭제되거나 블라인드 처리된 댓글입니다.</div>';
 				          	} else{
-								noteCommList += '			'+value.commContent+' </div>';
+											noteCommList += ''+value.commContent+'</div>';
 				          	}
+							
 							noteCommList += '		</div>';
 							noteCommList += '	</div>';
 	
