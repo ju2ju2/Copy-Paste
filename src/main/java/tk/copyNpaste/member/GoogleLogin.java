@@ -1,4 +1,4 @@
-package tk.copyNpaste.member;
+/*package tk.copyNpaste.member;
 
 import java.io.IOException;
 
@@ -67,3 +67,4 @@ public class GoogleLogin {
 	}
 	
 }
+*/
