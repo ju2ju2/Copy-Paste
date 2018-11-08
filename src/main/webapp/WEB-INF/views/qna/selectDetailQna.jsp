@@ -194,7 +194,7 @@
 								ㄴ
 								</c:if>
 								${qnaComm.userNick}
-								<input type="text" id="commUserEmail" value="${qnaComm.userEmail}">
+								<input type="hidden" id="commUserEmail" value="${qnaComm.userEmail}">
 							${qnaComm.qnaCommDate}<br> 
 							<small class="pull-right text-muted"> 
 								<!-- 본인이거나 admin일때 삭제버튼 -->
