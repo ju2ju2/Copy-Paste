@@ -17,7 +17,7 @@
 var ws = new WebSocket("ws://localhost:8090${pageContext.request.contextPath}/notify.do");
 
 ws.onopen = 	function() 		{	console.log("웹소켓 오픈");	}
-ws.onmessage = 	function(evt) 	{	console.log(evt); onMessage(evt.data);			}
+ws.onmessage = 	function(evt) 	{	onMessage(evt.data);			}
 ws.onclose = 	function(evt) 	{}
 ws.onerror = 	function(evt) 	{	console.log("웹소켓 에러");	}
 	
@@ -34,7 +34,7 @@ function onMessage(evt) {
 			ws.send("${userEmail}");
 		}
 		
-		$('#notifyALink').click(function() {
+		$('#notifyALink').click(function notfifyView() {
 			var notifyList = "";
 			$.ajax({
 				url: "${pageContext.request.contextPath}/etc/notifyList.json",
@@ -47,7 +47,7 @@ function onMessage(evt) {
 
 							$('#notifyUl').empty();
 						
-							if(value.notifyCode === "NC" || value.notifyCode === "NCC" || value.notifyCode === "RC") {
+							if(value.notifyCode === "NC" || value.notifyCode === "NCC") {
 								notifyList+='<li><a href="${pageContext.request.contextPath}/note/noteDetail.htm?noteNum='+value.notifyTarget
 											+'" class="notification-item" data-target="#noteModal" data-toggle="modal" role="button" data-backdrop="static">';
 								notifyList+='<input type="hidden" class="notifyCode" value="'+value.notifyCode
@@ -61,14 +61,14 @@ function onMessage(evt) {
 								}
 								
 								if (value.notifyCode == 'NC') {
-									notifyList+='당신의 노트에 댓글이 달렸습니다.</a></li>';
-								} else if (value.notifyCode == 'NCC') {
-									notifyList+='당신의 댓글에 대댓글이 달렸습니다.</a></li>';
+									notifyList+=' <'+'<div class="notifyTitleWidth">'+value.notifyTitle+'</div>'+'> ';
+									notifyList+='노트에 댓글이 달렸습니다.</a></li>';
 								} else {
-									notifyList+='당신의 댓글이 블라인드 처리되었습니다.</a></li>';
+									notifyList+=' <'+'<div class="notifyTitleWidth">'+value.notifyTitle+'</div>'+'> ';
+									notifyList+='노트에 단 댓글에 대댓글이 달렸습니다.</a></li>';
 								}
 								
-							} else if (value.notifyCode == 'QA' || value.notifyCode == 'QC' || value.notifyCode == 'QCC') {
+							} else {
 								notifyList+='<li><a href="${pageContext.request.contextPath}/qna/selectDetailQna.htm?qnaNum='
 											+value.notifyTarget+'" class="notification-item">';
 								notifyList+='<input type="hidden" class="notifyCode" value="'+value.notifyCode
@@ -82,32 +82,22 @@ function onMessage(evt) {
 								}
 								
 								if (value.notifyCode == 'QA') {
-									notifyList+='당신의 질문에 답변이 달렸습니다.</a></li>';
+									notifyList+=' <'+'<div class="notifyTitleWidth">'+value.notifyTitle+'</div>'+'> ';
+									notifyList+='질문에 답변이 달렸습니다.</a></li>';
 								} else if (value.notifyCode == 'QC') {
-									notifyList+='당신의 질문에 댓글이 달렸습니다.</a></li>';
+									notifyList+=' <'+'<div class="notifyTitleWidth">'+value.notifyTitle+'</div>'+'> ';
+									notifyList+='질문에 댓글이 달렸습니다.</a></li>';
 								} else {
-									notifyList+='당신의 질문 댓글에 대댓글이 달렸습니다.</a></li>';
+									notifyList+=' <'+'<div class="notifyTitleWidth">'+value.notifyTitle+'</div>'+'> ';
+									notifyList+='질문에 단 댓글에 대댓글이 달렸습니다.</a></li>';
 								}
 								
-							} else {
-								
-								console.log(value.notifyCode);
-								notifyList+='<li>';
-								
-								if (value.readCheck == 1) {
-									notifyList+='<span class="dot bg-danger"></span>';
-								} else {
-									notifyList+='<span class="dot bg-success"></span>';
-								}
-								
-								notifyList+='당신의 노트 하나가 블라인드 처리되었습니다. 자세한 사항은 관리자에게 문의하세요<li>';
-							}
+							} 
 						
 						
 						})
 					
 					} else {
-						console.log("도달 여부 확인");
 						notifyList+='<li><a href="#" class="more">알림이 없습니다.</a></li>';
 					}
 					
@@ -119,7 +109,7 @@ function onMessage(evt) {
 							data: {'userEmail' : "${userEmail}",
 									'notifyCode' : $(this).children('.notifyCode').val(),
 									'notifyTarget' : $(this).children('.notifyTarget').val()},
-							success:function(data) {console.log("성공");}
+							success:function(data) {notfifyView();}
 						})
 					})
 				}

@@ -15,9 +15,16 @@
 	
 	<!-- 알림 리스트 가지고 오기 -->
 	<select id="noticeList" resultType="noticeVO">
-		select notifyCode, notifyTarget, readCheck
-		from notify
-		where userEmail = #{userEmail} 
+		select notifyCode, notifyTarget, readCheck, notifyTitle from 
+   			(select n.notifyCode, n.notifyTarget, n.readCheck,
+   					note.noteTitle notifyTitle, n.notifyDate
+			from notify n join note on (n.notifyTarget = note.noteNum)
+			where n.userEmail = #{userEmail} and n.notifyCode in ('NC', 'NCC')
+			union
+			select n.notifyCode, n.notifyTarget, n.readCheck,
+			q.qnaTitle notifyTitle, n.notifyDate
+			from notify n join qna q on (n.notifyTarget = q.qnaNum)
+			where n.userEmail = #{userEmail} and n.notifyCode in ('QA', 'QC', 'QCC')) notify
 		order by readCheck desc, notifyDate desc limit 0, 5
 	</select>
 	

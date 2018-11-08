@@ -831,6 +831,15 @@ img .user-photo{
 	width: 100%;
 }
 
+.notifyTitleWidth{
+	width:100px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+   	vertical-align: middle;
+   	text-align: center;
+}
+
 /* 크롤링 */
 .melonTitle{
 	color: #f56a6a;
