@@ -8,6 +8,8 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<fmt:setBundle var="apikeys" basename="META-INF.api.apikeys" />
 <!DOCTYPE>
 <html>
 <head>
@@ -25,7 +27,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/api/alert/sweetalert.css" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/api/sweetalert.min.js"></script>
 <!-- tinymce-->
-<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=yaps0ah95j72p1podkonpizywofdvarpwuuzjrfbjm1ysadp"></script>
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=<fmt:message bundle="${apikeys}" key="tinymce.apiKey"/>"></script>
 <script src="${pageContext.request.contextPath}/resources/js/api/textEditer.js"></script>
 <!-- datatable -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/api/jquery/dataTables.css">

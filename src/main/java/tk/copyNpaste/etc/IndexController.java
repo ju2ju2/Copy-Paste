@@ -33,6 +33,8 @@ public class IndexController {
 		NoteService noteService;
 		@Autowired
 		private LocaleResolver localeResolver;
+		@Autowired
+		NaverLogin naverLogin;
 
 		//인덱스-주제별 노트 상위목록
 		@RequestMapping("/index.htm")
@@ -76,7 +78,7 @@ public class IndexController {
 		public String login(Model model, HttpSession session) {
 			//return "login.jsp";
 			/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
-	        String naverAuthUrl = NaverLogin.getAuthorizationUrl(session);
+	        String naverAuthUrl = naverLogin.getAuthorizationUrl(session);
 	        model.addAttribute("naverAuthUrl", naverAuthUrl);
 			//return "login.jsp";
 			return "index.login";
@@ -87,7 +89,7 @@ public class IndexController {
 		public String signup(Model model, HttpSession session) {
 			//return "login.jsp";
 			/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
-	        String naverAuthUrl = NaverLogin.getAuthorizationUrl(session);
+	        String naverAuthUrl = naverLogin.getAuthorizationUrl(session);
 	        model.addAttribute("naverAuthUrl", naverAuthUrl);
 			return "index.signup";
 		}
