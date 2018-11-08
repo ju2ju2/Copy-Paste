@@ -42,6 +42,7 @@
 				<div class="form-group">
 					<textarea class="form-control textarea" rows="15" name="qnaContent"
 						id="qnacontent" placeholder="내용을 입력하세요"></textarea>
+					<input name="image" type="file" id="upload" multiple class="hidden" onchange="">
 				</div>
 			</div>
 			<div class="col-md-12">
@@ -64,7 +65,8 @@ $(document).ready(function() {
 				showCancelButton: false
 			})
 		}else{
-			$('#insertQnaform').submit(); 
+			ws.send("${qna.userEmail}");
+			$('#insertQnaform').submit();
 		}
 	});
 });

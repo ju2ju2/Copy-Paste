@@ -97,5 +97,12 @@ public class FolderController {
 	};
 
 	
+	// 폴더이름 중복 확인
+	@RequestMapping(value="/checkFolderName.json", method = RequestMethod.POST)
+	public @ResponseBody int checkFolderName(FolderVO folder, Principal principal) throws Exception {
+		folder.setUserEmail(principal.getName());
+		int result = folderService.checkFolderName(folder);
+		return result;
+	}
 	
 }

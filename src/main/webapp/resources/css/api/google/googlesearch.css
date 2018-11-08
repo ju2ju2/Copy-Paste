@@ -16,3 +16,31 @@
     text-decoration: none;
     bottom:6px;
 }
+
+/* 서치용 사이트 내 검색 자동완성 css */
+ #ui-id-1{
+	position: relative;
+	/* 	top: -1151px !important; */
+	/* left: 693px !important; */
+	list-style: none !important;
+	width: 917px  !important ; 
+	background-color: rgb(255, 255, 255);
+	display: none;
+	border : 1px solid #f56a6a;
+	border-radius: 0.375em;
+}
+#ui-id-1>li{
+	margin: 5px 0;
+	left :-20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+   
+}
+ #ui-id-1>li:hover{
+	color:#f56a6a;
+	
+}

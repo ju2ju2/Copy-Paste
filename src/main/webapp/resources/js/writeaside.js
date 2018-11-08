@@ -19,13 +19,14 @@ $.ajax({
        if(data != null) {
          $.each(data, function(key, value){
             $('#asideFolderList').empty();   
-            folderList += '<div class="row" class="accordion" alt="'+value.folderName.trim()+'"><div class="col-xs-10 pt"> <h5 class="accordion asideFolderName" id="asideFolderName">'+value.folderName+'</h5>'
+            folderList += '<div class="row" class="accordion" alt="'+value.folderName.trim()+'"><div class="col-xs-10 pt">'
+            folderList += '<span class="f-count" style="font-weight:700;">'+value.count+'</span>'
+            folderList += '<span class="f-name"><h5 class="accordion asideFolderName" id="writeAsideFolderName">'+value.folderName+'</h5></span>'
             folderList += '</div><div class="col-xs-2 panel-margin">' 
-            
             if(value.defaultFolder==1){
-            	folderList += '<i class="fas fa-bookmark icon-size"></i>'
+            	folderList += '<i class="fas fa-bookmark icon-size" style="margin-top:0px; margin-bottom:23px"></i>'
             }else{
-            	folderList += '<i class="far fa-bookmark icon-size"></i>'
+            	folderList += '<i class="far fa-bookmark icon-size" style="margin-top:0px; margin-bottom:23px"></i>'
             }
             folderList += '</div><div class="row"><div id="asideNoteList"></div></div></div>';
          

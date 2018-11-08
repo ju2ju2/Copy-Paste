@@ -255,7 +255,7 @@ window.onload = function() {
 				} else {
 					obj = {
 						name : word,
-						weight : 1
+						weight : 20
 					};
 					arr.push(obj);
 				}
@@ -280,13 +280,16 @@ window.onload = function() {
 			    },
 				series : [ {
 					type : 'wordcloud',
+					placementStrategy: 'random',
 					data : data,
-					name : '단어'
+					name : '단어',
+					turboThreshold : 1000
 				} ],
 				title : {
 					text : ""
 				}
 			});  
+
 		},
 		  error: function(){
 			  alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);

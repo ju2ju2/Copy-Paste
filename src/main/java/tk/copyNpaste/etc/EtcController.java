@@ -7,6 +7,7 @@
 
 package tk.copyNpaste.etc;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -160,9 +161,8 @@ public class EtcController {
 
 	// 신고 처리 하기
 	@RequestMapping("reportCheck.json")
-	public @ResponseBody int updateReport(int reportNum, String reportmemo, String checkCode,
-			String noteOrCommCode, int noteNum) throws Exception {
-		return etcService.updateReport(reportNum, reportmemo, checkCode, noteOrCommCode, noteNum);
+	public @ResponseBody int updateReport(ReportVO report) throws Exception {
+		return etcService.updateReport(report);
 	};
 
 	// 댓글알림

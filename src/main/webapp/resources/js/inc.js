@@ -8,12 +8,6 @@
 
 var contextUrl= "http://" + location.host + "/copyNpaste/";
 
-//모달 내용 초기화
-/*$('documnet').on('hidden.bs.modal', '.modal', function() {
-	$(this).removeData('bs.modal');
-});
-
-*/
 $(document).on('hidden.bs.modal', '.modal', function (e) {
 	  var modalData = $(this).data('bs.modal');
 	  if (modalData && modalData.options.remote) {
@@ -32,6 +26,9 @@ var prevText;
 
 // 드래그 저장
 $(document).mouseup(function(event){
+    //인풋태그제외
+    if (!$(event.target).is(":input")) {
+	
 	event.preventDefault(); 
 	event.stopPropagation(); 
 	
@@ -70,6 +67,9 @@ $(document).mouseup(function(event){
 		
 		return false;
 	 }	
+	 
+	 
+    }
  });
 
 //로딩

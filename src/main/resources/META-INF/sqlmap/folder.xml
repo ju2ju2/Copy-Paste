@@ -81,7 +81,16 @@
 		update folder set defaultFolder=0, candelete=0 where userEmail=#{userEmail} and folderName=#{beforefolderName};
 	</update>
 
-
+	<!-- 폴더명 중복 체크 -->
+    <select id="checkFolderName" parameterType="FolderVO" resultType="Integer">
+    	select count(folderName) from folder
+    		<where> 
+    			<if test='folderName!=null'>
+	    			folderName=#{folderName}
+    			</if>
+    			and userEmail=#{userEmail}
+    		</where>
+    </select>
 </mapper>
 
 

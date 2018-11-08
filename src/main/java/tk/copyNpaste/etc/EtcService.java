@@ -100,14 +100,15 @@ public class EtcService {
 
 	// 신고 처리 하기
 	@Transactional
-	public int updateReport(int reportNum, String reportmemo, String checkCode, String noteOrCommCode, int noteNum)
-			throws Exception {
-
+	public int updateReport(ReportVO report) throws Exception {
+			String checkCode= report.getCheckCode();
+			String noteOrCommCode= report.getNoteOrCommCode();
+			int noteNum= report.getNoteNum();
 		try {
 			EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
-			int reportInt = etcdao.updateReport(reportNum, reportmemo, checkCode);
+			int reportInt = etcdao.updateReport(report);
 			int noteOrCommInt = 0;
-			if (checkCode.equals("PS01")) {
+			if (checkCode.equals("PS01")) {//블라인드 처리 
 				if (noteOrCommCode.equals("노트")) {
 					noteOrCommInt = etcdao.updateReportNoteBlind(noteNum);
 				} else {
@@ -170,14 +171,21 @@ public class EtcService {
 		List<String> wordList = etcdao.wordchart();
 		String[] wordArrays = wordList.toArray(new String[wordList.size()]);
 		List<String> wordchart = new ArrayList<>();	
+
 		for(String s : wordArrays) {
 			Document document = Jsoup.parse(s);
 			String word = document.text();
 			String[] wordparsing = word.split(" ");
-			for(int i=0; i<wordparsing.length; i++) {
-				wordchart.add(wordparsing[i]);
-				
-			}
+			
+
+	            for(int i=0; i<wordparsing.length-1; i++) {
+	                for(int j=i+1; j<wordparsing.length; j++) {     
+	                    if(wordparsing[i].trim().equals(wordparsing[j].trim()) && 1<wordparsing[i].length() && wordparsing[i].length()<8) {
+	                    	wordchart.add(wordparsing[j]);
+		                    }
+		                }
+		            }  
+			
 		}
 		return wordchart;
 	}
