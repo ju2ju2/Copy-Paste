@@ -43,6 +43,7 @@ $(document).ready(function(){
 	var noteNum = ${noteNum}+0;
 	if (noteNum!=0){
 		$("#notedetail").click();
+		noteNum=0;
 	}
 })
 

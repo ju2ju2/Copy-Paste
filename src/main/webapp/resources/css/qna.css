@@ -111,3 +111,9 @@
 	height:45px !important;
 	margin-left: 15px;
 }
+
+/* tinymce 파일아이콘 */
+.mce-ico {
+    padding-top: 2px!important;
+    height: 18px !important;
+}
