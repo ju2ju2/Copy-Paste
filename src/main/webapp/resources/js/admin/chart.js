@@ -107,13 +107,15 @@ $(function() {
 						Highcharts.chart('chartDiv', {
 							chart: { type: 'column' },
 							title: { text: '유형별 가입 회원 수' },
-							xAxis: { categories: joinMemberxAxis },
-							yAxis : { title : false,allowDecimals: false },
+							xAxis: { /*categories: joinMemberxAxis */ categories: ['일반회원', '카카오회원', '네이버회원', '구글회원']},
+							yAxis : {title : false,allowDecimals: false },
 							colors: ['#f56a6a'],
 							legend: false,
 							series : [{
 								name : '가입한 회원 수',
 								data : joinMemberyAxis
+								
+																	
 							}]	
 						});
 					
