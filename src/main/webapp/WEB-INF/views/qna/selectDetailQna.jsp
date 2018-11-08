@@ -194,7 +194,7 @@
 								ㄴ
 								</c:if>
 								${qnaComm.userNick}
-							</strong> 
+								<input type="text" id="commUserEmail" value="${qnaComm.userEmail}">
 							${qnaComm.qnaCommDate}<br> 
 							<small class="pull-right text-muted"> 
 								<!-- 본인이거나 admin일때 삭제버튼 -->
@@ -331,6 +331,8 @@
 			    	commCommClickNum=0;
 			    	qnaCommNum="";
 			    	qnaCommPos="";
+			    	var commUserEmail = $('#commUserEmail').val();
+			    	ws.send(commUserEmail);
 			    	location.reload();
 			    },
 			    error:function(request,status,error){

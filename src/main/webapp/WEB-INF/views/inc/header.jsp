@@ -18,7 +18,7 @@ var ws = new WebSocket("ws://localhost:8090${pageContext.request.contextPath}/no
 
 ws.onopen = 	function() 		{	console.log("웹소켓 오픈");	}
 ws.onmessage = 	function(evt) 	{	console.log(evt); onMessage(evt.data);			}
-ws.onclose = 	function(evt) 	{ 	console.log("웹소켓 닫기");	}
+ws.onclose = 	function(evt) 	{}
 ws.onerror = 	function(evt) 	{	console.log("웹소켓 에러");	}
 	
 function onMessage(evt) {
@@ -30,7 +30,6 @@ function onMessage(evt) {
 		
 		if (ws.readyState !== 1) return;
 		else {
-			console.log("readyState은 1이다.");
 			ws.open;
 			ws.send("${userEmail}");
 		}
