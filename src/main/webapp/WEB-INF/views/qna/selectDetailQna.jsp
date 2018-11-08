@@ -183,10 +183,8 @@
 			</form>
 			<!-- QnA 댓글 -->
 			<div class="col-lg-12 col-sm-12 text-left">
-				<div class="qnaCommBox">
-					<!-- var>>itmes를 담을 변수, varStatus>>var의 상태를 담는 변수  -->
-					<c:forEach var="qnaComm" varStatus="status" items="${qnaCommList}">
-					<div class="row qnaCommContent">
+					<c:forEach var="qnaComm" items="${qnaCommList}">
+					<div class="row">
 						<div class="media-left qnaCommentBox col-sm-1">
 							<img class="user-photo" src="../resources/image/userPhoto/${qnaComm.userPhoto}">
 						</div>
@@ -229,21 +227,7 @@
 							</div>
 						</div>
 						</div>
-						<c:if test="${status.count%10==0}">
-							<div id="qnaCommBoxSizeBigBtn" class="qnaCommBoxSizeBigBtn row">
-                				<div class="moreBtn">
-               			  	 	 더보기▼
-                 			 	</div>
-                 			</div>
-						</c:if>
 					</c:forEach>
-					<div id="qnaCommBoxSizeUpBtn" class="qnaCommBoxSizeUpBtn row">
-                		<div class="leseBtn">
-               			   줄이기▲
-                 		</div>
-                 	</div>
-						
-					</div>
 
 				<!-- 로그인한 회원,어드민들 댓글창 -->
 				<se:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
@@ -262,14 +246,13 @@
 						<input type="text" id="userComment" disabled class="form-control input-sm chat-input" placeholder="로그인 후 이용해주세요" />
 					</div>
 				</se:authorize>
-				
 				</div>
 			</c:otherwise>
 		</c:choose>
 	</div>
 </section>
 <script>
-	$(document).ready(function(){
+	$(function() {
 		var commCommClickNum = 0;
 		var qnaCommNum;
 		var qnaCommPos;
@@ -401,43 +384,6 @@
 		$('.historyBtn').click(function(){
 			history.go(-1);
 		});
-		/*===== 댓글 확장 관련 =====*/
-		//댓글 갯수에 따른 CSS 수정
-		var qnaCommBoxHeight = 750;
-		if($('.qnaCommBox>.row').length>10){
-			 $('.qnaCommBox').css('overflow', 'hidden');  
-			 $('.qnaCommBox').css('margin-bottom', '20px');  
-			 $('.qnaCommBox').css('height', qnaCommBoxHeight+'px'); 
-			 $('.qnaCommBoxSizeUpBtn').css('display', 'none'); 
-			 
-		}else if($('.qnaCommBox>.row').length<=10){
-			$('.qnaCommBoxSizeUpBtn').css('display', 'none'); 
-		}
-		
-		//검색탭 확장 버튼 클릭시
-	    $('.moreBtn').click(
-	            function() {
-	            	if($(this).parent().nextAll('.qnaCommContent').length>10){
-	            		qnaCommBoxHeight=qnaCommBoxHeight+680;
-	            		$(this).parent().css('display', 'none');
-	            		$('.qnaCommBox').css('height', qnaCommBoxHeight+'px'); 
-	            	}else{
-	            		$(this).parent().css('display', 'none');
-	            		$('.qnaCommBox').css('height','');
-	            		$('.qnaCommBox').css('overflow',''); 
-	            		$('.qnaCommBoxSizeUpBtn').css('display','');
-	            	}
-	            });
-	    $('.leseBtn').click(
-	            function() {
-	            	qnaCommBoxHeight = 750;
-	            	$('.qnaCommBox').css('overflow', 'hidden');  
-	   				$('.qnaCommBox').css('margin-bottom', '20px');  
-	   				$('.qnaCommBox').css('height', qnaCommBoxHeight+'px'); 
-	   				$('.qnaCommBoxSizeUpBtn').css('display', 'none');
-	   				$('.qnaCommBoxSizeBigBtn').css('display', ''); 
-	            });
-	    /*===== 댓글 확장 관련 End =====*/
 		
 		
 	});

@@ -7,7 +7,6 @@
 
 
 var contextUrl= "http://" + location.host + "/copyNpaste/";
-
 $(document).on('hidden.bs.modal', '.modal', function (e) {
 	  var modalData = $(this).data('bs.modal');
 	  if (modalData && modalData.options.remote) {
