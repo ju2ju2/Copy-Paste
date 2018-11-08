@@ -14,8 +14,7 @@ public class EtcVO {
 	private String memberxAxis;
 	private int memberyAxis;
 	private String joinMemberxAxis;
-	private int JoinMemberyAxis;
-
+	private int joinMemberyAxis;
 	private String boundary;
 	
 	
@@ -61,10 +60,10 @@ public class EtcVO {
 		this.joinMemberxAxis = joinMemberxAxis;
 	}
 	public int getJoinMemberyAxis() {
-		return JoinMemberyAxis;
+		return joinMemberyAxis;
 	}
 	public void setJoinMemberyAxis(int joinMemberyAxis) {
-		JoinMemberyAxis = joinMemberyAxis;
-	}
-
+		this.joinMemberyAxis = joinMemberyAxis;
+	} 
+	
 }

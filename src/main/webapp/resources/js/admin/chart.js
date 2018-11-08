@@ -4,7 +4,7 @@ $(function() {
 	var memberxAxis = [];
 	var memberyAxis = [];
 	var joinMemberxAxis = [];
-	var JoinMemberyAxis = [];
+	var joinMemberyAxis = [];
 	
 	
 	function subject() {
@@ -100,7 +100,7 @@ $(function() {
 					$.each(responsedata, function(index, obj) {
 						console.log(obj);
 						joinMemberxAxis[index] = obj.joinMemberxAxis;
-					    JoinMemberyAxis[index] = obj.JoinMemberyAxis;
+					    joinMemberyAxis[index] = obj.joinMemberyAxis;
 					})
 					
 					
@@ -108,12 +108,12 @@ $(function() {
 							chart: { type: 'column' },
 							title: { text: '유형별 가입 회원 수' },
 							xAxis: { categories: joinMemberxAxis },
-							yAxis : { title : false, allowDecimals: false },
+							yAxis : { title : false,allowDecimals: false },
 							colors: ['#f56a6a'],
 							legend: false,
 							series : [{
 								name : '가입한 회원 수',
-								data : JoinMemberyAxis
+								data : joinMemberyAxis
 							}]	
 						});
 					

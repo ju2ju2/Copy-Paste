@@ -62,7 +62,7 @@
 	
 	<!-- 유형별 회원 가입 수를 가지고 온다 -->
 	<select id="stateJoinMember" resultType="EtcVO">
-		select userSocialStatus JoinMemberxAxis, count(userSocialStatus) JoinMemberyAxis from users group by userSocialStatus;
+		select userSocialStatus joinMemberxAxis, count(userSocialStatus) joinMemberyAxis from users group by userSocialStatus;
 	
 	</select>
 
