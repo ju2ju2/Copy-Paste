@@ -12,6 +12,7 @@
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"	
+	xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:tx="http://www.springframework.org/schema/tx"	 
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -19,7 +20,9 @@
 		http://www.springframework.org/schema/tx
     	http://www.springframework.org/schema/tx/spring-tx.xsd
     	http://www.springframework.org/schema/websocket
-		http://www.springframework.org/schema/websocket/spring-websocket-4.1.xsd"  >
+		http://www.springframework.org/schema/websocket/spring-websocket-4.1.xsd
+		http://www.springframework.org/schema/util 
+        http://www.springframework.org/schema/util/spring-util.xsd"  >
 	
 	<context:component-scan base-package="tk.copyNpaste" />
 	<context:annotation-config /> 
@@ -36,8 +39,16 @@
 
 	<!-- 리소스 설정 -->
 	<resources mapping="/resources/**" location="/resources/" />
-	
-
+<!-- 	<util:properties id="apikeys" location="classpath:META-INF/api/apikeys.properties"/>
+ -->
+<!--     <beans:bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <beans:property name="location" value="classpath:META-INF/api/apikeys.properties"/>
+        <beans:property name="fileEncoding" value="UTF-8" />
+    </beans:bean>
+ -->
+<!--  	<context:property-placeholder location="classpath:META-INF/api/apikeys.properties"/> -->
+		<util:properties id="apikeys" location="classpath:META-INF/api/apikeys.properties"/>
+ 
 	<!--  Tiles리졸버 설정하기 -->
 	<beans:bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
 		 <beans:property name="definitions">  

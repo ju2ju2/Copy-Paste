@@ -88,11 +88,6 @@
 	margin-top: 30px !important;
 }
 
-/* .comment-box .media-left {
-	 padding-right: 10px; 
-	 width: 500px;
-} */
-
 .qnaCommentBox{
 	padding: 4px;
 	padding-top: 12px;
@@ -104,10 +99,39 @@
 	border-radius: 50%;
 	background-size: contain;
 }
-
 .user-photo{
 	display: inline-block;
 	width:45px !important;
 	height:45px !important;
 	margin-left: 15px;
+}
+.qnaCommBox>.row{
+	margin:8px 0;
+}
+
+/* 더보기,줄이기 버튼 고정 */
+.moreBtn, .leseBtn {
+	display:inline-block;
+	text-align:center;
+	cursor:pointer;
+	color: #333;
+	padding: 3px !important;
+	margin: 20px 0;
+}
+.moreBtn:hover, .leseBtn:hover{
+	color: #f56a6a;
+}
+.qnaCommBox>#qnaCommBoxSizeBigBtn,
+.qnaCommBox>#qnaCommBoxSizeUpBtn{
+	text-align:center;
+}
+.qnaCommBox>#qnaCommBoxSizeBigBtn>.moreBtn,
+.qnaCommBox>#qnaCommBoxSizeUpBtn>.leseBtn{
+	margin: 10px auto;
+    border-radius: 10px;
+
+/* tinymce 파일아이콘 */
+.mce-ico {
+    padding-top: 2px!important;
+    height: 18px !important;
 }

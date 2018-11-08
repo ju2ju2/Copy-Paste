@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,6 +48,8 @@ public class MemberController {
 	 MemberMailService mailer;
 	 @Autowired
 	 private BCryptPasswordEncoder bCryptPasswordEncoder;
+	 @Autowired
+	 NaverLogin naverLogin;
 	 
 	//회원가입 인증메일
 	 @RequestMapping(value="singupEmail.do", method = RequestMethod.POST)
@@ -118,10 +121,10 @@ public class MemberController {
 	//네이버 회원가입 1/2 (회원정보 얻기) //네이버 로그인 성공시 callback호출 메소드
     @RequestMapping(value = "naverOauth.do", method= RequestMethod.GET)
     public String naverSignup(Model model, @RequestParam String code, @RequestParam String state, HttpSession session) throws Exception {
-        OAuth2AccessToken oauthToken= NaverLogin.getAccessToken(session, code, state);
+        OAuth2AccessToken oauthToken= naverLogin.getAccessToken(session, code, state);
         //로그인 사용자 정보를 읽어온다.
-        String profile = NaverLogin.getUserProfile(oauthToken);
-    	MemberVO member = NaverLogin.changeData(profile);
+        String profile = naverLogin.getUserProfile(oauthToken);
+    	MemberVO member = naverLogin.changeData(profile);
         model.addAttribute("memberVo", member);
         /* 네이버 로그인 성공 페이지 View 호출 */
         return "index.signupSocial";

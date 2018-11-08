@@ -121,5 +121,10 @@ public class FolderService {
 	}
 
 
-	
+	//폴더명 중복 검사
+	public int checkFolderName(FolderVO folder) throws Exception{
+		FolderMapper folderdao= sqlsession.getMapper(FolderMapper.class);
+		int result = folderdao.checkFolderName(folder);
+		return result;
+	}
 }

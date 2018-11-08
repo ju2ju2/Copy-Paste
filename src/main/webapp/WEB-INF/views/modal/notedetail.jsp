@@ -419,7 +419,7 @@ $(document).ready(function(){
   		    success : function(data){
   		    	$('#userComment').val("");
   				makeNoteCommList(${note.noteNum});
-  				
+  				ws.send("${note.userEmail}");
   		    }
   		})}
   		    
@@ -468,7 +468,8 @@ $(document).ready(function(){
 			          			noteCommList += '					 <a id="noteCommCommBtn"> <i class="fas fa-comment noteCommCommBtn notewrite">';
 				          		noteCommList += '						<input id="noteCommNum" type="hidden" value="'+value.noteCommNum+'" />';
 				          		noteCommList += '						<input id="noteCommPos" type="hidden" value="'+value.noteCommPos+'" />';							
-								noteCommList += '					</i></a>&ensp;&ensp;';
+				          		noteCommList += '						<input id="commUserEmail" type="hidden" value="'+value.userEmail+'"/>';
+				          		noteCommList += '					</i></a>&ensp;&ensp;';
 				          	}  
 			          		
 			          		/* 타인의 글일때 신고 버튼 생성*/ 
@@ -483,15 +484,24 @@ $(document).ready(function(){
 						
 							noteCommList += '      		</small>';
 							noteCommList += '   		<!-- 댓글일때 본인이거나 admin일때 대댓글버튼 -->';
-							noteCommList += '    		<div class="noteCommContent">';
+							/* 댓글내용 출력 */
+							noteCommList += '    		<div class="noteCommContent';
+							
+							/* 신고된 노트 댓글일때 표시 addclass...*/
+						     if('${param.noteCommNum}'==value.noteCommNum){
+									console.log(${param.noteCommNum})
+									noteCommList += ' reported ">';
+							 }else{noteCommList += ' ">';}
+							
 							if(value.commDept==1){
-								noteCommList += '				&ensp;&ensp;';
+											noteCommList += '&ensp;&ensp;';
 				          	}  
 							if(value.noteCommBlind==1){
-								noteCommList += '			삭제되거나 블라인드 처리된 댓글입니다. </div>';
+											noteCommList += '삭제되거나 블라인드 처리된 댓글입니다.</div>';
 				          	} else{
-								noteCommList += '			'+value.commContent+' </div>';
+											noteCommList += ''+value.commContent+'</div>';
 				          	}
+							
 							noteCommList += '		</div>';
 							noteCommList += '	</div>';
 	
@@ -509,6 +519,7 @@ $(document).ready(function(){
 							var commCommClickNum = 0;
 							var noteCommNum;
 							var noteCommPos;
+							var commUserEmail;
 							var commWriter;
 							var commContent;
 							
@@ -536,8 +547,8 @@ $(document).ready(function(){
 								    	commCommClickNum=0;
 								    	noteCommNum="";
 								    	noteCommPos="";
-								    	makeNoteCommList(${note.noteNum})
-								    	
+								    	makeNoteCommList(${note.noteNum});
+								    	ws.send(commUserEmail);
 								    },
 								    error:function(request,status,error){
 							     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
@@ -552,6 +563,7 @@ $(document).ready(function(){
 								if(commCommClickNum==0){
 									noteCommNum=$(this).find('#noteCommNum').val();
 									noteCommPos=$(this).find('#noteCommPos').val();
+									commUserEmail=$(this).find('#commUserEmail').val();
 									commCommClickNum=1;
 									$(this).parents('.comment').append(commBoxHtml);
 									/* 대댓글 작성 버튼 클릭시 */
@@ -566,6 +578,7 @@ $(document).ready(function(){
 									$('.noteCommCommBox').remove();
 									noteCommNum=$(this).find('#noteCommNum').val();
 									noteCommPos=$(this).find('#noteCommPos').val();
+									commUserEmail=$(this).find('#commUserEmail').val();
 									$(this).parents('.comment').append(commBoxHtml);
 									/* 대댓글 작성 버튼 클릭시 */
 									$('#commCommentBtn').click(function(){

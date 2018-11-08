@@ -159,20 +159,33 @@ public class EtcService {
 		return etcdao.stateNoteSubject();
 	}
 	
+	// 통계 유형별 회원가입
+		public List<EtcVO> stateJoinMember() throws Exception {
+			EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
+			return etcdao.stateJoinMember();
+		}
+	
 	// 워드 클라우드
 	public List<String> wordchart() throws Exception{
 		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
 		List<String> wordList = etcdao.wordchart();
 		String[] wordArrays = wordList.toArray(new String[wordList.size()]);
 		List<String> wordchart = new ArrayList<>();	
+
 		for(String s : wordArrays) {
 			Document document = Jsoup.parse(s);
 			String word = document.text();
 			String[] wordparsing = word.split(" ");
-			for(int i=0; i<wordparsing.length; i++) {
-				wordchart.add(wordparsing[i]);
-				
-			}
+			
+
+	            for(int i=0; i<wordparsing.length-1; i++) {
+	                for(int j=i+1; j<wordparsing.length; j++) {     
+	                    if(wordparsing[i].trim().equals(wordparsing[j].trim()) && 1<wordparsing[i].length() && wordparsing[i].length()<8) {
+	                    	wordchart.add(wordparsing[j]);
+		                    }
+		                }
+		            }  
+			
 		}
 		return wordchart;
 	}

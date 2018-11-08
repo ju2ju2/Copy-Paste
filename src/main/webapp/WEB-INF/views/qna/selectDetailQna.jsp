@@ -8,6 +8,10 @@
 @Date : 2018.10.09
 @Author : 임지현
 @Desc : Q&A 게시판 상세보기
+
+@Date : 2018.11.05
+@Author : 고은아
+@Desc : Q&A 댓글 알림 구현
 --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -36,7 +40,8 @@
 					</div>
 					<div class="col-md-12 qnaDetail">
 						<div class="form-group" align="right">
-							<strong>${qna.userNick}</strong>&nbsp;&nbsp;${qna.qnaDate}
+							<strong>${qna.userNick}</strong>
+							&nbsp;&nbsp;${qna.qnaDate}
 						</div>
 					</div>
 					<div class="col-md-12 qnaContent">
@@ -49,7 +54,7 @@
 						<c:choose>
 							<c:when test="${role=='[ROLE_ADMIN]'}">
 								<a href="updateQna.htm?qnaNum=${qna.qnaNum}&qnaDept=1" ><i class="fas fa-edit"></i></a>
-								<a href="insertQnaboard.htm?qnaNum=${qna.qnaNum}&qnaDept=1" class="qnaReply"><i class="fas fa-reply"></i></a>&nbsp;&nbsp;
+								<a href="insertQnaboard.htm?qnaNum=${qna.qnaNum}&userEmail=${qna.userEmail}&qnaDept=1" class="qnaReply"><i class="fas fa-reply"></i></a>&nbsp;&nbsp;
 								<a href="deleteQna.htm?qnaNum=${qna.qnaNum}" class="qnaDel"><i class="fas fa-trash"></i></a>
 							</c:when>
 							<c:when test="${qna.userEmail==loginuser}">
@@ -165,7 +170,7 @@
 						<c:choose>
 							<c:when test="${role=='[ROLE_ADMIN]'}">
 								<a href="updateQna.htm?qnaNum=${qna.qnaNum}&qnaDept=1" ><i class="fas fa-edit"></i></a>
-								<a href="insertQnaboard.htm?qnaNum=${qna.qnaNum}&qnaDept=1" class="qnaReply"><i class="fas fa-reply"></i></a>&nbsp;&nbsp;
+								<a href="insertQnaboard.htm?qnaNum=${qna.qnaNum}&userEmail=${qna.userEmail}&qnaDept=1" class="qnaReply"><i class="fas fa-reply"></i></a>&nbsp;&nbsp;
 								<a href="deleteQna.htm?qnaNum=${qna.qnaNum}" class="qnaDel"><i class="fas fa-trash"></i></a>
 							</c:when>
 							<c:when test="${qna.userEmail==loginuser}">
@@ -178,8 +183,10 @@
 			</form>
 			<!-- QnA 댓글 -->
 			<div class="col-lg-12 col-sm-12 text-left">
-					<c:forEach var="qnaComm" items="${qnaCommList}">
-					<div class="row">
+				<div class="qnaCommBox">
+					<!-- var>>itmes를 담을 변수, varStatus>>var의 상태를 담는 변수  -->
+					<c:forEach var="qnaComm" varStatus="status" items="${qnaCommList}">
+					<div class="row qnaCommContent">
 						<div class="media-left qnaCommentBox col-sm-1">
 							<img class="user-photo" src="../resources/image/userPhoto/${qnaComm.userPhoto}">
 						</div>
@@ -189,7 +196,7 @@
 								ㄴ
 								</c:if>
 								${qnaComm.userNick}
-							</strong> 
+								<input type="hidden" id="commUserEmail" value="${qnaComm.userEmail}">
 							${qnaComm.qnaCommDate}<br> 
 							<small class="pull-right text-muted"> 
 								<!-- 본인이거나 admin일때 삭제버튼 -->
@@ -222,7 +229,21 @@
 							</div>
 						</div>
 						</div>
+						<c:if test="${status.count%10==0}">
+							<div id="qnaCommBoxSizeBigBtn" class="qnaCommBoxSizeBigBtn row">
+                				<div class="moreBtn">
+               			  	 	 더보기▼
+                 			 	</div>
+                 			</div>
+						</c:if>
 					</c:forEach>
+					<div id="qnaCommBoxSizeUpBtn" class="qnaCommBoxSizeUpBtn row">
+                		<div class="leseBtn">
+               			   줄이기▲
+                 		</div>
+                 	</div>
+						
+					</div>
 
 				<!-- 로그인한 회원,어드민들 댓글창 -->
 				<se:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
@@ -241,13 +262,14 @@
 						<input type="text" id="userComment" disabled class="form-control input-sm chat-input" placeholder="로그인 후 이용해주세요" />
 					</div>
 				</se:authorize>
+				
 				</div>
 			</c:otherwise>
 		</c:choose>
 	</div>
 </section>
 <script>
-	$(function() {
+	$(document).ready(function(){
 		var commCommClickNum = 0;
 		var qnaCommNum;
 		var qnaCommPos;
@@ -272,12 +294,14 @@
 				    	"qnaNum":${qna.qnaNum}
 				    },
 				    success : function(data){
-				    	location.reload();
+						ws.send("${qna.userEmail}");
+						location.reload();
 				    },
 				    error:function(request,status,error){
 			     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 			     	  }
 				});	
+
 			}	
 		});
 		/* 대댓글아이콘 클릭시 */
@@ -324,6 +348,8 @@
 			    	commCommClickNum=0;
 			    	qnaCommNum="";
 			    	qnaCommPos="";
+			    	var commUserEmail = $('#commUserEmail').val();
+			    	ws.send(commUserEmail);
 			    	location.reload();
 			    },
 			    error:function(request,status,error){
@@ -375,6 +401,43 @@
 		$('.historyBtn').click(function(){
 			history.go(-1);
 		});
+		/*===== 댓글 확장 관련 =====*/
+		//댓글 갯수에 따른 CSS 수정
+		var qnaCommBoxHeight = 750;
+		if($('.qnaCommBox>.row').length>10){
+			 $('.qnaCommBox').css('overflow', 'hidden');  
+			 $('.qnaCommBox').css('margin-bottom', '20px');  
+			 $('.qnaCommBox').css('height', qnaCommBoxHeight+'px'); 
+			 $('.qnaCommBoxSizeUpBtn').css('display', 'none'); 
+			 
+		}else if($('.qnaCommBox>.row').length<=10){
+			$('.qnaCommBoxSizeUpBtn').css('display', 'none'); 
+		}
+		
+		//검색탭 확장 버튼 클릭시
+	    $('.moreBtn').click(
+	            function() {
+	            	if($(this).parent().nextAll('.qnaCommContent').length>10){
+	            		qnaCommBoxHeight=qnaCommBoxHeight+680;
+	            		$(this).parent().css('display', 'none');
+	            		$('.qnaCommBox').css('height', qnaCommBoxHeight+'px'); 
+	            	}else{
+	            		$(this).parent().css('display', 'none');
+	            		$('.qnaCommBox').css('height','');
+	            		$('.qnaCommBox').css('overflow',''); 
+	            		$('.qnaCommBoxSizeUpBtn').css('display','');
+	            	}
+	            });
+	    $('.leseBtn').click(
+	            function() {
+	            	qnaCommBoxHeight = 750;
+	            	$('.qnaCommBox').css('overflow', 'hidden');  
+	   				$('.qnaCommBox').css('margin-bottom', '20px');  
+	   				$('.qnaCommBox').css('height', qnaCommBoxHeight+'px'); 
+	   				$('.qnaCommBoxSizeUpBtn').css('display', 'none');
+	   				$('.qnaCommBoxSizeBigBtn').css('display', ''); 
+	            });
+	    /*===== 댓글 확장 관련 End =====*/
 		
 		
 	});

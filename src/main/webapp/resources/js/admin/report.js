@@ -1,7 +1,7 @@
 $(function() {
 	$('#table_id').DataTable({"order": false});
 	
-	$('.reportViewBtn').click(function() {
+/*	$('.reportViewBtn').click(function() {
 		if ($(this).parent().parent().children().eq(2).html().trim() == '댓글') {
 			$.ajax({
 				url : '../etc/hasReportComm.json',
@@ -12,7 +12,7 @@ $(function() {
 				}
 			})
 		}
-	});
+	});*/
 	
 	$('.reportBtn').click(function() {
 		$('#reportNum').val( $(this).parent().parent().children().first().html().trim() );

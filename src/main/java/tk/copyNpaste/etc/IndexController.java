@@ -41,6 +41,8 @@ public class IndexController {
 		private GoogleConnectionFactory googleConnectionFactory;
 		@Autowired
 		private OAuth2Parameters googleOAuth2Parameters;
+		@Autowired
+		NaverLogin naverLogin;
 		
 		//인덱스-주제별 노트 상위목록
 		@RequestMapping("/index.htm")
@@ -82,9 +84,15 @@ public class IndexController {
 		//로그인 페이지
 		@RequestMapping(value ="/login.htm")
 		public String login(Model model, HttpSession session) {
-			//return "login.jsp";
+
+			/* 구글아이디로 인증 URL을 생성하기 위하여 dispatcher-servlet.xml 설정해준 
+			 * googleConnectionFactory클래스의 getOAuthOperations메소드 호출 */
+			OAuth2Operations oauthOperations = googleConnectionFactory.getOAuthOperations();
+			String googleAuthUrl = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
+			model.addAttribute("googleAuthUrl",googleAuthUrl);
+			
 			/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
-	        String naverAuthUrl = NaverLogin.getAuthorizationUrl(session);
+	        String naverAuthUrl = naverLogin.getAuthorizationUrl(session);
 	        model.addAttribute("naverAuthUrl", naverAuthUrl);
 			//return "login.jsp";
 			return "index.login";
@@ -100,10 +108,8 @@ public class IndexController {
 			String googleAuthUrl = oauthOperations.buildAuthorizeUrl(GrantType.AUTHORIZATION_CODE, googleOAuth2Parameters);
 			model.addAttribute("googleAuthUrl",googleAuthUrl);
 			
-			
-			
 			/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
-	        String naverAuthUrl = NaverLogin.getAuthorizationUrl(session);
+	        String naverAuthUrl = naverLogin.getAuthorizationUrl(session);
 	        model.addAttribute("naverAuthUrl", naverAuthUrl);
 			return "index.signup"; //return "signup.jsp";
 		}

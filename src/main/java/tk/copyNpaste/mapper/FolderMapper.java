@@ -45,7 +45,8 @@ public interface FolderMapper {
 	public int insertFolderUserScrap(String userEmail)
 			throws ClassNotFoundException, SQLException;
 
-
+	//폴더 이름 중복 확인
+	public int checkFolderName(FolderVO folder) throws Exception;
 
 
 
