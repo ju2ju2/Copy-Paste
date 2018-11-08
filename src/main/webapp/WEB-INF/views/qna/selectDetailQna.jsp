@@ -65,49 +65,69 @@
 							</div>
 						</form>
 						<!-- QnA 댓글 -->
-						<div class="col-lg-12 col-sm-12 text-left">
-							<div class="commentBox">
-								<c:forEach var="qnaComm" items="${qnaCommList}">	
-									<div class="comment">
-										<strong class="pull-left primary-font"> 
-											<c:if test="${qnaComm.qnaCommDept==1}">
-												ㄴ
-											</c:if>
-											${qnaComm.userNick}
-										</strong> 
-										${qnaComm.qnaCommDate}<br/> 
-										<small class="pull-right text-muted"> 
+						<!-- QnA 댓글 -->
+				<div class="col-lg-12 col-sm-12 text-left">
+					<div class="qnaCommBox">
+						<c:forEach var="qnaComm"  varStatus="status" items="${qnaCommList}">			
+							<div class="row qnaCommContent">
+								<div class="media-left qnaCommentBox col-sm-1">
+									<img class="user-photo" src="../resources/image/userPhoto/${qnaComm.userPhoto}">
+								</div>
+								<div class="comment col-sm-11">
+									<strong class="pull-left primary-font"> 
+										<c:if test="${qnaComm.qnaCommDept==1}">
+											ㄴ
+										</c:if>
+										${qnaComm.userNick}
+										<input type="hidden" id="commUserEmail" value="${qnaComm.userEmail}">
+									</strong>
+									${qnaComm.qnaCommDate}<br> 
+									<small class="pull-right text-muted"> 
 										<!-- 본인이거나 admin일때 삭제버튼 -->
-											<c:if test="${role=='[ROLE_ADMIN]' or qnaComm.userEmail==loginuser}">
-												<i class="fas fa-trash qnaCommTrashBtn"> 
+										<c:if test="${role=='[ROLE_ADMIN]' or qnaComm.userEmail==loginuser}">
+											<i class="fas fa-trash qnaCommTrashBtn"> 
+												<input id="qnaCommNum" type="hidden" value="${qnaComm.qnaCommNum}" />
+											</i>
+										</c:if> 
+										<!-- 댓글일때 본인이거나 admin일때 대댓글버튼 --> 
+										<c:choose>
+											<c:when test="${qnaComm.qnaCommDept == 0 and qna.userEmail==loginuser}">
+												<i class="fas fa-comment qnaCommCommBtn"> 
 													<input id="qnaCommNum" type="hidden" value="${qnaComm.qnaCommNum}" />
+													<input id="qnaCommPos" type="hidden" value="${qnaComm.qnaCommPos}" />
 												</i>
-											</c:if> 
-											<!-- 댓글일때 본인이거나 admin일때 대댓글버튼 --> 
-											<c:choose>
-												<c:when test="${qnaComm.qnaCommDept == 0 and qna.userEmail==loginuser}">
-													<i class="fas fa-comment qnaCommCommBtn"> 
-														<input id="qnaCommNum" type="hidden" value="${qnaComm.qnaCommNum}" />
-														<input id="qnaCommPos" type="hidden" value="${qnaComm.qnaCommPos}" />
-													</i>
-												</c:when>
-												<c:when test="${qnaComm.qnaCommDept == 0 and role=='[ROLE_ADMIN]'}">
-													<i class="fas fa-comment qnaCommCommBtn"> 
-														<input id="qnaCommNum" type="hidden" value="${qnaComm.qnaCommNum}" />
-														<input id="qnaCommPos" type="hidden" value="${qnaComm.qnaCommPos}" />
-													</i>
-												</c:when>
-											</c:choose>
-										</small>
-										<div class="qnaCommContent">
-											<c:if test="${qnaComm.qnaCommDept==1}">
-												&ensp;&ensp;
-											</c:if>
-											${qnaComm.qnaCommContent}
-										</div>
+											</c:when>
+											<c:when test="${qnaComm.qnaCommDept == 0 and role=='[ROLE_ADMIN]'}">
+												<i class="fas fa-comment qnaCommCommBtn"> 
+													<input id="qnaCommNum" type="hidden" value="${qnaComm.qnaCommNum}" />
+													<input id="qnaCommPos" type="hidden" value="${qnaComm.qnaCommPos}" />
+												</i>
+											</c:when>
+										</c:choose>
+									</small>
+									<div class="qnaCommContent">
+										<c:if test="${qnaComm.qnaCommDept==1}">
+											&ensp;&ensp;
+										</c:if>
+										${qnaComm.qnaCommContent}
 									</div>
-								</c:forEach>
+								</div>
 							</div>
+						     <c:if test="${status.count%10==0}">
+                          		<div id="qnaCommBoxSizeBigBtn" class="qnaCommBoxSizeBigBtn row">
+                               		<div class="moreBtn">
+                                     	더보기▼
+                               		</div>
+                           		</div>
+                        	</c:if>
+                    	</c:forEach>
+						<div id="qnaCommBoxSizeUpBtn" class="qnaCommBoxSizeUpBtn row">
+                        	<div class="leseBtn">
+                              줄이기▲
+                         	</div>
+                    	</div>
+					</div>
+				</div>
 							<!-- 로그인한 회원,어드민들 댓글창 -->
 							<se:authorize access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')">
 								<div class="qnaComm-inputBox input-group">
@@ -182,7 +202,7 @@
 				<div class="col-lg-12 col-sm-12 text-left">
 					<div class="qnaCommBox">
 						<c:forEach var="qnaComm"  varStatus="status" items="${qnaCommList}">			
-							<div class="row">
+							<div class="row qnaCommContent">
 								<div class="media-left qnaCommentBox col-sm-1">
 									<img class="user-photo" src="../resources/image/userPhoto/${qnaComm.userPhoto}">
 								</div>
@@ -321,13 +341,13 @@
 		/* 대댓글 작성 버튼 클릭시 */
 		$(document).on("click", "#commCommbtn", function(){
 			if($('#userCommComm').val()==""){
-			/* 	swal({  title: "내용을 입력해주세요.",
+			 	swal({  title: "내용을 입력해주세요.",
 					text: "",
 					type: "warning",
 					confirmButtonClass: "btn-danger btn-sm",
 					confirmButtonText: "OK",
 					showCancelButton: false
-				}) */
+				}) 
 			}else{
 			$.ajax({
 				url : "<%=request.getContextPath()%>/qna/insertQnaCommComm.json",
@@ -412,10 +432,12 @@
         $('.moreBtn').click(
                 function() {
                     if($(this).parent().nextAll('.qnaCommContent').length>10){
-                        qnaCommBoxHeight=qnaCommBoxHeight+680;
+                    	console.log(qnaCommBoxHeight);
+                    	qnaCommBoxHeight=qnaCommBoxHeight+680;
+                    	console.log(qnaCommBoxHeight);
                         $(this).parent().css('display', 'none');
                         $('.qnaCommBox').css('height', qnaCommBoxHeight+'px'); 
-                    }else{
+                    }else if($(this).parent().nextAll('.qnaCommContent').length<=10){
                         $(this).parent().css('display', 'none');
                         $('.qnaCommBox').css('height','');
                         $('.qnaCommBox').css('overflow',''); 
