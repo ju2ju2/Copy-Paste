@@ -151,7 +151,9 @@
 									data-toggle="modal" data-target="#memoModal">설정</button>
 						</td>
 						<td>
-							<c:if test="${reportVo.reportmemo != null}"></c:if>
+							<c:if test="${reportVo.reportmemo != null}">
+								${reportVo.reportmemo}
+							</c:if>
 						</td>
 					</tr>
 				</c:forEach>
