@@ -27,12 +27,12 @@
     <c:forEach var="memberVo" items="${memberVo}">
 		<c:if test="${memberVo.userNick != 'admin'}">
 		    <tr>
-		    	<td>${memberVo.userEmail}</td>
-           	 	<td>${memberVo.userNick}</td>
+		    	<td>&ensp;${memberVo.userEmail}</td>
+           	 	<td>&ensp;${memberVo.userNick}</td>
          	   	<td>
          	   		<c:choose>
             			<c:when test="${memberVo.userEnabled  == 1}">
-            				<button class="btn btn-danger btn-xs changeMemberBtn" onclick="deleteMember(this)">강제탈퇴</button>
+            				&ensp;<button class="btn btn-sm btn-danger changeMemberBtn" onclick="deleteMember(this)">강제탈퇴</button>
             			</c:when>
             			<c:otherwise>탈퇴한 회원입니다.</c:otherwise>
             		</c:choose>

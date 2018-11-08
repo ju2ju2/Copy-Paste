@@ -70,7 +70,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" id="visionBtn">맞춤법 검사</button>
+					<button type="button" class="btn btn-danger" id="visionBtn">문자 추출</button>
 				</div>
 			</div>
 		</form>
