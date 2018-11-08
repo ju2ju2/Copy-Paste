@@ -59,6 +59,12 @@
 		group by
 		date_format(userDate, '%Y-%m')
 	</select>
+	
+	<!-- 유형별 회원 가입 수를 가지고 온다 -->
+	<select id="stateJoinMember" resultType="EtcVO">
+		select userSocialStatus JoinMemberxAxis, count(userSocialStatus) JoinMemberyAxis from users group by userSocialStatus;
+	
+	</select>
 
 	<!-- 가장 많이 쓰인 단어수를 가지고 온다 -->
 	<select id="wordchart" resultType="String">

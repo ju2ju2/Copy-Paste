@@ -196,6 +196,12 @@ public class EtcController {
 	public @ResponseBody List<EtcVO> stateNoteSubject() throws Exception {
 		return etcService.stateNoteSubject();
 	};
+	
+	// 통계 유형별 회원가입 
+		@RequestMapping("stateJoinMember.json")
+		public @ResponseBody List<EtcVO> stateJoinMember() throws Exception {
+			return etcService.stateJoinMember();
+		};
 
 	// 많이 사용된 단어 가져오기
 	@RequestMapping("wordchart.json")

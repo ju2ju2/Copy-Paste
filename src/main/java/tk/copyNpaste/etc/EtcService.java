@@ -158,6 +158,12 @@ public class EtcService {
 		return etcdao.stateNoteSubject();
 	}
 	
+	// 통계 유형별 회원가입
+		public List<EtcVO> stateJoinMember() throws Exception {
+			EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
+			return etcdao.stateJoinMember();
+		}
+	
 	// 워드 클라우드
 	public List<String> wordchart() throws Exception{
 		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);

@@ -85,4 +85,7 @@ public interface EtcMapper {
 	// 사이트 내 검색 검색키워드 
 	public List<NoteVO> collectSearchKeywords(String subjectName) throws Exception;
 	
+	//통계 유형별 회원가입
+	public List<EtcVO> stateJoinMember() throws Exception;
+	
 }

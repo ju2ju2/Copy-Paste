@@ -13,7 +13,16 @@ public class EtcVO {
 	private int subjectyAxis;
 	private String memberxAxis;
 	private int memberyAxis;
+	private String joinMemberxAxis;
+	private int JoinMemberyAxis;
+
 	private String boundary;
+	
+	
+	
+	
+	
+	
 	
 	public String getBoundary() {
 		return boundary;
@@ -45,7 +54,17 @@ public class EtcVO {
 	public void setMemberyAxis(int memberyAxis) {
 		this.memberyAxis = memberyAxis;
 	}
-	
-	
-	
+	public String getJoinMemberxAxis() {
+		return joinMemberxAxis;
+	}
+	public void setJoinMemberxAxis(String joinMemberxAxis) {
+		this.joinMemberxAxis = joinMemberxAxis;
+	}
+	public int getJoinMemberyAxis() {
+		return JoinMemberyAxis;
+	}
+	public void setJoinMemberyAxis(int joinMemberyAxis) {
+		JoinMemberyAxis = joinMemberyAxis;
+	}
+
 }
