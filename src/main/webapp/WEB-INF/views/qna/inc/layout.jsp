@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/api/alert/sweetalert.css" />
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/api/sweetalert.min.js"></script>
 <!-- tinymce-->
-<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=<fmt:message bundle="${apikeys}" key="tinymce.apiKey"/>"></script>
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=<fmt:message bundle="${apikeys}" key="tinymce.apiKey"/> "/></script>
 <script src="${pageContext.request.contextPath}/resources/js/api/textEditer.js"></script>
 <!-- datatable -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/api/jquery/dataTables.css">

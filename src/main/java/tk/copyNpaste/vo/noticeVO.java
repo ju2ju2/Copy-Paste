@@ -5,13 +5,16 @@ public class noticeVO {
 	String notifyCode;
 	int notifyTarget;
 	int readCheck;
+	String notifyTitle;
 	
 	
 	
-	@Override
-	public String toString() {
-		return "noticeVO [userEmail=" + userEmail + ", notifyCode=" + notifyCode + ", notifyTarget=" + notifyTarget
-				+ ", readCheck=" + readCheck + "]";
+	
+	public String getNotifyTitle() {
+		return notifyTitle;
+	}
+	public void setNotifyTitle(String notifyTitle) {
+		this.notifyTitle = notifyTitle;
 	}
 	public String getUserEmail() {
 		return userEmail;

@@ -1,4 +1,4 @@
-/*
+﻿/*
 @JSP : inc.js
 @Date : 2018.10.11
 @Author : 우나연
@@ -7,7 +7,6 @@
 
 
 var contextUrl= "http://" + location.host + "/copyNpaste/";
-
 
 $(document).on('hidden.bs.modal', '.modal', function (e) {
 	  var modalData = $(this).data('bs.modal');

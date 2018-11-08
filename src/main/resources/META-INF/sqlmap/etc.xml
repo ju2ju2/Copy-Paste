@@ -15,9 +15,16 @@
 	
 	<!-- 알림 리스트 가지고 오기 -->
 	<select id="noticeList" resultType="noticeVO">
-		select notifyCode, notifyTarget, readCheck
-		from notify
-		where userEmail = #{userEmail} 
+		select notifyCode, notifyTarget, readCheck, notifyTitle from 
+   			(select n.notifyCode, n.notifyTarget, n.readCheck,
+   					note.noteTitle notifyTitle, n.notifyDate
+			from notify n join note on (n.notifyTarget = note.noteNum)
+			where n.userEmail = #{userEmail} and n.notifyCode in ('NC', 'NCC')
+			union
+			select n.notifyCode, n.notifyTarget, n.readCheck,
+			q.qnaTitle notifyTitle, n.notifyDate
+			from notify n join qna q on (n.notifyTarget = q.qnaNum)
+			where n.userEmail = #{userEmail} and n.notifyCode in ('QA', 'QC', 'QCC')) notify
 		order by readCheck desc, notifyDate desc limit 0, 5
 	</select>
 	
@@ -34,10 +41,10 @@
 		</selectKey>
 		insert into report
 		(reportNum, userEmail, noteNum, reportCauseCode,
-		reportContent, noteOrCommCode, reportmemo)
+		reportContent, noteOrCommCode, reportmemo, noteCommNum)
 		values
 		(#{reportNum},#{userEmail}, #{noteNum}, #{reportCauseCode}, 
-		#{reportContent},#{noteOrCommCode}," " )
+		#{reportContent},#{noteOrCommCode}," ", #{noteCommNum})
 	</insert>
 
 	<!-- 통계 : 노트주제 -->
@@ -60,6 +67,12 @@
 		group by
 		date_format(userDate, '%Y-%m')
 	</select>
+	
+	<!-- 유형별 회원 가입 수를 가지고 온다 -->
+	<select id="stateJoinMember" resultType="EtcVO">
+		select userSocialStatus joinMemberxAxis, count(userSocialStatus) joinMemberyAxis from users group by userSocialStatus;
+	
+	</select>
 
 	<!-- 워드클라우드 -->
 	<select id="wordchart" resultType="String">
@@ -76,8 +89,8 @@
 	<!-- 신고 목록 -->
 	<select id="selectAllReport" resultType="ReportVO">
 		select r.reportNum, r.userEmail, r.noteNum, r.checkCode, r.reportInDate, r.reportCauseCode,
-		r.reportContent, r.reportmemo, r.noteOrCommCode, nc.noteCommNum
-		from report r left outer join noteComm nc on r.noteNum=nc.noteNum
+		r.reportContent, r.reportmemo, r.noteOrCommCode, r.noteCommNum
+		from report r 
 		order by checkCode desc, noteOrCommCode, noteNum, reportNum
 	</select>
 

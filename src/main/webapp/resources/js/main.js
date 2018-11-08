@@ -263,11 +263,6 @@ window.onload = function() {
 			}, 
 		[]);
 		Highcharts.chart('wordchart', {
-			chart: {
-		        style: {
-		            fontFamily: 'nanum-gothic'
-		        }
-		    },
 			 credits: {
 		            enabled: false
 		        },
@@ -285,6 +280,7 @@ window.onload = function() {
 			    },
 				series : [ {
 					type : 'wordcloud',
+					placementStrategy: 'random',
 					data : data,
 					name : '단어',
 					turboThreshold : 1000

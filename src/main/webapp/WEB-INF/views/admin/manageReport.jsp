@@ -105,7 +105,7 @@
 							</c:choose>
 						</td>
 						<td>${reportVo.noteNum}</td>
-						<td><a href="../note/noteDetail.htm?noteNum=${reportVo.noteNum}"
+						<td><a href="../note/noteDetail.htm?noteNum=${reportVo.noteNum}&noteCommNum=${reportVo.noteCommNum}"
 								class="btn btn-sm drop-btn reportViewBtn" data-toggle="modal"
 								data-target="#reportModal" role="button"
 								data-backdrop="static">확인</a></td>
@@ -151,7 +151,9 @@
 									data-toggle="modal" data-target="#memoModal">설정</button>
 						</td>
 						<td>
-							<c:if test="${reportVo.reportmemo != null}"></c:if>
+							<c:if test="${reportVo.reportmemo != null}">
+								${reportVo.reportmemo}
+							</c:if>
 						</td>
 					</tr>
 				</c:forEach>

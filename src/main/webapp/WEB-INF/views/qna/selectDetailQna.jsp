@@ -8,6 +8,10 @@
 @Date : 2018.10.09
 @Author : 임지현
 @Desc : Q&A 게시판 상세보기
+
+@Date : 2018.11.05
+@Author : 고은아
+@Desc : Q&A 댓글 알림 구현
 --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -36,7 +40,8 @@
 					</div>
 					<div class="col-md-12 qnaDetail">
 						<div class="form-group" align="right">
-							<strong>${qna.userNick}</strong>&nbsp;&nbsp;${qna.qnaDate}
+							<strong>${qna.userNick}</strong>
+							&nbsp;&nbsp;${qna.qnaDate}
 						</div>
 					</div>
 					<div class="col-md-12 qnaContent">
@@ -49,7 +54,7 @@
 						<c:choose>
 							<c:when test="${role=='[ROLE_ADMIN]'}">
 								<a href="updateQna.htm?qnaNum=${qna.qnaNum}&qnaDept=1" ><i class="fas fa-edit"></i></a>
-								<a href="insertQnaboard.htm?qnaNum=${qna.qnaNum}&qnaDept=1" class="qnaReply"><i class="fas fa-reply"></i></a>&nbsp;&nbsp;
+								<a href="insertQnaboard.htm?qnaNum=${qna.qnaNum}&userEmail=${qna.userEmail}&qnaDept=1" class="qnaReply"><i class="fas fa-reply"></i></a>&nbsp;&nbsp;
 								<a href="deleteQna.htm?qnaNum=${qna.qnaNum}" class="qnaDel"><i class="fas fa-trash"></i></a>
 							</c:when>
 							<c:when test="${qna.userEmail==loginuser}">
@@ -165,7 +170,7 @@
 						<c:choose>
 							<c:when test="${role=='[ROLE_ADMIN]'}">
 								<a href="updateQna.htm?qnaNum=${qna.qnaNum}&qnaDept=1" ><i class="fas fa-edit"></i></a>
-								<a href="insertQnaboard.htm?qnaNum=${qna.qnaNum}&qnaDept=1" class="qnaReply"><i class="fas fa-reply"></i></a>&nbsp;&nbsp;
+								<a href="insertQnaboard.htm?qnaNum=${qna.qnaNum}&userEmail=${qna.userEmail}&qnaDept=1" class="qnaReply"><i class="fas fa-reply"></i></a>&nbsp;&nbsp;
 								<a href="deleteQna.htm?qnaNum=${qna.qnaNum}" class="qnaDel"><i class="fas fa-trash"></i></a>
 							</c:when>
 							<c:when test="${qna.userEmail==loginuser}">
@@ -191,7 +196,7 @@
 								ㄴ
 								</c:if>
 								${qnaComm.userNick}
-							</strong> 
+								<input type="hidden" id="commUserEmail" value="${qnaComm.userEmail}">
 							${qnaComm.qnaCommDate}<br> 
 							<small class="pull-right text-muted"> 
 								<!-- 본인이거나 admin일때 삭제버튼 -->
@@ -289,12 +294,14 @@
 				    	"qnaNum":${qna.qnaNum}
 				    },
 				    success : function(data){
-				    	location.reload();
+						ws.send("${qna.userEmail}");
+						location.reload();
 				    },
 				    error:function(request,status,error){
 			     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 			     	  }
 				});	
+
 			}	
 		});
 		/* 대댓글아이콘 클릭시 */
@@ -341,6 +348,8 @@
 			    	commCommClickNum=0;
 			    	qnaCommNum="";
 			    	qnaCommPos="";
+			    	var commUserEmail = $('#commUserEmail').val();
+			    	ws.send(commUserEmail);
 			    	location.reload();
 			    },
 			    error:function(request,status,error){

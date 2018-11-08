@@ -3,6 +3,9 @@ $(function() {
 	var subjectyAxis = [];
 	var memberxAxis = [];
 	var memberyAxis = [];
+	var joinMemberxAxis = [];
+	var joinMemberyAxis = [];
+	
 	
 	function subject() {
 		$.ajax({
@@ -89,7 +92,47 @@ $(function() {
 		}
 		
 		
+		function joinMemberChart() {
+			$.ajax({
+				url:"../etc/stateJoinMember.json",
+				dataType:"json",
+				success:function(responsedata){
+					$.each(responsedata, function(index, obj) {
+						console.log(obj);
+						joinMemberxAxis[index] = obj.joinMemberxAxis;
+					    joinMemberyAxis[index] = obj.joinMemberyAxis;
+					})
+					
+					
+						Highcharts.chart('chartDiv', {
+							chart: { type: 'column' },
+							title: { text: '유형별 가입 회원 수' },
+							xAxis: { categories: joinMemberxAxis },
+							yAxis : { title : false,allowDecimals: false },
+							colors: ['#f56a6a'],
+							legend: false,
+							series : [{
+								name : '가입한 회원 수',
+								data : joinMemberyAxis
+							}]	
+						});
+					
+					}
+				});
+				
+			}
+					
+			
+		
+		
+		
+		
 	
+		
+		$('#joinStatistic').click(function(){
+			joinMemberChart();
+		});
+		
 		$('#memberStatistic').click(function() {
 			makeChart();
 		});

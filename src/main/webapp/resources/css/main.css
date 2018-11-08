@@ -831,6 +831,15 @@ img .user-photo{
 	width: 100%;
 }
 
+.notifyTitleWidth{
+	width:100px;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+   	vertical-align: middle;
+   	text-align: center;
+}
+
 /* 크롤링 */
 .melonTitle{
 	color: #f56a6a;
@@ -1006,4 +1015,9 @@ img .user-photo{
 }
 .noteRankContainer{
 	margin-top: 30px;
+}
+
+.reported {
+	text-decoration: underline;
+	color:red;
 }

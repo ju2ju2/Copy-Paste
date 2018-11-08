@@ -129,4 +129,9 @@
 .qnaCommBox>#qnaCommBoxSizeUpBtn>.leseBtn{
 	margin: 10px auto;
     border-radius: 10px;
+
+/* tinymce 파일아이콘 */
+.mce-ico {
+    padding-top: 2px!important;
+    height: 18px !important;
 }
