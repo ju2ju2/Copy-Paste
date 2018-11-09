@@ -34,7 +34,7 @@
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title">처리 메모 </h4>
+					<h4 class="modal-title" align="center">처리 메모 </h4>
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
@@ -43,7 +43,7 @@
 						<input type="hidden" id="noteNum" name="noteNum">
 						<br/>
 							<label class="control-label col-sm-2">메모 </label>
-							<textarea rows="15" cols="60" name="reportmemo" id="reportmemo"></textarea>
+							<textarea rows="5" cols="60" name="reportmemo" id="reportmemo" placeholder="신고 처리 결과에 대한 메모를 작성해주세요."></textarea>
 					</div>
 					<div class="form-group">
 						<label class="control-label col-sm-2">처리여부 </label>
@@ -53,9 +53,28 @@
 							<option value="PS02">미확인</option>
 						</select>
 					</div>
+					<div class="form-group">
+					<label class="control-label col-sm-2">처리 전<br> 주의 사항</label>
+					<p style="font-size:14px;margin-top:10px;">사안이 중대하여 사이트 내 처리 능력의 한계를 넘어설 경우 아래 수사 기관에 협조를 <br>요청하여 주십시오.</p>
+					<ul style="margin-left:80px;font-size:14px;">				
+					<li style="list-style: none;">
+					<a href="http://www.kics.go.kr/" target="_blank" class="link_organsite"><strong>형사사법포털</strong></a><br>
+					<p style="font-size:12px;">시스템 불법침입,전자상거래사기 등 컴퓨터 범죄신고</p>
+					</li>
+					<li style="list-style: none;">
+					<a href="http://cyberbureau.police.go.kr/" target="_blank" class="link_organsite"><strong>사이버 안전국</strong></a><br>
+					<p style="font-size:12px;">사이버상의 정보이용 방해, 정보오용, 인터넷을 이용한 범죄 등 모든 사이버 테러 방지 및 사이버 <br>치안 유지, 범죄신고 접수</p>
+					</li>
+					<li style="list-style: none;">
+					<a href="http://www.police.go.kr/" target="_blank" class="link_organsite"><strong>사이버 경찰청</strong></a><br>
+					<p style="font-size:12px;">명예훼손·협박·사기·매매춘·음화판매 등 사이버범죄 신고</p>
+					</li>
+					</ul>
+					</div>
+					
 				</div>
 				<div class="modal-footer">
-					<input type="button"class="btn btn-danger" id="submitBtn" value="추가">
+					<center><input type="button" class="btn btn-danger" id="submitBtn" value="추가"></center>
 				</div>
 			</form>
 		</div>
