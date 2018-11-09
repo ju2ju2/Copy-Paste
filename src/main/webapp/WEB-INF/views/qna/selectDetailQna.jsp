@@ -53,17 +53,17 @@
 								<c:choose>
 									<c:when test="${role=='[ROLE_ADMIN]'}">
 										<a href="updateQna.htm?qnaNum=${qna.qnaNum}&qnaDept=1" >
-											<i class="fas fa-edit" alt="글 수정" title="글 수정"></i></a>
+											<i class="fas fa-edit" title="글 수정"></i></a>
 										<a href="insertQnaboard.htm?qnaNum=${qna.qnaNum}&userEmail=${qna.userEmail}&qnaDept=1" class="qnaReply">
-											<i class="fas fa-reply" alt="댓글 달기" title="댓글 달기"></i></a>&nbsp;&nbsp;
+											<i class="fas fa-reply" title="댓글 달기"></i></a>&nbsp;&nbsp;
 										<a href="deleteQna.htm?qnaNum=${qna.qnaNum}" class="qnaDel">
-											<i class="fas fa-trash" alt="글 삭제" title="글 삭제"></i></a>
+											<i class="fas fa-trash" title="글 삭제"></i></a>
 									</c:when>
 									<c:when test="${qna.userEmail==loginuser}">
 										<a href="updateQna.htm?qnaNum=${qna.qnaNum}&qnaDept=1" >
-											<i class="fas fa-edit" alt="글 수정" title="글 수정"></i></a>
+											<i class="fas fa-edit" title="글 수정"></i></a>
 										<a href="deleteQna.htm?qnaNum=${qna.qnaNum}" class="qnaDel">
-											<i class="fas fa-trash" alt="글 삭제" title="글 삭제"></i></a>
+											<i class="fas fa-trash" title="글 삭제"></i></a>
 									</c:when>
 								</c:choose>
 								</div>
@@ -90,20 +90,20 @@
 									<small class="pull-right text-muted"> 
 										<!-- 본인이거나 admin일때 삭제버튼 -->
 										<c:if test="${role=='[ROLE_ADMIN]' or qnaComm.userEmail==loginuser}">
-											<i class="fas fa-trash qnaCommTrashBtn" alt="댓글 삭제" title="댓글 삭제"> 
+											<i class="fas fa-trash qnaCommTrashBtn" title="댓글 삭제"> 
 												<input id="qnaCommNum" type="hidden" value="${qnaComm.qnaCommNum}" />
 											</i>
 										</c:if> 
 										<!-- 댓글일때 본인이거나 admin일때 대댓글버튼 --> 
 										<c:choose>
 											<c:when test="${qnaComm.qnaCommDept == 0 and qna.userEmail==loginuser}">
-												<i class="fas fa-comment qnaCommCommBtn" alt="댓글 달기" title="댓글 달기">  
+												<i class="fas fa-comment qnaCommCommBtn" title="댓글 달기">  
 													<input id="qnaCommNum" type="hidden" value="${qnaComm.qnaCommNum}" />
 													<input id="qnaCommPos" type="hidden" value="${qnaComm.qnaCommPos}" />
 												</i>
 											</c:when>
 											<c:when test="${qnaComm.qnaCommDept == 0 and role=='[ROLE_ADMIN]'}">
-												<i class="fas fa-comment qnaCommCommBtn" alt="댓글 달기" title="댓글 달기"> 
+												<i class="fas fa-comment qnaCommCommBtn" title="댓글 달기"> 
 													<input id="qnaCommNum" type="hidden" value="${qnaComm.qnaCommNum}" />
 													<input id="qnaCommPos" type="hidden" value="${qnaComm.qnaCommPos}" />
 												</i>
@@ -139,7 +139,7 @@
 									<input type="text" id="userComment" class="form-control input-sm chat-input" placeholder="댓글을 입력하세요" />
 									<span class="input-group-btn commentBtn">
 										<a href="#" class="btn main-btn center-block" id="commentBtn">
-											<i class="fas fa-check" alt="댓글 신고" title="댓글 신고"></i> Add Comment
+											<i class="fas fa-check" title="댓글 신고"></i> Add Comment
 										</a>
 									</span>
 								</div>
@@ -192,17 +192,17 @@
 						<c:choose>
 							<c:when test="${role=='[ROLE_ADMIN]'}">
 								<a href="updateQna.htm?qnaNum=${qna.qnaNum}&qnaDept=1" >
-									<i class="fas fa-edit" alt="글 수정" title="글 수정"></i></a>
+									<i class="fas fa-edit" title="글 수정"></i></a>
 								<a href="insertQnaboard.htm?qnaNum=${qna.qnaNum}&userEmail=${qna.userEmail}&qnaDept=1" class="qnaReply">
-									<i class="fas fa-reply" alt="답글 달기" title="답글 달기"></i></a>&nbsp;&nbsp;
+									<i class="fas fa-reply" title="답글 달기"></i></a>&nbsp;&nbsp;
 								<a href="deleteQna.htm?qnaNum=${qna.qnaNum}" class="qnaDel">
-									<i class="fas fa-trash" alt="글 삭제" title="글 삭제"></i></a>
+									<i class="fas fa-trash" title="글 삭제"></i></a>
 							</c:when>
 							<c:when test="${qna.userEmail==loginuser}">
 								<a href="updateQna.htm?qnaNum=${qna.qnaNum}&qnaDept=1" >
-									<i class="fas fa-edit" alt="글 수정" title="글 수정"></i></a>
+									<i class="fas fa-edit" title="글 수정"></i></a>
 								<a href="deleteQna.htm?qnaNum=${qna.qnaNum}" class="qnaDel">
-									<i class="fas fa-trash" alt="글 삭제" title="글 삭제"></i></a>
+									<i class="fas fa-trash" title="글 삭제"></i></a>
 							</c:when>
 						</c:choose>
 						</div>
@@ -228,20 +228,20 @@
 									<small class="pull-right text-muted"> 
 										<!-- 본인이거나 admin일때 삭제버튼 -->
 										<c:if test="${role=='[ROLE_ADMIN]' or qnaComm.userEmail==loginuser}">
-											<i class="fas fa-trash qnaCommTrashBtn" alt="댓글 삭제" title="댓글 삭제"> 
+											<i class="fas fa-trash qnaCommTrashBtn" title="댓글 삭제"> 
 												<input id="qnaCommNum" type="hidden" value="${qnaComm.qnaCommNum}" />
 											</i>
 										</c:if> 
 										<!-- 댓글일때 본인이거나 admin일때 대댓글버튼 --> 
 										<c:choose>
 											<c:when test="${qnaComm.qnaCommDept == 0 and qna.userEmail==loginuser}">
-												<i class="fas fa-comment qnaCommCommBtn" alt="댓글 달기"  title="댓글 달기"> 
+												<i class="fas fa-comment qnaCommCommBtn" title="댓글 달기"> 
 													<input id="qnaCommNum" type="hidden" value="${qnaComm.qnaCommNum}" />
 													<input id="qnaCommPos" type="hidden" value="${qnaComm.qnaCommPos}" />
 												</i>
 											</c:when>
 											<c:when test="${qnaComm.qnaCommDept == 0 and role=='[ROLE_ADMIN]'}">
-												<i class="fas fa-comment qnaCommCommBtn" alt="댓글 달기"  title="댓글 달기"> 
+												<i class="fas fa-comment qnaCommCommBtn" title="댓글 달기"> 
 													<input id="qnaCommNum" type="hidden" value="${qnaComm.qnaCommNum}" />
 													<input id="qnaCommPos" type="hidden" value="${qnaComm.qnaCommPos}" />
 												</i>
@@ -277,7 +277,7 @@
 						<input type="text" id="userComment" class="form-control input-sm chat-input" placeholder="댓글을 입력하세요" />
 						<span class="input-group-btn commentBtn">
 							<a href="#" class="btn main-btn center-block" id="commentBtn">
-								<i class="fas fa-check" alt="댓글 신고"  title="댓글 신고"></i> Add Comment
+								<i class="fas fa-check" title="댓글 신고"></i> Add Comment
 							</a>
 						</span>
 					</div>
@@ -303,7 +303,7 @@
 			+" <span class='input-group-btn' id='commCommbtn'>"
 			+" <div>"
 			+" <a href='#' class='btn main-btn center-block' id='commCommAtag'>"
-			+" <i class='fas fa-check' alt='댓글 신고' title='댓글 신고'></i> Add Comment"
+			+" <i class='fas fa-check' title='댓글 신고'></i> Add Comment"
 			+" </a></div></span></div></div>";
 		/* 댓글 작성 버튼 클릭시 */
 		$('.commentBtn').click(function(){

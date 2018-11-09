@@ -316,37 +316,37 @@
 						<c:choose>
 							<c:when test="${note.noteScrap eq 0 and note.userEmail==loginuser}">
 								 <a href="${pageContext.request.contextPath}/note/updateNote.htm?noteNum=${note.noteNum}">
-								 	<i class="far fa-edit notewrite" alt="노트 수정" title="노트 수정"></i> &nbsp;</a> 
-								 <a id="emailNoteBtn"><i class="far fa-envelope notewrite" alt="노트 이메일로 발송" title="노트 이메일로 발송"></i> &nbsp;</a> 
-								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down notewrite" alt="노트 다운로드" title="노트 다운로드"></i> &nbsp;</a> 
-								 <a id="deleteNoteBtn"><i class="fas fa-trash notewrite" alt="노트 삭제" title="노트 삭제"></i> &nbsp;</a> 
+								 	<i class="far fa-edit notewrite" title="노트 수정"></i> &nbsp;</a> 
+								 <a id="emailNoteBtn"><i class="far fa-envelope notewrite" title="노트 이메일로 발송"></i> &nbsp;</a> 
+								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down notewrite" title="노트 다운로드"></i> &nbsp;</a> 
+								 <a id="deleteNoteBtn"><i class="fas fa-trash notewrite" title="노트 삭제"></i> &nbsp;</a> 
 							</c:when>
 							<c:when test="${note.noteScrap eq 1 and note.userEmail==loginuser}"><!-- 스크랩한 글일때 수정버튼>>새노트작성  -->
 								<a href="${pageContext.request.contextPath}/note/insertWithOtherNote.htm?noteNum=${note.noteNum}">
-									<i class="far fa-edit notewrite" alt="이 노트를 이용해 새 노트 작성" title="이 노트를 이용해 새 노트 작성"></i> &nbsp;</a> 
-								 <a id="emailNoteBtn"><i class="far fa-envelope notewrite" alt="노트 이메일로 발송" title="노트 이메일로 발송"></i> &nbsp;</a> 
-								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down notewrite" alt="노트 다운로드" title="노트 다운로드"></i> &nbsp;</a> 
-								 <a id="deleteNoteBtn"><i class="fas fa-trash notewrite" alt="노트 삭제" title="노트 삭제"></i> &nbsp;</a> <!-- 스크랩글 삭제 -->
-								 <a id="noteReportForm"><i class="fas fa-flag notewrite" alt="노트 신고" title="노트 신고"></i> &nbsp;</a> 
+									<i class="far fa-edit notewrite" title="이 노트를 이용해 새 노트 작성"></i> &nbsp;</a> 
+								 <a id="emailNoteBtn"><i class="far fa-envelope notewrite" title="노트 이메일로 발송"></i> &nbsp;</a> 
+								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down notewrite" title="노트 다운로드"></i> &nbsp;</a> 
+								 <a id="deleteNoteBtn"><i class="fas fa-trash notewrite" title="노트 삭제"></i> &nbsp;</a> <!-- 스크랩글 삭제 -->
+								 <a id="noteReportForm"><i class="fas fa-flag notewrite" title="노트 신고"></i> &nbsp;</a> 
 							</c:when>
 							<c:when test="${role=='[ROLE_ADMIN]'}">
 							 	 <a href="${pageContext.request.contextPath}/note/insertWithOtherNote.htm?noteNum=${note.noteNum}">
-							 	 	<i class="far fa-edit notewrite"  alt="이 노트를 이용해 새 노트 작성" title="이 노트를 이용해 새 노트 작성"></i> &nbsp;</a> 
-								 <a id="emailNoteBtn"><i class="far fa-envelope notewrite" alt="노트 이메일로 발송" title="노트 이메일로 발송"></i> &nbsp;</a> 
-								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down notewrite" alt="노트 다운로드" title="노트 다운로드"></i> &nbsp;</a> 
-								 <a id="scrapNoteBtn"><i class="fas fa-archive notewrite" alt="노트 스크랩" title="노트 스크랩"></i>&nbsp;</a>
-								 <a id="deleteNoteBtn"><i class="fas fa-trash notewrite" alt="노트 삭제" title="노트 삭제"></i> &nbsp;</a> 
+							 	 	<i class="far fa-edit notewrite" title="이 노트를 이용해 새 노트 작성"></i> &nbsp;</a> 
+								 <a id="emailNoteBtn"><i class="far fa-envelope notewrite" title="노트 이메일로 발송"></i> &nbsp;</a> 
+								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down notewrite" title="노트 다운로드"></i> &nbsp;</a> 
+								 <a id="scrapNoteBtn"><i class="fas fa-archive notewrite" title="노트 스크랩"></i>&nbsp;</a>
+								 <a id="deleteNoteBtn"><i class="fas fa-trash notewrite" title="노트 삭제"></i> &nbsp;</a> 
 							</c:when>
 							<c:otherwise>
 							 	 <a href="${pageContext.request.contextPath}/note/insertWithOtherNote.htm?noteNum=${note.noteNum}">
-							 	 	<i class="far fa-edit 3x notewrite notewrite" alt="이 노트를 이용해 새 노트 작성" title="이 노트를 이용해 새 노트 작성"></i> &nbsp;</a> 
-								 <a id="emailNoteBtn"><i class="far fa-envelope notewrite" alt="노트 이메일로 발송"  title="노트 이메일로 발송"></i> &nbsp;</a> 
-								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down notewrite" alt="노트 다운로드" title="노트 다운로드"></i> &nbsp;</a> 
-								 <a id="scrapNoteBtn"><i class="fas fa-archive notewrite" alt="노트 스크랩" title="노트 스크랩"></i> &nbsp;</a> 
-							 	 <a id="noteReportForm"><i class="fas fa-flag notewrite" alt="노트 신고" title="노트 신고"></i> &nbsp;</a> 
+							 	 	<i class="far fa-edit 3x notewrite notewrite" title="이 노트를 이용해 새 노트 작성"></i> &nbsp;</a> 
+								 <a id="emailNoteBtn"><i class="far fa-envelope notewrite" title="노트 이메일로 발송"></i> &nbsp;</a> 
+								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down notewrite" title="노트 다운로드"></i> &nbsp;</a> 
+								 <a id="scrapNoteBtn"><i class="fas fa-archive notewrite" title="노트 스크랩"></i> &nbsp;</a> 
+							 	 <a id="noteReportForm"><i class="fas fa-flag notewrite" title="노트 신고"></i> &nbsp;</a> 
 							</c:otherwise>	
 						</c:choose> 
-						<c:if test="${param.write eq 'y'}"> <a id="addToNoteBtn"><i class="far fa-hand-point-up notewrite"></i> &nbsp;</a> </c:if>
+						<c:if test="${param.write eq 'y'}"> <a id="addToNoteBtn"><i class="far fa-hand-point-up notewrite" title="작성 중인 노트에 추가"></i> &nbsp;</a> </c:if>
 						</se:authorize>
 						<se:authorize access="!hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"> <!-- 비회원인 경우 아이콘 노출 안 함 -->
 						</se:authorize>
@@ -371,7 +371,7 @@
 									class="form-control input-sm chat-input" placeholder="댓글을 입력하세요" />
 								<span class="input-group-btn commentBtn">
 									<a href="#" class="btn main-btn center-block commentBtn" id="commentBtn">
-										<i class="fas fa-check notewrite" alt="댓글 신고" title="댓글 신고"></i> Add Comment
+										<i class="fas fa-check notewrite" title="댓글 신고"></i> Add Comment
 									</a>
 								</span>
 							</div>
@@ -458,14 +458,14 @@ $(document).ready(function(){
 			          		noteCommList += '			          		<small class="pull-right text-muted"> ';
 			          		/*  본인이거나 삭제버튼  */
 			          		if(value.userEmail==userEmail){
-			          			noteCommList += '							 <a id="noteCommDelete"><i class="fas fa-trash noteCommTrashBtn notewrite" alt="댓글 삭제" title="댓글 삭제">';
+			          			noteCommList += '							 <a id="noteCommDelete"><i class="fas fa-trash noteCommTrashBtn notewrite" title="댓글 삭제">';
 				          		noteCommList += '								<input id="noteCommNum" type="hidden" value="'+value.noteCommNum+'" />';
 				          		noteCommList += '							</i></a>&ensp;&ensp;';
 				          	
 			          		}  
 			          		/* 댓글하나일때 노트작성자 대댓글버튼생성 */ 
 			          		if(value.commDept==0 && '${note.userEmail}'==userEmail){
-			          			noteCommList += '					 <a id="noteCommCommBtn"> <i class="fas fa-comment noteCommCommBtn notewrite" alt="댓글 달기" title="댓글 달기">';
+			          			noteCommList += '					 <a id="noteCommCommBtn"> <i class="fas fa-comment noteCommCommBtn notewrite" title="댓글 달기">';
 				          		noteCommList += '						<input id="noteCommNum" type="hidden" value="'+value.noteCommNum+'" />';
 				          		noteCommList += '						<input id="noteCommPos" type="hidden" value="'+value.noteCommPos+'" />';							
 				          		noteCommList += '						<input id="commUserEmail" type="hidden" value="'+value.userEmail+'"/>';
@@ -474,7 +474,7 @@ $(document).ready(function(){
 			          		
 			          		/* 타인의 글일때 신고 버튼 생성*/ 
 			          		if(value.userEmail!=userEmail){
-			          			noteCommList += '      		 <a id="noteCommReportForm" class="noteCommReportForm"> <i class="fas fa-flag notewrite" alt="댓글 신고" title="댓글 신고">';
+			          			noteCommList += '      		 <a id="noteCommReportForm" class="noteCommReportForm"> <i class="fas fa-flag notewrite" title="댓글 신고">';
 			          			noteCommList += '						<input id="commWriter" type="hidden" value="'+value.userEmail+'" />';
 			          			noteCommList += '						<input id="commContent" type="hidden" value="'+value.commContent+'" />';	
 				          		noteCommList += '						<input id="noteCommNum" type="hidden" value="'+value.noteCommNum+'" />';
