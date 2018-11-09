@@ -53,7 +53,7 @@
 								<c:choose>
 									<c:when test="${role=='[ROLE_ADMIN]'}">
 										<a href="updateQna.htm?qnaNum=${qna.qnaNum}&qnaDept=1" ><i class="fas fa-edit" title="글 수정"></i></a>
-										<a href="insertQnaboard.htm?qnaNum=${qna.qnaNum}&userEmail=${qna.userEmail}&qnaDept=1" class="qnaReply"><i class="fab fa-replyd" title="답글 달기"></i></a>
+										<a href="insertQnaboard.htm?qnaNum=${qna.qnaNum}&userEmail=${qna.userEmail}&qnaDept=1" class="qnaReply"><small><i class="fab fa-replyd" title="답글 달기"></i></small></a>
 										<a href="deleteQna.htm?qnaNum=${qna.qnaNum}" class="qnaDel"><i class="fas fa-trash" title="글 삭제" ></i></a>
 										<a href="${pageContext.request.contextPath}/qna/selectQnaboard.htm" class="qnaList"><i class="fas fa-list-ul" title="목록 보기"></i></a>
 									</c:when>
@@ -191,7 +191,7 @@
 						<c:choose>
 							<c:when test="${role=='[ROLE_ADMIN]'}">
 								<a href="updateQna.htm?qnaNum=${qna.qnaNum}&qnaDept=1" ><i class="fas fa-edit" title="글 수정"></i></a>
-								<a href="insertQnaboard.htm?qnaNum=${qna.qnaNum}&userEmail=${qna.userEmail}&qnaDept=1" class="qnaReply"><i class="fab fa-replyd" title="답글 달기"></i></a>
+								<a href="insertQnaboard.htm?qnaNum=${qna.qnaNum}&userEmail=${qna.userEmail}&qnaDept=1" class="qnaReply"><small><i class="fab fa-replyd" title="답글 달기"></i></small></a>
 								<a href="deleteQna.htm?qnaNum=${qna.qnaNum}" class="qnaDel"><i class="fas fa-trash" title="글 삭제" ></i></a>
 								<a href="${pageContext.request.contextPath}/qna/selectQnaboard.htm" class="qnaList"><i class="fas fa-list-ul" title="목록 보기"></i></a>
 							</c:when>
