@@ -18,7 +18,7 @@ var app = express();
 var axios = require('axios');
 var cors = require('cors');
 var loginResult = []; 
-var ip='192.168.0.141';
+var ip='192.168.0.134';
 
 
 function login(userEmail, userPwd) {

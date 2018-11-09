@@ -1,4 +1,4 @@
-var ip="192.168.0.141";
+var ip="192.168.0.134";
 // 로그아웃 동적쿼리 임포트
 function dynamicallyLoadScript() {
     var script = document.createElement("script"); 

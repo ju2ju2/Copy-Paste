@@ -28,7 +28,7 @@ import tk.copyNpaste.vo.MemberVO;
 
 public class KakaoLogin {
 
-	static String ip="192.168.0.141";
+	static String ip="192.168.0.134";
 	
 	//로그인
 	public static JsonNode getAccessToken(String autorize_code) {
