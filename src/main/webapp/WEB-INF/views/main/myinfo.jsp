@@ -13,6 +13,10 @@
 		<div class="center-block">
 			<h2 class="text-center signup-title">내 정보 보기</h2>
 			<hr>
+			<br class="normalUser">
+			<br class="normalUser">
+			<br class="normalUser">
+			<br class="normalUser">
 			<form class="form-horizontal" method="post" name="updateMember" id="updateMember" enctype="multipart/form-data"
 					action="member/updateMember.do">
 				<div class="form-group">
@@ -29,8 +33,9 @@
 						</div>
 					</div>
             	</div>
-				
-				
+            	
+				<br class="normalUser">
+				<br class="normalUser">
 				<div class="form-group socialUser">
 					<label class="control-label col-sm-5">Email ID <span class="text-danger"></span></label>
 					<div class="col-lg-3 col-sm-4">
@@ -52,7 +57,7 @@
 							</div>
 						</div>
 						<div class="col-sm-4"></div>
-					 <div class="col-sm-12 text-center"><div id="userNickMessage" class="mt-10 socialUser"></div></div>
+					 <div class="col-sm-12 text-center"><div id="userNickMessage" class="mt-10"></div></div>
 				</div>
 				
 				
@@ -79,13 +84,18 @@
 					<div class="col-sm-4"></div>
 					<div class="col-sm-12 text-center"><div id="userPwdConfirmMessage" class="mt-10"></div></div>
 				</div>
-			
+				<br class="normalUser">
+				<br class="normalUser">
 				<div class="social-btn text-center">
-				&nbsp;<input name ="infoUpdate" type="button" class="btn btn-primary socialUser" id="infoUpdate" value="정보수정">
+				&nbsp;<input name ="infoUpdate" type="button" class="btn btn-primary" id="infoUpdate" value="정보수정">
 				&nbsp;<input name ="deleteMember" type="button" class="btn btn-danger" id="deleteMember" value="회원탈퇴">
 		  		</div>
 			<br>
 			</form>
+			<br class="normalUser">
+			<br class="normalUser">
+			<br class="normalUser">
+			<br class="normalUser">
 		</div>
 	</div>
 	<br>	<br>	<br>
@@ -95,6 +105,7 @@
 var userPhoto; //회원 프로필 사진
 var userNick; //회원 닉네임
 var userEmail; //회원 이메일
+var userSocialStatus //회원 소셜 여부
 var nickDupCheck ='ok'; //닉네임 중복 진행했는지 확인하는 변수
 var rightPwd; //비밀번호 유효성 체크 변수
 var pwdDupCheck; //비밀번호 중복 진행했는지 확인하는 변수
@@ -107,12 +118,14 @@ $.ajax({
 		userPhoto = data.userPhoto; 
 		userNick = data.userNick;
 		userEmail = data.userEmail;	
+		userSocialStatus = data.userSocialStatus;
 		$('#userEmail').val(data.userEmail);
 		$('#userNick').val(userNick); 
-		if (data.userSocialStatus != 0){
+		if (userSocialStatus != 0){
 			$('.socialUser').hide();
 			$('#beforUserPhoto').attr("src", userPhoto);
-		} else {$('#beforUserPhoto').attr("src", "${pageContext.request.contextPath}/resources/image/userPhoto/" + userPhoto);	
+		} else {$('#beforUserPhoto').attr("src", "${pageContext.request.contextPath}/resources/image/userPhoto/" + userPhoto);
+				$('.normalUser').hide();
 			}
 	}	
 	,
@@ -212,7 +225,13 @@ $('#infoUpdate').click(function(){
 			  				  closeOnConfirm: true
 			  				})
 			} else { 
-				updateMember(); }
+				//소셜 회원이면 현재 비밀번호 입력 없이 바로 정보 수정
+				if (userSocialStatus ==0){
+					updateMember();
+					} else {
+						infoUpdateAjax();
+					}
+				 }
 	} else {
 		if ( rightPwd != 'ok' || pwdDupCheck != 'ok' ){
 			/* swal("٩(இ ⌓ இ๑)۶", "변경할 비밀번호를 제대로 입력해 주세요.", "error"); */
@@ -235,7 +254,12 @@ $('#infoUpdate').click(function(){
 			  				  closeOnConfirm: true
 			  				})
 				} else {
-				updateMember();
+					//소셜 회원이면 현재 비밀번호 입력 없이 바로 정보 수정
+					if (userSocialStatus ==0){
+						updateMember();
+						} else {
+							infoUpdateAjax();
+						}
 				}
 			}	
 	} 
