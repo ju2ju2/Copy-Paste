@@ -1,4 +1,6 @@
-  // 로그아웃
+var ip= '192.168.0.141'; 
+
+// 로그아웃
   document.querySelector("#logoutBtn").onclick = function () {
     localStorage.clear();
     document.querySelector("#afterLogin").style.display = "none";
@@ -32,7 +34,7 @@
         }
       }
     };
-    xhr.open("GET", "http://localhost:10030/login?email="+email+"&password="+password, true);
+    xhr.open("GET", "http://"+ip+":10030/login?email="+email+"&password="+password, true);
     xhr.send();
   }
 
@@ -79,7 +81,7 @@
        + '}	}	};'
        + 'if(selectedText !="" && selectedText.length > 0 && selectedText.trim().length != 0 && prevText != selectedText){'
        + 'if (confirm("드래그를 저장하시겠어요?")) {'
-       + 'xhrr.open("POST", "localhost:10020/drag", true);'
+       + 'xhrr.open("POST", "'+ip+'":10020/drag", true);'
        + 'xhrr.setRequestHeader("Content-type","application/x-www-form-urlencoded");'
        + 'xhrr.send(datatosend);}}'
        + '}'
@@ -103,5 +105,5 @@
 
  // 홈페이지로 이동
  document.querySelector(".homeOpenBtn").onclick = function () {
-   window.open("http://localhost:8090/copyNpaste/", "_blank");
+   window.open("http://"+ip+":8090/copyNpaste/", "_blank");
  }

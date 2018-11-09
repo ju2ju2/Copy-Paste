@@ -93,7 +93,7 @@
 			    			noteList+='			</div>';
 			    			noteList+='			<div>';
 			    			noteList+='			<input type="hidden" id="noteNum" class="noteNum" value="'+value.noteNum+'">';
-			    			noteList+='				<h4 class="noteTitle">'+value.noteTitle+value.noteNum+'</h4>';
+			    			noteList+='				<h4 class="noteTitle">'+value.noteTitle+'</h4>';
 			    			noteList+='			<strong>'+value.userNick+'</strong> <span> '+value.noteDate+'</span>';
 			    			noteList+='		</div>';
 			    			noteList+='		</a>';

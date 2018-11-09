@@ -18,13 +18,14 @@ var app = express();
 var axios = require('axios');
 var cors = require('cors');
 var loginResult = []; 
+var ip='192.168.0.134';
 
 
 function login(userEmail, userPwd) {
 	var params = { userEmail: userEmail, userPwd: userPwd}
 	 axios(	{
 		 	 method:'post',
-		 	 baseURL: 'http://localhost:8090/copyNpaste/',
+		 	 baseURL: 'http://'+ip+':8090/copyNpaste/',
 			 url:'member/loginExtention.json', 
 			 data: params,
 			 proxy:false

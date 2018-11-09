@@ -19,6 +19,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.message.BasicNameValuePair;
+import org.springframework.beans.factory.annotation.Value;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,14 +27,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import tk.copyNpaste.vo.MemberVO;
 
 public class KakaoLogin {
+
+	static String ip="192.168.0.134";
+	
 	//로그인
 	public static JsonNode getAccessToken(String autorize_code) {
+		
 		final String RequestUrl = "https://kauth.kakao.com/oauth/token";
 
 		final List<NameValuePair> postParams = new ArrayList<NameValuePair>();
 		postParams.add(new BasicNameValuePair("grant_type", "authorization_code"));
 		postParams.add(new BasicNameValuePair("client_id", "495904a0b4023192de3119bfde795283")); // REST API KEY
-		postParams.add(new BasicNameValuePair("redirect_uri", "http://localhost:8090/copyNpaste/member/kakaoOauth.do")); // 리다이렉트 URI
+		postParams.add(new BasicNameValuePair("redirect_uri", "http://"+ip+":8090/copyNpaste/member/kakaoOauth.do")); // 리다이렉트 URI
 		postParams.add(new BasicNameValuePair("code", autorize_code)); // 로그인 과정중 얻은 code 값
 
 		final HttpClient client = HttpClientBuilder.create().build();

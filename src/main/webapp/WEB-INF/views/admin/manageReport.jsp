@@ -15,7 +15,6 @@
 <%@ taglib  uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/admin/report.js"></script>
 
-
 <!-- 노트 모달창 -->
 <div id="reportModal" class="modal fade text-center overlay"
 	 role="dialog">
@@ -41,6 +40,7 @@
 						<input type="hidden" id="reportNum" name="reportNum">
 						<input type="hidden" id="noteOrCommCode" name="noteOrCommCode">
 						<input type="hidden" id="noteNum" name="noteNum">
+						
 						<br/>
 							<label class="control-label col-sm-2">메모 </label>
 							<textarea rows="5" cols="60" name="reportmemo" id="reportmemo" placeholder="신고 처리 결과에 대한 메모를 작성해주세요."></textarea>
@@ -84,7 +84,7 @@
 <section>
 	<div class="container">
 		<div>
-			<h3 class="major">신고 관리</h3>
+			  <h3 class="major">신고 관리</h3>
 		</div>
 		<div id="adminBtnDiv">
 			<a href="${pageContext.request.contextPath}/etc/adminReport.htm" class="btn btn-sm drop-btn">전체 신고 내역</a>
@@ -98,7 +98,7 @@
 					<th>신고번호</th>
 					<th>신고자 이메일</th>
 					<th>대상</th>
-					<th>노트번호</th>
+					<th>대상번호</th>
 					<th>확인</th>
 					<th>신고사유</th>
 					<th>상세내용</th>
@@ -124,7 +124,8 @@
 							</c:choose>
 						</td>
 						<td>${reportVo.noteNum}</td>
-						<td><a href="../note/noteDetail.htm?noteNum=${reportVo.noteNum}&noteCommNum=${reportVo.noteCommNum}"
+					    <td><a href="../note/noteDetail.htm?noteNum=${reportVo.noteNum}&noteCommNum=${reportVo.noteCommNum}"
+
 								class="btn btn-sm drop-btn reportViewBtn" data-toggle="modal"
 								data-target="#reportModal" role="button"
 								data-backdrop="static">확인</a></td>
@@ -167,12 +168,12 @@
 							</c:choose>
 						</td>
 						<td><button class="btn btn-sm drop-btn reportBtn"
-									data-toggle="modal" data-target="#memoModal">설정</button>
+									data-toggle="modal" data-target="#memoModal">설정
+							<span class="hidden">${reportVo.noteCommNum}</span></button>
+									
 						</td>
 						<td>
-							<c:if test="${reportVo.reportmemo != null}">
-								${reportVo.reportmemo}
-							</c:if>
+							<c:if test="${reportVo.reportmemo != null}"></c:if>
 						</td>
 					</tr>
 				</c:forEach>

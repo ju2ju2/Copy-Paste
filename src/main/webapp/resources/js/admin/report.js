@@ -19,7 +19,7 @@ $(function() {
 		$('#reportmemo').val( $(this).parent().parent().children().last().html().trim() );
 		$('#noteOrCommCode').val( $(this).parent().parent().children().eq(2).html().trim() );
 		$('#noteNum').val( $(this).parent().parent().children().eq(3).html().trim() );
-		
+
 		if ($(this).parent().parent().children().eq(8).html().trim() == '기각') {
 			$('#checkCode').val('PS00');
 		} else if ($(this).parent().parent().children().eq(8).html().trim() == '블라인드') {
@@ -30,6 +30,7 @@ $(function() {
 	});
 	
 	$('#submitBtn').click(function() {
+
 		$.ajax({
 			url: "../etc/reportCheck.json",
 			type:"POST",

@@ -108,6 +108,7 @@ public class EtcService {
 			EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
 			int reportInt = etcdao.updateReport(report);
 			int noteOrCommInt = 0;
+			
 			if (checkCode.equals("PS01")) {//블라인드 처리 
 				if (noteOrCommCode.equals("노트")) {
 					noteOrCommInt = etcdao.updateReportNoteBlind(noteNum);
