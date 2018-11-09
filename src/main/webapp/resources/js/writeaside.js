@@ -18,15 +18,25 @@ $.ajax({
 
        if(data != null) {
          $.each(data, function(key, value){
-            $('#asideFolderList').empty();   
-            folderList += '<div class="row" class="accordion" alt="'+value.folderName.trim()+'"><div class="col-xs-10 pt">'
-            folderList += '<span class="f-count" style="font-weight:700;">'+value.count+'</span>'
-            folderList += '<span class="f-name"><h5 class="accordion asideFolderName" id="writeAsideFolderName">'+value.folderName+'</h5></span>'
-            folderList += '</div><div class="col-xs-2 panel-margin">' 
-            if(value.defaultFolder==1){
-            	folderList += '<i class="fas fa-bookmark icon-size" style="margin-top:0px; margin-bottom:23px"></i>'
+            $('#asideFolderList').empty(); 
+            if(value.folderName.trim()=='스크랩'){
+            	folderList += '<div class="row" class="accordion" alt="'+value.folderName.trim()+'"><div class="col-xs-10 pt">'
+                folderList += '<span class="f-count" style="font-weight:700;">'+value.count+'</span>'
+                folderList += '<span class="f-name"><h5 class="accordion asideFolderName" id="writeAsideFolderName">'+value.folderName+'</h5></span>'
+                folderList += '</div><div class="col-xs-2 panel-margin">' 
+                folderList += '<i class="fas fa-bookmark icon-size" style="visibility:hidden; margin-top:0px; margin-bottom:23px"></i>'
             }else{
-            	folderList += '<i class="far fa-bookmark icon-size" style="margin-top:0px; margin-bottom:23px"></i>'
+            	folderList += '<div class="row" class="accordion" alt="'+value.folderName.trim()+'"><div class="col-xs-10 pt">'
+                folderList += '<span class="f-count" style="font-weight:700;">'+value.count+'</span>'
+                folderList += '<span class="f-name"><h5 class="accordion asideFolderName" id="writeAsideFolderName">'+value.folderName+'</h5></span>'
+                folderList += '</div><div class="col-xs-2 panel-margin">' 
+                if(value.defaultFolder==1){
+                	 folderList += '<i class="fas fa-bookmark icon-size" style="margin-top:0px; margin-bottom:23px" onclick=setDefaultFolder(this,"'+value.folderName+'","'+value.count+'"></i>'
+                	 folderList += '<span class="f-name" id="bookmarkO" style="display:none;">'+value.folderName+'</span>'
+                }else{
+                	 folderList += '<i class="far fa-bookmark icon-size" style="margin-top:0px; margin-bottom:23px" id="bookmarkX" onclick=setDefaultFolder(this,"'+value.folderName+'")></i>'
+                     folderList += '<span class="f-name" id="fname" style="display:none;">'+value.folderName+'</span>'
+                }
             }
             folderList += '</div><div class="row"><div id="asideNoteList"></div></div></div>';
          
@@ -58,7 +68,31 @@ $.ajax({
  })
 }
 
-
+/* 디폴트폴더 설정 */
+		function setDefaultFolder(bookmark, folderName){
+			console.log("폴더명 : " + folderName + "기존 폴더명 : " + $('#bookmarkO').text() );
+		$.ajax(
+				{
+		    url : "../folder/setDefaultFolder.json",
+		    DataType :"text",
+		    type : "post",
+		    data : {"beforefolderName": $('#bookmarkO').text(),
+		    		"folderName" : folderName},
+		    success : function(data){
+		    	folderList();
+		    },
+		    error : function(){
+				swal({
+		    		  title: "폴더 설정에 실패했습니다.",
+					  text: "",
+					  type: "info",
+					  confirmButtonClass: "btn-danger btn-sm",
+					  confirmButtonText: "확인",
+					  showCancelButton: false
+					});
+				}
+			});	 			
+		}
 
 
 
@@ -76,8 +110,9 @@ function folderNoteList(folderName){
         	console.log(data)
             if(data != null) {
               var folderNoteList = "";
+              $('#asideNoteList').empty(); 
               $.each(data, function(key, value){
-                 $('#asideNoteList').empty();  
+                  
                  folderNoteList="";
                  folderNoteList+='<div class="col-xs-11 asideNoteDiv">'
                  folderNoteList+='<div class="text-center asideNoteDiv">'
