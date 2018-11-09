@@ -1566,6 +1566,11 @@ pre code {
   margin-right: auto;
   margin-left: auto;
 }
+
+#memoModal{
+	width: 1600px;
+}
+
 @media (min-width: 768px) {
   .container {
     width: 750px;
@@ -5816,6 +5821,11 @@ button.close {
   height: 50px;
   overflow: scroll;
 }
+#memoModal {
+	
+}
+
+
 @media (min-width: 768px) {
   .modal-dialog {
     width: 80%;
