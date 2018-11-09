@@ -371,7 +371,7 @@
 									class="form-control input-sm chat-input" placeholder="댓글을 입력하세요" />
 								<span class="input-group-btn commentBtn">
 									<a href="#" class="btn main-btn center-block commentBtn" id="commentBtn">
-										<i class="fas fa-check notewrite"></i> Add Comment
+										<i class="fas fa-check notewrite" alt="댓글 신고" title="댓글 신고"></i> Add Comment
 									</a>
 								</span>
 							</div>
@@ -458,14 +458,14 @@ $(document).ready(function(){
 			          		noteCommList += '			          		<small class="pull-right text-muted"> ';
 			          		/*  본인이거나 삭제버튼  */
 			          		if(value.userEmail==userEmail){
-			          			noteCommList += '							 <a id="noteCommDelete"><i class="fas fa-trash noteCommTrashBtn notewrite">';
+			          			noteCommList += '							 <a id="noteCommDelete"><i class="fas fa-trash noteCommTrashBtn notewrite" alt="댓글 삭제" title="댓글 삭제">';
 				          		noteCommList += '								<input id="noteCommNum" type="hidden" value="'+value.noteCommNum+'" />';
 				          		noteCommList += '							</i></a>&ensp;&ensp;';
 				          	
 			          		}  
 			          		/* 댓글하나일때 노트작성자 대댓글버튼생성 */ 
 			          		if(value.commDept==0 && '${note.userEmail}'==userEmail){
-			          			noteCommList += '					 <a id="noteCommCommBtn"> <i class="fas fa-comment noteCommCommBtn notewrite">';
+			          			noteCommList += '					 <a id="noteCommCommBtn"> <i class="fas fa-comment noteCommCommBtn notewrite" alt="댓글 달기" title="댓글 달기">';
 				          		noteCommList += '						<input id="noteCommNum" type="hidden" value="'+value.noteCommNum+'" />';
 				          		noteCommList += '						<input id="noteCommPos" type="hidden" value="'+value.noteCommPos+'" />';							
 				          		noteCommList += '						<input id="commUserEmail" type="hidden" value="'+value.userEmail+'"/>';
@@ -474,7 +474,7 @@ $(document).ready(function(){
 			          		
 			          		/* 타인의 글일때 신고 버튼 생성*/ 
 			          		if(value.userEmail!=userEmail){
-			          			noteCommList += '      		 <a id="noteCommReportForm" class="noteCommReportForm"> <i class="fas fa-flag notewrite">';
+			          			noteCommList += '      		 <a id="noteCommReportForm" class="noteCommReportForm"> <i class="fas fa-flag notewrite" alt="댓글 신고" title="댓글 신고">';
 			          			noteCommList += '						<input id="commWriter" type="hidden" value="'+value.userEmail+'" />';
 			          			noteCommList += '						<input id="commContent" type="hidden" value="'+value.commContent+'" />';	
 				          		noteCommList += '						<input id="noteCommNum" type="hidden" value="'+value.noteCommNum+'" />';
