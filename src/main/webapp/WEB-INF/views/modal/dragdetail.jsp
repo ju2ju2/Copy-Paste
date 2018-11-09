@@ -17,7 +17,7 @@
       </div>
    </div>
    <div class="row">
-    <div class="col-xs-11 text-right"><a id="deleteDragBtn"><i class="fas fa-trash" alt="드래그 삭제" title="드래그 삭제"></i> &nbsp;</a> </div>
+    <div class="col-xs-11 text-right"><a id="deleteDragBtn"><i class="fas fa-trash" title="드래그 삭제"></i> &nbsp;</a> </div>
    </div>
 </div>
 
