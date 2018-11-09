@@ -48,7 +48,7 @@
 	      				.val(value.subjectCode)
 	      				.text(value.subjectName) );
 	      			//노트 작성시 회사를 기본 주제로 지정
-	      			$("#subjectList > option[value='SJ01']").attr("selected", "selected");
+	      			/*if () $("#subjectList > option[value='SJ01']").attr("selected", "selected");*/
 	      		 	//수정시 note의  db폴더값 선택된 것으로 표시
 			      	var selSubjectCode=$('#selSubjectCode').val();
 				    if (selSubjectCode!=''){

@@ -110,8 +110,8 @@ public class EtcController {
 		return result;
 	}	
 	
-	@RequestMapping("adminReport.htm")
 	// 관리자 페이지 (신고관리)
+	@RequestMapping("adminReport.htm")
 	public ModelAndView adminReportPage() throws Exception {
 		List<ReportVO> reportList = etcService.selectAllReport();
 		ModelAndView adminmav = new ModelAndView();
@@ -140,9 +140,8 @@ public class EtcController {
 		return adminmav;
 	};
 
-
-	@RequestMapping("adminStatistic.htm")
 	// 관리자 페이지 (통계)
+	@RequestMapping("adminStatistic.htm")
 	public String adminStatisticPage() throws Exception {
 		return "admin.manageStatistic";
 	};
