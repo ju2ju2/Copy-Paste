@@ -37,9 +37,8 @@
 	</div>
 </div>
 
-<script>
+<!--노트 작성후 페이지 로딩시 모달 띄우기 <script>
 $(document).ready(function(){
-
 	var noteNum = ${noteNum}+0;
 	if (noteNum!=0){
 		$("#notedetail").click();
@@ -49,5 +48,4 @@ $(document).ready(function(){
 	}
 
 })
-
-</script>
+</script> -->

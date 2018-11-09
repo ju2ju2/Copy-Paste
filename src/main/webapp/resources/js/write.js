@@ -1,5 +1,6 @@
 /*
 @JS : write.js
+
 @Date : 2018.10.24
 @Author : 우나연
 @Desc : note.js 스크립트
@@ -7,25 +8,25 @@
 
 
 
-//회원의 폴더목록  조회 및 옵션추가 
+	//회원의 폴더목록  조회 및 옵션추가 
 	function selectSubject(){
 		$.ajax({
 	      url: "../folder/selectAllFolder.json", // url_pettern 
 	      type:"POST",
 	      dataType:"json",
 	      success:function(data){
-	    		console.log(data)
 	      	$.each(data, function(key,value){
 	      			$("#folderList").append($("<option />")
 				      				.val(value.folderName)
 				      				.text(value.folderName) );
 			      	//노트 작성시 폴더 기본폴더로 지정
-			    	if(value.defaultFolder==1){
+	      			if(value.defaultFolder==1){
+			    		
 			      		$("#folderList > option[value="+value.defaultFolder+"]").attr("selected", "selected");
 			      	}
 	
 			      	//수정시 note의  db폴더값 선택된 것으로 표시
-			      	var selFolderName=$('#selfolderName').val();
+			      	var selFolderName=$('#selFolderName').val();
 				    if (selFolderName!=''){
 				      	$("#folderList > option[value="+selFolderName+"]").attr("selected", "selected");
 				    }
@@ -100,6 +101,9 @@ $(document).ready(function() {
 			})
 		} 
 		else {
+			console.log("folderList :"+$("#folderList").val())
+			console.log("subjectList :"+$("#subjectList").val())
+			console.log("checked :"+$("input[name='notePublic']:checked").val())
 		$.ajax({
 	      url: url, // url_pettern 
 	      type:"POST",
@@ -118,8 +122,8 @@ $(document).ready(function() {
 	    				  closeOnConfirm: false
 	    			},
 	    			function(){
-	    				location.href="../note/note.htm?noteNum="+result;
-	    			});	
+	    				location.href="../note/note.htm?";/*noteNum="+result;
+*/	    			});	
 	    	       },
 	       error:function(request,status,error){
 	    	    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
