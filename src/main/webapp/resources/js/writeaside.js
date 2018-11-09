@@ -72,12 +72,10 @@ function folderNoteList(folderName){
         data: {'folderName':folderName},
         dataType:"json",
         success:function(data){
-        	console.log("folderNoteList")
-        	console.log(data)
             if(data != null) {
               var folderNoteList = "";
+              $('#asideNoteList').empty(); 
               $.each(data, function(key, value){
-                 $('#asideNoteList').empty();  
                  folderNoteList="";
                  folderNoteList+='<div class="col-xs-11 asideNoteDiv">'
                  folderNoteList+='<div class="text-center asideNoteDiv">'

@@ -1,3 +1,4 @@
+var ip="192.168.0.141";
 // 로그아웃 동적쿼리 임포트
 function dynamicallyLoadScript() {
     var script = document.createElement("script"); 
@@ -39,7 +40,7 @@ function dynamicallyLoadScript() {
         }
       }
     };
-    xhr.open("POST", "http://localhost:10030/login?userEmail="+userEmail+"&userPwd="+userPwd, true);
+    xhr.open("POST", "http://"+ip+":10030/login?userEmail="+userEmail+"&userPwd="+userPwd, true);
     xhr.send();
   }
 
@@ -87,7 +88,7 @@ function dynamicallyLoadScript() {
        + '}	}	};'
        + 'if(selectedText !="" && selectedText.length > 0 && selectedText.trim().length != 0 && prevText != selectedText){'
        + 'if (confirm("드래그를 저장하시겠어요?")) {'
-       + 'xhrr.open("POST", "http://localhost:10020/drag", true);'
+       + 'xhrr.open("POST", "http://'+ip+':10020/drag", true);'
        + 'xhrr.setRequestHeader("Content-type","application/x-www-form-urlencoded");'
        + 'xhrr.send(datatosend);}}'
        + '}'
@@ -111,5 +112,5 @@ function dynamicallyLoadScript() {
 
  // 홈페이지로 이동
  document.querySelector(".homeOpenBtn").onclick = function () {
-   window.open("http://localhost:8090/copyNpaste/", "_blank");
+   window.open("http://"+ip+":8090/copyNpaste/", "_blank");
  }

@@ -112,7 +112,7 @@
 				<div class="col-sm-12 text-center social-btn">
 				
 				<a class="btn btn-md social-btn" id="kakaoSignup" 
-					href="https://kauth.kakao.com/oauth/authorize?client_id=495904a0b4023192de3119bfde795283&redirect_uri=http://localhost:8090/copyNpaste/member/kakaoOauth.do&response_type=code"> 
+					href="https://kauth.kakao.com/oauth/authorize?client_id=495904a0b4023192de3119bfde795283&redirect_uri=http://192.168.0.141:8090/copyNpaste/member/kakaoOauth.do&response_type=code"> 
 					Sign up with <b>&nbsp;Kakao&nbsp;</b><img src="./resources/image/kakao.png" class="inline"></a><br>
 				<a href="${naverAuthUrl}" class="btn btn-md social-btn" > Sign up with <b>&nbsp;Naver &nbsp;</b><img src="./resources/image/naver.png" class="inline"></a><br>
 				<a href="${googleAuthUrl}" class="btn btn-md social-btn "> Sign up with <b>Google&nbsp;</b><img src="./resources/image/google.png" class="inline"></a>

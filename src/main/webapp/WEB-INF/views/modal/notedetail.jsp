@@ -457,7 +457,7 @@ $(document).ready(function(){
 			          		noteCommList += '			          		<small> &ensp;'+value.commDate+'</small><br>';
 			          		noteCommList += '			          		<small class="pull-right text-muted"> ';
 			          		/*  본인이거나 삭제버튼  */
-			          		if(value.userEmail==userEmail){
+			          		if(value.userEmail==userEmail || role=='[ROLE_ADMIN]'){
 			          			noteCommList += '							 <a id="noteCommDelete"><i class="fas fa-trash noteCommTrashBtn notewrite">';
 				          		noteCommList += '								<input id="noteCommNum" type="hidden" value="'+value.noteCommNum+'" />';
 				          		noteCommList += '							</i></a>&ensp;&ensp;';

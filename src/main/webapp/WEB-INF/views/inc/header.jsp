@@ -14,7 +14,7 @@
 <se:authentication property="principal.username" var="userEmail"/>
 <script type="text/javascript">
 /* 192.168.0.141 */
-var ws = new WebSocket("ws://localhost:8090${pageContext.request.contextPath}/notify.do");
+var ws = new WebSocket("ws://192.168.0.141:8090${pageContext.request.contextPath}/notify.do");
 
 ws.onopen = 	function() 		{	console.log("웹소켓 오픈");	}
 ws.onmessage = 	function(evt) 	{	onMessage(evt.data);			}
