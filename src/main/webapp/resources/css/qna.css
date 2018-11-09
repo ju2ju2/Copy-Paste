@@ -88,6 +88,11 @@
 	margin-top: 30px !important;
 }
 
+/* .comment-box .media-left {
+	 padding-right: 10px; 
+	 width: 500px;
+} */
+
 .qnaCommentBox{
 	padding: 4px;
 	padding-top: 12px;
@@ -99,6 +104,7 @@
 	border-radius: 50%;
 	background-size: contain;
 }
+
 .user-photo{
 	display: inline-block;
 	width:45px !important;
@@ -129,9 +135,11 @@
 .qnaCommBox>#qnaCommBoxSizeUpBtn>.leseBtn{
 	margin: 10px auto;
     border-radius: 10px;
+}
 
 /* tinymce 파일아이콘 */
 .mce-ico {
     padding-top: 2px!important;
     height: 18px !important;
 }
+
