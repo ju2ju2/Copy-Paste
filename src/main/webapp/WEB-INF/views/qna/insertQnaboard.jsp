@@ -3,6 +3,10 @@
 @Date : 2018.10.09
 @Author : 이주원
 @Desc : Q&A 게시판 글쓰기 화면입니다. 동기식으로 이동합니다.
+
+@Date : 2018.10.10
+@Author : 임지현
+@Desc : Q&A 게시판 글쓰기 화면단 제작.
 --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"

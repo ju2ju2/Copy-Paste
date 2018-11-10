@@ -64,7 +64,7 @@ public class QnaService {
 		return resulte;
 	};
 	
-	//QNA 게시글 수정 (아직안됨)
+	//QNA 게시글 수정
 	public int updateQna(QnaVO qna) throws Exception{
 		QnaMapper qnadao = sqlsession.getMapper(QnaMapper.class);
 		return qnadao.updateQna(qna);

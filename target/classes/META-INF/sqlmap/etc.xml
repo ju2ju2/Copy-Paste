@@ -114,7 +114,6 @@
 
 	<!-- 신고 처리 -->
 	<update id="updateReport">
-	
 		update report 
 			SET reportmemo=#{reportmemo},
 				checkCode=#{checkCode}
@@ -130,8 +129,8 @@
 
 	<!-- 노트댓글 블라인드처리 -->
 	<update id="updateReportNoteCommBlind">
-		update notecomm set noteCommBlind= 1 where
-		noteCommNum = #{noteNum}
+		update notecomm set noteCommBlind=1 where
+		noteCommNum = #{noteCommNum}
 	</update>
 
 	<!-- 노트 블라인드 해제 -->

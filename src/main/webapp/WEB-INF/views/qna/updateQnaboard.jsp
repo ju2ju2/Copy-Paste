@@ -1,8 +1,8 @@
 <%-- qna>>
-@JSP : insertQnaboard.jsp
+@JSP : updateQnaboard.jsp
 @Date : 2018.10.09
-@Author : 이주원
-@Desc : Q&A 게시판 글쓰기 화면입니다. 동기식으로 이동합니다.
+@Author : 임지현
+@Desc : Q&A 게시판 수정 화면
 --%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -29,6 +29,14 @@
 			</div>
 			<div class="col-md-12">
 				<div class="qnaSecret">
+				<c:choose>
+					<c:when test="${qna.qnaSecret==0}">
+						<input type="checkbox" value="1" name="qnaSecret" class="qnaSecret">&nbsp;비공개
+					</c:when>
+					<c:when test="${qna.qnaSecret==1}">
+						<input type="checkbox" value="1" name="qnaSecret" class="qnaSecret" checked="checked">&nbsp;비공개
+					</c:when>
+				</c:choose>
 				<button type="submit" class="btn btn-danger center-block"
 					id="qnainsertbtn">수정</button></div>
 			</div>

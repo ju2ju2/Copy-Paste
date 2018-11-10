@@ -18,8 +18,9 @@ var mysql = require("mysql");
 var qs = require("querystring");
 var app = express();
 var cors = require('cors');
+var ip="192.168.0.141";
 var con = mysql.createConnection({
-	host: "192.168.0.141",
+	host: ip,
 	port: 3306,
 	user: "copyNpaste",
 	password: "1004",

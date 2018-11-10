@@ -97,7 +97,7 @@
 	
 		<!-- 	//QNA 게시글 수정 -->	
 	<update id="updateQna">
-		update qna set qnaTitle=#{qnaTitle},qnaContent=#{qnaContent}
+		update qna set qnaTitle=#{qnaTitle},qnaContent=#{qnaContent},qnaSecret=#{qnaSecret}
 		where qnaNum=#{qnaNum}
 	</update>
 

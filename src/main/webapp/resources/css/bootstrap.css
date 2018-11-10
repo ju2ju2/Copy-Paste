@@ -1566,6 +1566,11 @@ pre code {
   margin-right: auto;
   margin-left: auto;
 }
+
+#memoModal{
+	width: 1600px;
+}
+
 @media (min-width: 768px) {
   .container {
     width: 750px;
@@ -5816,10 +5821,15 @@ button.close {
   height: 50px;
   overflow: scroll;
 }
+#memoModal {
+	
+}
+
+
 @media (min-width: 768px) {
   .modal-dialog {
-    width: 80%;
-    margin: 30px auto;  
+    width: 80% !important;
+    margin: 130px auto;  
   }
   .modal-content {
     -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
@@ -5829,10 +5839,16 @@ button.close {
     width: 300px;
   }
 }
+@media (min-width: 1200px) {
+  .modal-dialog {
+    width: 50% !important;
+    margin: 60px auto;  
+  }
+}
 @media (max-width: 767px) {
   .modal-dialog {
-    width: 95%;
-    margin: 10px auto;  
+    width: 95% !important;
+    margin: 30px auto;  
   }
   .modal-content {
     -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);

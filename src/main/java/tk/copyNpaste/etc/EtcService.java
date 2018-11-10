@@ -104,6 +104,7 @@ public class EtcService {
 			String checkCode= report.getCheckCode();
 			String noteOrCommCode= report.getNoteOrCommCode();
 			int noteNum= report.getNoteNum();
+			int noteCommNum = report.getNoteCommNum();
 		try {
 			EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
 			int reportInt = etcdao.updateReport(report);
@@ -112,7 +113,7 @@ public class EtcService {
 				if (noteOrCommCode.equals("노트")) {
 					noteOrCommInt = etcdao.updateReportNoteBlind(noteNum);
 				} else {
-					noteOrCommInt = etcdao.updateReportNoteCommBlind(noteNum);
+					noteOrCommInt = etcdao.updateReportNoteCommBlind(noteCommNum);
 				}
 			} else {
 				if (noteOrCommCode.equals("노트")) {
