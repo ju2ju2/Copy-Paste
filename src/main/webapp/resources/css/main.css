@@ -757,7 +757,7 @@ img .user-photo{
 }
 
 .modal{
-	top:100px;
+	top: 100px !important;
 }	
 .modal-content{
 	margin-bottom: 150px;
