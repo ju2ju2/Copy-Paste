@@ -77,7 +77,7 @@
 							<input type="text" id="userEmailForfindUserPwd" name="userEmail"
 								class="form-control" placeholder="Email" required autofocus />
 							<button class="mt-10 btn btn-sm btn-danger btn-block" 
-									id ="findUserPwdBtn" type="button">임시비밀번호
+									id ="findUserPwdBtn" type="button">임시 비밀번호
 								발송</button>
 							</form>
 						</div>
@@ -85,7 +85,7 @@
 					<div class="row">
 						<b>비밀번호 찾기 안내</b>
 						<p>
-							사용자 이메일로 임시비밀번호가 발송됩니다.</br> 비밀번호 찾기 후 반드시 포털시스템에서 비밀번호를 수정하시기 바랍니다.
+							사용자 이메일로 임시 비밀번호가 발송됩니다.</br> 비밀번호 찾기 후 반드시 포털시스템에서 비밀번호를 수정하시기 바랍니다.
 						</p>
 					</div>
 				</div>
@@ -111,7 +111,6 @@ $('#findUserPwdBtn').click(function(){
         	if (data > 0) {
         		updatePwd();
         	} else {
-        		/* swal("٩(இ ⌓ இ๑)۶", "가입된 이메일 주소가 아닙니다.", "error"); */
         		swal({  title: "가입된 이메일 주소가 아닙니다.",
 						text: "",
 						type: "warning",
@@ -123,8 +122,7 @@ $('#findUserPwdBtn').click(function(){
         	}
         },
         error : function(error) {
-			/* swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 확인해 주세요.", "error"); */
-			swal({  title: "이메일 주소를 확인해 주세요",
+			swal({  title: "이메일 주소를 확인해주세요.",
 						text: "",
 						type: "warning",
 						confirmButtonClass: "btn-danger btn-sm",
@@ -146,8 +144,7 @@ function updatePwd(){
  		data : {mailto:$('#userEmailForfindUserPwd').val()},
 		success : function(data) {
 					console.log(data);
-					/* swal("୧༼ ヘ ᗜ ヘ ༽୨", "임시 비밀번호가 메일로 전송되었습니다.", "success"); */
-					swal({  title: "임시 비밀번호가 메일로 전송되었습니다.",
+					swal({  title: "임시 비밀번호가 이메일로 전송되었습니다.",
 						text: "",
 						type: "warning",
 						confirmButtonClass: "btn-danger btn-sm",
@@ -157,8 +154,7 @@ function updatePwd(){
 					$('#modal-tempPassword').hide();
          	   },
           	  error : function(error) {
-					/* swal("٩(இ ⌓ இ๑)۶", "이메일 주소를 확인해 주세요.", "error"); */
-					swal({  title: "이메일 주소를 확인해 주세요.",
+					swal({  title: "이메일 주소를 확인해주세요.",
 						text: "",
 						type: "warning",
 						confirmButtonClass: "btn-danger btn-sm",

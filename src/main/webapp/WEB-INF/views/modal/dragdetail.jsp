@@ -42,12 +42,12 @@
 $('#deleteDragBtn').click(function(e) {
 	swal({
 		  title: "정말 삭제하시겠습니까?",
-		  text: "삭제 후에는 다시 복구 할 수 없습니다.",
+		  text: "삭제 후에는 복구할 수 없습니다.",
 		  type: 'warning',
 		  showCancelButton: true,
 		  confirmButtonClass : "btn-danger btn-sm",
 		  cancelButtonClass: "btn btn-sm",
-		  confirmButtonText: '확인',
+		  confirmButtonText: 'OK',
 		  closeOnConfirm: false
 		},
 		function(){
@@ -58,7 +58,8 @@ $('#deleteDragBtn').click(function(e) {
 				data: {	'dragNum': ${dragList.dragNum} } //
 			}).done(function(result) {
 				swal({type: "success",
-					  title: '성공적으로 삭제되었습니다.',
+					  title: '드래그가 삭제되었습니다.',
+					  confirmButtonText: 'OK',
 		              confirmButtonClass : "btn-danger btn-sm",
 					  closeOnConfirm: false
 				},

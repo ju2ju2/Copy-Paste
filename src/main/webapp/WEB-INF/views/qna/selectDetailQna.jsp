@@ -410,7 +410,7 @@
 						    },
 						    error : function(){
 						    	swal({
-									  title: "댓글 삭제에 실패하였습니다",
+									  title: "잠시 후 다시 시도해주세요.",
 									  text: "",
 									  type: "warning",
 									  confirmButtonClass: "btn-danger btn-sm",

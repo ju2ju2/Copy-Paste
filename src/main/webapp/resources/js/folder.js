@@ -148,11 +148,11 @@ function folderlist(){
 function insertFolder(){
 	if($('#folname').val()==''){
 		swal({
-			  title: "폴더명을 입력해주십시오.",
+			  title: "폴더명을 입력해주세요.",
 			  text: "",
 			  type: "info",
 			  confirmButtonClass: "btn-danger btn-sm",
-			  confirmButtonText: "확인",
+			  confirmButtonText: "OK",
 			  showCancelButton: false
 				})
 	}else{
@@ -166,9 +166,9 @@ function insertFolder(){
 			    		swal({
 							  title: "이미 존재하는 폴더명입니다.",
 							  text: "",
-			  				  type: "info",
+			  				  type: "warning",
 			  				  confirmButtonClass: "btn-danger btn-sm",
-			  				  confirmButtonText: "확인",
+			  				  confirmButtonText: "OK",
 				  			  showCancelButton: false
 								})
 			    	}else{
@@ -258,19 +258,19 @@ function folderDelete(folderName, defaultFolder){
 			  text: "",
 			  type: "info",
 			  confirmButtonClass: "btn-danger btn-sm",
-			  confirmButtonText: "확인",
+			  confirmButtonText: "OK",
 			  showCancelButton: false
 			})
 	}else{
 		swal({
 			  title: "정말 삭제하시겠습니까?",
-			  text: "삭제 후에는 다시 복구 할 수 없습니다.",
+			  text: "삭제 후에는 복구할 수 없습니다.",
 			  type: 'warning',
 			  showCancelButton: true,
 			  confirmButtonClass : "btn-danger btn-sm",
 			  cancelButtonClass: "btn btn-sm",
-			  confirmButtonText: '확인',
-			  cancelButtonText: "아니요!",
+			  confirmButtonText: 'OK',
+			  cancelButtonText: "cancel",
 			  closeOnConfirm: false
 			},
 			function(isConfirm) {
@@ -285,11 +285,11 @@ function folderDelete(folderName, defaultFolder){
 					    },
 					    error : function(){
 					    	swal({
-					    		  title: "폴더 삭제에 실패했습니다.",
+					    		  title: "잠시 후 다시 시도해주세요.",
 								  text: "",
 								  type: "info",
 								  confirmButtonClass: "btn-danger btn-sm",
-								  confirmButtonText: "확인",
+								  confirmButtonText: "OK",
 								  showCancelButton: false
 								});
 					    }
@@ -319,11 +319,11 @@ function setDefaultFolder(bookmark, folderName){
 	    },
 	    error : function(){
 	    	swal({
-	    		  title: "폴더 설정에 실패했습니다.",
+	    		  title: "잠시 후 다시 시도해주세요.",
 				  text: "",
 				  type: "info",
 				  confirmButtonClass: "btn-danger btn-sm",
-				  confirmButtonText: "확인",
+				  confirmButtonText: "OK",
 				  showCancelButton: false
 				});
 	    }
@@ -337,13 +337,13 @@ function setDefaultFolder(bookmark, folderName){
 		
 			swal({
 				 title: "정말 삭제하시겠습니까?",
-				  text: "삭제 후에는 다시 복구 할 수 없습니다.",
+				  text: "삭제 후에는 복구할 수 없습니다.",
 				  type: 'warning',
 				  showCancelButton: true,
 				  confirmButtonClass : "btn-danger btn-sm",
 				  cancelButtonClass: "btn btn-sm",
-				  confirmButtonText: '확인',
-				  cancelButtonText: "아니요!",
+				  confirmButtonText: 'OK',
+				  cancelButtonText: "cancel",
 				  closeOnConfirm: false
 				},
 				function(){
@@ -354,7 +354,7 @@ function setDefaultFolder(bookmark, folderName){
 						type: "POST"
 						}).done(function (result){
 								swal({type: "success",
-									  title: '성공적으로 삭제되었습니다.',
+									  title: '드래그가 삭제되었습니다.',
 						              confirmButtonClass : "btn-danger btn-sm",
 									  closeOnConfirm: false
 								},function(){
@@ -416,11 +416,11 @@ function folderContents(folder,folderName){
 	    },
 	    error : function(){
 	    	swal({
-	    		  title: "폴더 내용을 읽어오는데 실패했습니다.",
+	    		  title: "잠시 후 다시 시도해주세요.",
 				  text: "",
 				  type: "info",
 				  confirmButtonClass: "btn-danger btn-sm",
-				  confirmButtonText: "확인",
+				  confirmButtonText: "OK",
 				  showCancelButton: false
 					});
 			    }
@@ -562,7 +562,7 @@ $("#toDate").change(function() {
 		                  text: "",
 		  				  type: "info",
 		  				  confirmButtonClass: "btn-danger btn-sm",
-		  				  confirmButtonText: "확인",
+		  				  confirmButtonText: "OK",
 		  				  showCancelButton: false
 		                  }) 
 		            }
@@ -605,11 +605,11 @@ function folderEdit(fedit, folderName, count, defaultFolder){
 			 {
 				 if($('#folname').val()==''){
 						swal({
-							  title: "폴더명을 입력해주십시오.",
+							  title: "폴더명을 입력해주세요.",
 							  text: "",
 							  type: "info",
 							  confirmButtonClass: "btn-danger btn-sm",
-							  confirmButtonText: "확인",
+							  confirmButtonText: "OK",
 							  showCancelButton: false
 								})
 					}else{ $.ajax(
@@ -625,7 +625,7 @@ function folderEdit(fedit, folderName, count, defaultFolder){
 										  text: "",
 						  				  type: "info",
 						  				  confirmButtonClass: "btn-danger btn-sm",
-						  				  confirmButtonText: "확인",
+						  				  confirmButtonText: "OK",
 							  			  showCancelButton: false
 											})
 						    	}else{

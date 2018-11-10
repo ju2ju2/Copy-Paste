@@ -50,7 +50,7 @@
 				  showCancelButton: true,
 				  confirmButtonClass : "btn-danger btn-sm",
 				  cancelButtonClass: "btn btn-sm",
-				  confirmButtonText: '확인',
+				  confirmButtonText: 'OK',
 				  closeOnConfirm: false
 				},
 				function(){
@@ -61,7 +61,8 @@
 						})//다운로드 받을 html
 						.done(function(result) {
 							swal({type: "success",
-								  title: '성공적으로 저장되었습니다.',
+								  title: '파일이 저장되었습니다.',
+								  confirmButtonText: "OK",
 					              confirmButtonClass : "btn-danger btn-sm",
 								  closeOnConfirm: true
 							},
@@ -83,7 +84,7 @@
 			swal({
 				  title:'<span class="title">이메일전송</span>',
 				  text: '<form id="email">'+
-						'<input type="email" class="form-control mb-10" id="noteEmailTo" placeholder="노트를 전송할 이메일을 입력하세요"/>'+
+						'<input type="email" class="form-control mb-10" id="noteEmailTo" placeholder="노트를 전송할 이메일 주소를 입력하세요"/>'+
 						'</form>'
 				  ,
 				  html: true,
@@ -101,7 +102,7 @@
 								'noteEmailTo' : $('#noteEmailTo').val() }//
 				}).done(function(result) {
 					swal({type: "success",
-						  title: '성공적으로 전송되었습니다.',
+						  title: '이메일이 전송되었습니다.',
 			              confirmButtonClass : "btn-danger btn-sm",
 						  closeOnConfirm: true
 					},
@@ -129,7 +130,7 @@
 				  showCancelButton: true,
 				  confirmButtonClass : "btn-danger btn-sm",
 				  cancelButtonClass: "btn btn-sm",
-				  confirmButtonText: '확인',
+				  confirmButtonText: 'OK',
 				  closeOnConfirm: false
 				},
 				function(){
@@ -144,6 +145,7 @@
 							swal({type: "success",
 								  title: '스크랩 노트가 저장되었습니다.',
 					              confirmButtonClass : "btn-danger btn-sm",
+					              confirmButtonText: 'OK',
 								  closeOnConfirm: true
 							},
 							function(){
@@ -163,12 +165,12 @@
 		$('#deleteNoteBtn').click(function deleteNote(e) {
 			swal({
 				  title: "정말 삭제하시겠습니까?",
-				  text: "삭제 후에는 다시 복구 할 수 없습니다.",
+				  text: "삭제 후에는 복구할 수 없습니다.",
 				  type: 'warning',
 				  showCancelButton: true,
 				  confirmButtonClass : "btn-danger btn-sm",
 				  cancelButtonClass: "btn btn-sm",
-				  confirmButtonText: '확인',
+				  confirmButtonText: 'OK',
 				  closeOnConfirm: false
 				},
 				function(){
@@ -179,7 +181,7 @@
 						data: {	'noteNum': ${note.noteNum} }//
 					}).done(function(result) {
 						swal({type: "success",
-							  title: '성공적으로 삭제되었습니다.',
+							  title: '노트가 삭제되었습니다.',
 				              confirmButtonClass : "btn-danger btn-sm",
 							  closeOnConfirm: true
 						},
@@ -263,7 +265,7 @@
 		if(session == '') {
 			$('#loginModal').show();	
 				swal({
-				  title: "",
+				  title: "로그인이 필요한 기능입니다.",
 				  text: '로그인 후 다양한 기능을 이용할 수 있습니다. \n로그인 페이지로 이동 하시겠습니까?',
 				  type: "warning",
 				  showCancelButton: true,
@@ -497,7 +499,7 @@ $(document).ready(function(){
 											noteCommList += '&ensp;&ensp;';
 				          	}  
 							if(value.noteCommBlind==1){
-											noteCommList += '삭제되거나 블라인드 처리된 댓글입니다.</div>';
+											noteCommList += '삭제 되었거나 블라인드 처리된 댓글입니다.</div>';
 				          	} else{
 											noteCommList += ''+value.commContent+'</div>';
 				          	}
@@ -633,7 +635,7 @@ $(document).ready(function(){
 											    },
 											    error : function(){
 											    	swal({
-														  title: "댓글 삭제에 실패하였습니다",
+														  title: "잠시 후 다시 시도해주세요.",
 														  text: "",
 														  type: "warning",
 														  confirmButtonClass: "btn-danger btn-sm",

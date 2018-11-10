@@ -112,7 +112,7 @@
 	  				  title: "다시 로그인 해주세요",
 	  				  type: 'warning',
 	  				  confirmButtonClass : "btn-danger btn-sm",
-	  				  confirmButtonText: '확인',
+	  				  confirmButtonText: 'OK',
 	  				  closeOnConfirm: true
 	  				})
 					console.log(error);
@@ -127,7 +127,7 @@
 	//닉네임 중복확인. myinfo.jsp와 다름
 	$('#userNick').keyup(function(){
 		if ($('#userNick').val() == ''){
-			$('#userNickMessage').text("사용할 닉네임을 입력해 주세요");
+			$('#userNickMessage').text("사용할 닉네임을 입력해주세요");
 		} else {	
 			checkNick();
 		}
@@ -158,10 +158,10 @@ function checkNick(){
         }},
         error : function(error) {
         	swal({
-				  title: "잠시후 다시 시도해주세요.",
+				  title: "잠시 후 다시 시도해주세요.",
 				  type: 'warning',
 				  confirmButtonClass : "btn-danger btn-sm",
-				  confirmButtonText: '확인',
+				  confirmButtonText: 'OK',
 				  closeOnConfirm: true
 				})
 			console.log(error);
@@ -178,7 +178,7 @@ function checkNick(){
 			  title: "사용할 수 없는 닉네임입니다.",
 			  type: 'warning',
 			  confirmButtonClass : "btn-danger btn-sm",
-			  confirmButtonText: '확인',
+			  confirmButtonText: 'OK',
 			  closeOnConfirm: true
 			})
   		return false;
@@ -190,7 +190,7 @@ function checkNick(){
   			swal({    title: "이용약관에 동의해 주세요.",
 				  	  type: 'warning',
 				  	  confirmButtonClass : "btn-danger btn-sm",
-				  	  confirmButtonText: '확인',
+				  	  confirmButtonText: 'OK',
 				  	  closeOnConfirm: true
 				})
 			return false;

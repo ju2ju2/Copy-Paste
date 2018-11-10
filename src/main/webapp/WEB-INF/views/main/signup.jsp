@@ -39,7 +39,7 @@
 						</div>				
 					</div>
 					<div class="col-sm-4 ">
-						<button type="button" id="mailtoBtn" class="btn btn-secondary">이메일인증</button>
+						<button type="button" id="mailtoBtn" class="btn btn-secondary">이메일 인증</button>
 					</div>
 				<div class="col-sm-12 text-center">
 				<div id="userEmailMessage" class="mt-10"></div></div>
@@ -142,7 +142,7 @@
 		if (mailDupCheck == 'ok'){
 			$('#userMailToMessage').removeClass("successMessage")
 			$('#userMailToMessage').addClass("failMessage");
-			$('#userMailToMessage').text("메일이 전송되는데 1분 정도 소요될 수 있습니다.");
+			$('#userMailToMessage').text("인증메일 전송에 1분 정도 소요될 수 있습니다.");
 				$.ajax({
 					type : 'post',
 					url : '${pageContext.request.contextPath}/member/singupEmail.do',
@@ -157,10 +157,10 @@
 					},
 					error : function(error) {
 						swal({
-			  				  title: "이메일 주소를 확인해 주세요",
+			  				  title: "이메일 주소를 확인해주세요",
 			  				  type: 'warning',
 			  				  confirmButtonClass : "btn-danger btn-sm",
-			  				  confirmButtonText: '확인',
+			  				  confirmButtonText: 'OK',
 			  				  closeOnConfirm: true
 			  				})
 						console.log(error);
@@ -172,7 +172,7 @@
 				  title: "이메일 주소를 확인해 주세요",
 				  type: 'warning',
 				  confirmButtonClass : "btn-danger btn-sm",
-				  confirmButtonText: '확인',
+				  confirmButtonText: 'OK',
 				  closeOnConfirm: true
 				})
 		}
@@ -188,7 +188,7 @@
 			}else{
 				$('#userMailToMessage').removeClass("successMessage");
 				$('#userMailToMessage').addClass("failMessage");
-        		$('#userMailToMessage').text("인증번호가 일치 하지 않습니다.");
+        		$('#userMailToMessage').text("인증번호가 일치하지 않습니다.");
 				mailCheck = '';
 			}
 	});
@@ -198,7 +198,7 @@
 		if($(this).val() != $('#userPwd').val()){
 			$('#userPwdConfirmMessage').removeClass("successMessage");
 			$('#userPwdConfirmMessage').addClass("failMessage");
-			$('#userPwdConfirmMessage').text("비밀번호를 정확히 입력해 주세요.");
+			$('#userPwdConfirmMessage').text("비밀번호를 정확히 입력해주세요.");
 			pwdDupCheck = '';
 		} else {
 			$('#userPwdConfirmMessage').removeClass("failMessage");
@@ -215,12 +215,12 @@
 		if (regexp.test(v)) {
 			$('#userPwdMessage').removeClass("failMessage");
 			$('#userPwdMessage').addClass("successMessage");
-			$('#userPwdMessage').text("사용 가능한 비밀번호 입니다.");
+			$('#userPwdMessage').text("사용 가능한 비밀번호입니다.");
 			rightPwd = 'ok';
 			}else{
 				$('#userPwdMessage').removeClass("successMessage");
 				$('#userPwdMessage').addClass("failMessage");
-				$('#userPwdMessage').text("알파벳 대소문자, 숫자로 6자이상 입력해주세요."); 
+				$('#userPwdMessage').text("알파벳 대소문자, 숫자를 이용해 6글자 이상 입력해주세요."); 
 				rightPwd = '';
 			}
 	})
@@ -251,10 +251,10 @@
 	            },
 	            error : function(error) {
 	            	swal({
-	    				  title: "잠시후 다시 시도해주세요",
+	    				  title: "잠시 후 다시 시도해주세요",
 	    				  type: 'warning',
 	    				  confirmButtonClass : "btn-danger btn-sm",
-	    				  confirmButtonText: '확인',
+	    				  confirmButtonText: 'OK',
 	    				  closeOnConfirm: true
 	    				})
 					console.log(error);
@@ -293,10 +293,10 @@
             }},
             error : function(error) {
             	swal({
-  				  title: "잠시후 다시 시도해주세요",
+  				  title: "잠시 후 다시 시도해주세요",
   				  type: 'warning',
   				  confirmButtonClass : "btn-danger btn-sm",
-  				  confirmButtonText: '확인',
+  				  confirmButtonText: 'OK',
   				  closeOnConfirm: true
   				})
 				console.log(error.status);
@@ -310,44 +310,41 @@
   	if ($('#mailto').val() == ''){
   			swal({
 			  title: "이메일 주소를 입력해 주세요",
-			  type: 'error',
+			  type: "warning",
 			  confirmButtonClass : "btn-danger btn-sm",
-			  confirmButtonText: '확인',
+			  confirmButtonText: 'OK',
 			  closeOnConfirm: true
 			})
   	    	$('#mailto').focus();
   	    	return false;
   		} else {
   			if (mailCheck != 'ok' || writtenMail != $('#mailto').val() ) {
-  				/* swal("٩(இ ⌓ இ๑)۶", "이메일 인증을 진행해 주세요.", "error"); */
   				swal({
   				  title: "이메일 인증을 진행해주세요",
-  				  type: 'warning',
+  				  type: "warning",
   				  confirmButtonClass : "btn-danger btn-sm",
-  				  confirmButtonText: '확인',
+  				  confirmButtonText: 'OK',
   				  closeOnConfirm: true
   				})
 				$('#authnum').focus();
 				return false;
   			} else {
   				if (nickDupCheck != 'ok' || writtenNick != $('#userNick').val()) {
-  					/* swal("٩(இ ⌓ இ๑)۶", "사용할 수 없는 닉네임입니다.", "error"); */
 	  				swal({
 	  				  title: "사용할 수 없는 닉네임입니다.",
 	  				  type: 'warning',
 	  				  confirmButtonClass : "btn-danger btn-sm",
-	  				  confirmButtonText: '확인',
+	  				  confirmButtonText: 'OK',
 	  				  closeOnConfirm: true
 	  				})
   					return false;
   				} else {
   					if(rightPwd != 'ok' ){
-  						/* swal("٩(இ ⌓ இ๑)۶", "비밀번호를 형식에 맞게 입력해 주세요.", "error"); */
   							swal({
-			  				  title: "비밀번호를 확인해 주세요.",
+			  				  title: "비밀번호를 확인해주세요.",
 			  				  type: 'warning',
 			  				  confirmButtonClass : "btn-danger btn-sm",
-			  				  confirmButtonText: '확인',
+			  				  confirmButtonText: 'OK',
 			  				  closeOnConfirm: true
 			  				})
 						$('#userPwd').val("");
@@ -356,12 +353,11 @@
 						return false;
   					} else {
   						if(pwdDupCheck != 'ok') {
-  							/* swal("٩(இ ⌓ இ๑)۶", "비밀번호를 정확히 확인해 주세요.", "error"); */
   							swal({
-			  				  title: "비밀번호를 정확히 확인해 주세요.",
+			  				  title: "비밀번호를 정확히 확인해주세요.",
 			  				  type: 'warning',
 			  				  confirmButtonClass : "btn-danger btn-sm",
-			  				  confirmButtonText: '확인',
+			  				  confirmButtonText: 'OK',
 			  				  closeOnConfirm: true
 			  				})
 							$('#cuserPwd').val("");
@@ -371,12 +367,11 @@
   							if ($('#userCheck').is(":checked")) {
   								signupAjax();
   							} else {
-  								/* swal("٩(இ ⌓ இ๑)۶", "이용약관에 동의해 주세요.", "error"); */
   								swal({
 				  				  title: "이용약관에 동의해 주세요.",
 				  				  type: 'warning',
 				  				  confirmButtonClass : "btn-danger btn-sm",
-				  				  confirmButtonText: '확인',
+				  				  confirmButtonText: 'OK',
 				  				  closeOnConfirm: true
 				  				})
 								return false;
@@ -401,20 +396,21 @@
         url : '${pageContext.request.contextPath}/member/signup.do',
         success : function(data) {
 				  swal({type: "success",
-				  title: "୧༼ ヘ ᗜ ヘ ༽୨",
-				  text: "회원가입이 완료되었습니다.",
-	              confirmButtonClass : "btn-danger btn-sm",
-				  closeOnConfirm: false
+				 		 title: "회원가입이 완료되었습니다.",
+				  		 text: "",
+				 		 confirmButtonText: "OK",
+	              		 confirmButtonClass : "btn-danger btn-sm",
+				  	     closeOnConfirm: false
 					},
 				  function(){
 					location.href="${pageContext.request.contextPath}/login.htm";
 					});	
 	       			},
           error : function(error) {
-        	swal({	  title: "에러가 발생했습니다.",
-	  				  type: 'error',
+        	swal({	  title: "잠시 후 다시 시도해주세요.",
+        			  type: "warning",
 	  				  confirmButtonClass : "btn-danger btn-sm",
-	  				  confirmButtonText: '확인',
+	  				  confirmButtonText: "OK",
 	  				  closeOnConfirm: true
 	  				})
            	console.log(error);

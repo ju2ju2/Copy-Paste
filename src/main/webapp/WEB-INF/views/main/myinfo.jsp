@@ -138,7 +138,7 @@ $.ajax({
 //닉네임 중복확인. signup.jsp와 다름
 	$('#userNick').keyup(function(){
 		if ($('#userNick').val() == ''){
-			$('#userNickMessage').text("사용할 닉네임을 입력해 주세요");
+			$('#userNickMessage').text("사용할 닉네임을 입력해주세요.");
 		} else {
 			$.ajax({
 				type : 'post',
@@ -165,8 +165,7 @@ $.ajax({
             		}
             	},
             error : function(error) {
-				/* swal("٩(இ ⌓ இ๑)۶", "잠시 후 다시 시도해 주세요.", "error"); */
-				swal({  title: "잠시 후 다시 시도해 주세요.",
+				swal({  title: "잠시 후 다시 시도해주세요.",
 						text: "",
 						type: "warning",
 						confirmButtonClass: "btn-danger btn-sm",
@@ -185,7 +184,7 @@ $.ajax({
 	if($(this).val() != $('#userPwd').val()){
 		$('#userPwdConfirmMessage').removeClass("successMessage")
 		$('#userPwdConfirmMessage').addClass("failMessage")
-		$('#userPwdConfirmMessage').text("비밀번호를 정확히 입력해 주세요.");
+		$('#userPwdConfirmMessage').text("비밀번호를 정확히 입력해주세요.");
 		pwdDupCheck = '';
 	} else {
 		$('#userPwdConfirmMessage').removeClass("failMessage")
@@ -202,12 +201,12 @@ $("#userPwd").keyup(function (event) {
 	if (regexp.test(v)) {
 		$('#userPwdMessage').removeClass("failMessage")
 		$('#userPwdMessage').addClass("successMessage")
-		$('#userPwdMessage').text("사용 가능한 비밀번호 입니다.");
+		$('#userPwdMessage').text("사용 가능한 비밀번호입니다.");
 		rightPwd = 'ok';
 		}else{
 			$('#userPwdMessage').removeClass("successMessage")
 			$('#userPwdMessage').addClass("failMessage")
-			$('#userPwdMessage').text("알파벳 대소문자, 숫자로 6자이상 입력해주세요."); 
+			$('#userPwdMessage').text("알파벳 대소문자, 숫자를 이용해 6글자 이상 입력해주세요."); 
 			rightPwd = '';
 		}
 })
@@ -216,12 +215,11 @@ $("#userPwd").keyup(function (event) {
 $('#infoUpdate').click(function(){
  	if ($('#userPwd').val() == '' && $('#cuserPwd').val() == '') { 
 		if ( nickDupCheck != 'ok' && $('#userNick').val() != userNick ){
-			/* swal("٩(இ ⌓ இ๑)۶", "사용할 수 없는 닉네임입니다.", "error"); */
 						swal({
 			  				  title: "사용할 수 없는 닉네임입니다.",
 			  				  type: 'warning',
 			  				  confirmButtonClass : "btn-danger btn-sm",
-			  				  confirmButtonText: '확인',
+			  				  confirmButtonText: 'OK',
 			  				  closeOnConfirm: true
 			  				})
 			} else { 
@@ -234,23 +232,21 @@ $('#infoUpdate').click(function(){
 				 }
 	} else {
 		if ( rightPwd != 'ok' || pwdDupCheck != 'ok' ){
-			/* swal("٩(இ ⌓ இ๑)۶", "변경할 비밀번호를 제대로 입력해 주세요.", "error"); */
 					swal({
-			  				  title: "변경할 비밀번호를 제대로 입력해 주세요.",
+			  				  title: "변경할 비밀번호를 \n제대로 입력해주세요.",
 			  				  type: 'warning',
 			  				  confirmButtonClass : "btn-danger btn-sm",
-			  				  confirmButtonText: '확인',
+			  				  confirmButtonText: 'OK',
 			  				  closeOnConfirm: true
 			  				})
 			
 		} else {
 			if ( nickDupCheck != 'ok' && $('#userNick').val() != userNick ){
-				/* swal("٩(இ ⌓ இ๑)۶", "사용할 수 없는 닉네임입니다.", "error"); */
 						swal({
 			  				  title: "사용할 수 없는 닉네임입니다.",
 			  				  type: 'warning',
 			  				  confirmButtonClass : "btn-danger btn-sm",
-			  				  confirmButtonText: '확인',
+			  				  confirmButtonText: 'OK',
 			  				  closeOnConfirm: true
 			  				})
 				} else {
@@ -293,7 +289,7 @@ function updateMember(){
 							} else{
 								console.log("data: " + data);
 								$('#userPwd').val("");
-								$('#userPwd').attr("placeholder","비밀번호를 정확히 입력해 주세요.");
+								$('#userPwd').attr("placeholder","비밀번호를 정확히 입력해주세요.");
 							}
 						},
 						error: function (){
@@ -324,19 +320,19 @@ function updateMember(){
 				url : '${pageContext.request.contextPath}/member/updateMember.do',
 				success : function() {
 						 swal({type: "success",
-						 title: "୧༼ ヘ ᗜ ヘ ༽୨",
-						 text: "회원정보가 수정되었습니다.",
+						 title: "회원정보가 수정되었습니다.",
+						 text: "",
 						 confirmButtonClass : "btn-danger btn-sm",
-						 closeOnConfirm: false	},
+						 confirmButtonText: "OK",
+						 closeOnConfirm: false},
 						 function(){	location.reload();	});	
 						},
 				error : function(error) {
-						/* swal("٩(இ ⌓ இ๑)۶", "에러가 발생했습니다.", "error"); */
 						swal({
-			  				  title: "에러가 발생했습니다.",
+			  				  title: "잠시 후 다시 시도해주세요.",
 			  				  type: 'warning',
 			  				  confirmButtonClass : "btn-danger btn-sm",
-			  				  confirmButtonText: '확인',
+			  				  confirmButtonText: 'OK',
 			  				  closeOnConfirm: true
 			  				})
 						console.log(error);
@@ -349,12 +345,13 @@ function updateMember(){
 //회원탈퇴
  $('#deleteMember').click(function(){
 	  swal({
-		  title: "٩(இ ⌓ இ๑)۶",
-		  text: "탈퇴해도 작성한 노트 및 드래그, 게시글, 댓글은 삭제되지 않으며 동일한 Email로는 재가입이 불가능합니다.",
+		  title: "탈퇴하시겠습니까?",
+		  text: "탈퇴해도 작성한 노트 및 드래그, \n게시글, 댓글은 삭제되지 않으며 \n동일한 Email로는 재가입이 불가능합니다.",
 		  type: "warning",
 		  showCancelButton: true,
 		  confirmButtonClass: "btn-danger btn-sm",
-		  confirmButtonText: "회원탈퇴",
+		  confirmButtonText: "회원 탈퇴",
+		  cancelButtonClass: "btn-sm",
 		  cancelButtonText: "cancel",
 		  closeOnConfirm: false,
 		},
@@ -366,8 +363,9 @@ function updateMember(){
 			        	url :  '${pageContext.request.contextPath}/member/deleteMember.do',
 			        	success : function(data) {
 								 swal({type: "success",
-								 title: "٩(இ ⌓ இ๑)۶",
-								 text: "회원 탈퇴가 완료되었습니다.",
+								 title: "회원 탈퇴가 완료되었습니다.",
+								 text: "",
+								 confirmButtonText: "OK",
 				             	 confirmButtonClass : "btn-danger btn-sm",
 							 	 closeOnConfirm: false
 									},
@@ -376,8 +374,7 @@ function updateMember(){
 									});	
 				       			},
 						error : function(error) {
-			          			 /* swal("٩(இ ⌓ இ๑)۶", "에러가 발생했습니다.", "error"); */
-			          			 swal({  title: "에러가 발생했습니다.",
+			          			 swal({  title: "잠시 후 다시 시도해주세요.",
 									text: "",
 									type: "warning",
 									confirmButtonClass: "btn-danger btn-sm",
