@@ -288,11 +288,12 @@
 	<br>
 	<!-- 노트제목 -->
 	<h2 class="modal-title">${note.noteTitle}</h2>
-	<div class="row">
+	<div class="row mt-10" >
 		<div class="col-xs-6"></div>
 		<div class="col-xs-6">
 			<!-- 작성자/작성일 -->
-			<strong>${note.userNick}</strong>&nbsp;&nbsp;${note.noteDate}
+			<strong>${note.userNick}</strong>&nbsp;|&nbsp;${note.noteDate}&nbsp;|&nbsp;#Ref : ${note.noteCount}
+			
 		</div>
 	</div>
 	<div class="row">
