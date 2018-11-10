@@ -1021,3 +1021,7 @@ img .user-photo{
 	text-decoration: underline;
 	color:red;
 }
+
+.noteCommContent {
+    clear: left;
+}
