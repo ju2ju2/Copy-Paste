@@ -51,29 +51,10 @@
 				  confirmButtonClass : "btn-danger btn-sm",
 				  cancelButtonClass: "btn btn-sm",
 				  confirmButtonText: '확인',
-				  closeOnConfirm: false
+				  closeOnConfirm: true
 				},
 				function(){
-					$.ajax ({
-						url: "${pageContext.request.contextPath}/note/downloadNotePdf.json",
-						type: "POST",
-						data: {	'noteNum': ${note.noteNum}}
-						})//다운로드 받을 html
-						.done(function(result) {
-							swal({type: "success",
-								  title: '성공적으로 저장되었습니다.',
-					              confirmButtonClass : "btn-danger btn-sm",
-								  closeOnConfirm: true
-							},
-							function(){
-							
-							})
-							
-						
-						})
-						.fail(function(request,status,error){
-				     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-				     	  });
+					location.href="${pageContext.request.contextPath}/note/downloadNotePdf.do?noteNum=${note.noteNum}";
 					});
 				return false;
 			});
