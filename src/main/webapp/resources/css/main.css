@@ -1021,3 +1021,32 @@ img .user-photo{
 	text-decoration: underline;
 	color:red;
 }
+
+/* 이용약관 및 개인정보 이용 */
+.privacy{
+	overflow-y: scroll;
+	overflow-x: hidden;
+    border-radius: 17px;
+    background-color:white ;
+    margin-top: 25px;
+    color:#333;
+    font-size:14px;
+    padding: 15px 10px;
+    width: 650px;
+    height:250px;
+    border:1px solid #f56a6a;
+}
+.privacy::-webkit-scrollbar-button { display: block; height: 3px; }
+.privacy::-webkit-scrollbar {
+	margin:5px 0;
+    width: 10px;
+}
+ 
+.privacy::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+ 
+.privacy::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background:#f56a6a;
+}

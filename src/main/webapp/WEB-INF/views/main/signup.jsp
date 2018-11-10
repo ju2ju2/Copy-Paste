@@ -5,6 +5,7 @@
 @Desc : 회원가입 페이지.
 --%>
 
+<!DOCTYPE html>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <div class="container">
@@ -99,7 +100,10 @@
 				
 				<div class="form-group">
                   <label class="checkbox text-center">
-    			<input type="checkbox" value="remember-me" id="userCheck"><a>이용약관</a>에 동의합니다.</label>
+    				<input type="checkbox" value="remember-me" id="userCheck">
+    				<a href="#" id="agreeNprivacy" data-toggle="modal"
+						data-target="#modal-agreeNprivacy">이용약관과 개인정보 수집 및 이용동의</a>에 모두 동의합니다.
+    			 </label>
     			</div>
 			
 				<div class="form-group">
@@ -123,7 +127,40 @@
 	<br>	<br>	<br>
 </div>
 
-
+<!-- 이용규약 및 개인정보 모달 -->
+<div id="modal-agreeNprivacy" class="modal fade text-center overlay " role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<form>
+				<div class="modal-header">
+					<button type="button" class="close modal-deleteNoteEmail-close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">이용약관과 개인정보 수집 및 이용동의</h4>
+				</div>
+				<div class="modal-body text-left">
+					<div class="form-group">
+						<br/>
+							<label class="control-label col-sm-2">이용약관</label>
+							<div class="privacy">
+								<jsp:include page="/WEB-INF/views/main/agreement.jsp" flush="false" />
+							</div>
+					</div>
+					<div class="form-group">
+						<br/>
+							<label class="control-label col-sm-2">개인정보 수집 및 이용동의</label>
+							<div class="privacy">
+								<jsp:include page="/WEB-INF/views/main/privacy.jsp" flush="false" />
+							</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-danger modal-deleteNoteEmail-close" data-dismiss="modal">close</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
 
 
 <script type="text/javascript">
