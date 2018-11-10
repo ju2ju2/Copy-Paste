@@ -393,6 +393,7 @@
 				  confirmButtonClass: "btn-danger btn-sm",
 				  confirmButtonText: "OK",
 				  showCancelButton: true,
+				  cancelButtonClass: "btn-sm",
 				  closeOnConfirm: false 
 				},
 				function(isConfirm) {

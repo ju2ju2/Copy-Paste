@@ -354,7 +354,7 @@ function setDefaultFolder(bookmark, folderName){
 						type: "POST"
 						}).done(function (result){
 								swal({type: "success",
-									  title: '드래그가 삭제되었습니다.',
+									  title: '노트가 삭제되었습니다.',
 						              confirmButtonClass : "btn-danger btn-sm",
 									  closeOnConfirm: false
 								},function(){

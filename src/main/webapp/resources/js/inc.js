@@ -55,7 +55,7 @@ $(document).mouseup(function(event){
 			swal({
 				type : "success",
 				title : '드래그가 저장되었습니다.',
-				confirmButtonClass : "btn-danger",
+				confirmButtonClass : "btn-danger btn-sm",
 				closeOnConfirm : true
 			}, function() {
 				

@@ -25,12 +25,12 @@ $(document).ready(function() {
 		swal(
 				{type:"warning",
 				title: "해당 사용자의 노트를 전부 삭제하시겠습니까?",
-				text: "되돌릴 수 없으므로 신중히 선택하세요.",
+				text: "삭제 후에는 복구할 수 없습니다.",
 				showCancelButton: true,
 				confirmButtonClass: "btn-danger btn-sm",
 				cancelButtonClass: "btn btn-sm",
-				confirmButtonText: "확인",
-				cancelButtonText: "취소",
+				confirmButtonText: "OK",
+				cancelButtonText: "cancel",
 				closeOnConfirm: false},
 				function(isConfirm) {
 					if(!isConfirm) {
@@ -42,12 +42,11 @@ $(document).ready(function() {
 							url : "../etc/deleteMemNote.do",
 							success : function() { 
 									swal({
-								 		/* title: "୧༼ ヘ ᗜ ヘ ༽୨",*/
 								 		 text: "노트가 삭제되었습니다.",
 								 		 type: "success",
 								 		 showCancelButton: false,
 								 		 confirmButtonClass: "btn-danger  btn-sm",
-								 		 confirmButtonText: "확인",
+								 		 confirmButtonText: "OK",
 								 		 closeOnConfirm: false
 											}, function () {
 												location.reload();
@@ -75,12 +74,12 @@ $(document).ready(function() {
 		
 		swal(  {type:"warning",
 				title: noteTitlev + "해당 노트를 삭제하시겠습니까?",
-				text: "되돌릴 수 없으므로 신중히 선택하세요.",
+				text: "삭제 후에는 복구할 수 없습니다.",
 				showCancelButton: true,
 				confirmButtonClass: "btn-danger btn-sm",
 				cancelButtonClass: "btn btn-sm",
-				confirmButtonText: "확인",
-				cancelButtonText: "취소",
+				confirmButtonText: "OK",
+				cancelButtonText: "cancel",
 				closeOnConfirm: false},
 				
 				function(isConfirm) {
@@ -93,12 +92,12 @@ $(document).ready(function() {
 							url : "../etc/deleteNoteNumAdmin.do",
 							success : function() { 
 									swal({
-								 		 title: "୧༼ ヘ ᗜ ヘ ༽୨",
-								 		 text: "노트가 삭제되었습니다.",
+								 		 title: "노트가 삭제되었습니다.",
+								 		 text: "",
 								 		 type: "success",
 								 		 showCancelButton: false,
 								 		 confirmButtonClass: "btn-danger  btn-sm",
-								 		 confirmButtonText: "확인",
+								 		 confirmButtonText: "OK",
 								 		 closeOnConfirm: false
 											}, function () {
 												location.reload();

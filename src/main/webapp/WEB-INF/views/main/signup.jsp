@@ -272,7 +272,12 @@
 	//닉네임 중복확인. myinfo.jsp와 다름
 	$('#userNick').keyup(function(){
 		if ($('#userNick').val() == ''){
+			if($('#userNickMessage').hasClass("successMessage")){
+				$('#userNickMessage').removeClass("successMessage");
+			}
+    		$('#userNickMessage').addClass("failMessage");
 			$('#userNickMessage').text("사용할 닉네임을 입력해 주세요");
+			nickDupCheck = '';
 		} else {
 		$.ajax({
             type : 'post',

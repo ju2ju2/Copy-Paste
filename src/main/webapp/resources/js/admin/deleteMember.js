@@ -7,8 +7,8 @@ function deleteMember(thisBtn) {
 			showCancelButton: true,
 			confirmButtonClass: "btn-danger btn-sm",
 			cancelButtonClass: "btn btn-sm",
-			confirmButtonText: "확인",
-			cancelButtonText: "취소",
+			confirmButtonText: "OK",
+			cancelButtonText: "cancel",
 			closeOnConfirm: false},
 			
 		function(isConfirm) {
