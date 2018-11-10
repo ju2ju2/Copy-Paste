@@ -215,7 +215,7 @@
 						'</select></p> <p style="padding-top: 10px;"><strong>신고 사유 상세</strong>'+
 						'</p><textarea rows="5" id="causeText"class="form-control textarea noresize"'+
 						'placeholder="신고 사유를 입력하세요"></textarea><br>'+
-						'<p align="center"><strong>위와 같은 내용으로 <br/>해당 댓글을 신고하시겠습니까?</strong>'+
+						'<p align="center"><strong>위와 같은 내용으로 <br/>해당 노트를 신고하시겠습니까?</strong>'+
 						'</p></div></form>'
 				  ,
 				  html: true,
@@ -667,7 +667,7 @@ $(document).ready(function(){
 								'	<option>부적절한 홍보</option>'+
 								'	<option>기타</option>'+
 								'</select></p> <p style="padding-top: 10px;"><strong>신고 사유 상세</strong>'+
-								'</p><textarea rows="5" id="causeText"class="form-control textarea noresize"'+
+								'</p><textarea rows="5" id="causeText" class="form-control textarea noresize"'+
 								'placeholder="신고 사유를 입력하세요"></textarea><br>'+
 								'<p align="center"><strong>위와 같은 내용으로 <br/>해당 댓글을 신고하시겠습니까?</strong>'+
 								'</p></div></form>'

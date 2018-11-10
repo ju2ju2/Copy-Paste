@@ -37,10 +37,10 @@
 				</div>
 				<div class="modal-body">
 					<div class="form-group">
-						<input type="hidden" id="reportNum" name="reportNum">
-						<input type="hidden" id="noteOrCommCode" name="noteOrCommCode">
-						<input type="hidden" id="noteNum" name="noteNum">
-						
+						<input id="mreportNum" name="reportNum">
+						<input id="mnoteOrCommCode" name="noteOrCommCode">
+						<input id="mnoteNum" name="noteNum">
+						<input id="mnoteCommNum" name="noteCommNum">
 						<br/>
 							<label class="control-label col-sm-2">메모 </label>
 							<textarea rows="5" cols="60" name="reportmemo" id="reportmemo" placeholder="신고 처리 결과에 대한 메모를 작성해주세요."></textarea>
@@ -71,12 +71,12 @@
 					</li>
 					</ul>
 					</div>
-					
+				</form>	
 				</div>
 				<div class="modal-footer">
 					<center><input type="button" class="btn btn-danger" id="submitBtn" value="추가"></center>
 				</div>
-			</form>
+			
 		</div>
 	</div>
 </div>
@@ -98,12 +98,13 @@
 					<th>신고번호</th>
 					<th>신고자 이메일</th>
 					<th>대상</th>
-					<th>대상번호</th>
+					<th>노트번호</th>
+					<th>댓글번호</th>
 					<th>확인</th>
 					<th>신고사유</th>
 					<th>상세내용</th>
-					<th>신고일자</th>
-					<th>처리여부</th>
+					<th>신고일</th>
+					<th>처리</th>
 					<th>처리</th>
 					<th>메모</th>
 				</tr>
@@ -124,8 +125,8 @@
 							</c:choose>
 						</td>
 						<td>${reportVo.noteNum}</td>
+						<td>${reportVo.noteCommNum}</td>
 					    <td><a href="../note/noteDetail.htm?noteNum=${reportVo.noteNum}&noteCommNum=${reportVo.noteCommNum}"
-
 								class="btn btn-sm drop-btn reportViewBtn" data-toggle="modal"
 								data-target="#reportModal" role="button"
 								data-backdrop="static">확인</a></td>
@@ -167,13 +168,10 @@
 								</c:otherwise>
 							</c:choose>
 						</td>
-						<td><button class="btn btn-sm drop-btn reportBtn"
-									data-toggle="modal" data-target="#memoModal">설정
-							<span class="hidden">${reportVo.noteCommNum}</span></button>
-									
+						<td><a class="updateReportForm btn btn-sm btn-danger">처리</a>				
 						</td>
 						<td>
-							<c:if test="${reportVo.reportmemo != null}"></c:if>
+							<c:if test="${reportVo.reportmemo != null}">${reportVo.reportmemo}</c:if>
 						</td>
 					</tr>
 				</c:forEach>
