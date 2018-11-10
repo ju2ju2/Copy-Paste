@@ -37,7 +37,7 @@
 				<label> &ensp;&ensp;키워드 검색</label>
 					<form method="get" action="#">
 						<input type="text" id="search-text" placeholder="검색" />
-						<a href="#"><i id="search" class="fas fa-search icon-size" style="padding-top:15px"></i></a>
+						<a href="#"><i id="search" class="fas fa-search icon-size" title="검색" style="padding-top:15px"></i></a>
 					</form>
 				</div>
 
@@ -59,7 +59,7 @@
 		<!-- Section -->
 		<header class="major mb">
 			<h3 id="h-inline">
-				노트 폴더 목록<i class="fas fa-folder-plus icon-size" id="Addfolder"></i>
+				노트 폴더 목록<i class="fas fa-folder-plus icon-size" id="Addfolder" title="새 폴더 생성"></i>
 			</h3>
 		</header>
 		<!-- 미분류폴더 -->
