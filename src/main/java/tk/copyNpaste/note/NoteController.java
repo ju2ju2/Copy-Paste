@@ -221,10 +221,9 @@ public class NoteController {
 	}
 
 	// 노트 pdf파일로 다운로드
-	@RequestMapping(value="downloadNotePdf.json")
-	public @ResponseBody void pdfDownNote(NoteVO note, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(value="downloadNotePdf.do")
+	public void pdfDownNote(NoteVO note, HttpServletRequest request, HttpServletResponse response) throws Exception {	
 		noteMailnFileService.pdfDownNote(note, request, response);
-		
 	}
 
 	// 노트 xls파일로 다운로드

@@ -51,31 +51,10 @@
 				  confirmButtonClass : "btn-danger btn-sm",
 				  cancelButtonClass: "btn btn-sm",
 				  confirmButtonText: 'OK',
-				  closeOnConfirm: false
+				  closeOnConfirm: true
 				},
 				function(){
-					$.ajax ({
-						url: "${pageContext.request.contextPath}/note/downloadNotePdf.json",
-						type: "POST",
-						data: {	'noteNum': ${note.noteNum}}
-						})//다운로드 받을 html
-						.done(function(result) {
-							swal({type: "success",
-								  title: '파일이 저장되었습니다.',
-								  confirmButtonText: "OK",
-					              confirmButtonClass : "btn-danger btn-sm",
-								  closeOnConfirm: true
-							},
-							function(){
-							
-							})
-							
-						
-						})
-						.fail(function(request,status,error){
-				     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-				     	  });
-					});
+								});
 				return false;
 			});
 		
@@ -337,7 +316,7 @@
 							 	 	<i class="far fa-edit notewrite" title="이 노트를 이용해 새 노트 작성"></i> &nbsp;</a> 
 								 <a id="emailNoteBtn"><i class="far fa-envelope notewrite" title="노트 이메일로 발송"></i> &nbsp;</a> 
 								 <a id="downloadPdfBtn"><i class="fas fa-arrow-down notewrite" title="노트 다운로드"></i> &nbsp;</a> 
-								 <a id="scrapNoteBtn"><i class="fas fa-archive notewrite" title="노트 스크랩"></i>&nbsp;</a>
+								 <a id="scrapNoteBtn"><i class="fas fa-archive notewrite" title="노트 스크랩"></i> &nbsp;</a>
 								 <a id="deleteNoteBtn"><i class="fas fa-trash notewrite" title="노트 삭제"></i> &nbsp;</a> 
 							</c:when>
 							<c:otherwise>
