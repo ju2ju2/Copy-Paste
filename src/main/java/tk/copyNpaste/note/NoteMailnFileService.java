@@ -8,8 +8,8 @@
 package tk.copyNpaste.note;
 
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.StringReader;
+import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.Properties;
 import java.util.regex.Matcher;
@@ -32,7 +32,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Service;
 
 import com.itextpdf.text.Chunk;
@@ -64,7 +63,6 @@ public class NoteMailnFileService {
 	private SqlSession sqlsession;
 	 
 	//노트 메일 전송
-/*	@AfterReturning(pointcut="updateNoteCount()", returning="retVal") */
 	public Object emailNote(NoteVO note, String noteEmailTo) throws Exception {
 		 	//노트 조회
 			NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
@@ -126,7 +124,6 @@ public class NoteMailnFileService {
 	 	NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
 		note = notedao.selectDetailNote(note.getNoteNum());
 
-
 		//css
 		String maincss = request.getSession().getServletContext().getRealPath("resources/css/main.css");
 		//font
@@ -134,17 +131,18 @@ public class NoteMailnFileService {
 
 	    // Document 생성
 	    Document document = new Document(PageSize.A4, 50, 50, 50, 50);
-	 
+	    
+	    // 멀티헤더가 있으면 에러가 발생됨 ,>>"_" or +"//" 해줌
+	    String noteTitle  = note.getNoteTitle().replaceAll(",", "_");
+	    String encodedNoteTitie = URLEncoder.encode(noteTitle,"UTF-8");// 파일 다운로드 설정
+
 	    // PdfWriter 생성
-	   
-	    PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("C:/Users/bit/Desktop/"+ note.getNoteTitle() + ".pdf")); // 바로 다운로드.
-	    writer.setInitialLeading(12.5f);
-	 
-	    // 파일 다운로드 설정
+	    //PdfWriter writer = PdfWriter.getInstance(document, new FileOutputStream("d:/temp/"+encodedNoteTitie+".pdf")); // 바로 다운로드.
+	    PdfWriter writer = PdfWriter.getInstance(document, response.getOutputStream());
+		writer.setInitialLeading(12.5f);
 	    response.setContentType("application/pdf");
 	    response.setHeader("Content-Transper-Encoding", "binary");
-	    response.setHeader("Content-Disposition", "inline; filename=" + note.getNoteTitle() + ".pdf");
-	 
+	 	response.setHeader("Content-Disposition", "attachment; filename="+encodedNoteTitie+".pdf"); 
 	    
 	    // Document 오픈
 	    document.open();
@@ -155,7 +153,7 @@ public class NoteMailnFileService {
 	    CSSResolver cssResolver = new StyleAttrCSSResolver();
 	    CssFile cssFile = helper.getCSS(new FileInputStream(maincss));
 	    cssResolver.addCss(cssFile);
-	 
+
 	    // HTML, 폰트 설정
 	    XMLWorkerFontProvider fontProvider = new XMLWorkerFontProvider(XMLWorkerFontProvider.DONTLOOKFORFONTS);
 	    fontProvider.register(font, "MalgunGothic"); // MalgunGothic은
@@ -192,11 +190,11 @@ public class NoteMailnFileService {
                     String colTag2  = colTag.replaceAll(">", "/>");
                     sHtml         = sHtml.replaceAll(colTag, colTag2);
                 }
+      
         xmlParser.parse(new StringReader(sHtml));
         document.close();
 	    writer.close();
-	   // 노트 다운로드시 노트 참조수 +1
-/*	    notedao.updateNoteCount(note.getNoteNum());*/
+
 		return note.getNoteNum();
 	}
 	

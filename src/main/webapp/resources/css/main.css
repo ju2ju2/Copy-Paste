@@ -32,17 +32,17 @@
 /* Typography
 ----------------------------------------------------------------------------- */
 /* 전체 스크롤 */
-body::-webkit-scrollbar {
+::-webkit-scrollbar {
     width: 12px;
 }
  
-body::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
     /* -webkit-box-shadow: inset 0 0 6px rgba(245,106,106,1);  */
 
     border-radius: 10px;
 }
  
-body::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background:#f56a6a;
 }
@@ -1017,10 +1017,12 @@ img .user-photo{
 	margin-top: 30px;
 }
 
+/* 신고된 댓글표시. */
 .reported {
 	text-decoration: underline;
 	color:red;
 }
+
 
 /* 이용약관 및 개인정보 이용 */
 .privacy{
@@ -1049,4 +1051,10 @@ img .user-photo{
 .privacy::-webkit-scrollbar-thumb {
     border-radius: 10px;
     background:#f56a6a;
+
+
+/* 노트 댓글 밀림 방지. */
+.noteCommContent {
+    clear: left;
+
 }
