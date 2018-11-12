@@ -34,8 +34,6 @@ function drag(request, response) {
 	});
 	request.on("end", function () {
 		var param = qs.parse(pData);
-/*		console.log(param);
-		console.log(param.dragText);*/
 		var userEmail = param.userEmail;
 		var dragText = param.dragText;
 		var dragOrigin = param.dragOrigin;

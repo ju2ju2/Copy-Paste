@@ -78,8 +78,8 @@
 	<select id="wordchart" resultType="String">
 		select noteContent 
 		from note
-		where noteDate=curdate() and noteBlind=0 and notePublic=1 and noteScrap=0
-		order by noteContent desc limit 10;
+		where <!-- noteDate=curdate() and --> noteBlind=0 and notePublic=1 and noteScrap=0
+		order by noteContent desc limit 5;
 	</select>
 
 	<!-- 신고 목록 -->
