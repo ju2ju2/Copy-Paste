@@ -46,22 +46,34 @@ public class IndexController {
 		
 		//인덱스-주제별 노트 상위목록
 		@RequestMapping("/index.htm")
-		public String index(Model model) throws Exception {
-			List<NoteVO> notelist = noteService.selectSubjectCode();
+		public String index(Model model) {
+			List<NoteVO> notelist = null;
+			try {
+				notelist = noteService.selectSubjectCode();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 			String[] subjectNames = new String[notelist.size()];
 			int i = 0;
 			for (NoteVO note: notelist ) {
 				subjectNames[i] = note.getSubjectName();
 				i++;
 			}
-			List<NoteVO> etcNoteList = noteService.selectTopNote(subjectNames[0]);
-			model.addAttribute("etcNoteList", etcNoteList);
-			List<NoteVO> bizNoteList = noteService.selectTopNote(subjectNames[1]);
-			model.addAttribute("bizNoteList", bizNoteList);
-			List<NoteVO> lifeNoteList = noteService.selectTopNote(subjectNames[2]);
-			model.addAttribute("lifeNoteList", lifeNoteList);
-			List<NoteVO> eduNoteList = noteService.selectTopNote(subjectNames[3]);
-			model.addAttribute("eduNoteList", eduNoteList);
+			;
+			try {
+				List<NoteVO> etcNoteList = noteService.selectTopNote(subjectNames[0]);
+				model.addAttribute("etcNoteList", etcNoteList);
+				List<NoteVO> bizNoteList = noteService.selectTopNote(subjectNames[1]);
+				model.addAttribute("bizNoteList", bizNoteList);
+				List<NoteVO> lifeNoteList = noteService.selectTopNote(subjectNames[2]);
+				model.addAttribute("lifeNoteList", lifeNoteList);
+				List<NoteVO> eduNoteList = noteService.selectTopNote(subjectNames[3]);
+				model.addAttribute("eduNoteList", eduNoteList);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 			return "index.main";//return "index.jsp";
 		}
 		
