@@ -168,7 +168,7 @@ $(document).ready(function() {
                  /* $('#ui-id-1').css('width', '917px !important');*/
               /*    $('#ui-id-1').attr('style', 'width: 917px !important');*/
                   $('#search-text-write').css('width', '95%');
-                  $('.topBtn').css('left', '1103px');
+                  $('.topBtn').css('left', '1108px');
                   $('#sidebar').addClass('col-sm-10');
                   $('.fa-angle-double-left').css('color','#fff');
                   $('.writeNoteNavSizeBtn').removeClass('fa-angle-double-right').addClass(
@@ -183,7 +183,7 @@ $(document).ready(function() {
 /*                  div.style('color', 'blue', 'important')*/
                   $('#sidebar').removeClass('col-sm-10');
                   $('#search-text-write').css('width', '80%');
-                  $('.topBtn').css('left', '368px');
+                  $('.topBtn').css('left', '373px');
                   $('.writeNoteNavSizeBtn').removeClass('fa-angle-double-left')
                         .addClass('fa-angle-double-right');
                }
