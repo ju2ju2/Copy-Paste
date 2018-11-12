@@ -108,10 +108,10 @@ var userEmail; //회원 이메일
 var userSocialStatus //회원 소셜 여부
 var nickDupCheck ='ok'; //닉네임 중복 진행했는지 확인하는 변수
 var rightPwd; //비밀번호 유효성 체크 변수
-var pwdDupCheck; //비밀번호 중복 진행했는지 확인하는 변수
+var pwdDupCheck; //비밀번호 중복 진행했는지 확인하는 변수 
 
 //회원 정보 뿌리기. header.jsp와 같은 함수 쓰고 있음. succecss부분 확인 필요
-$.ajax({
+/* $.ajax({
 	type : 'post',
 	url : '${pageContext.request.contextPath}/member/myinfo.do',
 	success : function(data) {
@@ -133,8 +133,10 @@ $.ajax({
 		console.log(error);
 		console.log(error.status);
 		}
-	})
+	}) */
 
+	selectMemberInfo('myinfo');
+	
 //닉네임 중복확인. signup.jsp와 다름
 	$('#userNick').keyup(function(){
 		if ($('#userNick').val() == ''){
