@@ -40,7 +40,7 @@
 <!-- 	  <property name="scope" value="https://www.googleapis.com/auth/plus.login" /> -->
 		<!-- 이메일 필요시 추가정보 필요시 스코프에 추가 -->
 	  <property name="scope" value="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.email" />
-	  <property name="redirectUri" value="http://192.168.0.134:8090/copyNpaste/member/googleOauth.do" />
+	  <property name="redirectUri" value="http://localhost:8090/copyNpaste/member/googleOauth.do" />
 	</bean>
 
 
