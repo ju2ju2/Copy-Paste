@@ -103,16 +103,9 @@
                         노트 폴더 목록
                      </h2>
                   </header>
-
-                   
-                  <div class="row" id="unclassified"></div>
-				 
-				  <div class="row" id="folder"></div>
-				  
-				  <div class="row" id="scrap"></div>  
-				  
-                  <!-- <div id="asideFolderList"></div> -->
-   
+                  <div class="row" id="unclassified" style='padding-left:11px;'></div>
+				  <div class="row" id="folder" style='padding-left:11px;'></div>
+				  <div class="row" id="scrap" style='padding-left:11px;'></div>  
                <!-- 노트상세보기 모달 -->
                <div id="modal-testNew" class="modal fade text-center overlay" role="dialog">
                   <div class="modal-dialog">

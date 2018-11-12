@@ -95,6 +95,14 @@ h3 {
 h4 {
 	font-size: 18px;
 	font-weight: 700;
+	overflow: hidden;
+	text-overflow: ellipsis !important;
+	display: -webkit-box;
+	-webkit-line-clamp: 1 !important; /* 라인수 */
+	-webkit-box-orient: vertical;
+	word-wrap:break-word; 
+	line-height: 1.2em;
+	height: 1.2em;
 }
 
 h5 {
@@ -1056,5 +1064,16 @@ img .user-photo{
 /* 노트 댓글 밀림 방지. */
 .noteCommContent {
     clear: left;
+}
 
+/* noteTitle 라인 지정*/
+.noteTitle{
+overflow: hidden;
+text-overflow: ellipsis !important;
+display: -webkit-box;
+-webkit-line-clamp: 1 !important; /* 라인수 */
+-webkit-box-orient: vertical;
+word-wrap:break-word; 
+line-height: 1.2em;
+height: 1.2em;
 }
