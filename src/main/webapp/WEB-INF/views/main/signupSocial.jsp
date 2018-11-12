@@ -10,7 +10,7 @@
 <%@ page contentType="text/html; charset=UTF-8" session="true"%>
 <div class="container">
 	<div class="row">
-		<div class="center-block ">	<h2 class="text-center signup-title">아니 왜욧??? 소셜 회원가입</h2>
+		<div class="center-block ">	<h2 class="text-center signup-title">소셜 회원가입</h2>
 			<hr>
 				<form class="form-horizontal" method="post" name="signup" id="signup" action="${pageContext.request.contextPath}/member/socialSingUp.do"><!-- 소셜 회원가입 -->
 				<div class="form-group">

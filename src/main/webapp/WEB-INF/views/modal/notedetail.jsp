@@ -123,7 +123,7 @@
                   })//다운로드 받을 html
                   .done(function(result) {
                      swal({type: "success",
-                          title: '노트가 스크랩 폴더에 저장되었습니다.',
+                          title: '노트가 스크랩 폴더에 \n저장되었습니다.',
                              confirmButtonClass : "btn-danger btn-sm",
                           closeOnConfirm: true
                      },
