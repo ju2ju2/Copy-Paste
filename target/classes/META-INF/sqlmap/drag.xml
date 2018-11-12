@@ -21,7 +21,7 @@
 	<!--드래그등록 -->	
  	<insert id="insertDrag">
         <selectKey order="BEFORE" keyProperty="dragNum" resultType="int">
-            select max(dragNum)+1 from drag
+            select ifnull(max(dragNum)+1,0) from drag
         </selectKey>
         insert into drag(dragNum, userEmail, dragText, dragOrigin, dragOriginLink )
         values(#{dragNum}, #{userEmail}, #{dragText}, #{dragOrigin}, #{dragOriginLink})

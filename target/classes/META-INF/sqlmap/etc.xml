@@ -37,7 +37,7 @@
 	<insert id="insertReport" parameterType="ReportVO">
 		<selectKey keyProperty="reportNum" order="BEFORE"
 			resultType="int">
-			select max(reportNum)+1 from report
+			select ifnull(max(reportNum)+1,0) from report
 		</selectKey>
 		insert into report
 		(reportNum, userEmail, noteNum, reportCauseCode,
