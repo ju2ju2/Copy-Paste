@@ -2,6 +2,7 @@ $(document).ready(function() {
 	 $('#table_id').DataTable({
 		 "order": false
 	 });
+});
    
 	//회원별 작성 노트개수
 	var userEmail;
@@ -21,7 +22,6 @@ $(document).ready(function() {
 
 	//이메일별 노트 일괄삭제
 	$('.deleteMemNoteBtn').click(function(){
-		
 		swal(
 				{type:"warning",
 				title: "해당 사용자의 노트를 전부 삭제하시겠습니까?",
@@ -68,12 +68,12 @@ $(document).ready(function() {
 
 
 	//노트 개별삭제
-	$('.deleteNoteBtn').click(function(){
-		var noteNumv = $(this).parent().siblings('#noteNum').text();
-		var noteTitlev = $(this).parent().siblings('#noteTitle').text();
+	function deleteOneNote(thisBtn){
+		var noteNumv = $(thisBtn).parent().siblings('#noteNum').text();
+		var noteTitlev = $(thisBtn).parent().siblings('#noteTitle').text();
 		
 		swal(  {type:"warning",
-				title: noteTitlev + "해당 노트를 삭제하시겠습니까?",
+				title: "해당 노트를 삭제하시겠습니까?",
 				text: "삭제 후에는 복구할 수 없습니다.",
 				showCancelButton: true,
 				confirmButtonClass: "btn-danger btn-sm",
@@ -101,24 +101,15 @@ $(document).ready(function() {
 								 		 closeOnConfirm: false
 											}, function () {
 												location.reload();
-												});
+												}
+										);
 										}
 								})
 					}
 			}
 		)
-	})
-	    
-	
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
+	}
+ 
 //끝	 
-})   
+
  

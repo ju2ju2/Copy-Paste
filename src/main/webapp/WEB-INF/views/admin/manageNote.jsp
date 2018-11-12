@@ -29,7 +29,6 @@
 	<table id="table_id" >
     <thead>
         <tr>
-            <th>노트개수</th>
             <th>노트번호</th>
             <th>노트제목</th>
 			<th>노트내용</th>
@@ -43,7 +42,6 @@
     <tbody>
 		<c:forEach var="NoteVo" items="${NoteVo}">
 			<tr>
-				<td>&ensp;${NoteVo.rnum}</td>
 				<td id="noteNum">&ensp;${NoteVo.noteNum}</td>
 				<td id="noteTitle">&ensp;
 					 <c:choose>
@@ -83,7 +81,7 @@
 						</c:when>
 					</c:choose>				
 				</td>
-				<td>&ensp;<button type="button" class="btn btn-sm btn-danger deleteNoteBtn">노트 삭제</button></td>		
+				<td>&ensp;<button type="button" class="btn btn-sm btn-danger deleteNoteBtn" onclick="deleteOneNote(this)">노트 삭제</button></td>		
 			</tr>
 		</c:forEach>
     </tbody>
