@@ -27,7 +27,7 @@ $.ajax({
             	scrap += '<span class="f-name"><h5 class="accordion asideFolderName" id="writeAsideFolderName">'+value.folderName+'</h5></span>'
             	scrap += '</div><div class="col-xs-2 panel-margin">' 
             	scrap += '<i class="fas fa-bookmark icon-size" style="visibility:hidden; margin-top:0px; margin-bottom:23px"></i>'
-            	scrap += '</div><div class="row"><div id="asideNoteList"></div></div></div>';
+            	scrap += '</div><div class="row"><div id="asideNoteList" style="padding:30px;"></div></div></div>';
             	$('#scrap').append(scrap);
             	scrap="";
             }else if(value.folderName.trim()=='미분류')
@@ -44,7 +44,7 @@ $.ajax({
                 	unclassified += '<i class="far fa-bookmark icon-size" style="margin-top:0px; margin-bottom:23px" id="bookmarkX" onclick=setDefaultFolder(this,"'+value.folderName+'")></i>'
                 	unclassified += '<span class="f-name" id="fname" style="display:none;">'+value.folderName+'</span>'
                    }
-            	unclassified += '</div><div class="row"><div id="asideNoteList"></div></div></div>';
+            	unclassified += '</div><div class="row"><div id="asideNoteList" style="padding-left:30px;"></div></div></div>';
             	$('#unclassified').append(unclassified);
             	unclassified="";
             }else{
@@ -60,7 +60,7 @@ $.ajax({
                 	folder += '<i class="far fa-bookmark icon-size" style="margin-top:0px; margin-bottom:23px" id="bookmarkX" onclick=setDefaultFolder(this,"'+value.folderName+'")></i>'
                 	folder += '<span class="f-name" id="fname" style="display:none;">'+value.folderName+'</span>'
                 }
-            	folder += '</div><div class="row"><div id="asideNoteList"></div></div></div>';
+            	folder += '</div><div class="row"><div id="asideNoteList" style="padding-left:30px;"></div></div></div>';
             	
             }
             
