@@ -114,7 +114,7 @@
 							</div>
 						</div>
 						<div>
-							<h4>${noteList.noteTitle}</h4>
+							<h4 class="noteTitle">${noteList.noteTitle}</h4>
 							<strong>${noteList.userNick}</strong> <span>${noteList.noteDate}</span>
 						</div>
 					</a>
@@ -147,7 +147,7 @@
 							</div>
 						</div>
 						<div>
-							<h4>${noteList.noteTitle}</h4>
+							<h4 class="noteTitle">${noteList.noteTitle}</h4>
 							<strong>${noteList.userNick}</strong> <span>${noteList.noteDate}</span>
 						</div>
 					</a>
@@ -180,7 +180,7 @@
 							</div>
 						</div>
 						<div>
-							<h4>${noteList.noteTitle}</h4>
+							<h4 class="noteTitle">${noteList.noteTitle}</h4>
 							<strong>${noteList.userNick}</strong> <span>${noteList.noteDate}</span>
 						</div>
 					</a>
@@ -212,7 +212,7 @@
 							</div>
 						</div>
 						<div>
-							<h4>${noteList.noteTitle}</h4>
+							<h4 class="noteTitle">${noteList.noteTitle}</h4>
 							<strong>${noteList.userNick}</strong> <span>${noteList.noteDate}</span>
 						</div>
 					</a>
