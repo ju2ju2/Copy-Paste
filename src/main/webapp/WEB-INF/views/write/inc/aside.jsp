@@ -104,8 +104,14 @@
                      </h2>
                   </header>
 
-                  <!-- 폴더목록,노트목록 -->   
-                  <div id="asideFolderList"></div>
+                   
+                  <div class="row" id="unclassified"></div>
+				 
+				  <div class="row" id="folder"></div>
+				  
+				  <div class="row" id="scrap"></div>  
+				  
+                  <!-- <div id="asideFolderList"></div> -->
    
                <!-- 노트상세보기 모달 -->
                <div id="modal-testNew" class="modal fade text-center overlay" role="dialog">
