@@ -48,9 +48,9 @@
       													END AS enabled
        								FROM users where userEmail=?"
        								
-			authorities-by-username-query="select u.userEmail, r.rollCode
+			authorities-by-username-query="select u.userEmail, r.roleCode
 											from users as u 
-											join rolls as r 
+											join roles as r 
 											on u.userEmail = r.userEmail 
 											where u.userEmail=?" />
          

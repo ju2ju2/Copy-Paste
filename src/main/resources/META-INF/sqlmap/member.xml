@@ -27,7 +27,7 @@
     
 	<!-- 회원가입 시 권한 생성 -->
 	<insert id="insertMemberRole" parameterType="String">
-        insert into rolls (userEmail) values (#{userEmail});
+        insert into roles (userEmail) values (#{userEmail});
     </insert>
     
 	<!-- 이메일 중복체크 -->

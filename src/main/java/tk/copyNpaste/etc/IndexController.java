@@ -59,7 +59,6 @@ public class IndexController {
 				subjectNames[i] = note.getSubjectName();
 				i++;
 			}
-			;
 			try {
 				List<NoteVO> etcNoteList = noteService.selectTopNote(subjectNames[0]);
 				model.addAttribute("etcNoteList", etcNoteList);
