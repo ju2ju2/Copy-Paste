@@ -14,35 +14,61 @@ $.ajax({
    type:"POST",
    dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
    success:function(data){
-     var folderList = "";
+	var unclassified = "";
+   	var scrap="";
+   	var folder="";
 
        if(data != null) {
          $.each(data, function(key, value){
-            $('#asideFolderList').empty(); 
             if(value.folderName.trim()=='스크랩'){
-            	folderList += '<div class="row" class="accordion" alt="'+value.folderName.trim()+'"><div class="col-xs-10 pt">'
-                folderList += '<span class="f-count" style="font-weight:700;">'+value.count+'</span>'
-                folderList += '<span class="f-name"><h5 class="accordion asideFolderName" id="writeAsideFolderName">'+value.folderName+'</h5></span>'
-                folderList += '</div><div class="col-xs-2 panel-margin">' 
-                folderList += '<i class="fas fa-bookmark icon-size" style="visibility:hidden; margin-top:0px; margin-bottom:23px"></i>'
+            	$('#scrap').empty();
+            	scrap += '<div class="row" class="accordion" alt="'+value.folderName.trim()+'"><div class="col-xs-10 pt">'
+            	scrap += '<span class="f-count" style="font-weight:700;">'+value.count+'</span>'
+            	scrap += '<span class="f-name"><h5 class="accordion asideFolderName" id="writeAsideFolderName">'+value.folderName+'</h5></span>'
+            	scrap += '</div><div class="col-xs-2 panel-margin">' 
+            	scrap += '<i class="fas fa-bookmark icon-size" style="visibility:hidden; margin-top:0px; margin-bottom:23px"></i>'
+            	scrap += '</div><div class="row"><div id="asideNoteList" style="padding:30px;"></div></div></div>';
+            	$('#scrap').append(scrap);
+            	scrap="";
+            }else if(value.folderName.trim()=='미분류')
+            {
+            	$('#unclassified').empty();
+            	unclassified += '<div class="row" class="accordion" alt="'+value.folderName.trim()+'"><div class="col-xs-10 pt">'
+            	unclassified += '<span class="f-count" style="font-weight:700;">'+value.count+'</span>'
+            	unclassified += '<span class="f-name"><h5 class="accordion asideFolderName" id="writeAsideFolderName">'+value.folderName+'</h5></span>'
+            	unclassified += '</div><div class="col-xs-2 panel-margin">' 
+            	if(value.defaultFolder==1){
+            		unclassified += '<i class="fas fa-bookmark icon-size" style="margin-top:0px; margin-bottom:23px" onclick=setDefaultFolder(this,"'+value.folderName+'","'+value.count+'"></i>'
+            		unclassified += '<span class="f-name" id="bookmarkO" style="display:none;">'+value.folderName+'</span>'
+                   }else{
+                	unclassified += '<i class="far fa-bookmark icon-size" style="margin-top:0px; margin-bottom:23px" id="bookmarkX" onclick=setDefaultFolder(this,"'+value.folderName+'")></i>'
+                	unclassified += '<span class="f-name" id="fname" style="display:none;">'+value.folderName+'</span>'
+                   }
+            	unclassified += '</div><div class="row"><div id="asideNoteList" style="padding-left:30px;"></div></div></div>';
+            	$('#unclassified').append(unclassified);
+            	unclassified="";
             }else{
-            	folderList += '<div class="row" class="accordion" alt="'+value.folderName.trim()+'"><div class="col-xs-10 pt">'
-                folderList += '<span class="f-count" style="font-weight:700;">'+value.count+'</span>'
-                folderList += '<span class="f-name"><h5 class="accordion asideFolderName" id="writeAsideFolderName">'+value.folderName+'</h5></span>'
-                folderList += '</div><div class="col-xs-2 panel-margin">' 
+            	$('#folder').empty();
+            	folder += '<div class="row" class="accordion" alt="'+value.folderName.trim()+'"><div class="col-xs-10 pt">'
+            	folder += '<span class="f-count" style="font-weight:700;">'+value.count+'</span>'
+            	folder += '<span class="f-name"><h5 class="accordion asideFolderName" id="writeAsideFolderName">'+value.folderName+'</h5></span>'
+            	folder += '</div><div class="col-xs-2 panel-margin">' 
                 if(value.defaultFolder==1){
-                	 folderList += '<i class="fas fa-bookmark icon-size" style="margin-top:0px; margin-bottom:23px" onclick=setDefaultFolder(this,"'+value.folderName+'","'+value.count+'"></i>'
-                	 folderList += '<span class="f-name" id="bookmarkO" style="display:none;">'+value.folderName+'</span>'
+                	folder += '<i class="fas fa-bookmark icon-size" style="margin-top:0px; margin-bottom:23px" onclick=setDefaultFolder(this,"'+value.folderName+'","'+value.count+'"></i>'
+                	folder += '<span class="f-name" id="bookmarkO" style="display:none;">'+value.folderName+'</span>'
                 }else{
-                	 folderList += '<i class="far fa-bookmark icon-size" style="margin-top:0px; margin-bottom:23px" id="bookmarkX" onclick=setDefaultFolder(this,"'+value.folderName+'")></i>'
-                     folderList += '<span class="f-name" id="fname" style="display:none;">'+value.folderName+'</span>'
+                	folder += '<i class="far fa-bookmark icon-size" style="margin-top:0px; margin-bottom:23px" id="bookmarkX" onclick=setDefaultFolder(this,"'+value.folderName+'")></i>'
+                	folder += '<span class="f-name" id="fname" style="display:none;">'+value.folderName+'</span>'
                 }
+            	folder += '</div><div class="row"><div id="asideNoteList" style="padding-left:30px;"></div></div></div>';
+            	
             }
-            folderList += '</div><div class="row"><div id="asideNoteList"></div></div></div>';
+            
          
          });
       }
-      $("#asideFolderList").append(folderList);
+       $('#folder').append(folder);
+   	   folder = "";
       
       /* 확장된 폴더 클릭시 목록 삭제 */
 	    $(".asideFolderName").on("click",function(){
@@ -70,7 +96,6 @@ $.ajax({
 
 /* 디폴트폴더 설정 */
 		function setDefaultFolder(bookmark, folderName){
-			console.log("폴더명 : " + folderName + "기존 폴더명 : " + $('#bookmarkO').text() );
 		$.ajax(
 				{
 		    url : "../folder/setDefaultFolder.json",
