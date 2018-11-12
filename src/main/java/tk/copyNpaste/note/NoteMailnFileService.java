@@ -64,7 +64,7 @@ public class NoteMailnFileService {
 	private SqlSession sqlsession;
 	 
 	//노트 메일 전송
-	public Object emailNote(NoteVO note, String noteEmailTo,Principal principal) throws Exception {
+	public Object emailNote(NoteVO note, String noteEmailTo, Principal principal) throws Exception {
 		 	//노트 조회
 			NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
 			note = notedao.selectDetailNote(note.getNoteNum());
@@ -85,7 +85,7 @@ public class NoteMailnFileService {
 	         
 	        Authenticator auth = new Authenticator(){
 	            protected PasswordAuthentication getPasswordAuthentication() {
-	                return new PasswordAuthentication(email, "room404404");
+	                return new PasswordAuthentication("bitcamp109@gmail.com", "room404404");
 	            }
 	        };
 	    

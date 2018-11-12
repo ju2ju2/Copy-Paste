@@ -262,4 +262,9 @@ var userNick; //헤더에 들어갈 사용자 닉네임
 			     	  }
 			     })
 	}
+	
+if (window.sessionStorage) {
+		var username = sessionStorage.setItem('login', session);
+	}	
+	
 </script>

@@ -1,3 +1,9 @@
+/*
+* @Class : AspectNote
+* @ Date : 2018.11.05
+* @ Author : 우나연
+* @ Desc : 참조 카운트 Aspectj 핸들러.
+*/
 package tk.copyNpaste.note;
 
 import org.apache.ibatis.session.SqlSession;
