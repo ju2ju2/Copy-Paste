@@ -110,8 +110,8 @@ var nickDupCheck ='ok'; //닉네임 중복 진행했는지 확인하는 변수
 var rightPwd; //비밀번호 유효성 체크 변수
 var pwdDupCheck; //비밀번호 중복 진행했는지 확인하는 변수 
 
-//회원 정보 뿌리기. header.jsp와 같은 함수 쓰고 있음. succecss부분 확인 필요
-/* $.ajax({
+//회원 정보 뿌리기
+ $.ajax({
 	type : 'post',
 	url : '${pageContext.request.contextPath}/member/myinfo.do',
 	success : function(data) {
@@ -133,88 +133,24 @@ var pwdDupCheck; //비밀번호 중복 진행했는지 확인하는 변수
 		console.log(error);
 		console.log(error.status);
 		}
-	}) */
+	})
 
-	selectMemberInfo('myinfo');
 	
 //닉네임 중복확인. signup.jsp와 다름
 	$('#userNick').keyup(function(){
-		if ($('#userNick').val() == ''){
-			$('#userNickMessage').text("사용할 닉네임을 입력해주세요.");
-		} else {
-			$.ajax({
-				type : 'post',
-				url : '${pageContext.request.contextPath}/member/checkUserNick.do',
-				data : {userNick:$('#userNick').val()},
-           	 	success : function(data) {
-            		if ($('#userNick').val()==userNick){
-            			$('#userNickMessage').removeClass("failMessage")
-            			$('#userNickMessage').addClass("successMessage")
-            			$('#userNickMessage').text("사용 가능한 닉네임입니다.");
-        				nickDupCheck = 'ok';   
-            		}else {
-            			if (data > 0 ) {
-            				$('#userNickMessage').removeClass("successMessage")
-                			$('#userNickMessage').addClass("failMessage")
-                			$('#userNickMessage').text("이미 사용 중인 닉네임입니다.");
-                			nickDupCheck = ''
-                		} else {
-                			$('#userNickMessage').removeClass("failMessage")
-                			$('#userNickMessage').addClass("successMessage")
-                			$('#userNickMessage').text("사용 가능한 닉네임입니다.");
-            				nickDupCheck = 'ok';
-               		 }
-            		}
-            	},
-            error : function(error) {
-				swal({  title: "잠시 후 다시 시도해주세요.",
-						text: "",
-						type: "warning",
-						confirmButtonClass: "btn-danger btn-sm",
-						confirmButtonText: "OK",
-						showCancelButton: false
-					})
-				console.log(error);
-				console.log(error.status);
-            }
-         });
-		}
+		checkNick('myinfo');
 	});
-	
-//비밀번호 일치 확인. signup.jsp와 같음
-	$('#cuserPwd').keyup(function(){
-	if($(this).val() != $('#userPwd').val()){
-		$('#userPwdConfirmMessage').removeClass("successMessage")
-		$('#userPwdConfirmMessage').addClass("failMessage")
-		$('#userPwdConfirmMessage').text("비밀번호를 정확히 입력해주세요.");
-		pwdDupCheck = '';
-	} else {
-		$('#userPwdConfirmMessage').removeClass("failMessage")
-		$('#userPwdConfirmMessage').addClass("successMessage")
-		$('#userPwdConfirmMessage').text("비밀번호가 일치합니다.");
-		pwdDupCheck = 'ok';
-	}
-})
 
-//비밀번호 영문, 숫자만 입력 가능. signup.jsp와 같음
-$("#userPwd").keyup(function (event) {
-	regexp =  /^[0-9a-zA-Z]{6,20}$/i;
-	var v = $(this).val();
-	if (regexp.test(v)) {
-		$('#userPwdMessage').removeClass("failMessage")
-		$('#userPwdMessage').addClass("successMessage")
-		$('#userPwdMessage').text("사용 가능한 비밀번호입니다.");
-		rightPwd = 'ok';
-		}else{
-			$('#userPwdMessage').removeClass("successMessage")
-			$('#userPwdMessage').addClass("failMessage")
-			$('#userPwdMessage').text("알파벳 대소문자, 숫자를 이용해 6글자 이상 입력해주세요."); 
-			rightPwd = '';
-		}
-})
+//비밀번호에는 영문, 숫자만 입력 가능
+ $("#userPwd").keyup(pwdValid);
+
+ //비밀번호 일치 확인
+ $('#cuserPwd').keyup(pwdDupCheck);
+
 		
-//회원 정보 수정 버튼 클릭 시 유효성(정보수정 1/3)
+//정보수정 1/3 (회원 정보 수정 버튼 클릭 시, 입력한 정보의 유효성 검사)
 $('#infoUpdate').click(function(){
+	//비밀번호와 비밀번호 확인 입력칸이 공백인 경우
  	if ($('#userPwd').val() == '' && $('#cuserPwd').val() == '') { 
 		if ( nickDupCheck != 'ok' && $('#userNick').val() != userNick ){
 						swal({
@@ -232,7 +168,7 @@ $('#infoUpdate').click(function(){
 						infoUpdateAjax();
 					}
 				 }
-	} else {
+	} else { //비밀번호와 비밀번호 확인을 모두 입력한  경우
 		if ( rightPwd != 'ok' || pwdDupCheck != 'ok' ){
 					swal({
 			  				  title: "변경할 비밀번호를 \n제대로 입력해주세요.",
@@ -263,7 +199,7 @@ $('#infoUpdate').click(function(){
 	} 
 })
 
-//정보 수정 유효성 시 입력한 비밀번호 확인(정보수정 2/3)
+//정보수정 2/3 (유효성 검사 확인 후, 현재 비밀번호를 맞게 입력했는지 검증)
 function updateMember(){	       
 		swal({
 			  title: "비밀번호 확인",
@@ -304,10 +240,7 @@ function updateMember(){
 	};
 	
 	
-	
-	
-	
-//DB로 가는 정보수정(정보수정 3/3)
+//정보수정 3/3 (DB의 정보 update)
 		function infoUpdateAjax(){
 		var form = $('form')[1];
 			//FormData parameter에 담아줌
