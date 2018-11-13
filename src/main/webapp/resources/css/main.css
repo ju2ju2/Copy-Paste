@@ -144,7 +144,7 @@ h1 span, h2 span, h3 span, h4 span {
 
 img {
 	display: block;
-/* 	max-width: 100%; */
+	max-width: 100% !important; 
 	height: auto;
 }
 
@@ -1063,7 +1063,7 @@ img .user-photo{
 
 /* 노트 댓글 밀림 방지. */
 .noteCommContent {
-    clear: left;
+    clear: left !important;
 }
 
 /* noteTitle 라인 지정*/
