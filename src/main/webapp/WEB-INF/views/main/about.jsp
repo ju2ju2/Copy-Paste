@@ -10,7 +10,7 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="localeText"><a href="aboutChangeLanguage.htm?lang=">한국어</a>/<a href="aboutChangeLanguage.htm?lang=en">English</a>/<a href="aboutChangeLanguage.htm?lang=jp">日本語</a>/<a href="aboutChangeLanguage.htm?lang=ch">中国語</a></div>
+			<div class="localeText"><a href="aboutChangeLanguage.htm?lang=">한국어</a>/<a href="aboutChangeLanguage.htm?lang=en">English</a>/<a href="aboutChangeLanguage.htm?lang=jp">日本語</a>/<a href="aboutChangeLanguage.htm?lang=ch">中国语</a></div>
 		</div>
 		<div class="row">
 			<div class="col-sm-5">
