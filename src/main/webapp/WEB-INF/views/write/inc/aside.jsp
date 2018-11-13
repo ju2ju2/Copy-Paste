@@ -179,7 +179,7 @@
                      
                      <span id="writeNoteNavSizeBtnSpanSeachInSite">
 	                 	 <button type="button" class="btn searchBtn">
-	                     <i class="fas fa-angle-double-right writeNoteNavSizeBtn" title="검색"></i>
+	                     <i class="fas fa-angle-double-right writeNoteNavSizeBtn"></i>
 	               	   </button>
 	                 	 <br>
 	                   <button type="button" class="btn topBtn" >
