@@ -91,7 +91,7 @@
 	<!-- 노트 등록 -->
 	<insert id="insertNote" useGeneratedKeys="true" keyProperty="noteNum">
         <selectKey order="BEFORE" keyProperty="noteNum" resultType="int">
-            select max(noteNum)+1 from note
+           select ifnull(max(noteNum)+1,0) from note 
         </selectKey>
         insert into note(noteNum, folderName, userEmail, noteTitle, noteContent, subjectCode, notePublic, noteThumnail)
         values(#{noteNum}, #{folderName}, #{userEmail}, #{noteTitle}, #{noteContent}, #{subjectCode}, #{notePublic}, #{noteThumnail})
@@ -205,9 +205,8 @@
 
 	<!-- 회원 노트 전체 목록 -관리자-->
 		<select id="selectAllNoteAdmin" resultType="NoteVo">
-			select cast(@rownum:=@rownum+1 as signed integer) as rnum, n.noteNum, n.noteTitle, n.notePublic, n.noteDate, u.userEmail, u.userEnabled 
-				from note n left join users u on n.userEmail = u.userEmail 
-				where (@rownum:=0)=0 order by rnum desc;		
+			select n.noteNum, n.noteTitle, n.notePublic, n.noteDate, u.userEmail, u.userEnabled 
+				from note n left join users u on n.userEmail = u.userEmail order by n.noteNum desc;		
 		</select>
 
 	<!-- 노트 개별 삭제 - 관리자 -->

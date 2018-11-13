@@ -37,7 +37,7 @@
 	<insert id="insertReport" parameterType="ReportVO">
 		<selectKey keyProperty="reportNum" order="BEFORE"
 			resultType="int">
-			select max(reportNum)+1 from report
+			select ifnull(max(reportNum)+1,0) from report
 		</selectKey>
 		insert into report
 		(reportNum, userEmail, noteNum, reportCauseCode,
@@ -78,12 +78,8 @@
 	<select id="wordchart" resultType="String">
 		select noteContent 
 		from note
-		where noteDate=curdate() and noteBlind=0 and notePublic=1;
-        <!-- 
-        0. noteDate=curdate()
-        1. where (noteNum between 30 and 60)
-        2. and noteDate > (NOW() - INTERVAL 7 DAY); -->
-
+		where <!-- noteDate=curdate() and --> noteBlind=0 and notePublic=1 and noteScrap=0
+		order by noteContent desc limit 5;
 	</select>
 
 	<!-- 신고 목록 -->

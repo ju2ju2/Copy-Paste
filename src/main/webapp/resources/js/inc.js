@@ -20,56 +20,70 @@ $('#modal-testNew').on('shown.bs.modal', function() {
 	$(document).off('focusin.modal');
 });
 
-//이전 드래그 텍스트
-var prevText;
-
-// 드래그 저장
-$(document).mouseup(function(event){
-    //인풋태그제외
-    if (!$(event.target).is(":input")) {
-	
-	event.preventDefault(); 
-	event.stopPropagation(); 
-	
-     var selection = window.getSelection();
-	 var text = selection.toString();
-	 
-	 // 드래그 텍스트 공백인지 앞의 드래그와 중복되는지 체크
-	 if (text !='' && text.length > 1 && $.trim(text).length != 0 && prevText != text) {
-		 // 드래그 저장
-		var dragfd = new FormData();
-		var dragOriginLink = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname;
-		dragfd.append("dragOriginLink",dragOriginLink);
-		dragfd.append("dragOrigin","copyNpaste");
-		dragfd.append("dragText", text);
-
-		$.ajax({
-			url : contextUrl+"/drag/insertDrag.json",
-			type:"POST",
-			data :dragfd,
-			dataType : "json",
-			processData: false,
-			contentType:false
-		})
-		.done(function (result) {
-			swal({
-				type : "success",
-				title : '드래그가 저장되었습니다.',
-				confirmButtonClass : "btn-danger btn-sm",
-				closeOnConfirm : true
-			}, function() {
-				
-			});
-			
-			prevText = text;
-		})
+//로그인 후에만 요청
+if (window.sessionStorage) {
+	var login = sessionStorage.getItem('login');
+	if(login){
 		
-		return false;
-	 }	
-	 
-	 
-    }
- });
+		//이전 드래그 텍스트
+		var prevText;
+
+		// 드래그 저장
+		$(document).mouseup(function(event){
+		    //인풋태그제외
+		    if (!$(event.target).is(":input")) {
+			
+			event.preventDefault(); 
+			event.stopPropagation(); 
+			
+		     var selection = window.getSelection();
+			 var text = selection.toString();
+			 
+			 // 드래그 텍스트 공백인지 앞의 드래그와 중복되는지 체크
+			 if (text !='' && text.length > 1 && $.trim(text).length != 0 && prevText != text) {
+				 // 드래그 저장
+				var dragfd = new FormData();
+				var dragOriginLink = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname;
+				dragfd.append("dragOriginLink",dragOriginLink);
+				dragfd.append("dragOrigin","copyNpaste");
+				dragfd.append("dragText", text);
+
+				$.ajax({
+					url : contextUrl+"/drag/insertDrag.json",
+					type:"POST",
+					data :dragfd,
+					dataType : "json",
+					processData: false,
+					contentType:false
+				})
+				.done(function (result) {
+					swal({
+						type : "success",
+						title : '드래그가 저장되었습니다.',
+						confirmButtonClass : "btn-danger btn-sm",
+						closeOnConfirm : true
+					}, function() {
+						
+					});
+					
+					prevText = text;
+				})
+				
+				return false;
+			 }	
+			 
+			 
+		    }
+		 });
+		
+		
+		
+		
+		
+	}
+}
+
+
 
 //로딩
 $.ajaxSetup({

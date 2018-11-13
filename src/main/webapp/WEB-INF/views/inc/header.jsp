@@ -243,22 +243,28 @@ var userPhoto; //헤더에 들어갈 사용자 프로필 이미지
 var userNick; //회원 닉네임
 var userSocialStatus; //소셜 가입여부
 
-if(session != ''){
-	 $.ajax({
-			type : 'post',
-			url : '${pageContext.request.contextPath}/member/myinfo.do',
-			success : function(data) {
-						userNick = data.userNick;
-						$('.userNick').text(userNick);
-						userPhoto = data.userPhoto; 	
-						if (data.userSocialStatus != 0){
-							$('#headerUserPhoto').attr("src", userPhoto);
-						} else {$('#headerUserPhoto').attr("src", "${pageContext.request.contextPath}/resources/image/userPhoto/" + userPhoto);	
-							}
-		     	   },
-		     	  error:function(request,status,error){
-		     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-		     	  }
-		     })
-}
+
+//사용자 프로필 이미지 출력. myinfo.jsp와 같은 함수 쓰고 있음
+	if(session != ''){
+		 $.ajax({
+				type : 'post',
+				url : '${pageContext.request.contextPath}/member/myinfo.do',
+				success : function(data) {
+							userNick = data.userNick;
+							$('.userNick').text(userNick);
+							userPhoto = data.userPhoto; 	
+							if (data.userSocialStatus != 0){
+								$('#headerUserPhoto').attr("src", userPhoto);
+							} else {$('#headerUserPhoto').attr("src", "${pageContext.request.contextPath}/resources/image/userPhoto/" + userPhoto);	
+								}
+			     	   },
+			     	  error:function(request,status,error){
+			     		   console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			     	  }
+			     })
+	}
+	
+if (window.sessionStorage) {
+		var username = sessionStorage.setItem('login', session);
+	}	
 </script>

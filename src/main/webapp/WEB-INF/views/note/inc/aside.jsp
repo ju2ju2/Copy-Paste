@@ -64,10 +64,8 @@
 		</header>
 		<!-- 미분류폴더 -->
 		<div class="row" id="unclassified"></div>
-
 		<!-- 폴더 목록 -->
 		<div class="row" id="folder"></div>
-
 		<!-- 스크랩폴더 -->
 		<div class="row" id="scrap"></div>
 	</div>

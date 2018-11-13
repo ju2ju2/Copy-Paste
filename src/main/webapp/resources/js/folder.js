@@ -2,136 +2,114 @@ $(document).ready(function() {
 	folderlist();
 	
 /* 노트 폴더 리스트 */
-function folderlist(){
-			$.ajax({
-		        url : "../folder/selectAllFolder.json",
-		        type : "post",
-		        dataType : "json",
-		        success : function(data){
-		        	var unclassified = "";
-		        	var scrap="";
-		        	var folder="";
-		        	
-					if(data != null) {
-		        		$.each(data, function(key, value){
-		        			/* 일반 폴더 출력 */
-		        			if ((value.folderName).trim()!='미분류'&&(value.folderName).trim()!='스크랩'){
-								folder += "<div class='col-xs-10 n-folder'>";
-								folder += "<h5 class='ml-10 f-name'>";
-								folder += "<span class='f-count'>";
-								folder += value.count
-								folder += "</span>";
-								folder += "<span class='f-name'><a href='#' onclick=folderContents(this,'"+value.folderName+"')>";
-								folder += value.folderName+"</a></span>";
-								folder += "<span class='f-modify' id='modify'>";
-								folder += "<i class='fas fa-edit icon-size' id='folderEdit' title='폴더명 수정' onclick=folderEdit(this,'"+value.folderName+"','"+value.count+"','"+value.defaultFolder+"')>";
-								folder += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i>";
-								folder += "<i class='fas fa-trash icon-size' id='folderdelete' title='폴더 삭제' onclick=folderDelete('"+value.folderName+"','"+value.defaultFolder+"');>";
-								folder += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></span></h5></div>";
-								$('#folder').append(folder);
-								if(value.defaultFolder==1){
-									folder = "";
-									folder += "<div class='col-xs-2 icon'><i class='fas fa-bookmark icon-size' id='bookmarkO' title='기본 폴더' onclick=setDefaultFolder(this,'"+value.folderName+"','"+value.count+"');>";
-									folder += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></div>";
-									$('#folder').append(folder);
-								}else{
-									folder = "";
-									folder += "<div class='col-xs-2 icon'><i class='far fa-bookmark icon-size' id='bookmarkX' title='기본 폴더로 지정' onclick=setDefaultFolder(this,'"+value.folderName+"');>";
-									folder += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></div>";
-									$('#folder').append(folder);
-									
-								}
-								folder="";
-							} 
-		        			/* 미분류 폴더 출력 */
-		        			if(value.folderName == "미분류"){
-								$('#unclassified').empty();
-								unclassified += "<div class='col-xs-10 n-folder'>";
-								unclassified += "<h5 class='ml-10 f-name'>";
-								unclassified += "<span class='f-count'>";
-								unclassified += value.count
-								unclassified += "</span>";
-								unclassified += "<span class='f-name'><a href='#' onclick=folderContents(this,'"+value.folderName+"')>";
-								unclassified += value.folderName+"</a></span>";
-								unclassified += "<span class='f-modify' id='modify'>";
-								unclassified += "<i class='fas fa-edit icon-size' id='folderEdit' title='폴더명 수정' style='display: none;' onclick=folderEdit(this,'"+value.folderName+"')>";
-								unclassified += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i>";
-								unclassified += "<i class='fas fa-trash icon-size' id='folderdelete' title='폴더 삭제' style='display: none;' onclick=folderDelete('"+value.folderName+"','"+value.defaultFolder+"');>";
-								unclassified += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></span></h5></div>";
-								$('#unclassified').append(unclassified);
-								
-								if(value.defaultFolder==1){
-									unclassified = "";
-									unclassified += "<div class='col-xs-2 icon'><i class='fas fa-bookmark icon-size' id='bookmarkO'  title='기본 폴더' onclick=setDefaultFolder(this,'"+value.folderName+"');>";
-									unclassified += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></div>";
-									$('#unclassified').append(unclassified);
-									unclassified = "";
-								}else{
-									unclassified = "";
-									unclassified += "<div class='col-xs-2 icon'><i class='far fa-bookmark icon-size' id='bookmarkX' title='기본 폴더로 지정' onclick=setDefaultFolder(this,'"+value.folderName+"');>";
-									unclassified += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></div>";
-									$('#unclassified').append(unclassified);
-									unclassified = "";
-								}
-								unclassified="";
-							} 
-		        			if (value.folderName=="스크랩"){
-								$('#scrap').empty();
-								scrap += "<div class='col-xs-10 n-folder'>";
-								scrap += "<h5 class='ml-10 f-name'>";
-								scrap += "<span class='f-count'>";
-								scrap += value.count
-								scrap += "</span>";
-								scrap += "<span class='f-name'><a href='#' onclick=folderContents(this,'"+value.folderName+"')>";
-								scrap += value.folderName+"</a></span>";
-								scrap += "<span class='f-modify' id='modify'>";
-								scrap += "<i class='fas fa-edit icon-size' id='folderEdit' title='폴더명 수정' style='display: none;' onclick=folderEdit(this,'"+value.folderName+"')>";
-								scrap += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i>";
-								scrap += "<i class='fas fa-trash icon-size' id='folderdelete' title='폴더명 삭제' style='display: none;' onclick=folderDelete('"+value.folderName+"');>";
-								scrap += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></span></h5></div>";
-								scrap += "<div class='col-xs-2 icon'><i class='far fa-bookmark icon-size' title='기본 폴더로 지정' style='display: none;'></i></div>";						
-								$('#scrap').append(scrap);
-								scrap="";
-							} 
-						});
-		       		}
+	function folderlist(){
+	$.ajax({
+	   url: "../folder/selectAllFolder.json", // url_pettern 
+	   type:"POST",
+	   dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
+	   success:function(data){
+		var unclassified = "";
+	   	var scrap="";
+	   	var folder="";
+	       if(data != null) {
+	         $.each(data, function(key, value){
+	            if(value.folderName.trim()=='스크랩'){
+	            	$('#scrap').empty();
+	            	scrap += "<div class='col-xs-10 n-folder' style='left:-14;'>";
+					scrap += "<h5 class='ml-10 f-name'>";
+					scrap += "<span class='f-count'>";
+					scrap += value.count
+					scrap += "</span>";
+					scrap += "<span class='f-name'><a href='#' onclick=folderContents(this,'"+value.folderName+"')>";
+					scrap += value.folderName+"</a></span>";
+					scrap += "<span class='f-modify' id='modify'>";
+					scrap += "<i class='fas fa-edit icon-size' id='folderEdit' style='display: none;' onclick=folderEdit(this,'"+value.folderName+"')>";
+					scrap += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i>";
+					scrap += "<i class='fas fa-trash icon-size' id='folderdelete' style='display: none;' onclick=folderDelete('"+value.folderName+"');>";
+					scrap += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></span></h5></div>";
+					scrap += "<div class='col-xs-2 icon'><i class='far fa-bookmark icon-size' style='display: none;'></i></div>";						
+	            	$('#scrap').append(scrap);
+	            	scrap="";
+	            }else if(value.folderName.trim()=='미분류')
+	            {
+	            	$('#unclassified').empty();
+	            	unclassified += "<div class='col-xs-10 n-folder' style='left:-14;'>";
+					unclassified += "<h5 class='ml-10 f-name'>";
+					unclassified += "<span class='f-count'>";
+					unclassified += value.count
+					unclassified += "</span>";
+					unclassified += "<span class='f-name'><a href='#' onclick=folderContents(this,'"+value.folderName+"')>";
+					unclassified += value.folderName+"</a></span>";
+					unclassified += "<span class='f-modify' id='modify'>";
+					unclassified += "<i class='fas fa-edit icon-size' id='folderEdit' style='display: none;' onclick=folderEdit(this,'"+value.folderName+"')>";
+					unclassified += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i>";
+					unclassified += "<i class='fas fa-trash icon-size' id='folderdelete' style='display: none;' onclick=folderDelete('"+value.folderName+"','"+value.defaultFolder+"');>";
+					unclassified += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></span></h5></div>";
+	            	if(value.defaultFolder==1){
+	            		unclassified += '<div class="col-xs-2 icon"><i class="fas fa-bookmark icon-size" onclick=setDefaultFolder(this,"'+value.folderName+'","'+value.count+'"></i>'
+	            		unclassified += '<span class="f-name" id="bookmarkO" style="display:none;">'+value.folderName+'</span></div>'
+	                   }else{
+	                	unclassified += '<div class="col-xs-2 icon"><i class="far fa-bookmark icon-size" id="bookmarkX" onclick=setDefaultFolder(this,"'+value.folderName+'")></i>'
+	                	unclassified += '<span class="f-name" id="fname" style="display:none;">'+value.folderName+'</span></div>'
+	                   }
+	            	unclassified += '</div><div class="row"><div id="asideNoteList"></div></div></div>';
+	            	$('#unclassified').append(unclassified);
+	            	unclassified="";
+	            }else{
+	            	$('#folder').empty();
+	            	folder += "<div class='col-xs-10 n-folder' style='left:-14;'>";
+					folder += "<h5 class='ml-10 f-name'>";
+					folder += "<span class='f-count'>";
+					folder += value.count
+					folder += "</span>";
+					folder += "<span class='f-name'><a href='#' onclick=folderContents(this,'"+value.folderName+"')>";
+					folder += value.folderName+"</a></span>";
+					folder += "<span class='f-modify' id='modify'>";
+					folder += "<i class='fas fa-edit icon-size' id='folderEdit' onclick=folderEdit(this,'"+value.folderName+"','"+value.count+"','"+value.defaultFolder+"')>";
+					folder += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i>";
+					folder += "<i class='fas fa-trash icon-size' id='folderdelete' onclick=folderDelete('"+value.folderName+"','"+value.defaultFolder+"');>";
+					folder += "<span class='f-name' id='fname' style='display: none;'>"+value.folderName+"</span></i></span></h5></div>";
+	                if(value.defaultFolder==1){
+	                	folder += '<div class="col-xs-2 icon"><i class="fas fa-bookmark icon-size" onclick=setDefaultFolder(this,"'+value.folderName+'","'+value.count+'"></i>'
+	                	folder += '<span class="f-name" id="bookmarkO" style="display:none;">'+value.folderName+'</span></div>'
+	                }else{
+	                	folder += '<div class="col-xs-2 icon"><i class="far fa-bookmark icon-size" id="bookmarkX" onclick=setDefaultFolder(this,"'+value.folderName+'")></i>'
+	                	folder += '<span class="f-name" id="fname" style="display:none;">'+value.folderName+'</span></div>'
+	                }
+	            	folder += '</div><div class="row"><div id="asideNoteList"></div></div></div>';
+	            	
+	            }
+	            
+	         
+	         });
+	      }
+	       $('#folder').append(folder);
+	   	   folder = "";
+	      
+	      /* 확장된 폴더 클릭시 목록 삭제 */
+		    $(".asideFolderName").on("click",function(){
+		      if ($(this).hasClass("activefolder")){
+		         $(this).removeClass("activefolder");
+		         $(this).closest('div').siblings('.row').children('#asideNoteList').empty(); 
+		      }else{
+		    	  $(this).addClass("activefolder");
+		    	  var folderName = $(this).text();
+		    	  folderNoteList(folderName);
+		      } 
+		    }); 
+		    
 
-		        	/* 폴더 수정 및 삭제 아이콘 토글 */
-		        	$(this).find('.f-modify').hide();
-		        	$('.n-folder').mouseenter(function() {
-		        		$(this).find('.f-modify').show();
-		        	});
-		        	$('.n-folder').mouseleave(function() {
-		        		$(this).find('.f-modify').hide();
-		        	});
-		        },
-		        error:function(request,status,error)
-		        { alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);}
-			    }).done(function (result){
-			  		  // noteDiv들 제어, 마우스로 끌고 다니기 가능하고 드롭 가능 영역 외 위치가 되면 제자리로 돌아온다.
-		    	    $('.noteDiv').draggable({
-		    	    	revert: true, 
-		    	    	 revertDuration: 200,
-		    	    	 snapMode: "inner",
-		    	    	 scroll: true,
-		    	    	 scrollSensitivity: 100 ,
-		    	    	 scrollSpeed: 100
-		    	    	});
-		    	     // 노트를 드랍하여 삭제 메소드 
-		    	    $("#droppable").droppable({
-		    	        activeClass:"ui-state-active",
-		    	        accept:".noteDiv",
-		    	        drop: function(event,ui) {
-		    	        	var noteNum = ui.draggable.prop("id")
-		    	        	deleteNote(noteNum)
-		    	         }     
-		    	      });  
-		        
-		        
-		        })
-		        
-		        
+		   /* 기본폴더 북마크 토글  */
+		   $('.fa-bookmark').click(function() {
+		      if ($(this).hasClass("far")) {
+		         $('.fa-bookmark').removeClass("fas").addClass("far");
+		         $(this).removeClass("far").addClass("fas");
+		      }
+		   })
+	    }
+	 })
 	}
+
 	
 /*폴더 추가*/
 	$('#Addfolder').click(function(){
@@ -189,11 +167,11 @@ function insertFolder(){
 			    			        a += $('#folname').val();
 			    			        a += "</span>"
 			    			        a += "<span class='f-modify'>";
-			    			        a += "<i class='fas fa-edit icon-size' title='폴더명 수정'></i>" 
-			    			        a += "<i class='fas fa-trash icon-size' title='폴더 삭제'></i></span>"
+			    			        a += "<i class='fas fa-edit icon-size'></i>" 
+			    			        a += "<i class='fas fa-trash icon-size'></i></span>"
 			    			        a += "</h5></div>";
 			    			        a += "<div class='col-xs-2 icon'>";
-			    			        a += "<i class='far fa-bookmark icon-size' title='기본 폴더로 지정' style='margin-left:11px;'></i>";
+			    			        a += "<i class='far fa-bookmark icon-size' style='margin-left:11px;'></i>";
 			    			        a += "</div></div>"; 
 			    			        $('#folder:last-child').append(a);
 			    			        
@@ -236,8 +214,8 @@ function updateFolder(folderName, count, defaultFolder){
  	        a += $('#folname').val();
  	        a += "</span>"
  	        a += "<span class='f-modify'>";
- 	        a += "<i class='fas fa-edit icon-size' title='폴더명 수정' onclick=folderEdit(this,'"+$('#folname').val()+"','"+count+"')></i>" 
- 	        a += "<i class='fas fa-trash icon-size' title='폴더 삭제' onclick=folderDelete('"+$('#folname').val()+"','"+defaultFolder+"')></i></span>"
+ 	        a += "<i class='fas fa-edit icon-size' onclick=folderEdit(this,'"+$('#folname').val()+"','"+count+"')></i>" 
+ 	        a += "<i class='fas fa-trash icon-size' onclick=folderDelete('"+$('#folname').val()+"','"+defaultFolder+"')></i></span>"
  	        a += "</h5>";
  	        a += "<div class='col-xs-2 icon'>";
  	        a += "</div>"; 
@@ -383,7 +361,7 @@ function folderContents(folder,folderName){
 			      		c+='<header class="major">';
 			      		c+='<h3 id="fName">';
 		      			c+=value.folderName
-		      			c+='<i class="fas fa-trash icon-size" title="폴더 삭제"></i>';
+		      			c+='<i class="fas fa-trash icon-size"></i>';
 		      			c+='</h3>';
 		      			$('#droppable').append(c);
 		      			c="";
@@ -582,7 +560,7 @@ function addfolder(){
 	a += "<input type='text' id='folname' required minlength='1' maxlength='12' style='width:200px;height:40px;margin-left:44px;margin-top:-25px;'placeholder='폴더명을 입력하세요' autofocus/>";
 	a += "</h5></div>";
 	a += "<div class='col-xs-2 icon'>";
-	a += "<i class='far fa-bookmark icon-size' title='기본 폴더로 지정' style='margin-left:11px;'></i>";
+	a += "<i class='far fa-bookmark icon-size' style='margin-left:11px;'></i>";
 	a += "</div></div>";
 	$('#scrap:last-child').append(a);
 					}

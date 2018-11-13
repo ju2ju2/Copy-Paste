@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import java.io.StringReader;
 import java.net.URLEncoder;
 import java.nio.charset.Charset;
+import java.security.Principal;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -63,12 +64,12 @@ public class NoteMailnFileService {
 	private SqlSession sqlsession;
 	 
 	//노트 메일 전송
-	public Object emailNote(NoteVO note, String noteEmailTo) throws Exception {
+	public Object emailNote(NoteVO note, String noteEmailTo, Principal principal) throws Exception {
 		 	//노트 조회
 			NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
 			note = notedao.selectDetailNote(note.getNoteNum());
 			
-		    String email = "bitcamp109@gmail.com";	//전송될 이메일
+		    String email = principal.getName();	//전송될 이메일
 		    String title = note.getNoteTitle();		//노트 제목
 		    String content = note.getNoteContent(); //노트 내용
 		    
@@ -84,7 +85,7 @@ public class NoteMailnFileService {
 	         
 	        Authenticator auth = new Authenticator(){
 	            protected PasswordAuthentication getPasswordAuthentication() {
-	                return new PasswordAuthentication(email, "room404404");
+	                return new PasswordAuthentication("bitcamp109@gmail.com", "room404404");
 	            }
 	        };
 	    
