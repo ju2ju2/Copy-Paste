@@ -44,7 +44,7 @@
 	
 	<!-- 노트 댓글 보기 -->
 	<select id="selectAllNoteComm" resultType="NoteCommVO">
-	select nc.noteCommNum, nc.userEmail, nc.noteNum, nc.commDept,nc.noteCommBlind, nc.commContent, nc.commDate, nc.noteCommPNum, u.userNick, u.userPhoto, u.userSocialStatus, nc.noteCommPos
+	select nc.noteCommNum, nc.userEmail, nc.noteNum, nc.commDept,nc.noteCommBlind, nc.commContent, nc.commDate, nc.noteCommPNum, u.userNick,nc.noteCommPos
 	from noteComm nc join users u on u.userEmail=nc.userEmail where noteNum = #{nc.noteNum} order by nc.noteCommPNum , nc.noteCommNum
 	</select>
 	

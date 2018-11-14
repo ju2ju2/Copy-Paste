@@ -25,15 +25,8 @@ public class NoteCommVO {
 	private String sortCategory;
 	private int num;
 	private int noteCommBlind;
-	private int userSocialStatus;
 	
 	
-	public int getUserSocialStatus() {
-		return userSocialStatus;
-	}
-	public void setUserSocialStatus(int userSocialStatus) {
-		this.userSocialStatus = userSocialStatus;
-	}
 	public int getNoteCommNum() {
 		return noteCommNum;
 	}
