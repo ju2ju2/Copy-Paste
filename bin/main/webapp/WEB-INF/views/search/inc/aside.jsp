@@ -37,7 +37,7 @@
 		<section>
 		<br>	
 			<header class="major">
-				<h2>드래그 목록<i class="fas fa-trash"></i></span></h2>
+				<h2>MY DRAG<i class="fas fa-trash"></i></span></h2>
 			</header>
 			<div class="mini-posts">
 				<article>
