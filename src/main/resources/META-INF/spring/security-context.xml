@@ -26,15 +26,14 @@
 	<security:logout logout-url="/logout"
 					 logout-success-url="/index.htm" 
 					 invalidate-session="true"/>	
-	
-	
+
 	<security:intercept-url pattern="/login.htm" access="permitAll" />
 	<security:intercept-url	pattern="/signup.htm" access="permitAll" />
 	<security:intercept-url pattern="/admin/**"	access="hasRole('ROLE_ADMIN')" />
 		
 	<security:session-management invalid-session-url="/login.htm">
 			<security:concurrency-control
-				max-sessions="1" error-if-maximum-exceeded="true" />
+				max-sessions="1" expired-url="/login" error-if-maximum-exceeded="false"  />
 	</security:session-management>
 </security:http>
 
