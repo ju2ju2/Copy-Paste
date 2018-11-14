@@ -12,9 +12,7 @@
 		<section id="droppable">
 			<header class="major">
 				<h3 id="fName">	
-					My Note <i class="fas fa-trash icon-size"></i>
-
-					 
+					MY NOTE <i class="fas fa-trash icon-size"></i>
 				</h3>
 			</header>
 		</section>

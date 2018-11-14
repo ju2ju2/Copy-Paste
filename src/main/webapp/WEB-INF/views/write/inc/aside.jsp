@@ -59,7 +59,7 @@
                   <br>
                   <header class="major" id="droppable">
                      <h2>
-                        드래그 목록<i class="fas fa-trash icon-size"></i>
+                        MY DRAG<i class="fas fa-trash icon-size"></i>
                      </h2>
                   </header>
                   <!-- 드래그목록 -->
