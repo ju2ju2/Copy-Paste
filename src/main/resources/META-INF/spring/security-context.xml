@@ -32,10 +32,10 @@
 	<security:intercept-url	pattern="/signup.htm" access="permitAll" />
 	<security:intercept-url pattern="/admin/**"	access="hasRole('ROLE_ADMIN')" />
 		
-	<!-- <security:session-management invalid-session-url="/login.htm">
+	<security:session-management invalid-session-url="/login.htm">
 			<security:concurrency-control
 				max-sessions="1" error-if-maximum-exceeded="true" />
-	</security:session-management> -->
+	</security:session-management>
 </security:http>
 
 <security:authentication-manager>
