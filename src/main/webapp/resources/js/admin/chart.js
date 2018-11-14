@@ -98,23 +98,22 @@ $(function() {
 				dataType:"json",
 				success:function(responsedata){
 					$.each(responsedata, function(index, obj) {
-						console.log(obj);
 						joinMemberxAxis[index] = obj.joinMemberxAxis;
 					    joinMemberyAxis[index] = obj.joinMemberyAxis;
 					})
-					
-					Highcharts.chart('container', {
+					Highcharts.chart('chartDiv', {
 					    chart: {
 					        plotBackgroundColor: null,
 					        plotBorderWidth: 0,
 					        plotShadow: false
 					    },
 					    title: {
-					        text: 'Browser<br>shares<br>2017',
+					        text: '유형 별<br>회원가입 통계<br>2018',
 					        align: 'center',
 					        verticalAlign: 'middle',
 					        y: 40
 					    },
+					    colors: {color : (Highcharts.theme && Highcharts.theme.contrastTextColor) || '#f56a6a'},
 					    tooltip: {
 					        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
 					    },
@@ -134,41 +133,20 @@ $(function() {
 					            size: '110%'
 					        }
 					    },
+					    colors: ['#f56a6a', '#fcce00', '#3ec729', '#4285f4', '#1aadce',
+					        '#492970', '#f28f43', '#77a1e5', '#c42525', '#a6c96a'],
 					    series: [{
 					        type: 'pie',
 					        name: 'Browser share',
 					        innerSize: '50%',
 					        data: [
-					            ['Chrome', 58.9],
-					            ['Firefox', 13.29],
-					            ['Internet Explorer', 13],
-					            ['Edge', 3.78],
-					            ['Safari', 3.42],
-					            {
-					                name: 'Other',
-					                y: 7.61,
-					                dataLabels: {
-					                    enabled: false
-					                }
-					            }
+					            ['일반회원', joinMemberyAxis[0]],
+					            ['Kakao', joinMemberyAxis[1]],
+					            ['Naver', joinMemberyAxis[2]],
+					            ['Google', joinMemberyAxis[3]]
 					        ]
 					    }]
 					});
-						/*Highcharts.chart('chartDiv', {
-							chart: { type: 'pie' },
-							title: { text: '유형별 가입 회원 수' },
-							xAxis: { categories: joinMemberxAxis  categories: ['일반회원', '카카오회원', '네이버회원', '구글회원']},
-							yAxis : {title : false,allowDecimals: false },
-							colors: {color : (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'},
-							legend: false,
-							series : [{
-								name : '가입한 회원 수',
-								data : joinMemberyAxis
-								
-																	
-							}]	
-						});*/
-					
 					}
 				});
 				

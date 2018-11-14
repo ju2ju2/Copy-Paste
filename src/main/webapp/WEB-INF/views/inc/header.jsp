@@ -237,11 +237,12 @@ function onMessage(evt) {
 	</div>
 	<hr class="nav-hr" />
 </nav>
-
 <script type="text/javascript">
 var session  = ('${sessionScope.SPRING_SECURITY_CONTEXT.authentication.principal}'); //세션 유무 확인
 var userPhoto; //헤더에 들어갈 사용자 프로필 이미지
-var userNick; //헤더에 들어갈 사용자 닉네임
+var userNick; //회원 닉네임
+var userSocialStatus; //소셜 가입여부
+
 
 //사용자 프로필 이미지 출력. myinfo.jsp와 같은 함수 쓰고 있음
 	if(session != ''){
@@ -266,5 +267,4 @@ var userNick; //헤더에 들어갈 사용자 닉네임
 if (window.sessionStorage) {
 		var username = sessionStorage.setItem('login', session);
 	}	
-	
 </script>

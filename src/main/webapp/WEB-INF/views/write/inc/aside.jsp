@@ -14,15 +14,15 @@
 
          <!-- 탭 -->
          <ul class="nav nav-tabs nav-justified" id="writeNoteNavUl">
-            <li class="active"><a data-toggle="tab" href="#drag"
+            <li class="active" title="드래그 목록"><a data-toggle="tab" href="#drag"
                class="writeNoteNavBtn"> <i
                   class="fas fa-mouse-pointer icon-li"></i></a></li>
-            <li><a data-toggle="tab" href="#myNote" class="writeNoteNavBtn">
+            <li title="노트 목록"><a data-toggle="tab" href="#myNote" class="writeNoteNavBtn">
                   <i class="fas fa-sticky-note icon-li"></i>
             </a></li>
-            <li><a data-toggle="tab" href="#inSiteSearch"
+            <li title="사이트 검색"><a data-toggle="tab" href="#inSiteSearch"
                class="writeNoteNavBtn"  id="writeSearch"> <i class="fas fa-search icon-li"></i></a></li>
-            <li><a data-toggle="tab" href="#portalSearch"
+            <li title="구글 검색"><a data-toggle="tab" href="#portalSearch"
                class="writeNoteNavBtn"> <i class="fab fa-google icon-li"></i></a></li>
          </ul>
          <div class="mb"></div>
@@ -48,7 +48,7 @@
                         <div class="col-xs-12">
                            <form method="post" action="#">
                               <input type="text" id="search-text" placeholder="검색" /> <a
-                                 href="#"><i id="searchdrag" class="fas fa-search icon-size"
+                                 href="#"><i id="searchdrag" class="fas fa-search icon-size" title="검색"
                                  style="padding-top: 15px"></i></a>
                            </form>
                         </div>
@@ -59,7 +59,7 @@
                   <br>
                   <header class="major" id="droppable">
                      <h2>
-                        MY DRAG<i class="fas fa-trash icon-size"></i>
+                        드래그 목록<i class="fas fa-trash icon-size" title="드래그 삭제"></i>
                      </h2>
                   </header>
                   <!-- 드래그목록 -->
@@ -89,7 +89,7 @@
                         <div class="col-xs-12">
                            <form method="get" action="#">
                               <input type="text" id="search-text" placeholder="검색" /> <a
-                                 href="#"><i id="search" class="fas fa-search icon-size"
+                                 href="#"><i id="search" class="fas fa-search icon-size" title="검색"
                                  style="padding-top: 15px"></i></a>
                            </form>
                         </div>
@@ -137,7 +137,7 @@
                            <section id="subject-search" class="alt">    
                            <form method="get" action="#">
                               <input type="text" id="search-text-write" placeholder="검색어를 입력해주세요" required /> <a
-                                 href="#"><i id="searchWriteSite" class="fas fa-search icon-size"
+                                 href="#"><i id="searchWriteSite" class="fas fa-search icon-size" title="검색"
                                  style="padding-top: 15px"></i></a>
                            </form>
                            </section>
@@ -179,7 +179,7 @@
                      
                      <span id="writeNoteNavSizeBtnSpanSeachInSite">
 	                 	 <button type="button" class="btn searchBtn">
-	                     <i class="fas fa-angle-double-right writeNoteNavSizeBtn "></i>
+	                     <i class="fas fa-angle-double-right writeNoteNavSizeBtn"></i>
 	               	   </button>
 	                 	 <br>
 	                   <button type="button" class="btn topBtn" >

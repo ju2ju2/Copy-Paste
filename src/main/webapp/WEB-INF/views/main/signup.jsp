@@ -169,8 +169,7 @@
 	var mailDupCheck; //메일 중복 진행했는지 확인하는 변수
 	var nickDupCheck; //닉네임 중복 진행했는지 확인하는 변수
 	var writtenMail; //회원이 입력한 메일주소
-	var writtenNick; //회원이 입력한 닉네임
-	var rightPwd; //비밀번호 유효성 체크 변수
+	var rightPwd;  //비밀번호 유효성 체크 변수
 	var pwdDupCheck; //비밀번호 중복 진행했는지 확인하는 변수
 
 	
@@ -230,39 +229,7 @@
 			}
 	});
 
-	//비밀번호 일치 확인 myinfo.jsp와 같음
- 	$('#cuserPwd').keyup(function(){
-		if($(this).val() != $('#userPwd').val()){
-			$('#userPwdConfirmMessage').removeClass("successMessage");
-			$('#userPwdConfirmMessage').addClass("failMessage");
-			$('#userPwdConfirmMessage').text("비밀번호를 정확히 입력해주세요.");
-			pwdDupCheck = '';
-		} else {
-			$('#userPwdConfirmMessage').removeClass("failMessage");
-			$('#userPwdConfirmMessage').addClass("successMessage");
-			$('#userPwdConfirmMessage').text("비밀번호가 일치합니다.");
-			pwdDupCheck = 'ok';
-		}
-	})
 
-	//비밀번호 영문, 숫자만 입력 가능 myinfo.jsp와 같음
-	$("#userPwd").keyup(function (event) {
-		regexp =  /^[0-9a-zA-Z]{6,20}$/i;
-		var v = $(this).val();
-		if (regexp.test(v)) {
-			$('#userPwdMessage').removeClass("failMessage");
-			$('#userPwdMessage').addClass("successMessage");
-			$('#userPwdMessage').text("사용 가능한 비밀번호입니다.");
-			rightPwd = 'ok';
-			}else{
-				$('#userPwdMessage').removeClass("successMessage");
-				$('#userPwdMessage').addClass("failMessage");
-				$('#userPwdMessage').text("알파벳 대소문자, 숫자를 이용해 6글자 이상 입력해주세요."); 
-				rightPwd = '';
-			}
-	})
-
-	
 	//이메일 형식 검사 + 중복확인
 	$('#mailto').keyup(function(){
 		regexp =  /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -278,13 +245,12 @@
 	            		$('#userEmailMessage').addClass("failMessage");
 	            		$('#userEmailMessage').text("이미 사용 중인 이메일입니다.");
 	            		mailDupCheck = '';
-	            		console.log(mailDupCheck);
 	            	} else {
 	            		$('#userEmailMessage').removeClass("failMessage");
 	            		$('#userEmailMessage').addClass("successMessage");
 	            		$('#userEmailMessage').text("사용 가능한 이메일입니다.");
 	        			mailDupCheck = 'ok'; 
-	        			console.log(mailDupCheck);}
+	        			}
 	            },
 	            error : function(error) {
 	            	swal({
@@ -304,51 +270,23 @@
 				$('#userEmailMessage').text("이메일 형식으로 입력해주세요");
 			}
 
+	});	
+	
+	
+//비밀번호에는 영문, 숫자만 입력 가능
+$("#userPwd").keyup(pwdValid);
+
+//비밀번호 일치 확인
+$('#cuserPwd').keyup(pwdDupCheck);
+	
+
+//닉네임 중복확인. myinfo.jsp와 다름
+$('#userNick').keyup(function(){
+		checkNick('singup');
 	});
 
-	//닉네임 중복확인. myinfo.jsp와 다름
-	$('#userNick').keyup(function(){
-		if ($('#userNick').val() == ''){
-			if($('#userNickMessage').hasClass("successMessage")){
-				$('#userNickMessage').removeClass("successMessage");
-			}
-    		$('#userNickMessage').addClass("failMessage");
-			$('#userNickMessage').text("사용할 닉네임을 입력해 주세요");
-			nickDupCheck = '';
-		} else {
-		$.ajax({
-            type : 'post',
-            url : '${pageContext.request.contextPath}/member/checkUserNick.do',
-            data : {userNick:$('#userNick').val()},
-            success : function(data) {
-            	if (data > 0) {
-            		$('#userNickMessage').removeClass("successMessage");
-            		$('#userNickMessage').addClass("failMessage");
-            		$('#userNickMessage').text("이미 사용 중인 닉네임입니다.");
-            		nickDupCheck = '';
-            	} else {
-            		$('#userNickMessage').removeClass("failMessage");
-            		$('#userNickMessage').addClass("successMessage");
-            		$('#userNickMessage').text("사용 가능한 닉네임입니다.");
-        			nickDupCheck = 'ok';
-        			writtenNick = $('#userNick').val();	
-            }},
-            error : function(error) {
-            	swal({
-  				  title: "잠시 후 다시 시도해주세요",
-  				  type: 'warning',
-  				  confirmButtonClass : "btn-danger btn-sm",
-  				  confirmButtonText: 'OK',
-  				  closeOnConfirm: true
-  				})
-				console.log(error.status);
-            }
-         });
-		}
-	});
-
-//회원 가입 + 유효성 체크
- $('#join').click(function(e){ 
+//회원 가입 1/2 (유효성 체크)
+ $('#join').click(function(e){
   	if ($('#mailto').val() == ''){
   			swal({
 			  title: "이메일 주소를 입력해 주세요",
@@ -424,7 +362,8 @@
   			}
   		}
   	})
-
+  	
+ //회원 가입 2/2 (DB에 회원정보 insert)
   function signupAjax(){  
       var form = $('form')[0];
       //FormData parameter에 담아줌

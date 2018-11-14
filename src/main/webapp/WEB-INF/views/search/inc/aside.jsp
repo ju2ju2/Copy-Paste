@@ -38,7 +38,7 @@
 								<div class="col-xs-12">
 									<form method="get" action="#">
 										<input type="text" id="search-text" placeholder="검색" class="text" /> <a
-											href="#"><i id="searchdrag" class="fas fa-search icon-size"
+											href="#"><i id="searchdrag" class="fas fa-search icon-size" title="검색"
 											style="padding-top: 15px"></i></a>
 									</form>
 								</div>
@@ -49,7 +49,7 @@
 						<br>
 						<header class="major" id="droppable">
 							<h2>
-								MY DRAG<i class="fas fa-trash icon-size"></i>
+								드래그 목록<i class="fas fa-trash icon-size" title="드래그 삭제"></i>
 							</h2>
 						</header>
 						<!-- 드래그목록 -->

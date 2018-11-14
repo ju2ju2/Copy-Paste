@@ -126,7 +126,7 @@
 	var userPwd = $('#userPwd').val();
 
 
-	//페이지 열리면 kakao id값이 db에 있는지 확인하고 있으면 세션 주고 메인 화면으로 보냄
+	//페이지 열리면 소셜 id값이 db에 있는지 확인하고, 있으면 로그인한 뒤 메인 화면으로 보냄
 	$.ajax({
 	        type : 'post',
 	        url : '${pageContext.request.contextPath}/member/checkUserEmail.do',
@@ -160,7 +160,7 @@
 	
 	
 	//페이지 열리면 바로 닉네임 중복 체크
-	checkNick();
+	checkNick('pageName');
 	
 	//닉네임 중복확인. myinfo.jsp와 다름
 	$('#userNick').keyup(function(){
@@ -171,45 +171,8 @@
 		}
 	});
 
-//닉네임 중복 함수
-function checkNick(){
-	$.ajax({
-        type : 'post',
-        url : '${pageContext.request.contextPath}/member/checkUserNick.do',
-        data : {userNick:$('#userNick').val()},
-        success : function(data) {
-        	if (data > 0) {
-        		if($('#userNickMessage').hasClass("successMessage")){
-        			$('#userNickMessage').removeClass("successMessage");}
-        		$('#userNickMessage').addClass("failMessage");
-        		$('#userNickMessage').text("이미 사용 중인 닉네임입니다.");
-        		nickDupCheck = '';
-        		console.log(data+", "+nickDupCheck+", "+$('#userNick').val())
-        	} else {
-        		if($('#userNickMessage').hasClass("failMessage")){
-        			$('#userNickMessage').removeClass("failMessage");}
-        		$('#userNickMessage').addClass("successMessage");
-        		$('#userNickMessage').text("사용 가능한 닉네임입니다.");
-    			nickDupCheck = 'ok';
-    			writtenNick = $('#userNick').val();
-    			console.log(data+", "+nickDupCheck+", "+$('#userNick').val())
-        }},
-        error : function(error) {
-        	swal({
-				  title: "잠시 후 다시 시도해주세요.",
-				  type: 'warning',
-				  confirmButtonClass : "btn-danger btn-sm",
-				  confirmButtonText: 'OK',
-				  closeOnConfirm: true
-				})
-			console.log(error);
-			console.log(error.status);
-        }
-     });	
-}
-	
-	
-//회원 가입 + 유효성 체크
+
+//회원 가입 + 유효성 체크. signup.jsp와 다름
  $('#join').click(function(){ 
   	if (nickDupCheck != 'ok' || writtenNick != $('#userNick').val()) {
   		swal({
@@ -224,7 +187,6 @@ function checkNick(){
   			if ($('#userCheck').is(":checked")) {
   			
   			} else {
-  			/* swal("٩(இ ⌓ இ๑)۶", "이용약관에 동의해 주세요.", "error"); */
   			swal({    title: "이용약관에 동의해 주세요.",
 				  	  type: 'warning',
 				  	  confirmButtonClass : "btn-danger btn-sm",

@@ -23,6 +23,7 @@
 <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/member.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/inc.js"></script>
 <!-- Sweet Alert cdn -->
 <link rel="stylesheet"	href="${pageContext.request.contextPath}/resources/css/api/alert/sweetalert.css" />

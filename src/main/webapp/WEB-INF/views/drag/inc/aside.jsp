@@ -38,7 +38,7 @@
             <label> &ensp;&ensp;키워드 검색</label>
                <form method="get" action="#">
                   <input type="text" id="search-Text" placeholder="검색" />
-                  <a href="#"><i id="search" class="fas fa-search icon-size" style="padding-top:15px"></i></a>
+                  <a href="#"><i id="search" class="fas fa-search icon-size" title="검색" style="padding-top:15px"></i></a>
                </form>
             </div>
    
