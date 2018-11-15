@@ -14,7 +14,7 @@
 <se:authentication property="principal.username" var="userEmail"/>
 <script type="text/javascript">
 /* 192.168.0.134 */
-var ws = new WebSocket("ws://localhost:8090${pageContext.request.contextPath}/notify.do");
+var ws = new WebSocket("ws://192.168.0.134:8090${pageContext.request.contextPath}/notify.do");
 
 ws.onopen = 	function() 		{	console.log("웹소켓 오픈");	}
 ws.onmessage = 	function(evt) 	{	onMessage(evt.data);			}
@@ -96,14 +96,11 @@ function onMessage(evt) {
 								}
 								
 							} else {
-								notifyList+='<li><a href="${pageContext.request.contextPath}/adminReport.htm" class="notification-item">';
-								notifyList+='<input type="hidden" class="notifyCode" value="'+value.notifyCode
-												+'"><input type="hidden" class="notifyTarget" value="'
-												+value.notifyTarget+'">';
-								/* notifyList+='<li><a href="${pageContext.request.contextPath}/adminReport.htm';
+								notifyList+='<li><a href="${pageContext.request.contextPath}/etc/adminReport.htm" class="notification-item">';
 								notifyList+='<input type="hidden" class="notifyCode" value="'+value.notifyCode
 											+'"><input type="hidden" class="notifyTarget" value="'
-											+value.notifyTarget+'">'; */
+											+value.notifyTarget+'">';
+
 								
 								if (value.readCheck == 1) {
 									notifyList+='<span class="dot bg-danger"></span>';
