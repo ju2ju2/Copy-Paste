@@ -7,6 +7,28 @@
 
 <mapper namespace="tk.copyNpaste.mapper.EtcMapper">
 	
+	<insert id="insertAdminNotify">
+		insert into notify (userEmail, notifyCode, notifyTarget, readCheck) values
+		<foreach collection="param1" item="admins" separator="  ">  
+			(#{admins, jdbcType=VARCHAR}, #{param2, jdbcType=VARCHAR}, #{param3, jdbcType=VARCHAR}, '1')
+		</foreach>
+	</insert>
+	
+	<select id="selectMaxTarget" parameterType="String" resultType="int">
+		<choose>
+			<when test="_parameter == 'RNA'">
+				select ifnull(max(reportNum)+1,0) from report
+			</when>
+			<otherwise>
+				select max(qnaNum) from qna
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="selectRoles" resultType="String">
+		select userEmail from roles where roleCode='ROLE_ADMIN';
+	</select>
+	
 	<!-- 알림 체크  -->
 	<update id="notifyReadCheck">
 		update notify set readCheck=0
@@ -24,7 +46,12 @@
 			select n.notifyCode, n.notifyTarget, n.readCheck,
 			q.qnaTitle notifyTitle, n.notifyDate
 			from notify n join qna q on (n.notifyTarget = q.qnaNum)
-			where n.userEmail = #{userEmail} and n.notifyCode in ('QA', 'QC', 'QCC')) notify
+			where n.userEmail = #{userEmail} and n.notifyCode in ('QA', 'QC', 'QCC', 'QNA')
+			union
+			select notifyCode, notifyTarget, readCheck, null notifyTitle, notifyDate
+			from notify
+			where userEmail = #{userEmail} and notifyCode='RNA'
+			) notify
 		order by readCheck desc, notifyDate desc limit 0, 5
 	</select>
 	
