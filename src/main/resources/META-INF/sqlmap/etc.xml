@@ -7,22 +7,6 @@
 
 <mapper namespace="tk.copyNpaste.mapper.EtcMapper">
 	
-	<!-- 관리자에게 report 알림 보내기 
-	<insert id="insertReportNotify">
-		insert into notify (userEmail, notifyCode, notifyTarget, readCheck) values
-		<foreach collection="list" item="admins" separator="  ">  
-			(#{admins, jdbcType=VARCHAR}, 'RNA', (select max(reportNum)+1 from report), '1')
-		</foreach>
-	</insert>
-	
-	관리자에게 qna 게시물 관련 알림 보내기
-	<insert id="insertQnaNotify">
-		insert into notify (userEmail, notifyCode, notifyTarget, readCheck) values
-		<foreach collection="list" item="admins" separator="  ">  
-			(#{admins, jdbcType=VARCHAR}, 'QNA', (select max(qnaNum) from qna), '1')
-		</foreach>
-	</insert> -->
-	
 	<insert id="insertAdminNotify">
 		insert into notify (userEmail, notifyCode, notifyTarget, readCheck) values
 		<foreach collection="param1" item="admins" separator="  ">  
@@ -64,9 +48,9 @@
 			from notify n join qna q on (n.notifyTarget = q.qnaNum)
 			where n.userEmail = #{userEmail} and n.notifyCode in ('QA', 'QC', 'QCC', 'QNA')
 			union
-			select notifyCode, notifyTarget, readCheck, notifyDate
+			select notifyCode, notifyTarget, readCheck, null notifyTitle, notifyDate
 			from notify
-			where userEmail = #{userEmail} and n.notifyCode='RNA'
+			where userEmail = #{userEmail} and notifyCode='RNA'
 			) notify
 		order by readCheck desc, notifyDate desc limit 0, 5
 	</select>

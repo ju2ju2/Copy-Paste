@@ -98,16 +98,16 @@ function onMessage(evt) {
 							} else {
 								notifyList+='<li><a href="${pageContext.request.contextPath}/adminReport.htm';
 								notifyList+='<input type="hidden" class="notifyCode" value="'+value.notifyCode
-								+'"><input type="hidden" class="notifyTarget" value="'
-								+value.notifyTarget+'">';
-
+											+'"><input type="hidden" class="notifyTarget" value="'
+											+value.notifyTarget+'">';
+								
 								if (value.readCheck == 1) {
 									notifyList+='<span class="dot bg-danger"></span>';
 								} else {
 									notifyList+='<span class="dot bg-success"></span>';
 								}
 
-								notifyList+='새로운 신고가 접수되었습니다.</a></li>';
+								notifyList+=' 새로운 신고가 접수되었습니다.</a></li>';
 								
 							}
 						

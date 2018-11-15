@@ -52,7 +52,6 @@ public class QnaService {
 				EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
 				List<String> admins = etcdao.selectRoles();
 				int notifyTarget = etcdao.selectMaxTarget(notifyCode);
-				System.out.println(notifyCode);
 				etcdao.insertAdminNotify(admins, notifyCode, notifyTarget);
 			}
 

@@ -75,7 +75,6 @@ public class EtcService {
 		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
 		List<String> admins = etcdao.selectRoles();
 		int notifyTarget = etcdao.selectMaxTarget(notifyCode);
-		System.out.println("notifyTarget"+notifyTarget);
 		etcdao.insertAdminNotify(admins, notifyCode, notifyTarget);
 		return etcdao.insertReport(report);
 	}
