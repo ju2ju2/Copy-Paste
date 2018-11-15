@@ -7,6 +7,17 @@
 
 <mapper namespace="tk.copyNpaste.mapper.EtcMapper">
 	
+	<insert id="insertQnaNotify">
+		insert into notify (userEmail, notifyCode, notifyTarget, readCheck) values
+		<foreach collection="list" item="admins" separator="  ">  
+			(#{admins, jdbcType=VARCHAR}, 'QNA', (select max(qnaNum) from qna), '1')
+		</foreach>
+	</insert>
+	
+	<select id="selectRoles" resultType="String">
+		select userEmail from roles where roleCode='ROLE_ADMIN';
+	</select>
+	
 	<!-- 알림 체크  -->
 	<update id="notifyReadCheck">
 		update notify set readCheck=0
@@ -24,7 +35,8 @@
 			select n.notifyCode, n.notifyTarget, n.readCheck,
 			q.qnaTitle notifyTitle, n.notifyDate
 			from notify n join qna q on (n.notifyTarget = q.qnaNum)
-			where n.userEmail = #{userEmail} and n.notifyCode in ('QA', 'QC', 'QCC')) notify
+			where n.userEmail = #{userEmail} and n.notifyCode in ('QA', 'QC', 'QCC', 'QNA')
+			) notify
 		order by readCheck desc, notifyDate desc limit 0, 5
 	</select>
 	

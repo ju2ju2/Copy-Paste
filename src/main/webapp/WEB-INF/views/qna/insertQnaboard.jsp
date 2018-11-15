@@ -25,6 +25,7 @@
 				<form action="${pageContext.request.contextPath}/qna/insertQnaReply.htm" method="post" id="insertQnaform" class="contact-form">
 					<input type="hidden" name="qnaNum" value="${qna.qnaNum}" />
 					<input type="hidden" name="qnaDept" value="${qna.qnaDept}" />
+					<input type="hidden" name="userRole" value="admin"/>
 			</c:when>
 			<c:otherwise>
 				<form action="${pageContext.request.contextPath}/qna/insertQnaboard.htm" method="post" id="insertQnaform" class="contact-form">
@@ -52,7 +53,8 @@
 			<div class="col-md-12">
 				<div class="qnaSecret"><input type="checkbox" value="1" name="qnaSecret" class="qnaSecret">&nbsp;비공개
 				<button type="button" class="btn btn-danger center-block"
-					id="qnainsertbtn">등록</button></div>
+					id="qnainsertbtn">등록</button>
+				</div>
 			</div>
 		</form>
 	</div>

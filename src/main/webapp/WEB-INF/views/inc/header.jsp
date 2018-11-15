@@ -13,7 +13,7 @@
 <se:authorize access="isAuthenticated()">
 <se:authentication property="principal.username" var="userEmail"/>
 <script type="text/javascript">
-/* 192.168.0.141 */
+/* 192.168.0.134 */
 var ws = new WebSocket("ws://192.168.0.134:8090${pageContext.request.contextPath}/notify.do");
 
 ws.onopen = 	function() 		{	console.log("웹소켓 오픈");	}
@@ -68,7 +68,7 @@ function onMessage(evt) {
 									notifyList+='노트에 단 댓글에 대댓글이 달렸습니다.</a></li>';
 								}
 								
-							} else {
+							} else if (value.notifyCode === "QA" || value.notifyCode === "QC" || value.notifyCode === "QCC" ){
 								notifyList+='<li><a href="${pageContext.request.contextPath}/qna/selectDetailQna.htm?qnaNum='
 											+value.notifyTarget+'" class="notification-item">';
 								notifyList+='<input type="hidden" class="notifyCode" value="'+value.notifyCode
@@ -92,7 +92,23 @@ function onMessage(evt) {
 									notifyList+='질문에 단 댓글에 대댓글이 달렸습니다.</a></li>';
 								}
 								
-							} 
+							} else {
+								notifyList+='<li><a href="${pageContext.request.contextPath}/qna/selectDetailQna.htm?qnaNum='
+											+value.notifyTarget+'" class="notification-item">';
+								notifyList+='<input type="hidden" class="notifyCode" value="'+value.notifyCode
+								+'"><input type="hidden" class="notifyTarget" value="'
+								+value.notifyTarget+'">';
+
+								if (value.readCheck == 1) {
+									notifyList+='<span class="dot bg-danger"></span>';
+								} else {
+									notifyList+='<span class="dot bg-success"></span>';
+								}
+								
+								notifyList+=' <'+'<div class="notifyTitleWidth">'+value.notifyTitle+'</div>'+'> ';
+								notifyList+='QNA 게시판에 새질문이 달렸습니다.</a></li>';
+								
+							}
 						
 						
 						})

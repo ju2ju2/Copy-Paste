@@ -25,8 +25,15 @@ public class QnaVO {
 	//join시 필요에의해 생성
 	private String userNick;
 	private int num;
+	//관리자 알림 필요에 의해 생성
+	private String userRole;
 
-	
+	public String getUserRole() {
+		return userRole;
+	}
+	public void setUserRole(String userRole) {
+		this.userRole = userRole;
+	}
 	public int getNum() {
 		return num;
 	}

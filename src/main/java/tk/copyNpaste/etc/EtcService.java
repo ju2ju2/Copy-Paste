@@ -132,22 +132,6 @@ public class EtcService {
 		return 0;
 	}
 
-	// 댓글알림
-	public void commAlarm() throws Exception {
-	}
-
-	// 노트신고알림
-	public void noteReportAlarm() throws Exception {
-	}
-
-	// 댓글신고알림
-	public void commReportAlarm() throws Exception {
-	}
-
-	// 상위랭크알림
-	public void topRankAlarm() throws Exception {
-	}
-
 	// 통계 회원 가입월
 	public List<EtcVO> stateMember() throws Exception {
 		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
