@@ -96,10 +96,14 @@ function onMessage(evt) {
 								}
 								
 							} else {
-								notifyList+='<li><a href="${pageContext.request.contextPath}/adminReport.htm';
+								notifyList+='<li><a href="${pageContext.request.contextPath}/adminReport.htm" class="notification-item">';
+								notifyList+='<input type="hidden" class="notifyCode" value="'+value.notifyCode
+												+'"><input type="hidden" class="notifyTarget" value="'
+												+value.notifyTarget+'">';
+								/* notifyList+='<li><a href="${pageContext.request.contextPath}/adminReport.htm';
 								notifyList+='<input type="hidden" class="notifyCode" value="'+value.notifyCode
 											+'"><input type="hidden" class="notifyTarget" value="'
-											+value.notifyTarget+'">';
+											+value.notifyTarget+'">'; */
 								
 								if (value.readCheck == 1) {
 									notifyList+='<span class="dot bg-danger"></span>';
