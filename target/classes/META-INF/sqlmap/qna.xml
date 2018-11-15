@@ -59,8 +59,8 @@
 	<!--//QNA 게시물 댓글 조회
 	 public List<QnaCommVO> selectQnaComm(int qnaNum) throws Exception; -->
 	 <select id="selectQnaComm" parameterType="Integer" resultType="QnaCommVO">
-	 	select users.userPhoto, users.userNick,comm.qnaCommNum,comm.qnaNum,comm.userEmail,comm.qnaCommContent,comm.qnaCommDate,comm.qnaCommDept,comm.qnaCommPNum,comm.qnaCommPos
-   		from qnaComm comm join users on comm.userEmail = users.userEmail where comm.qnaNum=#{qnaNum}  order by comm.qnaCommPNum desc , comm.qnaCommNum
+	 	select users.userPhoto, users.userNick,users.userSocialStatus,comm.qnaCommNum,comm.qnaNum,comm.userEmail,comm.qnaCommContent,comm.qnaCommDate,comm.qnaCommDept,comm.qnaCommPNum,comm.qnaCommPos
+   		from qnacomm comm join users on comm.userEmail = users.userEmail where comm.qnaNum=#{qnaNum}  order by comm.qnaCommPNum desc , comm.qnaCommNum
 	 </select>
 	 
 	 <!-- 	//QNA 댓글 작성 -->

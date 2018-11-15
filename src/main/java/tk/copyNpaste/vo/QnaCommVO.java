@@ -21,9 +21,16 @@ public class QnaCommVO {
 
 		private String userPhoto;
 		private int num;
+		private int userSocialStatus;
 		
 		
 		
+		public int getUserSocialStatus() {
+			return userSocialStatus;
+		}
+		public void setUserSocialStatus(int userSocialStatus) {
+			this.userSocialStatus = userSocialStatus;
+		}
 		public String getUserPhoto() {
 			return userPhoto;
 		}
