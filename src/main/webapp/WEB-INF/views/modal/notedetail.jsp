@@ -14,7 +14,7 @@
 <se:authentication property="authorities" var="role" />
 
 <script>
-   $(document).ready(function() {
+   $(document).ready(function() {	   
       $(document).on('hidden.bs.modal', '.modal', function (e) {
            var modalData = $(this).data('bs.modal');
            if (modalData && modalData.options.remote) {
@@ -424,11 +424,17 @@ $(document).ready(function(){
              success : function(data){
                   var noteCommList = "";
                    if(data !=null) {
-                         $.each(data, function(key, value){
+                       $.each(data, function(key, value){
                          $('#noteCommList').empty();
                          noteCommList += '<div class="col-lg-12 col-sm-12 text-left noteCommList">';
                          noteCommList += '   <div class="media-left">';
-                         noteCommList += '   <img class="user-photo" src="${pageContext.request.contextPath}/resources/image/userPhoto/'+value.userPhoto+'"></div>'; 
+                         if (value.userSocialStatus == 0){
+                         	noteCommList += '   <img class="user_photo" src="${pageContext.request.contextPath}/resources/image/userPhoto/'+value.userPhoto+'">';
+                         } 
+                         if (value.userSocialStatus>0) {
+                        	noteCommList += '   <img class="user_photo" src="'+value.userPhoto+'">';
+                         }
+                         noteCommList += '   </div>';
 						 noteCommList += '      <div class="media-body comment">';
                          noteCommList += '             <strong class="pull-left primary-font">';
                          /*    대댓글일때 */
@@ -700,8 +706,7 @@ $(document).ready(function(){
             }
       
          }).done(function (result){
-            
-         
+        //프로필
          
          
          });
