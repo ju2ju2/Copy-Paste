@@ -69,8 +69,14 @@ public class EtcService {
 	}
 
 	// 신고 하기
+	@Transactional
 	public int insertReport(ReportVO report) throws Exception {
+		String notifyCode = "RNA";
 		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
+		List<String> admins = etcdao.selectRoles();
+		int notifyTarget = etcdao.selectMaxTarget(notifyCode);
+		System.out.println("notifyTarget"+notifyTarget);
+		etcdao.insertAdminNotify(admins, notifyCode, notifyTarget);
 		return etcdao.insertReport(report);
 	}
 

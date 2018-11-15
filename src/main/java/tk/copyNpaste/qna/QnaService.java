@@ -49,10 +49,12 @@ public class QnaService {
 			resulte = qnadao.updateInsertQna(qna.getNum());
 			
 			if (qna.getUserRole() == null) {
+				String notifyCode = "QNA";
 				EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
 				List<String> admins = etcdao.selectRoles();
-				int adminCount = etcdao.insertQnaNotify(admins);
-				System.out.println(adminCount);
+				int notifyTarget = etcdao.selectMaxTarget(notifyCode);
+				System.out.println(notifyCode);
+				etcdao.insertAdminNotify(admins, notifyCode, notifyTarget);
 			}
 
 		}catch (Exception e) {
