@@ -75,7 +75,13 @@
 								<c:forEach var="qnaComm"  varStatus="status" items="${qnaCommList}">			
 									<div class="row qnaCommContent">
 										<div class="media-left qnaCommentBox col-sm-1">
-											<img class="user-photo" src="../resources/image/userPhoto/${qnaComm.userPhoto}">
+										<!-- 사용자 프로필 사진-->
+											<c:if test="${qnaComm.userSocialStatus==0}">
+												<img class="user-photo" src="../resources/image/userPhoto/${qnaComm.userPhoto}">
+											</c:if>
+											<c:if test="${qnaComm.userSocialStatus!=0}">
+												<img class="user-photo" src="${qnaComm.userPhoto}">
+											</c:if>
 										</div>
 										<div class="comment col-sm-11">
 											<strong class="pull-left primary-font"> 
@@ -213,7 +219,12 @@
 						<c:forEach var="qnaComm"  varStatus="status" items="${qnaCommList}">			
 							<div class="row qnaCommContent">
 								<div class="media-left qnaCommentBox col-sm-1">
-									<img class="user-photo" src="../resources/image/userPhoto/${qnaComm.userPhoto}">
+										<c:if test="${qnaComm.userSocialStatus==0}">
+											<img class="user-photo" src="../resources/image/userPhoto/${qnaComm.userPhoto}">
+										</c:if>
+										<c:if test="${qnaComm.userSocialStatus!=0}">
+											<img class="user-photo" src="${qnaComm.userPhoto}">
+										</c:if>
 								</div>
 								<div class="comment col-sm-11">
 									<strong class="pull-left primary-font"> 

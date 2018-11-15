@@ -1047,3 +1047,20 @@ height: 1.2em;
 }
 .246importantRule { width: 246px !important; }
 .917importantRule { width: 917px !important; }
+
+.user_photo{
+	display: inline-block ;
+	width:45px !important;
+	height:45px !important;
+	margin-left: 15px;
+	max-width: 45px !important;
+}
+
+.fa-google {
+	margin-bottom: 1px !important;
+}
+
+/* 노트 댓글 밀림 방지. */
+.noteCommContent {
+    clear: left !important;
+}

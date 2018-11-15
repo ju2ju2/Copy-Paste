@@ -63,7 +63,7 @@
 $(document).ready(function() {
 	$('#qnainsertbtn').click(function(){
 		if($('#qnatitle').val()=="" || tinymce.get('qnacontent').getContent()==""){
-			swal({  title: "내용을 입력해주세요.",
+			swal({  title: "제목과 내용을 모두 입력해주세요.",
 				text: "",
 				type: "warning",
 				confirmButtonClass: "btn-danger btn-sm",
