@@ -11,6 +11,7 @@ var demoBaseConfig = {
 		  branding: false,
 		  theme: "modern",
 		  resize: false,
+		  fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
 		  automatic_uploads: false,
 		  autosave_ask_before_unload: false,
 		  paste_data_images: true,
@@ -19,12 +20,12 @@ var demoBaseConfig = {
 		  remove_script_host : false,//이미지 상대경로 해제
 		  powerpaste_allow_local_images:!0,
 		  plugins: [
-		    "advcode advlist anchor autolink codesample colorpicker fullscreen help image imagetools",
-		    " lists link media noneditable powerpaste preview print ",
+		    " advlist anchor autolink codesample colorpicker fullscreen help image imagetools",
+		    " lists link media noneditable preview print ",
 		    " searchreplace table textcolor visualblocks wordcount emoticons"
 		  ],
 		  toolbar:
-		    "undo redo | bold italic | forecolor backcolor codesample | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview",
+		    "undo redo | bold italic | fontsizeselect forecolor backcolor codesample | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview",
 		  image_advtab: true,
 		  images_upload_base_path: '/resources/upload',
 		  document_base_url : '/resources/upload/',

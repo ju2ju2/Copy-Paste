@@ -428,8 +428,8 @@ $(document).ready(function(){
                          $('#noteCommList').empty();
                          noteCommList += '<div class="col-lg-12 col-sm-12 text-left noteCommList">';
                          noteCommList += '   <div class="media-left">';
-                         noteCommList += '   <img class="user-photo" src="${pageContext.request.contextPath}/resources/image/userPhoto/'+value.userPhoto+'"></div>';
-                         noteCommList += '      <div class="media-body comment">';
+                         noteCommList += '   <img class="user-photo" src="${pageContext.request.contextPath}/resources/image/userPhoto/'+value.userPhoto+'"></div>'; 
+						 noteCommList += '      <div class="media-body comment">';
                          noteCommList += '             <strong class="pull-left primary-font">';
                          /*    대댓글일때 */
                          if(value.commDept==1){

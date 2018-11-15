@@ -26,7 +26,7 @@
 			<header id="droppable" class="major">
 				<div>
 					<h3>
-						드래그 목록<i class="fas fa-trash icon-size" title="드래그 삭제"></i>
+						MY DRAG<i class="fas fa-trash icon-size" title="드래그 삭제"></i>
 					</h3>
 				</div>
 			</header>
