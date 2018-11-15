@@ -50,14 +50,14 @@
 	
 	<!-- //노트 댓글 작성 -->
  	<insert id="insertNoteComm">
-     	insert into notecomm(noteNum,userEmail,commContent)
+     	insert into noteComm(noteNum,userEmail,commContent)
 		values (#{noteNum},#{userEmail},#{commContent})
 		<selectKey order="AFTER" keyProperty="num" resultType="Integer">
 			select LAST_INSERT_ID() as num;
 		</selectKey>
     </insert>
     <update id="updateInsertNoteComm">
-		update notecomm set noteCommPNum=#{num} where noteCommNum=#{num}
+		update noteComm set noteCommPNum=#{num} where noteCommNum=#{num}
 	</update>
 	
     <!-- //대댓글 작성전 Pos수정  -->

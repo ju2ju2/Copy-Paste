@@ -166,7 +166,6 @@ window.onload = function() {
 	//멜론 실시간 차트 크롤링
 	$.ajax({
 		url : "jsoupMelon.json",
-		type : "GET",
 		dataType:"json",
 		success : function(data) {
 			var tag= "<div class='music-player'>"

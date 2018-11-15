@@ -160,14 +160,14 @@
 	
 	
 	//페이지 열리면 바로 닉네임 중복 체크
-	checkNick('pageName');
+	checkNick('singup');
 	
 	//닉네임 중복확인. myinfo.jsp와 다름
 	$('#userNick').keyup(function(){
 		if ($('#userNick').val() == ''){
 			$('#userNickMessage').text("사용할 닉네임을 입력해주세요");
 		} else {	
-			checkNick();
+			checkNick('singup');
 		}
 	});
 

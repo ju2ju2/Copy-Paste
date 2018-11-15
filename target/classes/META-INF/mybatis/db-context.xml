@@ -51,10 +51,10 @@
 	<!-- DBCP 사용 -->	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		  destroy-method="close"
-		  p:driverClassName="#{db['jdbc.mariadb.driver']}"
-          p:url="#{db['jdbc.mariadb.url']}"
-          p:username="#{db['jdbc.mariadb.username']}" 
-          p:password="#{db['jdbc.mariadb.password']}"/> 
+		  p:driverClassName="#{db['jdbc.mariadbaws.driver']}"
+          p:url="#{db['jdbc.mariadbaws.url']}"
+          p:username="#{db['jdbc.mariadbaws.username']}" 
+          p:password="#{db['jdbc.mariadbaws.password']}"/> 
 
 	<!-- 트랜잭션 처리	-->
 	<bean id="transactionManager"
