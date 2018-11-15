@@ -14,10 +14,10 @@
 
          <!-- 탭 -->
          <ul class="nav nav-tabs nav-justified" id="writeNoteNavUl">
-            <li class="active" title="드래그 목록"><a data-toggle="tab" href="#drag"
+            <li class="active" title="MY DRAG"><a data-toggle="tab" href="#drag"
                class="writeNoteNavBtn"> 
                <i class="fas fa-mouse-pointer icon-li"></i></a></li>
-            <li title="노트 목록"><a data-toggle="tab" href="#myNote" class="writeNoteNavBtn">
+            <li title="MY NOTE"><a data-toggle="tab" href="#myNote" class="writeNoteNavBtn">
                <i class="fas fa-sticky-note icon-li"></i></a>
             </li>
             <li title="사이트 검색"><a data-toggle="tab" href="#inSiteSearch" class="writeNoteNavBtn" id="writeSearch">
