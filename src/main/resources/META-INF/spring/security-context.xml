@@ -33,7 +33,7 @@
 		
 	<security:session-management>
 			<security:concurrency-control
-				max-sessions="1" expired-url="/login" error-if-maximum-exceeded="false"  />
+				max-sessions="1" expired-url="/login.htm" error-if-maximum-exceeded="false"  />
 	</security:session-management>
 </security:http>
 
