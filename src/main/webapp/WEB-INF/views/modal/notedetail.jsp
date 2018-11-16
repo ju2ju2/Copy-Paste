@@ -14,7 +14,7 @@
 <se:authentication property="authorities" var="role" />
 
 <script>
-   $(document).ready(function() {
+   $(document).ready(function() {	   
       $(document).on('hidden.bs.modal', '.modal', function (e) {
            var modalData = $(this).data('bs.modal');
            if (modalData && modalData.options.remote) {
@@ -186,13 +186,12 @@
                   '</p><p style="padding-top: 10px;">'+
                   '<strong>신고 사유</strong>&ensp; <select name="causeCategory"'+
                   '   id="causeCategory">'+
-                  '   <option>신고 사유를 선택하세요</option>'+
-                  '   <option>저작권 위반</option>'+
-                  '   <option>음란성</option>'+
-                  '   <option>명예훼손</option>'+
-                  '   <option>개인정보 유출</option>'+
-                  '   <option>부적절한 홍보</option>'+
-                  '   <option>기타</option>'+
+                  '   <option >신고 사유를 선택하세요</option>'+
+                  '   <option value="NR01">광고/음란성 게시물</option>'+
+                  '   <option value="NR02">욕설 및 부적절한 언어</option>'+
+                  '   <option value="NR03">회원비방/싸움조장</option>'+
+                  '   <option value="NR04">명예훼손/저작권 침해</option>'+
+                  '   <option value="NR00">기타</option>'+
                   '</select></p> <p style="padding-top: 10px;"><strong>신고 사유 상세</strong>'+
                   '</p><textarea rows="5" id="causeText"class="form-control textarea noresize"'+
                   'placeholder="신고 사유를 입력하세요"></textarea><br>'+
@@ -215,7 +214,7 @@
                   "userEmail" : userEmail,
                   "noteNum" : ${note.noteNum},
                   "noteOrCommCode" : 'NC00',//노트신고코드
-                  "reportCauseCode" : $("#causeCategory option:selected").text(),
+                  "reportCauseCode" : $("#causeCategory option:selected").val(),
                   "reportContent" : $('#causeText').val()  
                   },
             }).done(function(result) {
@@ -424,11 +423,17 @@ $(document).ready(function(){
              success : function(data){
                   var noteCommList = "";
                    if(data !=null) {
-                         $.each(data, function(key, value){
+                       $.each(data, function(key, value){
                          $('#noteCommList').empty();
                          noteCommList += '<div class="col-lg-12 col-sm-12 text-left noteCommList">';
                          noteCommList += '   <div class="media-left">';
-                         noteCommList += '   <img class="user-photo" src="${pageContext.request.contextPath}/resources/image/userPhoto/'+value.userPhoto+'"></div>'; 
+                         if (value.userSocialStatus == 0){
+                         	noteCommList += '   <img class="user_photo" src="${pageContext.request.contextPath}/resources/image/userPhoto/'+value.userPhoto+'">';
+                         } 
+                         if (value.userSocialStatus>0) {
+                        	noteCommList += '   <img class="user_photo" src="'+value.userPhoto+'">';
+                         }
+                         noteCommList += '   </div>';
 						 noteCommList += '      <div class="media-body comment">';
                          noteCommList += '             <strong class="pull-left primary-font">';
                          /*    대댓글일때 */
@@ -641,13 +646,12 @@ $(document).ready(function(){
                         '</p><p style="padding-top: 10px;">'+
                         '<strong>신고 사유</strong>&ensp; <select name="causeCategory"'+
                         '   id="causeCategory">'+
-                        '   <option>신고 사유를 선택하세요</option>'+
-                        '   <option>저작권 위반</option>'+
-                        '   <option>음란성</option>'+
-                        '   <option>명예훼손</option>'+
-                        '   <option>개인정보 유출</option>'+
-                        '   <option>부적절한 홍보</option>'+
-                        '   <option>기타</option>'+
+                        '   <option >신고 사유를 선택하세요</option>'+
+                        '   <option value="NR01">광고/음란성 게시물</option>'+
+                        '   <option value="NR02">욕설 및 부적절한 언어</option>'+
+                        '   <option value="NR03">회원비방/싸움조장</option>'+
+                        '   <option value="NR04">명예훼손/저작권 침해</option>'+
+                        '   <option value="NR00">기타</option>'+
                         '</select></p> <p style="padding-top: 10px;"><strong>신고 사유 상세</strong>'+
                         '</p><textarea rows="5" id="causeText" class="form-control textarea noresize"'+
                         'placeholder="신고 사유를 입력하세요"></textarea><br>'+
@@ -675,7 +679,7 @@ $(document).ready(function(){
                                  "noteNum": noteNum,
                                  "noteCommNum" : noteCommNum,
                                  "noteOrCommCode" : 'NC01',//노트댓글신고코드
-                                 "reportCauseCode" : $("#causeCategory option:selected").text(),
+                                 "reportCauseCode" : $("#causeCategory option:selected").val(),
                                  "reportContent" : $('#causeText').val()  
                                  },
                            }).done(function(result) {
@@ -700,8 +704,7 @@ $(document).ready(function(){
             }
       
          }).done(function (result){
-            
-         
+        //프로필
          
          
          });

@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import tk.copyNpaste.mapper.EtcMapper;
 import tk.copyNpaste.mapper.QnaMapper;
 import tk.copyNpaste.vo.QnaCommVO;
 import tk.copyNpaste.vo.QnaVO;
@@ -45,6 +46,15 @@ public class QnaService {
 		try {
 			qnadao.insertQna(qna);
 			resulte = qnadao.updateInsertQna(qna.getNum());
+			
+			if (qna.getUserRole() == null) {
+				String notifyCode = "QNA";
+				EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
+				List<String> admins = etcdao.selectRoles();
+				int notifyTarget = etcdao.selectMaxTarget(notifyCode);
+				etcdao.insertAdminNotify(admins, notifyCode, notifyTarget);
+			}
+
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

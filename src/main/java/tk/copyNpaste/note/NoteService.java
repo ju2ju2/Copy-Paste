@@ -48,6 +48,7 @@ public class NoteService {
 	public List<NoteCommVO> selectAllNoteComm(int noteNum) throws Exception{
 		NoteMapper notedao = sqlsession.getMapper(NoteMapper.class);
 		List<NoteCommVO> noteCommList = notedao.selectAllNoteComm(noteNum);
+		
 		return noteCommList;
 	}
 	//노트 댓글 작성

@@ -164,26 +164,6 @@ public class EtcController {
 		return etcService.updateReport(report);
 	};
 
-	// 댓글알림
-	public void commAlarm() throws Exception {
-		etcService.commAlarm();
-	};
-
-	// 노트신고알림
-	public void noteReportAlarm() throws Exception {
-		etcService.noteReportAlarm();
-	};
-
-	// 댓글신고알림
-	public void commReportAlarm() throws Exception {
-		etcService.commReportAlarm();
-	};
-
-	// 상위랭크알림
-	public void topRankAlarm() throws Exception {
-		etcService.topRankAlarm();
-	};
-
 	// 통계 회원 가입
 	@RequestMapping("stateMember.json")
 	public @ResponseBody List<EtcVO> stateMember() throws Exception {

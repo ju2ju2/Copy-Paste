@@ -845,3 +845,8 @@ svg {
    color: #f56a6a;
     background-color: #fff;
 }
+
+/* 노트 댓글 밀림 방지. */
+.noteCommContent {
+    clear: left !important;
+}

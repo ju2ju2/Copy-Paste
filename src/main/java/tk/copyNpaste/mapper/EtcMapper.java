@@ -16,6 +16,19 @@ import tk.copyNpaste.vo.NoteVO;
 
 public interface EtcMapper {
 	
+	public int insertAdminNotify(List<String> admins, String notifyCode, int notifyTarget) throws Exception;
+	
+	public int selectMaxTarget(String notifyTarget) throws Exception;
+	
+	/*//관리자에게 report 알림 보내기
+	public int insertReportNotify(List<String> admins) throws Exception;
+	
+	//관리자에게 qna 알림 보내기
+	public int insertQnaNotify(List<String> admins) throws Exception;*/
+	
+	//관리자 list 뽑아오기
+	public List<String> selectRoles() throws Exception;
+	
 	//알림 읽음 체크
 	public int notifyReadCheck(String userEmail, String notifyCode, int notifyTarget) throws Exception;
 	
@@ -66,8 +79,6 @@ public interface EtcMapper {
 	
 	//상위랭크알림
 	public void topRankAlarm() throws Exception;
-	
-
 	
 	//통계 회원 가입
 	public List<EtcVO> stateMember() throws Exception;

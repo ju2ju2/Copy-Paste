@@ -69,8 +69,13 @@ public class EtcService {
 	}
 
 	// 신고 하기
+	@Transactional
 	public int insertReport(ReportVO report) throws Exception {
+		String notifyCode = "RNA";
 		EtcMapper etcdao = sqlsession.getMapper(EtcMapper.class);
+		List<String> admins = etcdao.selectRoles();
+		int notifyTarget = etcdao.selectMaxTarget(notifyCode);
+		etcdao.insertAdminNotify(admins, notifyCode, notifyTarget);
 		return etcdao.insertReport(report);
 	}
 
@@ -130,22 +135,6 @@ public class EtcService {
 		}
 
 		return 0;
-	}
-
-	// 댓글알림
-	public void commAlarm() throws Exception {
-	}
-
-	// 노트신고알림
-	public void noteReportAlarm() throws Exception {
-	}
-
-	// 댓글신고알림
-	public void commReportAlarm() throws Exception {
-	}
-
-	// 상위랭크알림
-	public void topRankAlarm() throws Exception {
 	}
 
 	// 통계 회원 가입월

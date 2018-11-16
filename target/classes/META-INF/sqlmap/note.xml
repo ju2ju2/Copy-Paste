@@ -44,7 +44,7 @@
 	
 	<!-- 노트 댓글 보기 -->
 	<select id="selectAllNoteComm" resultType="NoteCommVO">
-	select nc.noteCommNum, nc.userEmail, nc.noteNum, nc.commDept,nc.noteCommBlind, nc.commContent, nc.commDate, nc.noteCommPNum, u.userNick,nc.noteCommPos
+	select nc.noteCommNum, nc.userEmail, nc.noteNum, nc.commDept,nc.noteCommBlind, nc.commContent, nc.commDate, nc.noteCommPNum, u.userNick, u.userPhoto, u.userSocialStatus, nc.noteCommPos
 	from noteComm nc join users u on u.userEmail=nc.userEmail where noteNum = #{nc.noteNum} order by nc.noteCommPNum , nc.noteCommNum
 	</select>
 	
@@ -77,7 +77,7 @@
     
     <!-- 대댓글 있을때 삭제 (블라인드) -->
 	<update id="blindNoteComm">
-	 update NoteComm set noteCommBlind=1
+	 update noteComm set noteCommBlind=1
 	 where noteCommNum in 
 		 (select nc1.noteCommPNum from noteComm nc, noteComm nc1 
 	 	  where nc.noteCommPNum = nc1.noteCommNum and nc.commDept =1) 
