@@ -141,7 +141,8 @@
 				var currentScrollTop = $(window).scrollTop();
 
 				if( currentScrollTop - lastScrollTop > 0 ){
-					if ($(window).scrollTop() >= ($(document).height() - $(window).height()) ){ 
+					if ($(window).scrollTop() >= ($(document).height() - $(window).height()))
+					{ 
 						params.page += 12;
 						console.log(params.page+" 번부터")
 					
