@@ -174,16 +174,4 @@ public class NoteService {
 		return noteList;
 	}
 
-
-
-	
-	/*	for (NoteVO note: notelist ) {
-		System.out.println(note.getUserNick());
-		}
-		
-		for (NoteCommVO noteComm: noteCommList ) {
-		System.out.println(noteComm.toString());
-		}
-	
-	*/
 }

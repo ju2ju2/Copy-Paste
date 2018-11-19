@@ -182,7 +182,6 @@ function searchNoteList(){
 		    data : params, 
 		    dataType : 'json',
 		    success : function(data){
-		    	      console.log(data);
 		    		 var aa = "";
 			          	if(data!=null) {
 			          		$.each(data, function(key, value){
@@ -240,7 +239,6 @@ function moreAsideNoteList(e,url,params){
 	if( currentScrollTop - lastScrollTop > 0 ){
 		if ($(window).scrollTop() >= ($(document).height() - $(window).height()) ){ 
 			params.page += 12;
-			console.log(params.page+" 번부터")
 			searchNoteList(url,params)
 			
 		}

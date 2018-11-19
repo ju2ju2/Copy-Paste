@@ -68,7 +68,6 @@ public class NoteVisionService {
 
 				// For full list of available annotations, see http://g.co/cloud/vision/docs
 				for (EntityAnnotation annotation : res.getTextAnnotationsList()) {
-					/*System.out.printf("Text: %s\n", annotation.getDescription());*/
 					text = annotation.getDescription();
 					System.out.println(text);
 					return text;

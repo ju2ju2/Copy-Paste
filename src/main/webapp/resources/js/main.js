@@ -76,19 +76,8 @@ window.onload = function() {
 				type : "GET",
 				async : "false",
 				success : function(resp) {
-					/*
-					 * console.log(resp); console.log("현재온도 : " +
-					 * (resp.main.temp - 273.15)); console.log("현재습도 : " +
-					 * resp.main.humidity); console.log("날씨 : " +
-					 * resp.weather[0].main); console.log("상세날씨설명 : " +
-					 * resp.weather[0].description); console.log("날씨 이미지 : " +
-					 * resp.weather[0].icon); console.log("바람 : " +
-					 * resp.wind.speed); console.log("나라 : " +
-					 * resp.sys.country); console.log("도시이름 : " + resp.name);
-					 * console.log("구름 : " + (resp.clouds.all) + "%");
-					 */
+				
 					var temp = resp.main.temp - 273.15; /* 온도 */
-					/* console.log("temp : " + Math.round(temp)); */
 					var img = resp.weather[0].icon; /* 날씨 아이콘 */
 					var wtext; /* 날씨 내용 */
 					var wImg; /* 날씨 아이콘 변경 */
@@ -210,16 +199,12 @@ window.onload = function() {
 				var songNo = $(this).children('.songNo').val();
 				var song = $(this).children('.list-info').children('.info-title').text();
 				var artist = $(this).children('.list-info').children('.info-artist').text();
-				console.log(songNo);
-				console.log(song);
-				console.log(artist);
 				$.ajax({
 					url : "melonLyrics.json",
 					type : "GET",
 					dataType:"json",
 					data:{songNo:songNo},
 					success : function(data) {
-						console.log(data);
 						$('.lyricsBox').empty();
 						$('.lyricsBox').html('<div class="lyrics"></div>');
 						$('.lyrics').append("<strong>"+song+"</strong>-"+artist+"<br/><br/>");

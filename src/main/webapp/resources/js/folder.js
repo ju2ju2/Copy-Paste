@@ -106,6 +106,16 @@ $(document).ready(function() {
 		         $(this).removeClass("far").addClass("fas");
 		      }
 		   })
+		   
+		   
+		   /* 폴더 수정 및 삭제 아이콘 토글 */
+	       	$(this).find('.f-modify').hide();
+	       	$('.n-folder').mouseenter(function() {
+	       		$(this).find('.f-modify').show();
+	       	});
+	       	$('.n-folder').mouseleave(function() {
+	       		$(this).find('.f-modify').hide();
+	       	});
 	    }
 	 })
 	}
@@ -292,7 +302,6 @@ function setDefaultFolder(bookmark, folderName){
 	    data : {"beforefolderName": $('#bookmarkO').text(),
 	    		"folderName" : folderName},
 	    success : function(data){
-	    	console.log("폴더명 : " + folderName + "기존 폴더명 : " + $('#bookmarkO').text() );
 	    	location.reload();
 	    },
 	    error : function(){
@@ -556,8 +565,8 @@ function addfolder(){
 	a += "<div class='row'>";
 	a += "<div class='col-xs-10 n-folder'>";
 	a += "<h5 class='ml-10 f-name'>";
-	a += "&ensp;&ensp;<span class='f-count'style='margin-left:-1px;'>0</span>";
-	a += "<input type='text' id='folname' required minlength='1' maxlength='12' style='width:200px;height:40px;margin-left:44px;margin-top:-25px;'placeholder='폴더명을 입력하세요' autofocus/>";
+	a += "<span class='f-count' style='margin-left:1px;'>0</span>";
+	a += "<input type='text' id='folname' required minlength='1' maxlength='12' style='width:200px;height:40px;margin-left:30px;margin-top:-25px;'placeholder='폴더명을 입력하세요' autofocus/>";
 	a += "</h5></div>";
 	a += "<div class='col-xs-2 icon'>";
 	a += "<i class='far fa-bookmark icon-size' style='margin-left:11px;'></i>";
@@ -596,7 +605,6 @@ function folderEdit(fedit, folderName, count, defaultFolder){
 						    url : "../folder/checkFolderName.json",
 						    data : {"folderName": $('#folname').val()},
 						    success : function(data){
-						    	console.log(data);
 						    	if(data>0){
 						    		swal({
 										  title: "이미 존재하는 폴더명입니다.",

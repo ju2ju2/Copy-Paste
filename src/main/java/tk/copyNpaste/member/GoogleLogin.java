@@ -42,9 +42,7 @@ public class GoogleLogin {
         Long expireTime = accessGrant.getExpireTime();
  
         if (expireTime != null && expireTime < System.currentTimeMillis()) {
-            accessToken = accessGrant.getRefreshToken();
-            System.out.printf("accessToken is expired. refresh token = {}", accessToken);
- 
+            accessToken = accessGrant.getRefreshToken(); 
         }
  
         Connection<Google> connection = googleConnectionFactory.createConnection(accessGrant);

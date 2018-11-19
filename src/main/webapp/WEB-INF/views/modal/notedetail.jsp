@@ -476,7 +476,6 @@ $(document).ready(function(){
                      
                      /* 신고된 노트 댓글일때 표시 addclass...*/
                        if('${param.noteCommNum}'==value.noteCommNum){
-                           console.log(${param.noteCommNum})
                            noteCommList += ' reported ">';
                       }else{noteCommList += ' ">';}
                      

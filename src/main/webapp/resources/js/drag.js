@@ -88,7 +88,6 @@
 			      dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
 			      data : params,
 			      success:function(data){
-			    	  console.log(data)
 			    	    var dragList ="";   	    
 			        	if(data != null) {
 			        		$.each(data, function(key, value){
@@ -165,7 +164,6 @@
 			     		       if( currentScrollTop - lastScrollTop > 0 ){
 			   					if ($(window).scrollTop() >= ($(document).height() - $(window).height()) ){ 
 			   						params.page += 12;
-			   						console.log(params.page+" 번부터")
 			   						
 			     			            	$.ajax({
 			     			                    type : 'get',  
@@ -177,7 +175,6 @@
 			     			                    },
 				     		                    success : function(data){
 				     		                   
-				     		                   console.log(data)
 			     		                        var dragList = "";
 			     		                        var dragList2 = "";
 			     		                        if(data != null) {
