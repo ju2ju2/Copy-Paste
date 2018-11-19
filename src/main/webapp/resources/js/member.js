@@ -73,7 +73,6 @@ function checkNick2(pageName){
 	
 //비밀번호에는 영문, 숫자만 입력 가능(signup, myinfo)
 function pwdValid(){
-	console.log('비밀번호');
 		regexp =  /^[0-9a-zA-Z]{6,20}$/i;
 		var v = $(this).val();
 		if (regexp.test(v)) {

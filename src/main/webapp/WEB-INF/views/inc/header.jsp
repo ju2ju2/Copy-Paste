@@ -16,7 +16,7 @@
 /* 192.168.0.134 */
 var ws = new WebSocket("ws://192.168.0.134:8090${pageContext.request.contextPath}/notify.do");
 
-ws.onopen = 	function() 		{	console.log("웹소켓 오픈");	}
+ws.onopen = 	function() 		{}
 ws.onmessage = 	function(evt) 	{	onMessage(evt.data);			}
 ws.onclose = 	function(evt) 	{}
 ws.onerror = 	function(evt) 	{	console.log("웹소켓 에러");	}

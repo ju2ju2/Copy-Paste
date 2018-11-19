@@ -292,7 +292,6 @@ function setDefaultFolder(bookmark, folderName){
 	    data : {"beforefolderName": $('#bookmarkO').text(),
 	    		"folderName" : folderName},
 	    success : function(data){
-	    	console.log("폴더명 : " + folderName + "기존 폴더명 : " + $('#bookmarkO').text() );
 	    	location.reload();
 	    },
 	    error : function(){
@@ -596,7 +595,6 @@ function folderEdit(fedit, folderName, count, defaultFolder){
 						    url : "../folder/checkFolderName.json",
 						    data : {"folderName": $('#folname').val()},
 						    success : function(data){
-						    	console.log(data);
 						    	if(data>0){
 						    		swal({
 										  title: "이미 존재하는 폴더명입니다.",

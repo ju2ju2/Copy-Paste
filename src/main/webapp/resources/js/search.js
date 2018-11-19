@@ -59,7 +59,6 @@ $.ajax({
   data: params,
   dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
   success:function(data){
-	  console.log(data)
 	  var noteList = "";
     	if(data != null) {
     		$.each(data, function(key, value){
@@ -114,7 +113,6 @@ function moreNoteList(e,url,params){
 	if( currentScrollTop - lastScrollTop > 0 ){
 		if ($(window).scrollTop() >= ($(document).height() - $(window).height()) ){ 
 			params.page += 12;
-			console.log(params.page+" 번부터")
 			makeNoteList(url,params)
 			
 		}

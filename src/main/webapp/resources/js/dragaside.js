@@ -157,7 +157,6 @@ function moreAsideDragList(e,url,params){
 	if( currentScrollTop - lastScrollTop > 0 ){
 		if ($(window).scrollTop() >= ($(document).height() - $(window).height()) ){ 
 			params.page += 12;
-			console.log(params.page+" 번부터")
 
 			$.ajax({
 				type : 'get',  
@@ -165,7 +164,6 @@ function moreAsideDragList(e,url,params){
 				async: false,
 				data :params, 
 				success : function(data) {
-					console.log(data);
 					var a="";
 					var a1="";
 					if (data != null) {

@@ -69,7 +69,6 @@ var ip= '192.168.0.141';
        + '}'
        + 'var dragUrl = window.location.href.replace(/&/g, "amp;").replace(/=/g, "nun;");'
        + 'var dragUrlTitle = document.getElementsByTagName("title")[0].innerHTML.replace(/&/g, "amp;");'
-       + 'console.log(selectedText + " / " + dragUrl);'
        + 'var datatosend = "drag_content=" + selectedText + "&drag_url=" + dragUrl + "&drag_url_title=" + dragUrlTitle +"&member_no='+localStorage.getItem("memberNo")+'";'
        + 'var xhrr = new XMLHttpRequest();'
        + 'xhrr.onreadystatechange = function () {'
@@ -88,7 +87,6 @@ var ip= '192.168.0.141';
     }, function (result) {
       // 위의 코드가 실행된 후에 이 함수를 호출해주세요. 그 때 result에 담아주세요.
       //이 문서에서 body  태그 아래에 있는 모든 텍스를 가져온다. 그 결과를 bodyText라는 변수에 담는다.
-      console.log("good:)");
     });
  }
 
@@ -99,7 +97,6 @@ var ip= '192.168.0.141';
    }, function (result) {
      // 위의 코드가 실행된 후에 이 함수를 호출해주세요. 그 때 result에 담아주세요.
      //이 문서에서 body  태그 아래에 있는 모든 텍스를 가져온다. 그 결과를 bodyText라는 변수에 담는다.
-     console.log("good:)");
    });
 }
 

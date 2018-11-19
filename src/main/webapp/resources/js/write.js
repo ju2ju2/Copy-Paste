@@ -101,9 +101,7 @@ $(document).ready(function() {
 			})
 		} 
 		else {
-			console.log("folderList :"+$("#folderList").val())
-			console.log("subjectList :"+$("#subjectList").val())
-			console.log("checked :"+$("input[name='notePublic']:checked").val())
+
 		$.ajax({
 	      url: url, // url_pettern 
 	      type:"POST",

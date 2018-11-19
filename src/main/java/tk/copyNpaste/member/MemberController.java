@@ -56,7 +56,6 @@ public class MemberController {
 	 public @ResponseBody String sendSingupEmail(String mailto) throws Exception {
 		//벨로시티 회원가입 인증메일전송
 		String randomNum = mailer.sendMail(mailto, "singupEmail.do");// 회원가입 메일발송
-		/*System.out.println("randomNum>>"+randomNum);*/
 		return randomNum;
 	}
 	 

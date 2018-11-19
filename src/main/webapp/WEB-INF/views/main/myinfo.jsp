@@ -222,10 +222,8 @@ function updateMember(){
 						success: function(data){
 							if( data == true){
 								//비밀번호 확인 후 정보 수정
-								console.log("data: " + data);
 								infoUpdateAjax();
 							} else{
-								console.log("data: " + data);
 								$('#userPwd').val("");
 								$('#userPwd').attr("placeholder","비밀번호를 정확히 입력해주세요.");
 							}

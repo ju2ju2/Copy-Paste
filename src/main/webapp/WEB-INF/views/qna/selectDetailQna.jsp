@@ -453,9 +453,7 @@
         $('.moreBtn').click(
                 function() {
                     if($(this).parent().nextAll('.qnaCommContent').length>10){
-                    	console.log(qnaCommBoxHeight);
                     	qnaCommBoxHeight=qnaCommBoxHeight+680;
-                    	console.log(qnaCommBoxHeight);
                         $(this).parent().css('display', 'none');
                         $('.qnaCommBox').css('height', qnaCommBoxHeight+'px'); 
                     }else if($(this).parent().nextAll('.qnaCommContent').length<=10){

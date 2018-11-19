@@ -143,7 +143,6 @@ function updatePwd(){
 		url : '${pageContext.request.contextPath}/member/findUserPwd.do',
  		data : {mailto:$('#userEmailForfindUserPwd').val()},
 		success : function(data) {
-					console.log(data);
 					swal({  title: "임시 비밀번호가 이메일로 전송되었습니다.",
 						text: "",
 						type: "warning",
