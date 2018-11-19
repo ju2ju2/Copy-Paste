@@ -24,6 +24,7 @@ import org.apache.velocity.app.VelocityEngine;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -38,7 +39,9 @@ public class MemberMailService {
 	private JavaMailSenderImpl mailSender;
 	@Autowired
 	private VelocityEngine velocityEngine;
-
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 	
 
 	
@@ -68,7 +71,7 @@ public class MemberMailService {
 			// 멀티파트 메시지가 필요하다는 의미로 true 플래그를 사용한다
 			helper = new MimeMessageHelper(message, true, "utf-8");
 			helper.getEncoding();
-			helper.setFrom("bitcamp109@gmail.com");
+			helper.setFrom("copyNpaste@gmail.com");
 			helper.setTo(mailto);
 			if (command == "singupEmail.do") {
 				helper.setSubject("copyNpaste-회원가입 이메일 인증 이메일");// 메일제목
@@ -80,9 +83,10 @@ public class MemberMailService {
 						.getTemplate("logintemplate.vm");// 메일내용		
 				//"./src/main/resources/templates/"
 				member.setUserEmail(mailto);
-				member.setUserPwd(randomPwd);
+				member.setUserPwd(bCryptPasswordEncoder.encode(randomPwd));
 				MemberMapper memberdao= sqlsession.getMapper(MemberMapper.class);
 				memberdao.updateUserPwd(member);
+				
 				randomNum = randomPwd;
 			}
 			
