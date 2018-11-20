@@ -353,22 +353,23 @@
    		    <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
+                <version>2.4</version>
                 <configuration>
                      <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
                 </configuration>
             </plugin>
-			<plugin>
-		        <groupId>org.codehaus.mojo</groupId>
-		        <artifactId>tomcat-maven-plugin</artifactId>
-		        <version>1.1</version>
-		        <configuration>
-		            <url>http://13.124.12.183/manager/text</url>
-		            <path>/${project.artifactId}</path>
-		            <username>admin</username>
-		            <password>admin</password>
-		        </configuration>
-		    </plugin>
+                        
+            <plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tomcat-maven-plugin</artifactId>
+				<version>1.1</version>
+				<configuration>
+					<url>http://13.124.12.183:8090/manager/text</url>
+					<path>/copyNpaste</path>
+					<username>admin</username>
+					<password>admin</password>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
-	<description>copyNpaste</description>
 </project>

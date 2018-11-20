@@ -72,6 +72,7 @@
 			  data: params,
 			  dataType:"json",//서버에서 응답하는 데이터 타입(xml,json,script,html)
 			  success:function(data){
+				  console.log(data)
 				  var noteList = "";
 			    	if(data != null) {
 			    		$.each(data, function(key, value){
@@ -140,10 +141,8 @@
 				var currentScrollTop = $(window).scrollTop();
 
 				if( currentScrollTop - lastScrollTop > 0 ){
-					if ($(window).scrollTop() >= ($(document).height() - $(window).height()))
-					{ 
-						params.page += 12;
-					
+					if ($(window).scrollTop() >= ($(document).height() - $(window).height()) ){ 
+						params.page += 12;					
 						makeNoteList(url,params)
 						
 					}

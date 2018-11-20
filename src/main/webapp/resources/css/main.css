@@ -1040,6 +1040,11 @@ img .user-photo{
 	color:red;
 }
 
+/* 노트 댓글 밀림 방지. */
+.noteCommContent {
+    clear: left !important;
+}
+
 
 /* 이용약관 및 개인정보 이용 */
 .privacy{
@@ -1070,10 +1075,6 @@ img .user-photo{
     background:#f56a6a;
 
 
-/* 노트 댓글 밀림 방지. */
-.noteCommContent {
-    clear: left !important;
-}
 
 /* noteTitle 라인 지정*/
 .noteTitle{
