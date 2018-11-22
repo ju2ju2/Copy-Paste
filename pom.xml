@@ -364,7 +364,7 @@
 				<artifactId>tomcat-maven-plugin</artifactId>
 				<version>1.1</version>
 				<configuration>
-					<url>http://13.124.12.183:8090/manager/text</url>
+					<url>http://13.124.12.183/manager/text</url>
 					<path>/copyNpaste</path>
 					<username>admin</username>
 					<password>admin</password>

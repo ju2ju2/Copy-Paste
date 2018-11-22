@@ -7,9 +7,9 @@ import org.junit.Test;
 
 public class MariaDBTest {
     private static final String DRIVER = "org.mariadb.jdbc.Driver";
-    private static final String URL = "jdbc:mariadb://copynpaste.cioylf9z72dx.ap-northeast-2.rds.amazonaws.com:3306/copynpaste";
+    private static final String URL = "jdbc:mariadb://copynpaste2.cnp4xweoedoj.ap-northeast-2.rds.amazonaws.com:3306/copynpaste";
     private static final String USER = "copyNpaste";
-    private static final String PASSWORD = "bit1091004";
+    private static final String PASSWORD = "10041004";
     
     @Test
     public void testConnection() throws Exception {
